@@ -50,7 +50,12 @@
 
 - (IBAction)openPopup:(id)sender
 {
-    [self showAnimate];
+    UINib *nib = [UINib nibWithNibName:@"EHSkillLevelPopup" bundle:nil];
+    UIView *popup = [[nib instantiateWithOwner:nil options:nil] lastObject];
+    popup.frame = CGRectMake(100, 100, 200, 300);
+    [self.view addSubview:popup];
+    
+//    [self showAnimate];
 }
 
 - (IBAction)closePopup:(id)sender

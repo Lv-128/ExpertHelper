@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B5583E081A0A577800AC56D8 /* EHSkillLevelPopup.xib in Resources */ = {isa = PBXBuildFile; fileRef = B5583E071A0A577800AC56D8 /* EHSkillLevelPopup.xib */; };
+		B5583E0B1A0A583700AC56D8 /* EHSkillLevelPopup.m in Sources */ = {isa = PBXBuildFile; fileRef = B5583E0A1A0A583700AC56D8 /* EHSkillLevelPopup.m */; };
 		D9B0CC651A03B17500544323 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D9B0CC641A03B17500544323 /* Foundation.framework */; };
 		D9B0CC671A03B17500544323 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D9B0CC661A03B17500544323 /* CoreGraphics.framework */; };
 		D9B0CC691A03B17500544323 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D9B0CC681A03B17500544323 /* UIKit.framework */; };
@@ -35,6 +37,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B5583E071A0A577800AC56D8 /* EHSkillLevelPopup.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EHSkillLevelPopup.xib; sourceTree = "<group>"; };
+		B5583E091A0A583700AC56D8 /* EHSkillLevelPopup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EHSkillLevelPopup.h; sourceTree = "<group>"; };
+		B5583E0A1A0A583700AC56D8 /* EHSkillLevelPopup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EHSkillLevelPopup.m; sourceTree = "<group>"; };
 		D9B0CC611A03B17500544323 /* ExpertHelper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ExpertHelper.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D9B0CC641A03B17500544323 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		D9B0CC661A03B17500544323 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -117,6 +122,9 @@
 				D9B0CC731A03B17500544323 /* EHAppDelegate.h */,
 				D9B0CC741A03B17500544323 /* EHAppDelegate.m */,
 				D9B0CC761A03B17500544323 /* Main_iPhone.storyboard */,
+				B5583E091A0A583700AC56D8 /* EHSkillLevelPopup.h */,
+				B5583E0A1A0A583700AC56D8 /* EHSkillLevelPopup.m */,
+				B5583E071A0A577800AC56D8 /* EHSkillLevelPopup.xib */,
 				D9B0CC791A03B17500544323 /* Main_iPad.storyboard */,
 				D9B0CC7C1A03B17500544323 /* EHViewController.h */,
 				D9B0CC7D1A03B17500544323 /* EHViewController.m */,
@@ -233,6 +241,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D9B0CC7B1A03B17500544323 /* Main_iPad.storyboard in Resources */,
+				B5583E081A0A577800AC56D8 /* EHSkillLevelPopup.xib in Resources */,
 				D9B0CC801A03B17500544323 /* Images.xcassets in Resources */,
 				D9B0CC781A03B17500544323 /* Main_iPhone.storyboard in Resources */,
 				D9B0CC6F1A03B17500544323 /* InfoPlist.strings in Resources */,
@@ -256,6 +265,7 @@
 			files = (
 				D9B0CC7E1A03B17500544323 /* EHViewController.m in Sources */,
 				D9B0CC711A03B17500544323 /* main.m in Sources */,
+				B5583E0B1A0A583700AC56D8 /* EHSkillLevelPopup.m in Sources */,
 				D9B0CC751A03B17500544323 /* EHAppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
