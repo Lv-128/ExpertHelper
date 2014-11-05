@@ -475,6 +475,7 @@
 				D9B0CC981A03B17500544323 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		D9B0CC991A03B17500544323 /* Build configuration list for PBXNativeTarget "ExpertHelperTests" */ = {
 			isa = XCConfigurationList;
@@ -483,6 +484,7 @@
 				D9B0CC9B1A03B17500544323 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
