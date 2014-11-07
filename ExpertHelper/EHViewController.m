@@ -7,12 +7,17 @@
 //
 
 #import "EHViewController.h"
+#import "EHSkillLevelPopup.h"
 
-@interface EHViewController ()
+@interface EHViewController ()<EHSkillLevelPopupDelegate>
 
 @end
 
 @implementation EHViewController
+
+- (void)skillLevelPopupDelegate:(EHSkillLevelPopup *)popup didSelectLevel:(NSInteger)level {
+    NSLog(@"Selected Level - %d", level);
+}
 
 - (void)viewDidLoad
 {
@@ -51,9 +56,20 @@
 - (IBAction)openPopup:(id)sender
 {
     UINib *nib = [UINib nibWithNibName:@"EHSkillLevelPopup" bundle:nil];
-    UIView *popup = [[nib instantiateWithOwner:nil options:nil] lastObject];
-    popup.frame = CGRectMake(100, 100, 200, 300);
+    EHSkillLevelPopup *popup = [[nib instantiateWithOwner:nil options:nil] lastObject];
+    CGRect r = self.view.frame;
+    CGRect f = popup.frame;
+    f.size.width = r.size.width;
+    f.origin.y = r.size.height;
+    popup.frame = f;
+    popup.delegate = self;
     [self.view addSubview:popup];
+    
+    [UIView animateWithDuration:0.5 animations:^{
+        CGRect f = popup.frame;
+        f.origin.y -= f.size.height;
+        popup.frame = f;
+    }];
     
 //    [self showAnimate];
 }

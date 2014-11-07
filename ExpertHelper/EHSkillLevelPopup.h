@@ -8,6 +8,16 @@
 
 #import <UIKit/UIKit.h>
 
+@class EHSkillLevelPopup;
+
+@protocol EHSkillLevelPopupDelegate <NSObject>
+
+- (void)skillLevelPopupDelegate:(EHSkillLevelPopup *)popup didSelectLevel:(NSInteger)level;
+
+@end
+
 @interface EHSkillLevelPopup : UIView
+
+@property (nonatomic, weak) id<EHSkillLevelPopupDelegate> delegate;
 
 @end
