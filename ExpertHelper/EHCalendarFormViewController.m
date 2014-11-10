@@ -8,10 +8,25 @@
 
 #import "EHCalendarFormViewController.h"
 #import "EHInterviewFromViewController.h"
+#import "EHCalendarEventsParser.h"
 
 @interface EHCalendarFormViewController () <UITableViewDataSource, UITabBarDelegate>
 @property (strong, nonatomic) NSMutableDictionary *sections;
 @property (strong, nonatomic) NSArray *sortedDays;
+@property (strong, nonatomic) NSDateFormatter *sectionDateFormatter;
+@property (strong, nonatomic) NSDateFormatter *cellDateFormatter;
+
+
+// EKEventStore instance associated with the current Calendar application
+@property (nonatomic, strong) EKEventStore *eventStore;
+
+// Default calendar associated with the above event store
+@property (nonatomic, strong) EKCalendar *defaultCalendar;
+
+// Array of all events happening within the next 24 hours
+@property (nonatomic, strong) NSMutableArray *eventsList;
+
+@property (nonatomic , strong) EHCalendarEventsParser * calEventParser;
 
 - (NSDate *)dateAtBeginningOfDayForDate:(NSDate *)inputDate;
 - (NSDate *)dateByAddingYears:(NSInteger)numberOfYears toDate:(NSDate *)inputDate;
@@ -21,19 +36,12 @@
 
 @synthesize sections;
 @synthesize sortedDays;
-
+@synthesize sectionDateFormatter;
+@synthesize cellDateFormatter;
 
 enum {  All = 0, ITA = 1, External = 2, None = 3};
 
-- (void)awakeFromNib
-{
-    [super awakeFromNib];
-}
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-}
 
 -(IBAction)segmentButton:(id)sender
 {
@@ -53,34 +61,7 @@ enum {  All = 0, ITA = 1, External = 2, None = 3};
 
 #pragma mark - View lifecycle
 
-//- (void)setupWithTitle:(NSString *)title detailText:(NSString *)detailText level:(NSInteger)level additionButtonHidden:(BOOL)additionButtonHidden
-//{
-//    self.customTitleLabel.text = title;
-//    self.detailedLabel.text = detailText;
-//    self.additionButtonHidden = additionButtonHidden;
-//    
-//    if (level == 0) {
-//        self.detailTextLabel.textColor = [UIColor blackColor];
-//    }
-//    
-//    if (level == 0) {
-//        self.backgroundColor = UIColorFromRGB(0xF7F7F7);
-//    } else if (level == 1) {
-//        self.backgroundColor = UIColorFromRGB(0xD1EEFC);
-//    } else if (level >= 2) {
-//        self.backgroundColor = UIColorFromRGB(0xE0F8D8);
-//    }
-//    
-//    CGFloat left = 11 + 20 * level;
-//    
-//    CGRect titleFrame = self.customTitleLabel.frame;
-//    titleFrame.origin.x = left;
-//    self.customTitleLabel.frame = titleFrame;
-//    
-//    CGRect detailsFrame = self.detailedLabel.frame;
-//    detailsFrame.origin.x = left;
-//    self.detailedLabel.frame = detailsFrame;
-//}
+
 
 - (void)viewDidLoad
 {
@@ -90,25 +71,42 @@ enum {  All = 0, ITA = 1, External = 2, None = 3};
     whichTypeOfInterviewIsChosen = All;
     
     self.tableView.allowsMultipleSelectionDuringEditing = NO;
-    self.sections = [NSMutableDictionary dictionaryWithObjectsAndKeys:@[@"Monday,1", @"Tuesday,1"], @"September", @[@"Wednesday,14", @"Friday,28"], @"October", nil];
+ 
+    // Initialize the event store
+	self.eventStore = [[EKEventStore alloc] init];
+    // Initialize the events list
+	self.eventsList = [[NSMutableArray alloc] initWithCapacity:0];
+    
+    
+    self.calEventParser = [[EHCalendarEventsParser alloc] init];
+    [_calEventParser checkEventStoreAccessForCalendar];
+    
+    self.sectionDateFormatter = [[NSDateFormatter alloc] init];
+    [self.sectionDateFormatter setDateStyle:NSDateFormatterLongStyle];
+    [self.sectionDateFormatter setTimeStyle:NSDateFormatterNoStyle];
+    
+    self.cellDateFormatter = [[NSDateFormatter alloc] init];
+    [self.cellDateFormatter setDateStyle:NSDateFormatterFullStyle];
+    [self.cellDateFormatter setTimeStyle:NSDateFormatterShortStyle];
     
     
     
+}
+-(void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    // Check whether we are authorized to access Calendar
+    [_calEventParser checkEventStoreAccessForCalendar];
     
+    // Fetch all events happening in the next 24 hours and put them into eventsList
+    self.eventsList = _calEventParser.eventsList;
+    self.sections = _calEventParser.sections;
     
-    
-    
-    // Create a sorted list of days
-    NSArray *unsortedDays = [self.sections allKeys];
-    self.sortedDays = [unsortedDays sortedArrayUsingSelector:@selector(compare:)];
-    
-    
+    self.sortedDays = _calEventParser.sortedDays;
+    // Update the UI with the above events
+    [self.tableView reloadData];
 }
 
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return YES if you want the specified item to be editable.
-    return YES;
-}
 
 // Override to support editing the table view.
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -137,13 +135,15 @@ enum {  All = 0, ITA = 1, External = 2, None = 3};
         
         NSString *dateRepresentingThisDay = [self.sortedDays objectAtIndex:myIndexPath.section];
         NSArray *eventsOnThisDay = [self.sections objectForKey:dateRepresentingThisDay];
-        NSString *event = [eventsOnThisDay objectAtIndex:row];
+        EKEvent *event = [eventsOnThisDay objectAtIndex:row];
         
-        interviewForm.date = event; //event;
+        interviewForm.date = [self.cellDateFormatter stringFromDate:event.startDate];
         
     }
     
 }
+
+#pragma mark - UITableViewDataSource methods
 
 #pragma mark - UITableViewDataSource methods
 
@@ -162,7 +162,6 @@ enum {  All = 0, ITA = 1, External = 2, None = 3};
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
     NSString *dateRepresentingThisDay = [self.sortedDays objectAtIndex:section];
-    
     return dateRepresentingThisDay;
 }
 
@@ -171,15 +170,28 @@ enum {  All = 0, ITA = 1, External = 2, None = 3};
     NSString *reuseIdentifier = @"Cell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
     
-    NSString *dateRepresentingThisDay = [self.sortedDays objectAtIndex:indexPath.section];
+    NSDate *dateRepresentingThisDay = [self.sortedDays objectAtIndex:indexPath.section];
     NSArray *eventsOnThisDay = [self.sections objectForKey:dateRepresentingThisDay];
-    NSString *event = [eventsOnThisDay objectAtIndex:indexPath.row];
+    EKEvent *event = [eventsOnThisDay objectAtIndex:indexPath.row];
     
-    cell.textLabel.text = event;
-    cell.backgroundColor = [UIColor colorWithRed:0.62 green:0.77 blue:0.91 alpha:1.0];
-    //cell.detailTextLabel.text = @">";
+    NSString *dateString = [NSDateFormatter localizedStringFromDate:event.startDate
+                                                          dateStyle:NSDateFormatterShortStyle
+                                                          timeStyle:NSDateFormatterFullStyle];
+    NSLog(@"%@",dateString);
+    
+       cell.textLabel.text = event.title;
+//    cell.textLabel.numberOfLines = 2;
+ //   cell.textLabel.lineBreakMode = UILineBreakModeWordWrap;
+    
+    
+    cell.detailTextLabel.text = [self.cellDateFormatter stringFromDate:event.startDate];
     
     return cell;
 }
+
+
+
+
+
 
 @end
