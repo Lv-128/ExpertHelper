@@ -8,8 +8,12 @@
 
 #import "EHViewController.h"
 #import "EHSkillLevelPopup.h"
+<<<<<<< Updated upstream
 
 @interface EHViewController ()<EHSkillLevelPopupDelegate>
+=======
+@interface EHViewController ()
+>>>>>>> Stashed changes
 
 @end
 
@@ -21,6 +25,7 @@
 
 - (void)viewDidLoad
 {
+    
     self.popUpView.layer.cornerRadius = 5;
     self.popUpView.layer.shadowOpacity = 0.8;
     self.popUpView.layer.shadowOffset = CGSizeMake(0.0f, 0.0f);
@@ -56,6 +61,7 @@
 - (IBAction)openPopup:(id)sender
 {
     UINib *nib = [UINib nibWithNibName:@"EHSkillLevelPopup" bundle:nil];
+<<<<<<< Updated upstream
     EHSkillLevelPopup *popup = [[nib instantiateWithOwner:nil options:nil] lastObject];
     CGRect r = self.view.frame;
     CGRect f = popup.frame;
@@ -72,6 +78,15 @@
     }];
     
 //    [self showAnimate];
+=======
+    UIView *popup = [[nib instantiateWithOwner:nil options:nil] lastObject];
+    
+    popup.frame = CGRectMake(CGRectGetMinX(self.view.frame),CGRectGetMaxY(self.view.frame) - 404, 200, 300);
+     
+    [self.view addSubview:popup];
+    
+   //[self showAnimate];
+>>>>>>> Stashed changes
 }
 
 - (IBAction)closePopup:(id)sender

@@ -18,6 +18,9 @@
 
 @interface EHSkillLevelPopup : UIView
 
+<<<<<<< Updated upstream
 @property (nonatomic, weak) id<EHSkillLevelPopupDelegate> delegate;
+=======
+>>>>>>> Stashed changes
 
 @end

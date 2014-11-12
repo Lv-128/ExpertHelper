@@ -12,6 +12,7 @@
 
 @property (weak, nonatomic) IBOutlet UIView *popUpView;
 
+
 - (void)showInView:(UIView *)aView animated:(BOOL)animated;
 - (IBAction)closePopup:(id)sender;
 - (IBAction)openPopup:(id)sender;

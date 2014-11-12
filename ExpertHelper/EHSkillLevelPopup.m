@@ -2,7 +2,7 @@
 //  EHSkillLevelPopup.m
 //  ExpertHelper
 //
-//  Created by Andrii Mamchur on 11/5/14.
+//  Created by Katolyk S. on 11/7/14.
 //  Copyright (c) 2014 Katolyk S. All rights reserved.
 //
 
@@ -10,7 +10,13 @@
 
 @implementation EHSkillLevelPopup
 
-- (IBAction)onButtonTap:(id)sender {
+- (id)initWithFrame:(CGRect)frame
+{
+    self = [super initWithFrame:frame];
+    if (self) {
+        // Initialization code
+    }
+    return self;
 }
 
 - (IBAction)onHide:(id)sender {
@@ -28,7 +34,8 @@
 /*
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect {
+- (void)drawRect:(CGRect)rect
+{
     // Drawing code
 }
 */
