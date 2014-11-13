@@ -10,4 +10,19 @@
 
 @implementation EHInterview
 
+
+
+
+
+- (void)underlineAllLocations
+{
+//    NSError *error = NULL;
+//    NSString *pattern = @"with\\s*([a-zA-Z]1,{10})\\s*([a-zA-Z]{1,10})";
+//    NSString *string = @"Interview with Alena Pyanyh";
+//    NSRange range = NSMakeRange(0, string.length);
+//    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:pattern options:0 error:&error];
+//  NSArray *matches = [regex matchesInString:string options:(NSMatchingOptions)NSMatchingProgress range:range];
+    //NSLog(matches);
+    //[self highlightMatches:matches];
+}
 @end

@@ -28,8 +28,7 @@
 
 @property (nonatomic , strong) EHCalendarEventsParser * calEventParser;
 
-- (NSDate *)dateAtBeginningOfDayForDate:(NSDate *)inputDate;
-- (NSDate *)dateByAddingYears:(NSInteger)numberOfYears toDate:(NSDate *)inputDate;
+
 @end
 
 @implementation EHCalendarFormViewController
@@ -72,10 +71,10 @@ enum {  All = 0, ITA = 1, External = 2, None = 3};
     
     self.tableView.allowsMultipleSelectionDuringEditing = NO;
  
-    // Initialize the event store
-	self.eventStore = [[EKEventStore alloc] init];
-    // Initialize the events list
-	self.eventsList = [[NSMutableArray alloc] initWithCapacity:0];
+    
+	self.eventStore = [[EKEventStore alloc] init];// Initialize the event store
+   
+	self.eventsList = [[NSMutableArray alloc] initWithCapacity:0]; // Initialize the events list
     
     
     self.calEventParser = [[EHCalendarEventsParser alloc] init];
@@ -95,23 +94,23 @@ enum {  All = 0, ITA = 1, External = 2, None = 3};
 -(void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    // Check whether we are authorized to access Calendar
-    [_calEventParser checkEventStoreAccessForCalendar];
+  
+    [_calEventParser checkEventStoreAccessForCalendar];  // Check whether we are authorized to access Calendar
     
     // Fetch all events happening in the next 24 hours and put them into eventsList
     self.eventsList = _calEventParser.eventsList;
     self.sections = _calEventParser.sections;
     
     self.sortedDays = _calEventParser.sortedDays;
-    // Update the UI with the above events
-    [self.tableView reloadData];
+   
+    [self.tableView reloadData]; // Update the UI with the  events
 }
 
 
-// Override to support editing the table view.
+
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        //add code here for when you hit delete
+       
     }
 }
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -128,22 +127,15 @@ enum {  All = 0, ITA = 1, External = 2, None = 3};
     {
         EHInterviewFromViewController * interviewForm = [segue destinationViewController];
         NSIndexPath * myIndexPath = [self.tableView indexPathForSelectedRow];
-        
-        
-        
         int row = [myIndexPath row];
-        
         NSString *dateRepresentingThisDay = [self.sortedDays objectAtIndex:myIndexPath.section];
         NSArray *eventsOnThisDay = [self.sections objectForKey:dateRepresentingThisDay];
         EKEvent *event = [eventsOnThisDay objectAtIndex:row];
-        
         interviewForm.date = [self.cellDateFormatter stringFromDate:event.startDate];
         
     }
     
 }
-
-#pragma mark - UITableViewDataSource methods
 
 #pragma mark - UITableViewDataSource methods
 
@@ -174,15 +166,14 @@ enum {  All = 0, ITA = 1, External = 2, None = 3};
     NSArray *eventsOnThisDay = [self.sections objectForKey:dateRepresentingThisDay];
     EKEvent *event = [eventsOnThisDay objectAtIndex:indexPath.row];
     
-    NSString *dateString = [NSDateFormatter localizedStringFromDate:event.startDate
-                                                          dateStyle:NSDateFormatterShortStyle
-                                                          timeStyle:NSDateFormatterFullStyle];
-    NSLog(@"%@",dateString);
+ //   NSString *dateString = [NSDateFormatter localizedStringFromDate:event.startDate
+                                                        //  dateStyle:NSDateFormatterShortStyle
+                                                       //   timeStyle:NSDateFormatterFullStyle];
+   // NSLog(@"%@",dateString);
     
-       cell.textLabel.text = event.title;
+    cell.textLabel.text = event.title;
 //    cell.textLabel.numberOfLines = 2;
  //   cell.textLabel.lineBreakMode = UILineBreakModeWordWrap;
-    
     
     cell.detailTextLabel.text = [self.cellDateFormatter stringFromDate:event.startDate];
     

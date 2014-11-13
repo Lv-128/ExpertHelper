@@ -8,23 +8,46 @@
 
 #import <Foundation/Foundation.h>
 #import <EventKit/EventKit.h>
+
+@interface EHCalendarParseResult : NSObject
+
+@property (nonatomic, copy) NSString *firstName;
+@property (nonatomic, copy) NSString *lastName;
+
+@end
+
+@interface EHCalendarParseOptions : NSObject
+
+@property (nonatomic, assign) BOOL firstNameFirst;
+
+@end
+
+
 @interface EHCalendarEventsParser : NSObject
-@property (strong, nonatomic) NSMutableDictionary *sections;
-@property (strong, nonatomic) NSMutableArray *sortedDays;
-@property (strong, nonatomic) NSDateFormatter *sectionDateFormatter;
-@property (strong, nonatomic) NSDateFormatter *cellDateFormatter;
 
 @property (strong , nonatomic) NSArray *namesMonth;
 
-// EKEventStore instance associated with the current Calendar application
-@property (nonatomic, strong) EKEventStore *eventStore;
+@property (strong, nonatomic) NSMutableDictionary *sections;
+@property (copy, nonatomic) NSArray *sortedDays;
+@property (strong, nonatomic) NSDateFormatter *sectionDateFormatter;
+@property (strong, nonatomic) NSDateFormatter *cellDateFormatter;
 
-// Default calendar associated with the above event store
-@property (nonatomic, strong) EKCalendar *defaultCalendar;
 
-// Array of all events happening within the next 24 hours
-@property (nonatomic, strong) NSMutableArray *eventsList;
+@property (nonatomic, strong) EKEventStore *eventStore;// EKEventStore instance associated with the current Calendar application
+@property (nonatomic, strong) EKCalendar *defaultCalendar;// Default calendar associated with the above event store
+
+
+@property (nonatomic, strong) NSMutableArray *eventsList;// Array of all events happening within the next 24 hours
+
+@property (nonatomic, strong) EHCalendarParseOptions * parseOptions;
+
+- (id)initWithObjection:(EHCalendarParseOptions *)options;
+
+- (EHCalendarParseResult *)parseEventSubject:(NSString *)subject;
 
 - (NSMutableArray *)fetchEvents;
+
 -(void)checkEventStoreAccessForCalendar;
+
+- (EHCalendarParseResult *)getNameOfCandidateFromTitle:(NSString*)string;
 @end

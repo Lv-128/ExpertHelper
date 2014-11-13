@@ -19,7 +19,7 @@
 @property (nonatomic, strong) EKEvent *  curEvent;
 @property (nonatomic, strong) NSString * eventTitle;
 
--(void)getNameOfCandidateFromEventTitle:(NSString * )title;
+//-(void)getNameOfCandidateFromEventTitle:(NSString * )title;
 
 
 @end

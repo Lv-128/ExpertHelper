@@ -1,4 +1,4 @@
-//
+
 //  EHCalendarEventsParser.m
 //  AppointmentList
 //
@@ -8,14 +8,116 @@
 
 #import "EHCalendarEventsParser.h"
 
-@implementation EHCalendarEventsParser
+@implementation EHCalendarParseResult
 
+- (void)dealloc {
+    self.firstName = nil;
+    self.lastName = nil;
+}
+
+- (id)initWithName:(NSString *)name andLastName:(NSString *)lastName
+{
+    self=[super init];
+    if (self)
+    {
+        self.firstName = name;
+        self.lastName= lastName;
+    }
+    return self;
+}
+@end
+
+@implementation EHCalendarParseOptions
+
+-(id) initWithOption:(bool) option
+{
+    self = [super init];
+    {
+        self.firstNameFirst= option;
+    }
+    return self;
+}
+
+@end
+
+@implementation EHCalendarEventsParser
 
 @synthesize sections;
 @synthesize sortedDays;
-@synthesize sectionDateFormatter;
-@synthesize cellDateFormatter;
 
+
+-(bool)canDefineTypeAsITA:(NSString *)string
+{
+    bool isIta = NO;
+    NSError *error = NULL;
+    NSString *pattern = @"\\b[ita|it academy|itacademy\\b";
+    
+    // NSString *string = @"ITA Interview With Alena Pyanyh ita on friday Ita ITA";
+    NSRange range = NSMakeRange(0, string.length);
+    
+    
+    NSRegularExpressionOptions regexOptions = NSRegularExpressionCaseInsensitive;
+    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:pattern options:regexOptions error:&error];
+    NSArray *matches = [regex matchesInString:string options:(NSMatchingOptions)regexOptions range:range];
+    if ([matches count]>0)
+    {
+        isIta = YES;
+    }
+    
+    return isIta;
+    
+}
+- (EHCalendarParseResult *)getNameOfCandidateFromTitle:(NSString*)string
+{
+    NSError *error = NULL;
+    NSMutableArray * results = [[NSMutableArray alloc ]initWithCapacity:0];
+ 
+     NSString * pat3 = @"\\s*[w|W]ith(?![Candidate|candidates|Candidates|ITA|ita|ITA|candidate])\\s*([A-Z][a-z'-]*)(\\s*[A-Z]*[a-z']*)\\s([A-Z][a-z'-]*)(\\s*[A-Z]*[a-z']*)*\\s*";
+  //  NSString * pat2 = @"\\s*[w|W]ith(?![Candidate|candidates|Candidates|ITA|ita|ITA|candidate])\\s*([A-Z][a-z'-]*)(\\s*[A-Z][a-z])*([\\s\\\'-][A-Z][a-z\'-]*)*";
+   //NSString *string = @"Technical interview with Kirichok Stanislav";
+    NSRange range = NSMakeRange(0, string.length);
+    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:pat3 options:0 error:&error];
+    NSArray *matches = [regex matchesInString:string options:NSMatchingReportCompletion range:range];
+    for (NSTextCheckingResult *match in matches)
+    {
+        NSRange matchRange = match.range;
+        matchRange.location+=6;
+        matchRange.length-=6;
+    
+       NSLog(@"%@",[string substringWithRange:matchRange]);
+        
+        [results addObject:[string substringWithRange:matchRange]];
+    }
+  
+    EHCalendarParseResult * parseResult = [[EHCalendarParseResult alloc]init];;
+    if (results.count ==1)
+    {
+        NSArray* parseWithSpaces = [results[0] componentsSeparatedByString: @" "];
+       if (_parseOptions.firstNameFirst ==YES)
+       {
+        NSString * firstName = parseWithSpaces[0];
+        NSString * lastName = parseWithSpaces[1];
+        parseResult = [[EHCalendarParseResult alloc] initWithName:firstName andLastName:lastName];
+       }
+       else{
+           NSString * firstName = parseWithSpaces[1];
+           NSString * lastName = parseWithSpaces[0];
+           parseResult = [[EHCalendarParseResult alloc] initWithName:firstName andLastName:lastName];
+       }
+    }
+    return parseResult;
+}
+
+- (id)initWithObjection:(EHCalendarParseOptions *)options {
+    
+    self = [super init];
+    if (self)
+    {
+        self.parseOptions = options;
+    }
+    
+    return self;
+}
 
 -(id)init
 {
@@ -24,10 +126,10 @@
     {
         self.eventStore = [[EKEventStore alloc] init];
         self.eventsList = [[NSMutableArray alloc] initWithCapacity:0];
-        self.sortedDays = [[NSMutableArray alloc]initWithCapacity:0];
+        self.sortedDays = [[NSArray alloc]init];
         _namesMonth = [NSArray arrayWithObjects:@"January",@"February", @"March",@"April",@"May",@"June",@"July",@"August",
                        @"September",@"October",@"November",@"December", nil];
-       
+        [self getNameOfCandidateFromTitle:@"Technical interview with Kirichok Stanislav"];
     }
     return self;
 }
@@ -89,7 +191,7 @@
     self.defaultCalendar = self.eventStore.defaultCalendarForNewEvents;
     self.eventsList = [self fetchEvents];
  }
-- (NSMutableArray *)fetchEvents
+- (NSArray *)fetchEvents
 {
     NSTimeInterval secondsPerDay = 24 * 60 * 60 ;  //  one day interval  = 86400 seconds
     NSDate * startDate = [[NSDate alloc] initWithTimeIntervalSinceNow:-secondsPerDay*365]; // 10 days ago
@@ -142,18 +244,8 @@
         }
     }
     
-    
-    
-    NSArray *unsortedDays = [self.sections allKeys];// Create a sorted list of days
-    self.sortedDays = [unsortedDays sortedArrayUsingSelector:@selector(compare:)];
-    
-    self.sectionDateFormatter = [[NSDateFormatter alloc] init];
-    [self.sectionDateFormatter setDateStyle:NSDateFormatterLongStyle];
-    [self.sectionDateFormatter setTimeStyle:NSDateFormatterNoStyle];
-    
-    self.cellDateFormatter = [[NSDateFormatter alloc] init];
-    [self.cellDateFormatter setDateStyle:NSDateFormatterNoStyle];
-    [self.cellDateFormatter setTimeStyle:NSDateFormatterShortStyle];
+        NSArray *unsortedDays = [self.sections allKeys];// Create a sorted list of days
+        self.sortedDays = unsortedDays;//[unsortedDays sortedArrayUsingSelector:@selector(compare:)];
     
 	return self.sortedDays;
 }
@@ -190,6 +282,12 @@
     
     NSDate *newDate = [calendar dateByAddingComponents:dateComps toDate:inputDate options:0];
     return newDate;
+}
+
+- (EHCalendarParseResult *)parseEventSubject:(NSString *)subject {
+    EHCalendarParseResult *result = [[EHCalendarParseResult alloc] init];
+    
+    return result;
 }
 
 
