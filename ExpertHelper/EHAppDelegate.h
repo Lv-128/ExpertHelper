@@ -11,5 +11,6 @@
 @interface EHAppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
-
+@property (strong, nonatomic) UIViewController *PopUp;
+@property (strong, nonatomic) UIView *PopUper;
 @end

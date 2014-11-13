@@ -12,15 +12,14 @@
 
 @protocol EHSkillLevelPopupDelegate <NSObject>
 
-- (void)skillLevelPopupDelegate:(EHSkillLevelPopup *)popup didSelectLevel:(NSInteger)level;
+- (void)skillLevelPopupDelegate:(EHSkillLevelPopup *)popup didSelectLevel:(BOOL)goToComments;
 
 @end
 
 @interface EHSkillLevelPopup : UIView
+@property BOOL goToComments;
 
-<<<<<<< Updated upstream
+- (IBAction)goToComment:(UIButton *)sender;
 @property (nonatomic, weak) id<EHSkillLevelPopupDelegate> delegate;
-=======
->>>>>>> Stashed changes
 
 @end

@@ -7,15 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <AVFoundation/AVFoundation.h>
 
-@interface EHViewController : UIViewController
+@interface EHViewController : UIViewController{
+    BOOL isShaking;
+}
+@property (weak, nonatomic) IBOutlet UIButton *playButton;
 
-@property (weak, nonatomic) IBOutlet UIView *popUpView;
+- (IBAction)playTapped:(id)sender;
 
-
-- (void)showInView:(UIView *)aView animated:(BOOL)animated;
-- (IBAction)closePopup:(id)sender;
 - (IBAction)openPopup:(id)sender;
-- (IBAction)colorswap:(id)sender;
 
 @end
