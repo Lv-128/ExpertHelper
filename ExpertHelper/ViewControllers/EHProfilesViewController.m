@@ -10,7 +10,7 @@
 #import "EHProfilesTableViewCell.h"
 #import "EHSkillLevelPopup.h"
 
-@interface EHProfilesViewController () 
+@interface EHProfilesViewController ()<EHSkillLevelPopupDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) NSArray *tableSections;
@@ -20,6 +20,16 @@
 
 @implementation EHProfilesViewController
 @synthesize message2;
+
+- (void)skillLevelPopup:(EHSkillLevelPopup *)popup
+         didSelectLevel:(EHSkillLevel)level {
+}
+
+- (void)skillLevelPopupDidSelectComment:(EHSkillLevelPopup *)popup {
+    UIViewController *push2 = [[UIViewController alloc]init];
+    [[self navigationController]pushViewController:push2 animated:YES];
+}
+
 - (void)viewDidLoad
 {
     
@@ -123,11 +133,12 @@
     f.origin.y = r.size.height;
     f.origin.y -= f.size.height;
     popup.frame = f;
-    //popup.delegate = self;
+    popup.delegate = self;
     popup.layer.cornerRadius = 6;
     popup.layer.shadowOpacity = 0.8;
     popup.transform = CGAffineTransformMakeScale(1.3, 1.3);
     popup.alpha = 0;
+    popup.titleLabel.text = message;
     [self.view addSubview:popup];
     
     [UIView animateWithDuration:0.5 animations:^{

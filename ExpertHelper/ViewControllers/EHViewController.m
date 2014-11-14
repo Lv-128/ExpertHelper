@@ -20,11 +20,13 @@
 @synthesize playButton;
 
 
-- (void)skillLevelPopupDelegate:(EHSkillLevelPopup *)popup didSelectLevel:(BOOL)goToComments {
-    if (goToComments == YES) {
-        UIViewController *push2 = [[UIViewController alloc]init];
-        [[self navigationController]pushViewController:push2 animated:YES];
-    }
+- (void)skillLevelPopup:(EHSkillLevelPopup *)popup
+         didSelectLevel:(EHSkillLevel)level {
+}
+
+- (void)skillLevelPopupDidSelectComment:(EHSkillLevelPopup *)popup {
+    UIViewController *push2 = [[UIViewController alloc]init];
+    [[self navigationController]pushViewController:push2 animated:YES];
 }
 
 - (void)viewDidLoad

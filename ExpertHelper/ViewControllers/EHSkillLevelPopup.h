@@ -10,13 +10,22 @@
 
 @class EHSkillLevelPopup;
 
+typedef enum : NSUInteger {
+    EHSkillLevelNone,
+    EHSkillLevelBeginner,
+    EHSkillLevelMiddle,
+    EHSkillLevelStrong
+} EHSkillLevel;
+
 @protocol EHSkillLevelPopupDelegate <NSObject>
 
-- (void)skillLevelPopupDelegate:(EHSkillLevelPopup *)popup didSelectLevel:(BOOL)goToComments;
+- (void)skillLevelPopup:(EHSkillLevelPopup *)popup didSelectLevel:(EHSkillLevel)level;
+- (void)skillLevelPopupDidSelectComment:(EHSkillLevelPopup *)popup;
 
 @end
 
 @interface EHSkillLevelPopup : UIView
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property BOOL goToComments;
 
 - (IBAction)goToComment:(UIButton *)sender;

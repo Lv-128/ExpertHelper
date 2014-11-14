@@ -19,7 +19,7 @@
 
 - (IBAction)onHide:(id)sender {
     
-    [_delegate skillLevelPopupDelegate:self didSelectLevel:0];
+    [_delegate skillLevelPopup:self didSelectLevel:EHSkillLevelNone];
     //UINib *nib = [UINib nibWithNibName:@"EHSkillLevelPopup" bundle:nil];
     //UIView *popup = [[nib instantiateWithOwner:self options:nil] lastObject];
     
@@ -49,6 +49,7 @@
 */
 
 - (IBAction)goToComment:(UIButton *)sender {
+    [_delegate skillLevelPopupDidSelectComment:self];
     goToComments = YES;
 }
 @end
