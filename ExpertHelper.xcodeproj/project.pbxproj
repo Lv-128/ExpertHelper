@@ -7,9 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		B5583E081A0A577800AC56D8 /* EHSkillLevelPopup.xib in Resources */ = {isa = PBXBuildFile; fileRef = B5583E071A0A577800AC56D8 /* EHSkillLevelPopup.xib */; };
-		B5583E0B1A0A583700AC56D8 /* EHSkillLevelPopup.m in Sources */ = {isa = PBXBuildFile; fileRef = B5583E0A1A0A583700AC56D8 /* EHSkillLevelPopup.m */; };
-		D9ACCD1D1A150BDD0076DFB4 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D9ACCD1C1A150BDD0076DFB4 /* AVFoundation.framework */; };
+		2790F4E31A139854001B0956 /* EHProfilesTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2790F4E21A139854001B0956 /* EHProfilesTableViewCell.m */; };
+		2790F4E61A1398D8001B0956 /* EHProfilesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2790F4E51A1398D8001B0956 /* EHProfilesViewController.m */; };
+		D90A1BBE1A16335F00B610C6 /* EHViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D90A1BBD1A16335F00B610C6 /* EHViewController.m */; };
+		D9ACCD221A151A340076DFB4 /* EHSkillLevelPopup.m in Sources */ = {isa = PBXBuildFile; fileRef = D9ACCD211A151A340076DFB4 /* EHSkillLevelPopup.m */; };
+		D9ACCD251A15283C0076DFB4 /* EHSkillLevelPopupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D9ACCD241A15283C0076DFB4 /* EHSkillLevelPopupViewController.m */; };
+		D9ACCD291A152EF30076DFB4 /* EHSkillLevelPopup.xib in Resources */ = {isa = PBXBuildFile; fileRef = D9ACCD281A152EF30076DFB4 /* EHSkillLevelPopup.xib */; };
 		D9B0CC651A03B17500544323 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D9B0CC641A03B17500544323 /* Foundation.framework */; };
 		D9B0CC671A03B17500544323 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D9B0CC661A03B17500544323 /* CoreGraphics.framework */; };
 		D9B0CC691A03B17500544323 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D9B0CC681A03B17500544323 /* UIKit.framework */; };
@@ -18,13 +21,17 @@
 		D9B0CC751A03B17500544323 /* EHAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D9B0CC741A03B17500544323 /* EHAppDelegate.m */; };
 		D9B0CC781A03B17500544323 /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D9B0CC761A03B17500544323 /* Main_iPhone.storyboard */; };
 		D9B0CC7B1A03B17500544323 /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D9B0CC791A03B17500544323 /* Main_iPad.storyboard */; };
-		D9B0CC7E1A03B17500544323 /* EHViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D9B0CC7D1A03B17500544323 /* EHViewController.m */; };
-		D9B0CC801A03B17500544323 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D9B0CC7F1A03B17500544323 /* Images.xcassets */; };
 		D9B0CC871A03B17500544323 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D9B0CC861A03B17500544323 /* XCTest.framework */; };
 		D9B0CC881A03B17500544323 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D9B0CC641A03B17500544323 /* Foundation.framework */; };
 		D9B0CC891A03B17500544323 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D9B0CC681A03B17500544323 /* UIKit.framework */; };
 		D9B0CC911A03B17500544323 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D9B0CC8F1A03B17500544323 /* InfoPlist.strings */; };
 		D9B0CC931A03B17500544323 /* ExpertHelperTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D9B0CC921A03B17500544323 /* ExpertHelperTests.m */; };
+		D9BE54001A10B16700AD5D3D /* EHCalendarFormViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D9BE53F61A10B16700AD5D3D /* EHCalendarFormViewController.m */; };
+		D9BE54011A10B16700AD5D3D /* EHExternalCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D9BE53F81A10B16700AD5D3D /* EHExternalCell.m */; };
+		D9BE54021A10B16700AD5D3D /* EHExternalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D9BE53FA1A10B16700AD5D3D /* EHExternalViewController.m */; };
+		D9BE54031A10B16700AD5D3D /* EHInterviewFromViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D9BE53FC1A10B16700AD5D3D /* EHInterviewFromViewController.m */; };
+		D9BE54041A10B16700AD5D3D /* EHProgrammingLanguagesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D9BE53FE1A10B16700AD5D3D /* EHProgrammingLanguagesViewController.m */; };
+		D9BE54071A10B1A200AD5D3D /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D9BE54061A10B1A200AD5D3D /* Images.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,10 +45,17 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		B5583E071A0A577800AC56D8 /* EHSkillLevelPopup.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EHSkillLevelPopup.xib; sourceTree = "<group>"; };
-		B5583E091A0A583700AC56D8 /* EHSkillLevelPopup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EHSkillLevelPopup.h; sourceTree = "<group>"; };
-		B5583E0A1A0A583700AC56D8 /* EHSkillLevelPopup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EHSkillLevelPopup.m; sourceTree = "<group>"; };
-		D9ACCD1C1A150BDD0076DFB4 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		2790F4E11A139854001B0956 /* EHProfilesTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EHProfilesTableViewCell.h; path = Views/EHProfilesTableViewCell.h; sourceTree = "<group>"; };
+		2790F4E21A139854001B0956 /* EHProfilesTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EHProfilesTableViewCell.m; path = Views/EHProfilesTableViewCell.m; sourceTree = "<group>"; };
+		2790F4E41A1398D8001B0956 /* EHProfilesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EHProfilesViewController.h; path = ViewControllers/EHProfilesViewController.h; sourceTree = "<group>"; };
+		2790F4E51A1398D8001B0956 /* EHProfilesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EHProfilesViewController.m; path = ViewControllers/EHProfilesViewController.m; sourceTree = "<group>"; };
+		D90A1BBC1A16335F00B610C6 /* EHViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EHViewController.h; path = ViewControllers/EHViewController.h; sourceTree = "<group>"; };
+		D90A1BBD1A16335F00B610C6 /* EHViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EHViewController.m; path = ViewControllers/EHViewController.m; sourceTree = "<group>"; };
+		D9ACCD201A151A340076DFB4 /* EHSkillLevelPopup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EHSkillLevelPopup.h; path = "../../ExpertHelper-myFix/ExpertHelper/EHSkillLevelPopup.h"; sourceTree = "<group>"; };
+		D9ACCD211A151A340076DFB4 /* EHSkillLevelPopup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EHSkillLevelPopup.m; path = "../../ExpertHelper-myFix/ExpertHelper/EHSkillLevelPopup.m"; sourceTree = "<group>"; };
+		D9ACCD231A15283C0076DFB4 /* EHSkillLevelPopupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EHSkillLevelPopupViewController.h; path = ../EHSkillLevelPopupViewController.h; sourceTree = "<group>"; };
+		D9ACCD241A15283C0076DFB4 /* EHSkillLevelPopupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EHSkillLevelPopupViewController.m; path = ../EHSkillLevelPopupViewController.m; sourceTree = "<group>"; };
+		D9ACCD281A152EF30076DFB4 /* EHSkillLevelPopup.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EHSkillLevelPopup.xib; sourceTree = "<group>"; };
 		D9B0CC611A03B17500544323 /* ExpertHelper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ExpertHelper.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D9B0CC641A03B17500544323 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		D9B0CC661A03B17500544323 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -54,14 +68,22 @@
 		D9B0CC741A03B17500544323 /* EHAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EHAppDelegate.m; sourceTree = "<group>"; };
 		D9B0CC771A03B17500544323 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPhone.storyboard; sourceTree = "<group>"; };
 		D9B0CC7A1A03B17500544323 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPad.storyboard; sourceTree = "<group>"; };
-		D9B0CC7C1A03B17500544323 /* EHViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EHViewController.h; sourceTree = "<group>"; };
-		D9B0CC7D1A03B17500544323 /* EHViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EHViewController.m; sourceTree = "<group>"; };
-		D9B0CC7F1A03B17500544323 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		D9B0CC851A03B17500544323 /* ExpertHelperTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ExpertHelperTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D9B0CC861A03B17500544323 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		D9B0CC8E1A03B17500544323 /* ExpertHelperTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ExpertHelperTests-Info.plist"; sourceTree = "<group>"; };
 		D9B0CC901A03B17500544323 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		D9B0CC921A03B17500544323 /* ExpertHelperTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ExpertHelperTests.m; sourceTree = "<group>"; };
+		D9BE53F51A10B16700AD5D3D /* EHCalendarFormViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EHCalendarFormViewController.h; sourceTree = "<group>"; };
+		D9BE53F61A10B16700AD5D3D /* EHCalendarFormViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EHCalendarFormViewController.m; sourceTree = "<group>"; };
+		D9BE53F71A10B16700AD5D3D /* EHExternalCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EHExternalCell.h; sourceTree = "<group>"; };
+		D9BE53F81A10B16700AD5D3D /* EHExternalCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EHExternalCell.m; sourceTree = "<group>"; };
+		D9BE53F91A10B16700AD5D3D /* EHExternalViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EHExternalViewController.h; sourceTree = "<group>"; };
+		D9BE53FA1A10B16700AD5D3D /* EHExternalViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EHExternalViewController.m; sourceTree = "<group>"; };
+		D9BE53FB1A10B16700AD5D3D /* EHInterviewFromViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EHInterviewFromViewController.h; sourceTree = "<group>"; };
+		D9BE53FC1A10B16700AD5D3D /* EHInterviewFromViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EHInterviewFromViewController.m; sourceTree = "<group>"; };
+		D9BE53FD1A10B16700AD5D3D /* EHProgrammingLanguagesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EHProgrammingLanguagesViewController.h; sourceTree = "<group>"; };
+		D9BE53FE1A10B16700AD5D3D /* EHProgrammingLanguagesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EHProgrammingLanguagesViewController.m; sourceTree = "<group>"; };
+		D9BE54061A10B1A200AD5D3D /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,7 +91,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D9ACCD1D1A150BDD0076DFB4 /* AVFoundation.framework in Frameworks */,
 				D9B0CC671A03B17500544323 /* CoreGraphics.framework in Frameworks */,
 				D9B0CC691A03B17500544323 /* UIKit.framework in Frameworks */,
 				D9B0CC651A03B17500544323 /* Foundation.framework in Frameworks */,
@@ -89,6 +110,31 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2790F4DF1A1396EB001B0956 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				2790F4E11A139854001B0956 /* EHProfilesTableViewCell.h */,
+				2790F4E21A139854001B0956 /* EHProfilesTableViewCell.m */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		2790F4E01A139735001B0956 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				D9ACCD231A15283C0076DFB4 /* EHSkillLevelPopupViewController.h */,
+				D9ACCD241A15283C0076DFB4 /* EHSkillLevelPopupViewController.m */,
+				D9ACCD201A151A340076DFB4 /* EHSkillLevelPopup.h */,
+				D9ACCD211A151A340076DFB4 /* EHSkillLevelPopup.m */,
+				D9ACCD281A152EF30076DFB4 /* EHSkillLevelPopup.xib */,
+				2790F4E41A1398D8001B0956 /* EHProfilesViewController.h */,
+				D90A1BBC1A16335F00B610C6 /* EHViewController.h */,
+				D90A1BBD1A16335F00B610C6 /* EHViewController.m */,
+				2790F4E51A1398D8001B0956 /* EHProfilesViewController.m */,
+			);
+			name = ViewControllers;
+			sourceTree = "<group>";
+		};
 		D9B0CC581A03B17500544323 = {
 			isa = PBXGroup;
 			children = (
@@ -111,7 +157,6 @@
 		D9B0CC631A03B17500544323 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				D9ACCD1C1A150BDD0076DFB4 /* AVFoundation.framework */,
 				D9B0CC641A03B17500544323 /* Foundation.framework */,
 				D9B0CC661A03B17500544323 /* CoreGraphics.framework */,
 				D9B0CC681A03B17500544323 /* UIKit.framework */,
@@ -123,13 +168,23 @@
 		D9B0CC6A1A03B17500544323 /* ExpertHelper */ = {
 			isa = PBXGroup;
 			children = (
-				D9B0CC761A03B17500544323 /* Main_iPhone.storyboard */,
-				B5583E091A0A583700AC56D8 /* EHSkillLevelPopup.h */,
-				B5583E0A1A0A583700AC56D8 /* EHSkillLevelPopup.m */,
-				B5583E071A0A577800AC56D8 /* EHSkillLevelPopup.xib */,
+				2790F4E01A139735001B0956 /* ViewControllers */,
+				2790F4DF1A1396EB001B0956 /* Views */,
+				D9BE54061A10B1A200AD5D3D /* Images.xcassets */,
+				D9B0CC731A03B17500544323 /* EHAppDelegate.h */,
+				D9BE53F51A10B16700AD5D3D /* EHCalendarFormViewController.h */,
+				D9BE53F71A10B16700AD5D3D /* EHExternalCell.h */,
+				D9BE53F91A10B16700AD5D3D /* EHExternalViewController.h */,
+				D9BE53FB1A10B16700AD5D3D /* EHInterviewFromViewController.h */,
+				D9BE53FD1A10B16700AD5D3D /* EHProgrammingLanguagesViewController.h */,
+				D9B0CC741A03B17500544323 /* EHAppDelegate.m */,
+				D9BE53F61A10B16700AD5D3D /* EHCalendarFormViewController.m */,
+				D9BE53F81A10B16700AD5D3D /* EHExternalCell.m */,
+				D9BE53FA1A10B16700AD5D3D /* EHExternalViewController.m */,
+				D9BE53FC1A10B16700AD5D3D /* EHInterviewFromViewController.m */,
+				D9BE53FE1A10B16700AD5D3D /* EHProgrammingLanguagesViewController.m */,
 				D9B0CC791A03B17500544323 /* Main_iPad.storyboard */,
-				D9B0CC7C1A03B17500544323 /* EHViewController.h */,
-				D9B0CC7D1A03B17500544323 /* EHViewController.m */,
+				D9B0CC761A03B17500544323 /* Main_iPhone.storyboard */,
 				D9B0CC6B1A03B17500544323 /* Supporting Files */,
 			);
 			path = ExpertHelper;
@@ -138,9 +193,6 @@
 		D9B0CC6B1A03B17500544323 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				D9B0CC7F1A03B17500544323 /* Images.xcassets */,
-				D9B0CC731A03B17500544323 /* EHAppDelegate.h */,
-				D9B0CC741A03B17500544323 /* EHAppDelegate.m */,
 				D9B0CC6C1A03B17500544323 /* ExpertHelper-Info.plist */,
 				D9B0CC6D1A03B17500544323 /* InfoPlist.strings */,
 				D9B0CC701A03B17500544323 /* main.m */,
@@ -215,9 +267,6 @@
 				LastUpgradeCheck = 0500;
 				ORGANIZATIONNAME = "Katolyk S.";
 				TargetAttributes = {
-					D9B0CC601A03B17500544323 = {
-						DevelopmentTeam = 98D64ECLWX;
-					};
 					D9B0CC841A03B17500544323 = {
 						TestTargetID = D9B0CC601A03B17500544323;
 					};
@@ -247,9 +296,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D9ACCD291A152EF30076DFB4 /* EHSkillLevelPopup.xib in Resources */,
 				D9B0CC7B1A03B17500544323 /* Main_iPad.storyboard in Resources */,
-				B5583E081A0A577800AC56D8 /* EHSkillLevelPopup.xib in Resources */,
-				D9B0CC801A03B17500544323 /* Images.xcassets in Resources */,
+				D9BE54071A10B1A200AD5D3D /* Images.xcassets in Resources */,
 				D9B0CC781A03B17500544323 /* Main_iPhone.storyboard in Resources */,
 				D9B0CC6F1A03B17500544323 /* InfoPlist.strings in Resources */,
 			);
@@ -270,10 +319,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D9B0CC7E1A03B17500544323 /* EHViewController.m in Sources */,
+				2790F4E31A139854001B0956 /* EHProfilesTableViewCell.m in Sources */,
 				D9B0CC711A03B17500544323 /* main.m in Sources */,
-				B5583E0B1A0A583700AC56D8 /* EHSkillLevelPopup.m in Sources */,
+				D9BE54031A10B16700AD5D3D /* EHInterviewFromViewController.m in Sources */,
+				D9BE54021A10B16700AD5D3D /* EHExternalViewController.m in Sources */,
+				2790F4E61A1398D8001B0956 /* EHProfilesViewController.m in Sources */,
+				D9BE54041A10B16700AD5D3D /* EHProgrammingLanguagesViewController.m in Sources */,
 				D9B0CC751A03B17500544323 /* EHAppDelegate.m in Sources */,
+				D9BE54001A10B16700AD5D3D /* EHCalendarFormViewController.m in Sources */,
+				D9ACCD251A15283C0076DFB4 /* EHSkillLevelPopupViewController.m in Sources */,
+				D90A1BBE1A16335F00B610C6 /* EHViewController.m in Sources */,
+				D9ACCD221A151A340076DFB4 /* EHSkillLevelPopup.m in Sources */,
+				D9BE54011A10B16700AD5D3D /* EHExternalCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -410,11 +467,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ExpertHelper/ExpertHelper-Prefix.pch";
 				INFOPLIST_FILE = "ExpertHelper/ExpertHelper-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -425,11 +480,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ExpertHelper/ExpertHelper-Prefix.pch";
 				INFOPLIST_FILE = "ExpertHelper/ExpertHelper-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
