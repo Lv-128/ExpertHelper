@@ -20,8 +20,8 @@
     options.firstNameFirst = NO;
     EHCalendarEventsParser *parser = [[EHCalendarEventsParser alloc] initWithObjection:options];
     EHCalendarParseResult *result = [parser getNameOfCandidateFromTitle:@"Technical interview with Kirichok Stanislav"];
-    XCTAssertEqual(result.firstName, @"Stanislav");
-    XCTAssertEqual(result.lastName, @"Kirichok");
+    XCTAssertEqualObjects(result.firstName, @"Stanislav");
+    XCTAssertEqualObjects(result.lastName, @"Kirichok");
 }
 
 - (void)testExample2 {
@@ -29,8 +29,8 @@
     options.firstNameFirst = YES;
     EHCalendarEventsParser *parser = [[EHCalendarEventsParser alloc] initWithObjection:options];
     EHCalendarParseResult *result = [parser getNameOfCandidateFromTitle:@"Interview with Stepan Bura"];
-    XCTAssertEqual(result.firstName, @"Stepan");
-    XCTAssertEqual(result.lastName, @"Bura");
+    XCTAssertEqualObjects(result.firstName, @"Stepan");
+    XCTAssertEqualObjects(result.lastName, @"Bura");
 }
 
 
