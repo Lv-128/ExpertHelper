@@ -50,4 +50,7 @@
 -(void)checkEventStoreAccessForCalendar;
 
 - (EHCalendarParseResult *)getNameOfCandidateFromTitle:(NSString*)string;
+
+- (NSDate *)dateAtBeginningOfDayForDate:(NSDate *)inputDate;
+- (NSDate *)dateByAddingYears:(NSInteger)numberOfYears toDate:(NSDate *)inputDate;
 @end

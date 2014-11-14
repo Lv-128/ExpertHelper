@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D91A58B31A15E8CD00BA142D /* EHMainEventsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D91A58B21A15E8CD00BA142D /* EHMainEventsTableViewController.m */; };
 		D9B0CC651A03B17500544323 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D9B0CC641A03B17500544323 /* Foundation.framework */; };
 		D9B0CC671A03B17500544323 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D9B0CC661A03B17500544323 /* CoreGraphics.framework */; };
 		D9B0CC691A03B17500544323 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D9B0CC681A03B17500544323 /* UIKit.framework */; };
@@ -42,6 +43,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		D91A58B11A15E8CD00BA142D /* EHMainEventsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EHMainEventsTableViewController.h; sourceTree = "<group>"; };
+		D91A58B21A15E8CD00BA142D /* EHMainEventsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EHMainEventsTableViewController.m; sourceTree = "<group>"; };
 		D9B0CC611A03B17500544323 /* ExpertHelper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ExpertHelper.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D9B0CC641A03B17500544323 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		D9B0CC661A03B17500544323 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -199,6 +202,8 @@
 		D9BE54341A11026400AD5D3D /* Contoller */ = {
 			isa = PBXGroup;
 			children = (
+				D91A58B11A15E8CD00BA142D /* EHMainEventsTableViewController.h */,
+				D91A58B21A15E8CD00BA142D /* EHMainEventsTableViewController.m */,
 				D9BE53F51A10B16700AD5D3D /* EHCalendarFormViewController.h */,
 				D9BE53F61A10B16700AD5D3D /* EHCalendarFormViewController.m */,
 			);
@@ -304,6 +309,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D91A58B31A15E8CD00BA142D /* EHMainEventsTableViewController.m in Sources */,
 				D9B0CC711A03B17500544323 /* main.m in Sources */,
 				D9BE54371A110BB700AD5D3D /* EHInterview.m in Sources */,
 				D9BE54031A10B16700AD5D3D /* EHInterviewFromViewController.m in Sources */,

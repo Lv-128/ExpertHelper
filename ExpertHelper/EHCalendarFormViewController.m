@@ -10,6 +10,7 @@
 #import "EHInterviewFromViewController.h"
 #import "EHCalendarEventsParser.h"
 
+#import "EHMainEventsTableViewController.h"
 @interface EHCalendarFormViewController () <UITableViewDataSource, UITabBarDelegate>
 @property (strong, nonatomic) NSMutableDictionary *sections;
 @property (strong, nonatomic) NSArray *sortedDays;
@@ -123,15 +124,14 @@ enum {  All = 0, ITA = 1, External = 2, None = 3};
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    if ( [[segue identifier] isEqualToString:@"GoToInterviewForm"])
+    if ( [[segue identifier] isEqualToString:@"GoToMainEventsForm"])
     {
-        EHInterviewFromViewController * interviewForm = [segue destinationViewController];
+        EHMainEventsTableViewController * eventsMainForm = [segue destinationViewController];
         NSIndexPath * myIndexPath = [self.tableView indexPathForSelectedRow];
-        int row = [myIndexPath row];
-        NSString *dateRepresentingThisDay = [self.sortedDays objectAtIndex:myIndexPath.section];
-        NSArray *eventsOnThisDay = [self.sections objectForKey:dateRepresentingThisDay];
-        EKEvent *event = [eventsOnThisDay objectAtIndex:row];
-        interviewForm.date = [self.cellDateFormatter stringFromDate:event.startDate];
+        NSString *selectedMonth = [self.sortedDays objectAtIndex:myIndexPath.row];
+        NSDictionary *weeksOnThisMonth = [self.sections objectForKey:selectedMonth];
+        
+        eventsMainForm.sections = weeksOnThisMonth;
         
     }
     
@@ -141,20 +141,19 @@ enum {  All = 0, ITA = 1, External = 2, None = 3};
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return [self.sections count];
+    return 1;//[self.sections count];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    NSString *dateRepresentingThisDay = [self.sortedDays objectAtIndex:section];
-    NSArray *eventsOnThisDay = [self.sections objectForKey:dateRepresentingThisDay];
-    return [eventsOnThisDay count];
+  
+    return [sortedDays count];
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
-    NSString *dateRepresentingThisDay = [self.sortedDays objectAtIndex:section];
-    return dateRepresentingThisDay;
+   
+    return @"MONTHs";
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -162,20 +161,16 @@ enum {  All = 0, ITA = 1, External = 2, None = 3};
     NSString *reuseIdentifier = @"Cell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
     
-    NSDate *dateRepresentingThisDay = [self.sortedDays objectAtIndex:indexPath.section];
-    NSArray *eventsOnThisDay = [self.sections objectForKey:dateRepresentingThisDay];
-    EKEvent *event = [eventsOnThisDay objectAtIndex:indexPath.row];
+//    NSDate *dateRepresentingThisDay = [self.sortedDays objectAtIndex:indexPath.section];
+//    NSArray *eventsOnThisDay = [self.sections objectForKey:dateRepresentingThisDay];
+//    EKEvent *event = [eventsOnThisDay objectAtIndex:indexPath.row];
     
- //   NSString *dateString = [NSDateFormatter localizedStringFromDate:event.startDate
-                                                        //  dateStyle:NSDateFormatterShortStyle
-                                                       //   timeStyle:NSDateFormatterFullStyle];
-   // NSLog(@"%@",dateString);
+    NSString * namesOfMonths = [self.sortedDays objectAtIndex:indexPath.row];
     
-    cell.textLabel.text = event.title;
-//    cell.textLabel.numberOfLines = 2;
- //   cell.textLabel.lineBreakMode = UILineBreakModeWordWrap;
+    cell.textLabel.text = namesOfMonths;
     
-    cell.detailTextLabel.text = [self.cellDateFormatter stringFromDate:event.startDate];
+    
+    //cell.detailTextLabel.text = [self.cellDateFormatter stringFromDate:event.startDate];
     
     return cell;
 }

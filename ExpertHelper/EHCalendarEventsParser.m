@@ -213,7 +213,8 @@
     {
         [titles  addObject:event.title];
     }
-    
+  
+    NSMutableDictionary * eventsOfWeekInMonth = [[NSMutableDictionary alloc]init];
     for (EKEvent *event in events) //
     {
         NSString * upperCaseEventTitle = [event.title uppercaseString];
@@ -221,22 +222,39 @@
         {
             NSDate *dateRepresentingThisDay = [self dateAtBeginningOfDayForDate:event.startDate];
             
+            unsigned int  compon = NSYearCalendarUnit| NSDayCalendarUnit | NSMonthCalendarUnit | NSYearCalendarUnit | NSWeekOfMonthCalendarUnit;
             
+            NSInteger weekday = [[[NSCalendar currentCalendar] components: compon fromDate:dateRepresentingThisDay] weekOfMonth];
             
-            NSInteger weekday = [[[NSCalendar currentCalendar] components: NSDayCalendarUnit | NSMonthCalendarUnit | NSYearCalendarUnit | NSWeekOfMonthCalendarUnit  fromDate:dateRepresentingThisDay] weekOfMonth];
-            
-            NSInteger monthday = [[[NSCalendar currentCalendar] components: NSDayCalendarUnit | NSMonthCalendarUnit | NSYearCalendarUnit | NSWeekOfMonthCalendarUnit  fromDate:dateRepresentingThisDay] month];
+            NSInteger monthday = [[[NSCalendar currentCalendar] components: compon fromDate:dateRepresentingThisDay] month];
+            NSInteger yearday  =[[[NSCalendar currentCalendar] components: compon fromDate:dateRepresentingThisDay] year];
             
             NSString * key = [self.namesMonth objectAtIndex:monthday-1];
-            key = [key stringByAppendingString:[NSString stringWithFormat:@", week : %d", weekday]];
+            NSString * keyForDictionary = [self.namesMonth objectAtIndex:monthday-1];
+            keyForDictionary = [keyForDictionary stringByAppendingString:[NSString stringWithFormat: @"%d",yearday]];
             
+            key=[key stringByAppendingString:[NSString stringWithFormat:@", week : %d", weekday]];
+          
+             NSMutableDictionary* tempWeek = [eventsOfWeekInMonth objectForKey:keyForDictionary];
+       
+            
+           if ( tempWeek ==nil)
+           {
+               tempWeek = [NSMutableDictionary dictionary];
+               [eventsOfWeekInMonth setObject:tempWeek forKey:keyForDictionary];
+           }
+           
             // If we don't yet have an array to hold the events for this day, create one
-            NSMutableArray *eventsOnThisDay = [self.sections objectForKey:key];
+            NSMutableArray *eventsOnThisDay = [tempWeek objectForKey:key];
             if (eventsOnThisDay == nil) {
                 eventsOnThisDay = [NSMutableArray array];
                 
                 // Use the reduced date as dictionary key to later retrieve the event list this day
-                [self.sections setObject:eventsOnThisDay forKey:key];
+                
+        
+               
+                [tempWeek setObject:eventsOnThisDay forKey:key];
+               
             }
             
             // Add the event to the list for this day
@@ -244,11 +262,13 @@
         }
     }
     
+    self.sections = eventsOfWeekInMonth;
         NSArray *unsortedDays = [self.sections allKeys];// Create a sorted list of days
         self.sortedDays = unsortedDays;//[unsortedDays sortedArrayUsingSelector:@selector(compare:)];
     
 	return self.sortedDays;
-}
+    }
+    
 
 #pragma mark - Date Calculations
 
