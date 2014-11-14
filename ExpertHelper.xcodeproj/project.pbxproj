@@ -11,6 +11,7 @@
 		2790F4E61A1398D8001B0956 /* EHProfilesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2790F4E51A1398D8001B0956 /* EHProfilesViewController.m */; };
 		D90A1BBE1A16335F00B610C6 /* EHViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D90A1BBD1A16335F00B610C6 /* EHViewController.m */; };
 		D90A1BC11A16366500B610C6 /* EHSkillLevelPopup.m in Sources */ = {isa = PBXBuildFile; fileRef = D90A1BC01A16366500B610C6 /* EHSkillLevelPopup.m */; };
+		D90A1BC31A16371800B610C6 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D90A1BC21A16371800B610C6 /* AVFoundation.framework */; };
 		D9ACCD251A15283C0076DFB4 /* EHSkillLevelPopupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D9ACCD241A15283C0076DFB4 /* EHSkillLevelPopupViewController.m */; };
 		D9ACCD291A152EF30076DFB4 /* EHSkillLevelPopup.xib in Resources */ = {isa = PBXBuildFile; fileRef = D9ACCD281A152EF30076DFB4 /* EHSkillLevelPopup.xib */; };
 		D9B0CC651A03B17500544323 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D9B0CC641A03B17500544323 /* Foundation.framework */; };
@@ -53,6 +54,7 @@
 		D90A1BBD1A16335F00B610C6 /* EHViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EHViewController.m; path = ViewControllers/EHViewController.m; sourceTree = "<group>"; };
 		D90A1BBF1A16366500B610C6 /* EHSkillLevelPopup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EHSkillLevelPopup.h; path = ViewControllers/EHSkillLevelPopup.h; sourceTree = "<group>"; };
 		D90A1BC01A16366500B610C6 /* EHSkillLevelPopup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EHSkillLevelPopup.m; path = ViewControllers/EHSkillLevelPopup.m; sourceTree = "<group>"; };
+		D90A1BC21A16371800B610C6 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		D9ACCD231A15283C0076DFB4 /* EHSkillLevelPopupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EHSkillLevelPopupViewController.h; path = ../EHSkillLevelPopupViewController.h; sourceTree = "<group>"; };
 		D9ACCD241A15283C0076DFB4 /* EHSkillLevelPopupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EHSkillLevelPopupViewController.m; path = ../EHSkillLevelPopupViewController.m; sourceTree = "<group>"; };
 		D9ACCD281A152EF30076DFB4 /* EHSkillLevelPopup.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EHSkillLevelPopup.xib; sourceTree = "<group>"; };
@@ -91,6 +93,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D90A1BC31A16371800B610C6 /* AVFoundation.framework in Frameworks */,
 				D9B0CC671A03B17500544323 /* CoreGraphics.framework in Frameworks */,
 				D9B0CC691A03B17500544323 /* UIKit.framework in Frameworks */,
 				D9B0CC651A03B17500544323 /* Foundation.framework in Frameworks */,
@@ -157,6 +160,7 @@
 		D9B0CC631A03B17500544323 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D90A1BC21A16371800B610C6 /* AVFoundation.framework */,
 				D9B0CC641A03B17500544323 /* Foundation.framework */,
 				D9B0CC661A03B17500544323 /* CoreGraphics.framework */,
 				D9B0CC681A03B17500544323 /* UIKit.framework */,
