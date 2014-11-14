@@ -19,10 +19,16 @@
 @end
 
 @implementation EHProfilesViewController
-@synthesize message2;
 
 - (void)skillLevelPopup:(EHSkillLevelPopup *)popup
          didSelectLevel:(EHSkillLevel)level {
+    [UIView animateWithDuration:0.85 animations:^{
+        popup.transform = CGAffineTransformMakeScale(0, 0);
+        popup.alpha = 0.0;
+        
+    } completion:^(BOOL finished) {
+        [super viewDidLoad];
+    }];
 }
 
 - (void)skillLevelPopupDidSelectComment:(EHSkillLevelPopup *)popup {
@@ -121,9 +127,6 @@
     NSString *rowValue = [listData objectAtIndex:row];
     
     NSString *message = [[NSString alloc] initWithString:rowValue];
-    message2 = message;
-    [_delegate EHProfilesViewControllerDelegate:self  returnMessage:message2];
-    
     
     UINib *nib = [UINib nibWithNibName:@"EHSkillLevelPopup" bundle:nil];
     EHSkillLevelPopup *popup = [[nib instantiateWithOwner:nil options:nil] lastObject];
@@ -138,20 +141,13 @@
     popup.layer.shadowOpacity = 0.8;
     popup.transform = CGAffineTransformMakeScale(1.3, 1.3);
     popup.alpha = 0;
-    popup.titleLabel.text = message;
+    popup.titleLabel.text = [NSString stringWithFormat:@"Select the desired level for direction: %@", message];
     [self.view addSubview:popup];
     
     [UIView animateWithDuration:0.5 animations:^{
         popup.alpha = 1;
         popup.transform = CGAffineTransformMakeScale(1, 1);
     }];
-
-    UIAlertView *alert = [[UIAlertView alloc]
-                          initWithTitle:@"You selected"
-                          message:message delegate:nil
-                          cancelButtonTitle:@"OK"
-                          otherButtonTitles:nil];
-    [alert show];
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }

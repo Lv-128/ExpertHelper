@@ -13,15 +13,10 @@
 
 @protocol EHProfilesViewControllerDelegate <NSObject>
 
-//- (void)skillLevelPopupDelegate:(EHSkillLevelPopup *)popup didSelectLevel:(NSInteger)level;
-//-(void)tableViews:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath ;
-- (void)EHProfilesViewControllerDelegate:(EHProfilesViewController *)popup returnMessage:(NSString *)message2;
-
 @end
 
 
 @interface EHProfilesViewController : UIViewController
-@property (nonatomic, strong) NSString *message2;
 @property (nonatomic, strong) id<EHProfilesViewControllerDelegate> delegate;
 
 @end

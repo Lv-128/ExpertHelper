@@ -26,7 +26,6 @@ typedef enum : NSUInteger {
 
 @interface EHSkillLevelPopup : UIView
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
-@property BOOL goToComments;
 
 - (IBAction)goToComment:(UIButton *)sender;
 @property (nonatomic, weak) id<EHSkillLevelPopupDelegate> delegate;
