@@ -7,7 +7,7 @@
 //
 
 #import "EHCalendarFormViewController.h"
-#import "EHInterviewFromViewController.h"
+#import "EHListOfInterviewsViewController.h"
 #import "EHCalendarEventsParser.h"
 
 #import "EHMainEventsTableViewController.h"
@@ -121,12 +121,11 @@ enum {  All = 0, ITA = 1, External = 2, None = 3};
 }
 
 
-
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ( [[segue identifier] isEqualToString:@"GoToMainEventsForm"])
     {
-        EHMainEventsTableViewController * eventsMainForm = [segue destinationViewController];
+         EHListOfInterviewsViewController * eventsMainForm = [segue destinationViewController];
         NSIndexPath * myIndexPath = [self.tableView indexPathForSelectedRow];
         NSString *selectedMonth = [self.sortedDays objectAtIndex:myIndexPath.row];
         NSDictionary *weeksOnThisMonth = [self.sections objectForKey:selectedMonth];
