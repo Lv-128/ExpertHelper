@@ -8,15 +8,15 @@
 
 #import <UIKit/UIKit.h>
 
-@class EHProfilesViewController;
+//@class EHProfilesViewController;
 
 
-@protocol EHProfilesViewControllerDelegate <NSObject>
+//@protocol EHProfilesViewControllerDelegate <NSObject>
 
-@end
+//@end
 
 
 @interface EHProfilesViewController : UIViewController
-@property (nonatomic, strong) id<EHProfilesViewControllerDelegate> delegate;
+//@property (nonatomic, strong) id<EHProfilesViewControllerDelegate> delegate;
 
 @end

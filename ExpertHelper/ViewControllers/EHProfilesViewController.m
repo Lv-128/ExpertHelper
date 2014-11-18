@@ -72,11 +72,18 @@
     UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, tableView.frame.size.width, 18.0)];
     
     UILabel *labelLeft = [[UILabel alloc] initWithFrame:CGRectMake(0.0, 0.0, tableView.frame.size.width / 3.0, 18.0)];
+    
     [labelLeft setFont:[UIFont boldSystemFontOfSize:14]];
     [labelLeft setTextAlignment:NSTextAlignmentCenter];
+    
+    
+    
     UILabel *labelMiddle = [[UILabel alloc] initWithFrame:CGRectMake(tableView.frame.size.width / 3.0, 0.0, tableView.frame.size.width / 3.0, 18.0)];
+    
     [labelMiddle setTextAlignment:NSTextAlignmentCenter];
     [labelMiddle setFont:[UIFont boldSystemFontOfSize:14]];
+    
+    
     UILabel *labelRight = [[UILabel alloc] initWithFrame:CGRectMake(tableView.frame.size.width * 0.667, 0.0, tableView.frame.size.width / 3.0, 18.0)];
     [labelRight setFont:[UIFont boldSystemFontOfSize:14]];
     [labelRight setTextAlignment:NSTextAlignmentCenter];

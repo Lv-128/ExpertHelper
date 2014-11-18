@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		11CB79CA1A1A3ECE00C2924E /* EHITAViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 11CB79C91A1A3ECE00C2924E /* EHITAViewController.m */; };
+		11CB79CF1A1A420000C2924E /* EHITAViewControllerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 11CB79CE1A1A420000C2924E /* EHITAViewControllerCell.m */; };
 		2790F4E31A139854001B0956 /* EHProfilesTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2790F4E21A139854001B0956 /* EHProfilesTableViewCell.m */; };
 		2790F4E61A1398D8001B0956 /* EHProfilesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2790F4E51A1398D8001B0956 /* EHProfilesViewController.m */; };
 		B5DF299E1A164A280076862E /* EHCalendarEventsParser.m in Sources */ = {isa = PBXBuildFile; fileRef = B5DF29991A164A280076862E /* EHCalendarEventsParser.m */; };
@@ -48,6 +50,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		11CB79C81A1A3ECE00C2924E /* EHITAViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EHITAViewController.h; path = ../EHITAViewController.h; sourceTree = "<group>"; };
+		11CB79C91A1A3ECE00C2924E /* EHITAViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EHITAViewController.m; path = ../EHITAViewController.m; sourceTree = "<group>"; };
+		11CB79CD1A1A420000C2924E /* EHITAViewControllerCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EHITAViewControllerCell.h; sourceTree = "<group>"; };
+		11CB79CE1A1A420000C2924E /* EHITAViewControllerCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EHITAViewControllerCell.m; sourceTree = "<group>"; };
 		2790F4E11A139854001B0956 /* EHProfilesTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EHProfilesTableViewCell.h; path = Views/EHProfilesTableViewCell.h; sourceTree = "<group>"; };
 		2790F4E21A139854001B0956 /* EHProfilesTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EHProfilesTableViewCell.m; path = Views/EHProfilesTableViewCell.m; sourceTree = "<group>"; };
 		2790F4E41A1398D8001B0956 /* EHProfilesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EHProfilesViewController.h; path = ViewControllers/EHProfilesViewController.h; sourceTree = "<group>"; };
@@ -119,6 +125,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		11CB79CC1A1A3F2600C2924E /* ITAViewConroller */ = {
+			isa = PBXGroup;
+			children = (
+				11CB79C91A1A3ECE00C2924E /* EHITAViewController.m */,
+				11CB79C81A1A3ECE00C2924E /* EHITAViewController.h */,
+				11CB79CD1A1A420000C2924E /* EHITAViewControllerCell.h */,
+				11CB79CE1A1A420000C2924E /* EHITAViewControllerCell.m */,
+			);
+			name = ITAViewConroller;
+			sourceTree = "<group>";
+		};
 		2790F4DF1A1396EB001B0956 /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -176,6 +193,7 @@
 		D9B0CC6A1A03B17500544323 /* ExpertHelper */ = {
 			isa = PBXGroup;
 			children = (
+				11CB79CC1A1A3F2600C2924E /* ITAViewConroller */,
 				B5DF29981A164A280076862E /* EHCalendarEventsParser.h */,
 				B5DF29991A164A280076862E /* EHCalendarEventsParser.m */,
 				B5DF299A1A164A280076862E /* EHInterview.h */,
@@ -342,10 +360,12 @@
 				B5DF299F1A164A280076862E /* EHInterview.m in Sources */,
 				D9BE54041A10B16700AD5D3D /* EHProgrammingLanguagesViewController.m in Sources */,
 				D9B0CC751A03B17500544323 /* EHAppDelegate.m in Sources */,
+				11CB79CA1A1A3ECE00C2924E /* EHITAViewController.m in Sources */,
 				D9BE54001A10B16700AD5D3D /* EHCalendarFormViewController.m in Sources */,
 				B5DF29A01A164A280076862E /* EHMainEventsTableViewController.m in Sources */,
 				D90A1BBE1A16335F00B610C6 /* EHViewController.m in Sources */,
 				D90A1BC11A16366500B610C6 /* EHSkillLevelPopup.m in Sources */,
+				11CB79CF1A1A420000C2924E /* EHITAViewControllerCell.m in Sources */,
 				D9BE54011A10B16700AD5D3D /* EHExternalCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
