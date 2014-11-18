@@ -20,14 +20,14 @@ typedef enum : NSUInteger {
 @protocol EHSkillLevelPopupDelegate <NSObject>
 
 - (void)skillLevelPopup:(EHSkillLevelPopup *)popup didSelectLevel:(EHSkillLevel)level;
-- (void)skillLevelPopupDidSelectComment:(EHSkillLevelPopup *)popup;
 
 @end
 
 @interface EHSkillLevelPopup : UIView
+
+@property (nonatomic, copy) NSString *skillLevel;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 
-- (IBAction)goToComment:(UIButton *)sender;
 @property (nonatomic, weak) id<EHSkillLevelPopupDelegate> delegate;
 
 @end

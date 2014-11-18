@@ -14,14 +14,7 @@
 @property (strong, nonatomic) NSDateFormatter *sectionDateFormatter;
 @property (strong, nonatomic) NSDateFormatter *cellDateFormatter;
 
-
-
-
-
 @property (nonatomic , strong) EHCalendarEventsParser * calEventParser;
-
-
-
 
 @end
 
@@ -33,17 +26,10 @@
 
 enum {  All = 0, ITA = 1, External = 2, None = 3};
 
-
-
-
-
 #pragma mark - View lifecycle
-
-
 
 - (void)viewDidLoad
 {
-    
     [super viewDidLoad];
     
     

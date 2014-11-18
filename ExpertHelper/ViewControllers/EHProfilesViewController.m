@@ -29,22 +29,17 @@
     } completion:^(BOOL finished) {
         [super viewDidLoad];
     }];
-}
-
-- (void)skillLevelPopupDidSelectComment:(EHSkillLevelPopup *)popup {
-    UIViewController *push2 = [[UIViewController alloc]init];
-    [[self navigationController]pushViewController:push2 animated:YES];
+    isPopup = NO;
 }
 
 - (void)viewDidLoad
 {
-    
+    isPopup = NO;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableSections = @[ @"Programming languages", @"Tech. Domains", @"Skill" ];
     self.sectionContent = @[ @[ @"C", @"C++", @"C#", @"Objective-C" ],
                              @[ @"Multithreading", @"Web", @"Audio" ],
                              @[ @"Core", @"Desktop", @"Web", @"DB", @"BI", @"RIA", @"Multimedia", @"Mobile", @"Embedded" ] ];
-    
     [super viewDidLoad];
     // Do any additional setup after loading the view.
 }
@@ -112,6 +107,7 @@
     cell.leftLabel.text = [listData objectAtIndex:row];
     [cell.leftLabel.layer setBorderColor:[[UIColor colorWithWhite:0.821 alpha:1.000] CGColor]];
     [cell.leftLabel.layer setBorderWidth:1.0];
+    
     [cell.middleLabel.layer setBorderColor:[[UIColor colorWithWhite:0.821 alpha:1.000] CGColor]];
     [cell.middleLabel.layer setBorderWidth:1.0];
     [cell.rightLabel.layer setBorderColor:[[UIColor colorWithWhite:0.821 alpha:1.000] CGColor]];
@@ -122,33 +118,35 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSArray *listData = [self.sectionContent objectAtIndex:[indexPath section]];
+        NSArray *listData = [self.sectionContent objectAtIndex:[indexPath section]];
     NSUInteger row = [indexPath row];
     NSString *rowValue = [listData objectAtIndex:row];
     
     NSString *message = [[NSString alloc] initWithString:rowValue];
-    
     UINib *nib = [UINib nibWithNibName:@"EHSkillLevelPopup" bundle:nil];
     EHSkillLevelPopup *popup = [[nib instantiateWithOwner:nil options:nil] lastObject];
-    CGRect r = self.view.frame;
-    CGRect f = popup.frame;
-    f.size.width = r.size.width;
-    f.origin.y = r.size.height;
-    f.origin.y -= f.size.height;
-    popup.frame = f;
-    popup.delegate = self;
-    popup.layer.cornerRadius = 6;
-    popup.layer.shadowOpacity = 0.8;
-    popup.transform = CGAffineTransformMakeScale(1.3, 1.3);
-    popup.alpha = 0;
-    popup.titleLabel.text = [NSString stringWithFormat:@"Select the desired level for direction: %@", message];
-    [self.view addSubview:popup];
-    
-    [UIView animateWithDuration:0.5 animations:^{
-        popup.alpha = 1;
-        popup.transform = CGAffineTransformMakeScale(1, 1);
-    }];
-    
+    if (isPopup == NO) {
+        CGRect r = self.view.frame;
+        CGRect f = popup.frame;
+        f.size.width = r.size.width;
+        f.origin.y = r.size.height;
+        f.origin.y -= f.size.height;
+        popup.frame = f;
+        popup.delegate = self;
+        popup.layer.cornerRadius = 6;
+        popup.layer.shadowOpacity = 0.8;
+        popup.transform = CGAffineTransformMakeScale(1.3, 1.3);
+        popup.alpha = 0;
+        popup.titleLabel.text = [NSString stringWithFormat:@"Select the desired level for direction: %@", message];
+        [self.view addSubview:popup];
+        
+        [UIView animateWithDuration:0.5 animations:^{
+            popup.alpha = 1;
+            popup.transform = CGAffineTransformMakeScale(1, 1);
+        }];
+        isPopup = YES;
+    }
+
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 

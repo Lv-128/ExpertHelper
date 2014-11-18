@@ -13,10 +13,8 @@
 
 - (IBAction)onHide:(UIButton *)sender {
     [_delegate skillLevelPopup:self didSelectLevel:EHSkillLevelNone];
+    _skillLevel = sender.titleLabel.text;
+    //NSLog(@"%@", sender.titleLabel.text);
 }
 
-
-- (IBAction)goToComment:(UIButton *)sender {
-    [_delegate skillLevelPopupDidSelectComment:self];
-}
 @end

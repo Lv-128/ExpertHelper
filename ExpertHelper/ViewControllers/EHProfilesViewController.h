@@ -17,6 +17,10 @@
 
 
 @interface EHProfilesViewController : UIViewController
+{
+    BOOL isPopup;
+}
 @property (nonatomic, strong) id<EHProfilesViewControllerDelegate> delegate;
-
+@property (nonatomic, copy) NSString *skillLevel;
+@property (nonatomic, copy) NSIndexPath *skill;
 @end
