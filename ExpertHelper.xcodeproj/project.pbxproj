@@ -7,13 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		835CCA0D1A0125B60001920D /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 835CCA0C1A0125B60001920D /* Default-568h@2x.png */; };
 		B57DBA7C1A011F350020FF01 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B57DBA7B1A011F350020FF01 /* main.m */; };
 		B57DBA7F1A011F350020FF01 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B57DBA7E1A011F350020FF01 /* AppDelegate.m */; };
 		B57DBA821A011F350020FF01 /* ExpertHelper.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B57DBA801A011F350020FF01 /* ExpertHelper.xcdatamodeld */; };
 		B57DBA851A011F350020FF01 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B57DBA841A011F350020FF01 /* ViewController.m */; };
 		B57DBA881A011F350020FF01 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B57DBA861A011F350020FF01 /* Main.storyboard */; };
 		B57DBA8A1A011F350020FF01 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B57DBA891A011F350020FF01 /* Images.xcassets */; };
-		B57DBA8D1A011F350020FF01 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = B57DBA8B1A011F350020FF01 /* LaunchScreen.xib */; };
 		B57DBA991A011F350020FF01 /* ExpertHelperTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B57DBA981A011F350020FF01 /* ExpertHelperTests.m */; };
 /* End PBXBuildFile section */
 
@@ -28,6 +28,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		835CCA0C1A0125B60001920D /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		B57DBA761A011F350020FF01 /* ExpertHelper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ExpertHelper.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B57DBA7A1A011F350020FF01 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B57DBA7B1A011F350020FF01 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -38,7 +39,6 @@
 		B57DBA841A011F350020FF01 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		B57DBA871A011F350020FF01 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		B57DBA891A011F350020FF01 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		B57DBA8C1A011F350020FF01 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		B57DBA921A011F350020FF01 /* ExpertHelperTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ExpertHelperTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B57DBA971A011F350020FF01 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B57DBA981A011F350020FF01 /* ExpertHelperTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ExpertHelperTests.m; sourceTree = "<group>"; };
@@ -62,9 +62,31 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		836D6CA71A01255600E378C2 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		836D6CA81A01256100E378C2 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		836D6CA91A01256700E378C2 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
 		B57DBA6D1A011F350020FF01 = {
 			isa = PBXGroup;
 			children = (
+				835CCA0C1A0125B60001920D /* Default-568h@2x.png */,
 				B57DBA781A011F350020FF01 /* ExpertHelper */,
 				B57DBA951A011F350020FF01 /* ExpertHelperTests */,
 				B57DBA771A011F350020FF01 /* Products */,
@@ -83,13 +105,13 @@
 		B57DBA781A011F350020FF01 /* ExpertHelper */ = {
 			isa = PBXGroup;
 			children = (
-				B57DBA7D1A011F350020FF01 /* AppDelegate.h */,
-				B57DBA7E1A011F350020FF01 /* AppDelegate.m */,
+				836D6CA91A01256700E378C2 /* View */,
+				836D6CA81A01256100E378C2 /* Model */,
+				836D6CA71A01255600E378C2 /* Controller */,
 				B57DBA831A011F350020FF01 /* ViewController.h */,
 				B57DBA841A011F350020FF01 /* ViewController.m */,
 				B57DBA861A011F350020FF01 /* Main.storyboard */,
 				B57DBA891A011F350020FF01 /* Images.xcassets */,
-				B57DBA8B1A011F350020FF01 /* LaunchScreen.xib */,
 				B57DBA801A011F350020FF01 /* ExpertHelper.xcdatamodeld */,
 				B57DBA791A011F350020FF01 /* Supporting Files */,
 			);
@@ -99,6 +121,8 @@
 		B57DBA791A011F350020FF01 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				B57DBA7D1A011F350020FF01 /* AppDelegate.h */,
+				B57DBA7E1A011F350020FF01 /* AppDelegate.m */,
 				B57DBA7A1A011F350020FF01 /* Info.plist */,
 				B57DBA7B1A011F350020FF01 /* main.m */,
 			);
@@ -204,8 +228,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				B57DBA881A011F350020FF01 /* Main.storyboard in Resources */,
-				B57DBA8D1A011F350020FF01 /* LaunchScreen.xib in Resources */,
 				B57DBA8A1A011F350020FF01 /* Images.xcassets in Resources */,
+				835CCA0D1A0125B60001920D /* Default-568h@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -255,14 +279,6 @@
 				B57DBA871A011F350020FF01 /* Base */,
 			);
 			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		B57DBA8B1A011F350020FF01 /* LaunchScreen.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				B57DBA8C1A011F350020FF01 /* Base */,
-			);
-			name = LaunchScreen.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -423,6 +439,7 @@
 				B57DBA9E1A011F350020FF01 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		B57DBA9F1A011F350020FF01 /* Build configuration list for PBXNativeTarget "ExpertHelperTests" */ = {
 			isa = XCConfigurationList;
@@ -431,6 +448,7 @@
 				B57DBAA11A011F350020FF01 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
