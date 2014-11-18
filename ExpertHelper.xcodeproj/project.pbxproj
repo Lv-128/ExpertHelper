@@ -7,155 +7,324 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		835CCA0D1A0125B60001920D /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 835CCA0C1A0125B60001920D /* Default-568h@2x.png */; };
-		B57DBA7C1A011F350020FF01 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B57DBA7B1A011F350020FF01 /* main.m */; };
-		B57DBA7F1A011F350020FF01 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B57DBA7E1A011F350020FF01 /* AppDelegate.m */; };
-		B57DBA821A011F350020FF01 /* ExpertHelper.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B57DBA801A011F350020FF01 /* ExpertHelper.xcdatamodeld */; };
-		B57DBA851A011F350020FF01 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B57DBA841A011F350020FF01 /* ViewController.m */; };
-		B57DBA881A011F350020FF01 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B57DBA861A011F350020FF01 /* Main.storyboard */; };
-		B57DBA8A1A011F350020FF01 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B57DBA891A011F350020FF01 /* Images.xcassets */; };
-		B57DBA991A011F350020FF01 /* ExpertHelperTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B57DBA981A011F350020FF01 /* ExpertHelperTests.m */; };
+		2790F4E31A139854001B0956 /* EHProfilesTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2790F4E21A139854001B0956 /* EHProfilesTableViewCell.m */; };
+		2790F4E61A1398D8001B0956 /* EHProfilesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2790F4E51A1398D8001B0956 /* EHProfilesViewController.m */; };
+		B5DF299E1A164A280076862E /* EHCalendarEventsParser.m in Sources */ = {isa = PBXBuildFile; fileRef = B5DF29991A164A280076862E /* EHCalendarEventsParser.m */; };
+		B5DF299F1A164A280076862E /* EHInterview.m in Sources */ = {isa = PBXBuildFile; fileRef = B5DF299B1A164A280076862E /* EHInterview.m */; };
+		B5DF29A01A164A280076862E /* EHMainEventsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5DF299D1A164A280076862E /* EHMainEventsTableViewController.m */; };
+		D90A1BC11A16366500B610C6 /* EHSkillLevelPopup.m in Sources */ = {isa = PBXBuildFile; fileRef = D90A1BC01A16366500B610C6 /* EHSkillLevelPopup.m */; };
+		D90A1BC31A16371800B610C6 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D90A1BC21A16371800B610C6 /* AVFoundation.framework */; };
+		D9A6A04A1A1B4F8200DAB5D7 /* EHVoiceRecorderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D9A6A0491A1B4F8200DAB5D7 /* EHVoiceRecorderViewController.m */; };
+		D9ACCD291A152EF30076DFB4 /* EHSkillLevelPopup.xib in Resources */ = {isa = PBXBuildFile; fileRef = D9ACCD281A152EF30076DFB4 /* EHSkillLevelPopup.xib */; };
+		D9B0CC651A03B17500544323 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D9B0CC641A03B17500544323 /* Foundation.framework */; };
+		D9B0CC671A03B17500544323 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D9B0CC661A03B17500544323 /* CoreGraphics.framework */; };
+		D9B0CC691A03B17500544323 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D9B0CC681A03B17500544323 /* UIKit.framework */; };
+		D9B0CC6F1A03B17500544323 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D9B0CC6D1A03B17500544323 /* InfoPlist.strings */; };
+		D9B0CC711A03B17500544323 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D9B0CC701A03B17500544323 /* main.m */; };
+		D9B0CC751A03B17500544323 /* EHAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D9B0CC741A03B17500544323 /* EHAppDelegate.m */; };
+		D9B0CC781A03B17500544323 /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D9B0CC761A03B17500544323 /* Main_iPhone.storyboard */; };
+		D9B0CC7B1A03B17500544323 /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D9B0CC791A03B17500544323 /* Main_iPad.storyboard */; };
+		D9B0CC871A03B17500544323 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D9B0CC861A03B17500544323 /* XCTest.framework */; };
+		D9B0CC881A03B17500544323 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D9B0CC641A03B17500544323 /* Foundation.framework */; };
+		D9B0CC891A03B17500544323 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D9B0CC681A03B17500544323 /* UIKit.framework */; };
+		D9B0CC911A03B17500544323 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D9B0CC8F1A03B17500544323 /* InfoPlist.strings */; };
+		D9B0CC931A03B17500544323 /* ExpertHelperTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D9B0CC921A03B17500544323 /* ExpertHelperTests.m */; };
+		D9B7534E1A1A38B60003DE7D /* EHSkillLevelCommentPopup.xib in Resources */ = {isa = PBXBuildFile; fileRef = D9B7534D1A1A38B60003DE7D /* EHSkillLevelCommentPopup.xib */; };
+		D9B753511A1A4B7F0003DE7D /* EHSkillLevelCommentPopup.m in Sources */ = {isa = PBXBuildFile; fileRef = D9B753501A1A4B7F0003DE7D /* EHSkillLevelCommentPopup.m */; };
+		D9BE54001A10B16700AD5D3D /* EHCalendarFormViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D9BE53F61A10B16700AD5D3D /* EHCalendarFormViewController.m */; };
+		D9BE54011A10B16700AD5D3D /* EHExternalCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D9BE53F81A10B16700AD5D3D /* EHExternalCell.m */; };
+		D9BE54021A10B16700AD5D3D /* EHExternalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D9BE53FA1A10B16700AD5D3D /* EHExternalViewController.m */; };
+		D9BE54031A10B16700AD5D3D /* EHInterviewFromViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D9BE53FC1A10B16700AD5D3D /* EHInterviewFromViewController.m */; };
+		D9BE54041A10B16700AD5D3D /* EHProgrammingLanguagesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D9BE53FE1A10B16700AD5D3D /* EHProgrammingLanguagesViewController.m */; };
+		D9BE54071A10B1A200AD5D3D /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D9BE54061A10B1A200AD5D3D /* Images.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		B57DBA931A011F350020FF01 /* PBXContainerItemProxy */ = {
+		D9B0CC8A1A03B17500544323 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = B57DBA6E1A011F350020FF01 /* Project object */;
+			containerPortal = D9B0CC591A03B17500544323 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = B57DBA751A011F350020FF01;
+			remoteGlobalIDString = D9B0CC601A03B17500544323;
 			remoteInfo = ExpertHelper;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		835CCA0C1A0125B60001920D /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
-		B57DBA761A011F350020FF01 /* ExpertHelper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ExpertHelper.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		B57DBA7A1A011F350020FF01 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		B57DBA7B1A011F350020FF01 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		B57DBA7D1A011F350020FF01 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		B57DBA7E1A011F350020FF01 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		B57DBA811A011F350020FF01 /* ExpertHelper.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ExpertHelper.xcdatamodel; sourceTree = "<group>"; };
-		B57DBA831A011F350020FF01 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		B57DBA841A011F350020FF01 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		B57DBA871A011F350020FF01 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		B57DBA891A011F350020FF01 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		B57DBA921A011F350020FF01 /* ExpertHelperTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ExpertHelperTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		B57DBA971A011F350020FF01 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		B57DBA981A011F350020FF01 /* ExpertHelperTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ExpertHelperTests.m; sourceTree = "<group>"; };
+		2790F4E11A139854001B0956 /* EHProfilesTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EHProfilesTableViewCell.h; path = Views/EHProfilesTableViewCell.h; sourceTree = "<group>"; };
+		2790F4E21A139854001B0956 /* EHProfilesTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EHProfilesTableViewCell.m; path = Views/EHProfilesTableViewCell.m; sourceTree = "<group>"; };
+		2790F4E41A1398D8001B0956 /* EHProfilesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EHProfilesViewController.h; path = ViewControllers/EHProfilesViewController.h; sourceTree = "<group>"; };
+		2790F4E51A1398D8001B0956 /* EHProfilesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EHProfilesViewController.m; path = ViewControllers/EHProfilesViewController.m; sourceTree = "<group>"; };
+		834DD5E21A1B995100A5C39E /* Defines.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Defines.h; sourceTree = "<group>"; };
+		B5DF29981A164A280076862E /* EHCalendarEventsParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EHCalendarEventsParser.h; sourceTree = "<group>"; };
+		B5DF29991A164A280076862E /* EHCalendarEventsParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EHCalendarEventsParser.m; sourceTree = "<group>"; };
+		B5DF299A1A164A280076862E /* EHInterview.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EHInterview.h; sourceTree = "<group>"; };
+		B5DF299B1A164A280076862E /* EHInterview.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EHInterview.m; sourceTree = "<group>"; };
+		B5DF299C1A164A280076862E /* EHMainEventsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EHMainEventsTableViewController.h; sourceTree = "<group>"; };
+		B5DF299D1A164A280076862E /* EHMainEventsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EHMainEventsTableViewController.m; sourceTree = "<group>"; };
+		D90A1BBF1A16366500B610C6 /* EHSkillLevelPopup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EHSkillLevelPopup.h; path = ViewControllers/EHSkillLevelPopup.h; sourceTree = "<group>"; };
+		D90A1BC01A16366500B610C6 /* EHSkillLevelPopup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EHSkillLevelPopup.m; path = ViewControllers/EHSkillLevelPopup.m; sourceTree = "<group>"; };
+		D90A1BC21A16371800B610C6 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		D9A6A0481A1B4F8200DAB5D7 /* EHVoiceRecorderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EHVoiceRecorderViewController.h; path = ../EHVoiceRecorderViewController.h; sourceTree = "<group>"; };
+		D9A6A0491A1B4F8200DAB5D7 /* EHVoiceRecorderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EHVoiceRecorderViewController.m; path = ../EHVoiceRecorderViewController.m; sourceTree = "<group>"; };
+		D9ACCD281A152EF30076DFB4 /* EHSkillLevelPopup.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EHSkillLevelPopup.xib; sourceTree = "<group>"; };
+		D9B0CC611A03B17500544323 /* ExpertHelper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ExpertHelper.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D9B0CC641A03B17500544323 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		D9B0CC661A03B17500544323 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		D9B0CC681A03B17500544323 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		D9B0CC6C1A03B17500544323 /* ExpertHelper-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ExpertHelper-Info.plist"; sourceTree = "<group>"; };
+		D9B0CC6E1A03B17500544323 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		D9B0CC701A03B17500544323 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		D9B0CC721A03B17500544323 /* ExpertHelper-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ExpertHelper-Prefix.pch"; sourceTree = "<group>"; };
+		D9B0CC731A03B17500544323 /* EHAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EHAppDelegate.h; sourceTree = "<group>"; };
+		D9B0CC741A03B17500544323 /* EHAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EHAppDelegate.m; sourceTree = "<group>"; };
+		D9B0CC771A03B17500544323 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPhone.storyboard; sourceTree = "<group>"; };
+		D9B0CC7A1A03B17500544323 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPad.storyboard; sourceTree = "<group>"; };
+		D9B0CC851A03B17500544323 /* ExpertHelperTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ExpertHelperTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		D9B0CC861A03B17500544323 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		D9B0CC8E1A03B17500544323 /* ExpertHelperTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ExpertHelperTests-Info.plist"; sourceTree = "<group>"; };
+		D9B0CC901A03B17500544323 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		D9B0CC921A03B17500544323 /* ExpertHelperTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ExpertHelperTests.m; sourceTree = "<group>"; };
+		D9B7534D1A1A38B60003DE7D /* EHSkillLevelCommentPopup.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = EHSkillLevelCommentPopup.xib; path = ../EHSkillLevelCommentPopup.xib; sourceTree = "<group>"; };
+		D9B7534F1A1A4B7F0003DE7D /* EHSkillLevelCommentPopup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EHSkillLevelCommentPopup.h; sourceTree = "<group>"; };
+		D9B753501A1A4B7F0003DE7D /* EHSkillLevelCommentPopup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EHSkillLevelCommentPopup.m; sourceTree = "<group>"; };
+		D9BE53F51A10B16700AD5D3D /* EHCalendarFormViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EHCalendarFormViewController.h; sourceTree = "<group>"; };
+		D9BE53F61A10B16700AD5D3D /* EHCalendarFormViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EHCalendarFormViewController.m; sourceTree = "<group>"; };
+		D9BE53F71A10B16700AD5D3D /* EHExternalCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EHExternalCell.h; sourceTree = "<group>"; };
+		D9BE53F81A10B16700AD5D3D /* EHExternalCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EHExternalCell.m; sourceTree = "<group>"; };
+		D9BE53F91A10B16700AD5D3D /* EHExternalViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EHExternalViewController.h; sourceTree = "<group>"; };
+		D9BE53FA1A10B16700AD5D3D /* EHExternalViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EHExternalViewController.m; sourceTree = "<group>"; };
+		D9BE53FB1A10B16700AD5D3D /* EHInterviewFromViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EHInterviewFromViewController.h; sourceTree = "<group>"; };
+		D9BE53FC1A10B16700AD5D3D /* EHInterviewFromViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EHInterviewFromViewController.m; sourceTree = "<group>"; };
+		D9BE53FD1A10B16700AD5D3D /* EHProgrammingLanguagesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EHProgrammingLanguagesViewController.h; sourceTree = "<group>"; };
+		D9BE53FE1A10B16700AD5D3D /* EHProgrammingLanguagesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EHProgrammingLanguagesViewController.m; sourceTree = "<group>"; };
+		D9BE54061A10B1A200AD5D3D /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		B57DBA731A011F350020FF01 /* Frameworks */ = {
+		D9B0CC5E1A03B17500544323 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D90A1BC31A16371800B610C6 /* AVFoundation.framework in Frameworks */,
+				D9B0CC671A03B17500544323 /* CoreGraphics.framework in Frameworks */,
+				D9B0CC691A03B17500544323 /* UIKit.framework in Frameworks */,
+				D9B0CC651A03B17500544323 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		B57DBA8F1A011F350020FF01 /* Frameworks */ = {
+		D9B0CC821A03B17500544323 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D9B0CC871A03B17500544323 /* XCTest.framework in Frameworks */,
+				D9B0CC891A03B17500544323 /* UIKit.framework in Frameworks */,
+				D9B0CC881A03B17500544323 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		836D6CA71A01255600E378C2 /* Controller */ = {
+		2790F4DF1A1396EB001B0956 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				D9B753531A1A4BFC0003DE7D /* SkillLevelPopup */,
+				D9B753521A1A4BE30003DE7D /* SkillLevelCommentPopup */,
 			);
-			name = Controller;
+			name = Views;
 			sourceTree = "<group>";
 		};
-		836D6CA81A01256100E378C2 /* Model */ = {
+		2790F4E01A139735001B0956 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				D9A6A0421A1B413300DAB5D7 /* Calendar */,
+				D9A6A0441A1B4E7400DAB5D7 /* InterviewFrom */,
+				D9A6A0471A1B4ED900DAB5D7 /* Profiles */,
+				D9A6A0431A1B4E7100DAB5D7 /* External */,
+				D9A6A0451A1B4E7800DAB5D7 /* ProgrammingLanguages */,
+				D9A6A0461A1B4E7A00DAB5D7 /* MainEventsTable */,
+				D9B753541A1A4FDC0003DE7D /* VoiceRecoder */,
 			);
-			name = Model;
+			name = ViewControllers;
 			sourceTree = "<group>";
 		};
-		836D6CA91A01256700E378C2 /* View */ = {
+		D9A6A0421A1B413300DAB5D7 /* Calendar */ = {
 			isa = PBXGroup;
 			children = (
+				B5DF29981A164A280076862E /* EHCalendarEventsParser.h */,
+				B5DF29991A164A280076862E /* EHCalendarEventsParser.m */,
+				D9BE53F51A10B16700AD5D3D /* EHCalendarFormViewController.h */,
+				D9BE53F61A10B16700AD5D3D /* EHCalendarFormViewController.m */,
 			);
-			name = View;
+			name = Calendar;
 			sourceTree = "<group>";
 		};
-		B57DBA6D1A011F350020FF01 = {
+		D9A6A0431A1B4E7100DAB5D7 /* External */ = {
 			isa = PBXGroup;
 			children = (
-				835CCA0C1A0125B60001920D /* Default-568h@2x.png */,
-				B57DBA781A011F350020FF01 /* ExpertHelper */,
-				B57DBA951A011F350020FF01 /* ExpertHelperTests */,
-				B57DBA771A011F350020FF01 /* Products */,
+				D9BE53F71A10B16700AD5D3D /* EHExternalCell.h */,
+				D9BE53F81A10B16700AD5D3D /* EHExternalCell.m */,
+				D9BE53F91A10B16700AD5D3D /* EHExternalViewController.h */,
+				D9BE53FA1A10B16700AD5D3D /* EHExternalViewController.m */,
+			);
+			name = External;
+			sourceTree = "<group>";
+		};
+		D9A6A0441A1B4E7400DAB5D7 /* InterviewFrom */ = {
+			isa = PBXGroup;
+			children = (
+				B5DF299A1A164A280076862E /* EHInterview.h */,
+				B5DF299B1A164A280076862E /* EHInterview.m */,
+				D9BE53FB1A10B16700AD5D3D /* EHInterviewFromViewController.h */,
+				D9BE53FC1A10B16700AD5D3D /* EHInterviewFromViewController.m */,
+			);
+			name = InterviewFrom;
+			sourceTree = "<group>";
+		};
+		D9A6A0451A1B4E7800DAB5D7 /* ProgrammingLanguages */ = {
+			isa = PBXGroup;
+			children = (
+				D9BE53FD1A10B16700AD5D3D /* EHProgrammingLanguagesViewController.h */,
+				D9BE53FE1A10B16700AD5D3D /* EHProgrammingLanguagesViewController.m */,
+			);
+			name = ProgrammingLanguages;
+			sourceTree = "<group>";
+		};
+		D9A6A0461A1B4E7A00DAB5D7 /* MainEventsTable */ = {
+			isa = PBXGroup;
+			children = (
+				B5DF299C1A164A280076862E /* EHMainEventsTableViewController.h */,
+				B5DF299D1A164A280076862E /* EHMainEventsTableViewController.m */,
+			);
+			name = MainEventsTable;
+			sourceTree = "<group>";
+		};
+		D9A6A0471A1B4ED900DAB5D7 /* Profiles */ = {
+			isa = PBXGroup;
+			children = (
+				2790F4E11A139854001B0956 /* EHProfilesTableViewCell.h */,
+				2790F4E21A139854001B0956 /* EHProfilesTableViewCell.m */,
+				2790F4E41A1398D8001B0956 /* EHProfilesViewController.h */,
+				2790F4E51A1398D8001B0956 /* EHProfilesViewController.m */,
+			);
+			name = Profiles;
+			sourceTree = "<group>";
+		};
+		D9B0CC581A03B17500544323 = {
+			isa = PBXGroup;
+			children = (
+				D9B0CC6A1A03B17500544323 /* ExpertHelper */,
+				D9B0CC8C1A03B17500544323 /* ExpertHelperTests */,
+				D9B0CC631A03B17500544323 /* Frameworks */,
+				D9B0CC621A03B17500544323 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		B57DBA771A011F350020FF01 /* Products */ = {
+		D9B0CC621A03B17500544323 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				B57DBA761A011F350020FF01 /* ExpertHelper.app */,
-				B57DBA921A011F350020FF01 /* ExpertHelperTests.xctest */,
+				D9B0CC611A03B17500544323 /* ExpertHelper.app */,
+				D9B0CC851A03B17500544323 /* ExpertHelperTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		B57DBA781A011F350020FF01 /* ExpertHelper */ = {
+		D9B0CC631A03B17500544323 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				836D6CA91A01256700E378C2 /* View */,
-				836D6CA81A01256100E378C2 /* Model */,
-				836D6CA71A01255600E378C2 /* Controller */,
-				B57DBA831A011F350020FF01 /* ViewController.h */,
-				B57DBA841A011F350020FF01 /* ViewController.m */,
-				B57DBA861A011F350020FF01 /* Main.storyboard */,
-				B57DBA891A011F350020FF01 /* Images.xcassets */,
-				B57DBA801A011F350020FF01 /* ExpertHelper.xcdatamodeld */,
-				B57DBA791A011F350020FF01 /* Supporting Files */,
+				D90A1BC21A16371800B610C6 /* AVFoundation.framework */,
+				D9B0CC641A03B17500544323 /* Foundation.framework */,
+				D9B0CC661A03B17500544323 /* CoreGraphics.framework */,
+				D9B0CC681A03B17500544323 /* UIKit.framework */,
+				D9B0CC861A03B17500544323 /* XCTest.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D9B0CC6A1A03B17500544323 /* ExpertHelper */ = {
+			isa = PBXGroup;
+			children = (
+				2790F4E01A139735001B0956 /* ViewControllers */,
+				2790F4DF1A1396EB001B0956 /* Views */,
+				D9B0CC791A03B17500544323 /* Main_iPad.storyboard */,
+				D9B0CC761A03B17500544323 /* Main_iPhone.storyboard */,
+				D9B0CC6B1A03B17500544323 /* Supporting Files */,
 			);
 			path = ExpertHelper;
 			sourceTree = "<group>";
 		};
-		B57DBA791A011F350020FF01 /* Supporting Files */ = {
+		D9B0CC6B1A03B17500544323 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				B57DBA7D1A011F350020FF01 /* AppDelegate.h */,
-				B57DBA7E1A011F350020FF01 /* AppDelegate.m */,
-				B57DBA7A1A011F350020FF01 /* Info.plist */,
-				B57DBA7B1A011F350020FF01 /* main.m */,
+				D9B0CC731A03B17500544323 /* EHAppDelegate.h */,
+				D9B0CC741A03B17500544323 /* EHAppDelegate.m */,
+				D9BE54061A10B1A200AD5D3D /* Images.xcassets */,
+				D9B0CC6C1A03B17500544323 /* ExpertHelper-Info.plist */,
+				D9B0CC6D1A03B17500544323 /* InfoPlist.strings */,
+				D9B0CC701A03B17500544323 /* main.m */,
+				D9B0CC721A03B17500544323 /* ExpertHelper-Prefix.pch */,
+				834DD5E21A1B995100A5C39E /* Defines.h */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		B57DBA951A011F350020FF01 /* ExpertHelperTests */ = {
+		D9B0CC8C1A03B17500544323 /* ExpertHelperTests */ = {
 			isa = PBXGroup;
 			children = (
-				B57DBA981A011F350020FF01 /* ExpertHelperTests.m */,
-				B57DBA961A011F350020FF01 /* Supporting Files */,
+				D9B0CC921A03B17500544323 /* ExpertHelperTests.m */,
+				D9B0CC8D1A03B17500544323 /* Supporting Files */,
 			);
 			path = ExpertHelperTests;
 			sourceTree = "<group>";
 		};
-		B57DBA961A011F350020FF01 /* Supporting Files */ = {
+		D9B0CC8D1A03B17500544323 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				B57DBA971A011F350020FF01 /* Info.plist */,
+				D9B0CC8E1A03B17500544323 /* ExpertHelperTests-Info.plist */,
+				D9B0CC8F1A03B17500544323 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		D9B753521A1A4BE30003DE7D /* SkillLevelCommentPopup */ = {
+			isa = PBXGroup;
+			children = (
+				D9B7534F1A1A4B7F0003DE7D /* EHSkillLevelCommentPopup.h */,
+				D9B753501A1A4B7F0003DE7D /* EHSkillLevelCommentPopup.m */,
+				D9B7534D1A1A38B60003DE7D /* EHSkillLevelCommentPopup.xib */,
+			);
+			name = SkillLevelCommentPopup;
+			sourceTree = "<group>";
+		};
+		D9B753531A1A4BFC0003DE7D /* SkillLevelPopup */ = {
+			isa = PBXGroup;
+			children = (
+				D90A1BBF1A16366500B610C6 /* EHSkillLevelPopup.h */,
+				D90A1BC01A16366500B610C6 /* EHSkillLevelPopup.m */,
+				D9ACCD281A152EF30076DFB4 /* EHSkillLevelPopup.xib */,
+			);
+			name = SkillLevelPopup;
+			sourceTree = "<group>";
+		};
+		D9B753541A1A4FDC0003DE7D /* VoiceRecoder */ = {
+			isa = PBXGroup;
+			children = (
+				D9A6A0481A1B4F8200DAB5D7 /* EHVoiceRecorderViewController.h */,
+				D9A6A0491A1B4F8200DAB5D7 /* EHVoiceRecorderViewController.m */,
+			);
+			name = VoiceRecoder;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		B57DBA751A011F350020FF01 /* ExpertHelper */ = {
+		D9B0CC601A03B17500544323 /* ExpertHelper */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = B57DBA9C1A011F350020FF01 /* Build configuration list for PBXNativeTarget "ExpertHelper" */;
+			buildConfigurationList = D9B0CC961A03B17500544323 /* Build configuration list for PBXNativeTarget "ExpertHelper" */;
 			buildPhases = (
-				B57DBA721A011F350020FF01 /* Sources */,
-				B57DBA731A011F350020FF01 /* Frameworks */,
-				B57DBA741A011F350020FF01 /* Resources */,
+				D9B0CC5D1A03B17500544323 /* Sources */,
+				D9B0CC5E1A03B17500544323 /* Frameworks */,
+				D9B0CC5F1A03B17500544323 /* Resources */,
 			);
 			buildRules = (
 			);
@@ -163,47 +332,43 @@
 			);
 			name = ExpertHelper;
 			productName = ExpertHelper;
-			productReference = B57DBA761A011F350020FF01 /* ExpertHelper.app */;
+			productReference = D9B0CC611A03B17500544323 /* ExpertHelper.app */;
 			productType = "com.apple.product-type.application";
 		};
-		B57DBA911A011F350020FF01 /* ExpertHelperTests */ = {
+		D9B0CC841A03B17500544323 /* ExpertHelperTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = B57DBA9F1A011F350020FF01 /* Build configuration list for PBXNativeTarget "ExpertHelperTests" */;
+			buildConfigurationList = D9B0CC991A03B17500544323 /* Build configuration list for PBXNativeTarget "ExpertHelperTests" */;
 			buildPhases = (
-				B57DBA8E1A011F350020FF01 /* Sources */,
-				B57DBA8F1A011F350020FF01 /* Frameworks */,
-				B57DBA901A011F350020FF01 /* Resources */,
+				D9B0CC811A03B17500544323 /* Sources */,
+				D9B0CC821A03B17500544323 /* Frameworks */,
+				D9B0CC831A03B17500544323 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				B57DBA941A011F350020FF01 /* PBXTargetDependency */,
+				D9B0CC8B1A03B17500544323 /* PBXTargetDependency */,
 			);
 			name = ExpertHelperTests;
 			productName = ExpertHelperTests;
-			productReference = B57DBA921A011F350020FF01 /* ExpertHelperTests.xctest */;
+			productReference = D9B0CC851A03B17500544323 /* ExpertHelperTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		B57DBA6E1A011F350020FF01 /* Project object */ = {
+		D9B0CC591A03B17500544323 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0610;
-				ORGANIZATIONNAME = "Andrii Mamchur";
+				CLASSPREFIX = EH;
+				LastUpgradeCheck = 0500;
+				ORGANIZATIONNAME = "Katolyk S.";
 				TargetAttributes = {
-					B57DBA751A011F350020FF01 = {
-						CreatedOnToolsVersion = 6.1;
-						DevelopmentTeam = 98D64ECLWX;
-					};
-					B57DBA911A011F350020FF01 = {
-						CreatedOnToolsVersion = 6.1;
-						TestTargetID = B57DBA751A011F350020FF01;
+					D9B0CC841A03B17500544323 = {
+						TestTargetID = D9B0CC601A03B17500544323;
 					};
 				};
 			};
-			buildConfigurationList = B57DBA711A011F350020FF01 /* Build configuration list for PBXProject "ExpertHelper" */;
+			buildConfigurationList = D9B0CC5C1A03B17500544323 /* Build configuration list for PBXProject "ExpertHelper" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -211,83 +376,123 @@
 				en,
 				Base,
 			);
-			mainGroup = B57DBA6D1A011F350020FF01;
-			productRefGroup = B57DBA771A011F350020FF01 /* Products */;
+			mainGroup = D9B0CC581A03B17500544323;
+			productRefGroup = D9B0CC621A03B17500544323 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				B57DBA751A011F350020FF01 /* ExpertHelper */,
-				B57DBA911A011F350020FF01 /* ExpertHelperTests */,
+				D9B0CC601A03B17500544323 /* ExpertHelper */,
+				D9B0CC841A03B17500544323 /* ExpertHelperTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		B57DBA741A011F350020FF01 /* Resources */ = {
+		D9B0CC5F1A03B17500544323 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B57DBA881A011F350020FF01 /* Main.storyboard in Resources */,
-				B57DBA8A1A011F350020FF01 /* Images.xcassets in Resources */,
-				835CCA0D1A0125B60001920D /* Default-568h@2x.png in Resources */,
+				D9ACCD291A152EF30076DFB4 /* EHSkillLevelPopup.xib in Resources */,
+				D9B0CC7B1A03B17500544323 /* Main_iPad.storyboard in Resources */,
+				D9B7534E1A1A38B60003DE7D /* EHSkillLevelCommentPopup.xib in Resources */,
+				D9BE54071A10B1A200AD5D3D /* Images.xcassets in Resources */,
+				D9B0CC781A03B17500544323 /* Main_iPhone.storyboard in Resources */,
+				D9B0CC6F1A03B17500544323 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		B57DBA901A011F350020FF01 /* Resources */ = {
+		D9B0CC831A03B17500544323 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D9B0CC911A03B17500544323 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		B57DBA721A011F350020FF01 /* Sources */ = {
+		D9B0CC5D1A03B17500544323 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B57DBA821A011F350020FF01 /* ExpertHelper.xcdatamodeld in Sources */,
-				B57DBA7F1A011F350020FF01 /* AppDelegate.m in Sources */,
-				B57DBA851A011F350020FF01 /* ViewController.m in Sources */,
-				B57DBA7C1A011F350020FF01 /* main.m in Sources */,
+				2790F4E31A139854001B0956 /* EHProfilesTableViewCell.m in Sources */,
+				D9B0CC711A03B17500544323 /* main.m in Sources */,
+				D9A6A04A1A1B4F8200DAB5D7 /* EHVoiceRecorderViewController.m in Sources */,
+				D9B753511A1A4B7F0003DE7D /* EHSkillLevelCommentPopup.m in Sources */,
+				D9BE54031A10B16700AD5D3D /* EHInterviewFromViewController.m in Sources */,
+				D9BE54021A10B16700AD5D3D /* EHExternalViewController.m in Sources */,
+				B5DF299E1A164A280076862E /* EHCalendarEventsParser.m in Sources */,
+				2790F4E61A1398D8001B0956 /* EHProfilesViewController.m in Sources */,
+				B5DF299F1A164A280076862E /* EHInterview.m in Sources */,
+				D9BE54041A10B16700AD5D3D /* EHProgrammingLanguagesViewController.m in Sources */,
+				D9B0CC751A03B17500544323 /* EHAppDelegate.m in Sources */,
+				D9BE54001A10B16700AD5D3D /* EHCalendarFormViewController.m in Sources */,
+				B5DF29A01A164A280076862E /* EHMainEventsTableViewController.m in Sources */,
+				D90A1BC11A16366500B610C6 /* EHSkillLevelPopup.m in Sources */,
+				D9BE54011A10B16700AD5D3D /* EHExternalCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		B57DBA8E1A011F350020FF01 /* Sources */ = {
+		D9B0CC811A03B17500544323 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B57DBA991A011F350020FF01 /* ExpertHelperTests.m in Sources */,
+				D9B0CC931A03B17500544323 /* ExpertHelperTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		B57DBA941A011F350020FF01 /* PBXTargetDependency */ = {
+		D9B0CC8B1A03B17500544323 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = B57DBA751A011F350020FF01 /* ExpertHelper */;
-			targetProxy = B57DBA931A011F350020FF01 /* PBXContainerItemProxy */;
+			target = D9B0CC601A03B17500544323 /* ExpertHelper */;
+			targetProxy = D9B0CC8A1A03B17500544323 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		B57DBA861A011F350020FF01 /* Main.storyboard */ = {
+		D9B0CC6D1A03B17500544323 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
-				B57DBA871A011F350020FF01 /* Base */,
+				D9B0CC6E1A03B17500544323 /* en */,
 			);
-			name = Main.storyboard;
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		D9B0CC761A03B17500544323 /* Main_iPhone.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D9B0CC771A03B17500544323 /* Base */,
+			);
+			name = Main_iPhone.storyboard;
+			sourceTree = "<group>";
+		};
+		D9B0CC791A03B17500544323 /* Main_iPad.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D9B0CC7A1A03B17500544323 /* Base */,
+			);
+			name = Main_iPad.storyboard;
+			sourceTree = "<group>";
+		};
+		D9B0CC8F1A03B17500544323 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D9B0CC901A03B17500544323 /* en */,
+			);
+			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		B57DBA9A1A011F350020FF01 /* Debug */ = {
+		D9B0CC941A03B17500544323 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -299,11 +504,9 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -315,21 +518,21 @@
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
-				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
-		B57DBA9B1A011F350020FF01 /* Release */ = {
+		D9B0CC951A03B17500544323 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -341,129 +544,123 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
-				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
 		};
-		B57DBA9D1A011F350020FF01 /* Debug */ = {
+		D9B0CC971A03B17500544323 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				INFOPLIST_FILE = ExpertHelper/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "ExpertHelper/ExpertHelper-Prefix.pch";
+				INFOPLIST_FILE = "ExpertHelper/ExpertHelper-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
 		};
-		B57DBA9E1A011F350020FF01 /* Release */ = {
+		D9B0CC981A03B17500544323 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				INFOPLIST_FILE = ExpertHelper/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "ExpertHelper/ExpertHelper-Prefix.pch";
+				INFOPLIST_FILE = "ExpertHelper/ExpertHelper-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
 		};
-		B57DBAA01A011F350020FF01 /* Debug */ = {
+		D9B0CC9A1A03B17500544323 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/ExpertHelper.app/ExpertHelper";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
 				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "ExpertHelper/ExpertHelper-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = ExpertHelperTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				INFOPLIST_FILE = "ExpertHelperTests/ExpertHelperTests-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ExpertHelper.app/ExpertHelper";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
 			};
 			name = Debug;
 		};
-		B57DBAA11A011F350020FF01 /* Release */ = {
+		D9B0CC9B1A03B17500544323 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/ExpertHelper.app/ExpertHelper";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
 				);
-				INFOPLIST_FILE = ExpertHelperTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "ExpertHelper/ExpertHelper-Prefix.pch";
+				INFOPLIST_FILE = "ExpertHelperTests/ExpertHelperTests-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ExpertHelper.app/ExpertHelper";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		B57DBA711A011F350020FF01 /* Build configuration list for PBXProject "ExpertHelper" */ = {
+		D9B0CC5C1A03B17500544323 /* Build configuration list for PBXProject "ExpertHelper" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				B57DBA9A1A011F350020FF01 /* Debug */,
-				B57DBA9B1A011F350020FF01 /* Release */,
+				D9B0CC941A03B17500544323 /* Debug */,
+				D9B0CC951A03B17500544323 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		B57DBA9C1A011F350020FF01 /* Build configuration list for PBXNativeTarget "ExpertHelper" */ = {
+		D9B0CC961A03B17500544323 /* Build configuration list for PBXNativeTarget "ExpertHelper" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				B57DBA9D1A011F350020FF01 /* Debug */,
-				B57DBA9E1A011F350020FF01 /* Release */,
+				D9B0CC971A03B17500544323 /* Debug */,
+				D9B0CC981A03B17500544323 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		B57DBA9F1A011F350020FF01 /* Build configuration list for PBXNativeTarget "ExpertHelperTests" */ = {
+		D9B0CC991A03B17500544323 /* Build configuration list for PBXNativeTarget "ExpertHelperTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				B57DBAA01A011F350020FF01 /* Debug */,
-				B57DBAA11A011F350020FF01 /* Release */,
+				D9B0CC9A1A03B17500544323 /* Debug */,
+				D9B0CC9B1A03B17500544323 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCVersionGroup section */
-		B57DBA801A011F350020FF01 /* ExpertHelper.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				B57DBA811A011F350020FF01 /* ExpertHelper.xcdatamodel */,
-			);
-			currentVersion = B57DBA811A011F350020FF01 /* ExpertHelper.xcdatamodel */;
-			path = ExpertHelper.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
-	rootObject = B57DBA6E1A011F350020FF01 /* Project object */;
+	rootObject = D9B0CC591A03B17500544323 /* Project object */;
 }

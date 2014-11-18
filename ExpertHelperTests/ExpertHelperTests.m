@@ -2,12 +2,12 @@
 //  ExpertHelperTests.m
 //  ExpertHelperTests
 //
-//  Created by Andrii Mamchur on 10/29/14.
-//  Copyright (c) 2014 Andrii Mamchur. All rights reserved.
+//  Created by Katolyk S. on 10/31/14.
+//  Copyright (c) 2014 Katolyk S. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
 #import <XCTest/XCTest.h>
+#import "EHCalendarEventsParser.h"
 
 @interface ExpertHelperTests : XCTestCase
 
@@ -15,26 +15,23 @@
 
 @implementation ExpertHelperTests
 
-- (void)setUp {
-    [super setUp];
-    // Put setup code here. This method is called before the invocation of each test method in the class.
+- (void)testExample1 {
+    EHCalendarParseOptions *options = [[EHCalendarParseOptions alloc] init];
+    options.firstNameFirst = NO;
+    EHCalendarEventsParser *parser = [[EHCalendarEventsParser alloc] initWithObjection:options];
+    EHCalendarParseResult *result = [parser getNameOfCandidateFromTitle:@"Technical interview with Kirichok Stanislav"];
+    XCTAssertEqualObjects(result.firstName, @"Stanislav");
+    XCTAssertEqualObjects(result.lastName, @"Kirichok");
 }
 
-- (void)tearDown {
-    // Put teardown code here. This method is called after the invocation of each test method in the class.
-    [super tearDown];
+- (void)testExample2 {
+    EHCalendarParseOptions *options = [[EHCalendarParseOptions alloc] init];
+    options.firstNameFirst = YES;
+    EHCalendarEventsParser *parser = [[EHCalendarEventsParser alloc] initWithObjection:options];
+    EHCalendarParseResult *result = [parser getNameOfCandidateFromTitle:@"Interview with Stepan Bura"];
+    XCTAssertEqualObjects(result.firstName, @"Stepan");
+    XCTAssertEqualObjects(result.lastName, @"Bura");
 }
 
-- (void)testExample {
-    // This is an example of a functional test case.
-    XCTAssert(YES, @"Pass");
-}
-
-- (void)testPerformanceExample {
-    // This is an example of a performance test case.
-    [self measureBlock:^{
-        // Put the code you want to measure the time of here.
-    }];
-}
 
 @end
