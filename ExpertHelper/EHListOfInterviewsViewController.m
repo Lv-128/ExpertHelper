@@ -8,16 +8,17 @@
 
 #import "EHListOfInterviewsViewController.h"
 #import <EventKit/EventKit.h>
-
+#import "EHInterview.h"
 @interface EHListOfInterviewsViewController ()<UICollectionViewDataSource, UICollectionViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
-
+@property (strong, nonatomic) NSDateFormatter *cellDateFormatter;
 
 @end
 
 @implementation EHListOfInterviewsViewController
 
+@synthesize cellDateFormatter;
 @synthesize sections;
 @synthesize sortedDays;
 
@@ -25,7 +26,9 @@
 {
     [super viewDidLoad];
     
-    
+    self.cellDateFormatter = [[NSDateFormatter alloc] init];
+    [self.cellDateFormatter setDateStyle:NSDateFormatterFullStyle];
+    [self.cellDateFormatter setTimeStyle:NSDateFormatterShortStyle];
     self.sortedDays = [self.sections allKeys];
      _interviews = [NSArray arrayWithObjects:@"interview 1", @"interview 2", @"interview 3" , @"interview 4", nil];
   //   [self.collectionView registerClass:[UICollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"HeaderView"];
@@ -83,13 +86,32 @@
     
     NSString *dateRepresentingThisDay = [self.sortedDays objectAtIndex:indexPath.section];
     NSArray *eventsOnThisDay = [self.sections objectForKey:dateRepresentingThisDay];
-    EKEvent *event = [eventsOnThisDay objectAtIndex:indexPath.row];
+     EHInterview *event = [eventsOnThisDay objectAtIndex:indexPath.row];
     
     
     
-    UILabel * label = (UILabel *) [cell viewWithTag:100];
-    //label.text = [_interviews objectAtIndex:indexPath.row];
-    label.text = event.title;
+    UILabel * labelType = (UILabel *) [cell viewWithTag:100];
+    UILabel * labelDate = (UILabel *) [cell viewWithTag:101];
+    UILabel * labelLocation = (UILabel *) [cell viewWithTag:102];
+    UILabel * labelCandidate = (UILabel *) [cell viewWithTag:103];
+    UILabel * labelRecruiter = (UILabel *) [cell viewWithTag:104];
+    
+    
+    labelType.text = [@"Type : " stringByAppendingString:event.typeOfInterview];
+    labelDate.text = [@"Date : "stringByAppendingString:[cellDateFormatter stringFromDate:event.dateOfInterview]];
+    if (event.locationOfInterview==nil)
+    {
+         labelLocation.text = @"Location : Unknown" ;
+    }
+    else labelLocation.text = [@"Location : " stringByAppendingString:event.locationOfInterview];
+    labelCandidate.text = [@"Candidate : " stringByAppendingString:[[event.nameOfCandidate stringByAppendingString:@" "] stringByAppendingString:event.lastNameOfCandidate]  ] ;
+     labelRecruiter.text = [@"Recruiter : " stringByAppendingString:[[event.nameOfRecruiter stringByAppendingString:@" "] stringByAppendingString:event.lastNameOfRecruiter]  ] ;
+  /*  NSArray * arrLabels = [NSArray arrayWithObjects:labelType,labelDate,labelLocation,labelCandidate,labelRecruiter,nil];
+    for (UILabel* label in arrLabels)
+    {
+        [label.layer  setCornerRadius:15.0f];
+    }
+    */
     [cell.layer setBorderWidth:2.0f];
     [cell.layer setBorderColor:[UIColor blackColor].CGColor];
     

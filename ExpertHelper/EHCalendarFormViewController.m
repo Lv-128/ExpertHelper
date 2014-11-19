@@ -9,11 +9,11 @@
 #import "EHCalendarFormViewController.h"
 #import "EHListOfInterviewsViewController.h"
 #import "EHCalendarEventsParser.h"
-
+#import "EHInterview.h"
 #import "EHMainEventsTableViewController.h"
 @interface EHCalendarFormViewController () <UITableViewDataSource, UITabBarDelegate>
-@property (strong, nonatomic) NSMutableDictionary *sections;
-@property (strong, nonatomic) NSArray *sortedDays;
+@property (copy, nonatomic) NSDictionary *sections;
+@property (copy, nonatomic) NSArray *sortedDays;
 @property (strong, nonatomic) NSDateFormatter *sectionDateFormatter;
 @property (strong, nonatomic) NSDateFormatter *cellDateFormatter;
 
@@ -25,7 +25,7 @@
 @property (nonatomic, strong) EKCalendar *defaultCalendar;
 
 // Array of all events happening within the next 24 hours
-@property (nonatomic, strong) NSMutableArray *eventsList;
+@property (nonatomic, copy) NSArray *eventsList;
 
 @property (nonatomic , strong) EHCalendarEventsParser * calEventParser;
 
@@ -61,7 +61,10 @@ enum {  All = 0, ITA = 1, External = 2, None = 3};
 
 #pragma mark - View lifecycle
 
-
+-(void) dealloc
+{
+    
+}
 
 - (void)viewDidLoad
 {
@@ -75,11 +78,11 @@ enum {  All = 0, ITA = 1, External = 2, None = 3};
     
 	self.eventStore = [[EKEventStore alloc] init];// Initialize the event store
    
-	self.eventsList = [[NSMutableArray alloc] initWithCapacity:0]; // Initialize the events list
+	self.eventsList = [NSArray array] ; // Initialize the events list
     
     
     self.calEventParser = [[EHCalendarEventsParser alloc] init];
-    [_calEventParser checkEventStoreAccessForCalendar];
+
     
     self.sectionDateFormatter = [[NSDateFormatter alloc] init];
     [self.sectionDateFormatter setDateStyle:NSDateFormatterLongStyle];
@@ -99,11 +102,24 @@ enum {  All = 0, ITA = 1, External = 2, None = 3};
     [_calEventParser checkEventStoreAccessForCalendar];  // Check whether we are authorized to access Calendar
     
     // Fetch all events happening in the next 24 hours and put them into eventsList
-    self.eventsList = _calEventParser.eventsList;
-    self.sections = _calEventParser.sections;
+    if (_calEventParser.eventsList.count == 0)
+    {
+        UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Warning!"
+                                                          message:@"You have no interview - events in your calendar"
+                                                         delegate:nil
+                                                cancelButtonTitle:@"OK"
+                                                otherButtonTitles:nil];
+        [message show];
+    }
+    else{
+        EHEventsGetInfoParser * interviewsParser = [[EHEventsGetInfoParser alloc]init];
+        interviewsParser.events = _calEventParser.eventsList;
+       
+    self.eventsList = [interviewsParser sortAllInterviewsToDictionary];
+    self.sections = interviewsParser.interviews;
     
-    self.sortedDays = _calEventParser.sortedDays;
-   
+        self.sortedDays = _eventsList;
+    }
     [self.tableView reloadData]; // Update the UI with the  events
 }
 

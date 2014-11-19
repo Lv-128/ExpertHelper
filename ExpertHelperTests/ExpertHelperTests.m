@@ -8,7 +8,7 @@
 
 #import <XCTest/XCTest.h>
 #import "EHCalendarEventsParser.h"
-
+#import "EHInterview.h"
 @interface ExpertHelperTests : XCTestCase
 
 @end
@@ -18,7 +18,7 @@
 - (void)testExample1 {
     EHCalendarParseOptions *options = [[EHCalendarParseOptions alloc] init];
     options.firstNameFirst = NO;
-    EHCalendarEventsParser *parser = [[EHCalendarEventsParser alloc] initWithObjection:options];
+    EHEventsGetInfoParser *parser = [[EHEventsGetInfoParser alloc] initWithObjection:options];
     EHCalendarParseResult *result = [parser getNameOfCandidateFromTitle:@"Technical interview with Kirichok Stanislav"];
     XCTAssertEqualObjects(result.firstName, @"Stanislav");
     XCTAssertEqualObjects(result.lastName, @"Kirichok");
@@ -27,7 +27,7 @@
 - (void)testExample2 {
     EHCalendarParseOptions *options = [[EHCalendarParseOptions alloc] init];
     options.firstNameFirst = YES;
-    EHCalendarEventsParser *parser = [[EHCalendarEventsParser alloc] initWithObjection:options];
+    EHEventsGetInfoParser *parser = [[EHEventsGetInfoParser alloc] initWithObjection:options];
     EHCalendarParseResult *result = [parser getNameOfCandidateFromTitle:@"Interview with Stepan Bura"];
     XCTAssertEqualObjects(result.firstName, @"Stepan");
     XCTAssertEqualObjects(result.lastName, @"Bura");
