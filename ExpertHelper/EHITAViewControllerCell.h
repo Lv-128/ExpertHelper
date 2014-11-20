@@ -9,11 +9,12 @@
 #import <UIKit/UIKit.h>
 
 @interface EHITAViewControllerCell : UITableViewCell
-@property (weak, nonatomic) IBOutlet UILabel *labelName;
-@property (weak, nonatomic) IBOutlet UILabel *labelPass;
-@property (weak, nonatomic) IBOutlet UILabel *labelComment;
-@property (weak, nonatomic) IBOutlet UILabel *labelScore;
 
+@property (weak, nonatomic) IBOutlet UILabel *candidateName;
+@property (weak, nonatomic) IBOutlet UILabel *passLabel;
+@property (weak, nonatomic) IBOutlet UIButton *checkButton;
+@property (weak, nonatomic) IBOutlet UIButton *openPopUpButton;
 
+@property (weak, nonatomic) IBOutlet UIButton *candidateImage;
 
 @end

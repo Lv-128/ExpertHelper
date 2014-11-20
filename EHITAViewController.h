@@ -8,10 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
-@interface EHITAViewController : UIViewController
+@interface EHITAViewController : UIViewController<UIPickerViewDataSource, UIPickerViewDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate>{
+    int selectedScoreSrcIndex;
+    NSString *selectedScore;
+    IBOutlet UIButton *scoreOption;
+}
 
+@property(nonatomic,retain) NSArray *scoreSrc;
+@property(nonatomic,retain) UIPickerView *myPickerView;
+@property(nonatomic,retain) UIPopoverController *popoverController;
 
-
-
-//- (IBAction)viewWasTouched:(UITapGestureRecognizer *)sender;
 @end

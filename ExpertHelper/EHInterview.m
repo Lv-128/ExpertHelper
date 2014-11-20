@@ -12,17 +12,35 @@
 
 
 
-
-
-- (void)underlineAllLocations
+-(id) initWithFirstName : (NSString *)firstName
+                lastName: (NSString *)lastName
+         nameOfRecruiter: (NSString *)nameOfRecruiter
+     lastnameOfRecruiter: (NSString *)lastnameOfRecruiter
+         dateOfInterview: (NSDate *) dateOfInterview
+     locationOfInterview: (NSString *)locationOfInterview
+         typeOfInterview:(NSString *)typeOfInterview
+    
 {
-//    NSError *error = NULL;
-//    NSString *pattern = @"with\\s*([a-zA-Z]1,{10})\\s*([a-zA-Z]{1,10})";
-//    NSString *string = @"Interview with Alena Pyanyh";
-//    NSRange range = NSMakeRange(0, string.length);
-//    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:pattern options:0 error:&error];
-//  NSArray *matches = [regex matchesInString:string options:(NSMatchingOptions)NSMatchingProgress range:range];
-    //NSLog(matches);
-    //[self highlightMatches:matches];
+    self= [super init];
+    if (self)
+    {
+        _nameOfCandidate = firstName;
+        _lastNameOfCandidate = lastName;
+        _dateOfInterview = dateOfInterview;
+        _locationOfInterview  = locationOfInterview;
+        _typeOfInterview = typeOfInterview;
+        _nameOfRecruiter = nameOfRecruiter;
+        _lastNameOfRecruiter = lastnameOfRecruiter;
+    }
+    return self;
 }
-@end
+
+- (void)dealloc {
+    _nameOfCandidate = nil;
+    _lastNameOfCandidate = nil;
+    _dateOfInterview=nil;
+    _locationOfInterview = nil;
+    _typeOfInterview=nil;
+    
+    
+}@end

@@ -7,8 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		11C555771A1CFC56009AB8CB /* checkBox.png in Resources */ = {isa = PBXBuildFile; fileRef = 11C555751A1CFC56009AB8CB /* checkBox.png */; };
+		11C555781A1CFC56009AB8CB /* checkBoxMarked.png in Resources */ = {isa = PBXBuildFile; fileRef = 11C555761A1CFC56009AB8CB /* checkBoxMarked.png */; };
 		11CB79CA1A1A3ECE00C2924E /* EHITAViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 11CB79C91A1A3ECE00C2924E /* EHITAViewController.m */; };
 		11CB79CF1A1A420000C2924E /* EHITAViewControllerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 11CB79CE1A1A420000C2924E /* EHITAViewControllerCell.m */; };
+		11E6C2C81A1E29BB00ACEB6A /* EHInterviewFormItAcademy.m in Sources */ = {isa = PBXBuildFile; fileRef = 11E6C2C71A1E29BB00ACEB6A /* EHInterviewFormItAcademy.m */; };
+		11E6C2CD1A1E4BAC00ACEB6A /* smile.png in Resources */ = {isa = PBXBuildFile; fileRef = 11E6C2CC1A1E4BAC00ACEB6A /* smile.png */; };
 		2790F4E31A139854001B0956 /* EHProfilesTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2790F4E21A139854001B0956 /* EHProfilesTableViewCell.m */; };
 		2790F4E61A1398D8001B0956 /* EHProfilesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2790F4E51A1398D8001B0956 /* EHProfilesViewController.m */; };
 		B5DF299E1A164A280076862E /* EHCalendarEventsParser.m in Sources */ = {isa = PBXBuildFile; fileRef = B5DF29991A164A280076862E /* EHCalendarEventsParser.m */; };
@@ -50,10 +54,16 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		11C555751A1CFC56009AB8CB /* checkBox.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = checkBox.png; sourceTree = "<group>"; };
+		11C555761A1CFC56009AB8CB /* checkBoxMarked.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = checkBoxMarked.png; sourceTree = "<group>"; };
 		11CB79C81A1A3ECE00C2924E /* EHITAViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EHITAViewController.h; path = ../EHITAViewController.h; sourceTree = "<group>"; };
 		11CB79C91A1A3ECE00C2924E /* EHITAViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EHITAViewController.m; path = ../EHITAViewController.m; sourceTree = "<group>"; };
 		11CB79CD1A1A420000C2924E /* EHITAViewControllerCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EHITAViewControllerCell.h; sourceTree = "<group>"; };
 		11CB79CE1A1A420000C2924E /* EHITAViewControllerCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EHITAViewControllerCell.m; sourceTree = "<group>"; };
+		11E6C2C51A1E279900ACEB6A /* EHInterviewForm.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EHInterviewForm.h; sourceTree = "<group>"; };
+		11E6C2C61A1E29BB00ACEB6A /* EHInterviewFormItAcademy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EHInterviewFormItAcademy.h; sourceTree = "<group>"; };
+		11E6C2C71A1E29BB00ACEB6A /* EHInterviewFormItAcademy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EHInterviewFormItAcademy.m; sourceTree = "<group>"; };
+		11E6C2CC1A1E4BAC00ACEB6A /* smile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = smile.png; sourceTree = "<group>"; };
 		2790F4E11A139854001B0956 /* EHProfilesTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EHProfilesTableViewCell.h; path = Views/EHProfilesTableViewCell.h; sourceTree = "<group>"; };
 		2790F4E21A139854001B0956 /* EHProfilesTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EHProfilesTableViewCell.m; path = Views/EHProfilesTableViewCell.m; sourceTree = "<group>"; };
 		2790F4E41A1398D8001B0956 /* EHProfilesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EHProfilesViewController.h; path = ViewControllers/EHProfilesViewController.h; sourceTree = "<group>"; };
@@ -128,12 +138,27 @@
 		11CB79CC1A1A3F2600C2924E /* ITAViewConroller */ = {
 			isa = PBXGroup;
 			children = (
+				11E6C2CC1A1E4BAC00ACEB6A /* smile.png */,
+				11C555751A1CFC56009AB8CB /* checkBox.png */,
+				11C555761A1CFC56009AB8CB /* checkBoxMarked.png */,
 				11CB79C91A1A3ECE00C2924E /* EHITAViewController.m */,
 				11CB79C81A1A3ECE00C2924E /* EHITAViewController.h */,
 				11CB79CD1A1A420000C2924E /* EHITAViewControllerCell.h */,
 				11CB79CE1A1A420000C2924E /* EHITAViewControllerCell.m */,
 			);
 			name = ITAViewConroller;
+			sourceTree = "<group>";
+		};
+		11E6C2C41A1E25C400ACEB6A /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				B5DF299A1A164A280076862E /* EHInterview.h */,
+				B5DF299B1A164A280076862E /* EHInterview.m */,
+				11E6C2C51A1E279900ACEB6A /* EHInterviewForm.h */,
+				11E6C2C61A1E29BB00ACEB6A /* EHInterviewFormItAcademy.h */,
+				11E6C2C71A1E29BB00ACEB6A /* EHInterviewFormItAcademy.m */,
+			);
+			name = Model;
 			sourceTree = "<group>";
 		};
 		2790F4DF1A1396EB001B0956 /* Views */ = {
@@ -193,11 +218,10 @@
 		D9B0CC6A1A03B17500544323 /* ExpertHelper */ = {
 			isa = PBXGroup;
 			children = (
+				11E6C2C41A1E25C400ACEB6A /* Model */,
 				11CB79CC1A1A3F2600C2924E /* ITAViewConroller */,
 				B5DF29981A164A280076862E /* EHCalendarEventsParser.h */,
 				B5DF29991A164A280076862E /* EHCalendarEventsParser.m */,
-				B5DF299A1A164A280076862E /* EHInterview.h */,
-				B5DF299B1A164A280076862E /* EHInterview.m */,
 				B5DF299C1A164A280076862E /* EHMainEventsTableViewController.h */,
 				B5DF299D1A164A280076862E /* EHMainEventsTableViewController.m */,
 				2790F4E01A139735001B0956 /* ViewControllers */,
@@ -328,10 +352,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				11C555771A1CFC56009AB8CB /* checkBox.png in Resources */,
 				D9ACCD291A152EF30076DFB4 /* EHSkillLevelPopup.xib in Resources */,
 				D9B0CC7B1A03B17500544323 /* Main_iPad.storyboard in Resources */,
 				D9BE54071A10B1A200AD5D3D /* Images.xcassets in Resources */,
+				11C555781A1CFC56009AB8CB /* checkBoxMarked.png in Resources */,
 				D9B0CC781A03B17500544323 /* Main_iPhone.storyboard in Resources */,
+				11E6C2CD1A1E4BAC00ACEB6A /* smile.png in Resources */,
 				D9B0CC6F1A03B17500544323 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -356,6 +383,7 @@
 				D9BE54031A10B16700AD5D3D /* EHInterviewFromViewController.m in Sources */,
 				D9BE54021A10B16700AD5D3D /* EHExternalViewController.m in Sources */,
 				B5DF299E1A164A280076862E /* EHCalendarEventsParser.m in Sources */,
+				11E6C2C81A1E29BB00ACEB6A /* EHInterviewFormItAcademy.m in Sources */,
 				2790F4E61A1398D8001B0956 /* EHProfilesViewController.m in Sources */,
 				B5DF299F1A164A280076862E /* EHInterview.m in Sources */,
 				D9BE54041A10B16700AD5D3D /* EHProgrammingLanguagesViewController.m in Sources */,

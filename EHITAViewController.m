@@ -12,32 +12,42 @@
 @interface EHITAViewController ()
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (copy, nonatomic) NSArray *namesArray;
+@property (nonatomic) NSMutableArray *checked;
 
-//@property (nonatomic, strong) NSArray *sectionContent;
-
+@property (strong, nonatomic) UIImageView* imageView;
 
 
 @end
 
 @implementation EHITAViewController
 
-
+@synthesize myPickerView,popoverController;
+@synthesize scoreSrc;
 
 - (void)viewDidLoad
 {
-    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-   [super viewDidLoad];
-	
+    [super viewDidLoad];
+    
+    self.scoreSrc = [NSArray arrayWithObjects:@"1", @"2", @"3", @"4", @"5", nil]; //array which contains scores for candidate
+    selectedScoreSrcIndex=0;
     
     
+    _namesArray = [[NSArray alloc] initWithObjects: // array which contains names of candidate
+                   @"Oleksandr Shymanskyi",
+                   @"Nazar Vlizlo",
+                   @"Olena Pyanih",
+                   @"Taras Koval",nil];
+    _checked = [[NSMutableArray alloc] init]; // array which check if candidate pass interview
     
-    
+    for (NSInteger i = 0; i < _namesArray.count; i++) {
+        [_checked addObject:[NSNumber numberWithBool:false]];
+    }
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 
@@ -48,57 +58,15 @@
 
 - (NSInteger)tableView:(UITableView *)table numberOfRowsInSection:(NSInteger)section
 {
-    return 5;
+    return [_namesArray count];
 }
 
--(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
-{
-    // Create custom view to display section header
-    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, tableView.frame.size.width, 18.0)];
-    
-    UILabel *labelName = [[UILabel alloc] initWithFrame:CGRectMake(0.0, 0.0, tableView.frame.size.width / 4.0, 18.0)];
-    
-    [labelName setFont:[UIFont boldSystemFontOfSize:14]];
-    [labelName setTextAlignment:NSTextAlignmentCenter];
-    
-    UILabel *labelPass = [[UILabel alloc] initWithFrame:CGRectMake(tableView.frame.size.width / 4.0, 0.0, tableView.frame.size.width / 4.0, 18.0)];
-    
-    [labelPass setTextAlignment:NSTextAlignmentCenter];
-    [labelPass setFont:[UIFont boldSystemFontOfSize:14]];
-    
-    UILabel *labelComment = [[UILabel alloc] initWithFrame:CGRectMake(tableView.frame.size.width / 4.0 * 2.1, 0.0, tableView.frame.size.width / 4.0, 18.0)];
-    
-    [labelComment setFont:[UIFont boldSystemFontOfSize:14]];
-    [labelComment setTextAlignment:NSTextAlignmentCenter];
-    
-    UILabel *labelScore = [[UILabel alloc] initWithFrame:CGRectMake(tableView.frame.size.width / 4.0 * 3, 0.0, tableView.frame.size.width / 4.0, 18.0)];
-    
-    [labelScore setFont:[UIFont boldSystemFontOfSize:14]];
-    [labelScore setTextAlignment:NSTextAlignmentCenter];
-    
-    labelName.text = @"Name";
-    labelPass.text = @"Pass";
-    labelComment.text = @"Comment";
-    labelScore.text = @"Score";
-    
-    
-    [view addSubview:labelName];
-    [view addSubview:labelPass];
-    [view addSubview:labelComment];
-    [view addSubview:labelScore];
-    [view setBackgroundColor:[UIColor colorWithRed:166/255.0 green:177/255.0 blue:186/255.0 alpha:1.0]];
-    
-    return view;
-}
+//--------------- create custom cell of candidate in table ---------------
 
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
     static NSString *cellIdentifier = @"ItaCell";
-    
- //   NSArray *listData = [self.sectionContent objectAtIndex:[indexPath section]];
-    
- EHITAViewControllerCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    EHITAViewControllerCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     
     if (cell == nil) {
         cell = [[EHITAViewControllerCell alloc]
@@ -106,75 +74,192 @@
                 reuseIdentifier:cellIdentifier];
     }
     
-  //  NSUInteger row = [indexPath row];
+    NSUInteger row = [indexPath row];
     
-    //cell.leftLabel.text = [listData objectAtIndex:row];
-  
-
+    cell.candidateName.text = [_namesArray objectAtIndex:row];
+    cell.passLabel.text = @"Pass :";
     
-    cell.labelName.tag = indexPath.row;
-
-	cell.labelName.userInteractionEnabled = YES;
-
+    [cell.checkButton setImage:[UIImage imageNamed:@"checkBox.png"] forState:UIControlStateNormal];
+    cell.checkButton.tag = indexPath.row;
+    [cell.checkButton addTarget:self action:@selector(checkButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
     
-    [cell.labelName.layer setBorderWidth:1.0];
-    [cell.labelName.layer setBorderColor:[[UIColor colorWithWhite:0.821 alpha:1.000] CGColor]];
+    [cell.openPopUpButton setTitle:@"Select Score" forState:UIControlStateNormal];
+    cell.openPopUpButton.layer.cornerRadius = 20;//half of the width
+    cell.openPopUpButton.layer.borderColor=[UIColor grayColor].CGColor;
+    cell.openPopUpButton.layer.borderWidth=2.0f;
     
-    [cell.labelPass.layer setBorderColor:[[UIColor colorWithWhite:0.821 alpha:1.000] CGColor]];
-    [cell.labelPass.layer setBorderWidth:1.0];
+    [cell.openPopUpButton addTarget:self action:@selector(openPopUpClick:) forControlEvents:UIControlEventTouchUpInside];
     
-    [cell.labelComment.layer setBorderColor:[[UIColor colorWithWhite:0.821 alpha:1.000] CGColor]];
-    [cell.labelComment.layer setBorderWidth:1.0];
     
-    [cell.labelScore.layer setBorderColor:[[UIColor colorWithWhite:0.821 alpha:1.000] CGColor]];
-    [cell.labelScore.layer setBorderWidth:1.0];
-
+    [cell.candidateImage setImage: [UIImage imageNamed:@"smile.png"] forState:UIControlStateNormal];
+    [cell.candidateImage addTarget:self action:@selector(changeImage:) forControlEvents:UIControlEventTouchUpInside];
+    
+    
     return cell;
 }
 
-int row;
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    row = indexPath.row;
-    
-    EHITAViewControllerCell *cell =[tableView cellForRowAtIndexPath:indexPath];
-    
-    UITapGestureRecognizer * single = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(singletap:)];
+//--------------- choose picture for candidate ---------------
 
-    [cell.labelName addGestureRecognizer:single];
-    single.numberOfTapsRequired = 1;
-  
+UIButton *button;
+
+-(void)changeImage:(UIButton*)sender {
+    button = (UIButton *)sender;
+   
+    UIImagePickerController *pickerController = [[UIImagePickerController alloc]
+                                                 init];
+    pickerController.delegate = self;
+    [self presentModalViewController:pickerController animated:YES];
 }
 
--(void) singletap:(id)sender
+- (void) imagePickerController:(UIImagePickerController *)picker
+         didFinishPickingImage:(UIImage *)image
+                   editingInfo:(NSDictionary *)editingInfo
 {
-    NSLog(@"single tap");
-  }
-
-
-/*
-
--(void)pressLabel {
-    _pressLabel1.text = @"pressed";
+    [self setImageForCell:image];
+    
+    [self dismissModalViewControllerAnimated:YES];
 }
-*/
-/*
-- (IBAction)viewWasTouched:(UITapGestureRecognizer *)sender
-{
-  if (sender.numberOfTouches == 1) {
-        CGPoint touchPoint = [sender locationOfTouch:0 inView:self.pressLabel1];
-        CGFloat touchX = touchPoint.x;
-        CGFloat touchY = touchPoint.y;
-        // is the touch in the bounds of the touchLabel?
-        if (touchX >= 0 && touchY >= 0) {
-            if (touchX <= self.pressLabel1.bounds.size.width && touchY <= self.pressLabel1.bounds.size.height) {
-                [self performSelector:@selector(pressLabel)];
-            }
-        }
+
+-(void)setImageForCell:(UIImage *)image {
+    [button setImage:image forState:UIControlStateNormal];
+}
+
+//--------------- create PopUp with picker of scores ---------------
+
+-(void)openPopUpClick:(UIButton*)sender {
+    
+    scoreOption = sender;
+    
+    UIView *masterView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 300, 260)];
+    UIToolbar *pickerToolbar = [self createPickerToolbarWithTitle:@"Select sсore"];
+    
+    [pickerToolbar setBarStyle:UIBarStyleBlackTranslucent];
+    [masterView addSubview:pickerToolbar];
+    CGRect pickerFrame = CGRectMake(0, 40, 300, 216);
+    UIPickerView *myPicker = [[UIPickerView alloc] initWithFrame:pickerFrame];
+    
+    [myPicker setDataSource: self];
+    [myPicker setDelegate: self];
+    myPicker.tag=1;
+    [myPicker selectRow:0 inComponent:0 animated:NO];
+    [myPicker setShowsSelectionIndicator:YES];
+    self.myPickerView=myPicker;
+    [masterView addSubview:myPicker];
+    
+    UIViewController *viewController = [[UIViewController alloc] initWithNibName:nil bundle:nil];
+    viewController.view = masterView;
+
+    viewController.preferredContentSize = viewController.view.frame.size;
+    self.popoverController =[[UIPopoverController alloc] initWithContentViewController:viewController];
+    
+    UIButton *button = (UIButton *)sender;
+    [self.popoverController presentPopoverFromRect:button.bounds
+                                            inView:button
+                          permittedArrowDirections:UIPopoverArrowDirectionDown
+                                          animated:YES];
+}
+
+- (UIToolbar *)createPickerToolbarWithTitle:(NSString *)title  {
+    
+    CGRect frame = CGRectMake(0, 0, 300, 44);
+    UIToolbar *pickerToolbar = [[UIToolbar alloc] initWithFrame:frame];
+    pickerToolbar.barStyle = UIBarStyleBlackOpaque;
+    NSMutableArray *barItems = [[NSMutableArray alloc] init];
+    UIBarButtonItem *cancelBtn = [self createButtonWithType:UIBarButtonSystemItemCancel target:self action:@selector(actionPickerCancel:)];
+    [barItems addObject:cancelBtn];
+    UIBarButtonItem *flexSpace = [self createButtonWithType:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
+    
+    [barItems addObject:flexSpace];
+    if (title) {
+        UIBarButtonItem *labelButton = [self createToolbarLabelWithTitle:title];
+        [barItems addObject:labelButton];
+        [barItems addObject:flexSpace];
     }
-}*/
+    UIBarButtonItem *doneButton = [self createButtonWithType:UIBarButtonSystemItemDone target:self action:@selector(actionPickerDone:)];
+    [barItems addObject:doneButton];
+    [pickerToolbar setItems:barItems animated:YES];
+    return pickerToolbar;
+    
+}
 
+- (IBAction)actionPickerDone:(id)sender {
+    
+    //[self notifyTarget:self.target didSucceedWithAction:self.successAction origin:[self storedOrigin]];
+    
+    if (self.popoverController && self.popoverController.popoverVisible)
+        [self.popoverController dismissPopoverAnimated:YES];
+}
 
+- (IBAction)actionPickerCancel:(id)sender {
+    
+    if (self.popoverController && self.popoverController.popoverVisible)
+        [self.popoverController dismissPopoverAnimated:YES];
+    
+}
+
+- (UIBarButtonItem *)createToolbarLabelWithTitle:(NSString *)aTitle {
+    
+    UILabel *toolBarItemlabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 180,30)];
+    [toolBarItemlabel setTextAlignment:UITextAlignmentCenter];
+    [toolBarItemlabel setTextColor:[UIColor whiteColor]];
+    [toolBarItemlabel setFont:[UIFont boldSystemFontOfSize:16]];
+    [toolBarItemlabel setBackgroundColor:[UIColor clearColor]];
+    toolBarItemlabel.text = aTitle;
+    UIBarButtonItem *buttonLabel = [[UIBarButtonItem alloc]initWithCustomView:toolBarItemlabel];
+    return buttonLabel;
+    
+}
+
+- (UIBarButtonItem *)createButtonWithType:(UIBarButtonSystemItem)type target:(id)target action:(SEL)buttonAction {
+    
+    return [[UIBarButtonItem alloc] initWithBarButtonSystemItem:type target:target action:buttonAction];
+}
+
+- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView {
+    
+    return 1;
+}
+
+- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component {
+    
+    if ([pickerView tag] == 1) {
+        return [self.scoreSrc count];
+    }
+    return 0;
+}
+
+- (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
+    if ([pickerView tag] == 1) {
+        return [self.scoreSrc objectAtIndex:row];
+        
+    }
+    
+    return @"";
+}
+
+- (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
+    
+    if ([pickerView tag] == 1) {
+        selectedScoreSrcIndex=row;
+        selectedScore=[self.scoreSrc objectAtIndex:selectedScoreSrcIndex];
+        [scoreOption setTitle:selectedScore forState:UIControlStateNormal];
+    }
+}
+
+//--------------- check if candidate has passed iterview ---------------
+
+-(void)checkButtonClicked:(UIButton*)sender {
+    UIButton *btn = (UIButton *)sender;
+    int index = [btn tag];
+    
+    if (![[_checked objectAtIndex:index] boolValue]) {
+        [sender setImage:[UIImage imageNamed:@"checkBoxMarked.png"] forState:UIControlStateNormal];
+        [_checked replaceObjectAtIndex:index withObject:[NSNumber numberWithBool:true]];
+    } else {
+        [sender setImage:[UIImage imageNamed:@"checkBox.png"] forState:UIControlStateNormal];
+        [_checked replaceObjectAtIndex:index withObject:[NSNumber numberWithBool:false]];
+    }
+}
 
 @end
