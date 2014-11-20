@@ -16,6 +16,7 @@
 		D90A1BC31A16371800B610C6 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D90A1BC21A16371800B610C6 /* AVFoundation.framework */; };
 		D93583FB1A1CAF6F00135A2D /* EHEventsGetInfoParser.m in Sources */ = {isa = PBXBuildFile; fileRef = D93583FA1A1CAF6F00135A2D /* EHEventsGetInfoParser.m */; };
 		D967F2081A1E23BC0009639C /* EHCandidateFormViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D967F2071A1E23BC0009639C /* EHCandidateFormViewController.m */; };
+		D967F20B1A1E305D0009639C /* EHRecruiterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D967F20A1A1E305D0009639C /* EHRecruiterViewController.m */; };
 		D9ACCD251A15283C0076DFB4 /* EHSkillLevelPopupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D9ACCD241A15283C0076DFB4 /* EHSkillLevelPopupViewController.m */; };
 		D9ACCD291A152EF30076DFB4 /* EHSkillLevelPopup.xib in Resources */ = {isa = PBXBuildFile; fileRef = D9ACCD281A152EF30076DFB4 /* EHSkillLevelPopup.xib */; };
 		D9B0CC651A03B17500544323 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D9B0CC641A03B17500544323 /* Foundation.framework */; };
@@ -67,6 +68,8 @@
 		D93583FA1A1CAF6F00135A2D /* EHEventsGetInfoParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EHEventsGetInfoParser.m; sourceTree = "<group>"; };
 		D967F2061A1E23BC0009639C /* EHCandidateFormViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EHCandidateFormViewController.h; sourceTree = "<group>"; };
 		D967F2071A1E23BC0009639C /* EHCandidateFormViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EHCandidateFormViewController.m; sourceTree = "<group>"; };
+		D967F2091A1E305D0009639C /* EHRecruiterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EHRecruiterViewController.h; sourceTree = "<group>"; };
+		D967F20A1A1E305D0009639C /* EHRecruiterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EHRecruiterViewController.m; sourceTree = "<group>"; };
 		D9ACCD231A15283C0076DFB4 /* EHSkillLevelPopupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EHSkillLevelPopupViewController.h; path = ../EHSkillLevelPopupViewController.h; sourceTree = "<group>"; };
 		D9ACCD241A15283C0076DFB4 /* EHSkillLevelPopupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EHSkillLevelPopupViewController.m; path = ../EHSkillLevelPopupViewController.m; sourceTree = "<group>"; };
 		D9ACCD281A152EF30076DFB4 /* EHSkillLevelPopup.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EHSkillLevelPopup.xib; sourceTree = "<group>"; };
@@ -148,6 +151,8 @@
 				2790F4E51A1398D8001B0956 /* EHProfilesViewController.m */,
 				D967F2061A1E23BC0009639C /* EHCandidateFormViewController.h */,
 				D967F2071A1E23BC0009639C /* EHCandidateFormViewController.m */,
+				D967F2091A1E305D0009639C /* EHRecruiterViewController.h */,
+				D967F20A1A1E305D0009639C /* EHRecruiterViewController.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -370,6 +375,7 @@
 				2790F4E31A139854001B0956 /* EHProfilesTableViewCell.m in Sources */,
 				D9B0CC711A03B17500544323 /* main.m in Sources */,
 				D9F15AD11A1A575A00E4DC62 /* EHListOfInterviewsViewController.m in Sources */,
+				D967F20B1A1E305D0009639C /* EHRecruiterViewController.m in Sources */,
 				D9BE54021A10B16700AD5D3D /* EHExternalViewController.m in Sources */,
 				B5DF299E1A164A280076862E /* EHCalendarEventsParser.m in Sources */,
 				2790F4E61A1398D8001B0956 /* EHProfilesViewController.m in Sources */,

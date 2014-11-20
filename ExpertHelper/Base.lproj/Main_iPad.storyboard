@@ -76,7 +76,7 @@
         <!--Recruiter View Controller - Recruiter-->
         <scene sceneID="a0s-7d-kpO">
             <objects>
-                <viewController id="CCu-XO-Yni" customClass="EHRecruiterViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="RecruiterFormView" useStoryboardIdentifierAsRestorationIdentifier="YES" id="CCu-XO-Yni" customClass="EHRecruiterViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="bDi-iK-rcz"/>
                         <viewControllerLayoutGuide type="bottom" id="bfY-JA-3pG"/>
@@ -89,7 +89,7 @@
                                 <rect key="frame" x="128" y="146" width="512" height="341"/>
                             </imageView>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Name: Ivanova Dasha" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7if-k9-rys">
-                                <rect key="frame" x="142" y="573" width="249" height="30"/>
+                                <rect key="frame" x="142" y="573" width="538" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
@@ -131,6 +131,9 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="Recruiter" id="Yvb-4h-xNp"/>
+                    <connections>
+                        <outlet property="labelNameOfRecruiter" destination="7if-k9-rys" id="1cf-kZ-qhs"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="g4T-cI-lzD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -179,7 +182,7 @@
         <!--Candidate Form View Controller - Candidate-->
         <scene sceneID="iu6-y0-tYv">
             <objects>
-                <viewController id="mYL-4e-viI" customClass="EHCandidateFormViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CandidateFormView" useStoryboardIdentifierAsRestorationIdentifier="YES" id="mYL-4e-viI" customClass="EHCandidateFormViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="CJG-3G-QBJ"/>
                         <viewControllerLayoutGuide type="bottom" id="uDF-n0-4av"/>
@@ -192,7 +195,7 @@
                                 <rect key="frame" x="128" y="134" width="512" height="341"/>
                             </imageView>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Name: Stewie Griffin" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="flJ-Vp-gGQ">
-                                <rect key="frame" x="128" y="611" width="236" height="21"/>
+                                <rect key="frame" x="128" y="611" width="463" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -527,7 +530,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="756" height="307"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="100" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bkh-Tf-meK">
+                                                <label opaque="NO" clipsSubviews="YES" tag="100" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bkh-Tf-meK">
                                                     <rect key="frame" x="141" y="10" width="615" height="50"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -562,7 +565,7 @@
                                                     <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="104" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fcn-Bz-1Ie">
+                                                <label opaque="NO" clipsSubviews="YES" tag="104" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fcn-Bz-1Ie">
                                                     <rect key="frame" x="141" y="210" width="615" height="50"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

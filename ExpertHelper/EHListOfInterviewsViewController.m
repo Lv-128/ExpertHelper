@@ -11,7 +11,8 @@
 #import "EHInterview.h"
 #import "EHEventsGetInfoParser.h"
 #import "EHCandidateFormViewController.h"
-@interface EHListOfInterviewsViewController ()<UICollectionViewDataSource, UICollectionViewDelegate>
+#import "EHRecruiterViewController.h"
+@interface EHListOfInterviewsViewController ()<UICollectionViewDataSource, UICollectionViewDelegate, UIGestureRecognizerDelegate>
 
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (strong, nonatomic) NSDateFormatter *cellDateFormatter;
@@ -43,31 +44,7 @@
     // Dispose of any resources that can be recreated.
 }
 
-
-
--(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    if ( [[segue identifier] isEqualToString:@"GoToInterviewForm"])
-    {
-        
-      //  UIView *senderButton = (UIView*) sender;
-      //  NSIndexPath *indexPath = [_collectionView indexPathForCell: (UICollectionViewCell*)[[senderButton superview]superview]]; // get the address of cell where pushed button is, so that you can send the exact info that you need to send to the next view
-        
-        
-//        EHInterviewFromViewController * interviewForm = [segue destinationViewController];
-//        NSIndexPath * myIndexPath = [self.tableView indexPathForSelectedRow];
-//        int row = [myIndexPath row];
-//        NSString *dateRepresentingThisDay = [self.sortedWeeks objectAtIndex:myIndexPath.section];
-//        NSArray *eventsOnThisDay = [self.sortedWeeks objectForKey:dateRepresentingThisDay];
-//        EKEvent *event = [eventsOnThisDay objectAtIndex:row];
-//        interviewForm.date = [self.cellDateFormatter stringFromDate:event.startDate];
-        
-    }
-    
-}
 #pragma mark Collection View Methods
-
-
 
 -(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView{
     
@@ -126,18 +103,42 @@
     
     [cell.layer setCornerRadius:30.0f];
     
-  
-    UITapGestureRecognizer * single = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(singletap:)];
+
     
-    [labelCandidate addGestureRecognizer:single];
-    single.numberOfTapsRequired = 1;
+    UITapGestureRecognizer * goToInfoForm = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(goToInfo:)];
+    [goToInfoForm setDelegate:self];
+   // [labelRecruiter addGestureRecognizer:goToInfoForm];
+    [labelCandidate addGestureRecognizer:goToInfoForm];
+    goToInfoForm.numberOfTapsRequired = 1;
+    
+   UITapGestureRecognizer * goToInfoForm2 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(goToInfo:)];
+ [goToInfoForm setDelegate:self];
+    [labelRecruiter addGestureRecognizer:goToInfoForm2];
+     goToInfoForm.numberOfTapsRequired = 1;
+
 
     return cell;
     
     
 }
 
--(void) singletap:(id)sender
+
+
+-(void)chooseTypeOfInterview:(id)sender
+{
+    UITapGestureRecognizer *tapGR = (UITapGestureRecognizer*)sender;
+    
+    if (tapGR.view.tag == 100)
+    {
+        
+    }
+
+}
+
+
+
+
+-(void)goToInfo:(id)sender
 {
     UITapGestureRecognizer *tapGR = (UITapGestureRecognizer*)sender;
     
@@ -149,21 +150,29 @@
 
         EHInterview * curInterview = [[EHInterview alloc]init];
         curInterview= [[[sortedWeeks objectAtIndex:tappedRow.section ] interviews] objectAtIndex:tappedRow.row];
-//        UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"You press label !"
-//                                                          message:[NSString stringWithFormat:@"interview with %@", temp]
-//                                                         delegate:nil
-//                                                cancelButtonTitle:@"OK"
-//                                                otherButtonTitles:nil];
-//        [message show];
         
-     
-        
-        //
-    EHCandidateFormViewController * candidateForm = [[EHCandidateFormViewController alloc]init];
+        EHCandidateFormViewController *candidateForm = [self.storyboard instantiateViewControllerWithIdentifier:@"CandidateFormView"];
         candidateForm.nameOfCandidate = curInterview.nameOfCandidate;
         candidateForm.lastnameOfCandidate = curInterview.lastNameOfCandidate;
-    
+        candidateForm.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+        [self.navigationController pushViewController:candidateForm animated:YES ];
+ 
+     
+    }
+    if (tapGR.view.tag == 104)
+    {
+        CGPoint touchLocation = [tapGR locationOfTouch:0 inView:self.collectionView];
+        
+        NSIndexPath *tappedRow = [self.collectionView indexPathForItemAtPoint:touchLocation];
+        
+        EHInterview * curInterview = [[EHInterview alloc]init];
+        curInterview= [[[sortedWeeks objectAtIndex:tappedRow.section ] interviews] objectAtIndex:tappedRow.row];
 
+        EHRecruiterViewController *recruiterViewForm = [self.storyboard instantiateViewControllerWithIdentifier:@"RecruiterFormView"];
+        recruiterViewForm.nameOfRecruiter = curInterview.nameOfCandidate;
+        recruiterViewForm.lastnameOfRecruiter = curInterview.lastNameOfCandidate;
+        [self.navigationController pushViewController:recruiterViewForm animated:YES];
+       
     }
 }
 
