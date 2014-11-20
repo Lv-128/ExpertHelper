@@ -12,6 +12,7 @@
 #import "EHEventsGetInfoParser.h"
 #import "EHCandidateFormViewController.h"
 #import "EHRecruiterViewController.h"
+#import "EHITAViewController.h"
 @interface EHListOfInterviewsViewController ()<UICollectionViewDataSource, UICollectionViewDelegate, UIGestureRecognizerDelegate>
 
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
@@ -79,7 +80,7 @@
     UILabel * labelLocation = (UILabel *) [cell viewWithTag:102];
     UILabel * labelCandidate = (UILabel *) [cell viewWithTag:103];
     UILabel * labelRecruiter = (UILabel *) [cell viewWithTag:104];
-    
+    UIButton * butStart = (UIButton * ) [cell viewWithTag:1000];
     
     labelType.text = [@" " stringByAppendingString:event.typeOfInterview];
     labelDate.text = [@" "stringByAppendingString:[cellDateFormatter stringFromDate:event.dateOfInterview]];
@@ -176,7 +177,26 @@
     }
 }
 
-
+- (IBAction)goToInterviewForm:(id)sender
+{
+   
+    
+//        CGPoint touchLocation = [sender locationOfTouch:0 inView:self.collectionView];
+//    
+//    if ([sender tag] == 1000)
+//    {
+//        NSIndexPath *tappedRow = [self.collectionView indexPathForItemAtPoint:touchLocation];
+//    EHInterview * curInterview =[[[sortedWeeks objectAtIndex:tappedRow.section ] interviews] objectAtIndex:tappedRow.row];
+//    if([curInterview.typeOfInterview  isEqual: @"ITA"])
+//    {
+//        EHITAViewController *recruiterViewForm = [self.storyboard instantiateViewControllerWithIdentifier:@"ITAForm"];
+//  
+//        [self.navigationController pushViewController:recruiterViewForm animated:YES];
+//        
+//    }
+//    }
+ 
+}
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
 {
     if (kind == UICollectionElementKindSectionHeader) {

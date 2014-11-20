@@ -17,6 +17,8 @@
 		D93583FB1A1CAF6F00135A2D /* EHEventsGetInfoParser.m in Sources */ = {isa = PBXBuildFile; fileRef = D93583FA1A1CAF6F00135A2D /* EHEventsGetInfoParser.m */; };
 		D967F2081A1E23BC0009639C /* EHCandidateFormViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D967F2071A1E23BC0009639C /* EHCandidateFormViewController.m */; };
 		D967F20B1A1E305D0009639C /* EHRecruiterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D967F20A1A1E305D0009639C /* EHRecruiterViewController.m */; };
+		D967F2101A1E4DEE0009639C /* EHITAViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D967F20D1A1E4DEE0009639C /* EHITAViewController.m */; };
+		D967F2111A1E4DEE0009639C /* EHITAViewControllerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D967F20F1A1E4DEE0009639C /* EHITAViewControllerCell.m */; };
 		D9ACCD251A15283C0076DFB4 /* EHSkillLevelPopupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D9ACCD241A15283C0076DFB4 /* EHSkillLevelPopupViewController.m */; };
 		D9ACCD291A152EF30076DFB4 /* EHSkillLevelPopup.xib in Resources */ = {isa = PBXBuildFile; fileRef = D9ACCD281A152EF30076DFB4 /* EHSkillLevelPopup.xib */; };
 		D9B0CC651A03B17500544323 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D9B0CC641A03B17500544323 /* Foundation.framework */; };
@@ -70,6 +72,10 @@
 		D967F2071A1E23BC0009639C /* EHCandidateFormViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EHCandidateFormViewController.m; sourceTree = "<group>"; };
 		D967F2091A1E305D0009639C /* EHRecruiterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EHRecruiterViewController.h; sourceTree = "<group>"; };
 		D967F20A1A1E305D0009639C /* EHRecruiterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EHRecruiterViewController.m; sourceTree = "<group>"; };
+		D967F20C1A1E4DEE0009639C /* EHITAViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EHITAViewController.h; path = ExpertHelper/EHITAViewController.h; sourceTree = "<group>"; };
+		D967F20D1A1E4DEE0009639C /* EHITAViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EHITAViewController.m; path = ExpertHelper/EHITAViewController.m; sourceTree = "<group>"; };
+		D967F20E1A1E4DEE0009639C /* EHITAViewControllerCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EHITAViewControllerCell.h; path = ExpertHelper/EHITAViewControllerCell.h; sourceTree = "<group>"; };
+		D967F20F1A1E4DEE0009639C /* EHITAViewControllerCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EHITAViewControllerCell.m; path = ExpertHelper/EHITAViewControllerCell.m; sourceTree = "<group>"; };
 		D9ACCD231A15283C0076DFB4 /* EHSkillLevelPopupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EHSkillLevelPopupViewController.h; path = ../EHSkillLevelPopupViewController.h; sourceTree = "<group>"; };
 		D9ACCD241A15283C0076DFB4 /* EHSkillLevelPopupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EHSkillLevelPopupViewController.m; path = ../EHSkillLevelPopupViewController.m; sourceTree = "<group>"; };
 		D9ACCD281A152EF30076DFB4 /* EHSkillLevelPopup.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EHSkillLevelPopup.xib; sourceTree = "<group>"; };
@@ -140,6 +146,7 @@
 		2790F4E01A139735001B0956 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				D967F2121A1E4E290009639C /* ITA Form */,
 				D9ACCD231A15283C0076DFB4 /* EHSkillLevelPopupViewController.h */,
 				D9ACCD241A15283C0076DFB4 /* EHSkillLevelPopupViewController.m */,
 				D90A1BBF1A16366500B610C6 /* EHSkillLevelPopup.h */,
@@ -177,6 +184,18 @@
 				D9DF27D21A1BDABA008555E4 /* Controllers */,
 			);
 			name = WorkWithEvents;
+			sourceTree = "<group>";
+		};
+		D967F2121A1E4E290009639C /* ITA Form */ = {
+			isa = PBXGroup;
+			children = (
+				D967F20C1A1E4DEE0009639C /* EHITAViewController.h */,
+				D967F20D1A1E4DEE0009639C /* EHITAViewController.m */,
+				D967F20E1A1E4DEE0009639C /* EHITAViewControllerCell.h */,
+				D967F20F1A1E4DEE0009639C /* EHITAViewControllerCell.m */,
+			);
+			name = "ITA Form";
+			path = ..;
 			sourceTree = "<group>";
 		};
 		D9B0CC581A03B17500544323 = {
@@ -372,12 +391,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D967F2111A1E4DEE0009639C /* EHITAViewControllerCell.m in Sources */,
 				2790F4E31A139854001B0956 /* EHProfilesTableViewCell.m in Sources */,
 				D9B0CC711A03B17500544323 /* main.m in Sources */,
 				D9F15AD11A1A575A00E4DC62 /* EHListOfInterviewsViewController.m in Sources */,
 				D967F20B1A1E305D0009639C /* EHRecruiterViewController.m in Sources */,
 				D9BE54021A10B16700AD5D3D /* EHExternalViewController.m in Sources */,
 				B5DF299E1A164A280076862E /* EHCalendarEventsParser.m in Sources */,
+				D967F2101A1E4DEE0009639C /* EHITAViewController.m in Sources */,
 				2790F4E61A1398D8001B0956 /* EHProfilesViewController.m in Sources */,
 				B5DF299F1A164A280076862E /* EHInterview.m in Sources */,
 				D967F2081A1E23BC0009639C /* EHCandidateFormViewController.m in Sources */,

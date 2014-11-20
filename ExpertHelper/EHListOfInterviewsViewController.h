@@ -14,5 +14,5 @@
 
 
 @property (strong, nonatomic) NSArray *sortedWeeks;
-
+- (IBAction)goToInterviewForm:(id)sender;
 @end
