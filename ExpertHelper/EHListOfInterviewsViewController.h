@@ -12,7 +12,7 @@
 
 @property (copy, nonatomic) NSArray * interviews;
 
-@property (copy, nonatomic) NSDictionary *sections;
-@property (strong, nonatomic) NSArray *sortedDays;
+
+@property (strong, nonatomic) NSArray *sortedWeeks;
 
 @end

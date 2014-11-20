@@ -1,24 +1,24 @@
 //
-//  InterviewFromViewController.m
-//  firstCalendarFrom
+//  EHCandidateFormViewController.m
+//  ExpertHelper
 //
-//  Created by alena on 10/29/14.
-//  Copyright (c) 2014 alenka. All rights reserved.
+//  Created by alena on 11/20/14.
+//  Copyright (c) 2014 Katolyk S. All rights reserved.
 //
 
-#import "EHInterviewFromViewController.h"
+#import "EHCandidateFormViewController.h"
 
-@interface EHInterviewFromViewController ()
+@interface EHCandidateFormViewController ()
 
 @end
 
-@implementation EHInterviewFromViewController
+@implementation EHCandidateFormViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
+
     }
     return self;
 }
@@ -26,7 +26,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-_dateOfInterview.text = _date;
+    _labelNameOfCandidate.text  = @"Name : ";
+        _labelNameOfCandidate.text = [_labelNameOfCandidate.text stringByAppendingString:[_nameOfCandidate stringByAppendingString:[@" "stringByAppendingString:_lastnameOfCandidate]]];
     // Do any additional setup after loading the view.
 }
 

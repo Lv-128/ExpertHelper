@@ -9,18 +9,22 @@
 #import "EHListOfInterviewsViewController.h"
 #import <EventKit/EventKit.h>
 #import "EHInterview.h"
+#import "EHEventsGetInfoParser.h"
+#import "EHCandidateFormViewController.h"
 @interface EHListOfInterviewsViewController ()<UICollectionViewDataSource, UICollectionViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (strong, nonatomic) NSDateFormatter *cellDateFormatter;
+@property (strong, nonatomic) IBOutletCollection(UILabel) NSArray *otherTextLabels;
+
 
 @end
 
 @implementation EHListOfInterviewsViewController
 
 @synthesize cellDateFormatter;
-@synthesize sections;
-@synthesize sortedDays;
+@synthesize sortedWeeks;
+
 
 - (void)viewDidLoad
 {
@@ -29,9 +33,8 @@
     self.cellDateFormatter = [[NSDateFormatter alloc] init];
     [self.cellDateFormatter setDateStyle:NSDateFormatterFullStyle];
     [self.cellDateFormatter setTimeStyle:NSDateFormatterShortStyle];
-    self.sortedDays = [self.sections allKeys];
-     _interviews = [NSArray arrayWithObjects:@"interview 1", @"interview 2", @"interview 3" , @"interview 4", nil];
-  //   [self.collectionView registerClass:[UICollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"HeaderView"];
+   
+   
 }
 
 - (void)didReceiveMemoryWarning
@@ -41,20 +44,21 @@
 }
 
 
+
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ( [[segue identifier] isEqualToString:@"GoToInterviewForm"])
     {
         
-        UIView *senderButton = (UIView*) sender;
-        NSIndexPath *indexPath = [_collectionView indexPathForCell: (UICollectionViewCell*)[[senderButton superview]superview]]; // get the address of cell where pushed button is, so that you can send the exact info that you need to send to the next view
+      //  UIView *senderButton = (UIView*) sender;
+      //  NSIndexPath *indexPath = [_collectionView indexPathForCell: (UICollectionViewCell*)[[senderButton superview]superview]]; // get the address of cell where pushed button is, so that you can send the exact info that you need to send to the next view
         
         
 //        EHInterviewFromViewController * interviewForm = [segue destinationViewController];
 //        NSIndexPath * myIndexPath = [self.tableView indexPathForSelectedRow];
 //        int row = [myIndexPath row];
-//        NSString *dateRepresentingThisDay = [self.sortedDays objectAtIndex:myIndexPath.section];
-//        NSArray *eventsOnThisDay = [self.sections objectForKey:dateRepresentingThisDay];
+//        NSString *dateRepresentingThisDay = [self.sortedWeeks objectAtIndex:myIndexPath.section];
+//        NSArray *eventsOnThisDay = [self.sortedWeeks objectForKey:dateRepresentingThisDay];
 //        EKEvent *event = [eventsOnThisDay objectAtIndex:row];
 //        interviewForm.date = [self.cellDateFormatter stringFromDate:event.startDate];
         
@@ -67,15 +71,15 @@
 
 -(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView{
     
-    return [self.sections count];
+    return [self.sortedWeeks count];
     
 }
 
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
     
-    NSString *dateRepresentingThisDay = [self.sortedDays objectAtIndex:section];
-    NSArray *eventsOnThisDay = [self.sections objectForKey:dateRepresentingThisDay];
-    return [eventsOnThisDay count];
+    EHWeek *weekOfMonth = [self.sortedWeeks objectAtIndex:section];
+   
+    return [weekOfMonth.interviews count];
 }
 
 
@@ -83,9 +87,12 @@
    
     UICollectionViewCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"Cell" forIndexPath:indexPath];
     
+
     
-    NSString *dateRepresentingThisDay = [self.sortedDays objectAtIndex:indexPath.section];
-    NSArray *eventsOnThisDay = [self.sections objectForKey:dateRepresentingThisDay];
+    
+    
+   
+    NSArray *eventsOnThisDay = [[self.sortedWeeks objectAtIndex:indexPath.section] interviews];
      EHInterview *event = [eventsOnThisDay objectAtIndex:indexPath.row];
     
     
@@ -97,34 +104,69 @@
     UILabel * labelRecruiter = (UILabel *) [cell viewWithTag:104];
     
     
-    labelType.text = [@"Type : " stringByAppendingString:event.typeOfInterview];
-    labelDate.text = [@"Date : "stringByAppendingString:[cellDateFormatter stringFromDate:event.dateOfInterview]];
+    labelType.text = [@" " stringByAppendingString:event.typeOfInterview];
+    labelDate.text = [@" "stringByAppendingString:[cellDateFormatter stringFromDate:event.dateOfInterview]];
     if (event.locationOfInterview==nil)
     {
-         labelLocation.text = @"Location : Unknown" ;
+         labelLocation.text = @" Unknown" ;
     }
-    else labelLocation.text = [@"Location : " stringByAppendingString:event.locationOfInterview];
-    labelCandidate.text = [@"Candidate : " stringByAppendingString:[[event.nameOfCandidate stringByAppendingString:@" "] stringByAppendingString:event.lastNameOfCandidate]  ] ;
-     labelRecruiter.text = [@"Recruiter : " stringByAppendingString:[[event.nameOfRecruiter stringByAppendingString:@" "] stringByAppendingString:event.lastNameOfRecruiter]  ] ;
-  /*  NSArray * arrLabels = [NSArray arrayWithObjects:labelType,labelDate,labelLocation,labelCandidate,labelRecruiter,nil];
+    else labelLocation.text = [@" " stringByAppendingString:event.locationOfInterview];
+    labelCandidate.text = [@" " stringByAppendingString:[[event.nameOfCandidate stringByAppendingString:@" "] stringByAppendingString:event.lastNameOfCandidate]  ] ;
+     labelRecruiter.text = [@" " stringByAppendingString:[[event.nameOfRecruiter stringByAppendingString:@" "] stringByAppendingString:event.lastNameOfRecruiter]  ] ;
+   NSArray * arrLabels = [NSArray arrayWithObjects:labelType,labelDate,labelLocation,labelCandidate,labelRecruiter,nil];
     for (UILabel* label in arrLabels)
     {
-        [label.layer  setCornerRadius:15.0f];
+        //[label.layer  setCornerRadius:15.0f];
+        // [label.layer setBorderWidth:2.0f];
+        [label.layer setBorderColor:[UIColor grayColor].CGColor];
     }
-    */
-    [cell.layer setBorderWidth:2.0f];
-    [cell.layer setBorderColor:[UIColor blackColor].CGColor];
+
+    [cell.layer setBorderWidth:1.0f];
+    [cell.layer setBorderColor:[UIColor grayColor].CGColor];
     
     [cell.layer setCornerRadius:30.0f];
     
   
-
-  
+    UITapGestureRecognizer * single = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(singletap:)];
+    
+    [labelCandidate addGestureRecognizer:single];
+    single.numberOfTapsRequired = 1;
 
     return cell;
     
     
 }
+
+-(void) singletap:(id)sender
+{
+    UITapGestureRecognizer *tapGR = (UITapGestureRecognizer*)sender;
+    
+    if (tapGR.view.tag == 103)
+    {
+        CGPoint touchLocation = [tapGR locationOfTouch:0 inView:self.collectionView];
+        
+        NSIndexPath *tappedRow = [self.collectionView indexPathForItemAtPoint:touchLocation];
+
+        EHInterview * curInterview = [[EHInterview alloc]init];
+        curInterview= [[[sortedWeeks objectAtIndex:tappedRow.section ] interviews] objectAtIndex:tappedRow.row];
+//        UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"You press label !"
+//                                                          message:[NSString stringWithFormat:@"interview with %@", temp]
+//                                                         delegate:nil
+//                                                cancelButtonTitle:@"OK"
+//                                                otherButtonTitles:nil];
+//        [message show];
+        
+     
+        
+        //
+    EHCandidateFormViewController * candidateForm = [[EHCandidateFormViewController alloc]init];
+        candidateForm.nameOfCandidate = curInterview.nameOfCandidate;
+        candidateForm.lastnameOfCandidate = curInterview.lastNameOfCandidate;
+    
+
+    }
+}
+
 
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
 {
@@ -137,22 +179,11 @@
             reusableview=[[UICollectionReusableView alloc] initWithFrame:CGRectMake(0, 0, 320, 50)];
         }
         
-        int tt =indexPath.section;
-      //  NSLog([NSString stringWithFormat: @"%d",tt]);
+
         UILabel * label = (UILabel *) [reusableview viewWithTag:1000];
         
-        NSString *dateRepresentingThisDay = [self.sortedDays objectAtIndex:tt];
-        
-        
+        NSString *dateRepresentingThisDay = [[self.sortedWeeks objectAtIndex:indexPath.section]nameOfWeek];
         label.text=dateRepresentingThisDay;
-       // [reusableview addSubview:label];
-        
-        
-        [reusableview.layer setBorderWidth:2.0f];
-        [reusableview.layer setCornerRadius:15.0f];
-        [reusableview.layer  setBorderColor:[UIColor whiteColor].CGColor];
-        
-        
         return reusableview;
     }
     return nil;

@@ -8,7 +8,7 @@
 
 #import <XCTest/XCTest.h>
 #import "EHCalendarEventsParser.h"
-#import "EHInterview.h"
+#import "EHEventsGetInfoParser.h"
 @interface ExpertHelperTests : XCTestCase
 
 @end

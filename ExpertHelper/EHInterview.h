@@ -9,38 +9,6 @@
 #import <Foundation/Foundation.h>
 #import <EventKit/EventKit.h>
 
-@interface EHCalendarParseResult : NSObject
-
-@property (nonatomic, copy) NSString *firstName;
-@property (nonatomic, copy) NSString *lastName;
-
--(id)initWithName:firstName andLastName:lastName;
-@end
-
-@interface EHCalendarParseOptions : NSObject
-
-@property (nonatomic, assign) BOOL firstNameFirst;
-
-@end
-
-
-
-@interface EHEventsGetInfoParser : NSObject
-
-@property (strong , nonatomic) NSArray *namesMonth;
-@property (nonatomic, strong) EHCalendarParseOptions * parseOptions;
-@property (nonatomic, copy) NSDictionary * interviews;
-@property (nonatomic, copy) NSArray * events;
-
--(bool)canDefineTypeAsITA:(NSString *)string;
--(EHCalendarParseResult *)getNameOfCandidateFromTitle:(NSString*)string;
--(id)initWithObjection:(EHCalendarParseOptions *)options;
-- (EHCalendarParseResult *)getNameOfRecruiter:(NSString*)string;
-
--(NSArray *) parseAllEventsToInterviews;
--(NSArray *)sortAllInterviewsToDictionary;
-@end
-
 
 
 @interface EHInterview : NSObject

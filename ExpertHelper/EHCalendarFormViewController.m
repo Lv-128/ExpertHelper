@@ -11,8 +11,9 @@
 #import "EHCalendarEventsParser.h"
 #import "EHInterview.h"
 #import "EHMainEventsTableViewController.h"
+#import "EHEventsGetInfoParser.h"
 @interface EHCalendarFormViewController () <UITableViewDataSource, UITabBarDelegate>
-@property (copy, nonatomic) NSDictionary *sections;
+@property (copy, nonatomic) NSArray *sections;
 @property (copy, nonatomic) NSArray *sortedDays;
 @property (strong, nonatomic) NSDateFormatter *sectionDateFormatter;
 @property (strong, nonatomic) NSDateFormatter *cellDateFormatter;
@@ -27,7 +28,7 @@
 // Array of all events happening within the next 24 hours
 @property (nonatomic, copy) NSArray *eventsList;
 
-@property (nonatomic , strong) EHCalendarEventsParser * calEventParser;
+@property (nonatomic,strong) EHEventsGetInfoParser * interviewFromEventsParser;
 
 
 @end
@@ -80,10 +81,10 @@ enum {  All = 0, ITA = 1, External = 2, None = 3};
    
 	self.eventsList = [NSArray array] ; // Initialize the events list
     
+        _interviewFromEventsParser = [[EHEventsGetInfoParser alloc]init];
     
-    self.calEventParser = [[EHCalendarEventsParser alloc] init];
-
     
+    self.sortedDays = [NSArray array];
     self.sectionDateFormatter = [[NSDateFormatter alloc] init];
     [self.sectionDateFormatter setDateStyle:NSDateFormatterLongStyle];
     [self.sectionDateFormatter setTimeStyle:NSDateFormatterNoStyle];
@@ -99,10 +100,10 @@ enum {  All = 0, ITA = 1, External = 2, None = 3};
 {
     [super viewDidAppear:animated];
   
-    [_calEventParser checkEventStoreAccessForCalendar];  // Check whether we are authorized to access Calendar
+    [_interviewFromEventsParser.calEventParser checkEventStoreAccessForCalendar];  // Check whether we are authorized to access Calendar
     
     // Fetch all events happening in the next 24 hours and put them into eventsList
-    if (_calEventParser.eventsList.count == 0)
+    if (_interviewFromEventsParser.calEventParser.eventsList.count == 0)
     {
         UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Warning!"
                                                           message:@"You have no interview - events in your calendar"
@@ -112,11 +113,11 @@ enum {  All = 0, ITA = 1, External = 2, None = 3};
         [message show];
     }
     else{
-        EHEventsGetInfoParser * interviewsParser = [[EHEventsGetInfoParser alloc]init];
-        interviewsParser.events = _calEventParser.eventsList;
+    
+        //interviewsParser.events = _interviewFromEventsParser.calEventParser.eventsList;
        
-    self.eventsList = [interviewsParser sortAllInterviewsToDictionary];
-    self.sections = interviewsParser.interviews;
+    self.eventsList = [_interviewFromEventsParser sortAllInterviewsToDictionary];
+    self.sections = _interviewFromEventsParser.interviews;
     
         self.sortedDays = _eventsList;
     }
@@ -143,10 +144,10 @@ enum {  All = 0, ITA = 1, External = 2, None = 3};
     {
          EHListOfInterviewsViewController * eventsMainForm = [segue destinationViewController];
         NSIndexPath * myIndexPath = [self.tableView indexPathForSelectedRow];
-        NSString *selectedMonth = [self.sortedDays objectAtIndex:myIndexPath.row];
-        NSDictionary *weeksOnThisMonth = [self.sections objectForKey:selectedMonth];
+      //  NSString *selectedMonth = [self.sortedDays objectAtIndex:myIndexPath.row];
+        NSArray *weeksOnThisMonth = [[self.sortedDays objectAtIndex:myIndexPath.row] weeks];
         
-        eventsMainForm.sections = weeksOnThisMonth;
+        eventsMainForm.sortedWeeks = weeksOnThisMonth;
         
     }
     
@@ -180,7 +181,7 @@ enum {  All = 0, ITA = 1, External = 2, None = 3};
 //    NSArray *eventsOnThisDay = [self.sections objectForKey:dateRepresentingThisDay];
 //    EKEvent *event = [eventsOnThisDay objectAtIndex:indexPath.row];
     
-    NSString * namesOfMonths = [self.sortedDays objectAtIndex:indexPath.row];
+    NSString * namesOfMonths = [[self.sortedDays objectAtIndex:indexPath.row]nameOfMonth];
     
     cell.textLabel.text = namesOfMonths;
     
