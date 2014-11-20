@@ -113,9 +113,15 @@
     goToInfoForm.numberOfTapsRequired = 1;
     
    UITapGestureRecognizer * goToInfoForm2 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(goToInfo:)];
- [goToInfoForm setDelegate:self];
+ [goToInfoForm2 setDelegate:self];
     [labelRecruiter addGestureRecognizer:goToInfoForm2];
-     goToInfoForm.numberOfTapsRequired = 1;
+     goToInfoForm2.numberOfTapsRequired = 1;
+
+    
+    UITapGestureRecognizer * goToInfoForm3 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(goToITAForm:)];
+    [goToInfoForm3 setDelegate:self];
+    [butStart addGestureRecognizer:goToInfoForm3];
+    goToInfoForm3.numberOfTapsRequired = 1;
 
 
     return cell;
@@ -175,26 +181,33 @@
         [self.navigationController pushViewController:recruiterViewForm animated:YES];
        
     }
+    
 }
 
-- (IBAction)goToInterviewForm:(id)sender
+- (IBAction)goToITAForm:(id)sender
 {
-   
+     UITapGestureRecognizer *tapGR = (UITapGestureRecognizer*)sender;
     
-//        CGPoint touchLocation = [sender locationOfTouch:0 inView:self.collectionView];
-//    
-//    if ([sender tag] == 1000)
-//    {
-//        NSIndexPath *tappedRow = [self.collectionView indexPathForItemAtPoint:touchLocation];
-//    EHInterview * curInterview =[[[sortedWeeks objectAtIndex:tappedRow.section ] interviews] objectAtIndex:tappedRow.row];
-//    if([curInterview.typeOfInterview  isEqual: @"ITA"])
-//    {
-//        EHITAViewController *recruiterViewForm = [self.storyboard instantiateViewControllerWithIdentifier:@"ITAForm"];
-//  
-//        [self.navigationController pushViewController:recruiterViewForm animated:YES];
-//        
-//    }
-//    }
+        CGPoint touchLocation = [tapGR locationOfTouch:0 inView:self.collectionView];
+    
+
+ if (tapGR.view.tag == 1000)
+    {
+        NSIndexPath *tappedRow = [self.collectionView indexPathForItemAtPoint:touchLocation];
+    EHInterview * curInterview =[[[sortedWeeks objectAtIndex:tappedRow.section ] interviews] objectAtIndex:tappedRow.row];
+    if([curInterview.typeOfInterview  isEqual: @"ITA"])
+    {
+        EHITAViewController *recruiterViewForm = [self.storyboard instantiateViewControllerWithIdentifier:@"ITAForm"];
+  
+        [self.navigationController pushViewController:recruiterViewForm animated:YES];
+        
+    }
+    else{
+        EHITAViewController *recruiterViewForm = [self.storyboard instantiateViewControllerWithIdentifier:@"InternalForm"];
+        
+        [self.navigationController pushViewController:recruiterViewForm animated:YES];
+    }
+    }
  
 }
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath

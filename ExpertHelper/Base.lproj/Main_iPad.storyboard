@@ -561,9 +561,6 @@
                                                     <state key="normal" title="Start">
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
-                                                    <connections>
-                                                        <action selector="goToInterviewForm:" destination="8ab-5p-1Xv" eventType="touchUpInside" id="Q7B-Fh-Foj"/>
-                                                    </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X16-kW-kuP">
                                                     <rect key="frame" x="116" y="266" width="128" height="30"/>
