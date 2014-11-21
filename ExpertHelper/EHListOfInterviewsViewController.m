@@ -135,26 +135,36 @@
 -(void)chooseTypeOfInterview:(id)sender
 {
     UITapGestureRecognizer *tapGR = (UITapGestureRecognizer*)sender;
-    
+    CGPoint touchLocation = [tapGR locationOfTouch:0 inView:self.collectionView];
+    NSIndexPath *tappedRow = [self.collectionView indexPathForItemAtPoint:touchLocation];
     if (tapGR.view.tag == 100)
     {
-      
-            UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"Select type of interview:"
-                                                                     delegate:self /// here will be delegate
-                                                            cancelButtonTitle:@"Cancel"
-                                                       destructiveButtonTitle:nil
-                                                            otherButtonTitles:@"None", @"IT Academy", @"Internal", @"External",nil];
-            if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
-            {
-                [actionSheet showFromRect:[(UIButton *)tapGR.view  frame] inView:self.view animated:YES];
-            }
-            else
-            {
         
-                [actionSheet showInView:self.view];
-            }
+        UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"Select type of interview:"
+                                                                 delegate:self /// here will be delegate
+                                                        cancelButtonTitle:@"Cancel"
+                                                   destructiveButtonTitle:nil
+                                                        otherButtonTitles:@"None", @"IT Academy", @"Internal", @"External",nil];
+        if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+        {
         
-            actionSheet.tag = 300;
+            
+            UICollectionViewCell * curInterview = [self.collectionView  cellForItemAtIndexPath:tappedRow];
+            UIView * label = [curInterview viewWithTag:100];
+            //[actionSheet showFromRect:[curLabel frame] inView:self.view animated:YES];
+            
+            CGRect  rect = CGRectMake([label frame].origin.x- [label frame].size.width/3 , [label frame].origin.y, [label frame].size.width,  [label frame].size.height) ;
+            
+            // [label frame]
+            [actionSheet showFromRect:rect inView:curInterview animated:YES ];//showFromRect:[label  frame] inView:self.view animated:YES];
+        }
+        else
+        {
+            
+            //  [actionSheet showInView:self.view];
+        }
+        
+        actionSheet.tag = 300;
         
     }
 }
