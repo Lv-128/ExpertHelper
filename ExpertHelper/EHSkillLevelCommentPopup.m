@@ -19,10 +19,6 @@
     return self;
 }
 
-- (IBAction)onHide:(UIButton *)sender {
-    [_delegate skillLevelCommentPopup:self didSelectLevel:EHSkillLevelCommentNone];
-}
-
 - (IBAction)goToComment:(UIButton *)sender {
     [_delegate skillLevelCommentPopupDidSelectComment:self];
 }

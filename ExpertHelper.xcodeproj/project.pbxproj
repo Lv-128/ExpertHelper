@@ -9,8 +9,6 @@
 /* Begin PBXBuildFile section */
 		2790F4E31A139854001B0956 /* EHProfilesTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2790F4E21A139854001B0956 /* EHProfilesTableViewCell.m */; };
 		2790F4E61A1398D8001B0956 /* EHProfilesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2790F4E51A1398D8001B0956 /* EHProfilesViewController.m */; };
-		833B587C1A1F435600D04802 /* EHSkillLevelCommentPopup.m in Sources */ = {isa = PBXBuildFile; fileRef = 833B587A1A1F435600D04802 /* EHSkillLevelCommentPopup.m */; };
-		833B587D1A1F435600D04802 /* EHSkillLevelPopup.xib in Resources */ = {isa = PBXBuildFile; fileRef = 833B587B1A1F435600D04802 /* EHSkillLevelPopup.xib */; };
 		B5DF299E1A164A280076862E /* EHCalendarEventsParser.m in Sources */ = {isa = PBXBuildFile; fileRef = B5DF29991A164A280076862E /* EHCalendarEventsParser.m */; };
 		B5DF299F1A164A280076862E /* EHInterview.m in Sources */ = {isa = PBXBuildFile; fileRef = B5DF299B1A164A280076862E /* EHInterview.m */; };
 		D90A1BBE1A16335F00B610C6 /* EHViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D90A1BBD1A16335F00B610C6 /* EHViewController.m */; };
@@ -21,9 +19,6 @@
 		D967F20B1A1E305D0009639C /* EHRecruiterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D967F20A1A1E305D0009639C /* EHRecruiterViewController.m */; };
 		D967F2101A1E4DEE0009639C /* EHITAViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D967F20D1A1E4DEE0009639C /* EHITAViewController.m */; };
 		D967F2111A1E4DEE0009639C /* EHITAViewControllerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D967F20F1A1E4DEE0009639C /* EHITAViewControllerCell.m */; };
-		D9A6E0B81A1F46ED00D0EFED /* EHInterviewFormItAcademy.m in Sources */ = {isa = PBXBuildFile; fileRef = D9A6E0B71A1F46ED00D0EFED /* EHInterviewFormItAcademy.m */; };
-		D9A6E0BC1A1F475500D0EFED /* EHSkillLevelCommentPopup.m in Sources */ = {isa = PBXBuildFile; fileRef = D9A6E0BA1A1F475500D0EFED /* EHSkillLevelCommentPopup.m */; };
-		D9A6E0BD1A1F475500D0EFED /* EHSkillLevelPopup.xib in Resources */ = {isa = PBXBuildFile; fileRef = D9A6E0BB1A1F475500D0EFED /* EHSkillLevelPopup.xib */; };
 		D9ACCD291A152EF30076DFB4 /* EHSkillLevelCommentPopup.xib in Resources */ = {isa = PBXBuildFile; fileRef = D9ACCD281A152EF30076DFB4 /* EHSkillLevelCommentPopup.xib */; };
 		D9B0CC651A03B17500544323 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D9B0CC641A03B17500544323 /* Foundation.framework */; };
 		D9B0CC671A03B17500544323 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D9B0CC661A03B17500544323 /* CoreGraphics.framework */; };
@@ -43,12 +38,8 @@
 		D9BE54021A10B16700AD5D3D /* EHExternalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D9BE53FA1A10B16700AD5D3D /* EHExternalViewController.m */; };
 		D9BE54041A10B16700AD5D3D /* EHProgrammingLanguagesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D9BE53FE1A10B16700AD5D3D /* EHProgrammingLanguagesViewController.m */; };
 		D9BE54071A10B1A200AD5D3D /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D9BE54061A10B1A200AD5D3D /* Images.xcassets */; };
-<<<<<<< HEAD
-		D9C22D991A1F634200C643CD /* EHCommentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D9C22D981A1F634200C643CD /* EHCommentViewController.m */; };
-		D9C22D9C1A1F636D00C643CD /* EHCommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D9C22D9B1A1F636D00C643CD /* EHCommentCell.m */; };
-		D9C22DA01A1F65BE00C643CD /* EHSkillsLevelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D9C22D9F1A1F65BE00C643CD /* EHSkillsLevelViewController.m */; };
-=======
->>>>>>> FETCH_HEAD
+		D9D836AA1A1F414600148854 /* EHSkillLevelCommentPopup.m in Sources */ = {isa = PBXBuildFile; fileRef = D9D836A81A1F414600148854 /* EHSkillLevelCommentPopup.m */; };
+		D9D836AB1A1F414600148854 /* EHSkillLevelPopup.xib in Resources */ = {isa = PBXBuildFile; fileRef = D9D836A91A1F414600148854 /* EHSkillLevelPopup.xib */; };
 		D9F15AD11A1A575A00E4DC62 /* EHListOfInterviewsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D9F15AD01A1A575A00E4DC62 /* EHListOfInterviewsViewController.m */; };
 /* End PBXBuildFile section */
 
@@ -67,9 +58,6 @@
 		2790F4E21A139854001B0956 /* EHProfilesTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EHProfilesTableViewCell.m; path = Views/EHProfilesTableViewCell.m; sourceTree = "<group>"; };
 		2790F4E41A1398D8001B0956 /* EHProfilesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EHProfilesViewController.h; path = ViewControllers/EHProfilesViewController.h; sourceTree = "<group>"; };
 		2790F4E51A1398D8001B0956 /* EHProfilesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EHProfilesViewController.m; path = ViewControllers/EHProfilesViewController.m; sourceTree = "<group>"; };
-		833B58791A1F435600D04802 /* EHSkillLevelCommentPopup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EHSkillLevelCommentPopup.h; sourceTree = "<group>"; };
-		833B587A1A1F435600D04802 /* EHSkillLevelCommentPopup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EHSkillLevelCommentPopup.m; sourceTree = "<group>"; };
-		833B587B1A1F435600D04802 /* EHSkillLevelPopup.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EHSkillLevelPopup.xib; sourceTree = "<group>"; };
 		B5DF29981A164A280076862E /* EHCalendarEventsParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EHCalendarEventsParser.h; sourceTree = "<group>"; };
 		B5DF29991A164A280076862E /* EHCalendarEventsParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EHCalendarEventsParser.m; sourceTree = "<group>"; };
 		B5DF299A1A164A280076862E /* EHInterview.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EHInterview.h; sourceTree = "<group>"; };
@@ -89,12 +77,6 @@
 		D967F20D1A1E4DEE0009639C /* EHITAViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EHITAViewController.m; path = ExpertHelper/EHITAViewController.m; sourceTree = "<group>"; };
 		D967F20E1A1E4DEE0009639C /* EHITAViewControllerCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EHITAViewControllerCell.h; path = ExpertHelper/EHITAViewControllerCell.h; sourceTree = "<group>"; };
 		D967F20F1A1E4DEE0009639C /* EHITAViewControllerCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EHITAViewControllerCell.m; path = ExpertHelper/EHITAViewControllerCell.m; sourceTree = "<group>"; };
-		D9A6E0B51A1F46ED00D0EFED /* EHInterviewForm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EHInterviewForm.h; sourceTree = "<group>"; };
-		D9A6E0B61A1F46ED00D0EFED /* EHInterviewFormItAcademy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EHInterviewFormItAcademy.h; sourceTree = "<group>"; };
-		D9A6E0B71A1F46ED00D0EFED /* EHInterviewFormItAcademy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EHInterviewFormItAcademy.m; sourceTree = "<group>"; };
-		D9A6E0B91A1F475500D0EFED /* EHSkillLevelCommentPopup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EHSkillLevelCommentPopup.h; sourceTree = "<group>"; };
-		D9A6E0BA1A1F475500D0EFED /* EHSkillLevelCommentPopup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EHSkillLevelCommentPopup.m; sourceTree = "<group>"; };
-		D9A6E0BB1A1F475500D0EFED /* EHSkillLevelPopup.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EHSkillLevelPopup.xib; sourceTree = "<group>"; };
 		D9ACCD281A152EF30076DFB4 /* EHSkillLevelCommentPopup.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EHSkillLevelCommentPopup.xib; sourceTree = "<group>"; };
 		D9B0CC611A03B17500544323 /* ExpertHelper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ExpertHelper.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D9B0CC641A03B17500544323 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -122,15 +104,9 @@
 		D9BE53FD1A10B16700AD5D3D /* EHProgrammingLanguagesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EHProgrammingLanguagesViewController.h; sourceTree = "<group>"; };
 		D9BE53FE1A10B16700AD5D3D /* EHProgrammingLanguagesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EHProgrammingLanguagesViewController.m; sourceTree = "<group>"; };
 		D9BE54061A10B1A200AD5D3D /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-<<<<<<< HEAD
-		D9C22D971A1F634200C643CD /* EHCommentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EHCommentViewController.h; sourceTree = "<group>"; };
-		D9C22D981A1F634200C643CD /* EHCommentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EHCommentViewController.m; sourceTree = "<group>"; };
-		D9C22D9A1A1F636D00C643CD /* EHCommentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EHCommentCell.h; sourceTree = "<group>"; };
-		D9C22D9B1A1F636D00C643CD /* EHCommentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EHCommentCell.m; sourceTree = "<group>"; };
-		D9C22D9E1A1F65BE00C643CD /* EHSkillsLevelViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EHSkillsLevelViewController.h; sourceTree = "<group>"; };
-		D9C22D9F1A1F65BE00C643CD /* EHSkillsLevelViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EHSkillsLevelViewController.m; sourceTree = "<group>"; };
-=======
->>>>>>> FETCH_HEAD
+		D9D836A71A1F414600148854 /* EHSkillLevelCommentPopup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EHSkillLevelCommentPopup.h; path = ../EHSkillLevelCommentPopup.h; sourceTree = "<group>"; };
+		D9D836A81A1F414600148854 /* EHSkillLevelCommentPopup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EHSkillLevelCommentPopup.m; path = ../EHSkillLevelCommentPopup.m; sourceTree = "<group>"; };
+		D9D836A91A1F414600148854 /* EHSkillLevelPopup.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = EHSkillLevelPopup.xib; path = ../EHSkillLevelPopup.xib; sourceTree = "<group>"; };
 		D9F15ACF1A1A575A00E4DC62 /* EHListOfInterviewsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EHListOfInterviewsViewController.h; sourceTree = "<group>"; };
 		D9F15AD01A1A575A00E4DC62 /* EHListOfInterviewsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EHListOfInterviewsViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -172,7 +148,6 @@
 		2790F4E01A139735001B0956 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				833B587E1A1F440B00D04802 /* EHPopoverController */,
 				D9D836A61A1F402D00148854 /* External */,
 				D9D836A51A1F3FCC00148854 /* ProgrammingLanguages */,
 				D9D836A41A1F3F1700148854 /* RecruiterForm */,
@@ -182,13 +157,6 @@
 				D967F2121A1E4E290009639C /* ITA Form */,
 			);
 			name = ViewControllers;
-			sourceTree = "<group>";
-		};
-		833B587E1A1F440B00D04802 /* EHPopoverController */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = EHPopoverController;
 			sourceTree = "<group>";
 		};
 		D93583FC1A1CB38B00135A2D /* Model */ = {
@@ -228,14 +196,10 @@
 		D9B0CC581A03B17500544323 = {
 			isa = PBXGroup;
 			children = (
-				D9C22D9D1A1F659F00C643CD /* CommentsControllers */,
 				D9B0CC6A1A03B17500544323 /* ExpertHelper */,
 				D9B0CC8C1A03B17500544323 /* ExpertHelperTests */,
 				D9B0CC631A03B17500544323 /* Frameworks */,
 				D9B0CC621A03B17500544323 /* Products */,
-				D9A6E0B51A1F46ED00D0EFED /* EHInterviewForm.h */,
-				D9A6E0B61A1F46ED00D0EFED /* EHInterviewFormItAcademy.h */,
-				D9A6E0B71A1F46ED00D0EFED /* EHInterviewFormItAcademy.m */,
 			);
 			sourceTree = "<group>";
 		};
@@ -305,19 +269,6 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		D9C22D9D1A1F659F00C643CD /* CommentsControllers */ = {
-			isa = PBXGroup;
-			children = (
-				D9C22D9E1A1F65BE00C643CD /* EHSkillsLevelViewController.h */,
-				D9C22D9F1A1F65BE00C643CD /* EHSkillsLevelViewController.m */,
-				D9C22D9A1A1F636D00C643CD /* EHCommentCell.h */,
-				D9C22D9B1A1F636D00C643CD /* EHCommentCell.m */,
-				D9C22D971A1F634200C643CD /* EHCommentViewController.h */,
-				D9C22D981A1F634200C643CD /* EHCommentViewController.m */,
-			);
-			name = CommentsControllers;
-			sourceTree = "<group>";
-		};
 		D9D8369F1A1F3E7900148854 /* CandidateForm */ = {
 			isa = PBXGroup;
 			children = (
@@ -331,12 +282,8 @@
 			isa = PBXGroup;
 			children = (
 				D90A1BBF1A16366500B610C6 /* EHSkillLevelPopup.h */,
-				D9A6E0BB1A1F475500D0EFED /* EHSkillLevelPopup.xib */,
 				D90A1BC01A16366500B610C6 /* EHSkillLevelPopup.m */,
-<<<<<<< HEAD
-=======
-				833B587B1A1F435600D04802 /* EHSkillLevelPopup.xib */,
->>>>>>> FETCH_HEAD
+				D9D836A91A1F414600148854 /* EHSkillLevelPopup.xib */,
 			);
 			name = SkillLevelPopup;
 			sourceTree = "<group>";
@@ -344,13 +291,8 @@
 		D9D836A11A1F3EA600148854 /* SkillLevelCommentPopup */ = {
 			isa = PBXGroup;
 			children = (
-<<<<<<< HEAD
-				D9A6E0B91A1F475500D0EFED /* EHSkillLevelCommentPopup.h */,
-				D9A6E0BA1A1F475500D0EFED /* EHSkillLevelCommentPopup.m */,
-=======
-				833B58791A1F435600D04802 /* EHSkillLevelCommentPopup.h */,
-				833B587A1A1F435600D04802 /* EHSkillLevelCommentPopup.m */,
->>>>>>> FETCH_HEAD
+				D9D836A71A1F414600148854 /* EHSkillLevelCommentPopup.h */,
+				D9D836A81A1F414600148854 /* EHSkillLevelCommentPopup.m */,
 				D9ACCD281A152EF30076DFB4 /* EHSkillLevelCommentPopup.xib */,
 			);
 			name = SkillLevelCommentPopup;
@@ -496,12 +438,8 @@
 				D9ACCD291A152EF30076DFB4 /* EHSkillLevelCommentPopup.xib in Resources */,
 				D9B0CC7B1A03B17500544323 /* Main_iPad.storyboard in Resources */,
 				D9BE54071A10B1A200AD5D3D /* Images.xcassets in Resources */,
-<<<<<<< HEAD
-				D9A6E0BD1A1F475500D0EFED /* EHSkillLevelPopup.xib in Resources */,
-=======
-				833B587D1A1F435600D04802 /* EHSkillLevelPopup.xib in Resources */,
->>>>>>> FETCH_HEAD
 				D9B0CC781A03B17500544323 /* Main_iPhone.storyboard in Resources */,
+				D9D836AB1A1F414600148854 /* EHSkillLevelPopup.xib in Resources */,
 				D9B0CC6F1A03B17500544323 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -521,9 +459,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D9C22D991A1F634200C643CD /* EHCommentViewController.m in Sources */,
-				D9A6E0B81A1F46ED00D0EFED /* EHInterviewFormItAcademy.m in Sources */,
-				D9C22D9C1A1F636D00C643CD /* EHCommentCell.m in Sources */,
 				D967F2111A1E4DEE0009639C /* EHITAViewControllerCell.m in Sources */,
 				2790F4E31A139854001B0956 /* EHProfilesTableViewCell.m in Sources */,
 				D9B0CC711A03B17500544323 /* main.m in Sources */,
@@ -536,14 +471,9 @@
 				B5DF299F1A164A280076862E /* EHInterview.m in Sources */,
 				D967F2081A1E23BC0009639C /* EHCandidateFormViewController.m in Sources */,
 				D9BE54041A10B16700AD5D3D /* EHProgrammingLanguagesViewController.m in Sources */,
-				833B587C1A1F435600D04802 /* EHSkillLevelCommentPopup.m in Sources */,
 				D9B0CC751A03B17500544323 /* EHAppDelegate.m in Sources */,
-<<<<<<< HEAD
-				D9A6E0BC1A1F475500D0EFED /* EHSkillLevelCommentPopup.m in Sources */,
-=======
->>>>>>> FETCH_HEAD
+				D9D836AA1A1F414600148854 /* EHSkillLevelCommentPopup.m in Sources */,
 				D9BE54001A10B16700AD5D3D /* EHCalendarFormViewController.m in Sources */,
-				D9C22DA01A1F65BE00C643CD /* EHSkillsLevelViewController.m in Sources */,
 				D90A1BBE1A16335F00B610C6 /* EHViewController.m in Sources */,
 				D93583FB1A1CAF6F00135A2D /* EHEventsGetInfoParser.m in Sources */,
 				D90A1BC11A16366500B610C6 /* EHSkillLevelPopup.m in Sources */,
@@ -684,10 +614,6 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					/Users/nvlizlo/Documents/FacebookSDK,
-				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ExpertHelper/ExpertHelper-Prefix.pch";
 				INFOPLIST_FILE = "ExpertHelper/ExpertHelper-Info.plist";
@@ -701,10 +627,6 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					/Users/nvlizlo/Documents/FacebookSDK,
-				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ExpertHelper/ExpertHelper-Prefix.pch";
 				INFOPLIST_FILE = "ExpertHelper/ExpertHelper-Info.plist";
