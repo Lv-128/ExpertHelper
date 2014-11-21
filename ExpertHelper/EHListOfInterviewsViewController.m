@@ -17,8 +17,6 @@
 
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (strong, nonatomic) NSDateFormatter *cellDateFormatter;
-@property (strong, nonatomic) IBOutletCollection(UILabel) NSArray *otherTextLabels;
-
 
 @end
 
@@ -35,8 +33,6 @@
     self.cellDateFormatter = [[NSDateFormatter alloc] init];
     [self.cellDateFormatter setDateStyle:NSDateFormatterFullStyle];
     [self.cellDateFormatter setTimeStyle:NSDateFormatterShortStyle];
-    
-    
 }
 
 - (void)didReceiveMemoryWarning
@@ -47,10 +43,9 @@
 
 #pragma mark Collection View Methods
 
--(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView{
-    
+-(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
+{
     return [self.sortedWeeks count];
-    
 }
 
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
@@ -70,17 +65,17 @@
     EHInterview *event = [eventsOnThisDay objectAtIndex:indexPath.row];
     
     
-    UILabel * labelType = (UILabel *) [cell viewWithTag:100];
-    UILabel * labelDate = (UILabel *) [cell viewWithTag:101];
-    UILabel * labelLocation = (UILabel *) [cell viewWithTag:102];
-    UILabel * labelCandidate = (UILabel *) [cell viewWithTag:103];
-    UILabel * labelRecruiter = (UILabel *) [cell viewWithTag:104];
-    UIButton * butStart = (UIButton * ) [cell viewWithTag:1000];
+    UILabel * labelType = (UILabel *) [cell viewWithTag: 100];
+    UILabel * labelDate = (UILabel *) [cell viewWithTag: 101];
+    UILabel * labelLocation = (UILabel *) [cell viewWithTag: 102];
+    UILabel * labelCandidate = (UILabel *) [cell viewWithTag: 103];
+    UILabel * labelRecruiter = (UILabel *) [cell viewWithTag: 104];
+    UIButton * butStart = (UIButton * ) [cell viewWithTag: 1000];
     
     labelType.text = [@" " stringByAppendingString:event.typeOfInterview];
     labelDate.text = [@" "stringByAppendingString:[cellDateFormatter stringFromDate:event.dateOfInterview]];
     
-    if (event.locationOfInterview==nil)
+    if (event.locationOfInterview == nil)
     {
         labelLocation.text = @" Unknown" ;
     }
@@ -102,7 +97,6 @@
     [cell.layer setBorderColor:[UIColor grayColor].CGColor];
     
     [cell.layer setCornerRadius:30.0f];
-    
     
     
     UITapGestureRecognizer * goToInfoForm = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(goToInfo:)];
@@ -131,7 +125,6 @@
 }
 
 
-
 -(void)chooseTypeOfInterview:(id)sender
 {
     UITapGestureRecognizer *tapGR = (UITapGestureRecognizer*)sender;
@@ -147,29 +140,21 @@
                                                         otherButtonTitles:@"None", @"IT Academy", @"Internal", @"External",nil];
         if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
         {
-        
-            
             UICollectionViewCell * curInterview = [self.collectionView  cellForItemAtIndexPath:tappedRow];
-            UIView * label = [curInterview viewWithTag:100];
+            UIView * label = [curInterview viewWithTag: 100];
             //[actionSheet showFromRect:[curLabel frame] inView:self.view animated:YES];
             
-            CGRect  rect = CGRectMake([label frame].origin.x- [label frame].size.width/3 , [label frame].origin.y, [label frame].size.width,  [label frame].size.height) ;
+            CGRect  rect = CGRectMake([label frame].origin.x - [label frame].size.width/3 , [label frame].origin.y, [label frame].size.width,  [label frame].size.height) ;
             
             // [label frame]
             [actionSheet showFromRect:rect inView:curInterview animated:YES ];//showFromRect:[label  frame] inView:self.view animated:YES];
         }
         else
-        {
-            
-            //  [actionSheet showInView:self.view];
-        }
-        
+            [actionSheet showInView:self.view];
+
         actionSheet.tag = 300;
-        
     }
 }
-
-
 
 
 -(void)goToInfo:(id)sender
@@ -201,7 +186,6 @@
         recruiterViewForm.nameOfRecruiter = curInterview.nameOfRecruiter;
         recruiterViewForm.lastnameOfRecruiter = curInterview.lastNameOfRecruiter;
         [self.navigationController pushViewController:recruiterViewForm animated:YES];
-        
     }
 }
 
@@ -219,28 +203,27 @@
         if([curInterview.typeOfInterview  isEqual: @"ITA"])
         {
             EHITAViewController *recruiterViewForm = [self.storyboard instantiateViewControllerWithIdentifier:@"ITAForm"];
-            [self.navigationController pushViewController:recruiterViewForm animated:YES];
+            [self.navigationController pushViewController:recruiterViewForm animated: YES];
             
         }
         else{
             EHITAViewController *recruiterViewForm = [self.storyboard instantiateViewControllerWithIdentifier:@"InternalForm"];
-            [self.navigationController pushViewController:recruiterViewForm animated:YES];
+            [self.navigationController pushViewController:recruiterViewForm animated: YES];
         }
     }
-    
 }
+
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
 {
     if (kind == UICollectionElementKindSectionHeader) {
         
         UICollectionReusableView *reusableview = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"HeaderView" forIndexPath:indexPath];
         
-        
-        if (reusableview==nil) {
-            reusableview=[[UICollectionReusableView alloc] initWithFrame:CGRectMake(0, 0, 320, 50)];
+        if (reusableview == nil) {
+            reusableview = [[UICollectionReusableView alloc] initWithFrame:CGRectMake(0, 0, 320, 50)];
         }
         
-        UILabel * label = (UILabel *) [reusableview viewWithTag:1000];
+        UILabel * label = (UILabel *) [reusableview viewWithTag: 1000];
         
         NSString *dateRepresentingThisDay = [[self.sortedWeeks objectAtIndex:indexPath.section]nameOfWeek];
         label.text=dateRepresentingThisDay;
@@ -248,6 +231,5 @@
     }
     return nil;
 }
-
 
 @end

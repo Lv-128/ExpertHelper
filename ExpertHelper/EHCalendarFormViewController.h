@@ -12,7 +12,7 @@
 @interface EHCalendarFormViewController : UITableViewController
 {
     IBOutlet UILabel *label;
-    IBOutlet UISegmentedControl * segment;
+    IBOutlet UISegmentedControl *segment;
     int whichTypeOfInterviewIsChosen;
 }
 -(IBAction)segmentButton:(id)sender;

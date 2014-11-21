@@ -9,8 +9,6 @@
 #import <Foundation/Foundation.h>
 #import <EventKit/EventKit.h>
 
-
-
 @interface EHInterview : NSObject
 
 @property (strong, nonatomic) NSString * nameOfCandidate;
@@ -20,7 +18,5 @@
 @property (strong, nonatomic) NSDate * dateOfInterview;
 @property (strong, nonatomic) NSString * locationOfInterview;
 @property (nonatomic, strong) NSString * typeOfInterview;
-
-
 
 @end

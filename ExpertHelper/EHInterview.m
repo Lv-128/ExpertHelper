@@ -8,11 +8,6 @@
 
 #import "EHInterview.h"
 
-
-
-
-
-
 @implementation EHInterview
 
 -(id) initWithFirstName : (NSString *)firstName
@@ -23,7 +18,7 @@
      locationOfInterview: (NSString *)locationOfInterview
          typeOfInterview:(NSString *)typeOfInterview
 {
-    self= [super init];
+    self = [super init];
     if (self)
     {
         _nameOfCandidate = firstName;
@@ -36,14 +31,13 @@
     }
     return self;
 }
+
 - (void)dealloc {
     _nameOfCandidate = nil;
     _lastNameOfCandidate = nil;
     _dateOfInterview=nil;
     _locationOfInterview = nil;
     _typeOfInterview=nil;
-    
-    
 }
 
 @end

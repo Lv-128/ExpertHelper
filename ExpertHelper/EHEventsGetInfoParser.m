@@ -78,8 +78,6 @@
 @end
 
 
-
-
 @implementation EHEventsGetInfoParser
 
 
@@ -109,7 +107,6 @@
     _parseOptions = options;
     
     NSMutableArray * allInterviews = [[NSMutableArray alloc]initWithCapacity:0];
-    
     
     for (EKEvent * event in _events)
     {
@@ -155,7 +152,7 @@
         NSInteger dayofweek =[[[NSCalendar currentCalendar] components: compon fromDate:interview.dateOfInterview] weekday] - 1;
         if(dayofweek == 0) dayofweek =7;
         NSInteger starOfWeek =  day - dayofweek + 1;
-        NSInteger endOfWeek = day + (5-dayofweek);
+        NSInteger endOfWeek = day + (5 - dayofweek);
         if (starOfWeek <= 0) starOfWeek = 1;
         NSRange days = [[NSCalendar currentCalendar] rangeOfUnit:NSDayCalendarUnit
                                                           inUnit:NSMonthCalendarUnit
@@ -167,10 +164,10 @@
         NSInteger monthday = [[[NSCalendar currentCalendar] components: compon fromDate:interview.dateOfInterview] month];
         NSInteger yearday  =[[[NSCalendar currentCalendar] components: compon fromDate:interview.dateOfInterview] year];
         
-        NSString * key = [self.namesMonth objectAtIndex:monthday-1];
+        NSString * key = [self.namesMonth objectAtIndex:monthday - 1];
         
-        NSString * keyForDictionary = [self.namesMonth objectAtIndex:monthday-1];
-        keyForDictionary = [keyForDictionary stringByAppendingString:[NSString stringWithFormat: @", %d",yearday]];
+        NSString * keyForDictionary = [self.namesMonth objectAtIndex:monthday - 1];
+        keyForDictionary = [keyForDictionary stringByAppendingString:[NSString stringWithFormat: @", %d", yearday]];
         
         EHMonth * curMonth;
  
@@ -182,7 +179,6 @@
             curMonth.nameOfMonth = keyForDictionary;
             curMonth.dateStartOfMonth = interview.dateOfInterview;
             [allMonthes addObject: curMonth];
-            
         }
         else
         {
@@ -197,7 +193,6 @@
             curMonth = [allMonthes objectAtIndex:index];
         }
 
-        
         key=[key stringByAppendingString:[NSString stringWithFormat:@", week : %d - %d ", starOfWeek, endOfWeek]];
         
         
@@ -215,7 +210,6 @@
             NSMutableArray * arr = [curMonth.weeks mutableCopy];
             [arr addObject: curWeek];
             curMonth.weeks = arr;
-         
         }
         else
         {
@@ -233,16 +227,10 @@
             [arr addObject: interview];
             curWeek.interviews = arr;
         }
-        
-  
-
-
     }
-    
     
     NSArray *unsortedDays = allMonthes;
     
- 
     NSSortDescriptor *sortDescriptor;
     sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"dateStartOfMonth"
                                                  ascending:YES];
@@ -251,9 +239,9 @@
     sortedDays = [unsortedDays sortedArrayUsingDescriptors:sortDescriptors];
     
     return sortedDays;
-    
-    
 }
+
+
 -(bool)canDefineTypeAsITA:(NSString *)string
 {
     bool isIta = NO;
@@ -267,19 +255,17 @@
     NSRegularExpressionOptions regexOptions = NSRegularExpressionCaseInsensitive;
     NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:pattern options:regexOptions error:&error];
     NSArray *matches = [regex matchesInString:string options:(NSMatchingOptions)regexOptions range:range];
-    if ([matches count]>0)
+    if ([matches count] > 0)
     {
         isIta = YES;
     }
-    
     return isIta;
-    
 }
 
 - (EHCalendarParseResult *)getNameOfRecruiter:(NSString*)string
 {
     EHCalendarParseResult * parseResult = [[EHCalendarParseResult alloc]init];;
-    NSArray* parseWithSpaces = [string componentsSeparatedByString: @" "];
+    NSArray * parseWithSpaces = [string componentsSeparatedByString: @" "];
     /* if (parseWithSpaces.count > 0)
      {
      if (_parseOptions.firstNameFirst == YES)
@@ -315,15 +301,13 @@
             parseResult = [[EHCalendarParseResult alloc] initWithName:firstName andLastName:lastName];
         }
     }
-    
-    
     return parseResult;
 }
 
 - (EHCalendarParseResult *)getNameOfCandidateFromTitle:(NSString*)string
 {
     NSError *error = NULL;
-    NSMutableArray * results = [[NSMutableArray alloc ]initWithCapacity:0];
+    NSMutableArray * results = [[NSMutableArray alloc ]initWithCapacity: 0];
     
     NSString * pat3 = @"\\s*[w|W]ith(?![Candidate|candidates|Candidates|ITA|ita|ITA|candidate])\\s*([A-Z][a-z'-]*)(\\s*[A-Z]*[a-z']*)\\s([A-Z][a-z'-]*)(\\s*[A-Z]*[a-z']*)*\\s*";
     NSRange range = NSMakeRange(0, string.length);
@@ -332,8 +316,8 @@
     for (NSTextCheckingResult *match in matches)
     {
         NSRange matchRange = match.range;
-        matchRange.location+=6;
-        matchRange.length-=6;
+        matchRange.location += 6;
+        matchRange.length -= 6;
         
         NSLog(@"%@",[string substringWithRange:matchRange]);
         
@@ -341,10 +325,10 @@
     }
     
     EHCalendarParseResult * parseResult ;
-    if (results.count ==1)
+    if (results.count == 1)
     {
         NSArray* parseWithSpaces = [results[0] componentsSeparatedByString: @" "];
-        if (_parseOptions.firstNameFirst ==YES)
+        if (_parseOptions.firstNameFirst == YES)
         {
             NSString * firstName = parseWithSpaces[0];
             NSString * lastName = parseWithSpaces[1];
@@ -369,7 +353,6 @@
     {
         self.parseOptions = options;
     }
-    
     return self;
 }
 @end

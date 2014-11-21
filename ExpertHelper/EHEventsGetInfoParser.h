@@ -13,15 +13,15 @@
 @interface EHMonth : NSObject
 
 @property (nonatomic, strong) NSDate *dateStartOfMonth;
-@property (nonatomic, copy) NSArray * weeks;
-@property (nonatomic, strong) NSString * nameOfMonth;
+@property (nonatomic, copy) NSArray *weeks;
+@property (nonatomic, strong) NSString *nameOfMonth;
 
 @end
 
 @interface EHWeek : NSObject
 
-@property (nonatomic, copy) NSArray * interviews;
-@property (nonatomic, strong) NSString * nameOfWeek;
+@property (nonatomic, copy) NSArray *interviews;
+@property (nonatomic, strong) NSString *nameOfWeek;
 
 @end
 @interface EHCalendarParseResult : NSObject
@@ -43,17 +43,17 @@
 @interface EHEventsGetInfoParser : NSObject
 
 @property (strong , nonatomic) NSArray *namesMonth;
-@property (nonatomic, strong) EHCalendarParseOptions * parseOptions;
-@property (nonatomic, copy) NSArray * interviews;
-@property (nonatomic, copy) NSArray * events;
+@property (nonatomic, strong) EHCalendarParseOptions *parseOptions;
+@property (nonatomic, copy) NSArray *interviews;
+@property (nonatomic, copy) NSArray *events;
 
 -(bool)canDefineTypeAsITA:(NSString *)string;
--(EHCalendarParseResult *)getNameOfCandidateFromTitle:(NSString*)string;
-- (EHCalendarParseResult *)getNameOfRecruiter:(NSString*)string;
+-(EHCalendarParseResult *)getNameOfCandidateFromTitle:(NSString *)string;
+- (EHCalendarParseResult *)getNameOfRecruiter:(NSString *)string;
 -(id)initWithObjection:(EHCalendarParseOptions *)options;
 -(NSArray *) parseAllEventsToInterviews;
 -(NSArray *)sortAllInterviewsToDictionary;
 
-@property (nonatomic , strong) EHCalendarEventsParser * calEventParser;
+@property (nonatomic , strong) EHCalendarEventsParser *calEventParser;
 @end
 

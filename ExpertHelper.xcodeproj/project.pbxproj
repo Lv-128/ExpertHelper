@@ -227,9 +227,6 @@
 		D9B0CC6A1A03B17500544323 /* ExpertHelper */ = {
 			isa = PBXGroup;
 			children = (
-				D92B76E11A1F847F00B76F5E /* EHSkillLevelCommentPopup.h */,
-				D92B76E21A1F847F00B76F5E /* EHSkillLevelCommentPopup.m */,
-				D92B76E31A1F847F00B76F5E /* EHSkillLevelPopup.xib */,
 				D93583FD1A1CB3AD00135A2D /* WorkWithEvents */,
 				2790F4E01A139735001B0956 /* ViewControllers */,
 				2790F4DF1A1396EB001B0956 /* Views */,
@@ -286,6 +283,7 @@
 			children = (
 				D90A1BBF1A16366500B610C6 /* EHSkillLevelPopup.h */,
 				D90A1BC01A16366500B610C6 /* EHSkillLevelPopup.m */,
+				D92B76E31A1F847F00B76F5E /* EHSkillLevelPopup.xib */,
 			);
 			name = SkillLevelPopup;
 			sourceTree = "<group>";
@@ -293,6 +291,8 @@
 		D9D836A11A1F3EA600148854 /* SkillLevelCommentPopup */ = {
 			isa = PBXGroup;
 			children = (
+				D92B76E11A1F847F00B76F5E /* EHSkillLevelCommentPopup.h */,
+				D92B76E21A1F847F00B76F5E /* EHSkillLevelCommentPopup.m */,
 				D9ACCD281A152EF30076DFB4 /* EHSkillLevelCommentPopup.xib */,
 			);
 			name = SkillLevelCommentPopup;
@@ -352,8 +352,8 @@
 			children = (
 				D9F15ACF1A1A575A00E4DC62 /* EHListOfInterviewsViewController.h */,
 				D9F15AD01A1A575A00E4DC62 /* EHListOfInterviewsViewController.m */,
-				D9BE53F61A10B16700AD5D3D /* EHCalendarFormViewController.m */,
 				D9BE53F51A10B16700AD5D3D /* EHCalendarFormViewController.h */,
+				D9BE53F61A10B16700AD5D3D /* EHCalendarFormViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";

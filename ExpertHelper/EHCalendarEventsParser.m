@@ -10,12 +10,9 @@
 
 @implementation EHCalendarEventsParser
 
-
-
-
 -(id)init
 {
-    self=[super init];
+    self = [super init];
     if (self)
     {
         self.eventStore = [[EKEventStore alloc] init];
@@ -23,7 +20,6 @@
         
         _namesMonth = [NSArray arrayWithObjects:@"January",@"February", @"March",@"April",@"May",@"June",@"July",@"August",
                        @"September",@"October",@"November",@"December", nil];
-
     }
     return self;
 }
@@ -84,41 +80,39 @@
 {
     self.defaultCalendar = self.eventStore.defaultCalendarForNewEvents;
     
-    NSArray * temp =[self fetchEvents];
+    NSArray * temp = [self fetchEvents];
     self.eventsList = temp;
-    
 }
-- (NSArray * )fetchEvents
+
+- (NSArray *)fetchEvents
 {
     NSTimeInterval secondsPerDay = 24 * 60 * 60 ;  //  one day interval  = 86400 seconds
-    NSDate * startDate = [[NSDate alloc] initWithTimeIntervalSinceNow:-secondsPerDay*365]; // 10 days ago
-    NSDate *endDate = [self dateByAddingYears:3 toDate:startDate];
+    NSDate *startDate = [[NSDate alloc] initWithTimeIntervalSinceNow: -secondsPerDay * 365]; // 10 days ago
+    NSDate *endDate = [self dateByAddingYears: 3 toDate: startDate];
 	// We will only search the default calendar for our events
-	NSArray *calendarArray = [NSArray arrayWithObject:self.defaultCalendar];
+	NSArray *calendarArray = [NSArray arrayWithObject: self.defaultCalendar];
     
     // Create the predicate
-	NSPredicate *predicate = [self.eventStore predicateForEventsWithStartDate:startDate
-                                                                      endDate:endDate
-                                                                    calendars:calendarArray];
-	
+	NSPredicate *predicate = [self.eventStore predicateForEventsWithStartDate: startDate
+                                                                      endDate: endDate
+                                                                    calendars: calendarArray];
 	// Fetch all events that match the predicate
-	NSMutableArray *events = [NSMutableArray arrayWithArray:[self.eventStore eventsMatchingPredicate:predicate]];
+	NSMutableArray *events = [NSMutableArray arrayWithArray:[self.eventStore eventsMatchingPredicate: predicate]];
     
-   
-    NSMutableArray * titles = [[NSMutableArray alloc ] init];
+
+    NSMutableArray *titles = [[NSMutableArray alloc ] init];
     for (EKEvent *event in events)
     {
         [titles  addObject:event.title];
     }
     
-    NSMutableArray * allEvents = [[NSMutableArray alloc]initWithCapacity:0];
+    NSMutableArray *allEvents = [[NSMutableArray alloc]initWithCapacity: 0];
     for (EKEvent *event in events) //
     {
-        NSString * upperCaseEventTitle = [event.title uppercaseString];
-        if ([upperCaseEventTitle rangeOfString:@"INTERVIEW" ].location   !=  NSNotFound )
+        NSString *upperCaseEventTitle = [event.title uppercaseString];
+        if ([upperCaseEventTitle rangeOfString:@"INTERVIEW"].location != NSNotFound)
         {
             [allEvents addObject:event];
-            
         }
     }
     return allEvents;
@@ -138,9 +132,9 @@
     NSDateComponents *dateComps = [calendar components:NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit fromDate:inputDate];
     
     // Set the time components manually
-    [dateComps setHour:0];
-    [dateComps setMinute:0];
-    [dateComps setSecond:0];
+    [dateComps setHour: 0];
+    [dateComps setMinute: 0];
+    [dateComps setSecond: 0];
     
     // Convert back
     NSDate *beginningOfDay = [calendar dateFromComponents:dateComps];
@@ -155,7 +149,7 @@
     NSDateComponents *dateComps = [[NSDateComponents alloc] init];
     [dateComps setYear:numberOfYears];
     
-    NSDate *newDate = [calendar dateByAddingComponents:dateComps toDate:inputDate options:0];
+    NSDate *newDate = [calendar dateByAddingComponents:dateComps toDate:inputDate options: 0];
     return newDate;
 }
 

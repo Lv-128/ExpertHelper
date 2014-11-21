@@ -12,12 +12,12 @@
 #import "EHInterview.h"
 #import "EHMainEventsTableViewController.h"
 #import "EHEventsGetInfoParser.h"
+
 @interface EHCalendarFormViewController () <UITableViewDataSource, UITabBarDelegate>
 @property (copy, nonatomic) NSArray *sections;
 @property (copy, nonatomic) NSArray *sortedDays;
 @property (strong, nonatomic) NSDateFormatter *sectionDateFormatter;
 @property (strong, nonatomic) NSDateFormatter *cellDateFormatter;
-
 
 // EKEventStore instance associated with the current Calendar application
 @property (nonatomic, strong) EKEventStore *eventStore;
@@ -43,7 +43,6 @@
 enum {  All = 0, ITA = 1, External = 2, None = 3};
 
 
-
 -(IBAction)segmentButton:(id)sender
 {
     if (segment.selectedSegmentIndex == All)
@@ -59,23 +58,20 @@ enum {  All = 0, ITA = 1, External = 2, None = 3};
         whichTypeOfInterviewIsChosen = None;
 }
 
-
 #pragma mark - View lifecycle
 
 -(void) dealloc
 {
-    
+ /////////////////////////////////////////////////
 }
 
 - (void)viewDidLoad
 {
-    
     [super viewDidLoad];
     
     whichTypeOfInterviewIsChosen = All;
     
     self.tableView.allowsMultipleSelectionDuringEditing = NO;
-    
     
 	self.eventStore = [[EKEventStore alloc] init];// Initialize the event store
     
@@ -100,12 +96,7 @@ enum {  All = 0, ITA = 1, External = 2, None = 3};
     [self.refreshControl addTarget:self
                             action:@selector(updateEvents)
                   forControlEvents:UIControlEventValueChanged];
-    
-    
-    
 }
-
-
 
 
 -(void)viewDidAppear:(BOOL)animated
@@ -118,11 +109,8 @@ enum {  All = 0, ITA = 1, External = 2, None = 3};
 
 -(void)updateEvents
 {
-   
-    
     // End the refreshing
     if (self.refreshControl) {
-        
         
         [_interviewFromEventsParser.calEventParser checkEventStoreAccessForCalendar];  // Check whether we are authorized to access Calendar
         
@@ -174,9 +162,7 @@ enum {  All = 0, ITA = 1, External = 2, None = 3};
         NSArray *weeksOnThisMonth = [[self.sortedDays objectAtIndex:myIndexPath.row] weeks];
         
         eventsMainForm.sortedWeeks = weeksOnThisMonth;
-        
     }
-    
 }
 
 #pragma mark - UITableViewDataSource methods
@@ -188,13 +174,11 @@ enum {  All = 0, ITA = 1, External = 2, None = 3};
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    
     return [sortedDays count];
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
-    
     return @"MONTHs";
 }
 
@@ -211,15 +195,9 @@ enum {  All = 0, ITA = 1, External = 2, None = 3};
     
     cell.textLabel.text = namesOfMonths;
     
-    
     //cell.detailTextLabel.text = [self.cellDateFormatter stringFromDate:event.startDate];
     
     return cell;
 }
-
-
-
-
-
 
 @end
