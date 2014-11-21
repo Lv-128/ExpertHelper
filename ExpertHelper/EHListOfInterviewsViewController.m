@@ -135,6 +135,8 @@
 -(void)chooseTypeOfInterview:(id)sender
 {
     UITapGestureRecognizer *tapGR = (UITapGestureRecognizer*)sender;
+      CGPoint touchLocation = [tapGR locationOfTouch:0 inView:self.collectionView];
+     NSIndexPath *tappedRow = [self.collectionView indexPathForItemAtPoint:touchLocation];
     
     if (tapGR.view.tag == 100)
     {
@@ -146,12 +148,22 @@
                                                             otherButtonTitles:@"None", @"IT Academy", @"Internal", @"External",nil];
             if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
             {
-                [actionSheet showFromRect:[(UIButton *)tapGR.view  frame] inView:self.view animated:YES];
+                int row = tappedRow.row;
+                int section = tappedRow.section;
+                
+                UICollectionViewCell * curInterview = [self.collectionView  cellForItemAtIndexPath:tappedRow];
+                UIView * label = [curInterview viewWithTag:100];
+                              //[actionSheet showFromRect:[curLabel frame] inView:self.view animated:YES];
+                
+                CGRect  rect = CGRectMake([label frame].origin.x- [label frame].size.width/3 , [label frame].origin.y, [label frame].size.width,  [label frame].size.height) ;
+            
+                // [label frame]
+                [actionSheet showFromRect:rect inView:curInterview animated:YES ];//showFromRect:[label  frame] inView:self.view animated:YES];
             }
             else
             {
         
-                [actionSheet showInView:self.view];
+              //  [actionSheet showInView:self.view];
             }
         
             actionSheet.tag = 300;

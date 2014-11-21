@@ -7,8 +7,8 @@
 //
 
 #import "EHCandidateFormViewController.h"
-#import "EHPopoverViewController.h"
-#import <FacebookSDK/FacebookSDK.h>
+//#import "EHPopoverViewController.h"
+//#import <FacebookSDK/FacebookSDK.h>
 #import "EHAppDelegate.h"
 
 @interface EHCandidateFormViewController ()
@@ -46,7 +46,7 @@
     _lastName = @"Ivanov";
     // Do any additional setup after loading the view.
 }
-
+/*
 - (IBAction)facebookButton:(id)sender {
     // If the session state is any of the two "open" states when the button is clicked
     if (FBSession.activeSession.state == FBSessionStateOpen
@@ -84,7 +84,7 @@
     }
 
 }
-
+*/
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];

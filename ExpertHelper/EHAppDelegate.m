@@ -7,20 +7,20 @@
 //
 
 #import "EHAppDelegate.h"
-#import "EHPopoverViewController.h"
+//#import "EHPopoverViewController.h"
 
 @implementation EHAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    // Override point for customization after application launch.
-    self.popoverController = [[EHPopoverViewController alloc] init];
+ /*   // Override point for customization after application launch.
+   // self.popoverController = [[EHPopoverViewController alloc] init];
     
     // Whenever a person opens the app, check for a cached session
-    if (FBSession.activeSession.state == FBSessionStateCreatedTokenLoaded) {
-        NSLog(@"Found a cached session");
+  //  if (FBSession.activeSession.state == FBSessionStateCreatedTokenLoaded) {
+    //    NSLog(@"Found a cached session");
         // If there's one, just open the session silently, without showing the user the login UI
-        [FBSession openActiveSessionWithReadPermissions:@[@"public_profile"]
+     //   [FBSession openActiveSessionWithReadPermissions:@[@"public_profile"]
                                            allowLoginUI:NO
                                       completionHandler:^(FBSession *session, FBSessionState state, NSError *error) {
                                           // Handler for session state changes
@@ -31,10 +31,10 @@
         
         // If there's no cached session, we will show a login button
     }
-
+*/
     return YES;
 }
-
+/*
 - (void)sessionStateChanged:(FBSession *)session state:(FBSessionState)state error:(NSError *)error
 {
     // If the session was opened successfully
@@ -92,7 +92,7 @@
     }
     
 }
-
+*/
 
 - (void) showMessage:(NSString *)text withTitle:(NSString *)title
 {
