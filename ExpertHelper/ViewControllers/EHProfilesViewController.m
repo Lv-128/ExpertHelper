@@ -118,7 +118,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-        NSArray *listData = [self.sectionContent objectAtIndex:[indexPath section]];
+    NSArray *listData = [self.sectionContent objectAtIndex:[indexPath section]];
     NSUInteger row = [indexPath row];
     NSString *rowValue = [listData objectAtIndex:row];
     
@@ -146,7 +146,7 @@
         }];
         isPopup = YES;
     }
-
+    
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
