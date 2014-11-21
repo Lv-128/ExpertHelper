@@ -22,5 +22,4 @@
 - (IBAction)goToComment:(UIButton *)sender {
     [_delegate skillLevelCommentPopupDidSelectComment:self];
 }
-
 @end

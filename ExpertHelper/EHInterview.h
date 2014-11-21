@@ -8,18 +8,19 @@
 
 #import <Foundation/Foundation.h>
 #import <EventKit/EventKit.h>
+
+
+
 @interface EHInterview : NSObject
 
 @property (strong, nonatomic) NSString * nameOfCandidate;
 @property (strong, nonatomic) NSString * lastNameOfCandidate;
+@property (strong, nonatomic) NSString * nameOfRecruiter;
+@property (strong, nonatomic) NSString * lastNameOfRecruiter;
 @property (strong, nonatomic) NSDate * dateOfInterview;
 @property (strong, nonatomic) NSString * locationOfInterview;
-@property (nonatomic) NSInteger id_Interview;
 @property (nonatomic, strong) NSString * typeOfInterview;
-@property (nonatomic, strong) EKEvent *  curEvent;
-@property (nonatomic, strong) NSString * eventTitle;
 
-//-(void)getNameOfCandidateFromEventTitle:(NSString * )title;
 
 
 @end

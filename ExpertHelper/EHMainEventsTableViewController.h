@@ -9,8 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface EHMainEventsTableViewController : UITableViewController
-
 @property (copy, nonatomic) NSDictionary *sections;
 @property (strong, nonatomic) NSArray *sortedDays;
-
 @end

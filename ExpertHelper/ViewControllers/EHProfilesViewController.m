@@ -10,7 +10,7 @@
 #import "EHProfilesTableViewCell.h"
 #import "EHSkillLevelPopup.h"
 
-@interface EHProfilesViewController () <EHSkillLevelPopupDelegate>
+@interface EHProfilesViewController ()<EHSkillLevelPopupDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) NSArray *tableSections;
@@ -105,7 +105,7 @@
     NSUInteger row = [indexPath row];
     
     cell.leftLabel.text = [listData objectAtIndex:row];
-    [cell.leftLabel.layer setBorderColor:[UIColor colorWithWhite:0.821 alpha:1.000].CGColor];
+    [cell.leftLabel.layer setBorderColor:[[UIColor colorWithWhite:0.821 alpha:1.000] CGColor]];
     [cell.leftLabel.layer setBorderWidth:1.0];
     
     [cell.middleLabel.layer setBorderColor:[[UIColor colorWithWhite:0.821 alpha:1.000] CGColor]];
@@ -118,7 +118,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-        NSArray *listData = [self.sectionContent objectAtIndex:[indexPath section]];
+    NSArray *listData = [self.sectionContent objectAtIndex:[indexPath section]];
     NSUInteger row = [indexPath row];
     NSString *rowValue = [listData objectAtIndex:row];
     
@@ -146,7 +146,7 @@
         }];
         isPopup = YES;
     }
-
+    
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
