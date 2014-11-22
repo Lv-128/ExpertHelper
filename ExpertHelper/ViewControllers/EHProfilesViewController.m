@@ -114,12 +114,14 @@
     
     NSUInteger row = [indexPath row];
     
+    cell.leftLabel.textAlignment = UITextAlignmentCenter;
     cell.leftLabel.text = [listData objectAtIndex:row];
     [cell.leftLabel.layer setBorderColor:[[UIColor colorWithWhite:0.821 alpha:1.000] CGColor]];
     [cell.leftLabel.layer setBorderWidth:1.0];
     
     
     if (newCell == YES) {
+        cell.middleLabel.textAlignment = UITextAlignmentCenter;
         cell.middleLabel.text = self.skillusLevel;
     }
     
