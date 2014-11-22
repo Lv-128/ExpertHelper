@@ -10,7 +10,7 @@
 #import "EHProfilesTableViewCell.h"
 #import "EHSkillLevelPopup.h"
 
-@interface EHProfilesViewController ()<EHSkillLevelPopupDelegate>
+@interface EHProfilesViewController ()<UITableViewDataSource, UITableViewDelegate, EHSkillLevelPopupDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) NSArray *tableSections;
@@ -22,6 +22,8 @@
 
 - (void)skillLevelPopup:(EHSkillLevelPopup *)popup
          didSelectLevel:(EHSkillLevel)level {
+    
+    
     [UIView animateWithDuration:0.85 animations:^{
         popup.transform = CGAffineTransformMakeScale(0, 0);
         popup.alpha = 0.0;
@@ -30,11 +32,19 @@
         [super viewDidLoad];
     }];
     isPopup = NO;
+    newCell = YES;
+    
+    self.skillusLevel = popup.skillLevel;
+    
+    NSIndexPath *rowToReload = [NSIndexPath indexPathForRow: RowAtIndexPathOfSkills inSection:lostData];
+    NSArray *rowsToReload = [NSArray arrayWithObjects:rowToReload, nil];
+    [self.tableView reloadRowsAtIndexPaths: rowsToReload withRowAnimation:UITableViewRowAnimationNone];
 }
 
 - (void)viewDidLoad
 {
     isPopup = NO;
+    newCell = NO;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableSections = @[ @"Programming languages", @"Tech. Domains", @"Skill" ];
     self.sectionContent = @[ @[ @"C", @"C++", @"C#", @"Objective-C" ],
@@ -108,6 +118,11 @@
     [cell.leftLabel.layer setBorderColor:[[UIColor colorWithWhite:0.821 alpha:1.000] CGColor]];
     [cell.leftLabel.layer setBorderWidth:1.0];
     
+    
+    if (newCell == YES) {
+        cell.middleLabel.text = self.skillusLevel;
+    }
+    
     [cell.middleLabel.layer setBorderColor:[[UIColor colorWithWhite:0.821 alpha:1.000] CGColor]];
     [cell.middleLabel.layer setBorderWidth:1.0];
     [cell.rightLabel.layer setBorderColor:[[UIColor colorWithWhite:0.821 alpha:1.000] CGColor]];
@@ -116,15 +131,20 @@
     return cell;
 }
 
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSArray *listData = [self.sectionContent objectAtIndex:[indexPath section]];
     NSUInteger row = [indexPath row];
     NSString *rowValue = [listData objectAtIndex:row];
     
+    lostData = [indexPath section];
+    RowAtIndexPathOfSkills = row;
+
     NSString *message = [[NSString alloc] initWithString:rowValue];
     UINib *nib = [UINib nibWithNibName:@"EHSkillLevelPopup" bundle:nil];
     EHSkillLevelPopup *popup = [[nib instantiateWithOwner:nil options:nil] lastObject];
+    
     if (isPopup == NO) {
         CGRect r = self.view.frame;
         CGRect f = popup.frame;
@@ -145,9 +165,25 @@
             popup.transform = CGAffineTransformMakeScale(1, 1);
         }];
         isPopup = YES;
-    }
-    
+    } 
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 @end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -13,8 +13,8 @@
 
 
 - (IBAction)onHide:(UIButton *)sender {
-    [_delegate skillLevelPopup:self didSelectLevel:EHSkillLevelNone];
     _skillLevel = sender.titleLabel.text;
+    [_delegate skillLevelPopup:self didSelectLevel:EHSkillLevelNone];
 }
 
 @end

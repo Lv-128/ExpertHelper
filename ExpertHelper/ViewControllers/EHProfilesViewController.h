@@ -15,12 +15,15 @@
 
 @end
 
-
 @interface EHProfilesViewController : UIViewController
 {
     BOOL isPopup;
+    BOOL newCell;
+    NSInteger RowAtIndexPathOfSkills;
+    NSInteger lostData;
 }
+
+@property (nonatomic, copy) NSString *skillusLevel;
 @property (nonatomic, strong) id<EHProfilesViewControllerDelegate> delegate;
-@property (nonatomic, copy) NSString *skillLevel;
-@property (nonatomic, copy) NSIndexPath *skill;
+
 @end
