@@ -17,7 +17,7 @@
 @property (nonatomic, strong) NSArray *defaultCalendars;// Default calendar associated with the above event store
 
 @property (nonatomic, strong) NSArray *eventsList;// Array of all events happening within the next 24 hours
-
+@property (nonatomic, strong) NSArray *defaultCalendar;
 
 -(NSArray * )fetchEvents;
 
