@@ -14,6 +14,7 @@
 #import "EHRecruiterViewController.h"
 #import "EHITAViewController.h"
 @interface EHListOfInterviewsViewController ()<UICollectionViewDataSource, UICollectionViewDelegate, UIGestureRecognizerDelegate>
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *barButton;
 
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (strong, nonatomic) NSDateFormatter *cellDateFormatter;
@@ -33,6 +34,10 @@
     self.cellDateFormatter = [[NSDateFormatter alloc] init];
     [self.cellDateFormatter setDateStyle:NSDateFormatterFullStyle];
     [self.cellDateFormatter setTimeStyle:NSDateFormatterShortStyle];
+    _barButton.target = self.revealViewController;
+    _barButton.action = @selector(revealToggle:);
+    
+   [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
 }
 
 - (void)didReceiveMemoryWarning

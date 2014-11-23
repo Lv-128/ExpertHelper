@@ -5,7 +5,7 @@
 //  Created by alena on 11/14/14.
 //  Copyright (c) 2014 Katolyk S. All rights reserved.
 //
-#import "EHInterviewFromViewController.h"
+
 #import "EHCalendarEventsParser.h"
 #import "EHMainEventsTableViewController.h"
 
@@ -89,21 +89,7 @@ enum {  All = 0, ITA = 1, External = 2, None = 3};
 
 
 
--(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    if ( [[segue identifier] isEqualToString:@"GoToInterviewForm"])
-    {
-        EHInterviewFromViewController * interviewForm = [segue destinationViewController];
-        NSIndexPath * myIndexPath = [self.tableView indexPathForSelectedRow];
-        int row = [myIndexPath row];
-        NSString *dateRepresentingThisDay = [self.sortedDays objectAtIndex:myIndexPath.section];
-        NSArray *eventsOnThisDay = [self.sections objectForKey:dateRepresentingThisDay];
-        EKEvent *event = [eventsOnThisDay objectAtIndex:row];
-        interviewForm.date = [self.cellDateFormatter stringFromDate:event.startDate];
-        
-    }
-    
-}
+
 
 #pragma mark - UITableViewDataSource methods
 

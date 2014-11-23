@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "EHRevealViewController.h"
 
 @interface EHCalendarFormViewController : UITableViewController
 {

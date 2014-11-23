@@ -31,6 +31,8 @@
 @property (nonatomic,strong) EHEventsGetInfoParser * interviewFromEventsParser;
 @property (strong , nonatomic) UIRefreshControl * refreshControl;
 
+
+
 @end
 
 @implementation EHCalendarFormViewController
@@ -154,15 +156,32 @@ enum {  All = 0, ITA = 1, External = 2, None = 3};
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    if ( [[segue identifier] isEqualToString:@"GoToMainEventsForm"])
-    {
-        EHListOfInterviewsViewController * eventsMainForm = [segue destinationViewController];
-        NSIndexPath * myIndexPath = [self.tableView indexPathForSelectedRow];
-        //  NSString *selectedMonth = [self.sortedDays objectAtIndex:myIndexPath.row];
-        NSArray *weeksOnThisMonth = [[self.sortedDays objectAtIndex:myIndexPath.row] weeks];
+    if ([segue isKindOfClass: [EHRevealViewControllerSegue class]] ){
+        EHRevealViewControllerSegue * ehSegue = (EHRevealViewControllerSegue *)segue;
+        ehSegue.performBlock = ^(EHRevealViewControllerSegue* rvc_segue, UIViewController* svc, UIViewController* dvc) {
+            
+            EHListOfInterviewsViewController * eventsMainForm = [segue destinationViewController];
+            NSIndexPath * myIndexPath = [self.tableView indexPathForSelectedRow];
+            NSArray *weeksOnThisMonth = [[self.sortedDays objectAtIndex:myIndexPath.row] weeks];
+            eventsMainForm.sortedWeeks = weeksOnThisMonth;
+                UINavigationController* navController = (UINavigationController*)self.revealViewController.frontViewController;
+                [navController setViewControllers: @[dvc] animated: NO ];
+                [self.revealViewController setFrontViewPosition: FrontViewPositionLeft animated: YES];
         
-        eventsMainForm.sortedWeeks = weeksOnThisMonth;
-    }
+            };
+            
+        }
+        
+    
+//    if ( [[segue identifier] isEqualToString:@"GoToMainEventsForm"])
+//    {
+//        EHListOfInterviewsViewController * eventsMainForm = [segue destinationViewController];
+//        NSIndexPath * myIndexPath = [self.tableView indexPathForSelectedRow];
+//        //  NSString *selectedMonth = [self.sortedDays objectAtIndex:myIndexPath.row];
+//        NSArray *weeksOnThisMonth = [[self.sortedDays objectAtIndex:myIndexPath.row] weeks];
+//        
+//        eventsMainForm.sortedWeeks = weeksOnThisMonth;
+//    }
 }
 
 #pragma mark - UITableViewDataSource methods
@@ -179,6 +198,8 @@ enum {  All = 0, ITA = 1, External = 2, None = 3};
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
+    tableView.sectionHeaderHeight = 25;
+    
     return @"MONTHs";
 }
 
@@ -195,8 +216,17 @@ enum {  All = 0, ITA = 1, External = 2, None = 3};
     
     cell.textLabel.text = namesOfMonths;
     
-    //cell.detailTextLabel.text = [self.cellDateFormatter stringFromDate:event.startDate];
     
+    int numOfInterviews = 0;
+  
+        for (int j =0 ; j<[[sortedDays objectAtIndex:indexPath.row] weeks].count;j++)
+        {
+            numOfInterviews+=[[[[sortedDays objectAtIndex:indexPath.row] weeks] objectAtIndex:j] interviews].count;
+        }
+
+    
+    cell.detailTextLabel.text = [NSString stringWithFormat: @" %d interviews", numOfInterviews];
+   
     return cell;
 }
 
