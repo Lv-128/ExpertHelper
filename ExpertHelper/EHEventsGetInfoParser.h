@@ -28,6 +28,7 @@
 
 @property (nonatomic, copy) NSString *firstName;
 @property (nonatomic, copy) NSString *lastName;
+@property (nonatomic, copy) NSString * emailAddress;
 
 -(id)initWithName:firstName andLastName:lastName;
 
@@ -49,7 +50,7 @@
 
 -(bool)canDefineTypeAsITA:(NSString *)string;
 -(EHCalendarParseResult *)getNameOfCandidateFromTitle:(NSString *)string;
-- (EHCalendarParseResult *)getNameOfRecruiter:(NSString *)string;
+- (EHCalendarParseResult *)getNameOfRecruiter:(NSString*)string andEmailAddress :(NSString *) email;
 -(id)initWithObjection:(EHCalendarParseOptions *)options;
 -(NSArray *) parseAllEventsToInterviews;
 -(NSArray *)sortAllInterviewsToDictionary;

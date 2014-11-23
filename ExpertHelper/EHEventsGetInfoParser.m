@@ -5,7 +5,6 @@
 //  Created by alena on 11/19/14.
 //  Copyright (c) 2014 Katolyk S. All rights reserved.
 //
-
 #import "EHEventsGetInfoParser.h"
 
 
@@ -61,6 +60,7 @@
 - (void)dealloc {
     self.firstName = nil;
     self.lastName = nil;
+    self.emailAddress = nil;
 }
 
 
@@ -89,8 +89,8 @@
         _namesMonth = [NSArray arrayWithObjects:@"January",@"February", @"March",@"April",@"May",@"June",@"July",@"August",
                        @"September",@"October",@"November",@"December", nil];
         _events = [NSArray array];
-    
-      }
+        
+    }
     return  self;
 }
 
@@ -121,7 +121,11 @@
         interview.nameOfCandidate = parseNameAndLastnameOfCandidate.firstName;
         interview.lastNameOfCandidate = parseNameAndLastnameOfCandidate.lastName;
         
-        EHCalendarParseResult * parseNameAndLastnameOfRecruiter = [self getNameOfRecruiter:event.organizer.name];
+        
+        
+        NSString * name = [[event.attendees objectAtIndex: 0] name];
+        NSString * email = [[event.attendees objectAtIndex: 0] emailAddress];
+        EHCalendarParseResult * parseNameAndLastnameOfRecruiter = [self getNameOfRecruiter:name andEmailAddress:email];
         interview.nameOfRecruiter = parseNameAndLastnameOfRecruiter.firstName;
         interview.lastNameOfRecruiter = parseNameAndLastnameOfRecruiter.lastName;
         
@@ -170,7 +174,7 @@
         keyForDictionary = [keyForDictionary stringByAppendingString:[NSString stringWithFormat: @", %d", yearday]];
         
         EHMonth * curMonth;
- 
+        
         NSPredicate *predicate1 = [NSPredicate predicateWithFormat:@"SELF.nameOfMonth LIKE[cd] %@", keyForDictionary];
         NSArray *filtered1 = [allMonthes filteredArrayUsingPredicate:predicate1];
         if (filtered1.count == 0)
@@ -192,14 +196,14 @@
             
             curMonth = [allMonthes objectAtIndex:index];
         }
-
+        
         key=[key stringByAppendingString:[NSString stringWithFormat:@", week : %d - %d ", starOfWeek, endOfWeek]];
         
         
         NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF.nameOfWeek LIKE[cd] %@", key];
         NSArray *filtered = [curMonth.weeks filteredArrayUsingPredicate:predicate];
         EHWeek * curWeek ;
-          if (filtered.count == 0)
+        if (filtered.count == 0)
         {
             curWeek = [[EHWeek alloc]init];
             curWeek.nameOfWeek = key;
@@ -213,14 +217,14 @@
         }
         else
         {
-                NSUInteger index = [curMonth.weeks  indexOfObjectPassingTest:^BOOL(id obj, NSUInteger idx, BOOL *stop) {
-                    if ([[(EHWeek *)obj nameOfWeek] isEqualToString:key]) {
-                        *stop = YES;
-                        return YES;
-                    }
-                    return NO;
-                }];
-                                                                                                          
+            NSUInteger index = [curMonth.weeks  indexOfObjectPassingTest:^BOOL(id obj, NSUInteger idx, BOOL *stop) {
+                if ([[(EHWeek *)obj nameOfWeek] isEqualToString:key]) {
+                    *stop = YES;
+                    return YES;
+                }
+                return NO;
+            }];
+            
             curWeek = [curMonth.weeks objectAtIndex:index];
             
             NSMutableArray * arr = [curWeek.interviews mutableCopy];
@@ -262,28 +266,10 @@
     return isIta;
 }
 
-- (EHCalendarParseResult *)getNameOfRecruiter:(NSString*)string
+- (EHCalendarParseResult *)getNameOfRecruiter:(NSString*)string andEmailAddress :(NSString *) email
 {
     EHCalendarParseResult * parseResult = [[EHCalendarParseResult alloc]init];;
     NSArray * parseWithSpaces = [string componentsSeparatedByString: @" "];
-    /* if (parseWithSpaces.count > 0)
-     {
-     if (_parseOptions.firstNameFirst == YES)
-     {
-     NSString * firstName = parseWithSpaces[0];
-     NSString * lastName = parseWithSpaces[1];
-     parseResult = [[EHCalendarParseResult alloc] initWithName:firstName andLastName:lastName];
-     }
-     else if (_parseOptions.firstNameFirst == NO)
-     {
-     NSString * firstName = parseWithSpaces[1];
-     NSString * lastName = parseWithSpaces[0];
-     parseResult = [[EHCalendarParseResult alloc] initWithName:firstName andLastName:lastName];
-     }
-     }
-     else {
-     parseResult = [[EHCalendarParseResult alloc] initWithName:@"Unknown" andLastName:@"Unknown"];
-     }*/
     if (parseWithSpaces.count == 0) parseResult = [[EHCalendarParseResult alloc] initWithName:@"Unknown" andLastName:@"Unknown"];
     if (parseWithSpaces.count == 1) parseResult = [[EHCalendarParseResult alloc] initWithName:parseWithSpaces[0] andLastName:@"Unknown"];
     if (parseWithSpaces.count > 1)
@@ -356,5 +342,4 @@
     return self;
 }
 @end
-
 

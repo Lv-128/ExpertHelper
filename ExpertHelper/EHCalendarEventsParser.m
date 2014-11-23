@@ -78,9 +78,24 @@
 // when  granted permission to Calendar  INITIALIZATION OF EVENTS
 -(void)accessGrantedForCalendar
 {
-    //self.defaultCalendar = self.eventStore.defaultCalendarForNewEvents;
-    self.defaultCalendar = [self.eventStore calendarWithIdentifier:@"expert.helper.tester@gmail.com"];
     
+    NSMutableArray*calendars = [[NSMutableArray alloc]init];
+    
+    NSArray * accountsArray = [self.eventStore calendarsForEntityType:EKEntityTypeEvent];
+    NSMutableArray  * calendarIdentifiers = [[NSMutableArray alloc]init ];
+    
+    
+    for (int i = 0; i < [accountsArray count]; i++) {
+        EKCalendar * tempCal = [accountsArray objectAtIndex:i];
+        if (tempCal.type == EKCalendarTypeCalDAV)
+        {
+            [calendars addObject:tempCal];
+            [calendarIdentifiers addObject:tempCal.calendarIdentifier];
+            //  NSString *cal = [[accountsArray objectAtIndex:i] valueForKey:@"title"];
+            //   NSLog(cal);
+        }
+    }
+    self.defaultCalendars = calendars;
     NSArray * temp = [self fetchEvents];
     self.eventsList = temp;
 }
@@ -91,7 +106,7 @@
     NSDate *startDate = [[NSDate alloc] initWithTimeIntervalSinceNow: -secondsPerDay * 365]; // 10 days ago
     NSDate *endDate = [self dateByAddingYears: 3 toDate: startDate];
 	// We will only search the default calendar for our events
-	NSArray *calendarArray = [NSArray arrayWithObject: self.defaultCalendar];
+	NSArray *calendarArray = self.defaultCalendars;
     
     // Create the predicate
 	NSPredicate *predicate = [self.eventStore predicateForEventsWithStartDate: startDate
@@ -100,7 +115,7 @@
 	// Fetch all events that match the predicate
 	NSMutableArray *events = [NSMutableArray arrayWithArray:[self.eventStore eventsMatchingPredicate: predicate]];
     
-
+    
     NSMutableArray *titles = [[NSMutableArray alloc ] init];
     for (EKEvent *event in events)
     {
