@@ -78,8 +78,8 @@
 // when  granted permission to Calendar  INITIALIZATION OF EVENTS
 -(void)accessGrantedForCalendar
 {
-    //self.defaultCalendar = self.eventStore.defaultCalendarForNewEvents;
-    self.defaultCalendar = [self.eventStore calendarWithIdentifier:@"expert.helper.tester@gmail.com"];
+    self.defaultCalendar = self.eventStore.defaultCalendarForNewEvents;
+    //self.defaultCalendar = [self.eventStore calendarWithIdentifier:@"expert.helper.tester@gmail.com"];
     
     NSArray * temp = [self fetchEvents];
     self.eventsList = temp;
