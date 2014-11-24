@@ -44,11 +44,14 @@
 @end
 @implementation EHCalendarParseOptions
 
--(id) initWithOption:(bool) option
+-(id) initWithOptionFirstNameFirst:(bool) firstNameFirst andTheOneCandidate:(BOOL)theOneCandidate andIsIta:(bool)isIta
 {
     self = [super init];
     {
-        self.firstNameFirst= option;
+        self.firstNameFirst= firstNameFirst;
+        self.isOneCandidate = theOneCandidate;
+        self.isIta = isIta;
+        
     }
     return self;
 }
@@ -94,9 +97,13 @@
     return  self;
 }
 
+
 -(NSArray *) parseAllEventsToInterviews
 {
     [_calEventParser checkEventStoreAccessForCalendar];  // Check whether we are authorized to access Calendar
+    
+    
+    
     if(_calEventParser.eventsList.count>0)
     {
         _events = _calEventParser.eventsList;
@@ -110,18 +117,34 @@
     
     for (EKEvent * event in _events)
     {
+        
+        
         EHInterview * interview = [[EHInterview alloc]init];
-        BOOL isIta = [self canDefineTypeAsITA:event.title];
-        if (isIta)
+        
+        
+        
+        [self canDefineTypeAsITA:event.title];
+        if (self.parseOptions.isIta)
             interview.typeOfInterview = @"ITA";
         else
             interview.typeOfInterview = @"None";
         
-        EHCalendarParseResult * parseNameAndLastnameOfCandidate = [self getNameOfCandidateFromTitle:event.title];
-        interview.nameOfCandidate = parseNameAndLastnameOfCandidate.firstName;
-        interview.lastNameOfCandidate = parseNameAndLastnameOfCandidate.lastName;
         
-        
+        [self canDefineAmountCandidates:event.title];
+        if (_parseOptions.isOneCandidate)
+        {
+            EHCalendarParseResult * parseNameAndLastnameOfCandidate = [self getNameOfCandidateFromTitle:event.title];
+            NSMutableArray * arr = [[NSMutableArray alloc] init];
+            [arr addObject:parseNameAndLastnameOfCandidate];
+            interview.nameAndLastNameOfCandidates = arr;
+            
+        }
+        else{
+            event.notes = @"name : \n Alena Pyanyh \n Ivan Ivanov";
+            NSArray * parseNameAndLastnameOfCandidate = [self getNamesOfCandidatesFromNote:event.notes];
+      
+            interview.nameAndLastNameOfCandidates = parseNameAndLastnameOfCandidate;
+        }
         
         NSString * name = [[event.attendees objectAtIndex: 0] name];
         NSString * email = [[event.attendees objectAtIndex: 0] emailAddress];
@@ -246,13 +269,12 @@
 }
 
 
--(bool)canDefineTypeAsITA:(NSString *)string
+- (void)canDefineTypeAsITA:(NSString *)string
 {
-    bool isIta = NO;
+    self.parseOptions.isIta =NO;
     NSError *error = NULL;
     NSString *pattern = @"ita|it academy|itacademy";
-    
-    // NSString *string = @"ITA Interview With Alena Pyanyh ita on friday Ita ITA";
+
     NSRange range = NSMakeRange(0, string.length);
     
     
@@ -261,11 +283,28 @@
     NSArray *matches = [regex matchesInString:string options:(NSMatchingOptions)regexOptions range:range];
     if ([matches count] > 0)
     {
-        isIta = YES;
+        self.parseOptions.isIta = YES;
     }
-    return isIta;
+    
 }
+- (void)canDefineAmountCandidates:(NSString *)string
+{
+          _parseOptions.isOneCandidate = YES;
+    NSError *error = NULL;
+    NSString *pattern = @"candidates";
 
+    NSRange range = NSMakeRange(0, string.length);
+    
+    
+    NSRegularExpressionOptions regexOptions = NSRegularExpressionCaseInsensitive;
+    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:pattern options:regexOptions error:&error];
+    NSArray *matches = [regex matchesInString:string options:(NSMatchingOptions)regexOptions range:range];
+    if ([matches count] > 0)
+    {
+        _parseOptions.isOneCandidate = NO;
+    }
+    
+}
 - (EHCalendarParseResult *)getNameOfRecruiter:(NSString*)string andEmailAddress :(NSString *) email
 {
     EHCalendarParseResult * parseResult = [[EHCalendarParseResult alloc]init];;
@@ -305,7 +344,7 @@
         matchRange.location += 6;
         matchRange.length -= 6;
         
-        NSLog(@"%@",[string substringWithRange:matchRange]);
+      //  NSLog(@"%@",[string substringWithRange:matchRange]);
         
         [results addObject:[string substringWithRange:matchRange]];
     }
@@ -330,6 +369,49 @@
         parseResult = [[EHCalendarParseResult alloc] initWithName:@"Unknown" andLastName:@"Unknown"];
     }
     return parseResult;
+}
+- (NSArray *)getNamesOfCandidatesFromNote:(NSString*)string
+{
+    NSError *error = NULL;
+    NSMutableArray * results = [[NSMutableArray alloc ]initWithCapacity: 0];
+    
+  //  NSString * pat3 = @"([A-Z]([a-z'-]*))\\s([A-Z]([a-z'-]*))\\s*";
+    NSString * pat4 = @"([A-Z]([a-z'-]*))([-']*[A-Z]*[a-z']*)*\\s([A-Z]([a-z'-]*))([-']*[A-Z]*[a-z']*)*\\s*";
+    NSRange range = NSMakeRange(0, string.length);
+    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:pat4 options:0 error:&error];
+    NSArray *matches = [regex matchesInString:string options:NSMatchingReportCompletion range:range];
+    for (NSTextCheckingResult *match in matches)
+    {
+        NSRange matchRange = match.range;
+       // matchRange.location += 6;
+        //matchRange.length -= 6;
+        
+      //  NSLog(@"%@",[string substringWithRange:matchRange]);
+        
+        [results addObject:[string substringWithRange:matchRange]];
+    }
+    
+    EHCalendarParseResult * parseResult ;
+    NSMutableArray * stringResults = [[NSMutableArray alloc] init];
+    
+    for (NSString * str in results)
+    {
+        NSArray* parseWithSpaces = [str componentsSeparatedByString: @" "];
+        if (_parseOptions.firstNameFirst == YES)
+        {
+            NSString * firstName = parseWithSpaces[0];
+            NSString * lastName = parseWithSpaces[1];
+            parseResult = [[EHCalendarParseResult alloc] initWithName:firstName andLastName:lastName];
+        }
+        else{
+            NSString * firstName = parseWithSpaces[1];
+            NSString * lastName = parseWithSpaces[0];
+            parseResult = [[EHCalendarParseResult alloc] initWithName:firstName andLastName:lastName];
+        }
+        [stringResults addObject:parseResult];
+    }
+    
+    return stringResults;
 }
 
 - (id)initWithObjection:(EHCalendarParseOptions *)options {

@@ -30,7 +30,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+
     self.cellDateFormatter = [[NSDateFormatter alloc] init];
     [self.cellDateFormatter setDateStyle:NSDateFormatterFullStyle];
     [self.cellDateFormatter setTimeStyle:NSDateFormatterShortStyle];
@@ -87,7 +87,8 @@
     else
         labelLocation.text = [@" " stringByAppendingString:event.locationOfInterview];
     
-    labelCandidate.text = [@" " stringByAppendingString:[[event.nameOfCandidate stringByAppendingString:@" "] stringByAppendingString:event.lastNameOfCandidate]  ] ;
+    //labelCandidate.text = [@" " stringByAppendingString:[[event.nameOfCandidate stringByAppendingString:@" "] stringByAppendingString:event.lastNameOfCandidate]  ] ;
+    
     labelRecruiter.text = [@" " stringByAppendingString:[[event.nameOfRecruiter stringByAppendingString:@" "] stringByAppendingString:event.lastNameOfRecruiter]  ] ;
     
     NSArray * arrLabels = [NSArray arrayWithObjects:labelType,labelDate,labelLocation,labelCandidate,labelRecruiter,nil];
@@ -174,8 +175,8 @@
         
         EHInterview * curInterview = [[[sortedWeeks objectAtIndex:tappedRow.section ] interviews] objectAtIndex:tappedRow.row];
         EHCandidateFormViewController *candidateForm = [self.storyboard instantiateViewControllerWithIdentifier:@"CandidateFormView"];
-        candidateForm.nameOfCandidate = curInterview.nameOfCandidate;
-        candidateForm.lastnameOfCandidate = curInterview.lastNameOfCandidate;
+        //candidateForm.nameOfCandidate = curInterview.nameOfCandidate;
+       // candidateForm.lastnameOfCandidate = curInterview.lastNameOfCandidate;
         candidateForm.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
         [self.navigationController pushViewController:candidateForm animated:YES ];
     }

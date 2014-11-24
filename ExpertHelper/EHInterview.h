@@ -11,12 +11,13 @@
 
 @interface EHInterview : NSObject
 
-@property (strong, nonatomic) NSString * nameOfCandidate;
-@property (strong, nonatomic) NSString * lastNameOfCandidate;
+
+@property (strong, nonatomic) NSArray * nameAndLastNameOfCandidates;
 @property (strong, nonatomic) NSString * nameOfRecruiter;
 @property (strong, nonatomic) NSString * lastNameOfRecruiter;
 @property (strong, nonatomic) NSDate * dateOfInterview;
 @property (strong, nonatomic) NSString * locationOfInterview;
 @property (nonatomic, strong) NSString * typeOfInterview;
+
 
 @end
