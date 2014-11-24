@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		11CDFE5F1A236AD900E08CC2 /* EHInterviewFormItAcademy.m in Sources */ = {isa = PBXBuildFile; fileRef = 11CDFE5E1A236AD900E08CC2 /* EHInterviewFormItAcademy.m */; };
 		2790F4E31A139854001B0956 /* EHProfilesTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2790F4E21A139854001B0956 /* EHProfilesTableViewCell.m */; };
 		2790F4E61A1398D8001B0956 /* EHProfilesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2790F4E51A1398D8001B0956 /* EHProfilesViewController.m */; };
 		B5DF299F1A164A280076862E /* EHInterview.m in Sources */ = {isa = PBXBuildFile; fileRef = B5DF299B1A164A280076862E /* EHInterview.m */; };
@@ -55,6 +56,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		11CDFE5C1A236AD900E08CC2 /* EHInterviewForm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EHInterviewForm.h; path = ExpertHelper/EHInterviewForm.h; sourceTree = "<group>"; };
+		11CDFE5D1A236AD900E08CC2 /* EHInterviewFormItAcademy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EHInterviewFormItAcademy.h; path = ExpertHelper/EHInterviewFormItAcademy.h; sourceTree = "<group>"; };
+		11CDFE5E1A236AD900E08CC2 /* EHInterviewFormItAcademy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EHInterviewFormItAcademy.m; path = ExpertHelper/EHInterviewFormItAcademy.m; sourceTree = "<group>"; };
 		2790F4E11A139854001B0956 /* EHProfilesTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EHProfilesTableViewCell.h; path = Views/EHProfilesTableViewCell.h; sourceTree = "<group>"; };
 		2790F4E21A139854001B0956 /* EHProfilesTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EHProfilesTableViewCell.m; path = Views/EHProfilesTableViewCell.m; sourceTree = "<group>"; };
 		2790F4E41A1398D8001B0956 /* EHProfilesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EHProfilesViewController.h; path = ViewControllers/EHProfilesViewController.h; sourceTree = "<group>"; };
@@ -188,6 +192,9 @@
 			isa = PBXGroup;
 			children = (
 				D967F20C1A1E4DEE0009639C /* EHITAViewController.h */,
+				11CDFE5C1A236AD900E08CC2 /* EHInterviewForm.h */,
+				11CDFE5D1A236AD900E08CC2 /* EHInterviewFormItAcademy.h */,
+				11CDFE5E1A236AD900E08CC2 /* EHInterviewFormItAcademy.m */,
 				D967F20D1A1E4DEE0009639C /* EHITAViewController.m */,
 				D967F20E1A1E4DEE0009639C /* EHITAViewControllerCell.h */,
 				D967F20F1A1E4DEE0009639C /* EHITAViewControllerCell.m */,
@@ -474,6 +481,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D967F2111A1E4DEE0009639C /* EHITAViewControllerCell.m in Sources */,
+				11CDFE5F1A236AD900E08CC2 /* EHInterviewFormItAcademy.m in Sources */,
 				2790F4E31A139854001B0956 /* EHProfilesTableViewCell.m in Sources */,
 				D9B0CC711A03B17500544323 /* main.m in Sources */,
 				D9F15AD11A1A575A00E4DC62 /* EHListOfInterviewsViewController.m in Sources */,
