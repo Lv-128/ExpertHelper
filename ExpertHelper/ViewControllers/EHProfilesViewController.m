@@ -1,9 +1,9 @@
 //
-//  EHProfilesViewController.m
-//  ExpertHelper
+// EHProfilesViewController.m
+// ExpertHelper
 //
-//  Created by Taras Koval on 11/10/14.
-//  Copyright (c) 2014 Katolyk S. All rights reserved.
+// Created by Taras Koval on 11/10/14.
+// Copyright (c) 2014 Katolyk S. All rights reserved.
 //
 
 #import "EHProfilesViewController.h"
@@ -34,11 +34,16 @@
     isPopup = NO;
     newCell = YES;
     
-    self.skillusLevel = popup.skillLevel;
+    // self.skillusLevel = popup.skillLevel;
+    
+    //static NSString *cellIdentifier = @"ProfileCell";
+    
     
     NSIndexPath *rowToReload = [NSIndexPath indexPathForRow: RowAtIndexPathOfSkills inSection:lostData];
-    NSArray *rowsToReload = [NSArray arrayWithObjects:rowToReload, nil];
-    [self.tableView reloadRowsAtIndexPaths: rowsToReload withRowAnimation:UITableViewRowAnimationNone];
+    //NSArray *rowsToReload = [NSArray arrayWithObjects:rowToReload, nil];
+    //[self.tableView reloadRowsAtIndexPaths: rowsToReload withRowAnimation:UITableViewRowAnimationNone];
+    EHProfilesTableViewCell *cell = [self.tableView cellForRowAtIndexPath: rowToReload];
+    cell.middleLabel.text = popup.skillLevel;
 }
 
 - (void)viewDidLoad
@@ -46,10 +51,10 @@
     isPopup = NO;
     newCell = NO;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    self.tableSections = @[ @"Programming languages", @"Tech. Domains", @"Skill" ];
+    self.tableSections = @[ @"Programming languages", @"Tech. Domains", @"Skill"];
     self.sectionContent = @[ @[ @"C", @"C++", @"C#", @"Objective-C" ],
-                             @[ @"Multithreading", @"Web", @"Audio" ],
-                             @[ @"Core", @"Desktop", @"Web", @"DB", @"BI", @"RIA", @"Multimedia", @"Mobile", @"Embedded" ] ];
+  @[ @"Multithreading", @"Web", @"Audio" ],
+  @[ @"Core", @"Desktop", @"Web", @"DB", @"BI", @"RIA", @"Multimedia", @"Mobile", @"Embedded" ] ];
     [super viewDidLoad];
     // Do any additional setup after loading the view.
 }
@@ -122,10 +127,10 @@
     [cell.leftLabel.layer setBorderWidth:1.0];
     
     
-    if (newCell == YES) {
-        cell.middleLabel.textAlignment = NSTextAlignmentCenter;
-        cell.middleLabel.text = self.skillusLevel;
-    }
+    
+    cell.middleLabel.textAlignment = NSTextAlignmentCenter;
+    //cell.middleLabel.text = self.skillusLevel;
+    
     
     [cell.middleLabel.layer setBorderColor:[[UIColor colorWithWhite:0.821 alpha:1.000] CGColor]];
     [cell.middleLabel.layer setBorderWidth:1.0];
@@ -144,7 +149,7 @@
     
     lostData = [indexPath section];
     RowAtIndexPathOfSkills = row;
-
+    
     NSString *message = [[NSString alloc] initWithString:rowValue];
     UINib *nib = [UINib nibWithNibName:@"EHSkillLevelPopup" bundle:nil];
     EHSkillLevelPopup *popup = [[nib instantiateWithOwner:nil options:nil] lastObject];
@@ -174,20 +179,3 @@
 }
 
 @end
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
