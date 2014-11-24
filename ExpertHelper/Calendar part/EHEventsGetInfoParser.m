@@ -145,7 +145,8 @@
       
             interview.nameAndLastNameOfCandidates = parseNameAndLastnameOfCandidate;
             
-           // NSLog(@"%@",[[interview.nameAndLastNameOfCandidates objectAtIndex:0] firstName]);
+       //    NSLog(@"%@",[[interview.nameAndLastNameOfCandidates objectAtIndex:0] firstName]);
+       //    NSLog(@"%@",[[interview.nameAndLastNameOfCandidates objectAtIndex:0] lastName]);
         }
         
         NSString * name = [[event.attendees objectAtIndex: 0] name];
@@ -396,7 +397,7 @@
         [results addObject:[string substringWithRange:matchRange]];
     }
     
-    EHCalendarParseResult * parseResult ;
+    EHCalendarParseResult * parseResult;
     
     
     for (NSString * str in results)
