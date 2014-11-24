@@ -15,6 +15,7 @@
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) NSArray *tableSections;
 @property (nonatomic, strong) NSArray *sectionContent;
+@property (nonatomic, strong) NSArray * array;
 
 @end
 
@@ -34,16 +35,23 @@
     isPopup = NO;
     newCell = YES;
     
-    // self.skillusLevel = popup.skillLevel;
-    
-    //static NSString *cellIdentifier = @"ProfileCell";
-    
-    
     NSIndexPath *rowToReload = [NSIndexPath indexPathForRow: RowAtIndexPathOfSkills inSection:lostData];
-    //NSArray *rowsToReload = [NSArray arrayWithObjects:rowToReload, nil];
-    //[self.tableView reloadRowsAtIndexPaths: rowsToReload withRowAnimation:UITableViewRowAnimationNone];
-    EHProfilesTableViewCell *cell = [self.tableView cellForRowAtIndexPath: rowToReload];
-    cell.middleLabel.text = popup.skillLevel;
+    NSArray *rowsToReload = [NSArray arrayWithObjects:rowToReload, nil];
+    
+    
+    NSMutableArray * tempMainArr = [[NSMutableArray alloc]initWithCapacity:0];
+    NSMutableArray * temp = [_array objectAtIndex:rowToReload.section];
+    if (temp == nil)
+    {
+        temp = [[NSMutableArray alloc]init];
+        [temp insertObject:popup.skillLevel atIndex:rowToReload.row];
+        [tempMainArr insertObject:temp atIndex:rowToReload.section];
+        _array = tempMainArr;
+    }
+    else
+        [[_array objectAtIndex:rowToReload.section] insertObject:popup.skillLevel atIndex:rowToReload.row];
+    
+    [self.tableView reloadRowsAtIndexPaths: rowsToReload withRowAnimation:UITableViewRowAnimationNone];
 }
 
 - (void)viewDidLoad
@@ -53,8 +61,21 @@
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableSections = @[ @"Programming languages", @"Tech. Domains", @"Skill"];
     self.sectionContent = @[ @[ @"C", @"C++", @"C#", @"Objective-C" ],
-  @[ @"Multithreading", @"Web", @"Audio" ],
-  @[ @"Core", @"Desktop", @"Web", @"DB", @"BI", @"RIA", @"Multimedia", @"Mobile", @"Embedded" ] ];
+                             @[ @"Multithreading", @"Web", @"Audio" ],
+                             @[ @"Core", @"Desktop", @"Web", @"DB", @"BI", @"RIA", @"Multimedia", @"Mobile", @"Embedded" ] ];
+    _array = [NSMutableArray array];
+    NSMutableArray * tempMainArr = [[NSMutableArray alloc]initWithCapacity:0];
+    NSMutableArray * temp = [[NSMutableArray alloc]initWithCapacity:0];
+    
+    for (int i = 0; i < self.tableSections.count;i++)
+    {
+        for (int b = 0; b < self.sectionContent.count; b++)
+            [temp addObject:@""];
+        
+        [tempMainArr insertObject:temp atIndex:i];
+    }
+    
+    _array = tempMainArr;
     [super viewDidLoad];
     // Do any additional setup after loading the view.
 }
@@ -69,7 +90,6 @@
 {
     return [self.tableSections count];
 }
-
 
 - (NSInteger)tableView:(UITableView *)table numberOfRowsInSection:(NSInteger)section
 {
@@ -90,16 +110,20 @@
     UILabel *labelRight = [[UILabel alloc] initWithFrame:CGRectMake(tableView.frame.size.width * 0.667, 0.0, tableView.frame.size.width / 3.0, 18.0)];
     [labelRight setFont:[UIFont boldSystemFontOfSize:14]];
     [labelRight setTextAlignment:NSTextAlignmentCenter];
-    
+
+
+    labelLeft.textAlignment = NSTextAlignmentLeft;
+    labelMiddle.textAlignment = NSTextAlignmentCenter;
+    labelRight.textAlignment = NSTextAlignmentCenter;
     labelLeft.text = [self.tableSections objectAtIndex:section];
     labelMiddle.text = @"Required";
     labelRight.text = @"Estimate";
-    
+
     [view addSubview:labelLeft];
     [view addSubview:labelMiddle];
     [view addSubview:labelRight];
     [view setBackgroundColor:[UIColor colorWithRed:166/255.0 green:177/255.0 blue:186/255.0 alpha:1.0]];
-    
+
     return view;
 }
 
@@ -117,15 +141,15 @@
                 reuseIdentifier:cellIdentifier];
     }
     
-    NSUInteger row = [indexPath row];
+    NSInteger row = [indexPath row];
     
     cell.leftLabel.text = [listData objectAtIndex:row];
     [cell.leftLabel.layer setBorderColor:[[UIColor colorWithWhite:0.821 alpha:1.000] CGColor]];
     [cell.leftLabel.layer setBorderWidth:1.0];
     
-    
-    
     cell.middleLabel.textAlignment = NSTextAlignmentCenter;
+    
+    cell.middleLabel.text = [[_array objectAtIndex:indexPath.section]objectAtIndex:indexPath.row];
     
     [cell.middleLabel.layer setBorderColor:[[UIColor colorWithWhite:0.821 alpha:1.000] CGColor]];
     [cell.middleLabel.layer setBorderWidth:1.0];
@@ -134,7 +158,6 @@
     
     return cell;
 }
-
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {

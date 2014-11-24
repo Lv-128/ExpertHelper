@@ -140,11 +140,8 @@
             
         }
         else{
-<<<<<<< Updated upstream
             //     event.notes = @"name : \n Alena Pyanyh \n Ivan Ivanov";
-=======
             event.notes = @"name : \n Alena Pyanyh \n Ivan Ivanov";
->>>>>>> Stashed changes
             NSArray * parseNameAndLastnameOfCandidate = [self getNamesOfCandidatesFromNote:event.notes];
             
             interview.nameAndLastNameOfCandidates = parseNameAndLastnameOfCandidate;
@@ -380,8 +377,7 @@
 {
     NSError *error = NULL;
     NSMutableArray * results = [[NSMutableArray alloc ]initWithCapacity: 0];
-<<<<<<< Updated upstream
-=======
+
     
   //  NSString * pat3 = @"([A-Z]([a-z'-]*))\\s([A-Z]([a-z'-]*))\\s*";
     NSString * pat4 = @"([A-Z]([a-z'-]*))([-']*[A-Z]*[a-z']*)*\\s([A-Z]([a-z'-]*))([-']*[A-Z]*[a-z']*)*\\s*";
@@ -399,8 +395,8 @@
         [results addObject:[string substringWithRange:matchRange]];
     }
     
-    EHCalendarParseResult * parseResult ;
->>>>>>> Stashed changes
+    __unused EHCalendarParseResult * parseResult ;
+
     NSMutableArray * stringResults = [[NSMutableArray alloc] init];
     
     if (!(string == nil))
