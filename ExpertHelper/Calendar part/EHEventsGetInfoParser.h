@@ -18,12 +18,21 @@
 
 @end
 
+
+
+
+
 @interface EHWeek : NSObject
 
 @property (nonatomic, copy) NSArray *interviews;
 @property (nonatomic, strong) NSString *nameOfWeek;
 
 @end
+
+
+
+
+
 @interface EHCalendarParseResult : NSObject
 
 @property (nonatomic, copy) NSString *firstName;
@@ -35,9 +44,16 @@
 @end
 
 
+
+
+
+
 @interface EHCalendarParseOptions : NSObject
 
 @property (nonatomic, assign) BOOL firstNameFirst;
+@property (nonatomic, assign) bool isOneCandidate;
+@property (nonatomic, assign) bool isIta;
+
 
 @end
 
@@ -48,12 +64,12 @@
 @property (nonatomic, copy) NSArray *interviews;
 @property (nonatomic, copy) NSArray *events;
 
--(bool)canDefineTypeAsITA:(NSString *)string;
--(EHCalendarParseResult *)getNameOfCandidateFromTitle:(NSString *)string;
+- (void)canDefineTypeAsITA:(NSString *)string;
+- (EHCalendarParseResult *)getNameOfCandidateFromTitle:(NSString *)string;
 - (EHCalendarParseResult *)getNameOfRecruiter:(NSString*)string andEmailAddress :(NSString *) email;
--(id)initWithObjection:(EHCalendarParseOptions *)options;
--(NSArray *) parseAllEventsToInterviews;
--(NSArray *)sortAllInterviewsToDictionary;
+- (id)initWithObjection:(EHCalendarParseOptions *)options;
+- (NSArray *) parseAllEventsToInterviews;
+- (NSArray *)sortAllInterviewsToDictionary;
 
 @property (nonatomic , strong) EHCalendarEventsParser *calEventParser;
 @end

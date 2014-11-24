@@ -10,8 +10,7 @@
 
 @implementation EHInterview
 
--(id) initWithFirstName : (NSString *)firstName
-                lastName: (NSString *)lastName
+-(id) initWithFirstNameAndLastname : (NSArray *)nameAndLastname
          nameOfRecruiter: (NSString *)nameOfRecruiter
      lastnameOfRecruiter: (NSString *)lastnameOfRecruiter
          dateOfInterview: (NSDate *) dateOfInterview
@@ -21,8 +20,8 @@
     self = [super init];
     if (self)
     {
-        _nameOfCandidate = firstName;
-        _lastNameOfCandidate = lastName;
+        _nameAndLastNameOfCandidates = [[NSArray alloc] init];;
+        _nameAndLastNameOfCandidates =  nameAndLastname;
         _dateOfInterview = dateOfInterview;
         _locationOfInterview  = locationOfInterview;
         _typeOfInterview = typeOfInterview;
@@ -33,8 +32,7 @@
 }
 
 - (void)dealloc {
-    _nameOfCandidate = nil;
-    _lastNameOfCandidate = nil;
+    _nameAndLastNameOfCandidates = nil;
     _dateOfInterview=nil;
     _locationOfInterview = nil;
     _typeOfInterview=nil;
