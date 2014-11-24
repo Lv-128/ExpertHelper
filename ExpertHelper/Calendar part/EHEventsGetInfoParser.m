@@ -1,4 +1,4 @@
-//
+  //
 //  EHEventsGetInfoParser.m
 //  ExpertHelper
 //
@@ -140,9 +140,12 @@
             
         }
         else{
+       //     event.notes = @"name : \n Alena Pyanyh \n Ivan Ivanov";
             NSArray * parseNameAndLastnameOfCandidate = [self getNamesOfCandidatesFromNote:event.notes];
       
             interview.nameAndLastNameOfCandidates = parseNameAndLastnameOfCandidate;
+            
+           // NSLog(@"%@",[[interview.nameAndLastNameOfCandidates objectAtIndex:0] firstName]);
         }
         
         NSString * name = [[event.attendees objectAtIndex: 0] name];
@@ -373,16 +376,20 @@
 {
     NSError *error = NULL;
     NSMutableArray * results = [[NSMutableArray alloc ]initWithCapacity: 0];
+    NSMutableArray * stringResults = [[NSMutableArray alloc] init];
     
-    NSString * pat3 = @"\\s*([A-Z][a-z'-]*)(\\s*[A-Z]*[a-z']*)\\s([A-Z][a-z'-]*)(\\s*[A-Z]*[a-z']*)*\\s*";
+    if (!(string == nil))
+    {
+  //  NSString * pat3 = @"([A-Z]([a-z'-]*))\\s([A-Z]([a-z'-]*))\\s*";
+    NSString * pat4 = @"([A-Z]([a-z'-]*))([-']*[A-Z]*[a-z']*)*\\s([A-Z]([a-z'-]*))([-']*[A-Z]*[a-z']*)*\\s*";
     NSRange range = NSMakeRange(0, string.length);
-    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:pat3 options:0 error:&error];
+    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:pat4 options:0 error:&error];
     NSArray *matches = [regex matchesInString:string options:NSMatchingReportCompletion range:range];
     for (NSTextCheckingResult *match in matches)
     {
         NSRange matchRange = match.range;
-        matchRange.location += 6;
-        matchRange.length -= 6;
+       // matchRange.location += 6;
+        //matchRange.length -= 6;
         
       //  NSLog(@"%@",[string substringWithRange:matchRange]);
         
@@ -390,7 +397,7 @@
     }
     
     EHCalendarParseResult * parseResult ;
-    NSMutableArray * stringResults = [[NSMutableArray alloc] init];
+    
     
     for (NSString * str in results)
     {
@@ -408,7 +415,7 @@
         }
         [stringResults addObject:parseResult];
     }
-    
+    }
     return stringResults;
 }
 

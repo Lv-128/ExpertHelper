@@ -13,7 +13,6 @@
 
 @property (copy, nonatomic) NSArray * interviews;
 @property (strong, nonatomic) NSArray *sortedWeeks;
-- (IBAction)skypeMe:(id)sender;
 
 
 @end

@@ -163,6 +163,9 @@
                                 <state key="normal" backgroundImage="skype">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="skypeMe:" destination="CCu-XO-Yni" eventType="touchUpInside" id="Qac-QO-JaH"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1sj-JU-UDl">
                                 <rect key="frame" x="354" y="850" width="60" height="60"/>
@@ -674,9 +677,6 @@
                                                     <state key="normal" backgroundImage="skype">
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
-                                                    <connections>
-                                                        <action selector="skypeMe:" destination="8ab-5p-1Xv" eventType="touchUpInside" id="OTa-gQ-Cbv"/>
-                                                    </connections>
                                                 </button>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -832,10 +832,7 @@
         <image name="checkBox.png" width="849" height="757"/>
         <image name="checkBoxMarked.png" width="849" height="757"/>
         <image name="mail" width="110" height="110"/>
-        <image name="mail" width="110" height="110"/>
         <image name="phone" width="88" height="88"/>
-        <image name="phone" width="88" height="88"/>
-        <image name="skype" width="300" height="300"/>
         <image name="skype" width="300" height="300"/>
         <image name="stewie" width="184" height="104"/>
     </resources>

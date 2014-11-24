@@ -239,18 +239,4 @@
 }
 
 
-//----------------------------— Skype implementation —----------------------------
-
-- (IBAction)skypeMe:(id)sender {
-    
-    BOOL installed = [[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"skype:"]];
-    if(installed)
-    {
-        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"skype:echo123?call"]];
-    }
-    else
-    {
-        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://itunes.com/apps/skype/skype"]];
-    }
-}
 @end

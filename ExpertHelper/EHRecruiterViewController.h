@@ -12,4 +12,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *labelNameOfRecruiter;
 @property (strong, nonatomic) NSString * nameOfRecruiter;
 @property (strong, nonatomic) NSString * lastnameOfRecruiter;
+
+- (IBAction)skypeMe:(id)sender;
+
 @end
