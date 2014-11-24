@@ -120,9 +120,6 @@
     
     [cell.layer setCornerRadius:20.0f];
     
-    
-    
-    
     UITapGestureRecognizer * goToInfoForm2 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(goToInfo:)];
     [goToInfoForm2 setDelegate:self];
     [labelRecruiter addGestureRecognizer:goToInfoForm2];
@@ -138,10 +135,6 @@
     [goToInfoForm4 setDelegate:self];
     [labelType addGestureRecognizer:goToInfoForm4];
     goToInfoForm4.numberOfTapsRequired = 1;
-    
-    
-    
-    
     
     return cell;
 }
