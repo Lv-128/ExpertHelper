@@ -13,6 +13,7 @@
 #import "EHCandidateFormViewController.h"
 #import "EHRecruiterViewController.h"
 #import "EHITAViewController.h"
+#import "EHEventsGetInfoParser.h"
 @interface EHListOfInterviewsViewController ()<UICollectionViewDataSource, UICollectionViewDelegate, UIGestureRecognizerDelegate>
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *barButton;
 
@@ -90,16 +91,16 @@
     if ([event.nameAndLastNameOfCandidates count]==1)
     {
     labelCandidate.text = [@" " stringByAppendingString:[[[[event.nameAndLastNameOfCandidates objectAtIndex:0] firstName] stringByAppendingString:@" "] stringByAppendingString:[[event.nameAndLastNameOfCandidates objectAtIndex:0] lastName]]  ] ;
-        UITapGestureRecognizer * goToInfoForm = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(goToInfo:)];
-        [goToInfoForm setDelegate:self];
-         [labelRecruiter addGestureRecognizer:goToInfoForm];
-           [labelCandidate addGestureRecognizer:goToInfoForm];
-           goToInfoForm.numberOfTapsRequired = 1;
+//        UITapGestureRecognizer * goToInfoForm = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(goToInfo:)];
+//        [goToInfoForm setDelegate:self];
+//         [labelRecruiter addGestureRecognizer:goToInfoForm];
+//           [labelCandidate addGestureRecognizer:goToInfoForm];
+//           goToInfoForm.numberOfTapsRequired = 1;
     }
     else
     {
          labelCandidate.text = @"many candidates";
-                                UITapGestureRecognizer * goToInfoForm5 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showAllCandidates: )];
+     UITapGestureRecognizer * goToInfoForm5 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showAllCandidates: )];
     [goToInfoForm5 setDelegate:self];
     [labelCandidate addGestureRecognizer:goToInfoForm5];
     goToInfoForm5.numberOfTapsRequired = 1;
@@ -160,15 +161,22 @@
         [array addObject: [event.nameAndLastNameOfCandidates objectAtIndex:i]];
         
     }
-    if (tapGR.view.tag == 100)
+    if (tapGR.view.tag == 103)
     {
         
         UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"Candidates:"
                                                                  delegate:self /// here will be delegate
-                                                        cancelButtonTitle:@"Cancel"
+                                                        cancelButtonTitle:nil
                                                    destructiveButtonTitle:nil
                                       
-                                                        otherButtonTitles:@"None", @"IT Academy", @"Internal", @"External",nil];
+                                                        otherButtonTitles:  nil];
+        
+        
+        for ( EHCalendarParseResult *title in array) {
+            [actionSheet addButtonWithTitle:[ [title.firstName stringByAppendingString:@" "]  stringByAppendingString:title.lastName]];
+        }
+
+        
         if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
         {
             UICollectionViewCell * curInterview = [self.collectionView  cellForItemAtIndexPath:tappedRow];

@@ -140,7 +140,7 @@
             
         }
         else{
-           // event.notes = @"name : \n Alena Pyanyh \n Ivan Ivanov";
+       //     event.notes = @"name : \n Alena Pyanyh \n Ivan Ivanov";
             NSArray * parseNameAndLastnameOfCandidate = [self getNamesOfCandidatesFromNote:event.notes];
       
             interview.nameAndLastNameOfCandidates = parseNameAndLastnameOfCandidate;
@@ -376,7 +376,10 @@
 {
     NSError *error = NULL;
     NSMutableArray * results = [[NSMutableArray alloc ]initWithCapacity: 0];
+    NSMutableArray * stringResults = [[NSMutableArray alloc] init];
     
+    if (!(string == nil))
+    {
   //  NSString * pat3 = @"([A-Z]([a-z'-]*))\\s([A-Z]([a-z'-]*))\\s*";
     NSString * pat4 = @"([A-Z]([a-z'-]*))([-']*[A-Z]*[a-z']*)*\\s([A-Z]([a-z'-]*))([-']*[A-Z]*[a-z']*)*\\s*";
     NSRange range = NSMakeRange(0, string.length);
@@ -394,7 +397,7 @@
     }
     
     EHCalendarParseResult * parseResult ;
-    NSMutableArray * stringResults = [[NSMutableArray alloc] init];
+    
     
     for (NSString * str in results)
     {
@@ -412,7 +415,7 @@
         }
         [stringResults addObject:parseResult];
     }
-    
+    }
     return stringResults;
 }
 
