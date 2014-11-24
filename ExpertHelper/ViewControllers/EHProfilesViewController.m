@@ -86,6 +86,9 @@
     [labelRight setFont:[UIFont boldSystemFontOfSize:14]];
     [labelRight setTextAlignment:NSTextAlignmentCenter];
     
+    labelLeft.textAlignment = NSTextAlignmentLeft;
+    labelMiddle.textAlignment = NSTextAlignmentCenter;
+    labelRight.textAlignment = NSTextAlignmentCenter;
     labelLeft.text = [self.tableSections objectAtIndex:section];
     labelMiddle.text = @"Required";
     labelRight.text = @"Estimate";
