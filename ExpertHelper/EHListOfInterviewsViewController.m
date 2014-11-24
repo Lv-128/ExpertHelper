@@ -87,8 +87,23 @@
     else
         labelLocation.text = [@" " stringByAppendingString:event.locationOfInterview];
     
-    //labelCandidate.text = [@" " stringByAppendingString:[[event.nameOfCandidate stringByAppendingString:@" "] stringByAppendingString:event.lastNameOfCandidate]  ] ;
-    
+    if ([event.nameAndLastNameOfCandidates count]==1)
+    {
+    labelCandidate.text = [@" " stringByAppendingString:[[[[event.nameAndLastNameOfCandidates objectAtIndex:0] firstName] stringByAppendingString:@" "] stringByAppendingString:[[event.nameAndLastNameOfCandidates objectAtIndex:0] lastName]]  ] ;
+        UITapGestureRecognizer * goToInfoForm = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(goToInfo:)];
+        [goToInfoForm setDelegate:self];
+         [labelRecruiter addGestureRecognizer:goToInfoForm];
+           [labelCandidate addGestureRecognizer:goToInfoForm];
+           goToInfoForm.numberOfTapsRequired = 1;
+    }
+    else
+    {
+         labelCandidate.text = @"many candidates";
+                                UITapGestureRecognizer * goToInfoForm5 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showAllCandidates: )];
+    [goToInfoForm5 setDelegate:self];
+    [labelCandidate addGestureRecognizer:goToInfoForm5];
+    goToInfoForm5.numberOfTapsRequired = 1;
+    }
     labelRecruiter.text = [@" " stringByAppendingString:[[event.nameOfRecruiter stringByAppendingString:@" "] stringByAppendingString:event.lastNameOfRecruiter]  ] ;
     
     NSArray * arrLabels = [NSArray arrayWithObjects:labelType,labelDate,labelLocation,labelCandidate,labelRecruiter,nil];
@@ -102,14 +117,10 @@
     [cell.layer setBorderWidth:1.0f];
     [cell.layer setBorderColor:[UIColor grayColor].CGColor];
     
-    [cell.layer setCornerRadius:30.0f];
+    [cell.layer setCornerRadius:20.0f];
     
     
-    UITapGestureRecognizer * goToInfoForm = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(goToInfo:)];
-    [goToInfoForm setDelegate:self];
-    // [labelRecruiter addGestureRecognizer:goToInfoForm];
-    [labelCandidate addGestureRecognizer:goToInfoForm];
-    goToInfoForm.numberOfTapsRequired = 1;
+
     
     UITapGestureRecognizer * goToInfoForm2 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(goToInfo:)];
     [goToInfoForm2 setDelegate:self];
@@ -127,10 +138,54 @@
     [labelType addGestureRecognizer:goToInfoForm4];
     goToInfoForm4.numberOfTapsRequired = 1;
     
+   
+
+    
+    
     return cell;
 }
 
 
+-(void)showAllCandidates:(id)sender
+{
+    UITapGestureRecognizer *tapGR = (UITapGestureRecognizer*)sender;
+    CGPoint touchLocation = [tapGR locationOfTouch:0 inView:self.collectionView];
+    NSIndexPath *tappedRow = [self.collectionView indexPathForItemAtPoint:touchLocation];
+    
+    NSArray *eventsOnThisDay = [[self.sortedWeeks objectAtIndex:tappedRow.section] interviews];
+    EHInterview *event = [eventsOnThisDay objectAtIndex:tappedRow.row];
+    NSMutableArray * array = [[NSMutableArray alloc]initWithCapacity:0];
+    for (int i = 0; i< event.nameAndLastNameOfCandidates.count; i++)
+    {
+        [array addObject: [event.nameAndLastNameOfCandidates objectAtIndex:i]];
+        
+    }
+    if (tapGR.view.tag == 100)
+    {
+        
+        UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"Candidates:"
+                                                                 delegate:self /// here will be delegate
+                                                        cancelButtonTitle:@"Cancel"
+                                                   destructiveButtonTitle:nil
+                                      
+                                                        otherButtonTitles:@"None", @"IT Academy", @"Internal", @"External",nil];
+        if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+        {
+            UICollectionViewCell * curInterview = [self.collectionView  cellForItemAtIndexPath:tappedRow];
+            UIView * label = [curInterview viewWithTag: 100];
+            //[actionSheet showFromRect:[curLabel frame] inView:self.view animated:YES];
+            
+            CGRect  rect = CGRectMake([label frame].origin.x - [label frame].size.width/3 , [label frame].origin.y, [label frame].size.width,  [label frame].size.height) ;
+            
+            // [label frame]
+            [actionSheet showFromRect:rect inView:curInterview animated:YES ];//showFromRect:[label  frame] inView:self.view animated:YES];
+        }
+        else
+            [actionSheet showInView:self.view];
+        
+        actionSheet.tag = 300;
+    }
+}
 -(void)chooseTypeOfInterview:(id)sender
 {
     UITapGestureRecognizer *tapGR = (UITapGestureRecognizer*)sender;
