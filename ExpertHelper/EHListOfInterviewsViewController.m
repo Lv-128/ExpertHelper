@@ -71,12 +71,12 @@
     EHInterview *event = [eventsOnThisDay objectAtIndex:indexPath.row];
     
     
-    UILabel * labelType = (UILabel *) [cell viewWithTag: 100];
-    UILabel * labelDate = (UILabel *) [cell viewWithTag: 101];
-    UILabel * labelLocation = (UILabel *) [cell viewWithTag: 102];
-    UILabel * labelCandidate = (UILabel *) [cell viewWithTag: 103];
-    UILabel * labelRecruiter = (UILabel *) [cell viewWithTag: 104];
-    UIButton * butStart = (UIButton * ) [cell viewWithTag: 1000];
+    UILabel *labelType = (UILabel *) [cell viewWithTag: 100];
+    UILabel *labelDate = (UILabel *) [cell viewWithTag: 101];
+    UILabel *labelLocation = (UILabel *) [cell viewWithTag: 102];
+    UILabel *labelCandidate = (UILabel *) [cell viewWithTag: 103];
+    UILabel *labelRecruiter = (UILabel *) [cell viewWithTag: 104];
+    UIButton *butStart = (UIButton * ) [cell viewWithTag: 1000];
     
     labelType.text = [@" " stringByAppendingString:event.typeOfInterview];
     labelDate.text = [@" "stringByAppendingString:[cellDateFormatter stringFromDate:event.dateOfInterview]];
@@ -91,11 +91,11 @@
     if ([event.nameAndLastNameOfCandidates count]==1)
     {
         labelCandidate.text = [@" " stringByAppendingString:[[[[event.nameAndLastNameOfCandidates objectAtIndex:0] firstName] stringByAppendingString:@" "] stringByAppendingString:[[event.nameAndLastNameOfCandidates objectAtIndex:0] lastName]]  ] ;
-        //        UITapGestureRecognizer * goToInfoForm = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(goToInfo:)];
-        //        [goToInfoForm setDelegate:self];
-        //         [labelRecruiter addGestureRecognizer:goToInfoForm];
-        //           [labelCandidate addGestureRecognizer:goToInfoForm];
-        //           goToInfoForm.numberOfTapsRequired = 1;
+        UITapGestureRecognizer * goToInfoForm = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(goToInfo:)];
+        [goToInfoForm setDelegate:self];
+        //  [labelRecruiter addGestureRecognizer:goToInfoForm];
+        [labelCandidate addGestureRecognizer:goToInfoForm];
+        goToInfoForm.numberOfTapsRequired = 1;
     }
     else
     {
@@ -168,6 +168,7 @@
         for ( EHCalendarParseResult *title in array) {
             NSString * temp = [title.firstName stringByAppendingString:@" "] ;
             temp = [temp stringByAppendingString:title.lastName];
+            //[actionSheet addButtonWithTitle:[title.firstName stringByAppendingString:title.lastName]];
             [actionSheet addButtonWithTitle:[ [title.firstName stringByAppendingString:@" "] stringByAppendingString:title.lastName]];
         }
         
@@ -231,12 +232,16 @@
         
         NSIndexPath *tappedRow = [self.collectionView indexPathForItemAtPoint:touchLocation];
         
-        __unused EHInterview * curInterview = [[[sortedWeeks objectAtIndex:tappedRow.section ] interviews] objectAtIndex:tappedRow.row];
+        EHInterview * curInterview = [[[sortedWeeks objectAtIndex:tappedRow.section ] interviews] objectAtIndex:tappedRow.row];
         EHCandidateFormViewController *candidateForm = [self.storyboard instantiateViewControllerWithIdentifier:@"CandidateFormView"];
-        //candidateForm.nameOfCandidate = curInterview.nameOfCandidate;
-        // candidateForm.lastnameOfCandidate = curInterview.lastNameOfCandidate;
-        candidateForm.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
-        [self.navigationController pushViewController:candidateForm animated:YES ];
+        if (curInterview.nameAndLastNameOfCandidates.count >0 && ![[curInterview.nameAndLastNameOfCandidates[0] firstName]isEqualToString: @"Unknown"])
+        {
+            candidateForm.nameOfCandidate = [curInterview.nameAndLastNameOfCandidates[0] firstName];
+            candidateForm.lastnameOfCandidate = [curInterview.nameAndLastNameOfCandidates[0] lastName];
+            
+            candidateForm.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+            [self.navigationController pushViewController:candidateForm animated:YES ];
+        }
     }
     if (tapGR.view.tag == 104)
     {
@@ -249,6 +254,8 @@
         EHRecruiterViewController *recruiterViewForm = [self.storyboard instantiateViewControllerWithIdentifier:@"RecruiterFormView"];
         recruiterViewForm.nameOfRecruiter = curInterview.nameOfRecruiter;
         recruiterViewForm.lastnameOfRecruiter = curInterview.lastNameOfRecruiter;
+        
+        recruiterViewForm.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
         [self.navigationController pushViewController:recruiterViewForm animated:YES];
     }
 }

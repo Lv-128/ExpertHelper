@@ -140,8 +140,7 @@
             
         }
         else{
-            //     event.notes = @"name : \n Alena Pyanyh \n Ivan Ivanov";
-            event.notes = @"name : \n Alena Pyanyh \n Ivan Ivanov";
+            //  event.notes = @"name : \n Alena Pyanyh \n Ivan Ivanov";
             NSArray * parseNameAndLastnameOfCandidate = [self getNamesOfCandidatesFromNote:event.notes];
             
             interview.nameAndLastNameOfCandidates = parseNameAndLastnameOfCandidate;
@@ -377,26 +376,6 @@
 {
     NSError *error = NULL;
     NSMutableArray * results = [[NSMutableArray alloc ]initWithCapacity: 0];
-
-    
-  //  NSString * pat3 = @"([A-Z]([a-z'-]*))\\s([A-Z]([a-z'-]*))\\s*";
-    NSString * pat4 = @"([A-Z]([a-z'-]*))([-']*[A-Z]*[a-z']*)*\\s([A-Z]([a-z'-]*))([-']*[A-Z]*[a-z']*)*\\s*";
-    NSRange range = NSMakeRange(0, string.length);
-    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:pat4 options:0 error:&error];
-    NSArray *matches = [regex matchesInString:string options:NSMatchingReportCompletion range:range];
-    for (NSTextCheckingResult *match in matches)
-    {
-        NSRange matchRange = match.range;
-       // matchRange.location += 6;
-        //matchRange.length -= 6;
-        
-      //  NSLog(@"%@",[string substringWithRange:matchRange]);
-        
-        [results addObject:[string substringWithRange:matchRange]];
-    }
-    
-    __unused EHCalendarParseResult * parseResult ;
-
     NSMutableArray * stringResults = [[NSMutableArray alloc] init];
     
     if (!(string == nil))
