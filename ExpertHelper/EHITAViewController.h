@@ -8,7 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface EHITAViewController : UIViewController<UIPickerViewDataSource, UIPickerViewDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate>{
+@interface EHITAViewController : UIViewController <UIPickerViewDataSource, UIPickerViewDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate>
+{
     int selectedScoreSrcIndex;
     NSString *selectedScore;
     IBOutlet UIButton *scoreOption;

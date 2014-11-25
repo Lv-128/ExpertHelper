@@ -9,9 +9,9 @@
 #import "EHExternalViewController.h"
 #import "EHExternalCell.h"
 
-@interface EHExternalViewController ()<UITableViewDelegate, UITableViewDataSource>
+@interface EHExternalViewController () <UITableViewDelegate, UITableViewDataSource>
 
-@property (copy, nonatomic) NSArray * array;
+@property (copy, nonatomic) NSArray *array;
 
 @end
 

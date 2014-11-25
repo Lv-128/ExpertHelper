@@ -357,8 +357,8 @@
 			isa = PBXGroup;
 			children = (
 				D9BE53F71A10B16700AD5D3D /* EHExternalCell.h */,
-				D9BE53F91A10B16700AD5D3D /* EHExternalViewController.h */,
 				D9BE53F81A10B16700AD5D3D /* EHExternalCell.m */,
+				D9BE53F91A10B16700AD5D3D /* EHExternalViewController.h */,
 				D9BE53FA1A10B16700AD5D3D /* EHExternalViewController.m */,
 			);
 			name = External;

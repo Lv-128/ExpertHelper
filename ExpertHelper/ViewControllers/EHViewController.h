@@ -9,9 +9,11 @@
 #import <UIKit/UIKit.h>
 #import <AVFoundation/AVFoundation.h>
 
-@interface EHViewController : UIViewController{
+@interface EHViewController : UIViewController
+{
     BOOL isShaking;
 }
+
 @property (weak, nonatomic) IBOutlet UIButton *playButton;
 
 - (IBAction)playTapped:(id)sender;

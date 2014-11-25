@@ -11,7 +11,6 @@
 
 @implementation EHSkillLevelPopup
 
-
 - (IBAction)onHide:(UIButton *)sender {
     _skillLevel = sender.titleLabel.text;
     [_delegate skillLevelPopup:self didSelectLevel:EHSkillLevelNone];
