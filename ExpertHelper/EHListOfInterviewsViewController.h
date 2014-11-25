@@ -11,8 +11,10 @@
 
 @interface EHListOfInterviewsViewController : UIViewController
 
-@property (copy, nonatomic) NSArray * interviews;
+@property (copy, nonatomic) NSArray *interviews;
 @property (strong, nonatomic) NSArray *sortedWeeks;
+@property (strong, nonatomic) NSArray *nameCandidates;
+
 
 
 @end

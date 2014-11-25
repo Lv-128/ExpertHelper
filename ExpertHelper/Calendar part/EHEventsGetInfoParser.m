@@ -309,34 +309,34 @@
 }
 - (EHCalendarParseResult *)getNameOfRecruiter:(NSString*)string andEmailAddress :(NSString *) email
 {
-    EHCalendarParseResult * parseResult = [[EHCalendarParseResult alloc]init];;
-    NSArray * parseWithSpaces = [string componentsSeparatedByString: @" "];
+    EHCalendarParseResult *parseResult = [[EHCalendarParseResult alloc]init];;
+    NSArray *parseWithSpaces = [string componentsSeparatedByString: @" "];
     if (parseWithSpaces.count == 0) parseResult = [[EHCalendarParseResult alloc] initWithName:@"Unknown" andLastName:@"Unknown"];
     if (parseWithSpaces.count == 1) parseResult = [[EHCalendarParseResult alloc] initWithName:parseWithSpaces[0] andLastName:@"Unknown"];
     if (parseWithSpaces.count > 1)
     {
         if (_parseOptions.firstNameFirst == YES)
         {
-            NSString * firstName = parseWithSpaces[0];
-            NSString * lastName = parseWithSpaces[1];
+            NSString *firstName = parseWithSpaces[0];
+            NSString *lastName = parseWithSpaces[1];
             parseResult = [[EHCalendarParseResult alloc] initWithName:firstName andLastName:lastName];
         }
         else if (_parseOptions.firstNameFirst == NO)
         {
-            NSString * firstName = parseWithSpaces[1];
-            NSString * lastName = parseWithSpaces[0];
+            NSString *firstName = parseWithSpaces[1];
+            NSString *lastName = parseWithSpaces[0];
             parseResult = [[EHCalendarParseResult alloc] initWithName:firstName andLastName:lastName];
         }
     }
     return parseResult;
 }
 
-- (EHCalendarParseResult *)getNameOfCandidateFromTitle:(NSString*)string
+- (EHCalendarParseResult *)getNameOfCandidateFromTitle:(NSString *)string
 {
     NSError *error = NULL;
-    NSMutableArray * results = [[NSMutableArray alloc ]initWithCapacity: 0];
+    NSMutableArray *results = [[NSMutableArray alloc ]initWithCapacity: 0];
     
-    NSString * pat3 = @"\\s*[w|W]ith(?![Candidate|candidates|Candidates|ITA|ita|ITA|candidate])\\s*([A-Z][a-z'-]*)(\\s*[A-Z]*[a-z']*)\\s([A-Z][a-z'-]*)(\\s*[A-Z]*[a-z']*)*\\s*";
+    NSString *pat3 = @"\\s*[w|W]ith(?![Candidate|candidates|Candidates|ITA|ita|ITA|candidate])\\s*([A-Z][a-z'-]*)(\\s*[A-Z]*[a-z']*)\\s([A-Z][a-z'-]*)(\\s*[A-Z]*[a-z']*)*\\s*";
     NSRange range = NSMakeRange(0, string.length);
     NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:pat3 options:0 error:&error];
     NSArray *matches = [regex matchesInString:string options:NSMatchingReportCompletion range:range];
@@ -351,19 +351,19 @@
         [results addObject:[string substringWithRange:matchRange]];
     }
     
-    EHCalendarParseResult * parseResult ;
+    EHCalendarParseResult *parseResult ;
     if (results.count == 1)
     {
-        NSArray* parseWithSpaces = [results[0] componentsSeparatedByString: @" "];
+        NSArray *parseWithSpaces = [results[0] componentsSeparatedByString: @" "];
         if (_parseOptions.firstNameFirst == YES)
         {
-            NSString * firstName = parseWithSpaces[0];
-            NSString * lastName = parseWithSpaces[1];
+            NSString *firstName = parseWithSpaces[0];
+            NSString *lastName = parseWithSpaces[1];
             parseResult = [[EHCalendarParseResult alloc] initWithName:firstName andLastName:lastName];
         }
         else{
-            NSString * firstName = parseWithSpaces[1];
-            NSString * lastName = parseWithSpaces[0];
+            NSString *firstName = parseWithSpaces[1];
+            NSString *lastName = parseWithSpaces[0];
             parseResult = [[EHCalendarParseResult alloc] initWithName:firstName andLastName:lastName];
         }
     }
@@ -372,24 +372,25 @@
     }
     return parseResult;
 }
+
 - (NSArray *)getNamesOfCandidatesFromNote:(NSString*)string
 {
     NSError *error = NULL;
-    NSMutableArray * results = [[NSMutableArray alloc ]initWithCapacity: 0];
-    NSMutableArray * stringResults = [[NSMutableArray alloc] init];
+    NSMutableArray *results = [[NSMutableArray alloc ]initWithCapacity: 0];
+    NSMutableArray *stringResults = [[NSMutableArray alloc] init];
     
     if (!(string == nil))
     {
         //  NSString * pat3 = @"([A-Z]([a-z'-]*))\\s([A-Z]([a-z'-]*))\\s*";
-        NSString * pat4 = @"([A-Z]([a-z'-]*))([-']*[A-Z]*[a-z']*)*\\s([A-Z]([a-z'-]*))([-']*[A-Z]*[a-z']*)*\\s*";
+        NSString *pat4 = @"([A-Z]([a-z'-]*))([-']*[A-Z]*[a-z']*)*\\s([A-Z]([a-z'-]*))([-']*[A-Z]*[a-z']*)*\\s*";
         NSRange range = NSMakeRange(0, string.length);
         NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:pat4 options:0 error:&error];
         NSArray *matches = [regex matchesInString:string options:NSMatchingReportCompletion range:range];
         for (NSTextCheckingResult *match in matches)
         {
             NSRange matchRange = match.range;
-            // matchRange.location += 6;
-            //matchRange.length -= 6;
+           //  matchRange.location += 1;
+            matchRange.length -= 1;
             
             //  NSLog(@"%@",[string substringWithRange:matchRange]);
             

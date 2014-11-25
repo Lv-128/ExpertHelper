@@ -41,6 +41,7 @@
 		D9BE54021A10B16700AD5D3D /* EHExternalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D9BE53FA1A10B16700AD5D3D /* EHExternalViewController.m */; };
 		D9BE54041A10B16700AD5D3D /* EHProgrammingLanguagesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D9BE53FE1A10B16700AD5D3D /* EHProgrammingLanguagesViewController.m */; };
 		D9BE54071A10B1A200AD5D3D /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D9BE54061A10B1A200AD5D3D /* Images.xcassets */; };
+		D9C56E3A1A249EFD006B3105 /* EHManyCandidatesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D9C56E391A249EFD006B3105 /* EHManyCandidatesViewController.m */; };
 		D9F15AD11A1A575A00E4DC62 /* EHListOfInterviewsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D9F15AD01A1A575A00E4DC62 /* EHListOfInterviewsViewController.m */; };
 /* End PBXBuildFile section */
 
@@ -110,6 +111,8 @@
 		D9BE53FD1A10B16700AD5D3D /* EHProgrammingLanguagesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EHProgrammingLanguagesViewController.h; sourceTree = "<group>"; };
 		D9BE53FE1A10B16700AD5D3D /* EHProgrammingLanguagesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EHProgrammingLanguagesViewController.m; sourceTree = "<group>"; };
 		D9BE54061A10B1A200AD5D3D /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		D9C56E381A249EFD006B3105 /* EHManyCandidatesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EHManyCandidatesViewController.h; sourceTree = "<group>"; };
+		D9C56E391A249EFD006B3105 /* EHManyCandidatesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EHManyCandidatesViewController.m; sourceTree = "<group>"; };
 		D9F15ACF1A1A575A00E4DC62 /* EHListOfInterviewsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EHListOfInterviewsViewController.h; sourceTree = "<group>"; };
 		D9F15AD01A1A575A00E4DC62 /* EHListOfInterviewsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EHListOfInterviewsViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -364,6 +367,8 @@
 		D9DF27D21A1BDABA008555E4 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				D9C56E381A249EFD006B3105 /* EHManyCandidatesViewController.h */,
+				D9C56E391A249EFD006B3105 /* EHManyCandidatesViewController.m */,
 				D9F15ACF1A1A575A00E4DC62 /* EHListOfInterviewsViewController.h */,
 				D9F15AD01A1A575A00E4DC62 /* EHListOfInterviewsViewController.m */,
 				D9998ED61A221CE9002E019A /* EHCalendarFormViewController.h */,
@@ -482,6 +487,7 @@
 				D967F2101A1E4DEE0009639C /* EHITAViewController.m in Sources */,
 				2790F4E61A1398D8001B0956 /* EHProfilesViewController.m in Sources */,
 				B5DF299F1A164A280076862E /* EHInterview.m in Sources */,
+				D9C56E3A1A249EFD006B3105 /* EHManyCandidatesViewController.m in Sources */,
 				D967F2081A1E23BC0009639C /* EHCandidateFormViewController.m in Sources */,
 				D9998EE41A221CE9002E019A /* EHRevealViewController.m in Sources */,
 				D9BE54041A10B16700AD5D3D /* EHProgrammingLanguagesViewController.m in Sources */,

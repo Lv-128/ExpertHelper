@@ -14,11 +14,12 @@
 #import "EHRecruiterViewController.h"
 #import "EHITAViewController.h"
 #import "EHEventsGetInfoParser.h"
-@interface EHListOfInterviewsViewController ()<UICollectionViewDataSource, UICollectionViewDelegate, UIGestureRecognizerDelegate>
+@interface EHListOfInterviewsViewController ()<UICollectionViewDataSource, UICollectionViewDelegate, UIGestureRecognizerDelegate, UIActionSheetDelegate>
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *barButton;
 
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (strong, nonatomic) NSDateFormatter *cellDateFormatter;
+@property (strong , nonatomic) EHInterview * curInterview ;
 
 @end
 
@@ -33,8 +34,10 @@
     [super viewDidLoad];
     
     self.cellDateFormatter = [[NSDateFormatter alloc] init];
+    self.nameCandidates = [NSArray array];
     [self.cellDateFormatter setDateStyle:NSDateFormatterFullStyle];
     [self.cellDateFormatter setTimeStyle:NSDateFormatterShortStyle];
+    _curInterview = [[EHInterview alloc]init];
     _barButton.target = self.revealViewController;
     _barButton.action = @selector(revealToggle:);
     
@@ -139,7 +142,6 @@
     return cell;
 }
 
-
 -(void)showAllCandidates:(id)sender
 {
     UITapGestureRecognizer *tapGR = (UITapGestureRecognizer*)sender;
@@ -154,6 +156,7 @@
         [array addObject: [event.nameAndLastNameOfCandidates objectAtIndex:i]];
         
     }
+    
     if (tapGR.view.tag == 103)
     {
         
@@ -161,28 +164,27 @@
                                                                  delegate:self /// here will be delegate
                                                         cancelButtonTitle:nil
                                                    destructiveButtonTitle:nil
-                                      
-                                                        otherButtonTitles:  nil];
+                                                        otherButtonTitles:nil];
         
         
-        for ( EHCalendarParseResult *title in array) {
-            NSString * temp = [title.firstName stringByAppendingString:@" "] ;
-            temp = [temp stringByAppendingString:title.lastName];
+        for (EHCalendarParseResult *title in array) {
+            NSString *temp = [title.firstName stringByAppendingString:title.lastName] ;
+            //temp = [temp stringByAppendingString:title.lastName];
             //[actionSheet addButtonWithTitle:[title.firstName stringByAppendingString:title.lastName]];
-            [actionSheet addButtonWithTitle:[ [title.firstName stringByAppendingString:@" "] stringByAppendingString:title.lastName]];
+           [actionSheet addButtonWithTitle:[ [title.firstName stringByAppendingString:@" "] stringByAppendingString:title.lastName]];
         }
         
         
         if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
         {
-            UICollectionViewCell * curInterview = [self.collectionView cellForItemAtIndexPath:tappedRow];
-            UIView * label = [curInterview viewWithTag: 103];
+            UICollectionViewCell * currentInterview = [self.collectionView cellForItemAtIndexPath:tappedRow];
+            UIView *label = [currentInterview viewWithTag: 103];
             //[actionSheet showFromRect:[curLabel frame] inView:self.view animated:YES];
             
-            CGRect  rect = CGRectMake([label frame].origin.x - [label frame].size.width/3, [label frame].origin.y, [label frame].size.width, [label frame].size.height) ;
-            
-            // [label frame]
-            [actionSheet showFromRect:rect inView:curInterview animated:YES ];//showFromRect:[label  frame] inView:self.view animated:YES];
+            CGRect rect = CGRectMake([label frame].origin.x - [label frame].size.width/3, [label frame].origin.y, [label frame].size.width, [label frame].size.height) ;
+            _curInterview = event;
+           
+            [actionSheet showFromRect:rect inView:currentInterview animated:YES ];//showFromRect:[label  frame] inView:self.view animated:YES];
         }
         else
             [actionSheet showInView:self.view];
@@ -190,14 +192,29 @@
         actionSheet.tag = 300;
     }
 }
--(void)chooseTypeOfInterview:(id)sender
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    
+    
+    EHCandidateFormViewController *candidateForm = [self.storyboard instantiateViewControllerWithIdentifier:@"CandidateFormView"];
+
+        candidateForm.nameOfCandidate = [_curInterview.nameAndLastNameOfCandidates[buttonIndex] firstName];
+        candidateForm.lastnameOfCandidate = [_curInterview.nameAndLastNameOfCandidates[buttonIndex] lastName];
+        
+        candidateForm.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+        [self.navigationController pushViewController:candidateForm animated:YES ];
+    
+        
+}
+
+- (void)chooseTypeOfInterview:(id)sender
 {
     UITapGestureRecognizer *tapGR = (UITapGestureRecognizer*)sender;
     CGPoint touchLocation = [tapGR locationOfTouch:0 inView:self.collectionView];
     NSIndexPath *tappedRow = [self.collectionView indexPathForItemAtPoint:touchLocation];
     if (tapGR.view.tag == 100)
     {
-        
         UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"Select type of interview:"
                                                                  delegate:self /// here will be delegate
                                                         cancelButtonTitle:@"Cancel"
