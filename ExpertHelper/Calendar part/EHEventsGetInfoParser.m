@@ -140,7 +140,7 @@
             
         }
         else{
-            //  event.notes = @"name : \n Alena Pyanyh \n Ivan Ivanov";
+            event.notes = @"name : \n Alena Pyanyh \nIvan Ivanov";
             NSArray * parseNameAndLastnameOfCandidate = [self getNamesOfCandidatesFromNote:event.notes];
             
             interview.nameAndLastNameOfCandidates = parseNameAndLastnameOfCandidate;
