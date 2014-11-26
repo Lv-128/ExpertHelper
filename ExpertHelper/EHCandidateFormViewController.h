@@ -11,6 +11,7 @@
 @interface EHCandidateFormViewController : UIViewController
 
 @property (weak, nonatomic) IBOutlet UILabel *labelNameOfCandidate;
-@property (strong, nonatomic) NSString * nameOfCandidate;
-@property (strong, nonatomic) NSString * lastnameOfCandidate;
+@property (strong, nonatomic) NSString *nameOfCandidate;
+@property (strong, nonatomic) NSString *lastnameOfCandidate;
+
 @end

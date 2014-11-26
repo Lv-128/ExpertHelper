@@ -26,7 +26,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    _labelNameOfRecruiter.text  = @"Name : ";
+    _labelNameOfRecruiter.text = @"Name: ";
     _labelNameOfRecruiter.text = [_labelNameOfRecruiter.text stringByAppendingString:[_nameOfRecruiter stringByAppendingString:[@" "stringByAppendingString:_lastnameOfRecruiter]]];
     // Do any additional setup after loading the view.
 }
@@ -47,11 +47,6 @@
  // Pass the selected object to the new view controller.
  }
  */
-
-
-
-
-
 
 //----------------------------— Skype implementation —----------------------------
 

@@ -9,9 +9,10 @@
 #import <UIKit/UIKit.h>
 
 @interface EHRecruiterViewController : UIViewController
+
 @property (weak, nonatomic) IBOutlet UILabel *labelNameOfRecruiter;
-@property (strong, nonatomic) NSString * nameOfRecruiter;
-@property (strong, nonatomic) NSString * lastnameOfRecruiter;
+@property (strong, nonatomic) NSString *nameOfRecruiter;
+@property (strong, nonatomic) NSString *lastnameOfRecruiter;
 
 - (IBAction)skypeMe:(id)sender;
 

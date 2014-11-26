@@ -10,7 +10,8 @@
 #import "EHSkillLevelPopup.h"
 
 
-@interface EHViewController () <EHSkillLevelPopupDelegate>{
+@interface EHViewController ()
+{
     AVAudioPlayer *player;
     AVAudioRecorder *recorder;
 }
@@ -18,16 +19,6 @@
 
 @implementation EHViewController
 @synthesize playButton;
-
-
-- (void)skillLevelPopup:(EHSkillLevelPopup *)popup
-         didSelectLevel:(EHSkillLevel)level {
-}
-
-- (void)skillLevelPopupDidSelectComment:(EHSkillLevelPopup *)popup {
-    UIViewController *push2 = [[UIViewController alloc]init];
-    [[self navigationController]pushViewController:push2 animated:YES];
-}
 
 - (void)viewDidLoad
 {
@@ -59,34 +50,6 @@
     recorder.delegate = self;
     recorder.meteringEnabled = YES;
     [recorder prepareToRecord];
-}
-
-- (IBAction)openPopup:(id)sender
-{
-    UINib *nib = [UINib nibWithNibName:@"EHSkillLevelPopup" bundle:nil];
-    EHSkillLevelPopup *popup = [[nib instantiateWithOwner:nil options:nil] lastObject];
-    CGRect r = self.view.frame;
-    CGRect f = popup.frame;
-    f.size.width = r.size.width;
-    f.origin.y = r.size.height;
-    f.origin.y -= f.size.height;
-    popup.frame = f;
-    popup.delegate = self;
-    popup.layer.cornerRadius = 6;
-    popup.layer.shadowOpacity = 0.8;
-    //popup.layer.shadowOffset = CGSizeMake(0.0f, 0.0f);
-    popup.transform = CGAffineTransformMakeScale(1.3, 1.3);
-    popup.alpha = 0;
-    [self.view addSubview:popup];
-    
-    [UIView animateWithDuration:0.5 animations:^{
-        //CGRect f = popup.frame;
-        //popup.frame = f;
-        popup.alpha = 1;
-        popup.transform = CGAffineTransformMakeScale(1, 1);
-    }];
-    
-
 }
 
 - (void)didReceiveMemoryWarning
@@ -127,8 +90,6 @@
         [player play];
     }
 }
-
-
 
 #pragma mark - AVAudioRecorderDelegate
 

@@ -15,7 +15,7 @@
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) NSArray *tableSections;
 @property (nonatomic, strong) NSArray *sectionContent;
-@property (nonatomic, strong) NSArray * array;
+@property (nonatomic, strong) NSArray *array;
 
 @end
 
@@ -23,7 +23,6 @@
 
 - (void)skillLevelPopup:(EHSkillLevelPopup *)popup
          didSelectLevel:(EHSkillLevel)level {
-    
     
     [UIView animateWithDuration:0.85 animations:^{
         popup.transform = CGAffineTransformMakeScale(0, 0);
@@ -38,17 +37,16 @@
     NSIndexPath *rowToReload = [NSIndexPath indexPathForRow: RowAtIndexPathOfSkills inSection:lostData];
     NSArray *rowsToReload = [NSArray arrayWithObjects:rowToReload, nil];
     
+    NSMutableArray *tempMainArr = [[NSMutableArray alloc]initWithCapacity:0];
+    NSMutableArray *temp = [_array objectAtIndex:rowToReload.section];
     
-    NSMutableArray * tempMainArr = [[NSMutableArray alloc]initWithCapacity:0];
-    NSMutableArray * temp = [_array objectAtIndex:rowToReload.section];
-    if (temp == nil)
+    if (!temp)
     {
         temp = [[NSMutableArray alloc]init];
         [temp insertObject:popup.skillLevel atIndex:rowToReload.row];
         [tempMainArr insertObject:temp atIndex:rowToReload.section];
         _array = tempMainArr;
-    }
-    else
+    }else
         [[_array objectAtIndex:rowToReload.section] insertObject:popup.skillLevel atIndex:rowToReload.row];
     
     [self.tableView reloadRowsAtIndexPaths: rowsToReload withRowAnimation:UITableViewRowAnimationNone];
@@ -59,15 +57,16 @@
     isPopup = NO;
     newCell = NO;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    self.tableSections = @[ @"Programming languages", @"Tech. Domains", @"Skill"];
-    self.sectionContent = @[ @[ @"C", @"C++", @"C#", @"Objective-C" ],
-                             @[ @"Multithreading", @"Web", @"Audio" ],
-                             @[ @"Core", @"Desktop", @"Web", @"DB", @"BI", @"RIA", @"Multimedia", @"Mobile", @"Embedded" ] ];
-    _array = [NSMutableArray array];
-    NSMutableArray * tempMainArr = [[NSMutableArray alloc]initWithCapacity:0];
-    NSMutableArray * temp = [[NSMutableArray alloc]initWithCapacity:0];
+    self.tableSections = @[@"Programming languages", @"Tech. Domains", @"Skill"];
+    self.sectionContent = @[@[ @"C", @"C++", @"C#", @"Objective-C" ],
+                            @[ @"Multithreading", @"Web", @"Audio" ],
+                            @[ @"Core", @"Desktop", @"Web", @"DB", @"BI", @"RIA", @"Multimedia", @"Mobile", @"Embedded" ]];
     
-    for (int i = 0; i < self.tableSections.count;i++)
+    _array = [NSMutableArray array];
+    NSMutableArray *tempMainArr = [[NSMutableArray alloc]initWithCapacity:0];
+    NSMutableArray *temp = [[NSMutableArray alloc]initWithCapacity:0];
+    
+    for (int i = 0; i < self.tableSections.count; i++)
     {
         for (int b = 0; b < self.sectionContent.count; b++)
             [temp addObject:@""];
@@ -96,11 +95,13 @@
     return [self.sectionContent[section] count];
 }
 
--(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+#pragma mark tableview methods
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
     // Create custom view to display section header
     UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, tableView.frame.size.width, 18.0)];
-    
+    //create custom class!
     UILabel *labelLeft = [[UILabel alloc] initWithFrame:CGRectMake(0.0, 0.0, tableView.frame.size.width / 3.0, 18.0)];
     [labelLeft setFont:[UIFont boldSystemFontOfSize:14]];
     [labelLeft setTextAlignment:NSTextAlignmentCenter];
@@ -135,13 +136,15 @@
     
     EHProfilesTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     
-    if (cell == nil) {
+    if (!cell) {
         cell = [[EHProfilesTableViewCell alloc]
                 initWithStyle:UITableViewCellStyleDefault
                 reuseIdentifier:cellIdentifier];
     }
     
     NSInteger row = [indexPath row];
+    
+    //Create custom cell!
     
     cell.leftLabel.text = [listData objectAtIndex:row];
     [cell.leftLabel.layer setBorderColor:[[UIColor colorWithWhite:0.821 alpha:1.000] CGColor]];
@@ -172,7 +175,7 @@
     UINib *nib = [UINib nibWithNibName:@"EHSkillLevelPopup" bundle:nil];
     EHSkillLevelPopup *popup = [[nib instantiateWithOwner:nil options:nil] lastObject];
     
-    if (isPopup == NO) {
+    if (!isPopup) {
         CGRect r = self.view.frame;
         CGRect f = popup.frame;
         f.size.width = r.size.width;

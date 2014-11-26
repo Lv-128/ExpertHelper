@@ -13,10 +13,8 @@
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (copy, nonatomic) NSArray *namesArray;
-@property (nonatomic) NSMutableArray *checked;
-
+@property (copy) NSMutableArray *checked;
 @property (strong, nonatomic) UIImageView* imageView;
-
 
 @end
 
@@ -30,8 +28,7 @@
     [super viewDidLoad];
     
     self.scoreSrc = [NSArray arrayWithObjects:@"1", @"2", @"3", @"4", @"5", nil]; //array which contains scores for candidate
-    selectedScoreSrcIndex=0;
-    
+    selectedScoreSrcIndex = 0;
     
     _namesArray = [[NSArray alloc] initWithObjects: // array which contains names of candidate
                    @"Oleksandr Shymanskyi",
@@ -40,9 +37,8 @@
                    @"Taras Koval",nil];
     _checked = [[NSMutableArray alloc] init]; // array which check if candidate pass interview
     
-    for (NSInteger i = 0; i < _namesArray.count; i++) {
+    for (NSInteger i = 0; i < _namesArray.count; i++)
         [_checked addObject:[NSNumber numberWithBool:false]];
-    }
 }
 
 - (void)didReceiveMemoryWarning
@@ -68,7 +64,7 @@
     static NSString *cellIdentifier = @"ItaCell";
     EHITAViewControllerCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     
-    if (cell == nil) {
+    if (!cell) {
         cell = [[EHITAViewControllerCell alloc]
                 initWithStyle:UITableViewCellStyleDefault
                 reuseIdentifier:cellIdentifier];
@@ -77,7 +73,7 @@
     NSUInteger row = [indexPath row];
     
     cell.candidateName.text = [_namesArray objectAtIndex:row];
-    cell.passLabel.text = @"Pass :";
+    cell.passLabel.text = @"Pass:";
     
     [cell.checkButton setImage:[UIImage imageNamed:@"checkBox.png"] forState:UIControlStateNormal];
     cell.checkButton.tag = indexPath.row;
@@ -85,15 +81,13 @@
     
     [cell.openPopUpButton setTitle:@"Select Score" forState:UIControlStateNormal];
     cell.openPopUpButton.layer.cornerRadius = 20;//half of the width
-    cell.openPopUpButton.layer.borderColor=[UIColor grayColor].CGColor;
-    cell.openPopUpButton.layer.borderWidth=2.0f;
+    cell.openPopUpButton.layer.borderColor = [UIColor grayColor].CGColor;
+    cell.openPopUpButton.layer.borderWidth = 2.0f;
     
     [cell.openPopUpButton addTarget:self action:@selector(openPopUpClick:) forControlEvents:UIControlEventTouchUpInside];
     
-    
-    [cell.candidateImage setImage: [UIImage imageNamed:@"smile.png"] forState:UIControlStateNormal];
+    [cell.candidateImage setImage:[UIImage imageNamed:@"smile.png"] forState:UIControlStateNormal];
     [cell.candidateImage addTarget:self action:@selector(changeImage:) forControlEvents:UIControlEventTouchUpInside];
-    
     
     return cell;
 }
@@ -103,7 +97,7 @@
 
 UIButton *button;
 
--(void)changeImage:(UIButton*)sender {
+- (void)changeImage:(UIButton *)sender {
     button = (UIButton *)sender;
    
     UIImagePickerController *pickerController = [[UIImagePickerController alloc]
@@ -128,7 +122,7 @@ UIButton *button;
 
 //--------------- create PopUp with picker of scores ---------------
 
--(void)openPopUpClick:(UIButton*)sender {
+-(void)openPopUpClick:(UIButton *)sender {
     
     scoreOption = sender;
     
@@ -140,19 +134,19 @@ UIButton *button;
     CGRect pickerFrame = CGRectMake(0, 40, 300, 216);
     UIPickerView *myPicker = [[UIPickerView alloc] initWithFrame:pickerFrame];
     
-    [myPicker setDataSource: self];
-    [myPicker setDelegate: self];
-    myPicker.tag=1;
+    [myPicker setDataSource:self];
+    [myPicker setDelegate:self];
+    myPicker.tag = 1;
     [myPicker selectRow:0 inComponent:0 animated:NO];
     [myPicker setShowsSelectionIndicator:YES];
-    self.myPickerView=myPicker;
+    self.myPickerView = myPicker;
     [masterView addSubview:myPicker];
     
     UIViewController *viewController = [[UIViewController alloc] initWithNibName:nil bundle:nil];
     viewController.view = masterView;
 
     viewController.preferredContentSize = viewController.view.frame.size;
-    self.popoverController =[[UIPopoverController alloc] initWithContentViewController:viewController];
+    self.popoverController = [[UIPopoverController alloc] initWithContentViewController:viewController];
     
     UIButton *button = (UIButton *)sender;
     [self.popoverController presentPopoverFromRect:button.bounds
@@ -181,7 +175,6 @@ UIButton *button;
     [barItems addObject:doneButton];
     [pickerToolbar setItems:barItems animated:YES];
     return pickerToolbar;
-    
 }
 
 - (IBAction)actionPickerDone:(id)sender {
@@ -196,7 +189,6 @@ UIButton *button;
     
     if (self.popoverController && self.popoverController.popoverVisible)
         [self.popoverController dismissPopoverAnimated:YES];
-    
 }
 
 - (UIBarButtonItem *)createToolbarLabelWithTitle:(NSString *)aTitle {
@@ -209,7 +201,6 @@ UIButton *button;
     toolBarItemlabel.text = aTitle;
     UIBarButtonItem *buttonLabel = [[UIBarButtonItem alloc]initWithCustomView:toolBarItemlabel];
     return buttonLabel;
-    
 }
 
 - (UIBarButtonItem *)createButtonWithType:(UIBarButtonSystemItem)type target:(id)target action:(SEL)buttonAction {
@@ -233,9 +224,7 @@ UIButton *button;
 - (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
     if ([pickerView tag] == 1) {
         return [self.scoreSrc objectAtIndex:row];
-        
     }
-    
     return @"";
 }
 
@@ -250,7 +239,7 @@ UIButton *button;
 
 //--------------- check if candidate has passed iterview ---------------
 
--(void)checkButtonClicked:(UIButton*)sender {
+-(void)checkButtonClicked:(UIButton *)sender {
     UIButton *btn = (UIButton *)sender;
     int index = [btn tag];
     

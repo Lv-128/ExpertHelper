@@ -24,6 +24,6 @@
 }
 
 @property (nonatomic, copy) NSString *skillusLevel;
-@property (nonatomic, strong) id<EHProfilesViewControllerDelegate> delegate;
+@property (nonatomic, strong) id <EHProfilesViewControllerDelegate> delegate;
 
 @end

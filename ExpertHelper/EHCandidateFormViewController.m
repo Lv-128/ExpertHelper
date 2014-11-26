@@ -22,11 +22,11 @@
     }
     return self;
 }
--(id) init
+- (id) init
 {
     self = [super init];
     if (self) {
-        _nameOfCandidate = @"Name : ";
+        _nameOfCandidate = @"Name: ";
         _lastnameOfCandidate = @"Last Name: ";
     }
     return self;
@@ -34,7 +34,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    _labelNameOfCandidate.text  = @"Name : ";
+    _labelNameOfCandidate.text = @"Name: ";
     _labelNameOfCandidate.text = [_labelNameOfCandidate.text stringByAppendingString:[_nameOfCandidate stringByAppendingString:[@" "stringByAppendingString:_lastnameOfCandidate]]];
     // Do any additional setup after loading the view.
 }
