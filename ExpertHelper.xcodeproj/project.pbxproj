@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		113187201A2613DD00FDE127 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1131871F1A2613DD00FDE127 /* CoreData.framework */; };
+		113187231A2614B600FDE127 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 113187211A2614B600FDE127 /* Model.xcdatamodeld */; };
 		2790F4E31A139854001B0956 /* EHProfilesTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2790F4E21A139854001B0956 /* EHProfilesTableViewCell.m */; };
 		2790F4E61A1398D8001B0956 /* EHProfilesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2790F4E51A1398D8001B0956 /* EHProfilesViewController.m */; };
 		B5DF299F1A164A280076862E /* EHInterview.m in Sources */ = {isa = PBXBuildFile; fileRef = B5DF299B1A164A280076862E /* EHInterview.m */; };
@@ -56,6 +58,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1131871F1A2613DD00FDE127 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		113187221A2614B600FDE127 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		2790F4E11A139854001B0956 /* EHProfilesTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EHProfilesTableViewCell.h; path = Views/EHProfilesTableViewCell.h; sourceTree = "<group>"; };
 		2790F4E21A139854001B0956 /* EHProfilesTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EHProfilesTableViewCell.m; path = Views/EHProfilesTableViewCell.m; sourceTree = "<group>"; };
 		2790F4E41A1398D8001B0956 /* EHProfilesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EHProfilesViewController.h; path = ViewControllers/EHProfilesViewController.h; sourceTree = "<group>"; };
@@ -122,6 +126,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				113187201A2613DD00FDE127 /* CoreData.framework in Frameworks */,
 				D90A1BC31A16371800B610C6 /* AVFoundation.framework in Frameworks */,
 				D9B0CC671A03B17500544323 /* CoreGraphics.framework in Frameworks */,
 				D9B0CC691A03B17500544323 /* UIKit.framework in Frameworks */,
@@ -212,6 +217,7 @@
 		D9B0CC581A03B17500544323 = {
 			isa = PBXGroup;
 			children = (
+				113187211A2614B600FDE127 /* Model.xcdatamodeld */,
 				D9B0CC6A1A03B17500544323 /* ExpertHelper */,
 				D9B0CC8C1A03B17500544323 /* ExpertHelperTests */,
 				D9B0CC631A03B17500544323 /* Frameworks */,
@@ -231,6 +237,7 @@
 		D9B0CC631A03B17500544323 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				1131871F1A2613DD00FDE127 /* CoreData.framework */,
 				D90A1BC21A16371800B610C6 /* AVFoundation.framework */,
 				D9B0CC641A03B17500544323 /* Foundation.framework */,
 				D9B0CC661A03B17500544323 /* CoreGraphics.framework */,
@@ -487,6 +494,7 @@
 				D967F2101A1E4DEE0009639C /* EHITAViewController.m in Sources */,
 				2790F4E61A1398D8001B0956 /* EHProfilesViewController.m in Sources */,
 				B5DF299F1A164A280076862E /* EHInterview.m in Sources */,
+				113187231A2614B600FDE127 /* Model.xcdatamodeld in Sources */,
 				D9C56E3A1A249EFD006B3105 /* EHManyCandidatesViewController.m in Sources */,
 				D967F2081A1E23BC0009639C /* EHCandidateFormViewController.m in Sources */,
 				D9998EE41A221CE9002E019A /* EHRevealViewController.m in Sources */,
@@ -729,6 +737,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		113187211A2614B600FDE127 /* Model.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				113187221A2614B600FDE127 /* Model.xcdatamodel */,
+			);
+			currentVersion = 113187221A2614B600FDE127 /* Model.xcdatamodel */;
+			path = Model.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = D9B0CC591A03B17500544323 /* Project object */;
 }
