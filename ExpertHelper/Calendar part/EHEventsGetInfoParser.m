@@ -140,7 +140,10 @@
             
         }
         else{
-                   interview.nameAndLastNameOfCandidates = parseNameAndLastnameOfCandidate;
+            
+            NSArray * parseNameAndLastnameOfCandidate = [self getNamesOfCandidatesFromNote:event.notes];
+            
+            interview.nameAndLastNameOfCandidates = parseNameAndLastnameOfCandidate;
             
             // NSLog(@"%@",[[interview.nameAndLastNameOfCandidates objectAtIndex:0] firstName]);
         }
