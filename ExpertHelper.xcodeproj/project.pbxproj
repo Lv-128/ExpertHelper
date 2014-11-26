@@ -7,7 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		11CDFE5F1A236AD900E08CC2 /* EHInterviewFormItAcademy.m in Sources */ = {isa = PBXBuildFile; fileRef = 11CDFE5E1A236AD900E08CC2 /* EHInterviewFormItAcademy.m */; };
+		113186D01A238A2800FDE127 /* EHItaInterview.m in Sources */ = {isa = PBXBuildFile; fileRef = 113186CF1A238A2800FDE127 /* EHItaInterview.m */; };
+		113186D21A23908F00FDE127 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 113186D11A23908F00FDE127 /* CoreData.framework */; };
+		1131871E1A25ED8000FDE127 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1131871C1A25ED8000FDE127 /* Model.xcdatamodeld */; };
 		2790F4E31A139854001B0956 /* EHProfilesTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2790F4E21A139854001B0956 /* EHProfilesTableViewCell.m */; };
 		2790F4E61A1398D8001B0956 /* EHProfilesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2790F4E51A1398D8001B0956 /* EHProfilesViewController.m */; };
 		B5DF299F1A164A280076862E /* EHInterview.m in Sources */ = {isa = PBXBuildFile; fileRef = B5DF299B1A164A280076862E /* EHInterview.m */; };
@@ -56,9 +58,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		11CDFE5C1A236AD900E08CC2 /* EHInterviewForm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EHInterviewForm.h; path = ExpertHelper/EHInterviewForm.h; sourceTree = "<group>"; };
-		11CDFE5D1A236AD900E08CC2 /* EHInterviewFormItAcademy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EHInterviewFormItAcademy.h; path = ExpertHelper/EHInterviewFormItAcademy.h; sourceTree = "<group>"; };
-		11CDFE5E1A236AD900E08CC2 /* EHInterviewFormItAcademy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EHInterviewFormItAcademy.m; path = ExpertHelper/EHInterviewFormItAcademy.m; sourceTree = "<group>"; };
+		113186CE1A238A2800FDE127 /* EHItaInterview.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EHItaInterview.h; sourceTree = "<group>"; };
+		113186CF1A238A2800FDE127 /* EHItaInterview.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EHItaInterview.m; sourceTree = "<group>"; };
+		113186D11A23908F00FDE127 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		1131871D1A25ED8000FDE127 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		2790F4E11A139854001B0956 /* EHProfilesTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EHProfilesTableViewCell.h; path = Views/EHProfilesTableViewCell.h; sourceTree = "<group>"; };
 		2790F4E21A139854001B0956 /* EHProfilesTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EHProfilesTableViewCell.m; path = Views/EHProfilesTableViewCell.m; sourceTree = "<group>"; };
 		2790F4E41A1398D8001B0956 /* EHProfilesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EHProfilesViewController.h; path = ViewControllers/EHProfilesViewController.h; sourceTree = "<group>"; };
@@ -123,6 +126,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				113186D21A23908F00FDE127 /* CoreData.framework in Frameworks */,
 				D90A1BC31A16371800B610C6 /* AVFoundation.framework in Frameworks */,
 				D9B0CC671A03B17500544323 /* CoreGraphics.framework in Frameworks */,
 				D9B0CC691A03B17500544323 /* UIKit.framework in Frameworks */,
@@ -192,12 +196,11 @@
 			isa = PBXGroup;
 			children = (
 				D967F20C1A1E4DEE0009639C /* EHITAViewController.h */,
-				11CDFE5C1A236AD900E08CC2 /* EHInterviewForm.h */,
-				11CDFE5D1A236AD900E08CC2 /* EHInterviewFormItAcademy.h */,
-				11CDFE5E1A236AD900E08CC2 /* EHInterviewFormItAcademy.m */,
 				D967F20D1A1E4DEE0009639C /* EHITAViewController.m */,
 				D967F20E1A1E4DEE0009639C /* EHITAViewControllerCell.h */,
 				D967F20F1A1E4DEE0009639C /* EHITAViewControllerCell.m */,
+				113186CE1A238A2800FDE127 /* EHItaInterview.h */,
+				113186CF1A238A2800FDE127 /* EHItaInterview.m */,
 			);
 			name = "ITA Form";
 			path = ..;
@@ -235,6 +238,7 @@
 		D9B0CC631A03B17500544323 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				113186D11A23908F00FDE127 /* CoreData.framework */,
 				D90A1BC21A16371800B610C6 /* AVFoundation.framework */,
 				D9B0CC641A03B17500544323 /* Foundation.framework */,
 				D9B0CC661A03B17500544323 /* CoreGraphics.framework */,
@@ -260,10 +264,11 @@
 		D9B0CC6B1A03B17500544323 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				D9998EDD1A221CE9002E019A /* SlideOutMenuFiles */,
-				D9BE54061A10B1A200AD5D3D /* Images.xcassets */,
 				D9B0CC731A03B17500544323 /* EHAppDelegate.h */,
 				D9B0CC741A03B17500544323 /* EHAppDelegate.m */,
+				1131871C1A25ED8000FDE127 /* Model.xcdatamodeld */,
+				D9998EDD1A221CE9002E019A /* SlideOutMenuFiles */,
+				D9BE54061A10B1A200AD5D3D /* Images.xcassets */,
 				D9B0CC6C1A03B17500544323 /* ExpertHelper-Info.plist */,
 				D9B0CC6D1A03B17500544323 /* InfoPlist.strings */,
 				D9B0CC701A03B17500544323 /* main.m */,
@@ -481,7 +486,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				D967F2111A1E4DEE0009639C /* EHITAViewControllerCell.m in Sources */,
-				11CDFE5F1A236AD900E08CC2 /* EHInterviewFormItAcademy.m in Sources */,
 				2790F4E31A139854001B0956 /* EHProfilesTableViewCell.m in Sources */,
 				D9B0CC711A03B17500544323 /* main.m in Sources */,
 				D9F15AD11A1A575A00E4DC62 /* EHListOfInterviewsViewController.m in Sources */,
@@ -490,9 +494,11 @@
 				D967F2101A1E4DEE0009639C /* EHITAViewController.m in Sources */,
 				2790F4E61A1398D8001B0956 /* EHProfilesViewController.m in Sources */,
 				B5DF299F1A164A280076862E /* EHInterview.m in Sources */,
+				1131871E1A25ED8000FDE127 /* Model.xcdatamodeld in Sources */,
 				D967F2081A1E23BC0009639C /* EHCandidateFormViewController.m in Sources */,
 				D9998EE41A221CE9002E019A /* EHRevealViewController.m in Sources */,
 				D9BE54041A10B16700AD5D3D /* EHProgrammingLanguagesViewController.m in Sources */,
+				113186D01A238A2800FDE127 /* EHItaInterview.m in Sources */,
 				D9998EE01A221CE9002E019A /* EHCalendarEventsParser.m in Sources */,
 				D92B76E41A1F847F00B76F5E /* EHSkillLevelCommentPopup.m in Sources */,
 				D9998EE11A221CE9002E019A /* EHCalendarFormViewController.m in Sources */,
@@ -731,6 +737,20 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		1131871C1A25ED8000FDE127 /* Model.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				1131871D1A25ED8000FDE127 /* Model.xcdatamodel */,
+			);
+			currentVersion = 1131871D1A25ED8000FDE127 /* Model.xcdatamodel */;
+			name = Model.xcdatamodeld;
+			path = ../Model.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = D9B0CC591A03B17500544323 /* Project object */;
 }

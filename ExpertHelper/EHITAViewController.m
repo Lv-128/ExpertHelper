@@ -87,9 +87,15 @@
     cell.openPopUpButton.layer.cornerRadius = 20;//half of the width
     cell.openPopUpButton.layer.borderColor=[UIColor grayColor].CGColor;
     cell.openPopUpButton.layer.borderWidth=2.0f;
-    
     [cell.openPopUpButton addTarget:self action:@selector(openPopUpClick:) forControlEvents:UIControlEventTouchUpInside];
     
+    [cell.commentButton setTitle:@"Add Comment" forState:UIControlStateNormal];
+    cell.commentButton.layer.cornerRadius = 20;//half of the width
+    cell.commentButton.layer.borderColor=[UIColor grayColor].CGColor;
+    cell.commentButton.layer.borderWidth=2.0f;
+    [cell.openPopUpButton addTarget:self action:@selector(addComment:) forControlEvents:UIControlEventTouchUpInside];
+
+
     
     [cell.candidateImage setImage: [UIImage imageNamed:@"smile.png"] forState:UIControlStateNormal];
     [cell.candidateImage addTarget:self action:@selector(changeImage:) forControlEvents:UIControlEventTouchUpInside];
@@ -98,6 +104,12 @@
     return cell;
 }
 
+//--------------- add expert's comment ---------------
+
+-(void)addComment:(UIButton*)sender {
+    button = (UIButton *)sender;
+    
+}
 
 //--------------- choose picture for candidate ---------------
 

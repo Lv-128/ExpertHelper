@@ -7,10 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "EHInterviewForm.h"
 #import "EHInterview.h"
 
-@interface EHInterviewFormItAcademy : NSObject<EHInterviewForm>
+@interface EHInterviewFormItAcademy : NSObject
 
 @property (nonatomic, copy) NSString* interviewType;
 @property (nonatomic, strong) EHInterview* interview;
@@ -19,6 +18,5 @@
 @property (nonatomic, copy) NSMutableArray * arrayOfPass;
 
 
--(NSInteger *) GenerateInterviewFormId;
 
 @end
