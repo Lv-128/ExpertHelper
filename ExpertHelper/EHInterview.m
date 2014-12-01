@@ -16,6 +16,7 @@
          dateOfInterview: (NSDate *) dateOfInterview
      locationOfInterview: (NSString *)locationOfInterview
          typeOfInterview:(NSString *)typeOfInterview
+                                 url:(NSURL *)url
 {
     self = [super init];
     if (self)
@@ -27,6 +28,7 @@
         _typeOfInterview = typeOfInterview;
         _nameOfRecruiter = nameOfRecruiter;
         _lastNameOfRecruiter = lastnameOfRecruiter;
+        _url = url;
     }
     return self;
 }

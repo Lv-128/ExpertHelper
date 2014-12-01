@@ -117,11 +117,20 @@
     
     for (EKEvent * event in _events)
     {
-        
+        NSString *eventID = event.eventIdentifier;
+        NSString * eventURL = [@"myApp/" stringByAppendingString:eventID];
+        EKEvent *event = [_calEventParser.eventStore eventWithIdentifier:eventID];
+            if (event) {
+                event.Location = @"Plosha-Rinok";
+               
+                event.URL = [NSURL URLWithString: eventURL];
+                [_calEventParser.eventStore saveEvent:event span:EKSpanThisEvent commit:YES error:nil];
+            }
+      
         
         EHInterview * interview = [[EHInterview alloc]init];
         
-        
+        interview.url = event.URL;
         
         [self canDefineTypeAsITA:event.title];
         if (self.parseOptions.isIta)

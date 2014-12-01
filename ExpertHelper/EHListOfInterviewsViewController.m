@@ -14,7 +14,8 @@
 #import "EHRecruiterViewController.h"
 #import "EHITAViewController.h"
 #import "EHEventsGetInfoParser.h"
-@interface EHListOfInterviewsViewController ()<UICollectionViewDataSource, UICollectionViewDelegate, UIGestureRecognizerDelegate>
+#import <MessageUI/MessageUI.h>
+@interface EHListOfInterviewsViewController ()<UICollectionViewDataSource, UICollectionViewDelegate, UIGestureRecognizerDelegate, MFMailComposeViewControllerDelegate>
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *barButton;
 
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
@@ -146,6 +147,40 @@
     return cell;
 }
 
+#pragma mark Send Email To Recruiter
+- (void)sendEmailToAddress:(NSString*)address
+{
+    MFMailComposeViewController *mailController = [[MFMailComposeViewController alloc]init];
+    [mailController setMailComposeDelegate:self];
+    
+    NSArray *addressArray = [[NSArray alloc]initWithObjects:address, nil];
+    [mailController setMessageBody:@"Print message here!" isHTML:NO];
+    [mailController setToRecipients:addressArray];
+    [mailController setSubject:@""];
+    [mailController setModalTransitionStyle:UIModalTransitionStyleFlipHorizontal];
+    [self presentViewController:mailController animated:YES completion: nil];
+  
+}
+
+ - (void)mailComposeController:(MFMailComposeViewController *) controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error{
+     [self dismissViewControllerAnimated:YES completion:nil];
+ }
+- (IBAction)sendEmail:(id)sender event:(id)event
+{
+    NSSet *touches = [event allTouches];
+    
+    UITouch *touch = [touches anyObject];
+    
+    CGPoint currentTouchPosition = [touch locationInView: _collectionView];
+    
+    NSIndexPath *indexPath = [_collectionView indexPathForItemAtPoint: currentTouchPosition];
+
+    NSArray *eventsOnThisDay = [[self.sortedWeeks objectAtIndex:indexPath.section] interviews];
+    EHInterview *interview = [eventsOnThisDay objectAtIndex:indexPath.row];
+    [self sendEmailToAddress:@"elena.pyanyh@gmail.com"];
+    
+}
+
 
 -(void)showAllCandidates:(id)sender
 {
@@ -190,9 +225,7 @@
         }
         else
             [actionSheet showInView:self.view];
-        
-        actionSheet.tag = 300;
-    }
+         }
 }
 -(void)chooseTypeOfInterview:(id)sender
 {
