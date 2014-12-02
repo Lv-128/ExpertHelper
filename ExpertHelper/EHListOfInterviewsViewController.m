@@ -14,7 +14,12 @@
 #import "EHRecruiterViewController.h"
 #import "EHITAViewController.h"
 #import "EHEventsGetInfoParser.h"
+<<<<<<< HEAD
 @interface EHListOfInterviewsViewController ()<UICollectionViewDataSource, UICollectionViewDelegate, UIGestureRecognizerDelegate, UIActionSheetDelegate>
+=======
+#import <MessageUI/MessageUI.h>
+@interface EHListOfInterviewsViewController ()<UICollectionViewDataSource, UICollectionViewDelegate, UIGestureRecognizerDelegate, UIActionSheetDelegate, MFMailComposeViewControllerDelegate>
+>>>>>>> calendarViewBranch
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *barButton;
 
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
@@ -49,7 +54,11 @@
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
+<<<<<<< HEAD
    
+=======
+    
+>>>>>>> calendarViewBranch
 }
 
 #pragma mark Collection View Methods
@@ -124,7 +133,11 @@
     [cell.layer setBorderColor:[UIColor grayColor].CGColor];
     
     [cell.layer setCornerRadius:20.0f];
+<<<<<<< HEAD
    
+=======
+    
+>>>>>>> calendarViewBranch
     UITapGestureRecognizer *goToInfoForm2 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(goToInfo:)];
     [goToInfoForm2 setDelegate:self];
     [labelRecruiter addGestureRecognizer:goToInfoForm2];
@@ -144,6 +157,10 @@
     return cell;
 }
 
+<<<<<<< HEAD
+=======
+#pragma mark Work with Action sheets
+>>>>>>> calendarViewBranch
 - (void)showAllCandidates:(id)sender
 {
     UITapGestureRecognizer *tapGR = (UITapGestureRecognizer*)sender;
@@ -159,6 +176,7 @@
         
     }
     _actionSheetCandidates = [[UIActionSheet alloc] initWithTitle:@"Candidates:"
+<<<<<<< HEAD
                                                                  delegate:self /// here will be delegate
                                                         cancelButtonTitle:nil
                                                    destructiveButtonTitle:nil
@@ -188,6 +206,37 @@
     {
         EHCandidateFormViewController *candidateForm = [self.storyboard instantiateViewControllerWithIdentifier:@"CandidateFormView"];
 
+=======
+                                                         delegate:self /// here will be delegate
+                                                cancelButtonTitle:nil
+                                           destructiveButtonTitle:nil
+                                                otherButtonTitles:nil];
+    
+    
+    for (EHCalendarParseResult *title in array) {
+        [_actionSheetCandidates addButtonWithTitle:[[title.firstName stringByAppendingString:@" "] stringByAppendingString:title.lastName]];
+    }
+    
+    
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+    {
+        UICollectionViewCell *currentInterview = [self.collectionView cellForItemAtIndexPath:tappedRow];
+        UIView *label = [currentInterview viewWithTag: 103];
+        CGRect rect = CGRectMake([label frame].origin.x - [label frame].size.width/3, [label frame].origin.y, [label frame].size.width, [label frame].size.height) ;
+        _curInterview = event;
+        [_actionSheetCandidates showFromRect:rect inView:currentInterview animated:YES ];//showFromRect:[label  frame] inView:self.view animated:YES];
+    }
+    else
+        [_actionSheetCandidates showInView:self.view];
+}
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if ([actionSheet isEqual: _actionSheetCandidates])
+    {
+        EHCandidateFormViewController *candidateForm = [self.storyboard instantiateViewControllerWithIdentifier:@"CandidateFormView"];
+        
+>>>>>>> calendarViewBranch
         candidateForm.nameOfCandidate = [_curInterview.nameAndLastNameOfCandidates[buttonIndex] firstName];
         candidateForm.lastnameOfCandidate = [_curInterview.nameAndLastNameOfCandidates[buttonIndex] lastName];
         
@@ -197,6 +246,7 @@
     
     if ([actionSheet isEqual: _actionSheetTypes])
     {
+<<<<<<< HEAD
 //        UITapGestureRecognizer *tapGR = [_actionSheetTypes.delegate];
 //        CGPoint touchLocation = [tapGR locationOfTouch:0 inView:self.collectionView];
 //        NSIndexPath *tappedRow = [self.collectionView indexPathForItemAtPoint:touchLocation];
@@ -215,6 +265,26 @@
 //        event.typeOfInterview = _curInterview.typeOfInterview = [_actionSheetTypes buttonTitleAtIndex:buttonIndex];
     }
         
+=======
+        //        UITapGestureRecognizer *tapGR = [_actionSheetTypes.delegate];
+        //        CGPoint touchLocation = [tapGR locationOfTouch:0 inView:self.collectionView];
+        //        NSIndexPath *tappedRow = [self.collectionView indexPathForItemAtPoint:touchLocation];
+        //
+        //        NSArray *eventsOnThisDay = [[self.sortedWeeks objectAtIndex:tappedRow.section] interviews];
+        //        EHInterview *event = [eventsOnThisDay objectAtIndex:tappedRow.row];
+        _curInterview.typeOfInterview = [_actionSheetTypes buttonTitleAtIndex:buttonIndex];
+        _label.text = [_actionSheetTypes buttonTitleAtIndex:buttonIndex];
+        
+        //        UITapGestureRecognizer *tapGR = (UITapGestureRecognizer*)_label;
+        //        CGPoint touchLocation = [tapGR locationOfTouch:0 inView:self.collectionView];
+        //        NSIndexPath *tappedRow = [self.collectionView indexPathForItemAtPoint:touchLocation];
+        //
+        //        NSArray *eventsOnThisDay = [[self.sortedWeeks objectAtIndex:tappedRow.section] interviews];
+        //        EHInterview *event = [eventsOnThisDay objectAtIndex:tappedRow.row];
+        //        event.typeOfInterview = _curInterview.typeOfInterview = [_actionSheetTypes buttonTitleAtIndex:buttonIndex];
+    }
+    
+>>>>>>> calendarViewBranch
 }
 
 - (void)chooseTypeOfInterview:(id)sender
@@ -227,6 +297,7 @@
     EHInterview *event = [eventsOnThisDay objectAtIndex:tappedRow.row];
     
     _actionSheetTypes = [[UIActionSheet alloc] initWithTitle:@"Select type of interview:"
+<<<<<<< HEAD
                                                                  delegate:self
                                                         cancelButtonTitle:@"Cancel"
                                                    destructiveButtonTitle:nil
@@ -241,6 +312,22 @@
         }
         else
             [_actionSheetTypes showInView:self.view];
+=======
+                                                    delegate:self
+                                           cancelButtonTitle:@"Cancel"
+                                      destructiveButtonTitle:nil
+                                           otherButtonTitles:@" None", @" IT Academy", @" Internal", @" External",nil];
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+    {
+        UICollectionViewCell *curInterview = [self.collectionView  cellForItemAtIndexPath:tappedRow];
+        _label = [curInterview viewWithTag: 100];
+        _curInterview = event;
+        CGRect  rect = CGRectMake([_label frame].origin.x - [_label frame].size.width/3 , [_label frame].origin.y, [_label frame].size.width,  [_label frame].size.height) ;
+        [_actionSheetTypes showFromRect:rect inView:curInterview animated:YES ];//showFromRect:[label  frame] inView:self.view animated:YES];
+    }
+    else
+        [_actionSheetTypes showInView:self.view];
+>>>>>>> calendarViewBranch
 }
 
 - (void)goToInfo:(id)sender
@@ -287,6 +374,7 @@
     
     CGPoint touchLocation = [tapGR locationOfTouch:0 inView:self.collectionView];
     
+<<<<<<< HEAD
 
         NSIndexPath *tappedRow = [self.collectionView indexPathForItemAtPoint:touchLocation];
         EHInterview *curInterview =[[[sortedWeeks objectAtIndex:tappedRow.section ] interviews] objectAtIndex:tappedRow.row];
@@ -301,6 +389,22 @@
             [self.navigationController pushViewController:recruiterViewForm animated: YES];
         }
    }
+=======
+    
+    NSIndexPath *tappedRow = [self.collectionView indexPathForItemAtPoint:touchLocation];
+    EHInterview *curInterview =[[[sortedWeeks objectAtIndex:tappedRow.section ] interviews] objectAtIndex:tappedRow.row];
+    if([curInterview.typeOfInterview  isEqual: @" IT Academy"])
+    {
+        EHITAViewController *recruiterViewForm = [self.storyboard instantiateViewControllerWithIdentifier:@"ITAForm"];
+        [self.navigationController pushViewController:recruiterViewForm animated: YES];
+        
+    }
+    else{
+        EHITAViewController *recruiterViewForm = [self.storyboard instantiateViewControllerWithIdentifier:@"InternalForm"];
+        [self.navigationController pushViewController:recruiterViewForm animated: YES];
+    }
+}
+>>>>>>> calendarViewBranch
 
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
 {
@@ -320,5 +424,38 @@
     }
     return nil;
 }
+#pragma mark Send Email To Recruiter
+- (void)sendEmailToAddress:(NSString*)address
+{
+    MFMailComposeViewController *mailController = [[MFMailComposeViewController alloc]init];
+    [mailController setMailComposeDelegate:self];
+    
+    NSArray *addressArray = [[NSArray alloc]initWithObjects:address, nil];
+    [mailController setMessageBody:@"Print message here!" isHTML:NO];
+    [mailController setToRecipients:addressArray];
+    [mailController setSubject:@""];
+    [mailController setModalTransitionStyle:UIModalTransitionStyleFlipHorizontal];
+  //  [mailController addAttachmentData:<#(NSData *)#> mimeType:<#(NSString *)#> fileName:<#(NSString *)#>]
+    [self presentViewController:mailController animated:YES completion: nil];
+    
+}
 
+- (void)mailComposeController:(MFMailComposeViewController *) controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error{
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+- (IBAction)sendEmail:(id)sender event:(id)event
+{
+    NSSet *touches = [event allTouches];
+    
+    UITouch *touch = [touches anyObject];
+    
+    CGPoint currentTouchPosition = [touch locationInView: _collectionView];
+    
+    NSIndexPath *indexPath = [_collectionView indexPathForItemAtPoint: currentTouchPosition];
+    
+    NSArray *eventsOnThisDay = [[self.sortedWeeks objectAtIndex:indexPath.section] interviews];
+    EHInterview *interview = [eventsOnThisDay objectAtIndex:indexPath.row];
+    [self sendEmailToAddress:@"elena.pyanyh@gmail.com"];
+    
+}
 @end
