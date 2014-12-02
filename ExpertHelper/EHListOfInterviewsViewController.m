@@ -15,7 +15,7 @@
 #import "EHITAViewController.h"
 #import "EHEventsGetInfoParser.h"
 #import <MessageUI/MessageUI.h>
-
+  
 @interface EHListOfInterviewsViewController () <UICollectionViewDataSource, UICollectionViewDelegate, UIGestureRecognizerDelegate, UIActionSheetDelegate, MFMailComposeViewControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *barButton;
@@ -269,7 +269,7 @@
     {
         NSIndexPath *tappedRow = [self.collectionView indexPathForItemAtPoint:touchLocation];
         EHInterview *curInterview =[[[sortedWeeks objectAtIndex:tappedRow.section ] interviews] objectAtIndex:tappedRow.row];
-        if([curInterview.typeOfInterview  isEqual: @"ITA"])
+        if([curInterview.typeOfInterview  isEqual: @"IT Academy"])
         {
             EHITAViewController *recruiterViewForm = [self.storyboard instantiateViewControllerWithIdentifier:@"ITAForm"];
             [self.navigationController pushViewController:recruiterViewForm animated: YES];
@@ -281,19 +281,7 @@
         }
    }
 
-    
-    NSIndexPath *tappedRow = [self.collectionView indexPathForItemAtPoint:touchLocation];
-    EHInterview *curInterview =[[[sortedWeeks objectAtIndex:tappedRow.section ] interviews] objectAtIndex:tappedRow.row];
-    if([curInterview.typeOfInterview  isEqual: @" IT Academy"])
-    {
-        EHITAViewController *recruiterViewForm = [self.storyboard instantiateViewControllerWithIdentifier:@"ITAForm"];
-        [self.navigationController pushViewController:recruiterViewForm animated: YES];
-        
-    }
-    else{
-        EHITAViewController *recruiterViewForm = [self.storyboard instantiateViewControllerWithIdentifier:@"InternalForm"];
-        [self.navigationController pushViewController:recruiterViewForm animated: YES];
-    }
+
 }
 
 

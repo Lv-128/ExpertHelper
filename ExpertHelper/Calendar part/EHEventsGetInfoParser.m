@@ -134,7 +134,7 @@
         
         [self canDefineTypeAsITA:event.title];
         if (self.parseOptions.isIta)
-            interview.typeOfInterview = @" IT Academy";
+            interview.typeOfInterview = @"IT Academy";
         else
             interview.typeOfInterview = @"None";
         
