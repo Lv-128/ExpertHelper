@@ -918,10 +918,7 @@
         <image name="checkBox.png" width="849" height="757"/>
         <image name="checkBoxMarked.png" width="849" height="757"/>
         <image name="mail" width="110" height="110"/>
-        <image name="mail" width="110" height="110"/>
         <image name="phone" width="88" height="88"/>
-        <image name="phone" width="88" height="88"/>
-        <image name="skype" width="300" height="300"/>
         <image name="skype" width="300" height="300"/>
         <image name="stewie" width="184" height="104"/>
     </resources>

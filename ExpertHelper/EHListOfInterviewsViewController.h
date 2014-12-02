@@ -13,8 +13,6 @@
 
 @property (copy, nonatomic) NSArray *interviews;
 @property (strong, nonatomic) NSArray *sortedWeeks;
-@property (strong, nonatomic) NSArray *nameCandidates;
-
-
-
+@property(nonatomic,retain) UIPickerView *myPickerView;
+//@property(nonatomic,retain) UIPopoverController *popoverController;
 @end
