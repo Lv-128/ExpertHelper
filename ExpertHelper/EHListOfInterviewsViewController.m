@@ -20,7 +20,6 @@
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (strong, nonatomic) NSDateFormatter *cellDateFormatter;
 @property (strong, nonatomic) EHInterview *curInterview ;
-@property (strong, nonatomic) UIActionSheet *actionSheetCandidates;
 @property (strong, nonatomic) UIActionSheet *actionSheetTypes;
 @property (strong, nonatomic) UILabel *label;
 
@@ -156,7 +155,6 @@
     [labelType addGestureRecognizer:changeType];
     changeType.numberOfTapsRequired = 1;
 
-    
     return cell;
 }
 
@@ -172,65 +170,19 @@
     for (int i = 0; i< event.nameAndLastNameOfCandidates.count; i++)
     {
         [array addObject: [event.nameAndLastNameOfCandidates objectAtIndex:i]];
-        
     }
-    _actionSheetCandidates = [[UIActionSheet alloc] initWithTitle:@"Candidates:"
-                                                                 delegate:self /// here will be delegate
-                                                        cancelButtonTitle:nil
-                                                   destructiveButtonTitle:nil
-                                                        otherButtonTitles:nil];
-        
-        
-        for (EHCalendarParseResult *title in array) {
-            [_actionSheetCandidates addButtonWithTitle:[[title.firstName stringByAppendingString:@" "] stringByAppendingString:title.lastName]];
-        }
-        
-        
-        if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
-        {
-            UICollectionViewCell *currentInterview = [self.collectionView cellForItemAtIndexPath:tappedRow];
-            UIView *label = [currentInterview viewWithTag: 103];
-            CGRect rect = CGRectMake([label frame].origin.x - [label frame].size.width/3, [label frame].origin.y, [label frame].size.width, [label frame].size.height) ;
-            _curInterview = event;
-            [_actionSheetCandidates showFromRect:rect inView:currentInterview animated:YES ];//showFromRect:[label  frame] inView:self.view animated:YES];
-        }
-        else
-            [_actionSheetCandidates showInView:self.view];
-     }
+}
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    if ([actionSheet isEqual: _actionSheetCandidates])
-    {
-        EHCandidateFormViewController *candidateForm = [self.storyboard instantiateViewControllerWithIdentifier:@"CandidateFormView"];
-
-        candidateForm.nameOfCandidate = [_curInterview.nameAndLastNameOfCandidates[buttonIndex] firstName];
-        candidateForm.lastnameOfCandidate = [_curInterview.nameAndLastNameOfCandidates[buttonIndex] lastName];
-        
-        candidateForm.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
-        [self.navigationController pushViewController:candidateForm animated:YES ];
-    }
     
     if ([actionSheet isEqual: _actionSheetTypes])
     {
-//        UITapGestureRecognizer *tapGR = [_actionSheetTypes.delegate];
-//        CGPoint touchLocation = [tapGR locationOfTouch:0 inView:self.collectionView];
-//        NSIndexPath *tappedRow = [self.collectionView indexPathForItemAtPoint:touchLocation];
-//        
-//        NSArray *eventsOnThisDay = [[self.sortedWeeks objectAtIndex:tappedRow.section] interviews];
-//        EHInterview *event = [eventsOnThisDay objectAtIndex:tappedRow.row];
-        _curInterview.typeOfInterview = [_actionSheetTypes buttonTitleAtIndex:buttonIndex];
-        _label.text = [_actionSheetTypes buttonTitleAtIndex:buttonIndex];
-        
-//        UITapGestureRecognizer *tapGR = (UITapGestureRecognizer*)_label;
-//        CGPoint touchLocation = [tapGR locationOfTouch:0 inView:self.collectionView];
-//        NSIndexPath *tappedRow = [self.collectionView indexPathForItemAtPoint:touchLocation];
-//        
-//        NSArray *eventsOnThisDay = [[self.sortedWeeks objectAtIndex:tappedRow.section] interviews];
-//        EHInterview *event = [eventsOnThisDay objectAtIndex:tappedRow.row];
-//        event.typeOfInterview = _curInterview.typeOfInterview = [_actionSheetTypes buttonTitleAtIndex:buttonIndex];
+        if (buttonIndex != _actionSheetTypes.cancelButtonIndex) {
+            _curInterview.typeOfInterview = [_actionSheetTypes buttonTitleAtIndex:buttonIndex];
+            _label.text = [_actionSheetTypes buttonTitleAtIndex:buttonIndex];
+        }
     }
-        
 }
 
 - (void)chooseTypeOfInterview:(id)sender
@@ -250,9 +202,9 @@
         if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
         {
             UICollectionViewCell *curInterview = [self.collectionView  cellForItemAtIndexPath:tappedRow];
-            _label = [curInterview viewWithTag: 100];
+            _label = [curInterview viewWithTag:100];
            _curInterview = event;
-            CGRect  rect = CGRectMake([_label frame].origin.x - [_label frame].size.width/3 , [_label frame].origin.y, [_label frame].size.width,  [_label frame].size.height) ;
+            CGRect  rect = CGRectMake([_label frame].origin.x - [_label frame].size.width / 3 , [_label frame].origin.y, [_label frame].size.width,  [_label frame].size.height) ;
            [_actionSheetTypes showFromRect:rect inView:curInterview animated:YES ];//showFromRect:[label  frame] inView:self.view animated:YES];
         }
         else
@@ -271,7 +223,7 @@
         
         EHInterview *curInterview = [[[sortedWeeks objectAtIndex:tappedRow.section ] interviews] objectAtIndex:tappedRow.row];
         EHCandidateFormViewController *candidateForm = [self.storyboard instantiateViewControllerWithIdentifier:@"CandidateFormView"];
-        if (curInterview.nameAndLastNameOfCandidates.count >0 && ![[curInterview.nameAndLastNameOfCandidates[0] firstName]isEqualToString: @"Unknown"])
+        if (curInterview.nameAndLastNameOfCandidates.count > 0 && ![[curInterview.nameAndLastNameOfCandidates[0] firstName]isEqualToString: @"Unknown"])
         {
             candidateForm.nameOfCandidate = [curInterview.nameAndLastNameOfCandidates[0] firstName];
             candidateForm.lastnameOfCandidate = [curInterview.nameAndLastNameOfCandidates[0] lastName];
