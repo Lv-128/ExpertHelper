@@ -292,7 +292,7 @@
     
     NSIndexPath *tappedRow = [self.collectionView indexPathForItemAtPoint:touchLocation];
     EHInterview *curInterview =[[[sortedWeeks objectAtIndex:tappedRow.section ] interviews] objectAtIndex:tappedRow.row];
-    if([curInterview.typeOfInterview  isEqual: @"ITA"])
+    if([curInterview.typeOfInterview  isEqual: @" IT Academy"])
     {
         EHITAViewController *recruiterViewForm = [self.storyboard instantiateViewControllerWithIdentifier:@"ITAForm"];
         [self.navigationController pushViewController:recruiterViewForm animated: YES];
@@ -333,6 +333,7 @@
     [mailController setToRecipients:addressArray];
     [mailController setSubject:@""];
     [mailController setModalTransitionStyle:UIModalTransitionStyleFlipHorizontal];
+  //  [mailController addAttachmentData:<#(NSData *)#> mimeType:<#(NSString *)#> fileName:<#(NSString *)#>]
     [self presentViewController:mailController animated:YES completion: nil];
     
 }
