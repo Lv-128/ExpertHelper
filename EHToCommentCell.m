@@ -1,21 +1,20 @@
 //
-//  CLExternalCell.m
-//  Interview Assistant
+//  EHToCommentCell.m
+//  ExpertHelper
 //
-//  Created by nvlizlo on 30.10.14.
+//  Created by Katolyk S. on 12/1/14.
 //  Copyright (c) 2014 Katolyk S. All rights reserved.
 //
 
-#import "EHExternalCell.h"
+#import "EHToCommentCell.h"
 
-@implementation EHExternalCell
+@implementation EHToCommentCell
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
-        self.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
-        self.backgroundColor = [UIColor colorWithRed:88 / 255.0 green:155 / 255.0 blue:62 / 255.0 alpha:1.0];
+        // Initialization code
     }
     return self;
 }

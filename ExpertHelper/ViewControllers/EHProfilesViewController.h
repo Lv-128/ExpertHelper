@@ -8,12 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
-@class EHProfilesViewController;
-
-
-@protocol EHProfilesViewControllerDelegate <NSObject>
-
-@end
+//@class EHProfilesViewController;
+//
+//
+//@protocol EHProfilesViewControllerDelegate <NSObject>
+//
+//@end
 
 @interface EHProfilesViewController : UIViewController
 {
@@ -24,6 +24,6 @@
 }
 
 @property (nonatomic, copy) NSString *skillusLevel;
-@property (nonatomic, strong) id <EHProfilesViewControllerDelegate> delegate;
+//@property (nonatomic, strong) id <EHProfilesViewControllerDelegate> delegate;
 
 @end

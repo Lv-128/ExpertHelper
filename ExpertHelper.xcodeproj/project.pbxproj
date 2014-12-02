@@ -37,6 +37,9 @@
 		D9B0CC891A03B17500544323 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D9B0CC681A03B17500544323 /* UIKit.framework */; };
 		D9B0CC911A03B17500544323 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D9B0CC8F1A03B17500544323 /* InfoPlist.strings */; };
 		D9B0CC931A03B17500544323 /* ExpertHelperTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D9B0CC921A03B17500544323 /* ExpertHelperTests.m */; };
+		D9B83CAE1A2CE23C00BF4913 /* EHToCommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D9B83CAD1A2CE23C00BF4913 /* EHToCommentCell.m */; };
+		D9B8F8C81A279B16000E80AF /* EHGeneralInfo.xib in Resources */ = {isa = PBXBuildFile; fileRef = D9B8F8C71A279B16000E80AF /* EHGeneralInfo.xib */; };
+		D9B8F8D11A279FDF000E80AF /* EHGeneralInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = D9B8F8D01A279FDF000E80AF /* EHGeneralInfo.m */; };
 		D9BE54011A10B16700AD5D3D /* EHExternalCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D9BE53F81A10B16700AD5D3D /* EHExternalCell.m */; };
 		D9BE54021A10B16700AD5D3D /* EHExternalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D9BE53FA1A10B16700AD5D3D /* EHExternalViewController.m */; };
 		D9BE54041A10B16700AD5D3D /* EHProgrammingLanguagesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D9BE53FE1A10B16700AD5D3D /* EHProgrammingLanguagesViewController.m */; };
@@ -104,6 +107,11 @@
 		D9B0CC8E1A03B17500544323 /* ExpertHelperTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ExpertHelperTests-Info.plist"; sourceTree = "<group>"; };
 		D9B0CC901A03B17500544323 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		D9B0CC921A03B17500544323 /* ExpertHelperTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ExpertHelperTests.m; sourceTree = "<group>"; };
+		D9B83CAC1A2CE23C00BF4913 /* EHToCommentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EHToCommentCell.h; path = ../EHToCommentCell.h; sourceTree = "<group>"; };
+		D9B83CAD1A2CE23C00BF4913 /* EHToCommentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EHToCommentCell.m; path = ../EHToCommentCell.m; sourceTree = "<group>"; };
+		D9B8F8C71A279B16000E80AF /* EHGeneralInfo.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EHGeneralInfo.xib; sourceTree = "<group>"; };
+		D9B8F8CF1A279FDF000E80AF /* EHGeneralInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EHGeneralInfo.h; sourceTree = "<group>"; };
+		D9B8F8D01A279FDF000E80AF /* EHGeneralInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EHGeneralInfo.m; sourceTree = "<group>"; };
 		D9BE53F71A10B16700AD5D3D /* EHExternalCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EHExternalCell.h; sourceTree = "<group>"; };
 		D9BE53F81A10B16700AD5D3D /* EHExternalCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EHExternalCell.m; sourceTree = "<group>"; };
 		D9BE53F91A10B16700AD5D3D /* EHExternalViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EHExternalViewController.h; sourceTree = "<group>"; };
@@ -249,6 +257,9 @@
 				D9B0CC791A03B17500544323 /* Main_iPad.storyboard */,
 				D9B0CC761A03B17500544323 /* Main_iPhone.storyboard */,
 				D9B0CC6B1A03B17500544323 /* Supporting Files */,
+				D9B8F8C71A279B16000E80AF /* EHGeneralInfo.xib */,
+				D9B8F8CF1A279FDF000E80AF /* EHGeneralInfo.h */,
+				D9B8F8D01A279FDF000E80AF /* EHGeneralInfo.m */,
 			);
 			path = ExpertHelper;
 			sourceTree = "<group>";
@@ -356,6 +367,8 @@
 		D9D836A61A1F402D00148854 /* External */ = {
 			isa = PBXGroup;
 			children = (
+				D9B83CAC1A2CE23C00BF4913 /* EHToCommentCell.h */,
+				D9B83CAD1A2CE23C00BF4913 /* EHToCommentCell.m */,
 				D9BE53F71A10B16700AD5D3D /* EHExternalCell.h */,
 				D9BE53F81A10B16700AD5D3D /* EHExternalCell.m */,
 				D9BE53F91A10B16700AD5D3D /* EHExternalViewController.h */,
@@ -459,6 +472,7 @@
 				D9BE54071A10B1A200AD5D3D /* Images.xcassets in Resources */,
 				D92B76E51A1F847F00B76F5E /* EHSkillLevelPopup.xib in Resources */,
 				D9B0CC781A03B17500544323 /* Main_iPhone.storyboard in Resources */,
+				D9B8F8C81A279B16000E80AF /* EHGeneralInfo.xib in Resources */,
 				D9B0CC6F1A03B17500544323 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -489,6 +503,7 @@
 				B5DF299F1A164A280076862E /* EHInterview.m in Sources */,
 				D9C56E3A1A249EFD006B3105 /* EHManyCandidatesViewController.m in Sources */,
 				D967F2081A1E23BC0009639C /* EHCandidateFormViewController.m in Sources */,
+				D9B8F8D11A279FDF000E80AF /* EHGeneralInfo.m in Sources */,
 				D9998EE41A221CE9002E019A /* EHRevealViewController.m in Sources */,
 				D9BE54041A10B16700AD5D3D /* EHProgrammingLanguagesViewController.m in Sources */,
 				D9998EE01A221CE9002E019A /* EHCalendarEventsParser.m in Sources */,
@@ -496,6 +511,7 @@
 				D9998EE11A221CE9002E019A /* EHCalendarFormViewController.m in Sources */,
 				D9B0CC751A03B17500544323 /* EHAppDelegate.m in Sources */,
 				D90A1BBE1A16335F00B610C6 /* EHViewController.m in Sources */,
+				D9B83CAE1A2CE23C00BF4913 /* EHToCommentCell.m in Sources */,
 				D9998EE21A221CE9002E019A /* EHEventsGetInfoParser.m in Sources */,
 				D90A1BC11A16366500B610C6 /* EHSkillLevelPopup.m in Sources */,
 				D9BE54011A10B16700AD5D3D /* EHExternalCell.m in Sources */,

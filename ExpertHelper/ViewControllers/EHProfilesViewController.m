@@ -15,7 +15,7 @@
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) NSArray *tableSections;
 @property (nonatomic, strong) NSArray *sectionContent;
-@property (nonatomic, strong) NSArray *array;
+@property (nonatomic, strong) NSMutableArray *array;
 
 @end
 
@@ -34,22 +34,28 @@
     isPopup = NO;
     newCell = YES;
     
+    // self.skillusLevel = popup.skillLevel;
+    
+    //static NSString *cellIdentifier = @"ProfileCell";
+    
+    
     NSIndexPath *rowToReload = [NSIndexPath indexPathForRow: RowAtIndexPathOfSkills inSection:lostData];
     NSArray *rowsToReload = [NSArray arrayWithObjects:rowToReload, nil];
     
-    NSMutableArray *tempMainArr = [[NSMutableArray alloc]initWithCapacity:0];
     NSMutableArray *temp = [_array objectAtIndex:rowToReload.section];
     
-    if (!temp)
+    if (temp == nil)
     {
-        temp = [[NSMutableArray alloc]init];
+        temp =[[NSMutableArray alloc]init];
         [temp insertObject:popup.skillLevel atIndex:rowToReload.row];
-        [tempMainArr insertObject:temp atIndex:rowToReload.section];
-        _array = tempMainArr;
-    }else
+        [_array insertObject:temp atIndex:rowToReload.section];
+    }
+    else
         [[_array objectAtIndex:rowToReload.section] insertObject:popup.skillLevel atIndex:rowToReload.row];
     
     [self.tableView reloadRowsAtIndexPaths: rowsToReload withRowAnimation:UITableViewRowAnimationNone];
+    //EHProfilesTableViewCell *cell = [self.tableView cellForRowAtIndexPath: rowToReload];
+    //cell.middleLabel.text = popup.skillLevel;
 }
 
 - (void)viewDidLoad
@@ -57,24 +63,19 @@
     isPopup = NO;
     newCell = NO;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    self.tableSections = @[@"Programming languages", @"Tech. Domains", @"Skill"];
-    self.sectionContent = @[@[ @"C", @"C++", @"C#", @"Objective-C" ],
-                            @[ @"Multithreading", @"Web", @"Audio" ],
-                            @[ @"Core", @"Desktop", @"Web", @"DB", @"BI", @"RIA", @"Multimedia", @"Mobile", @"Embedded" ]];
+    self.tableSections = @[ @"Programming languages", @"Tech. Domains", @"Skill"];
+    self.sectionContent = @[ @[ @"C", @"C++", @"C#", @"Objective-C" ],
+  @[ @"Multithreading", @"Web", @"Audio" ],
+  @[ @"Core", @"Desktop", @"Web", @"DB", @"BI", @"RIA", @"Multimedia", @"Mobile", @"Embedded" ] ];
     
-    _array = [NSMutableArray array];
-    NSMutableArray *tempMainArr = [[NSMutableArray alloc]initWithCapacity:0];
-    NSMutableArray *temp = [[NSMutableArray alloc]initWithCapacity:0];
+    _array = [[NSMutableArray alloc]initWithCapacity:0];
     
-    for (int i = 0; i < self.tableSections.count; i++)
+    for (int i = 0; i < 3;i++ )
     {
-        for (int b = 0; b < self.sectionContent.count; b++)
-            [temp addObject:@""];
-        
-        [tempMainArr insertObject:temp atIndex:i];
+        NSMutableArray *temp = [NSMutableArray arrayWithObjects:@"",@"",@"",@"",@"",@"",@"",@"",@"",@"", nil];
+        //NSMutableArray *temp = [[NSMutableArray alloc]initWithCapacity:10];
+        [_array insertObject:temp atIndex:i];
     }
-    
-    _array = tempMainArr;
     [super viewDidLoad];
     // Do any additional setup after loading the view.
 }
@@ -95,13 +96,11 @@
     return [self.sectionContent[section] count];
 }
 
-#pragma mark tableview methods
-
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
     // Create custom view to display section header
     UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, tableView.frame.size.width, 18.0)];
-    //create custom class!
+    
     UILabel *labelLeft = [[UILabel alloc] initWithFrame:CGRectMake(0.0, 0.0, tableView.frame.size.width / 3.0, 18.0)];
     [labelLeft setFont:[UIFont boldSystemFontOfSize:14]];
     [labelLeft setTextAlignment:NSTextAlignmentCenter];
@@ -111,20 +110,16 @@
     UILabel *labelRight = [[UILabel alloc] initWithFrame:CGRectMake(tableView.frame.size.width * 0.667, 0.0, tableView.frame.size.width / 3.0, 18.0)];
     [labelRight setFont:[UIFont boldSystemFontOfSize:14]];
     [labelRight setTextAlignment:NSTextAlignmentCenter];
-
-
-    labelLeft.textAlignment = NSTextAlignmentLeft;
-    labelMiddle.textAlignment = NSTextAlignmentCenter;
-    labelRight.textAlignment = NSTextAlignmentCenter;
+    
     labelLeft.text = [self.tableSections objectAtIndex:section];
     labelMiddle.text = @"Required";
     labelRight.text = @"Estimate";
-
+    
     [view addSubview:labelLeft];
     [view addSubview:labelMiddle];
     [view addSubview:labelRight];
     [view setBackgroundColor:[UIColor colorWithRed:166/255.0 green:177/255.0 blue:186/255.0 alpha:1.0]];
-
+    
     return view;
 }
 
@@ -144,15 +139,20 @@
     
     NSInteger row = [indexPath row];
     
-    //Create custom cell!
-    
     cell.leftLabel.text = [listData objectAtIndex:row];
     [cell.leftLabel.layer setBorderColor:[[UIColor colorWithWhite:0.821 alpha:1.000] CGColor]];
     [cell.leftLabel.layer setBorderWidth:1.0];
     
+    
+    
     cell.middleLabel.textAlignment = NSTextAlignmentCenter;
     
-    cell.middleLabel.text = [[_array objectAtIndex:indexPath.section]objectAtIndex:indexPath.row];
+    
+    NSObject *tt =[[_array objectAtIndex:indexPath.section]objectAtIndex:indexPath.row];
+    if(tt != nil)
+    {
+        cell.middleLabel.text = [[_array objectAtIndex:indexPath.section]objectAtIndex:indexPath.row];
+    }
     
     [cell.middleLabel.layer setBorderColor:[[UIColor colorWithWhite:0.821 alpha:1.000] CGColor]];
     [cell.middleLabel.layer setBorderWidth:1.0];
@@ -175,7 +175,7 @@
     UINib *nib = [UINib nibWithNibName:@"EHSkillLevelPopup" bundle:nil];
     EHSkillLevelPopup *popup = [[nib instantiateWithOwner:nil options:nil] lastObject];
     
-    if (!isPopup) {
+    if (isPopup == NO) {
         CGRect r = self.view.frame;
         CGRect f = popup.frame;
         f.size.width = r.size.width;
@@ -195,8 +195,9 @@
             popup.transform = CGAffineTransformMakeScale(1, 1);
         }];
         isPopup = YES;
-    } 
+    }
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 @end
+    

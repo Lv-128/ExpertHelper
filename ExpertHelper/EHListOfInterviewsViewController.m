@@ -103,7 +103,7 @@
     else
     {
         labelCandidate.text = @"many candidates";
-        UITapGestureRecognizer * goToInfoForm5 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showAllCandidates: )];
+        UITapGestureRecognizer *goToInfoForm5 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showAllCandidates: )];
         [goToInfoForm5 setDelegate:self];
         [labelCandidate addGestureRecognizer:goToInfoForm5];
         goToInfoForm5.numberOfTapsRequired = 1;
@@ -114,7 +114,7 @@
     for (UILabel* label in arrLabels)
     {
         //[label.layer  setCornerRadius:15.0f];
-        // [label.layer setBorderWidth:2.0f];
+        //[label.layer setBorderWidth:2.0f];
         [label.layer setBorderColor:[UIColor grayColor].CGColor];
     }
     
@@ -123,18 +123,18 @@
     
     [cell.layer setCornerRadius:20.0f];
     
-    UITapGestureRecognizer * goToInfoForm2 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(goToInfo:)];
+    UITapGestureRecognizer *goToInfoForm2 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(goToInfo:)];
     [goToInfoForm2 setDelegate:self];
     [labelRecruiter addGestureRecognizer:goToInfoForm2];
     goToInfoForm2.numberOfTapsRequired = 1;
     
     
-    UITapGestureRecognizer * goToInfoForm3 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(goToITAForm:)];
+    UITapGestureRecognizer *goToInfoForm3 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(goToITAForm:)];
     [goToInfoForm3 setDelegate:self];
     [butStart addGestureRecognizer:goToInfoForm3];
     goToInfoForm3.numberOfTapsRequired = 1;
     
-    UITapGestureRecognizer * goToInfoForm4 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(chooseTypeOfInterview:)];
+    UITapGestureRecognizer *goToInfoForm4 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(chooseTypeOfInterview:)];
     [goToInfoForm4 setDelegate:self];
     [labelType addGestureRecognizer:goToInfoForm4];
     goToInfoForm4.numberOfTapsRequired = 1;
@@ -266,7 +266,7 @@
         
         NSIndexPath *tappedRow = [self.collectionView indexPathForItemAtPoint:touchLocation];
         
-        EHInterview * curInterview =  [[[sortedWeeks objectAtIndex:tappedRow.section ] interviews] objectAtIndex:tappedRow.row];
+        EHInterview * curInterview = [[[sortedWeeks objectAtIndex:tappedRow.section ] interviews] objectAtIndex:tappedRow.row];
         
         EHRecruiterViewController *recruiterViewForm = [self.storyboard instantiateViewControllerWithIdentifier:@"RecruiterFormView"];
         recruiterViewForm.nameOfRecruiter = curInterview.nameOfRecruiter;
@@ -283,11 +283,10 @@
     
     CGPoint touchLocation = [tapGR locationOfTouch:0 inView:self.collectionView];
     
-    
     if (tapGR.view.tag == 1000)
     {
         NSIndexPath *tappedRow = [self.collectionView indexPathForItemAtPoint:touchLocation];
-        EHInterview * curInterview =[[[sortedWeeks objectAtIndex:tappedRow.section ] interviews] objectAtIndex:tappedRow.row];
+        EHInterview *curInterview =[[[sortedWeeks objectAtIndex:tappedRow.section ] interviews] objectAtIndex:tappedRow.row];
         if([curInterview.typeOfInterview  isEqual: @"ITA"])
         {
             EHITAViewController *recruiterViewForm = [self.storyboard instantiateViewControllerWithIdentifier:@"ITAForm"];
@@ -311,10 +310,10 @@
             reusableview = [[UICollectionReusableView alloc] initWithFrame:CGRectMake(0, 0, 320, 50)];
         }
         
-        UILabel * label = (UILabel *) [reusableview viewWithTag: 1000];
+        UILabel *label = (UILabel *) [reusableview viewWithTag: 1000];
         
         NSString *dateRepresentingThisDay = [[self.sortedWeeks objectAtIndex:indexPath.section]nameOfWeek];
-        label.text=dateRepresentingThisDay;
+        label.text = dateRepresentingThisDay;
         return reusableview;
     }
     return nil;

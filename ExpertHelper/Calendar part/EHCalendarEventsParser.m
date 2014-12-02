@@ -88,7 +88,7 @@
     
     for (int i = 0; i < [accountsArray count]; i++) {
         EKCalendar * tempCal = [accountsArray objectAtIndex:i];
-        if (tempCal.type == EKCalendarTypeCalDAV)
+       // if (tempCal.type == EKCalendarTypeCalDAV)
         {
             [calendars addObject:tempCal];
             [calendarIdentifiers addObject:tempCal.calendarIdentifier];
