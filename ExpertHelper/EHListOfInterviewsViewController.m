@@ -346,8 +346,14 @@
     
     NSIndexPath *indexPath = [_collectionView indexPathForItemAtPoint: currentTouchPosition];
     
-    NSArray *eventsOnThisDay = [[self.sortedWeeks objectAtIndex:indexPath.section] interviews];
-    EHInterview *interview = [eventsOnThisDay objectAtIndex:indexPath.row];
+    // unused variable!!!!!
+    
+    __unused NSArray *eventsOnThisDay = [[self.sortedWeeks objectAtIndex:indexPath.section] interviews];
+    __unused EHInterview *interview = [eventsOnThisDay objectAtIndex:indexPath.row];
+    
+    // end of unused variable!!!!
+    
+    
     [self sendEmailToAddress:@"elena.pyanyh@gmail.com"];
 }
 
