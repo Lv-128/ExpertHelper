@@ -18,6 +18,4 @@
 
 - (IBAction)playTapped:(id)sender;
 
-- (IBAction)openPopup:(id)sender;
-
 @end
