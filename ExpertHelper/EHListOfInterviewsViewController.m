@@ -23,10 +23,6 @@
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (strong, nonatomic) NSDateFormatter *cellDateFormatter;
 @property (strong, nonatomic) EHInterview *curInterview ;
-<<<<<<< HEAD
-=======
-
->>>>>>> FETCH_HEAD
 @property (strong, nonatomic) UIActionSheet *actionSheetTypes;
 @property (strong, nonatomic) UILabel *label;
 
@@ -165,7 +161,7 @@
     return cell;
 }
 
-<<<<<<< HEAD
+
 - (void)showAllCandidates:(id)sender
 {
     UITapGestureRecognizer *tapGR = (UITapGestureRecognizer*)sender;
@@ -180,32 +176,21 @@
         [array addObject: [event.nameAndLastNameOfCandidates objectAtIndex:i]];
     }
 }
-=======
->>>>>>> FETCH_HEAD
+
 
 #pragma mark Work with Action sheets
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-<<<<<<< HEAD
-    
-    if ([actionSheet isEqual: _actionSheetTypes])
-    {
-        if (buttonIndex != _actionSheetTypes.cancelButtonIndex) {
-=======
     if ([actionSheet isEqual: _actionSheetTypes])
     {
         if(buttonIndex == _actionSheetTypes.cancelButtonIndex)
         {
->>>>>>> FETCH_HEAD
             _curInterview.typeOfInterview = [_actionSheetTypes buttonTitleAtIndex:buttonIndex];
             _label.text = [_actionSheetTypes buttonTitleAtIndex:buttonIndex];
         }
     }
-<<<<<<< HEAD
-=======
-
->>>>>>> FETCH_HEAD
 }
+
 
 - (void)chooseTypeOfInterview:(id)sender
 {
@@ -350,6 +335,7 @@
 - (void)mailComposeController:(MFMailComposeViewController *) controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error{
     [self dismissViewControllerAnimated:YES completion:nil];
 }
+
 - (IBAction)sendEmail:(id)sender event:(id)event
 {
     NSSet *touches = [event allTouches];
@@ -363,6 +349,7 @@
     NSArray *eventsOnThisDay = [[self.sortedWeeks objectAtIndex:indexPath.section] interviews];
     EHInterview *interview = [eventsOnThisDay objectAtIndex:indexPath.row];
     [self sendEmailToAddress:@"elena.pyanyh@gmail.com"];
-    
 }
+
+
 @end
