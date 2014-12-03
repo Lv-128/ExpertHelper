@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4510" systemVersion="13F34" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="696-TH-eQE">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13E28" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="wNC-gq-LBl">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3742"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3746"/>
     </dependencies>
     <scenes>
         <!--Reveal View Controller-->
@@ -313,7 +313,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="s8q-F1-gLk" kind="push" identifier="profa" id="RLZ-PY-3G8"/>
+                                    <segue destination="s8q-F1-gLk" kind="push" id="RLZ-PY-3G8"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hKd-4V-4Eh">
@@ -322,26 +322,25 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelectionDuringEditing="YES" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="e0g-9P-WPS">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="e0g-9P-WPS">
                                 <rect key="frame" x="20" y="220" width="728" height="736"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" accessoryType="detailDisclosureButton" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ExternalCell" id="J67-Vg-vfH" customClass="EHExternalCell">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ExternalCell" id="J67-Vg-vfH" customClass="EHExternalCell">
                                         <rect key="frame" x="0.0" y="22" width="728" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="J67-Vg-vfH" id="mYO-av-6mp">
-                                            <rect key="frame" x="0.0" y="0.0" width="661" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="728" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="728" translatesAutoresizingMaskIntoConstraints="NO" id="hP1-EH-yzw">
-                                                    <rect key="frame" x="0.0" y="0.0" width="728" height="44"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="504" translatesAutoresizingMaskIntoConstraints="NO" id="hP1-EH-yzw">
+                                                    <rect key="frame" x="0.0" y="0.0" width="504" height="44"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UAE-LT-LWT">
-                                                    <rect key="frame" x="509" y="0.0" width="148" height="44"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nle-bO-iQr">
+                                                    <rect key="frame" x="504" y="0.0" width="224" height="44"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
@@ -350,7 +349,7 @@
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="leftLabel" destination="hP1-EH-yzw" id="69M-79-J7L"/>
-                                            <outlet property="rightLabel" destination="UAE-LT-LWT" id="Qnf-7A-Iac"/>
+                                            <outlet property="rightLabel" destination="Nle-bO-iQr" id="Kf2-3e-Ouw"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -386,7 +385,6 @@
             </objects>
             <point key="canvasLocation" x="177" y="-83"/>
         </scene>
-<<<<<<< HEAD
         <!--External View Controller3-->
         <scene sceneID="IMM-NW-Sge">
             <objects>
@@ -434,6 +432,13 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="35"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aad-Rg-gSS">
+                                <rect key="frame" x="525" y="903" width="160" height="36"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="KNOPOCHKA, SPutatu">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="62" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="xpq-SU-HdB">
                                 <rect key="frame" x="20" y="711" width="295" height="293"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -453,23 +458,11 @@
                                     <outlet property="delegate" destination="wNC-gq-LBl" id="hGX-cj-dlV"/>
                                 </connections>
                             </tableView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PbH-EB-NAD">
-                                <rect key="frame" x="385" y="782" width="149" height="151"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                <state key="normal" backgroundImage="startRecord1.png">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="record:" destination="wNC-gq-LBl" eventType="touchUpInside" id="loo-CP-0cn"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <connections>
                         <outlet property="commentTextView" destination="tgv-xU-1Ji" id="Qb3-jK-6qC"/>
-                        <outlet property="recordButton" destination="PbH-EB-NAD" id="Oh0-QT-Q15"/>
                         <outlet property="tableForRecords" destination="xpq-SU-HdB" id="bxN-Sq-Vxt"/>
                     </connections>
                 </viewController>
@@ -477,12 +470,10 @@
             </objects>
             <point key="canvasLocation" x="97" y="1788"/>
         </scene>
-=======
->>>>>>> FETCH_HEAD
         <!--Profiles View Controller-->
         <scene sceneID="eX0-06-6z1">
             <objects>
-                <viewController storyboardIdentifier="profa" useStoryboardIdentifierAsRestorationIdentifier="YES" id="s8q-F1-gLk" customClass="EHProfilesViewController" sceneMemberID="viewController">
+                <viewController id="s8q-F1-gLk" customClass="EHProfilesViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Lzw-AZ-4Lj"/>
                         <viewControllerLayoutGuide type="bottom" id="hcB-3Q-Qlv"/>
@@ -1017,7 +1008,6 @@
         <image name="mail" width="110" height="110"/>
         <image name="phone" width="88" height="88"/>
         <image name="skype" width="300" height="300"/>
-        <image name="startRecord1.png" width="256" height="256"/>
         <image name="stewie" width="184" height="104"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

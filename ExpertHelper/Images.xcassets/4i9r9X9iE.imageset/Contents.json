@@ -1,23 +1,9 @@
 {
   "images" : [
     {
-      "resizing" : {
-        "mode" : "9-part",
-        "center" : {
-          "mode" : "fill",
-          "width" : 1,
-          "height" : 1
-        },
-        "capInsets" : {
-          "bottom" : 58,
-          "top" : 58,
-          "right" : 243,
-          "left" : 81
-        }
-      },
       "idiom" : "universal",
-      "filename" : "4i9r9X9iE.png",
-      "scale" : "1x"
+      "scale" : "1x",
+      "filename" : "4i9r9X9iE.png"
     },
     {
       "idiom" : "universal",
