@@ -10,8 +10,6 @@
 
 @interface EHExternalCell : UITableViewCell
 
-@property (nonatomic, weak) IBOutlet UILabel *leftLabel;
-//@property (nonatomic, weak) IBOutlet UILabel *middleLabel;
 @property (nonatomic, weak) IBOutlet UILabel *rightLabel;
 
 @end
