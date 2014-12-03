@@ -432,13 +432,6 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="35"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aad-Rg-gSS">
-                                <rect key="frame" x="525" y="903" width="160" height="36"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="KNOPOCHKA, SPutatu">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                            </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="62" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="xpq-SU-HdB">
                                 <rect key="frame" x="20" y="711" width="295" height="293"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -458,11 +451,23 @@
                                     <outlet property="delegate" destination="wNC-gq-LBl" id="hGX-cj-dlV"/>
                                 </connections>
                             </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PbH-EB-NAD">
+                                <rect key="frame" x="385" y="782" width="149" height="151"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <state key="normal" backgroundImage="startRecord1.png">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="record:" destination="wNC-gq-LBl" eventType="touchUpInside" id="loo-CP-0cn"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <connections>
                         <outlet property="commentTextView" destination="tgv-xU-1Ji" id="Qb3-jK-6qC"/>
+                        <outlet property="recordButton" destination="PbH-EB-NAD" id="Oh0-QT-Q15"/>
                         <outlet property="tableForRecords" destination="xpq-SU-HdB" id="bxN-Sq-Vxt"/>
                     </connections>
                 </viewController>
@@ -1008,6 +1013,7 @@
         <image name="mail" width="110" height="110"/>
         <image name="phone" width="88" height="88"/>
         <image name="skype" width="300" height="300"/>
+        <image name="startRecord1.png" width="256" height="256"/>
         <image name="stewie" width="184" height="104"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

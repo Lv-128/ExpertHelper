@@ -14,6 +14,9 @@
 @property (weak, nonatomic) IBOutlet UITableView *tableForRecords;
 @property (copy, nonatomic) NSArray *arrayOfRecords;
 
+@property (nonatomic) BOOL recording;
+@property (weak, nonatomic) IBOutlet UIButton *recordButton;
+
 @end
 
 @implementation EHExternalViewController3
@@ -42,6 +45,10 @@
     _tableForRecords.clipsToBounds = YES;
 
     _arrayOfRecords =[[NSArray alloc] initWithObjects:@"record 1", @"record 2", @"record 3", nil];
+    
+    _recording = true;
+    
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -74,6 +81,19 @@
     
     return cell;
 }
+
+- (IBAction)record:(id)sender {
+    if(_recording == true) {
+        _recording = false;
+        [sender  setBackgroundImage:[UIImage imageNamed:@"stopRecord.png"] forState:UIControlStateNormal];
+    }
+    else {
+        _recording = true;
+        [sender  setBackgroundImage:[UIImage imageNamed:@"startRecord1.png"] forState:UIControlStateNormal];
+    }
+    
+}
+
 
 
 @end
