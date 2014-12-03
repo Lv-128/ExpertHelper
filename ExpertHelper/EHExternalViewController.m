@@ -38,7 +38,6 @@
     
     NSIndexPath *rowToReload = [NSIndexPath indexPathForRow: RowAtIndexPathOfSkills inSection:lostData];
     NSArray *rowsToReload = [NSArray arrayWithObjects:rowToReload, nil];
-    
     NSMutableArray *temp = [_array objectAtIndex:rowToReload.section];
     
     if (!temp)
@@ -54,7 +53,6 @@
 
 - (void)viewDidLoad
 {
-  // _tableFrame = self.tableView.frame;
     isPopup = NO;
     newCell = NO;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
@@ -103,49 +101,37 @@
     // Create custom view to display section header
     UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, tableView.frame.size.width, 18.0)];
     //create custom class!
-    UILabel *labelLeft = [[UILabel alloc] initWithFrame:CGRectMake(0.0, 0.0, 504, 18.0)];
+    UILabel *labelLeft = [[UILabel alloc] initWithFrame:CGRectMake(0.0, 0.0, 728, 18.0)];
     [labelLeft setFont:[UIFont boldSystemFontOfSize:14]];
     [labelLeft setTextAlignment:NSTextAlignmentCenter];
-    UILabel *labelRight = [[UILabel alloc] initWithFrame:CGRectMake(504, 0.0, 224, 18.0)];
-    [labelRight setFont:[UIFont boldSystemFontOfSize:14]];
-    [labelRight setTextAlignment:NSTextAlignmentCenter];
     
     labelLeft.text = [self.tableSections objectAtIndex:section];
-    labelRight.text = @"Estimate";
-    
+
     [view addSubview:labelLeft];
-    [view addSubview:labelRight];
     [view setBackgroundColor:[UIColor colorWithRed:166/255.0 green:177/255.0 blue:186/255.0 alpha:1.0]];
     
     return view;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+- (EHExternalCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *cellIdentifier = @"ExternalCell";
-    
+    NSInteger row = [indexPath row];
     NSArray *listData = [self.sectionContent objectAtIndex:[indexPath section]];
     
     EHExternalCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-
+    
     if (!cell) {
         cell = [[EHExternalCell alloc]
                 initWithStyle:UITableViewCellStyleSubtitle
                 reuseIdentifier:cellIdentifier];
     }
     
-    NSInteger row = [indexPath row];
-    
     //Create custom cell!
     
-    cell.leftLabel.text = [listData objectAtIndex:row];
-    [cell.leftLabel.layer setBorderColor:[[UIColor colorWithWhite:0.821 alpha:1.000] CGColor]];
-    [cell.leftLabel.layer setBorderWidth:1.0];
-    
-//    UITapGestureRecognizer *goToInfoForm2 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(goToInfo:)];
-//    [goToInfoForm2 setDelegate:self];
-//    [labelRecruiter addGestureRecognizer:goToInfoForm2];
-//    goToInfoForm2.numberOfTapsRequired = 1;
+    cell.textLabel.text = [listData objectAtIndex:row];
+    [cell.layer setBorderColor:[[UIColor colorWithWhite:0.821 alpha:1.000] CGColor]];
+    [cell.layer setBorderWidth:1.0];
     
     NSObject *tt = [[_array objectAtIndex:indexPath.section]objectAtIndex:row];
     
@@ -153,17 +139,16 @@
         cell.rightLabel.text = [[_array objectAtIndex:indexPath.section]objectAtIndex:row];
 
     cell.rightLabel.textAlignment = NSTextAlignmentCenter;
-    [cell.rightLabel.layer setBorderColor:[[UIColor colorWithWhite:0.821 alpha:1.000] CGColor]];
-    [cell.rightLabel.layer setBorderWidth:1.0];
+    cell.selected = NO;
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
-//    NSInteger sectionsAmount = [tableView numberOfSections];
-//    NSInteger rowsAmount = [tableView numberOfRowsInSection:[indexPath section]];
-//    if ([indexPath section] == sectionsAmount && [indexPath row] == rowsAmount) {
-//        [cell.layer setBorderColor:[[UIColor colorWithWhite:0.5 alpha:1.000] CGColor]];
-//        [cell.layer setBorderWidth:2.0];
-//    }
-
     return cell;
+}
+
+- (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath
+{
+    UITableViewCell *cell= [_tableView cellForRowAtIndexPath:indexPath];
+    [self performSegueWithIdentifier:@"profa" sender:cell];
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -204,89 +189,6 @@
 }
 
 - (IBAction)openGeneralInfo:(UIButton *)sender {
-    
-//        BOOL bla;
-//    bla = YES;
-    
-    
-//    f.size.width = r.size.width;
-
-//    childFrame.origin.y += childFrame.size.height;
-    
-//    if (bla) {
-
-//        [UIView animateWithDuration:0.5 animations:^{
-//            CGRect selfFrame = self.view.frame;
-//            CGRect buttonFrame = self.openGeneralInfo.frame;
-//            CGRect childFrame = [self.childViewControllers[0] view].frame;
-//            
-//            //childFrame.origin.y = buttonFrame.origin.y + buttonFrame.size.height;
-//            childFrame.size.height = selfFrame.size.height / 3;
-//            [self.childViewControllers[0] view].frame = childFrame;
-//            [self.childViewControllers[0] view].alpha = 1;
-//            
-//            CGRect tableFrame = self.tableView.frame;
-//            
-//            tableFrame.origin.y += 200;
-//            self.tableView.frame = tableFrame;
-//
-//            
-//        }completion:^(BOOL finished) {
-//
-//        } ];
-//    
-//        bla = NO;
-//    }
-    
-
-
-    
-    
-    UINib *nib = [UINib nibWithNibName:@"EHGeneralInfo" bundle:nil];
-    EHSkillLevelPopup *generalInfo = [[nib instantiateWithOwner:nil options:nil] lastObject];
-
-    
-//    CGRect g = self.view.frame;
-//    CGRect buttonFrame = self.openGeneralInfo.frame;
-//    CGRect f = generalInfo.frame;
-//    
-//    f.size.width = g.size.width;
-//    f.origin.y = buttonFrame.origin.y + buttonFrame.size.height;
-//    generalInfo.frame = f;
-//
-//    
-//    CGRect t = self.tableView.frame;
-//    NSLog(@"%@",NSStringFromCGRect(self.tableView.frame));
-//    t.origin.y += f.size.height;
-//    self.tableView.frame = t;
-//    NSLog(@"%@",NSStringFromCGRect(self.tableView.frame));
-    
-    [UIView animateWithDuration:0.5 animations:^{
-        
-        CGRect selfFrame = self.view.frame;
-        CGRect buttonFrame = self.openGeneralInfo.frame;
-        CGRect childFrame = generalInfo.frame;
-        
-        childFrame.size.width = selfFrame.size.width - 40;
-        childFrame.origin.x = selfFrame.origin.x + 20;
-        childFrame.origin.y = buttonFrame.origin.y + buttonFrame.size.height + 5;
-        childFrame.size.height = generalInfo.frame.size.height;
-        generalInfo.frame = childFrame;
-        generalInfo.alpha = 1;
-        
-        CGRect tableFrame = self.tableView.frame;
-        
-        tableFrame.origin.y += 300;
-        self.tableView.frame = tableFrame;
-
-        
-
-    }completion:^(BOOL finished) {
-       
-        [self.view addSubview:generalInfo];
-      
-           }];
-
 
 }
 
