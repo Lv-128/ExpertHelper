@@ -20,6 +20,7 @@
 		D967F20B1A1E305D0009639C /* EHRecruiterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D967F20A1A1E305D0009639C /* EHRecruiterViewController.m */; };
 		D967F2101A1E4DEE0009639C /* EHITAViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D967F20D1A1E4DEE0009639C /* EHITAViewController.m */; };
 		D967F2111A1E4DEE0009639C /* EHITAViewControllerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D967F20F1A1E4DEE0009639C /* EHITAViewControllerCell.m */; };
+		D972F6011A2F746200B688E4 /* EHExternalViewController3.m in Sources */ = {isa = PBXBuildFile; fileRef = D972F6001A2F746200B688E4 /* EHExternalViewController3.m */; };
 		D9998EE01A221CE9002E019A /* EHCalendarEventsParser.m in Sources */ = {isa = PBXBuildFile; fileRef = D9998ED51A221CE9002E019A /* EHCalendarEventsParser.m */; };
 		D9998EE11A221CE9002E019A /* EHCalendarFormViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D9998ED71A221CE9002E019A /* EHCalendarFormViewController.m */; };
 		D9998EE21A221CE9002E019A /* EHEventsGetInfoParser.m in Sources */ = {isa = PBXBuildFile; fileRef = D9998EDA1A221CE9002E019A /* EHEventsGetInfoParser.m */; };
@@ -79,6 +80,8 @@
 		D967F20D1A1E4DEE0009639C /* EHITAViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EHITAViewController.m; path = ExpertHelper/EHITAViewController.m; sourceTree = "<group>"; };
 		D967F20E1A1E4DEE0009639C /* EHITAViewControllerCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EHITAViewControllerCell.h; path = ExpertHelper/EHITAViewControllerCell.h; sourceTree = "<group>"; };
 		D967F20F1A1E4DEE0009639C /* EHITAViewControllerCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EHITAViewControllerCell.m; path = ExpertHelper/EHITAViewControllerCell.m; sourceTree = "<group>"; };
+		D972F5FF1A2F746200B688E4 /* EHExternalViewController3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EHExternalViewController3.h; sourceTree = "<group>"; };
+		D972F6001A2F746200B688E4 /* EHExternalViewController3.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EHExternalViewController3.m; sourceTree = "<group>"; };
 		D9998ED41A221CE9002E019A /* EHCalendarEventsParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EHCalendarEventsParser.h; path = "Calendar part/EHCalendarEventsParser.h"; sourceTree = "<group>"; };
 		D9998ED51A221CE9002E019A /* EHCalendarEventsParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EHCalendarEventsParser.m; path = "Calendar part/EHCalendarEventsParser.m"; sourceTree = "<group>"; };
 		D9998ED61A221CE9002E019A /* EHCalendarFormViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EHCalendarFormViewController.h; path = "Calendar part/EHCalendarFormViewController.h"; sourceTree = "<group>"; };
@@ -361,6 +364,8 @@
 				D9BE53F81A10B16700AD5D3D /* EHExternalCell.m */,
 				D9BE53F91A10B16700AD5D3D /* EHExternalViewController.h */,
 				D9BE53FA1A10B16700AD5D3D /* EHExternalViewController.m */,
+				D972F5FF1A2F746200B688E4 /* EHExternalViewController3.h */,
+				D972F6001A2F746200B688E4 /* EHExternalViewController3.m */,
 			);
 			name = External;
 			sourceTree = "<group>";
@@ -481,6 +486,7 @@
 				2790F4E31A139854001B0956 /* EHProfilesTableViewCell.m in Sources */,
 				D9B0CC711A03B17500544323 /* main.m in Sources */,
 				D9F15AD11A1A575A00E4DC62 /* EHListOfInterviewsViewController.m in Sources */,
+				D972F6011A2F746200B688E4 /* EHExternalViewController3.m in Sources */,
 				D967F20B1A1E305D0009639C /* EHRecruiterViewController.m in Sources */,
 				D9BE54021A10B16700AD5D3D /* EHExternalViewController.m in Sources */,
 				D967F2101A1E4DEE0009639C /* EHITAViewController.m in Sources */,
