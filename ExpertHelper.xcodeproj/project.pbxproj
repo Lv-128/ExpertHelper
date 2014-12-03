@@ -7,9 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		11EFE45B1A2F5B9D0005FDF4 /* EHExternalViewController3.m in Sources */ = {isa = PBXBuildFile; fileRef = 11EFE45A1A2F5B9D0005FDF4 /* EHExternalViewController3.m */; };
+		11EFE45E1A2F5C270005FDF4 /* stopRecord.png in Resources */ = {isa = PBXBuildFile; fileRef = 11EFE45C1A2F5C270005FDF4 /* stopRecord.png */; };
+		11EFE45F1A2F5C270005FDF4 /* startRecord1.png in Resources */ = {isa = PBXBuildFile; fileRef = 11EFE45D1A2F5C270005FDF4 /* startRecord1.png */; };
 		2790F4E31A139854001B0956 /* EHProfilesTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2790F4E21A139854001B0956 /* EHProfilesTableViewCell.m */; };
 		2790F4E61A1398D8001B0956 /* EHProfilesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2790F4E51A1398D8001B0956 /* EHProfilesViewController.m */; };
-		83EC16381A2F507E00EB7A77 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83EC16371A2F507E00EB7A77 /* FacebookSDK.framework */; };
 		B5DF299F1A164A280076862E /* EHInterview.m in Sources */ = {isa = PBXBuildFile; fileRef = B5DF299B1A164A280076862E /* EHInterview.m */; };
 		D90A1BBE1A16335F00B610C6 /* EHViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D90A1BBD1A16335F00B610C6 /* EHViewController.m */; };
 		D90A1BC11A16366500B610C6 /* EHSkillLevelPopup.m in Sources */ = {isa = PBXBuildFile; fileRef = D90A1BC01A16366500B610C6 /* EHSkillLevelPopup.m */; };
@@ -57,11 +59,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		11EFE4591A2F5B9D0005FDF4 /* EHExternalViewController3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EHExternalViewController3.h; sourceTree = "<group>"; };
+		11EFE45A1A2F5B9D0005FDF4 /* EHExternalViewController3.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EHExternalViewController3.m; sourceTree = "<group>"; };
+		11EFE45C1A2F5C270005FDF4 /* stopRecord.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = stopRecord.png; sourceTree = "<group>"; };
+		11EFE45D1A2F5C270005FDF4 /* startRecord1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = startRecord1.png; sourceTree = "<group>"; };
 		2790F4E11A139854001B0956 /* EHProfilesTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EHProfilesTableViewCell.h; path = Views/EHProfilesTableViewCell.h; sourceTree = "<group>"; };
 		2790F4E21A139854001B0956 /* EHProfilesTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EHProfilesTableViewCell.m; path = Views/EHProfilesTableViewCell.m; sourceTree = "<group>"; };
 		2790F4E41A1398D8001B0956 /* EHProfilesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EHProfilesViewController.h; path = ViewControllers/EHProfilesViewController.h; sourceTree = "<group>"; };
 		2790F4E51A1398D8001B0956 /* EHProfilesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EHProfilesViewController.m; path = ViewControllers/EHProfilesViewController.m; sourceTree = "<group>"; };
-		83EC16371A2F507E00EB7A77 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FacebookSDK.framework; sourceTree = "<group>"; };
 		B5DF299A1A164A280076862E /* EHInterview.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EHInterview.h; sourceTree = "<group>"; };
 		B5DF299B1A164A280076862E /* EHInterview.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EHInterview.m; sourceTree = "<group>"; };
 		D90A1BBC1A16335F00B610C6 /* EHViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EHViewController.h; path = ViewControllers/EHViewController.h; sourceTree = "<group>"; };
@@ -128,7 +133,6 @@
 				D9B0CC671A03B17500544323 /* CoreGraphics.framework in Frameworks */,
 				D9B0CC691A03B17500544323 /* UIKit.framework in Frameworks */,
 				D9B0CC651A03B17500544323 /* Foundation.framework in Frameworks */,
-				83EC16381A2F507E00EB7A77 /* FacebookSDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -234,7 +238,6 @@
 		D9B0CC631A03B17500544323 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				83EC16371A2F507E00EB7A77 /* FacebookSDK.framework */,
 				D913A7FF1A2D0C3B00656CDE /* MessageUI.framework */,
 				D90A1BC21A16371800B610C6 /* AVFoundation.framework */,
 				D9B0CC641A03B17500544323 /* Foundation.framework */,
@@ -361,10 +364,14 @@
 		D9D836A61A1F402D00148854 /* External */ = {
 			isa = PBXGroup;
 			children = (
+				11EFE45C1A2F5C270005FDF4 /* stopRecord.png */,
+				11EFE45D1A2F5C270005FDF4 /* startRecord1.png */,
 				D9BE53F71A10B16700AD5D3D /* EHExternalCell.h */,
 				D9BE53F81A10B16700AD5D3D /* EHExternalCell.m */,
 				D9BE53F91A10B16700AD5D3D /* EHExternalViewController.h */,
 				D9BE53FA1A10B16700AD5D3D /* EHExternalViewController.m */,
+				11EFE4591A2F5B9D0005FDF4 /* EHExternalViewController3.h */,
+				11EFE45A1A2F5B9D0005FDF4 /* EHExternalViewController3.m */,
 			);
 			name = External;
 			sourceTree = "<group>";
@@ -457,12 +464,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				11EFE45E1A2F5C270005FDF4 /* stopRecord.png in Resources */,
 				D9ACCD291A152EF30076DFB4 /* EHSkillLevelCommentPopup.xib in Resources */,
 				D9B0CC7B1A03B17500544323 /* Main_iPad.storyboard in Resources */,
 				D9BE54071A10B1A200AD5D3D /* Images.xcassets in Resources */,
 				D92B76E51A1F847F00B76F5E /* EHSkillLevelPopup.xib in Resources */,
 				D9B0CC781A03B17500544323 /* Main_iPhone.storyboard in Resources */,
 				D9B0CC6F1A03B17500544323 /* InfoPlist.strings in Resources */,
+				11EFE45F1A2F5C270005FDF4 /* startRecord1.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -485,6 +494,7 @@
 				2790F4E31A139854001B0956 /* EHProfilesTableViewCell.m in Sources */,
 				D9B0CC711A03B17500544323 /* main.m in Sources */,
 				D9F15AD11A1A575A00E4DC62 /* EHListOfInterviewsViewController.m in Sources */,
+				11EFE45B1A2F5B9D0005FDF4 /* EHExternalViewController3.m in Sources */,
 				D967F20B1A1E305D0009639C /* EHRecruiterViewController.m in Sources */,
 				D9BE54021A10B16700AD5D3D /* EHExternalViewController.m in Sources */,
 				D967F2101A1E4DEE0009639C /* EHITAViewController.m in Sources */,
