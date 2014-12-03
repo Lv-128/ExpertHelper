@@ -16,13 +16,4 @@
     [_delegate skillLevelPopup:self didSelectLevel:EHSkillLevelNone];
 }
 
-- (void)awakeFromNib
-{
-    [super awakeFromNib];
-    
-    self.layer.cornerRadius = 6;
-    self.layer.shadowOpacity = 0.8;
-    self.alpha = 0;
-}
-
 @end

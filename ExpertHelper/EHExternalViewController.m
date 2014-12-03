@@ -40,7 +40,7 @@
     NSArray *rowsToReload = [NSArray arrayWithObjects:rowToReload, nil];
     NSMutableArray *temp = [_array objectAtIndex:rowToReload.section];
     
-    if (temp == nil)
+    if (!temp)
     {
         temp = [[NSMutableArray alloc]init];
         [temp insertObject:popup.skillLevel atIndex:rowToReload.row];
@@ -102,7 +102,7 @@
     UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, tableView.frame.size.width, 18.0)];
     //create custom class!
     UILabel *labelLeft = [[UILabel alloc] initWithFrame:CGRectMake(0.0, 0.0, 728, 18.0)];
-    [labelLeft setFont:[UIFont boldSystemFontOfSize:15]];
+    [labelLeft setFont:[UIFont boldSystemFontOfSize:14]];
     [labelLeft setTextAlignment:NSTextAlignmentCenter];
     
     labelLeft.text = [self.tableSections objectAtIndex:section];
@@ -115,18 +115,32 @@
 
 - (EHExternalCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    static NSString *cellIdentifier = @"ExternalCell";
     NSInteger row = [indexPath row];
     NSArray *listData = [self.sectionContent objectAtIndex:[indexPath section]];
     
-    EHExternalCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ExternalCell"];
-    cell.textLabel.text = [listData objectAtIndex:row];
+    EHExternalCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     
-    NSObject *tt = [[_array objectAtIndex:indexPath.section] objectAtIndex:row];
-    if (tt != nil) {
-        cell.rightLabel.text = [[_array objectAtIndex:indexPath.section] objectAtIndex:row];
-    } else {
-        cell.rightLabel.text = @"";
+    if (!cell) {
+        cell = [[EHExternalCell alloc]
+                initWithStyle:UITableViewCellStyleSubtitle
+                reuseIdentifier:cellIdentifier];
     }
+    
+    //Create custom cell!
+    
+    cell.textLabel.text = [listData objectAtIndex:row];
+    [cell.layer setBorderColor:[[UIColor colorWithWhite:0.821 alpha:1.000] CGColor]];
+    [cell.layer setBorderWidth:1.0];
+    
+    NSObject *tt = [[_array objectAtIndex:indexPath.section]objectAtIndex:row];
+    
+    if(tt)
+        cell.rightLabel.text = [[_array objectAtIndex:indexPath.section]objectAtIndex:row];
+
+    cell.rightLabel.textAlignment = NSTextAlignmentCenter;
+    cell.selected = NO;
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
     return cell;
 }
@@ -150,17 +164,18 @@
     UINib *nib = [UINib nibWithNibName:@"EHSkillLevelPopup" bundle:nil];
     EHSkillLevelPopup *popup = [[nib instantiateWithOwner:nil options:nil] lastObject];
     
-    if (isPopup == NO) {
-        CGRect selfFrame = self.view.frame;
-        CGRect popupFrame = popup.frame;
-        popupFrame.size.width = selfFrame.size.width;
-        popupFrame.origin.y = selfFrame.size.height;
-        popupFrame.origin.y -= popupFrame.size.height;
-        popup.frame = popupFrame;
-        
+    if (!isPopup) {
+        CGRect r = self.view.frame;
+        CGRect f = popup.frame;
+        f.size.width = r.size.width;
+        f.origin.y = r.size.height;
+        f.origin.y -= f.size.height;
+        popup.frame = f;
         popup.delegate = self;
+        popup.layer.cornerRadius = 6;
+        popup.layer.shadowOpacity = 0.8;
         popup.transform = CGAffineTransformMakeScale(1.3, 1.3);
-
+        popup.alpha = 0;
         popup.titleLabel.text = [NSString stringWithFormat:@"Select the desired level for direction: %@", message];
         [self.view addSubview:popup];
         
