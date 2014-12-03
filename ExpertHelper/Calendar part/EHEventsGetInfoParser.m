@@ -1,442 +1,173 @@
-//
-//  EHEventsGetInfoParser.m
-//  ExpertHelper
-//
-//  Created by alena on 11/19/14.
-//  Copyright (c) 2014 Katolyk S. All rights reserved.
-//
-#import "EHEventsGetInfoParser.h"
 
+//  EHCalendarEventsParser.m
+//  AppointmentList
+//
+//  Created by alena on 11/1/14.
+//  Copyright (c) 2014 Ole Begemann. All rights reserved.
+//
 
-@implementation EHMonth
+#import "EHCalendarEventsParser.h"
+
+@implementation EHCalendarEventsParser
+
 -(id)init
 {
     self = [super init];
     if (self)
     {
-        _weeks = [NSArray array];
-    }
-    return self;
-}
-- (void)dealloc {
-    self.weeks = nil;
-    self.nameOfMonth = nil;
-    self.dateStartOfMonth = nil;
-}
-
-@end
-@implementation EHWeek
--(id)init
-{
-    self = [super init];
-    if (self)
-    {
-        _interviews = [NSArray array];
-    }
-    return self;
-}
-- (void)dealloc {
-    self.interviews = nil;
-    self.nameOfWeek = nil;
-    
-}
-
-@end
-@implementation EHCalendarParseOptions
-
--(id) initWithOptionFirstNameFirst:(bool) firstNameFirst andTheOneCandidate:(BOOL)theOneCandidate andIsIta:(bool)isIta
-{
-    self = [super init];
-    {
-        self.firstNameFirst= firstNameFirst;
-        self.isOneCandidate = theOneCandidate;
-        self.isIta = isIta;
+        self.eventStore = [[EKEventStore alloc] init];
+        self.eventsList = [[NSArray alloc] init];
+        
         
     }
     return self;
 }
 
+#pragma mark -
+#pragma mark Access Calendar
+
+// Check the authorization status of our application for Calendar
+-(void)checkEventStoreAccessForCalendar
+{
+    EKAuthorizationStatus status = [EKEventStore authorizationStatusForEntityType:EKEntityTypeEvent];
+    
+    switch (status)
+    {
+            // Update our UI if the user has granted access to their Calendar
+        case EKAuthorizationStatusAuthorized: [self accessGrantedForCalendar];
+            break;
+            // Prompt the user for access to Calendar if there is no definitive answer
+        case EKAuthorizationStatusNotDetermined: [self requestCalendarAccess];
+            break;
+            // Display a message if the user has denied or restricted access to Calendar
+        case EKAuthorizationStatusDenied:
+        case EKAuthorizationStatusRestricted:
+        {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Privacy Warning" message:@"Permission was not granted for Calendar"
+                                                           delegate:nil
+                                                  cancelButtonTitle:@"OK"
+                                                  otherButtonTitles:nil];
+            [alert show];
+        }
+            break;
+        default:
+            break;
+    }
+}
+
+
+// Prompt the user for access to their Calendar
+-(void)requestCalendarAccess
+{
+    [self.eventStore requestAccessToEntityType:EKEntityTypeEvent completion:^(BOOL granted, NSError *error)
+     {
+         if (granted)
+         {
+             EHCalendarEventsParser * __weak weakSelf = self;
+             // Let's ensure that our code will be executed from the main queue
+             dispatch_async(dispatch_get_main_queue(), ^{
+                 // The user has granted access to their Calendar; let's populate our UI with all events occuring in the next 24 hours.
+                 [weakSelf accessGrantedForCalendar];
+             });
+         }
+     }];
+}
+
+
+// when  granted permission to Calendar  INITIALIZATION OF EVENTS
+-(void)accessGrantedForCalendar
+{
+    
+    
+    NSMutableArray*calendars = [[NSMutableArray alloc]init];
+    
+    NSArray * accountsArray = [self.eventStore calendarsForEntityType:EKEntityTypeEvent];
+    NSMutableArray  * calendarIdentifiers = [[NSMutableArray alloc]init ];
+    
+    
+    for (int i = 0; i < [accountsArray count]; i++) {
+        EKCalendar * tempCal = [accountsArray objectAtIndex:i];
+        //   if (tempCal.type == EKCalendarTypeCalDAV)
+        {
+            [calendars addObject:tempCal];
+            [calendarIdentifiers addObject:tempCal.calendarIdentifier];
+            //  NSString *cal = [[accountsArray objectAtIndex:i] valueForKey:@"title"];
+            //   NSLog(cal);
+        }
+    }
+    self.defaultCalendars = calendars;
+    NSArray * temp = [self fetchEvents];
+    self.eventsList = temp;
+}
+
+- (NSArray *)fetchEvents
+{
+    NSTimeInterval secondsPerDay = 24 * 60 * 60 ;  //  one day interval  = 86400 seconds
+    NSDate *startDate = [[NSDate alloc] initWithTimeIntervalSinceNow: -secondsPerDay * 365]; // 10 days ago
+    NSDate *endDate = [self dateByAddingYears: 3 toDate: startDate];
+	// We will only search the default calendar for our events
+	NSArray *calendarArray = self.defaultCalendars;
+    
+    // Create the predicate
+	NSPredicate *predicate = [self.eventStore predicateForEventsWithStartDate: startDate
+                                                                      endDate: endDate
+                                                                    calendars: calendarArray];
+	// Fetch all events that match the predicate
+	NSMutableArray *events = [NSMutableArray arrayWithArray:[self.eventStore eventsMatchingPredicate: predicate]];
+    
+    
+    NSMutableArray *titles = [[NSMutableArray alloc ] init];
+    for (EKEvent *event in events)
+    {
+        [titles  addObject:event.title];
+    }
+    
+    NSMutableArray *allEvents = [[NSMutableArray alloc]initWithCapacity: 0];
+    for (EKEvent *event in events) //
+    {
+        NSString *upperCaseEventTitle = [event.title uppercaseString];
+        if ([upperCaseEventTitle rangeOfString:@"INTERVIEW"].location != NSNotFound)
+        {
+            [allEvents addObject:event];
+        }
+    }
+    return allEvents;
+}
+
+
+#pragma mark - Date Calculations
+
+- (NSDate *)dateAtBeginningOfDayForDate:(NSDate *)inputDate
+{
+    // Use the user's current calendar and time zone
+    NSCalendar *calendar = [NSCalendar currentCalendar];
+    NSTimeZone *timeZone = [NSTimeZone systemTimeZone];
+    [calendar setTimeZone:timeZone];
+    
+    // Selectively convert the date components (year, month, day) of the input date
+    NSDateComponents *dateComps = [calendar components:NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit fromDate:inputDate];
+    
+    // Set the time components manually
+    [dateComps setHour: 0];
+    [dateComps setMinute: 0];
+    [dateComps setSecond: 0];
+    
+    // Convert back
+    NSDate *beginningOfDay = [calendar dateFromComponents:dateComps];
+    return beginningOfDay;
+}
+
+- (NSDate *)dateByAddingYears:(NSInteger)numberOfYears toDate:(NSDate *)inputDate
+{
+    // Use the user's current calendar
+    NSCalendar *calendar = [NSCalendar currentCalendar];
+    
+    NSDateComponents *dateComps = [[NSDateComponents alloc] init];
+    [dateComps setYear:numberOfYears];
+    
+    NSDate *newDate = [calendar dateByAddingComponents:dateComps toDate:inputDate options: 0];
+    return newDate;
+}
+
+
 @end
-
-@implementation EHCalendarParseResult
-
-- (void)dealloc {
-    self.firstName = nil;
-    self.lastName = nil;
-    self.emailAddress = nil;
-}
-
-
--(id)initWithName:firstName andLastName:lastName
-{
-    self  = [super init];
-    if (self)
-    {
-        _firstName = firstName;
-        _lastName = lastName;
-    }
-    return self;
-}
-
-@end
-
-
-@implementation EHEventsGetInfoParser
-
-
--(id)init{
-    self = [super init];
-    if (self)
-    {
-        self.calEventParser = [[EHCalendarEventsParser alloc] init];
-        _namesMonth = [NSArray arrayWithObjects:@"January",@"February", @"March",@"April",@"May",@"June",@"July",@"August",
-                       @"September",@"October",@"November",@"December", nil];
-        _events = [NSArray array];
-        
-    }
-    return  self;
-}
-
-
--(NSArray *) parseAllEventsToInterviews
-{
-    [_calEventParser checkEventStoreAccessForCalendar];  // Check whether we are authorized to access Calendar
-    
-    
-    
-    if(_calEventParser.eventsList.count>0)
-    {
-        _events = _calEventParser.eventsList;
-    }
-    
-    EHCalendarParseOptions *options = [[EHCalendarParseOptions alloc] init];
-    options.firstNameFirst = NO;
-    _parseOptions = options;
-    
-    NSMutableArray * allInterviews = [[NSMutableArray alloc]initWithCapacity:0];
-    
-    for (EKEvent * event in _events)
-    {
-        NSString *eventID = event.eventIdentifier;
-        NSString * eventURL = [@"myApp/" stringByAppendingString:eventID];
-        EKEvent *event = [_calEventParser.eventStore eventWithIdentifier:eventID];
-            if (event) {
-                event.Location = @"Plosha-Rinok";
-               
-                event.URL = [NSURL URLWithString: eventURL];
-                [_calEventParser.eventStore saveEvent:event span:EKSpanThisEvent commit:YES error:nil];
-            }
-      
-        
-        EHInterview * interview = [[EHInterview alloc]init];
-        
-        interview.url = event.URL;
-        
-        [self canDefineTypeAsITA:event.title];
-        if (self.parseOptions.isIta)
-            interview.typeOfInterview = @"IT Academy";
-        else
-            interview.typeOfInterview = @"None";
-        
-        
-        [self canDefineAmountCandidates:event.title];
-        if (_parseOptions.isOneCandidate)
-        {
-            EHCalendarParseResult * parseNameAndLastnameOfCandidate = [self getNameOfCandidateFromTitle:event.title];
-            NSMutableArray * arr = [[NSMutableArray alloc] init];
-            [arr addObject:parseNameAndLastnameOfCandidate];
-            interview.nameAndLastNameOfCandidates = arr;
-            
-        }
-        else{
-            
-            NSArray * parseNameAndLastnameOfCandidate = [self getNamesOfCandidatesFromNote:event.notes];
-            
-            interview.nameAndLastNameOfCandidates = parseNameAndLastnameOfCandidate;
-            
-            // NSLog(@"%@",[[interview.nameAndLastNameOfCandidates objectAtIndex:0] firstName]);
-        }
-        
-        NSString * name = [[event.attendees objectAtIndex: 0] name];
-        NSString * email = [[event.attendees objectAtIndex: 0] emailAddress];
-        EHCalendarParseResult * parseNameAndLastnameOfRecruiter = [self getNameOfRecruiter:name andEmailAddress:email];
-        interview.nameOfRecruiter = parseNameAndLastnameOfRecruiter.firstName;
-        interview.lastNameOfRecruiter = parseNameAndLastnameOfRecruiter.lastName;
-        
-        interview.dateOfInterview = event.startDate;
-        
-        interview.locationOfInterview = event.location;
-        
-        [allInterviews addObject:interview];
-    }
-    return allInterviews;
-}
-
-
-
--(NSArray *)sortAllInterviewsToDictionary
-{
-    NSArray * allInterviews = [self parseAllEventsToInterviews];
-    NSMutableArray * allMonthes = [[NSMutableArray alloc] initWithCapacity:0];
-    
-    for (EHInterview * interview in allInterviews)
-    {
-        unsigned int  compon = NSYearCalendarUnit| NSDayCalendarUnit | NSMonthCalendarUnit | NSYearCalendarUnit | NSWeekOfMonthCalendarUnit | NSWeekdayCalendarUnit;
-        
-        /// find num of week in month
-        NSDateComponents *components = [[NSCalendar currentCalendar] components:NSDayCalendarUnit | NSMonthCalendarUnit | NSYearCalendarUnit fromDate:interview.dateOfInterview];
-        NSInteger day = [components day];
-        
-        NSInteger dayofweek =[[[NSCalendar currentCalendar] components: compon fromDate:interview.dateOfInterview] weekday] - 1;
-        if(dayofweek == 0) dayofweek =7;
-        NSInteger starOfWeek =  day - dayofweek + 1;
-        NSInteger endOfWeek = day + (5 - dayofweek);
-        if (starOfWeek <= 0) starOfWeek = 1;
-        NSRange days = [[NSCalendar currentCalendar] rangeOfUnit:NSDayCalendarUnit
-                                                          inUnit:NSMonthCalendarUnit
-                                                         forDate:interview.dateOfInterview];
-        if (endOfWeek>=days.length) endOfWeek = days.length;
-        
-        
-        //NSInteger weekday = [[[NSCalendar currentCalendar] components: compon fromDate:interview.dateOfInterview] weekOfMonth];
-        NSInteger monthday = [[[NSCalendar currentCalendar] components: compon fromDate:interview.dateOfInterview] month];
-        NSInteger yearday  =[[[NSCalendar currentCalendar] components: compon fromDate:interview.dateOfInterview] year];
-        
-        NSString * key = [self.namesMonth objectAtIndex:monthday - 1];
-        
-        NSString * keyForDictionary = [self.namesMonth objectAtIndex:monthday - 1];
-        keyForDictionary = [keyForDictionary stringByAppendingString:[NSString stringWithFormat: @", %d", yearday]];
-        
-        EHMonth * curMonth;
-        
-        NSPredicate *predicate1 = [NSPredicate predicateWithFormat:@"SELF.nameOfMonth LIKE[cd] %@", keyForDictionary];
-        NSArray *filtered1 = [allMonthes filteredArrayUsingPredicate:predicate1];
-        if (filtered1.count == 0)
-        {
-            curMonth = [[EHMonth alloc]init];
-            curMonth.nameOfMonth = keyForDictionary;
-            curMonth.dateStartOfMonth = interview.dateOfInterview;
-            [allMonthes addObject: curMonth];
-        }
-        else
-        {
-            NSUInteger index = [allMonthes indexOfObjectPassingTest:^BOOL(id obj, NSUInteger idx, BOOL *stop) {
-                if ([[(EHMonth *)obj nameOfMonth] isEqualToString:keyForDictionary]) {
-                    *stop = YES;
-                    return YES;
-                }
-                return NO;
-            }];
-            
-            curMonth = [allMonthes objectAtIndex:index];
-        }
-        
-        key=[key stringByAppendingString:[NSString stringWithFormat:@", week : %d - %d ", starOfWeek, endOfWeek]];
-        
-        
-        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF.nameOfWeek LIKE[cd] %@", key];
-        NSArray *filtered = [curMonth.weeks filteredArrayUsingPredicate:predicate];
-        EHWeek * curWeek ;
-        if (filtered.count == 0)
-        {
-            curWeek = [[EHWeek alloc]init];
-            curWeek.nameOfWeek = key;
-            NSMutableArray * arrInterviws = [curWeek.interviews mutableCopy];
-            [arrInterviws addObject: interview];
-            curWeek.interviews = arrInterviws;
-            
-            NSMutableArray * arr = [curMonth.weeks mutableCopy];
-            [arr addObject: curWeek];
-            curMonth.weeks = arr;
-        }
-        else
-        {
-            NSUInteger index = [curMonth.weeks  indexOfObjectPassingTest:^BOOL(id obj, NSUInteger idx, BOOL *stop) {
-                if ([[(EHWeek *)obj nameOfWeek] isEqualToString:key]) {
-                    *stop = YES;
-                    return YES;
-                }
-                return NO;
-            }];
-            
-            curWeek = [curMonth.weeks objectAtIndex:index];
-            
-            NSMutableArray * arr = [curWeek.interviews mutableCopy];
-            [arr addObject: interview];
-            curWeek.interviews = arr;
-        }
-    }
-    
-    NSArray *unsortedDays = allMonthes;
-    
-    NSSortDescriptor *sortDescriptor;
-    sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"dateStartOfMonth"
-                                                 ascending:YES];
-    NSArray *sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
-    NSArray *sortedDays;
-    sortedDays = [unsortedDays sortedArrayUsingDescriptors:sortDescriptors];
-    
-    return sortedDays;
-}
-
-
-- (void)canDefineTypeAsITA:(NSString *)string
-{
-    self.parseOptions.isIta =NO;
-    NSError *error = NULL;
-    NSString *pattern = @"ita|it academy|itacademy";
-    
-    NSRange range = NSMakeRange(0, string.length);
-    
-    
-    NSRegularExpressionOptions regexOptions = NSRegularExpressionCaseInsensitive;
-    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:pattern options:regexOptions error:&error];
-    NSArray *matches = [regex matchesInString:string options:(NSMatchingOptions)regexOptions range:range];
-    if ([matches count] > 0)
-    {
-        self.parseOptions.isIta = YES;
-    }
-    
-}
-- (void)canDefineAmountCandidates:(NSString *)string
-{
-    _parseOptions.isOneCandidate = YES;
-    NSError *error = NULL;
-    NSString *pattern = @"candidates";
-    
-    NSRange range = NSMakeRange(0, string.length);
-    
-    
-    NSRegularExpressionOptions regexOptions = NSRegularExpressionCaseInsensitive;
-    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:pattern options:regexOptions error:&error];
-    NSArray *matches = [regex matchesInString:string options:(NSMatchingOptions)regexOptions range:range];
-    if ([matches count] > 0)
-    {
-        _parseOptions.isOneCandidate = NO;
-    }
-    
-}
-- (EHCalendarParseResult *)getNameOfRecruiter:(NSString*)string andEmailAddress :(NSString *) email
-{
-    EHCalendarParseResult *parseResult = [[EHCalendarParseResult alloc]init];;
-    NSArray *parseWithSpaces = [string componentsSeparatedByString: @" "];
-    if (parseWithSpaces.count == 0) parseResult = [[EHCalendarParseResult alloc] initWithName:@"Unknown" andLastName:@"Unknown"];
-    if (parseWithSpaces.count == 1) parseResult = [[EHCalendarParseResult alloc] initWithName:parseWithSpaces[0] andLastName:@"Unknown"];
-    if (parseWithSpaces.count > 1)
-    {
-        if (_parseOptions.firstNameFirst == YES)
-        {
-            NSString *firstName = parseWithSpaces[0];
-            NSString *lastName = parseWithSpaces[1];
-            parseResult = [[EHCalendarParseResult alloc] initWithName:firstName andLastName:lastName];
-        }
-        else if (_parseOptions.firstNameFirst == NO)
-        {
-            NSString *firstName = parseWithSpaces[1];
-            NSString *lastName = parseWithSpaces[0];
-            parseResult = [[EHCalendarParseResult alloc] initWithName:firstName andLastName:lastName];
-        }
-    }
-    return parseResult;
-}
-
-- (EHCalendarParseResult *)getNameOfCandidateFromTitle:(NSString *)string
-{
-    NSError *error = NULL;
-    NSMutableArray *results = [[NSMutableArray alloc ]initWithCapacity: 0];
-    
-    NSString *pat3 = @"\\s*[w|W]ith(?![Candidate|candidates|Candidates|ITA|ita|ITA|candidate])\\s*([A-Z][a-z'-]*)(\\s*[A-Z]*[a-z']*)\\s([A-Z][a-z'-]*)(\\s*[A-Z]*[a-z']*)*\\s*";
-    NSRange range = NSMakeRange(0, string.length);
-    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:pat3 options:0 error:&error];
-    NSArray *matches = [regex matchesInString:string options:NSMatchingReportCompletion range:range];
-    for (NSTextCheckingResult *match in matches)
-    {
-        NSRange matchRange = match.range;
-        matchRange.location += 6;
-        matchRange.length -= 6;
-        
-        //  NSLog(@"%@",[string substringWithRange:matchRange]);
-        
-        [results addObject:[string substringWithRange:matchRange]];
-    }
-    
-    EHCalendarParseResult *parseResult ;
-    if (results.count == 1)
-    {
-        NSArray *parseWithSpaces = [results[0] componentsSeparatedByString: @" "];
-        if (_parseOptions.firstNameFirst == YES)
-        {
-            NSString *firstName = parseWithSpaces[0];
-            NSString *lastName = parseWithSpaces[1];
-            parseResult = [[EHCalendarParseResult alloc] initWithName:firstName andLastName:lastName];
-        }
-        else{
-            NSString *firstName = parseWithSpaces[1];
-            NSString *lastName = parseWithSpaces[0];
-            parseResult = [[EHCalendarParseResult alloc] initWithName:firstName andLastName:lastName];
-        }
-    }
-    else {
-        parseResult = [[EHCalendarParseResult alloc] initWithName:@"Unknown" andLastName:@"Unknown"];
-    }
-    return parseResult;
-}
-
-- (NSArray *)getNamesOfCandidatesFromNote:(NSString*)string
-{
-    NSError *error = NULL;
-    NSMutableArray *results = [[NSMutableArray alloc ]initWithCapacity: 0];
-    NSMutableArray *stringResults = [[NSMutableArray alloc] init];
-    
-    if (!(string == nil))
-    {
-        //  NSString * pat3 = @"([A-Z]([a-z'-]*))\\s([A-Z]([a-z'-]*))\\s*";
-        NSString *pat4 = @"([A-Z]([a-z'-]*))([-']*[A-Z]*[a-z']*)*\\s([A-Z]([a-z'-]*))([-']*[A-Z]*[a-z']*)*\\s*";
-        NSRange range = NSMakeRange(0, string.length);
-        NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:pat4 options:0 error:&error];
-        NSArray *matches = [regex matchesInString:string options:NSMatchingReportCompletion range:range];
-        for (NSTextCheckingResult *match in matches)
-        {
-            NSRange matchRange = match.range;
-           //  matchRange.location += 1;
-            matchRange.length -= 1;
-            
-            //  NSLog(@"%@",[string substringWithRange:matchRange]);
-            
-            [results addObject:[string substringWithRange:matchRange]];
-        }
-        
-        EHCalendarParseResult * parseResult ;
-        
-        
-        for (NSString * str in results)
-        {
-            NSArray* parseWithSpaces = [str componentsSeparatedByString: @" "];
-            if (_parseOptions.firstNameFirst == YES)
-            {
-                NSString * firstName = parseWithSpaces[0];
-                NSString * lastName = parseWithSpaces[1];
-                parseResult = [[EHCalendarParseResult alloc] initWithName:firstName andLastName:lastName];
-            }
-            else{
-                NSString * firstName = parseWithSpaces[1];
-                NSString * lastName = parseWithSpaces[0];
-                parseResult = [[EHCalendarParseResult alloc] initWithName:firstName andLastName:lastName];
-            }
-            [stringResults addObject:parseResult];
-        }
-    }
-    return stringResults;
-}
-
-- (id)initWithObjection:(EHCalendarParseOptions *)options {
-    
-    self = [super init];
-    if (self)
-    {
-        self.parseOptions = options;
-    }
-    return self;
-}
-@end
-

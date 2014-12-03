@@ -6,14 +6,66 @@
 	objectVersion = 46;
 	objects = {
 
+/* Begin PBXAggregateTarget section */
+		D922041F1A2F6F4300B3BAAD /* mogenerator */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = D92204201A2F6F4300B3BAAD /* Build configuration list for PBXAggregateTarget "mogenerator" */;
+			buildPhases = (
+				D92204231A2F6F6F00B3BAAD /* ShellScript */,
+			);
+			dependencies = (
+			);
+			name = mogenerator;
+			productName = mogenerator;
+		};
+/* End PBXAggregateTarget section */
+
 /* Begin PBXBuildFile section */
 		2790F4E31A139854001B0956 /* EHProfilesTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2790F4E21A139854001B0956 /* EHProfilesTableViewCell.m */; };
 		2790F4E61A1398D8001B0956 /* EHProfilesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2790F4E51A1398D8001B0956 /* EHProfilesViewController.m */; };
-		B5DF299F1A164A280076862E /* EHInterview.m in Sources */ = {isa = PBXBuildFile; fileRef = B5DF299B1A164A280076862E /* EHInterview.m */; };
 		D90A1BBE1A16335F00B610C6 /* EHViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D90A1BBD1A16335F00B610C6 /* EHViewController.m */; };
 		D90A1BC11A16366500B610C6 /* EHSkillLevelPopup.m in Sources */ = {isa = PBXBuildFile; fileRef = D90A1BC01A16366500B610C6 /* EHSkillLevelPopup.m */; };
 		D90A1BC31A16371800B610C6 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D90A1BC21A16371800B610C6 /* AVFoundation.framework */; };
 		D913A8001A2D0C3B00656CDE /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D913A7FF1A2D0C3B00656CDE /* MessageUI.framework */; };
+		D92204251A2F70D200B3BAAD /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D92204241A2F70D200B3BAAD /* CoreData.framework */; };
+		D92204501A2FAA4300B3BAAD /* Candidate.m in Sources */ = {isa = PBXBuildFile; fileRef = D922042B1A2FAA4300B3BAAD /* Candidate.m */; };
+		D92204511A2FAA4300B3BAAD /* Candidate.m in Sources */ = {isa = PBXBuildFile; fileRef = D922042B1A2FAA4300B3BAAD /* Candidate.m */; };
+		D92204521A2FAA4300B3BAAD /* ExternalInterview.m in Sources */ = {isa = PBXBuildFile; fileRef = D922042D1A2FAA4300B3BAAD /* ExternalInterview.m */; };
+		D92204531A2FAA4300B3BAAD /* ExternalInterview.m in Sources */ = {isa = PBXBuildFile; fileRef = D922042D1A2FAA4300B3BAAD /* ExternalInterview.m */; };
+		D92204541A2FAA4300B3BAAD /* Group.m in Sources */ = {isa = PBXBuildFile; fileRef = D922042F1A2FAA4300B3BAAD /* Group.m */; };
+		D92204551A2FAA4300B3BAAD /* Group.m in Sources */ = {isa = PBXBuildFile; fileRef = D922042F1A2FAA4300B3BAAD /* Group.m */; };
+		D92204561A2FAA4300B3BAAD /* Interview.m in Sources */ = {isa = PBXBuildFile; fileRef = D92204311A2FAA4300B3BAAD /* Interview.m */; };
+		D92204571A2FAA4300B3BAAD /* Interview.m in Sources */ = {isa = PBXBuildFile; fileRef = D92204311A2FAA4300B3BAAD /* Interview.m */; };
+		D92204581A2FAA4300B3BAAD /* ItaEstimate.m in Sources */ = {isa = PBXBuildFile; fileRef = D92204331A2FAA4300B3BAAD /* ItaEstimate.m */; };
+		D92204591A2FAA4300B3BAAD /* ItaEstimate.m in Sources */ = {isa = PBXBuildFile; fileRef = D92204331A2FAA4300B3BAAD /* ItaEstimate.m */; };
+		D922045A1A2FAA4300B3BAAD /* Recruiter.m in Sources */ = {isa = PBXBuildFile; fileRef = D92204351A2FAA4300B3BAAD /* Recruiter.m */; };
+		D922045B1A2FAA4300B3BAAD /* Recruiter.m in Sources */ = {isa = PBXBuildFile; fileRef = D92204351A2FAA4300B3BAAD /* Recruiter.m */; };
+		D922045C1A2FAA4300B3BAAD /* Skills.m in Sources */ = {isa = PBXBuildFile; fileRef = D92204371A2FAA4300B3BAAD /* Skills.m */; };
+		D922045D1A2FAA4300B3BAAD /* Skills.m in Sources */ = {isa = PBXBuildFile; fileRef = D92204371A2FAA4300B3BAAD /* Skills.m */; };
+		D922045E1A2FAA4300B3BAAD /* SkillsLevels.m in Sources */ = {isa = PBXBuildFile; fileRef = D92204391A2FAA4300B3BAAD /* SkillsLevels.m */; };
+		D922045F1A2FAA4300B3BAAD /* SkillsLevels.m in Sources */ = {isa = PBXBuildFile; fileRef = D92204391A2FAA4300B3BAAD /* SkillsLevels.m */; };
+		D92204601A2FAA4300B3BAAD /* _Candidate.m in Sources */ = {isa = PBXBuildFile; fileRef = D922043C1A2FAA4300B3BAAD /* _Candidate.m */; };
+		D92204611A2FAA4300B3BAAD /* _Candidate.m in Sources */ = {isa = PBXBuildFile; fileRef = D922043C1A2FAA4300B3BAAD /* _Candidate.m */; };
+		D92204621A2FAA4300B3BAAD /* _ExternalInterview.m in Sources */ = {isa = PBXBuildFile; fileRef = D922043E1A2FAA4300B3BAAD /* _ExternalInterview.m */; };
+		D92204631A2FAA4300B3BAAD /* _ExternalInterview.m in Sources */ = {isa = PBXBuildFile; fileRef = D922043E1A2FAA4300B3BAAD /* _ExternalInterview.m */; };
+		D92204641A2FAA4300B3BAAD /* _Group.m in Sources */ = {isa = PBXBuildFile; fileRef = D92204401A2FAA4300B3BAAD /* _Group.m */; };
+		D92204651A2FAA4300B3BAAD /* _Group.m in Sources */ = {isa = PBXBuildFile; fileRef = D92204401A2FAA4300B3BAAD /* _Group.m */; };
+		D92204661A2FAA4300B3BAAD /* _Interview.m in Sources */ = {isa = PBXBuildFile; fileRef = D92204421A2FAA4300B3BAAD /* _Interview.m */; };
+		D92204671A2FAA4300B3BAAD /* _Interview.m in Sources */ = {isa = PBXBuildFile; fileRef = D92204421A2FAA4300B3BAAD /* _Interview.m */; };
+		D92204681A2FAA4300B3BAAD /* _ItaEstimate.m in Sources */ = {isa = PBXBuildFile; fileRef = D92204441A2FAA4300B3BAAD /* _ItaEstimate.m */; };
+		D92204691A2FAA4300B3BAAD /* _ItaEstimate.m in Sources */ = {isa = PBXBuildFile; fileRef = D92204441A2FAA4300B3BAAD /* _ItaEstimate.m */; };
+		D922046A1A2FAA4300B3BAAD /* _Recruiter.m in Sources */ = {isa = PBXBuildFile; fileRef = D92204461A2FAA4300B3BAAD /* _Recruiter.m */; };
+		D922046B1A2FAA4300B3BAAD /* _Recruiter.m in Sources */ = {isa = PBXBuildFile; fileRef = D92204461A2FAA4300B3BAAD /* _Recruiter.m */; };
+		D922046C1A2FAA4300B3BAAD /* _Skills.m in Sources */ = {isa = PBXBuildFile; fileRef = D92204481A2FAA4300B3BAAD /* _Skills.m */; };
+		D922046D1A2FAA4300B3BAAD /* _Skills.m in Sources */ = {isa = PBXBuildFile; fileRef = D92204481A2FAA4300B3BAAD /* _Skills.m */; };
+		D922046E1A2FAA4300B3BAAD /* _SkillsLevels.m in Sources */ = {isa = PBXBuildFile; fileRef = D922044A1A2FAA4300B3BAAD /* _SkillsLevels.m */; };
+		D922046F1A2FAA4300B3BAAD /* _SkillsLevels.m in Sources */ = {isa = PBXBuildFile; fileRef = D922044A1A2FAA4300B3BAAD /* _SkillsLevels.m */; };
+		D92204701A2FAA4300B3BAAD /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D922044B1A2FAA4300B3BAAD /* Model.xcdatamodeld */; };
+		D92204711A2FAA4300B3BAAD /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D922044B1A2FAA4300B3BAAD /* Model.xcdatamodeld */; };
+		D92204721A2FAA4300B3BAAD /* mogen.sh in Resources */ = {isa = PBXBuildFile; fileRef = D922044E1A2FAA4300B3BAAD /* mogen.sh */; };
+		D92204731A2FAA4300B3BAAD /* mogen.sh in Resources */ = {isa = PBXBuildFile; fileRef = D922044E1A2FAA4300B3BAAD /* mogen.sh */; };
+		D92204741A2FAA4300B3BAAD /* mogend.sh in Resources */ = {isa = PBXBuildFile; fileRef = D922044F1A2FAA4300B3BAAD /* mogend.sh */; };
+		D92204751A2FAA4300B3BAAD /* mogend.sh in Resources */ = {isa = PBXBuildFile; fileRef = D922044F1A2FAA4300B3BAAD /* mogend.sh */; };
 		D92B76E41A1F847F00B76F5E /* EHSkillLevelCommentPopup.m in Sources */ = {isa = PBXBuildFile; fileRef = D92B76E21A1F847F00B76F5E /* EHSkillLevelCommentPopup.m */; };
 		D92B76E51A1F847F00B76F5E /* EHSkillLevelPopup.xib in Resources */ = {isa = PBXBuildFile; fileRef = D92B76E31A1F847F00B76F5E /* EHSkillLevelPopup.xib */; };
 		D967F2081A1E23BC0009639C /* EHCandidateFormViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D967F2071A1E23BC0009639C /* EHCandidateFormViewController.m */; };
@@ -60,14 +112,49 @@
 		2790F4E21A139854001B0956 /* EHProfilesTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EHProfilesTableViewCell.m; path = Views/EHProfilesTableViewCell.m; sourceTree = "<group>"; };
 		2790F4E41A1398D8001B0956 /* EHProfilesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EHProfilesViewController.h; path = ViewControllers/EHProfilesViewController.h; sourceTree = "<group>"; };
 		2790F4E51A1398D8001B0956 /* EHProfilesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EHProfilesViewController.m; path = ViewControllers/EHProfilesViewController.m; sourceTree = "<group>"; };
-		B5DF299A1A164A280076862E /* EHInterview.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EHInterview.h; sourceTree = "<group>"; };
-		B5DF299B1A164A280076862E /* EHInterview.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EHInterview.m; sourceTree = "<group>"; };
 		D90A1BBC1A16335F00B610C6 /* EHViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EHViewController.h; path = ViewControllers/EHViewController.h; sourceTree = "<group>"; };
 		D90A1BBD1A16335F00B610C6 /* EHViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EHViewController.m; path = ViewControllers/EHViewController.m; sourceTree = "<group>"; };
 		D90A1BBF1A16366500B610C6 /* EHSkillLevelPopup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EHSkillLevelPopup.h; path = ViewControllers/EHSkillLevelPopup.h; sourceTree = "<group>"; };
 		D90A1BC01A16366500B610C6 /* EHSkillLevelPopup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EHSkillLevelPopup.m; path = ViewControllers/EHSkillLevelPopup.m; sourceTree = "<group>"; };
 		D90A1BC21A16371800B610C6 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		D913A7FF1A2D0C3B00656CDE /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		D92204241A2F70D200B3BAAD /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		D922042A1A2FAA4300B3BAAD /* Candidate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Candidate.h; sourceTree = "<group>"; };
+		D922042B1A2FAA4300B3BAAD /* Candidate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Candidate.m; sourceTree = "<group>"; };
+		D922042C1A2FAA4300B3BAAD /* ExternalInterview.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExternalInterview.h; sourceTree = "<group>"; };
+		D922042D1A2FAA4300B3BAAD /* ExternalInterview.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExternalInterview.m; sourceTree = "<group>"; };
+		D922042E1A2FAA4300B3BAAD /* Group.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Group.h; sourceTree = "<group>"; };
+		D922042F1A2FAA4300B3BAAD /* Group.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Group.m; sourceTree = "<group>"; };
+		D92204301A2FAA4300B3BAAD /* Interview.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Interview.h; sourceTree = "<group>"; };
+		D92204311A2FAA4300B3BAAD /* Interview.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Interview.m; sourceTree = "<group>"; };
+		D92204321A2FAA4300B3BAAD /* ItaEstimate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItaEstimate.h; sourceTree = "<group>"; };
+		D92204331A2FAA4300B3BAAD /* ItaEstimate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItaEstimate.m; sourceTree = "<group>"; };
+		D92204341A2FAA4300B3BAAD /* Recruiter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Recruiter.h; sourceTree = "<group>"; };
+		D92204351A2FAA4300B3BAAD /* Recruiter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Recruiter.m; sourceTree = "<group>"; };
+		D92204361A2FAA4300B3BAAD /* Skills.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Skills.h; sourceTree = "<group>"; };
+		D92204371A2FAA4300B3BAAD /* Skills.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Skills.m; sourceTree = "<group>"; };
+		D92204381A2FAA4300B3BAAD /* SkillsLevels.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SkillsLevels.h; sourceTree = "<group>"; };
+		D92204391A2FAA4300B3BAAD /* SkillsLevels.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SkillsLevels.m; sourceTree = "<group>"; };
+		D922043B1A2FAA4300B3BAAD /* _Candidate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _Candidate.h; sourceTree = "<group>"; };
+		D922043C1A2FAA4300B3BAAD /* _Candidate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _Candidate.m; sourceTree = "<group>"; };
+		D922043D1A2FAA4300B3BAAD /* _ExternalInterview.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _ExternalInterview.h; sourceTree = "<group>"; };
+		D922043E1A2FAA4300B3BAAD /* _ExternalInterview.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _ExternalInterview.m; sourceTree = "<group>"; };
+		D922043F1A2FAA4300B3BAAD /* _Group.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _Group.h; sourceTree = "<group>"; };
+		D92204401A2FAA4300B3BAAD /* _Group.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _Group.m; sourceTree = "<group>"; };
+		D92204411A2FAA4300B3BAAD /* _Interview.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _Interview.h; sourceTree = "<group>"; };
+		D92204421A2FAA4300B3BAAD /* _Interview.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _Interview.m; sourceTree = "<group>"; };
+		D92204431A2FAA4300B3BAAD /* _ItaEstimate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _ItaEstimate.h; sourceTree = "<group>"; };
+		D92204441A2FAA4300B3BAAD /* _ItaEstimate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _ItaEstimate.m; sourceTree = "<group>"; };
+		D92204451A2FAA4300B3BAAD /* _Recruiter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _Recruiter.h; sourceTree = "<group>"; };
+		D92204461A2FAA4300B3BAAD /* _Recruiter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _Recruiter.m; sourceTree = "<group>"; };
+		D92204471A2FAA4300B3BAAD /* _Skills.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _Skills.h; sourceTree = "<group>"; };
+		D92204481A2FAA4300B3BAAD /* _Skills.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _Skills.m; sourceTree = "<group>"; };
+		D92204491A2FAA4300B3BAAD /* _SkillsLevels.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _SkillsLevels.h; sourceTree = "<group>"; };
+		D922044A1A2FAA4300B3BAAD /* _SkillsLevels.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _SkillsLevels.m; sourceTree = "<group>"; };
+		D922044C1A2FAA4300B3BAAD /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
+		D922044E1A2FAA4300B3BAAD /* mogen.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = mogen.sh; sourceTree = "<group>"; };
+		D922044F1A2FAA4300B3BAAD /* mogend.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = mogend.sh; sourceTree = "<group>"; };
+		D92204761A2FAF6900B3BAAD /* EHConstantsDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EHConstantsDefines.h; path = ../EHConstantsDefines.h; sourceTree = "<group>"; };
 		D92B76E11A1F847F00B76F5E /* EHSkillLevelCommentPopup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EHSkillLevelCommentPopup.h; sourceTree = "<group>"; };
 		D92B76E21A1F847F00B76F5E /* EHSkillLevelCommentPopup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EHSkillLevelCommentPopup.m; sourceTree = "<group>"; };
 		D92B76E31A1F847F00B76F5E /* EHSkillLevelPopup.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EHSkillLevelPopup.xib; sourceTree = "<group>"; };
@@ -121,6 +208,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D92204251A2F70D200B3BAAD /* CoreData.framework in Frameworks */,
 				D913A8001A2D0C3B00656CDE /* MessageUI.framework in Frameworks */,
 				D90A1BC31A16371800B610C6 /* AVFoundation.framework in Frameworks */,
 				D9B0CC671A03B17500544323 /* CoreGraphics.framework in Frameworks */,
@@ -165,6 +253,73 @@
 			name = ViewControllers;
 			sourceTree = "<group>";
 		};
+		D92204271A2FAA4200B3BAAD /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				D92204291A2FAA4300B3BAAD /* Human */,
+				D922043A1A2FAA4300B3BAAD /* Machine */,
+				D922044B1A2FAA4300B3BAAD /* Model.xcdatamodeld */,
+				D92204761A2FAF6900B3BAAD /* EHConstantsDefines.h */,
+				D922044D1A2FAA4300B3BAAD /* Scripts */,
+			);
+			path = CoreData;
+			sourceTree = "<group>";
+		};
+		D92204291A2FAA4300B3BAAD /* Human */ = {
+			isa = PBXGroup;
+			children = (
+				D922042A1A2FAA4300B3BAAD /* Candidate.h */,
+				D922042B1A2FAA4300B3BAAD /* Candidate.m */,
+				D922042C1A2FAA4300B3BAAD /* ExternalInterview.h */,
+				D922042D1A2FAA4300B3BAAD /* ExternalInterview.m */,
+				D922042E1A2FAA4300B3BAAD /* Group.h */,
+				D922042F1A2FAA4300B3BAAD /* Group.m */,
+				D92204301A2FAA4300B3BAAD /* Interview.h */,
+				D92204311A2FAA4300B3BAAD /* Interview.m */,
+				D92204321A2FAA4300B3BAAD /* ItaEstimate.h */,
+				D92204331A2FAA4300B3BAAD /* ItaEstimate.m */,
+				D92204341A2FAA4300B3BAAD /* Recruiter.h */,
+				D92204351A2FAA4300B3BAAD /* Recruiter.m */,
+				D92204361A2FAA4300B3BAAD /* Skills.h */,
+				D92204371A2FAA4300B3BAAD /* Skills.m */,
+				D92204381A2FAA4300B3BAAD /* SkillsLevels.h */,
+				D92204391A2FAA4300B3BAAD /* SkillsLevels.m */,
+			);
+			path = Human;
+			sourceTree = "<group>";
+		};
+		D922043A1A2FAA4300B3BAAD /* Machine */ = {
+			isa = PBXGroup;
+			children = (
+				D922043B1A2FAA4300B3BAAD /* _Candidate.h */,
+				D922043C1A2FAA4300B3BAAD /* _Candidate.m */,
+				D922043D1A2FAA4300B3BAAD /* _ExternalInterview.h */,
+				D922043E1A2FAA4300B3BAAD /* _ExternalInterview.m */,
+				D922043F1A2FAA4300B3BAAD /* _Group.h */,
+				D92204401A2FAA4300B3BAAD /* _Group.m */,
+				D92204411A2FAA4300B3BAAD /* _Interview.h */,
+				D92204421A2FAA4300B3BAAD /* _Interview.m */,
+				D92204431A2FAA4300B3BAAD /* _ItaEstimate.h */,
+				D92204441A2FAA4300B3BAAD /* _ItaEstimate.m */,
+				D92204451A2FAA4300B3BAAD /* _Recruiter.h */,
+				D92204461A2FAA4300B3BAAD /* _Recruiter.m */,
+				D92204471A2FAA4300B3BAAD /* _Skills.h */,
+				D92204481A2FAA4300B3BAAD /* _Skills.m */,
+				D92204491A2FAA4300B3BAAD /* _SkillsLevels.h */,
+				D922044A1A2FAA4300B3BAAD /* _SkillsLevels.m */,
+			);
+			path = Machine;
+			sourceTree = "<group>";
+		};
+		D922044D1A2FAA4300B3BAAD /* Scripts */ = {
+			isa = PBXGroup;
+			children = (
+				D922044E1A2FAA4300B3BAAD /* mogen.sh */,
+				D922044F1A2FAA4300B3BAAD /* mogend.sh */,
+			);
+			path = Scripts;
+			sourceTree = "<group>";
+		};
 		D93583FC1A1CB38B00135A2D /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -172,8 +327,6 @@
 				D9998EDA1A221CE9002E019A /* EHEventsGetInfoParser.m */,
 				D9998ED41A221CE9002E019A /* EHCalendarEventsParser.h */,
 				D9998ED51A221CE9002E019A /* EHCalendarEventsParser.m */,
-				B5DF299A1A164A280076862E /* EHInterview.h */,
-				B5DF299B1A164A280076862E /* EHInterview.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -181,6 +334,7 @@
 		D93583FD1A1CB3AD00135A2D /* WorkWithEvents */ = {
 			isa = PBXGroup;
 			children = (
+				D92204271A2FAA4200B3BAAD /* CoreData */,
 				D93583FC1A1CB38B00135A2D /* Model */,
 				D9DF27D21A1BDABA008555E4 /* Controllers */,
 			);
@@ -231,6 +385,7 @@
 		D9B0CC631A03B17500544323 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D92204241A2F70D200B3BAAD /* CoreData.framework */,
 				D913A7FF1A2D0C3B00656CDE /* MessageUI.framework */,
 				D90A1BC21A16371800B610C6 /* AVFoundation.framework */,
 				D9B0CC641A03B17500544323 /* Foundation.framework */,
@@ -444,6 +599,7 @@
 			targets = (
 				D9B0CC601A03B17500544323 /* ExpertHelper */,
 				D9B0CC841A03B17500544323 /* ExpertHelperTests */,
+				D922041F1A2F6F4300B3BAAD /* mogenerator */,
 			);
 		};
 /* End PBXProject section */
@@ -457,6 +613,8 @@
 				D9B0CC7B1A03B17500544323 /* Main_iPad.storyboard in Resources */,
 				D9BE54071A10B1A200AD5D3D /* Images.xcassets in Resources */,
 				D92B76E51A1F847F00B76F5E /* EHSkillLevelPopup.xib in Resources */,
+				D92204741A2FAA4300B3BAAD /* mogend.sh in Resources */,
+				D92204721A2FAA4300B3BAAD /* mogen.sh in Resources */,
 				D9B0CC781A03B17500544323 /* Main_iPhone.storyboard in Resources */,
 				D9B0CC6F1A03B17500544323 /* InfoPlist.strings in Resources */,
 			);
@@ -467,36 +625,70 @@
 			buildActionMask = 2147483647;
 			files = (
 				D9B0CC911A03B17500544323 /* InfoPlist.strings in Resources */,
+				D92204731A2FAA4300B3BAAD /* mogen.sh in Resources */,
+				D92204751A2FAA4300B3BAAD /* mogend.sh in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		D92204231A2F6F6F00B3BAAD /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "mogenerator -m ${SRCROOT}/Trying3/CoreData/Model.xcdatamodeld -M ${SRCROOT}/Trying3/CoreData/Machine -H ${SRCROOT}/Trying3/CoreData/Human —template-var arc=true";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		D9B0CC5D1A03B17500544323 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D922046A1A2FAA4300B3BAAD /* _Recruiter.m in Sources */,
+				D922045A1A2FAA4300B3BAAD /* Recruiter.m in Sources */,
+				D92204521A2FAA4300B3BAAD /* ExternalInterview.m in Sources */,
+				D92204681A2FAA4300B3BAAD /* _ItaEstimate.m in Sources */,
 				D967F2111A1E4DEE0009639C /* EHITAViewControllerCell.m in Sources */,
+				D92204641A2FAA4300B3BAAD /* _Group.m in Sources */,
+				D922045E1A2FAA4300B3BAAD /* SkillsLevels.m in Sources */,
 				2790F4E31A139854001B0956 /* EHProfilesTableViewCell.m in Sources */,
+				D92204561A2FAA4300B3BAAD /* Interview.m in Sources */,
 				D9B0CC711A03B17500544323 /* main.m in Sources */,
 				D9F15AD11A1A575A00E4DC62 /* EHListOfInterviewsViewController.m in Sources */,
+				D922046C1A2FAA4300B3BAAD /* _Skills.m in Sources */,
 				D967F20B1A1E305D0009639C /* EHRecruiterViewController.m in Sources */,
 				D9BE54021A10B16700AD5D3D /* EHExternalViewController.m in Sources */,
+				D922046E1A2FAA4300B3BAAD /* _SkillsLevels.m in Sources */,
 				D967F2101A1E4DEE0009639C /* EHITAViewController.m in Sources */,
 				2790F4E61A1398D8001B0956 /* EHProfilesViewController.m in Sources */,
-				B5DF299F1A164A280076862E /* EHInterview.m in Sources */,
+				D92204581A2FAA4300B3BAAD /* ItaEstimate.m in Sources */,
 				D967F2081A1E23BC0009639C /* EHCandidateFormViewController.m in Sources */,
 				D9998EE41A221CE9002E019A /* EHRevealViewController.m in Sources */,
+				D92204541A2FAA4300B3BAAD /* Group.m in Sources */,
 				D9BE54041A10B16700AD5D3D /* EHProgrammingLanguagesViewController.m in Sources */,
 				D9998EE01A221CE9002E019A /* EHCalendarEventsParser.m in Sources */,
+				D92204701A2FAA4300B3BAAD /* Model.xcdatamodeld in Sources */,
 				D92B76E41A1F847F00B76F5E /* EHSkillLevelCommentPopup.m in Sources */,
 				D9998EE11A221CE9002E019A /* EHCalendarFormViewController.m in Sources */,
 				D9B0CC751A03B17500544323 /* EHAppDelegate.m in Sources */,
+				D92204501A2FAA4300B3BAAD /* Candidate.m in Sources */,
 				D90A1BBE1A16335F00B610C6 /* EHViewController.m in Sources */,
 				D9998EE21A221CE9002E019A /* EHEventsGetInfoParser.m in Sources */,
 				D90A1BC11A16366500B610C6 /* EHSkillLevelPopup.m in Sources */,
+				D92204661A2FAA4300B3BAAD /* _Interview.m in Sources */,
 				D9BE54011A10B16700AD5D3D /* EHExternalCell.m in Sources */,
+				D922045C1A2FAA4300B3BAAD /* Skills.m in Sources */,
+				D92204601A2FAA4300B3BAAD /* _Candidate.m in Sources */,
+				D92204621A2FAA4300B3BAAD /* _ExternalInterview.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -504,7 +696,24 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D92204531A2FAA4300B3BAAD /* ExternalInterview.m in Sources */,
+				D92204631A2FAA4300B3BAAD /* _ExternalInterview.m in Sources */,
 				D9B0CC931A03B17500544323 /* ExpertHelperTests.m in Sources */,
+				D922046F1A2FAA4300B3BAAD /* _SkillsLevels.m in Sources */,
+				D92204651A2FAA4300B3BAAD /* _Group.m in Sources */,
+				D92204711A2FAA4300B3BAAD /* Model.xcdatamodeld in Sources */,
+				D92204571A2FAA4300B3BAAD /* Interview.m in Sources */,
+				D922046D1A2FAA4300B3BAAD /* _Skills.m in Sources */,
+				D922045F1A2FAA4300B3BAAD /* SkillsLevels.m in Sources */,
+				D922046B1A2FAA4300B3BAAD /* _Recruiter.m in Sources */,
+				D92204511A2FAA4300B3BAAD /* Candidate.m in Sources */,
+				D922045B1A2FAA4300B3BAAD /* Recruiter.m in Sources */,
+				D922045D1A2FAA4300B3BAAD /* Skills.m in Sources */,
+				D92204591A2FAA4300B3BAAD /* ItaEstimate.m in Sources */,
+				D92204691A2FAA4300B3BAAD /* _ItaEstimate.m in Sources */,
+				D92204551A2FAA4300B3BAAD /* Group.m in Sources */,
+				D92204611A2FAA4300B3BAAD /* _Candidate.m in Sources */,
+				D92204671A2FAA4300B3BAAD /* _Interview.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -554,6 +763,20 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		D92204211A2F6F4300B3BAAD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		D92204221A2F6F4300B3BAAD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 		D9B0CC941A03B17500544323 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -707,6 +930,14 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		D92204201A2F6F4300B3BAAD /* Build configuration list for PBXAggregateTarget "mogenerator" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D92204211A2F6F4300B3BAAD /* Debug */,
+				D92204221A2F6F4300B3BAAD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		D9B0CC5C1A03B17500544323 /* Build configuration list for PBXProject "ExpertHelper" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -735,6 +966,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		D922044B1A2FAA4300B3BAAD /* Model.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				D922044C1A2FAA4300B3BAAD /* Model.xcdatamodel */,
+			);
+			currentVersion = D922044C1A2FAA4300B3BAAD /* Model.xcdatamodel */;
+			path = Model.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = D9B0CC591A03B17500544323 /* Project object */;
 }

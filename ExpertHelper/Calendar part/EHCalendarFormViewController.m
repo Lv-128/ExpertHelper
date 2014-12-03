@@ -9,7 +9,7 @@
 #import "EHCalendarFormViewController.h"
 #import "EHListOfInterviewsViewController.h"
 #import "EHCalendarEventsParser.h"
-#import "EHInterview.h"
+
 #import "EHMainEventsTableViewController.h"
 #import "EHEventsGetInfoParser.h"
 
@@ -42,23 +42,7 @@
 @synthesize sectionDateFormatter;
 @synthesize cellDateFormatter;
 
-enum {  All = 0, ITA = 1, External = 2, None = 3};
 
-
--(IBAction)segmentButton:(id)sender
-{
-    if (segment.selectedSegmentIndex == All)
-        whichTypeOfInterviewIsChosen = All;
-    
-    if (segment.selectedSegmentIndex == ITA)
-        whichTypeOfInterviewIsChosen = ITA;
-    
-    if (segment.selectedSegmentIndex == External)
-        whichTypeOfInterviewIsChosen = External;
-    
-    if (segment.selectedSegmentIndex == None)
-        whichTypeOfInterviewIsChosen = None;
-}
 
 #pragma mark - View lifecycle
 
@@ -71,7 +55,7 @@ enum {  All = 0, ITA = 1, External = 2, None = 3};
 {
     [super viewDidLoad];
     
-    whichTypeOfInterviewIsChosen = All;
+    
     
     self.tableView.allowsMultipleSelectionDuringEditing = NO;
     

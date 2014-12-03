@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="5064" systemVersion="13E28" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="Candidate" representedClassName="Candidate" syncable="YES">
+        <attribute name="candidateLastName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="candidateName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="candidatePhotoURL" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="idEstimates" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ItaInterview" inverseName="idCandidate" inverseEntity="ItaInterview" syncable="YES"/>
+        <relationship name="idExternalInterview" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="ExternalInterview" inverseName="idCandidate" inverseEntity="ExternalInterview" syncable="YES"/>
+    </entity>
+    <entity name="ExternalInterview" representedClassName="ExternalInterview" syncable="YES">
+        <attribute name="expertName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="pass" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <relationship name="idCandidate" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Candidate" inverseName="idExternalInterview" inverseEntity="Candidate" syncable="YES"/>
+        <relationship name="idInterview" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Interview" inverseName="idExternal" inverseEntity="Interview" syncable="YES"/>
+        <relationship name="skills" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Skills" inverseName="idExternalInterview" inverseEntity="Skills" syncable="YES"/>
+    </entity>
+    <entity name="Group" representedClassName="Group" syncable="YES">
+        <attribute name="groupTitle" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="allSkills" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Skills" inverseName="idGroup" inverseEntity="Skills" syncable="YES"/>
+    </entity>
+    <entity name="Interview" representedClassName="Interview" syncable="YES">
+        <attribute name="idType" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="interviewDate" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="interviewLocation" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="interviewUrl" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="idExternal" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="ExternalInterview" inverseName="idInterview" inverseEntity="ExternalInterview" syncable="YES"/>
+        <relationship name="idItaInterview" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="ItaInterview" inverseName="idInterview" inverseEntity="ItaInterview" syncable="YES"/>
+        <relationship name="idRecruiter" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Recruiter" inverseName="interviews" inverseEntity="Recruiter" syncable="YES"/>
+    </entity>
+    <entity name="ItaInterview" representedClassName="ItaEstimate" syncable="YES">
+        <attribute name="itaComment" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="itaPass" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="itaScore" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <relationship name="idCandidate" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Candidate" inverseName="idEstimates" inverseEntity="Candidate" syncable="YES"/>
+        <relationship name="idInterview" optional="YES" maxCount="1" deletionRule="No Action" destinationEntity="Interview" inverseName="idItaInterview" inverseEntity="Interview" syncable="YES"/>
+        <userInfo>
+            <entry key="key" value="value"/>
+        </userInfo>
+    </entity>
+    <entity name="Recruiter" representedClassName="Recruiter" syncable="YES">
+        <attribute name="recruiterLastName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="recruiterMail" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="recruiterName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="recruiterPhotoUrl" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="recruiterSkype" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="interviews" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Interview" inverseName="idRecruiter" inverseEntity="Interview" syncable="YES"/>
+    </entity>
+    <entity name="Skills" representedClassName="Skills" syncable="YES">
+        <attribute name="comment" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="skillDescription" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="idExternalInterview" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ExternalInterview" inverseName="skills" inverseEntity="ExternalInterview" syncable="YES"/>
+        <relationship name="idGroup" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Group" inverseName="allSkills" inverseEntity="Group" syncable="YES"/>
+        <relationship name="level" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="SkillsLevels" inverseName="idSkill" inverseEntity="SkillsLevels" syncable="YES"/>
+    </entity>
+    <entity name="SkillsLevels" representedClassName="SkillsLevels" syncable="YES">
+        <attribute name="level" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <relationship name="idSkill" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Skills" inverseName="level" inverseEntity="Skills" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Candidate" positionX="-450" positionY="-207" width="128" height="118"/>
+        <element name="ExternalInterview" positionX="-290" positionY="27" width="128" height="118"/>
+        <element name="Group" positionX="-45" positionY="341" width="128" height="73"/>
+        <element name="Interview" positionX="-830" positionY="140" width="128" height="148"/>
+        <element name="ItaInterview" positionX="-668" positionY="-28" width="128" height="118"/>
+        <element name="Recruiter" positionX="-506" positionY="305" width="128" height="133"/>
+        <element name="Skills" positionX="-126" positionY="158" width="128" height="118"/>
+        <element name="SkillsLevels" positionX="-326" positionY="266" width="128" height="73"/>
+    </elements>
+</model>

@@ -8,11 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import "EHRevealViewController.h"
-
+#import "EHAppDelegate.h"
 @interface EHListOfInterviewsViewController : UIViewController
 
 @property (copy, nonatomic) NSArray *interviews;
 @property (strong, nonatomic) NSArray *sortedWeeks;
 @property(nonatomic,retain) UIPickerView *myPickerView;
-//@property(nonatomic,retain) UIPopoverController *popoverController;
+
+@property (nonatomic,strong) NSManagedObjectContext* managedObjectContext;
+
 @end

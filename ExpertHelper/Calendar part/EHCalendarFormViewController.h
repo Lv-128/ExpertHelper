@@ -12,8 +12,10 @@
 @interface EHCalendarFormViewController : UITableViewController
 {
     IBOutlet UILabel *label;
-    IBOutlet UISegmentedControl *segment;
-    int whichTypeOfInterviewIsChosen;
+   
 }
+
+@property (nonatomic,strong) NSManagedObjectContext* managedObjectContext;
+
 -(IBAction)segmentButton:(id)sender;
 @end
