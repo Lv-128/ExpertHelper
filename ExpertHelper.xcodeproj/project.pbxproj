@@ -21,6 +21,8 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		11EFE4A81A30CCB00005FDF4 /* EHListOfRecruiters.m in Sources */ = {isa = PBXBuildFile; fileRef = 11EFE4A71A30CCB00005FDF4 /* EHListOfRecruiters.m */; };
+		11EFE4AB1A30D0050005FDF4 /* EHListOfRecruitersCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 11EFE4AA1A30D0050005FDF4 /* EHListOfRecruitersCell.m */; };
 		2790F4E31A139854001B0956 /* EHProfilesTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2790F4E21A139854001B0956 /* EHProfilesTableViewCell.m */; };
 		2790F4E61A1398D8001B0956 /* EHProfilesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2790F4E51A1398D8001B0956 /* EHProfilesViewController.m */; };
 		D90A1BBE1A16335F00B610C6 /* EHViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D90A1BBD1A16335F00B610C6 /* EHViewController.m */; };
@@ -108,6 +110,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		11EFE4A61A30CCB00005FDF4 /* EHListOfRecruiters.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EHListOfRecruiters.h; sourceTree = "<group>"; };
+		11EFE4A71A30CCB00005FDF4 /* EHListOfRecruiters.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EHListOfRecruiters.m; sourceTree = "<group>"; };
+		11EFE4A91A30D0050005FDF4 /* EHListOfRecruitersCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EHListOfRecruitersCell.h; sourceTree = "<group>"; };
+		11EFE4AA1A30D0050005FDF4 /* EHListOfRecruitersCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EHListOfRecruitersCell.m; sourceTree = "<group>"; };
 		2790F4E11A139854001B0956 /* EHProfilesTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EHProfilesTableViewCell.h; path = Views/EHProfilesTableViewCell.h; sourceTree = "<group>"; };
 		2790F4E21A139854001B0956 /* EHProfilesTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EHProfilesTableViewCell.m; path = Views/EHProfilesTableViewCell.m; sourceTree = "<group>"; };
 		2790F4E41A1398D8001B0956 /* EHProfilesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EHProfilesViewController.h; path = ViewControllers/EHProfilesViewController.h; sourceTree = "<group>"; };
@@ -496,6 +502,10 @@
 			children = (
 				D967F2091A1E305D0009639C /* EHRecruiterViewController.h */,
 				D967F20A1A1E305D0009639C /* EHRecruiterViewController.m */,
+				11EFE4A61A30CCB00005FDF4 /* EHListOfRecruiters.h */,
+				11EFE4A71A30CCB00005FDF4 /* EHListOfRecruiters.m */,
+				11EFE4A91A30D0050005FDF4 /* EHListOfRecruitersCell.h */,
+				11EFE4AA1A30D0050005FDF4 /* EHListOfRecruitersCell.m */,
 			);
 			name = Recruiter;
 			sourceTree = "<group>";
@@ -656,12 +666,14 @@
 				D922046A1A2FAA4300B3BAAD /* _Recruiter.m in Sources */,
 				D922045A1A2FAA4300B3BAAD /* Recruiter.m in Sources */,
 				D92204521A2FAA4300B3BAAD /* ExternalInterview.m in Sources */,
+				11EFE4AB1A30D0050005FDF4 /* EHListOfRecruitersCell.m in Sources */,
 				D92204681A2FAA4300B3BAAD /* _ItaEstimate.m in Sources */,
 				D967F2111A1E4DEE0009639C /* EHITAViewControllerCell.m in Sources */,
 				D92204641A2FAA4300B3BAAD /* _Group.m in Sources */,
 				D922045E1A2FAA4300B3BAAD /* SkillsLevels.m in Sources */,
 				2790F4E31A139854001B0956 /* EHProfilesTableViewCell.m in Sources */,
 				D92204561A2FAA4300B3BAAD /* Interview.m in Sources */,
+				11EFE4A81A30CCB00005FDF4 /* EHListOfRecruiters.m in Sources */,
 				D9B0CC711A03B17500544323 /* main.m in Sources */,
 				D9F15AD11A1A575A00E4DC62 /* EHListOfInterviewsViewController.m in Sources */,
 				D922046C1A2FAA4300B3BAAD /* _Skills.m in Sources */,
@@ -937,6 +949,7 @@
 				D92204221A2F6F4300B3BAAD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		D9B0CC5C1A03B17500544323 /* Build configuration list for PBXProject "ExpertHelper" */ = {
 			isa = XCConfigurationList;
