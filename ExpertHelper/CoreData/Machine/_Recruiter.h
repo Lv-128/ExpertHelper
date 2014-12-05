@@ -4,18 +4,18 @@
 #import <CoreData/CoreData.h>
 
 extern const struct RecruiterAttributes {
-	__unsafe_unretained NSString *recruiterLastName;
-	__unsafe_unretained NSString *recruiterMail;
-	__unsafe_unretained NSString *recruiterName;
-	__unsafe_unretained NSString *recruiterPhotoUrl;
-	__unsafe_unretained NSString *recruiterSkype;
+	 NSString *email;
+	 NSString *firstName;
+	 NSString *lastName;
+	 NSString *photoUrl;
+	 NSString *skypeAccount;
 } RecruiterAttributes;
 
 extern const struct RecruiterRelationships {
-	__unsafe_unretained NSString *interviews;
+	 NSString *interviews;
 } RecruiterRelationships;
 
-@class Interview;
+@class InterviewAppointment;
 
 @interface RecruiterID : NSManagedObjectID {}
 @end
@@ -26,25 +26,25 @@ extern const struct RecruiterRelationships {
 + (NSEntityDescription*)entityInManagedObjectContext:(NSManagedObjectContext*)moc_;
 @property (nonatomic, readonly, strong) RecruiterID* objectID;
 
-@property (nonatomic, retain) NSString* recruiterLastName;
+@property (nonatomic, retain) NSString* email;
 
-//- (BOOL)validateRecruiterLastName:(id*)value_ error:(NSError**)error_;
+//- (BOOL)validateEmail:(id*)value_ error:(NSError**)error_;
 
-@property (nonatomic, retain) NSString* recruiterMail;
+@property (nonatomic, retain) NSString* firstName;
 
-//- (BOOL)validateRecruiterMail:(id*)value_ error:(NSError**)error_;
+//- (BOOL)validateFirstName:(id*)value_ error:(NSError**)error_;
 
-@property (nonatomic, retain) NSString* recruiterName;
+@property (nonatomic, retain) NSString* lastName;
 
-//- (BOOL)validateRecruiterName:(id*)value_ error:(NSError**)error_;
+//- (BOOL)validateLastName:(id*)value_ error:(NSError**)error_;
 
-@property (nonatomic, retain) NSString* recruiterPhotoUrl;
+@property (nonatomic, retain) NSString* photoUrl;
 
-//- (BOOL)validateRecruiterPhotoUrl:(id*)value_ error:(NSError**)error_;
+//- (BOOL)validatePhotoUrl:(id*)value_ error:(NSError**)error_;
 
-@property (nonatomic, retain) NSString* recruiterSkype;
+@property (nonatomic, retain) NSString* skypeAccount;
 
-//- (BOOL)validateRecruiterSkype:(id*)value_ error:(NSError**)error_;
+//- (BOOL)validateSkypeAccount:(id*)value_ error:(NSError**)error_;
 
 @property (nonatomic, retain) NSSet *interviews;
 
@@ -55,27 +55,27 @@ extern const struct RecruiterRelationships {
 @interface _Recruiter (InterviewsCoreDataGeneratedAccessors)
 - (void)addInterviews:(NSSet*)value_;
 - (void)removeInterviews:(NSSet*)value_;
-- (void)addInterviewsObject:(Interview*)value_;
-- (void)removeInterviewsObject:(Interview*)value_;
+- (void)addInterviewsObject:(InterviewAppointment*)value_;
+- (void)removeInterviewsObject:(InterviewAppointment*)value_;
 
 @end
 
 @interface _Recruiter (CoreDataGeneratedPrimitiveAccessors)
 
-- (NSString*)primitiveRecruiterLastName;
-- (void)setPrimitiveRecruiterLastName:(NSString*)value;
+- (NSString*)primitiveEmail;
+- (void)setPrimitiveEmail:(NSString*)value;
 
-- (NSString*)primitiveRecruiterMail;
-- (void)setPrimitiveRecruiterMail:(NSString*)value;
+- (NSString*)primitiveFirstName;
+- (void)setPrimitiveFirstName:(NSString*)value;
 
-- (NSString*)primitiveRecruiterName;
-- (void)setPrimitiveRecruiterName:(NSString*)value;
+- (NSString*)primitiveLastName;
+- (void)setPrimitiveLastName:(NSString*)value;
 
-- (NSString*)primitiveRecruiterPhotoUrl;
-- (void)setPrimitiveRecruiterPhotoUrl:(NSString*)value;
+- (NSString*)primitivePhotoUrl;
+- (void)setPrimitivePhotoUrl:(NSString*)value;
 
-- (NSString*)primitiveRecruiterSkype;
-- (void)setPrimitiveRecruiterSkype:(NSString*)value;
+- (NSString*)primitiveSkypeAccount;
+- (void)setPrimitiveSkypeAccount:(NSString*)value;
 
 - (NSMutableSet*)primitiveInterviews;
 - (void)setPrimitiveInterviews:(NSMutableSet*)value;

@@ -4,18 +4,18 @@
 #import <CoreData/CoreData.h>
 
 extern const struct ExternalInterviewAttributes {
-	__unsafe_unretained NSString *expertName;
-	__unsafe_unretained NSString *pass;
+	 NSString *expert;
+	 NSString *pass;
 } ExternalInterviewAttributes;
 
 extern const struct ExternalInterviewRelationships {
-	__unsafe_unretained NSString *idCandidate;
-	__unsafe_unretained NSString *idInterview;
-	__unsafe_unretained NSString *skills;
+	 NSString *idCandidate;
+	 NSString *idInterview;
+	 NSString *skills;
 } ExternalInterviewRelationships;
 
 @class Candidate;
-@class Interview;
+@class InterviewAppointment;
 @class Skills;
 
 @interface ExternalInterviewID : NSManagedObjectID {}
@@ -27,9 +27,9 @@ extern const struct ExternalInterviewRelationships {
 + (NSEntityDescription*)entityInManagedObjectContext:(NSManagedObjectContext*)moc_;
 @property (nonatomic, readonly, strong) ExternalInterviewID* objectID;
 
-@property (nonatomic, retain) NSString* expertName;
+@property (nonatomic, retain) NSString* expert;
 
-//- (BOOL)validateExpertName:(id*)value_ error:(NSError**)error_;
+//- (BOOL)validateExpert:(id*)value_ error:(NSError**)error_;
 
 @property (nonatomic, retain) NSNumber* pass;
 
@@ -43,7 +43,7 @@ extern const struct ExternalInterviewRelationships {
 
 //- (BOOL)validateIdCandidate:(id*)value_ error:(NSError**)error_;
 
-@property (nonatomic, retain) Interview *idInterview;
+@property (nonatomic, retain) InterviewAppointment *idInterview;
 
 //- (BOOL)validateIdInterview:(id*)value_ error:(NSError**)error_;
 
@@ -63,8 +63,8 @@ extern const struct ExternalInterviewRelationships {
 
 @interface _ExternalInterview (CoreDataGeneratedPrimitiveAccessors)
 
-- (NSString*)primitiveExpertName;
-- (void)setPrimitiveExpertName:(NSString*)value;
+- (NSString*)primitiveExpert;
+- (void)setPrimitiveExpert:(NSString*)value;
 
 - (NSNumber*)primitivePass;
 - (void)setPrimitivePass:(NSNumber*)value;
@@ -75,8 +75,8 @@ extern const struct ExternalInterviewRelationships {
 - (Candidate*)primitiveIdCandidate;
 - (void)setPrimitiveIdCandidate:(Candidate*)value;
 
-- (Interview*)primitiveIdInterview;
-- (void)setPrimitiveIdInterview:(Interview*)value;
+- (InterviewAppointment*)primitiveIdInterview;
+- (void)setPrimitiveIdInterview:(InterviewAppointment*)value;
 
 - (NSMutableSet*)primitiveSkills;
 - (void)setPrimitiveSkills:(NSMutableSet*)value;

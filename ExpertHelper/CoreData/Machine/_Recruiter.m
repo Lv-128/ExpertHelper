@@ -4,11 +4,11 @@
 #import "_Recruiter.h"
 
 const struct RecruiterAttributes RecruiterAttributes = {
-	.recruiterLastName = @"recruiterLastName",
-	.recruiterMail = @"recruiterMail",
-	.recruiterName = @"recruiterName",
-	.recruiterPhotoUrl = @"recruiterPhotoUrl",
-	.recruiterSkype = @"recruiterSkype",
+	.email = @"email",
+	.firstName = @"firstName",
+	.lastName = @"lastName",
+	.photoUrl = @"photoUrl",
+	.skypeAccount = @"skypeAccount",
 };
 
 const struct RecruiterRelationships RecruiterRelationships = {
@@ -44,15 +44,15 @@ const struct RecruiterRelationships RecruiterRelationships = {
 	return keyPaths;
 }
 
-@dynamic recruiterLastName;
+@dynamic email;
 
-@dynamic recruiterMail;
+@dynamic firstName;
 
-@dynamic recruiterName;
+@dynamic lastName;
 
-@dynamic recruiterPhotoUrl;
+@dynamic photoUrl;
 
-@dynamic recruiterSkype;
+@dynamic skypeAccount;
 
 @dynamic interviews;
 

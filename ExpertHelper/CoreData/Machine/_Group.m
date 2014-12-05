@@ -4,7 +4,7 @@
 #import "_Group.h"
 
 const struct GroupAttributes GroupAttributes = {
-	.groupTitle = @"groupTitle",
+	.title = @"title",
 };
 
 const struct GroupRelationships GroupRelationships = {
@@ -40,7 +40,7 @@ const struct GroupRelationships GroupRelationships = {
 	return keyPaths;
 }
 
-@dynamic groupTitle;
+@dynamic title;
 
 @dynamic allSkills;
 

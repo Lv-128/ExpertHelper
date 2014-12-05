@@ -4,7 +4,7 @@
 #import "_ExternalInterview.h"
 
 const struct ExternalInterviewAttributes ExternalInterviewAttributes = {
-	.expertName = @"expertName",
+	.expert = @"expert",
 	.pass = @"pass",
 };
 
@@ -49,7 +49,7 @@ const struct ExternalInterviewRelationships ExternalInterviewRelationships = {
 	return keyPaths;
 }
 
-@dynamic expertName;
+@dynamic expert;
 
 @dynamic pass;
 

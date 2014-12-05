@@ -4,13 +4,12 @@
 #import "_Candidate.h"
 
 const struct CandidateAttributes CandidateAttributes = {
-	.candidateLastName = @"candidateLastName",
-	.candidateName = @"candidateName",
-	.candidatePhotoURL = @"candidatePhotoURL",
+	.firstName = @"firstName",
+	.lastName = @"lastName",
+	.photoURL = @"photoURL",
 };
 
 const struct CandidateRelationships CandidateRelationships = {
-	.idEstimates = @"idEstimates",
 	.idExternalInterview = @"idExternalInterview",
 };
 
@@ -43,22 +42,11 @@ const struct CandidateRelationships CandidateRelationships = {
 	return keyPaths;
 }
 
-@dynamic candidateLastName;
+@dynamic firstName;
 
-@dynamic candidateName;
+@dynamic lastName;
 
-@dynamic candidatePhotoURL;
-
-@dynamic idEstimates;
-
-- (NSMutableSet*)idEstimatesSet {
-	[self willAccessValueForKey:@"idEstimates"];
-
-	NSMutableSet *result = (NSMutableSet*)[self mutableSetValueForKey:@"idEstimates"];
-
-	[self didAccessValueForKey:@"idEstimates"];
-	return result;
-}
+@dynamic photoURL;
 
 @dynamic idExternalInterview;
 

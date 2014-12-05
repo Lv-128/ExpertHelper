@@ -4,17 +4,15 @@
 #import <CoreData/CoreData.h>
 
 extern const struct CandidateAttributes {
-	__unsafe_unretained NSString *candidateLastName;
-	__unsafe_unretained NSString *candidateName;
-	__unsafe_unretained NSString *candidatePhotoURL;
+	 NSString *firstName;
+	 NSString *lastName;
+	 NSString *photoURL;
 } CandidateAttributes;
 
 extern const struct CandidateRelationships {
-	__unsafe_unretained NSString *idEstimates;
-	__unsafe_unretained NSString *idExternalInterview;
+	 NSString *idExternalInterview;
 } CandidateRelationships;
 
-@class ItaEstimate;
 @class ExternalInterview;
 
 @interface CandidateID : NSManagedObjectID {}
@@ -26,33 +24,21 @@ extern const struct CandidateRelationships {
 + (NSEntityDescription*)entityInManagedObjectContext:(NSManagedObjectContext*)moc_;
 @property (nonatomic, readonly, strong) CandidateID* objectID;
 
-@property (nonatomic, retain) NSString* candidateLastName;
+@property (nonatomic, retain) NSString* firstName;
 
-//- (BOOL)validateCandidateLastName:(id*)value_ error:(NSError**)error_;
+//- (BOOL)validateFirstName:(id*)value_ error:(NSError**)error_;
 
-@property (nonatomic, retain) NSString* candidateName;
+@property (nonatomic, retain) NSString* lastName;
 
-//- (BOOL)validateCandidateName:(id*)value_ error:(NSError**)error_;
+//- (BOOL)validateLastName:(id*)value_ error:(NSError**)error_;
 
-@property (nonatomic, retain) NSString* candidatePhotoURL;
+@property (nonatomic, retain) NSString* photoURL;
 
-//- (BOOL)validateCandidatePhotoURL:(id*)value_ error:(NSError**)error_;
-
-@property (nonatomic, retain) NSSet *idEstimates;
-
-- (NSMutableSet*)idEstimatesSet;
+//- (BOOL)validatePhotoURL:(id*)value_ error:(NSError**)error_;
 
 @property (nonatomic, retain) NSSet *idExternalInterview;
 
 - (NSMutableSet*)idExternalInterviewSet;
-
-@end
-
-@interface _Candidate (IdEstimatesCoreDataGeneratedAccessors)
-- (void)addIdEstimates:(NSSet*)value_;
-- (void)removeIdEstimates:(NSSet*)value_;
-- (void)addIdEstimatesObject:(ItaEstimate*)value_;
-- (void)removeIdEstimatesObject:(ItaEstimate*)value_;
 
 @end
 
@@ -66,17 +52,14 @@ extern const struct CandidateRelationships {
 
 @interface _Candidate (CoreDataGeneratedPrimitiveAccessors)
 
-- (NSString*)primitiveCandidateLastName;
-- (void)setPrimitiveCandidateLastName:(NSString*)value;
+- (NSString*)primitiveFirstName;
+- (void)setPrimitiveFirstName:(NSString*)value;
 
-- (NSString*)primitiveCandidateName;
-- (void)setPrimitiveCandidateName:(NSString*)value;
+- (NSString*)primitiveLastName;
+- (void)setPrimitiveLastName:(NSString*)value;
 
-- (NSString*)primitiveCandidatePhotoURL;
-- (void)setPrimitiveCandidatePhotoURL:(NSString*)value;
-
-- (NSMutableSet*)primitiveIdEstimates;
-- (void)setPrimitiveIdEstimates:(NSMutableSet*)value;
+- (NSString*)primitivePhotoURL;
+- (void)setPrimitivePhotoURL:(NSString*)value;
 
 - (NSMutableSet*)primitiveIdExternalInterview;
 - (void)setPrimitiveIdExternalInterview:(NSMutableSet*)value;

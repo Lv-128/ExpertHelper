@@ -28,38 +28,6 @@
 		D90A1BC31A16371800B610C6 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D90A1BC21A16371800B610C6 /* AVFoundation.framework */; };
 		D913A8001A2D0C3B00656CDE /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D913A7FF1A2D0C3B00656CDE /* MessageUI.framework */; };
 		D92204251A2F70D200B3BAAD /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D92204241A2F70D200B3BAAD /* CoreData.framework */; };
-		D92204501A2FAA4300B3BAAD /* Candidate.m in Sources */ = {isa = PBXBuildFile; fileRef = D922042B1A2FAA4300B3BAAD /* Candidate.m */; };
-		D92204511A2FAA4300B3BAAD /* Candidate.m in Sources */ = {isa = PBXBuildFile; fileRef = D922042B1A2FAA4300B3BAAD /* Candidate.m */; };
-		D92204521A2FAA4300B3BAAD /* ExternalInterview.m in Sources */ = {isa = PBXBuildFile; fileRef = D922042D1A2FAA4300B3BAAD /* ExternalInterview.m */; };
-		D92204531A2FAA4300B3BAAD /* ExternalInterview.m in Sources */ = {isa = PBXBuildFile; fileRef = D922042D1A2FAA4300B3BAAD /* ExternalInterview.m */; };
-		D92204541A2FAA4300B3BAAD /* Group.m in Sources */ = {isa = PBXBuildFile; fileRef = D922042F1A2FAA4300B3BAAD /* Group.m */; };
-		D92204551A2FAA4300B3BAAD /* Group.m in Sources */ = {isa = PBXBuildFile; fileRef = D922042F1A2FAA4300B3BAAD /* Group.m */; };
-		D92204561A2FAA4300B3BAAD /* Interview.m in Sources */ = {isa = PBXBuildFile; fileRef = D92204311A2FAA4300B3BAAD /* Interview.m */; };
-		D92204571A2FAA4300B3BAAD /* Interview.m in Sources */ = {isa = PBXBuildFile; fileRef = D92204311A2FAA4300B3BAAD /* Interview.m */; };
-		D92204581A2FAA4300B3BAAD /* ItaEstimate.m in Sources */ = {isa = PBXBuildFile; fileRef = D92204331A2FAA4300B3BAAD /* ItaEstimate.m */; };
-		D92204591A2FAA4300B3BAAD /* ItaEstimate.m in Sources */ = {isa = PBXBuildFile; fileRef = D92204331A2FAA4300B3BAAD /* ItaEstimate.m */; };
-		D922045A1A2FAA4300B3BAAD /* Recruiter.m in Sources */ = {isa = PBXBuildFile; fileRef = D92204351A2FAA4300B3BAAD /* Recruiter.m */; };
-		D922045B1A2FAA4300B3BAAD /* Recruiter.m in Sources */ = {isa = PBXBuildFile; fileRef = D92204351A2FAA4300B3BAAD /* Recruiter.m */; };
-		D922045C1A2FAA4300B3BAAD /* Skills.m in Sources */ = {isa = PBXBuildFile; fileRef = D92204371A2FAA4300B3BAAD /* Skills.m */; };
-		D922045D1A2FAA4300B3BAAD /* Skills.m in Sources */ = {isa = PBXBuildFile; fileRef = D92204371A2FAA4300B3BAAD /* Skills.m */; };
-		D922045E1A2FAA4300B3BAAD /* SkillsLevels.m in Sources */ = {isa = PBXBuildFile; fileRef = D92204391A2FAA4300B3BAAD /* SkillsLevels.m */; };
-		D922045F1A2FAA4300B3BAAD /* SkillsLevels.m in Sources */ = {isa = PBXBuildFile; fileRef = D92204391A2FAA4300B3BAAD /* SkillsLevels.m */; };
-		D92204601A2FAA4300B3BAAD /* _Candidate.m in Sources */ = {isa = PBXBuildFile; fileRef = D922043C1A2FAA4300B3BAAD /* _Candidate.m */; };
-		D92204611A2FAA4300B3BAAD /* _Candidate.m in Sources */ = {isa = PBXBuildFile; fileRef = D922043C1A2FAA4300B3BAAD /* _Candidate.m */; };
-		D92204621A2FAA4300B3BAAD /* _ExternalInterview.m in Sources */ = {isa = PBXBuildFile; fileRef = D922043E1A2FAA4300B3BAAD /* _ExternalInterview.m */; };
-		D92204631A2FAA4300B3BAAD /* _ExternalInterview.m in Sources */ = {isa = PBXBuildFile; fileRef = D922043E1A2FAA4300B3BAAD /* _ExternalInterview.m */; };
-		D92204641A2FAA4300B3BAAD /* _Group.m in Sources */ = {isa = PBXBuildFile; fileRef = D92204401A2FAA4300B3BAAD /* _Group.m */; };
-		D92204651A2FAA4300B3BAAD /* _Group.m in Sources */ = {isa = PBXBuildFile; fileRef = D92204401A2FAA4300B3BAAD /* _Group.m */; };
-		D92204661A2FAA4300B3BAAD /* _Interview.m in Sources */ = {isa = PBXBuildFile; fileRef = D92204421A2FAA4300B3BAAD /* _Interview.m */; };
-		D92204671A2FAA4300B3BAAD /* _Interview.m in Sources */ = {isa = PBXBuildFile; fileRef = D92204421A2FAA4300B3BAAD /* _Interview.m */; };
-		D92204681A2FAA4300B3BAAD /* _ItaEstimate.m in Sources */ = {isa = PBXBuildFile; fileRef = D92204441A2FAA4300B3BAAD /* _ItaEstimate.m */; };
-		D92204691A2FAA4300B3BAAD /* _ItaEstimate.m in Sources */ = {isa = PBXBuildFile; fileRef = D92204441A2FAA4300B3BAAD /* _ItaEstimate.m */; };
-		D922046A1A2FAA4300B3BAAD /* _Recruiter.m in Sources */ = {isa = PBXBuildFile; fileRef = D92204461A2FAA4300B3BAAD /* _Recruiter.m */; };
-		D922046B1A2FAA4300B3BAAD /* _Recruiter.m in Sources */ = {isa = PBXBuildFile; fileRef = D92204461A2FAA4300B3BAAD /* _Recruiter.m */; };
-		D922046C1A2FAA4300B3BAAD /* _Skills.m in Sources */ = {isa = PBXBuildFile; fileRef = D92204481A2FAA4300B3BAAD /* _Skills.m */; };
-		D922046D1A2FAA4300B3BAAD /* _Skills.m in Sources */ = {isa = PBXBuildFile; fileRef = D92204481A2FAA4300B3BAAD /* _Skills.m */; };
-		D922046E1A2FAA4300B3BAAD /* _SkillsLevels.m in Sources */ = {isa = PBXBuildFile; fileRef = D922044A1A2FAA4300B3BAAD /* _SkillsLevels.m */; };
-		D922046F1A2FAA4300B3BAAD /* _SkillsLevels.m in Sources */ = {isa = PBXBuildFile; fileRef = D922044A1A2FAA4300B3BAAD /* _SkillsLevels.m */; };
 		D92204701A2FAA4300B3BAAD /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D922044B1A2FAA4300B3BAAD /* Model.xcdatamodeld */; };
 		D92204711A2FAA4300B3BAAD /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D922044B1A2FAA4300B3BAAD /* Model.xcdatamodeld */; };
 		D92204721A2FAA4300B3BAAD /* mogen.sh in Resources */ = {isa = PBXBuildFile; fileRef = D922044E1A2FAA4300B3BAAD /* mogen.sh */; };
@@ -94,6 +62,20 @@
 		D9BE54021A10B16700AD5D3D /* EHExternalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D9BE53FA1A10B16700AD5D3D /* EHExternalViewController.m */; };
 		D9BE54041A10B16700AD5D3D /* EHProgrammingLanguagesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D9BE53FE1A10B16700AD5D3D /* EHProgrammingLanguagesViewController.m */; };
 		D9BE54071A10B1A200AD5D3D /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D9BE54061A10B1A200AD5D3D /* Images.xcassets */; };
+		D9E7B7971A31E079002DA710 /* Candidate.m in Sources */ = {isa = PBXBuildFile; fileRef = D9E7B78A1A31E079002DA710 /* Candidate.m */; };
+		D9E7B7981A31E079002DA710 /* ExternalInterview.m in Sources */ = {isa = PBXBuildFile; fileRef = D9E7B78C1A31E079002DA710 /* ExternalInterview.m */; };
+		D9E7B7991A31E079002DA710 /* Group.m in Sources */ = {isa = PBXBuildFile; fileRef = D9E7B78E1A31E079002DA710 /* Group.m */; };
+		D9E7B79A1A31E079002DA710 /* InterviewAppointment.m in Sources */ = {isa = PBXBuildFile; fileRef = D9E7B7901A31E079002DA710 /* InterviewAppointment.m */; };
+		D9E7B79B1A31E079002DA710 /* Recruiter.m in Sources */ = {isa = PBXBuildFile; fileRef = D9E7B7921A31E079002DA710 /* Recruiter.m */; };
+		D9E7B79C1A31E079002DA710 /* Skills.m in Sources */ = {isa = PBXBuildFile; fileRef = D9E7B7941A31E079002DA710 /* Skills.m */; };
+		D9E7B79D1A31E079002DA710 /* SkillsLevels.m in Sources */ = {isa = PBXBuildFile; fileRef = D9E7B7961A31E079002DA710 /* SkillsLevels.m */; };
+		D9E7B7AC1A31E0A3002DA710 /* _Candidate.m in Sources */ = {isa = PBXBuildFile; fileRef = D9E7B79F1A31E0A3002DA710 /* _Candidate.m */; };
+		D9E7B7AD1A31E0A3002DA710 /* _ExternalInterview.m in Sources */ = {isa = PBXBuildFile; fileRef = D9E7B7A11A31E0A3002DA710 /* _ExternalInterview.m */; };
+		D9E7B7AE1A31E0A3002DA710 /* _Group.m in Sources */ = {isa = PBXBuildFile; fileRef = D9E7B7A31A31E0A3002DA710 /* _Group.m */; };
+		D9E7B7AF1A31E0A3002DA710 /* _InterviewAppointment.m in Sources */ = {isa = PBXBuildFile; fileRef = D9E7B7A51A31E0A3002DA710 /* _InterviewAppointment.m */; };
+		D9E7B7B01A31E0A3002DA710 /* _Recruiter.m in Sources */ = {isa = PBXBuildFile; fileRef = D9E7B7A71A31E0A3002DA710 /* _Recruiter.m */; };
+		D9E7B7B11A31E0A3002DA710 /* _Skills.m in Sources */ = {isa = PBXBuildFile; fileRef = D9E7B7A91A31E0A3002DA710 /* _Skills.m */; };
+		D9E7B7B21A31E0A3002DA710 /* _SkillsLevels.m in Sources */ = {isa = PBXBuildFile; fileRef = D9E7B7AB1A31E0A3002DA710 /* _SkillsLevels.m */; };
 		D9F15AD11A1A575A00E4DC62 /* EHListOfInterviewsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D9F15AD01A1A575A00E4DC62 /* EHListOfInterviewsViewController.m */; };
 /* End PBXBuildFile section */
 
@@ -119,38 +101,6 @@
 		D90A1BC21A16371800B610C6 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		D913A7FF1A2D0C3B00656CDE /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		D92204241A2F70D200B3BAAD /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
-		D922042A1A2FAA4300B3BAAD /* Candidate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Candidate.h; sourceTree = "<group>"; };
-		D922042B1A2FAA4300B3BAAD /* Candidate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Candidate.m; sourceTree = "<group>"; };
-		D922042C1A2FAA4300B3BAAD /* ExternalInterview.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExternalInterview.h; sourceTree = "<group>"; };
-		D922042D1A2FAA4300B3BAAD /* ExternalInterview.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExternalInterview.m; sourceTree = "<group>"; };
-		D922042E1A2FAA4300B3BAAD /* Group.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Group.h; sourceTree = "<group>"; };
-		D922042F1A2FAA4300B3BAAD /* Group.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Group.m; sourceTree = "<group>"; };
-		D92204301A2FAA4300B3BAAD /* Interview.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Interview.h; sourceTree = "<group>"; };
-		D92204311A2FAA4300B3BAAD /* Interview.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Interview.m; sourceTree = "<group>"; };
-		D92204321A2FAA4300B3BAAD /* ItaEstimate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItaEstimate.h; sourceTree = "<group>"; };
-		D92204331A2FAA4300B3BAAD /* ItaEstimate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItaEstimate.m; sourceTree = "<group>"; };
-		D92204341A2FAA4300B3BAAD /* Recruiter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Recruiter.h; sourceTree = "<group>"; };
-		D92204351A2FAA4300B3BAAD /* Recruiter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Recruiter.m; sourceTree = "<group>"; };
-		D92204361A2FAA4300B3BAAD /* Skills.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Skills.h; sourceTree = "<group>"; };
-		D92204371A2FAA4300B3BAAD /* Skills.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Skills.m; sourceTree = "<group>"; };
-		D92204381A2FAA4300B3BAAD /* SkillsLevels.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SkillsLevels.h; sourceTree = "<group>"; };
-		D92204391A2FAA4300B3BAAD /* SkillsLevels.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SkillsLevels.m; sourceTree = "<group>"; };
-		D922043B1A2FAA4300B3BAAD /* _Candidate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _Candidate.h; sourceTree = "<group>"; };
-		D922043C1A2FAA4300B3BAAD /* _Candidate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _Candidate.m; sourceTree = "<group>"; };
-		D922043D1A2FAA4300B3BAAD /* _ExternalInterview.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _ExternalInterview.h; sourceTree = "<group>"; };
-		D922043E1A2FAA4300B3BAAD /* _ExternalInterview.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _ExternalInterview.m; sourceTree = "<group>"; };
-		D922043F1A2FAA4300B3BAAD /* _Group.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _Group.h; sourceTree = "<group>"; };
-		D92204401A2FAA4300B3BAAD /* _Group.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _Group.m; sourceTree = "<group>"; };
-		D92204411A2FAA4300B3BAAD /* _Interview.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _Interview.h; sourceTree = "<group>"; };
-		D92204421A2FAA4300B3BAAD /* _Interview.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _Interview.m; sourceTree = "<group>"; };
-		D92204431A2FAA4300B3BAAD /* _ItaEstimate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _ItaEstimate.h; sourceTree = "<group>"; };
-		D92204441A2FAA4300B3BAAD /* _ItaEstimate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _ItaEstimate.m; sourceTree = "<group>"; };
-		D92204451A2FAA4300B3BAAD /* _Recruiter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _Recruiter.h; sourceTree = "<group>"; };
-		D92204461A2FAA4300B3BAAD /* _Recruiter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _Recruiter.m; sourceTree = "<group>"; };
-		D92204471A2FAA4300B3BAAD /* _Skills.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _Skills.h; sourceTree = "<group>"; };
-		D92204481A2FAA4300B3BAAD /* _Skills.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _Skills.m; sourceTree = "<group>"; };
-		D92204491A2FAA4300B3BAAD /* _SkillsLevels.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _SkillsLevels.h; sourceTree = "<group>"; };
-		D922044A1A2FAA4300B3BAAD /* _SkillsLevels.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _SkillsLevels.m; sourceTree = "<group>"; };
 		D922044C1A2FAA4300B3BAAD /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		D922044E1A2FAA4300B3BAAD /* mogen.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = mogen.sh; sourceTree = "<group>"; };
 		D922044F1A2FAA4300B3BAAD /* mogend.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = mogend.sh; sourceTree = "<group>"; };
@@ -199,6 +149,34 @@
 		D9BE53FD1A10B16700AD5D3D /* EHProgrammingLanguagesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EHProgrammingLanguagesViewController.h; sourceTree = "<group>"; };
 		D9BE53FE1A10B16700AD5D3D /* EHProgrammingLanguagesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EHProgrammingLanguagesViewController.m; sourceTree = "<group>"; };
 		D9BE54061A10B1A200AD5D3D /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		D9E7B7891A31E079002DA710 /* Candidate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Candidate.h; sourceTree = "<group>"; };
+		D9E7B78A1A31E079002DA710 /* Candidate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Candidate.m; sourceTree = "<group>"; };
+		D9E7B78B1A31E079002DA710 /* ExternalInterview.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExternalInterview.h; sourceTree = "<group>"; };
+		D9E7B78C1A31E079002DA710 /* ExternalInterview.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExternalInterview.m; sourceTree = "<group>"; };
+		D9E7B78D1A31E079002DA710 /* Group.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Group.h; sourceTree = "<group>"; };
+		D9E7B78E1A31E079002DA710 /* Group.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Group.m; sourceTree = "<group>"; };
+		D9E7B78F1A31E079002DA710 /* InterviewAppointment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InterviewAppointment.h; sourceTree = "<group>"; };
+		D9E7B7901A31E079002DA710 /* InterviewAppointment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InterviewAppointment.m; sourceTree = "<group>"; };
+		D9E7B7911A31E079002DA710 /* Recruiter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Recruiter.h; sourceTree = "<group>"; };
+		D9E7B7921A31E079002DA710 /* Recruiter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Recruiter.m; sourceTree = "<group>"; };
+		D9E7B7931A31E079002DA710 /* Skills.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Skills.h; sourceTree = "<group>"; };
+		D9E7B7941A31E079002DA710 /* Skills.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Skills.m; sourceTree = "<group>"; };
+		D9E7B7951A31E079002DA710 /* SkillsLevels.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SkillsLevels.h; sourceTree = "<group>"; };
+		D9E7B7961A31E079002DA710 /* SkillsLevels.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SkillsLevels.m; sourceTree = "<group>"; };
+		D9E7B79E1A31E0A3002DA710 /* _Candidate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _Candidate.h; sourceTree = "<group>"; };
+		D9E7B79F1A31E0A3002DA710 /* _Candidate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _Candidate.m; sourceTree = "<group>"; };
+		D9E7B7A01A31E0A3002DA710 /* _ExternalInterview.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _ExternalInterview.h; sourceTree = "<group>"; };
+		D9E7B7A11A31E0A3002DA710 /* _ExternalInterview.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _ExternalInterview.m; sourceTree = "<group>"; };
+		D9E7B7A21A31E0A3002DA710 /* _Group.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _Group.h; sourceTree = "<group>"; };
+		D9E7B7A31A31E0A3002DA710 /* _Group.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _Group.m; sourceTree = "<group>"; };
+		D9E7B7A41A31E0A3002DA710 /* _InterviewAppointment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _InterviewAppointment.h; sourceTree = "<group>"; };
+		D9E7B7A51A31E0A3002DA710 /* _InterviewAppointment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _InterviewAppointment.m; sourceTree = "<group>"; };
+		D9E7B7A61A31E0A3002DA710 /* _Recruiter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _Recruiter.h; sourceTree = "<group>"; };
+		D9E7B7A71A31E0A3002DA710 /* _Recruiter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _Recruiter.m; sourceTree = "<group>"; };
+		D9E7B7A81A31E0A3002DA710 /* _Skills.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _Skills.h; sourceTree = "<group>"; };
+		D9E7B7A91A31E0A3002DA710 /* _Skills.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _Skills.m; sourceTree = "<group>"; };
+		D9E7B7AA1A31E0A3002DA710 /* _SkillsLevels.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _SkillsLevels.h; sourceTree = "<group>"; };
+		D9E7B7AB1A31E0A3002DA710 /* _SkillsLevels.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _SkillsLevels.m; sourceTree = "<group>"; };
 		D9F15ACF1A1A575A00E4DC62 /* EHListOfInterviewsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EHListOfInterviewsViewController.h; sourceTree = "<group>"; };
 		D9F15AD01A1A575A00E4DC62 /* EHListOfInterviewsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EHListOfInterviewsViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -268,22 +246,20 @@
 		D92204291A2FAA4300B3BAAD /* Human */ = {
 			isa = PBXGroup;
 			children = (
-				D922042A1A2FAA4300B3BAAD /* Candidate.h */,
-				D922042B1A2FAA4300B3BAAD /* Candidate.m */,
-				D922042C1A2FAA4300B3BAAD /* ExternalInterview.h */,
-				D922042D1A2FAA4300B3BAAD /* ExternalInterview.m */,
-				D922042E1A2FAA4300B3BAAD /* Group.h */,
-				D922042F1A2FAA4300B3BAAD /* Group.m */,
-				D92204301A2FAA4300B3BAAD /* Interview.h */,
-				D92204311A2FAA4300B3BAAD /* Interview.m */,
-				D92204321A2FAA4300B3BAAD /* ItaEstimate.h */,
-				D92204331A2FAA4300B3BAAD /* ItaEstimate.m */,
-				D92204341A2FAA4300B3BAAD /* Recruiter.h */,
-				D92204351A2FAA4300B3BAAD /* Recruiter.m */,
-				D92204361A2FAA4300B3BAAD /* Skills.h */,
-				D92204371A2FAA4300B3BAAD /* Skills.m */,
-				D92204381A2FAA4300B3BAAD /* SkillsLevels.h */,
-				D92204391A2FAA4300B3BAAD /* SkillsLevels.m */,
+				D9E7B7891A31E079002DA710 /* Candidate.h */,
+				D9E7B78A1A31E079002DA710 /* Candidate.m */,
+				D9E7B78B1A31E079002DA710 /* ExternalInterview.h */,
+				D9E7B78C1A31E079002DA710 /* ExternalInterview.m */,
+				D9E7B78D1A31E079002DA710 /* Group.h */,
+				D9E7B78E1A31E079002DA710 /* Group.m */,
+				D9E7B78F1A31E079002DA710 /* InterviewAppointment.h */,
+				D9E7B7901A31E079002DA710 /* InterviewAppointment.m */,
+				D9E7B7911A31E079002DA710 /* Recruiter.h */,
+				D9E7B7921A31E079002DA710 /* Recruiter.m */,
+				D9E7B7931A31E079002DA710 /* Skills.h */,
+				D9E7B7941A31E079002DA710 /* Skills.m */,
+				D9E7B7951A31E079002DA710 /* SkillsLevels.h */,
+				D9E7B7961A31E079002DA710 /* SkillsLevels.m */,
 			);
 			path = Human;
 			sourceTree = "<group>";
@@ -291,22 +267,20 @@
 		D922043A1A2FAA4300B3BAAD /* Machine */ = {
 			isa = PBXGroup;
 			children = (
-				D922043B1A2FAA4300B3BAAD /* _Candidate.h */,
-				D922043C1A2FAA4300B3BAAD /* _Candidate.m */,
-				D922043D1A2FAA4300B3BAAD /* _ExternalInterview.h */,
-				D922043E1A2FAA4300B3BAAD /* _ExternalInterview.m */,
-				D922043F1A2FAA4300B3BAAD /* _Group.h */,
-				D92204401A2FAA4300B3BAAD /* _Group.m */,
-				D92204411A2FAA4300B3BAAD /* _Interview.h */,
-				D92204421A2FAA4300B3BAAD /* _Interview.m */,
-				D92204431A2FAA4300B3BAAD /* _ItaEstimate.h */,
-				D92204441A2FAA4300B3BAAD /* _ItaEstimate.m */,
-				D92204451A2FAA4300B3BAAD /* _Recruiter.h */,
-				D92204461A2FAA4300B3BAAD /* _Recruiter.m */,
-				D92204471A2FAA4300B3BAAD /* _Skills.h */,
-				D92204481A2FAA4300B3BAAD /* _Skills.m */,
-				D92204491A2FAA4300B3BAAD /* _SkillsLevels.h */,
-				D922044A1A2FAA4300B3BAAD /* _SkillsLevels.m */,
+				D9E7B79E1A31E0A3002DA710 /* _Candidate.h */,
+				D9E7B79F1A31E0A3002DA710 /* _Candidate.m */,
+				D9E7B7A01A31E0A3002DA710 /* _ExternalInterview.h */,
+				D9E7B7A11A31E0A3002DA710 /* _ExternalInterview.m */,
+				D9E7B7A21A31E0A3002DA710 /* _Group.h */,
+				D9E7B7A31A31E0A3002DA710 /* _Group.m */,
+				D9E7B7A41A31E0A3002DA710 /* _InterviewAppointment.h */,
+				D9E7B7A51A31E0A3002DA710 /* _InterviewAppointment.m */,
+				D9E7B7A61A31E0A3002DA710 /* _Recruiter.h */,
+				D9E7B7A71A31E0A3002DA710 /* _Recruiter.m */,
+				D9E7B7A81A31E0A3002DA710 /* _Skills.h */,
+				D9E7B7A91A31E0A3002DA710 /* _Skills.m */,
+				D9E7B7AA1A31E0A3002DA710 /* _SkillsLevels.h */,
+				D9E7B7AB1A31E0A3002DA710 /* _SkillsLevels.m */,
 			);
 			path = Machine;
 			sourceTree = "<group>";
@@ -644,7 +618,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "mogenerator -m ${SRCROOT}/Trying3/CoreData/Model.xcdatamodeld -M ${SRCROOT}/Trying3/CoreData/Machine -H ${SRCROOT}/Trying3/CoreData/Human —template-var arc=true";
+			shellScript = "mogenerator -m ${SRCROOT}/ExpertHelper/CoreData/Model.xcdatamodeld -M ${SRCROOT}/ExpertHelper/CoreData/Machine -H ${SRCROOT}/ExpertHelper/CoreData/Human —template-var arc=true";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -653,42 +627,40 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D922046A1A2FAA4300B3BAAD /* _Recruiter.m in Sources */,
-				D922045A1A2FAA4300B3BAAD /* Recruiter.m in Sources */,
-				D92204521A2FAA4300B3BAAD /* ExternalInterview.m in Sources */,
-				D92204681A2FAA4300B3BAAD /* _ItaEstimate.m in Sources */,
+				D9E7B79B1A31E079002DA710 /* Recruiter.m in Sources */,
 				D967F2111A1E4DEE0009639C /* EHITAViewControllerCell.m in Sources */,
-				D92204641A2FAA4300B3BAAD /* _Group.m in Sources */,
-				D922045E1A2FAA4300B3BAAD /* SkillsLevels.m in Sources */,
 				2790F4E31A139854001B0956 /* EHProfilesTableViewCell.m in Sources */,
-				D92204561A2FAA4300B3BAAD /* Interview.m in Sources */,
+				D9E7B7AE1A31E0A3002DA710 /* _Group.m in Sources */,
+				D9E7B79D1A31E079002DA710 /* SkillsLevels.m in Sources */,
 				D9B0CC711A03B17500544323 /* main.m in Sources */,
 				D9F15AD11A1A575A00E4DC62 /* EHListOfInterviewsViewController.m in Sources */,
-				D922046C1A2FAA4300B3BAAD /* _Skills.m in Sources */,
 				D967F20B1A1E305D0009639C /* EHRecruiterViewController.m in Sources */,
 				D9BE54021A10B16700AD5D3D /* EHExternalViewController.m in Sources */,
-				D922046E1A2FAA4300B3BAAD /* _SkillsLevels.m in Sources */,
 				D967F2101A1E4DEE0009639C /* EHITAViewController.m in Sources */,
 				2790F4E61A1398D8001B0956 /* EHProfilesViewController.m in Sources */,
-				D92204581A2FAA4300B3BAAD /* ItaEstimate.m in Sources */,
+				D9E7B7981A31E079002DA710 /* ExternalInterview.m in Sources */,
+				D9E7B7AF1A31E0A3002DA710 /* _InterviewAppointment.m in Sources */,
 				D967F2081A1E23BC0009639C /* EHCandidateFormViewController.m in Sources */,
 				D9998EE41A221CE9002E019A /* EHRevealViewController.m in Sources */,
-				D92204541A2FAA4300B3BAAD /* Group.m in Sources */,
 				D9BE54041A10B16700AD5D3D /* EHProgrammingLanguagesViewController.m in Sources */,
 				D9998EE01A221CE9002E019A /* EHCalendarEventsParser.m in Sources */,
+				D9E7B79A1A31E079002DA710 /* InterviewAppointment.m in Sources */,
 				D92204701A2FAA4300B3BAAD /* Model.xcdatamodeld in Sources */,
+				D9E7B7991A31E079002DA710 /* Group.m in Sources */,
+				D9E7B7B21A31E0A3002DA710 /* _SkillsLevels.m in Sources */,
 				D92B76E41A1F847F00B76F5E /* EHSkillLevelCommentPopup.m in Sources */,
 				D9998EE11A221CE9002E019A /* EHCalendarFormViewController.m in Sources */,
 				D9B0CC751A03B17500544323 /* EHAppDelegate.m in Sources */,
-				D92204501A2FAA4300B3BAAD /* Candidate.m in Sources */,
 				D90A1BBE1A16335F00B610C6 /* EHViewController.m in Sources */,
 				D9998EE21A221CE9002E019A /* EHEventsGetInfoParser.m in Sources */,
 				D90A1BC11A16366500B610C6 /* EHSkillLevelPopup.m in Sources */,
-				D92204661A2FAA4300B3BAAD /* _Interview.m in Sources */,
 				D9BE54011A10B16700AD5D3D /* EHExternalCell.m in Sources */,
-				D922045C1A2FAA4300B3BAAD /* Skills.m in Sources */,
-				D92204601A2FAA4300B3BAAD /* _Candidate.m in Sources */,
-				D92204621A2FAA4300B3BAAD /* _ExternalInterview.m in Sources */,
+				D9E7B7B01A31E0A3002DA710 /* _Recruiter.m in Sources */,
+				D9E7B7971A31E079002DA710 /* Candidate.m in Sources */,
+				D9E7B79C1A31E079002DA710 /* Skills.m in Sources */,
+				D9E7B7AC1A31E0A3002DA710 /* _Candidate.m in Sources */,
+				D9E7B7B11A31E0A3002DA710 /* _Skills.m in Sources */,
+				D9E7B7AD1A31E0A3002DA710 /* _ExternalInterview.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -696,24 +668,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D92204531A2FAA4300B3BAAD /* ExternalInterview.m in Sources */,
-				D92204631A2FAA4300B3BAAD /* _ExternalInterview.m in Sources */,
 				D9B0CC931A03B17500544323 /* ExpertHelperTests.m in Sources */,
-				D922046F1A2FAA4300B3BAAD /* _SkillsLevels.m in Sources */,
-				D92204651A2FAA4300B3BAAD /* _Group.m in Sources */,
 				D92204711A2FAA4300B3BAAD /* Model.xcdatamodeld in Sources */,
-				D92204571A2FAA4300B3BAAD /* Interview.m in Sources */,
-				D922046D1A2FAA4300B3BAAD /* _Skills.m in Sources */,
-				D922045F1A2FAA4300B3BAAD /* SkillsLevels.m in Sources */,
-				D922046B1A2FAA4300B3BAAD /* _Recruiter.m in Sources */,
-				D92204511A2FAA4300B3BAAD /* Candidate.m in Sources */,
-				D922045B1A2FAA4300B3BAAD /* Recruiter.m in Sources */,
-				D922045D1A2FAA4300B3BAAD /* Skills.m in Sources */,
-				D92204591A2FAA4300B3BAAD /* ItaEstimate.m in Sources */,
-				D92204691A2FAA4300B3BAAD /* _ItaEstimate.m in Sources */,
-				D92204551A2FAA4300B3BAAD /* Group.m in Sources */,
-				D92204611A2FAA4300B3BAAD /* _Candidate.m in Sources */,
-				D92204671A2FAA4300B3BAAD /* _Interview.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -937,6 +893,7 @@
 				D92204221A2F6F4300B3BAAD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		D9B0CC5C1A03B17500544323 /* Build configuration list for PBXProject "ExpertHelper" */ = {
 			isa = XCConfigurationList;

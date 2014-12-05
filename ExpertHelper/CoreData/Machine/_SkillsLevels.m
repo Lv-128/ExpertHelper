@@ -4,6 +4,7 @@
 #import "_SkillsLevels.h"
 
 const struct SkillsLevelsAttributes SkillsLevelsAttributes = {
+	.comment = @"comment",
 	.level = @"level",
 };
 
@@ -45,6 +46,8 @@ const struct SkillsLevelsRelationships SkillsLevelsRelationships = {
 
 	return keyPaths;
 }
+
+@dynamic comment;
 
 @dynamic level;
 
