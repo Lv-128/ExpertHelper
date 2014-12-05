@@ -74,7 +74,12 @@
         
         [_array insertObject:temp atIndex:i];
     }
+    
+    self.openGeneralInfo.layer.cornerRadius = 13;
+    self.openGeneralInfo.layer.borderWidth =1;
+    self.openGeneralInfo.layer.borderColor = [UIColor grayColor].CGColor;
     [super viewDidLoad];
+    
     // Do any additional setup after loading the view.
 }
 
