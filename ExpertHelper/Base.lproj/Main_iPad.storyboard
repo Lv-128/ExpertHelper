@@ -229,7 +229,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="330-fS-Q1R" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1840" y="344"/>
+            <point key="canvasLocation" x="-3416" y="-472"/>
         </scene>
         <!--Candidate Form View Controller - Candidate-->
         <scene sceneID="iu6-y0-tYv">
@@ -784,7 +784,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fGn-fe-ER5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1453" y="-318"/>
+            <point key="canvasLocation" x="-2365" y="-438"/>
         </scene>
         <!--External View Controller3-->
         <scene sceneID="i4t-C7-LOm">

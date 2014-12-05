@@ -43,6 +43,9 @@
 @synthesize cellDateFormatter;
 
 
+-(IBAction)segmentButton:(id)sender {    
+}
+
 
 #pragma mark - View lifecycle
 

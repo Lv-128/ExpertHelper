@@ -17,13 +17,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    NSManagedObjectContext *context = [self managedObjectContext];
-    
-
-    
-    
     return YES;
-    
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application

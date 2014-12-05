@@ -78,7 +78,8 @@ enum {None,ITA, Internal,External};
     UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"Cell" forIndexPath:indexPath];
     
     
-    NSArray *eventsOnThisDay = [[self.sortedWeeks objectAtIndex:indexPath.section] interviews];
+    EHWeek *week = [self.sortedWeeks objectAtIndex:indexPath.section];
+    NSArray *eventsOnThisDay = week.interviews;
     InterviewAppointment *event = [eventsOnThisDay objectAtIndex:indexPath.row];
     
     
@@ -236,7 +237,8 @@ enum {None,ITA, Internal,External};
     CGPoint touchLocation = [tapGR locationOfTouch:0 inView:self.collectionView];
     NSIndexPath *tappedRow = [self.collectionView indexPathForItemAtPoint:touchLocation];
     
-    NSArray *eventsOnThisDay = [[self.sortedWeeks objectAtIndex:tappedRow.section] interviews];
+    EHWeek *week = [self.sortedWeeks objectAtIndex:tappedRow.section];
+    NSArray *eventsOnThisDay = week.interviews;
     InterviewAppointment *event = [eventsOnThisDay objectAtIndex:tappedRow.row];
     
     _actionSheetTypes = [[UIActionSheet alloc] initWithTitle:@"Select type of interview:"
@@ -247,7 +249,7 @@ enum {None,ITA, Internal,External};
         if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
         {
             UICollectionViewCell *curInterviewCell = [self.collectionView  cellForItemAtIndexPath:tappedRow];
-            _label = [curInterviewCell viewWithTag:100];
+            _label = (UILabel *)[curInterviewCell viewWithTag:100];
            _curInterview = event;
             CGRect  rect = CGRectMake([_label frame].origin.x - [_label frame].size.width / 3 , [_label frame].origin.y, [_label frame].size.width,  [_label frame].size.height) ;
            [_actionSheetTypes showFromRect:rect inView:curInterviewCell animated:YES ];//showFromRect:[label  frame] inView:self.view animated:YES];
@@ -374,23 +376,7 @@ enum {None,ITA, Internal,External};
 
 - (IBAction)sendEmail:(id)sender event:(id)event
 {
-    NSSet *touches = [event allTouches];
-    
-    UITouch *touch = [touches anyObject];
-    
-    CGPoint currentTouchPosition = [touch locationInView: _collectionView];
-    
-    NSIndexPath *indexPath = [_collectionView indexPathForItemAtPoint: currentTouchPosition];
-    
-    // unused variable!!!!!
-    
-    __unused NSArray *eventsOnThisDay = [[self.sortedWeeks objectAtIndex:indexPath.section] interviews];
-    __unused InterviewAppointment *interview = [eventsOnThisDay objectAtIndex:indexPath.row];
-    
-    // end of unused variable!!!!
-    
-    
-    [self sendEmailToAddress:@"elena.pyanyh@gmail.com"];
+   [self sendEmailToAddress:@"elena.pyanyh@gmail.com"];
 }
 
 
