@@ -16,6 +16,4 @@
     NSInteger lostData;
 }
 
-@property (nonatomic, copy) NSString *skillusLevel;
-
 @end

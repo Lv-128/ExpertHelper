@@ -127,7 +127,7 @@
     } else {
         cell.rightLabel.text = @"";
     }
-    
+
     return cell;
 }
 

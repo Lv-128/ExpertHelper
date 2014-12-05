@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <AVFoundation/AVFoundation.h>
 
-@interface EHExternalViewController3 : UIViewController <UITableViewDataSource, UITableViewDelegate>
+@interface EHExternalViewController3 : UIViewController <UITableViewDataSource, UITableViewDelegate, AVAudioRecorderDelegate, AVAudioPlayerDelegate>
+
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @end
