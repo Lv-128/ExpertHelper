@@ -190,10 +190,10 @@
     
     
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Recruiter"
+    NSEntityDescription *entity = [NSEntityDescription entityForName:[Recruiter entityName]
                                               inManagedObjectContext:context];
     NSPredicate *predicate =
-    [NSPredicate predicateWithFormat:@"recruiterMail == %@",email];
+    [NSPredicate predicateWithFormat:@"email == %@",email];
     [fetchRequest setPredicate:predicate];
     [fetchRequest setEntity:entity];
     
@@ -209,7 +209,7 @@
     else
     {
         Recruiter *recruiter = [NSEntityDescription
-                                insertNewObjectForEntityForName:@"Recruiter"
+                                insertNewObjectForEntityForName:[Recruiter entityName]
                                 inManagedObjectContext:context];
         recruiter.firstName = parseNameAndLastnameOfRecruiter.firstName;
         recruiter.lastName = parseNameAndLastnameOfRecruiter.lastName;
@@ -230,10 +230,10 @@
         
         
         NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-        NSEntityDescription *entity = [NSEntityDescription entityForName:@"Candidate"
+        NSEntityDescription *entity = [NSEntityDescription entityForName:[Candidate entityName]
                                                   inManagedObjectContext:context];
         NSPredicate *predicate =
-        [NSPredicate predicateWithFormat:@"candidateName == %@ AND candidateLastName == %@ ",parseNameAndLastnameOfCandidate.firstName,parseNameAndLastnameOfCandidate.lastName];
+        [NSPredicate predicateWithFormat:@"firstName == %@ AND lastName == %@ ",parseNameAndLastnameOfCandidate.firstName,parseNameAndLastnameOfCandidate.lastName];
         [fetchRequest setPredicate:predicate];
         [fetchRequest setEntity:entity];
         
@@ -252,7 +252,7 @@
         {
             
             candidateResult = [NSEntityDescription
-                               insertNewObjectForEntityForName:@"Candidate"
+                               insertNewObjectForEntityForName:[Candidate entityName]
                                inManagedObjectContext:context];
             candidateResult.firstName = parseNameAndLastnameOfCandidate.firstName;
             candidateResult.lastName = parseNameAndLastnameOfCandidate.lastName;
@@ -337,12 +337,13 @@
     
     
     InterviewAppointment *interview = [NSEntityDescription
-                            insertNewObjectForEntityForName:@"Interview"
+                            insertNewObjectForEntityForName:[InterviewAppointment entityName]
                             inManagedObjectContext:context];
     
     interview.startDate = event.startDate;
     interview.location = event.location;
     interview.type = [self canDefineTypeOfEvent:event];
+    interview.eventId = event.eventIdentifier;
     
     
     interview.url = [NSString stringWithContentsOfURL:event.URL encoding:NSASCIIStringEncoding error:nil];
@@ -356,7 +357,7 @@
     // add candidate
     Candidate * candidate = [self getCandidateFromEvent:event andAddToDB:context];
     ExternalInterview *externalInterview = [NSEntityDescription
-                                            insertNewObjectForEntityForName:@"ExternalInterview"
+                                            insertNewObjectForEntityForName:[ExternalInterview entityName]
                                             inManagedObjectContext:context];
     externalInterview.idCandidate = candidate;
     
@@ -410,10 +411,10 @@
         if (event.URL != nil) // if there is interview in DB
         {
             NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-            NSEntityDescription *entity = [NSEntityDescription entityForName:@"Interview"
+            NSEntityDescription *entity = [NSEntityDescription entityForName:[InterviewAppointment entityName]
                                                       inManagedObjectContext:context];
             NSPredicate *predicate =
-            [NSPredicate predicateWithFormat:@"interviewUrl == %@",[NSString stringWithContentsOfURL:event.URL encoding:NSASCIIStringEncoding error:nil ]];
+            [NSPredicate predicateWithFormat:@"eventId == %@", event.eventIdentifier];
             [fetchRequest setPredicate:predicate];
             [fetchRequest setEntity:entity];
             
