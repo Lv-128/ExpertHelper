@@ -50,6 +50,56 @@ enum {None,ITA, Internal,External};
     _barButton.action = @selector(revealToggle:);
     
     [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
+    
+    
+      _interviewFromEventsParser = [[EHEventsGetInfoParser alloc]init];
+    
+    if (!_notFirstLoad)
+    {
+        NSDate *today = [NSDate date];
+        
+        unsigned int  compon = NSYearCalendarUnit|  NSMonthCalendarUnit ;
+        
+        
+        NSInteger monthday = [[[NSCalendar currentCalendar] components: compon fromDate:today] month];
+        NSInteger yearday  =[[[NSCalendar currentCalendar] components: compon fromDate:today] year];
+        
+        
+        NSString * keyForDictionary = [MONTHS objectAtIndex:monthday - 1];
+        keyForDictionary = [keyForDictionary stringByAppendingString:[NSString stringWithFormat: @", %d", yearday]];
+        int curMonth = monthday - 1;
+        
+        
+        NSArray *dictionaryOfInterviews = _interviewFromEventsParser.sortAllInterviewsToDictionary;
+        if(dictionaryOfInterviews.count>0)
+        {
+            for (int i=0;i<dictionaryOfInterviews.count;i++)
+            {
+                if ([[dictionaryOfInterviews[i]  nameOfMonth] isEqualToString:keyForDictionary])
+                {
+                    curMonth = i;
+                    break;
+                }
+                
+            }
+            
+            self.sortedWeeks = [[dictionaryOfInterviews objectAtIndex:curMonth] weeks] ;
+        }
+        else
+        {
+            UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Warning!"
+                                                              message:@"You have no interview - events this month"
+                                                             delegate:nil
+                                                    cancelButtonTitle:@"OK"
+                                                    otherButtonTitles:nil];
+            [message show];
+            
+        }
+        
+        
+    }
+    
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -164,7 +214,8 @@ enum {None,ITA, Internal,External};
         butStart.enabled = NO;
         
     }
-    else butStart.enabled = YES;
+    else
+        butStart.enabled = YES;
     
     UITapGestureRecognizer *goToInfoForm4 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(chooseTypeOfInterview:)];
     [goToInfoForm4 setDelegate:self];
@@ -216,8 +267,8 @@ enum {None,ITA, Internal,External};
             NSError * error = nil;
             NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
             NSPredicate *predicate =
-            [NSPredicate predicateWithFormat:@"interviewUrl == %@",_curInterview.url];
-            NSEntityDescription *entity = [NSEntityDescription entityForName:@"Interview"
+            [NSPredicate predicateWithFormat:@"eventId == %@",_curInterview.eventId];
+            NSEntityDescription *entity = [NSEntityDescription entityForName:[InterviewAppointment entityName]
                                                       inManagedObjectContext:context];
             [fetchRequest setEntity:entity];
             [fetchRequest setPredicate:predicate];
@@ -225,7 +276,10 @@ enum {None,ITA, Internal,External};
             for (InterviewAppointment *info in fetchedObjects) {
                 info.type = [NSNumber numberWithInt:buttonIndex];
             }
-            
+            [_collectionView reloadData];
+            if (![context save:&error]) {
+                NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
+            }
         }
     
 }
@@ -376,7 +430,8 @@ enum {None,ITA, Internal,External};
 
 - (IBAction)sendEmail:(id)sender event:(id)event
 {
-   [self sendEmailToAddress:@"elena.pyanyh@gmail.com"];
+   
+    [self sendEmailToAddress:@"elena.pyanyh@gmail.com"];
 }
 
 

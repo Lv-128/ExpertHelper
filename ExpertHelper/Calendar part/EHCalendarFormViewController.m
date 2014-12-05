@@ -153,6 +153,7 @@
             NSIndexPath * myIndexPath = [self.tableView indexPathForSelectedRow];
             NSArray *weeksOnThisMonth = [[self.sortedDays objectAtIndex:myIndexPath.row] weeks];
             eventsMainForm.sortedWeeks = weeksOnThisMonth;
+            eventsMainForm.notFirstLoad = true;
                 UINavigationController* navController = (UINavigationController*)self.revealViewController.frontViewController;
                 [navController setViewControllers: @[dvc] animated: NO ];
                 [self.revealViewController setFrontViewPosition: FrontViewPositionLeft animated: YES];
