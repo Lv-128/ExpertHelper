@@ -22,7 +22,7 @@
         <attribute name="eventId" attributeType="String" syncable="YES"/>
         <attribute name="location" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="startDate" optional="YES" attributeType="Date" syncable="YES"/>
-        <attribute name="type" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="type" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="url" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="idExternal" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="ExternalInterview" inverseName="idInterview" inverseEntity="ExternalInterview" syncable="YES"/>
         <relationship name="idRecruiter" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Recruiter" inverseName="interviews" inverseEntity="Recruiter" syncable="YES"/>

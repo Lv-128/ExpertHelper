@@ -72,7 +72,7 @@
 - (NSArray *) parseAllEventsToInterviews;
 - (NSArray *)sortAllInterviewsToDictionary;
 - (NSArray *)getNamesOfCandidatesFromNote:(NSString*)string;
-- (id)initWithContext:(NSManagedObjectContext *) context;
+
 @property (nonatomic , strong) EHCalendarEventsParser *calEventParser;
 
 @property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;

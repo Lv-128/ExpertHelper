@@ -4,17 +4,17 @@
 #import <CoreData/CoreData.h>
 
 extern const struct InterviewAppointmentAttributes {
-	 NSString *endDate;
-	 NSString *eventId;
-	 NSString *location;
-	 NSString *startDate;
-	 NSString *type;
-	 NSString *url;
+	 __unsafe_unretained NSString *endDate;
+	 __unsafe_unretained NSString *eventId;
+	 __unsafe_unretained NSString *location;
+	 __unsafe_unretained NSString *startDate;
+	 __unsafe_unretained NSString *type;
+	 __unsafe_unretained NSString *url;
 } InterviewAppointmentAttributes;
 
 extern const struct InterviewAppointmentRelationships {
-	 NSString *idExternal;
-	 NSString *idRecruiter;
+	 __unsafe_unretained NSString *idExternal;
+	 __unsafe_unretained NSString *idRecruiter;
 } InterviewAppointmentRelationships;
 
 @class ExternalInterview;

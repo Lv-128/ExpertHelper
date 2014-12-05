@@ -26,7 +26,7 @@ enum {None,ITA, Internal,External};
 
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (strong, nonatomic) NSDateFormatter *cellDateFormatter;
-@property (strong, nonatomic) Interview *curInterview ;
+@property (strong, nonatomic) InterviewAppointment *curInterview ;
 @property (strong, nonatomic) UIActionSheet *actionSheetTypes;
 @property (strong, nonatomic) UILabel *label;
 
@@ -79,7 +79,7 @@ enum {None,ITA, Internal,External};
     
     
     NSArray *eventsOnThisDay = [[self.sortedWeeks objectAtIndex:indexPath.section] interviews];
-    Interview *event = [eventsOnThisDay objectAtIndex:indexPath.row];
+    InterviewAppointment *event = [eventsOnThisDay objectAtIndex:indexPath.row];
     
     
     UILabel *labelType = (UILabel *) [cell viewWithTag: 100];
@@ -92,23 +92,23 @@ enum {None,ITA, Internal,External};
     
     
 
-    labelType.text = [NSString stringWithString:[INTERVIEWTYPE objectAtIndex:event.idType.intValue]];
-    labelDate.text = [@" "stringByAppendingString:[cellDateFormatter stringFromDate:event.interviewDate]];
+    labelType.text = [NSString stringWithString:[INTERVIEWTYPE objectAtIndex:event.type.intValue]];
+    labelDate.text = [@" "stringByAppendingString:[cellDateFormatter stringFromDate:event.startDate]];
     
-    if (event.interviewLocation == nil)
+    if (event.location == nil)
     {
         labelLocation.text = @" 1" ;
     }
     else
-        labelLocation.text = [@" " stringByAppendingString:event.interviewLocation];
+        labelLocation.text = [@" " stringByAppendingString:event.location];
     
    
-    if (event.idType == [NSNumber numberWithInt:External])
+    if (event.type == [NSNumber numberWithInt:External])
     {
         
         
-        labelCandidate.text = [@" " stringByAppendingString:event.idExternal.idCandidate.candidateName];
-        labelCandidate.text = [labelCandidate.text stringByAppendingString:[@" " stringByAppendingString:event.idExternal.idCandidate.candidateLastName]];
+        labelCandidate.text = [@" " stringByAppendingString:event.idExternal.idCandidate.firstName];
+        labelCandidate.text = [labelCandidate.text stringByAppendingString:[@" " stringByAppendingString:event.idExternal.idCandidate.lastName]];
         UITapGestureRecognizer *goToInfoForm = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(goToInfo:)];
         [goToInfoForm setDelegate:self];
         [labelRecruiter addGestureRecognizer:goToInfoForm];
@@ -128,8 +128,9 @@ enum {None,ITA, Internal,External};
 //        goToInfoForm5.numberOfTapsRequired = 1;
     }
                       
-                      
-    labelRecruiter.text = [@" " stringByAppendingString:[[event.idRecruiter.recruiterName stringByAppendingString:@" "] stringByAppendingString:event.idRecruiter.recruiterLastName]  ] ;
+    NSString *firstName = event.idRecruiter.firstName;
+    NSString *lastName = event.idRecruiter.lastName;
+    labelRecruiter.text = [NSString stringWithFormat:@"%@ %@", firstName, lastName] ;
     
     NSArray *arrLabels = [NSArray arrayWithObjects:labelType,labelDate,labelLocation,labelCandidate,labelRecruiter,nil];
     for (UILabel*label in arrLabels)
@@ -157,7 +158,7 @@ enum {None,ITA, Internal,External};
     [butStart addGestureRecognizer:goToInfoForm3];
     goToInfoForm3.numberOfTapsRequired = 1;
     
-    if (event.idType.intValue==0)
+    if (event.type.intValue==0)
     {
         butStart.enabled = NO;
         
@@ -190,7 +191,7 @@ enum {None,ITA, Internal,External};
 //    NSIndexPath *tappedRow = [self.collectionView indexPathForItemAtPoint:touchLocation];
 //    
 //    NSArray *eventsOnThisDay = [[self.sortedWeeks objectAtIndex:tappedRow.section] interviews];
-//    Interview *event = [eventsOnThisDay objectAtIndex:tappedRow.row];
+//    InterviewAppointment *event = [eventsOnThisDay objectAtIndex:tappedRow.row];
 //    NSMutableArray *array = [[NSMutableArray alloc]initWithCapacity:0];
 //    
 //    for (int i = 0; i< event.nameAndLastNameOfCandidates.count; i++)
@@ -214,14 +215,14 @@ enum {None,ITA, Internal,External};
             NSError * error = nil;
             NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
             NSPredicate *predicate =
-            [NSPredicate predicateWithFormat:@"interviewUrl == %@",_curInterview.interviewUrl];
+            [NSPredicate predicateWithFormat:@"interviewUrl == %@",_curInterview.url];
             NSEntityDescription *entity = [NSEntityDescription entityForName:@"Interview"
                                                       inManagedObjectContext:context];
             [fetchRequest setEntity:entity];
             [fetchRequest setPredicate:predicate];
             NSArray *fetchedObjects = [context executeFetchRequest:fetchRequest error:&error];
-            for (Interview *info in fetchedObjects) {
-                info.idType = [NSNumber numberWithInt:buttonIndex];
+            for (InterviewAppointment *info in fetchedObjects) {
+                info.type = [NSNumber numberWithInt:buttonIndex];
             }
             
         }
@@ -236,7 +237,7 @@ enum {None,ITA, Internal,External};
     NSIndexPath *tappedRow = [self.collectionView indexPathForItemAtPoint:touchLocation];
     
     NSArray *eventsOnThisDay = [[self.sortedWeeks objectAtIndex:tappedRow.section] interviews];
-    Interview *event = [eventsOnThisDay objectAtIndex:tappedRow.row];
+    InterviewAppointment *event = [eventsOnThisDay objectAtIndex:tappedRow.row];
     
     _actionSheetTypes = [[UIActionSheet alloc] initWithTitle:@"Select type of interview:"
                                                                  delegate:self
@@ -269,14 +270,14 @@ enum {None,ITA, Internal,External};
        // _curInterview = [[[sortedWeeks objectAtIndex:tappedRow.section ] interviews] objectAtIndex:tappedRow.row];
         
         NSArray * arr = [[[sortedWeeks objectAtIndex:tappedRow.section ] interviews] allObjects];
-        Interview * curInterview = [arr objectAtIndex:tappedRow.row];
+        InterviewAppointment * curInterview = [arr objectAtIndex:tappedRow.row];
         EHCandidateFormViewController *candidateForm = [self.storyboard instantiateViewControllerWithIdentifier:@"CandidateFormView"];
         
         
-        if (![curInterview.idExternal.idCandidate.candidateName isEqualToString: @"Unknown"])
+        if (![curInterview.idExternal.idCandidate.firstName isEqualToString: @"Unknown"])
         {
-            candidateForm.nameOfCandidate = curInterview.idExternal.idCandidate.candidateName;
-            candidateForm.lastnameOfCandidate = curInterview.idExternal.idCandidate.candidateLastName;
+            candidateForm.nameOfCandidate = curInterview.idExternal.idCandidate.firstName;
+            candidateForm.lastnameOfCandidate = curInterview.idExternal.idCandidate.lastName;
             
             candidateForm.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
             [self.navigationController pushViewController:candidateForm animated:YES ];
@@ -289,12 +290,12 @@ enum {None,ITA, Internal,External};
         NSIndexPath *tappedRow = [self.collectionView indexPathForItemAtPoint:touchLocation];
         
 
-       // Interview * curInterview = [[[sortedWeeks objectAtIndex:tappedRow.section ] interviews] objectAtIndex:tappedRow.row];
+       // InterviewAppointment * curInterview = [[[sortedWeeks objectAtIndex:tappedRow.section ] interviews] objectAtIndex:tappedRow.row];
         NSArray * arr = [[[sortedWeeks objectAtIndex:tappedRow.section ] interviews] allObjects];
-        Interview * curInterview = [arr objectAtIndex:tappedRow.row];
+        InterviewAppointment * curInterview = [arr objectAtIndex:tappedRow.row];
         EHRecruiterViewController *recruiterViewForm = [self.storyboard instantiateViewControllerWithIdentifier:@"RecruiterFormView"];
-        recruiterViewForm.nameOfRecruiter = curInterview.idRecruiter.recruiterName;
-        recruiterViewForm.lastnameOfRecruiter = curInterview.idRecruiter.recruiterLastName;
+        recruiterViewForm.nameOfRecruiter = curInterview.idRecruiter.firstName;
+        recruiterViewForm.lastnameOfRecruiter = curInterview.idRecruiter.lastName;
         
         recruiterViewForm.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
         [self.navigationController pushViewController:recruiterViewForm animated:YES];
@@ -311,17 +312,17 @@ enum {None,ITA, Internal,External};
     if (tapGR.view.tag == 1000)
     {
         NSIndexPath *tappedRow = [self.collectionView indexPathForItemAtPoint:touchLocation];
-      //  Interview *curInterview =[[[sortedWeeks objectAtIndex:tappedRow.section ] interviews] objectAtIndex:tappedRow.row];
+      //  InterviewAppointment *curInterview =[[[sortedWeeks objectAtIndex:tappedRow.section ] interviews] objectAtIndex:tappedRow.row];
         NSArray * arr = [[[sortedWeeks objectAtIndex:tappedRow.section ] interviews] allObjects];
         _curInterview = [arr objectAtIndex:tappedRow.row];
-        if(_curInterview.idType == [NSNumber numberWithInt:ITA])
+        if(_curInterview.type == [NSNumber numberWithInt:ITA])
         {
             EHITAViewController *itaViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"ITAForm"];
             [self.navigationController pushViewController:itaViewController animated: YES];
             
         }
         else
-            if(_curInterview.idType == [NSNumber numberWithInt:External])
+            if(_curInterview.type == [NSNumber numberWithInt:External])
             {
                 EHITAViewController *externalViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"InternalForm"];
                 [self.navigationController pushViewController:externalViewController animated: YES];
@@ -384,7 +385,7 @@ enum {None,ITA, Internal,External};
     // unused variable!!!!!
     
     __unused NSArray *eventsOnThisDay = [[self.sortedWeeks objectAtIndex:indexPath.section] interviews];
-    __unused Interview *interview = [eventsOnThisDay objectAtIndex:indexPath.row];
+    __unused InterviewAppointment *interview = [eventsOnThisDay objectAtIndex:indexPath.row];
     
     // end of unused variable!!!!
     

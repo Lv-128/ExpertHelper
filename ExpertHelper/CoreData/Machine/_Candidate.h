@@ -4,13 +4,13 @@
 #import <CoreData/CoreData.h>
 
 extern const struct CandidateAttributes {
-	 NSString *firstName;
-	 NSString *lastName;
-	 NSString *photoURL;
+	 __unsafe_unretained NSString *firstName;
+	 __unsafe_unretained NSString *lastName;
+	 __unsafe_unretained NSString *photoURL;
 } CandidateAttributes;
 
 extern const struct CandidateRelationships {
-	 NSString *idExternalInterview;
+	 __unsafe_unretained NSString *idExternalInterview;
 } CandidateRelationships;
 
 @class ExternalInterview;

@@ -5,9 +5,8 @@
 //  Created by alena on 12/3/14.
 //  Copyright (c) 2014 Katolyk S. All rights reserved.
 //
-#import "Interview.h"
+#import "InterviewAppointment.h"
 #import "ExternalInterview.h"
-#import "ItaEstimate.h"
 #import "Skills.h"
 #import "SkillsLevels.h"
 #import "Recruiter.h"

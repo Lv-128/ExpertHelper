@@ -211,9 +211,9 @@
         Recruiter *recruiter = [NSEntityDescription
                                 insertNewObjectForEntityForName:@"Recruiter"
                                 inManagedObjectContext:context];
-        recruiter.recruiterName = parseNameAndLastnameOfRecruiter.firstName;
-        recruiter.recruiterLastName = parseNameAndLastnameOfRecruiter.lastName;
-        recruiter.recruiterMail = email;
+        recruiter.firstName = parseNameAndLastnameOfRecruiter.firstName;
+        recruiter.lastName = parseNameAndLastnameOfRecruiter.lastName;
+        recruiter.email = email;
         
         return recruiter;
     }
@@ -254,8 +254,8 @@
             candidateResult = [NSEntityDescription
                                insertNewObjectForEntityForName:@"Candidate"
                                inManagedObjectContext:context];
-            candidateResult.candidateName = parseNameAndLastnameOfCandidate.firstName;
-            candidateResult .candidateLastName = parseNameAndLastnameOfCandidate.lastName;
+            candidateResult.firstName = parseNameAndLastnameOfCandidate.firstName;
+            candidateResult.lastName = parseNameAndLastnameOfCandidate.lastName;
             
         }
         
@@ -331,21 +331,21 @@
     return stringResults;
 }
 
--(Interview *)addEventToDB:(EKEvent *)event
+-(InterviewAppointment *)addEventToDB:(EKEvent *)event
 {
     NSManagedObjectContext *context = [self managedObjectContext];
     
     
-    Interview *interview = [NSEntityDescription
+    InterviewAppointment *interview = [NSEntityDescription
                             insertNewObjectForEntityForName:@"Interview"
                             inManagedObjectContext:context];
     
-    interview.interviewDate = event.startDate;
-    interview.interviewLocation = event.location;
-    interview.idType = [self canDefineTypeOfEvent:event];
+    interview.startDate = event.startDate;
+    interview.location = event.location;
+    interview.type = [self canDefineTypeOfEvent:event];
     
     
-    interview.interviewUrl = [NSString stringWithContentsOfURL:event.URL encoding:NSASCIIStringEncoding error:nil];
+    interview.url = [NSString stringWithContentsOfURL:event.URL encoding:NSASCIIStringEncoding error:nil];
     
     
     /// add recruiter
@@ -364,30 +364,7 @@
     interview.idExternal = externalInterview;
     
     externalInterview.idInterview = interview;
-    
-    
-    NSError *error;
-    if (![context save:&error]) {
-        NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
-        
-        
-    }
-    
-    // Test listing all FailedBankInfos from the store
-    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Interview"
-                                              inManagedObjectContext:context];
-    [fetchRequest setEntity:entity];
-    NSArray *fetchedObjects = [context executeFetchRequest:fetchRequest error:&error];
-    for (Interview *info in fetchedObjects) {
-        NSLog(@"Name: %@", info.idRecruiter.recruiterName);
-        NSLog(@"Last Name: %@", info.idRecruiter.recruiterName);
-        
-        
-        //     NSArray * estimates = [info.idInterviewForItaEstimate allObjects];
-        //  ItaEstimate *est = [estimates objectAtIndex:0];
-        //     NSLog(@"Candidates name: %@", est.idCandidate.name);
-    }
+ 
     NSString *eventID = event.eventIdentifier;
     NSString * eventURL = [@"myApp/" stringByAppendingString:eventID];
     
@@ -396,7 +373,13 @@
         eventChange.URL = [NSURL URLWithString: eventURL];
         [_calEventParser.eventStore saveEvent:eventChange span:EKSpanThisEvent commit:YES error:nil];
     }
-    interview.interviewUrl = eventURL;
+    interview.url = eventURL;
+    
+    NSError *error;
+    if (![context save:&error]) {
+        NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
+        
+    }
     return interview;
 }
 
@@ -423,8 +406,7 @@
         
         NSManagedObjectContext *context = [self managedObjectContext];
         
-        NSString * eventUrl = [NSString stringWithContentsOfURL:event.URL encoding:NSASCIIStringEncoding error:nil];
-        
+ 
         if (event.URL != nil) // if there is interview in DB
         {
             NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
@@ -439,16 +421,15 @@
             
             if(fetchedObjects.count>0)// we don't need this actually
             {
-                for (Interview *interview in fetchedObjects)
+                for (InterviewAppointment *interview in fetchedObjects)
                 {
-                    NSLog(@"Name: %@", interview.idRecruiter.recruiterName);
-                    NSLog(@"Last Name: %@", interview.idRecruiter.recruiterName);
-                    [allInterviews addObject:interview];                }
+                    [allInterviews addObject:interview];
+                }
             }
         }
         else // there is no interview? let's add it
         {
-            Interview * interview =  [self addEventToDB:event];
+            InterviewAppointment * interview =  [self addEventToDB:event];
             [allInterviews addObject:interview];
         }
     }
@@ -462,27 +443,27 @@
     NSArray * allInterviews = [self parseAllEventsToInterviews];
     NSMutableArray * allMonthes = [[NSMutableArray alloc] initWithCapacity:0];
     
-    for (Interview * interview in allInterviews)
+    for (InterviewAppointment * interview in allInterviews)
     {
         unsigned int  compon = NSYearCalendarUnit| NSDayCalendarUnit | NSMonthCalendarUnit | NSYearCalendarUnit | NSWeekOfMonthCalendarUnit | NSWeekdayCalendarUnit;
         
         /// find num of week in month
-        NSDateComponents *components = [[NSCalendar currentCalendar] components:NSDayCalendarUnit | NSMonthCalendarUnit | NSYearCalendarUnit fromDate:interview.interviewDate];
+        NSDateComponents *components = [[NSCalendar currentCalendar] components:NSDayCalendarUnit | NSMonthCalendarUnit | NSYearCalendarUnit fromDate:interview.startDate];
         NSInteger day = [components day];
         
-        NSInteger dayofweek =[[[NSCalendar currentCalendar] components: compon fromDate:interview.interviewDate] weekday] - 1;
+        NSInteger dayofweek =[[[NSCalendar currentCalendar] components: compon fromDate:interview.startDate] weekday] - 1;
         if(dayofweek == 0) dayofweek =7;
         NSInteger starOfWeek =  day - dayofweek + 1;
         NSInteger endOfWeek = day + (5 - dayofweek);
         if (starOfWeek <= 0) starOfWeek = 1;
         NSRange days = [[NSCalendar currentCalendar] rangeOfUnit:NSDayCalendarUnit
                                                           inUnit:NSMonthCalendarUnit
-                                                         forDate:interview.interviewDate];
+                                                         forDate:interview.startDate];
         if (endOfWeek>=days.length) endOfWeek = days.length;
         
         
-        NSInteger monthday = [[[NSCalendar currentCalendar] components: compon fromDate:interview.interviewDate] month];
-        NSInteger yearday  =[[[NSCalendar currentCalendar] components: compon fromDate:interview.interviewDate] year];
+        NSInteger monthday = [[[NSCalendar currentCalendar] components: compon fromDate:interview.startDate] month];
+        NSInteger yearday  =[[[NSCalendar currentCalendar] components: compon fromDate:interview.startDate] year];
         
         NSString * key = [MONTHS objectAtIndex:monthday - 1];
         
@@ -497,7 +478,7 @@
         {
             curMonth = [[EHMonth alloc]init];
             curMonth.nameOfMonth = keyForDictionary;
-            curMonth.dateStartOfMonth = interview.interviewDate;
+            curMonth.dateStartOfMonth = interview.startDate;
             [allMonthes addObject: curMonth];
         }
         else

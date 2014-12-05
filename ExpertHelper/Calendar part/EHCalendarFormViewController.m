@@ -116,9 +116,11 @@
             
             self.eventsList = [_interviewFromEventsParser sortAllInterviewsToDictionary];
             self.sections = _interviewFromEventsParser.interviews;
-            
+           
             self.sortedDays = _eventsList;
         }
+        
+        [self.tableView reloadData]; // Update the UI with the  events
           [self.refreshControl endRefreshing];
     }
     // Reload table data

@@ -10,7 +10,7 @@
 #import "EHSkillLevelPopup.h"
 
 
-@interface EHViewController ()
+@interface EHViewController ()<AVAudioRecorderDelegate>
 {
     AVAudioPlayer *player;
     AVAudioRecorder *recorder;

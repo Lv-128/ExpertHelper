@@ -4,11 +4,11 @@
 #import <CoreData/CoreData.h>
 
 extern const struct GroupAttributes {
-	 NSString *title;
+	 __unsafe_unretained NSString *title;
 } GroupAttributes;
 
 extern const struct GroupRelationships {
-	 NSString *allSkills;
+	 __unsafe_unretained NSString *allSkills;
 } GroupRelationships;
 
 @class Skills;

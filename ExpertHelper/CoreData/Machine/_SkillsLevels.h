@@ -4,12 +4,12 @@
 #import <CoreData/CoreData.h>
 
 extern const struct SkillsLevelsAttributes {
-	 NSString *comment;
-	 NSString *level;
+	 __unsafe_unretained NSString *comment;
+	 __unsafe_unretained NSString *level;
 } SkillsLevelsAttributes;
 
 extern const struct SkillsLevelsRelationships {
-	 NSString *idSkill;
+	 __unsafe_unretained NSString *idSkill;
 } SkillsLevelsRelationships;
 
 @class Skills;
