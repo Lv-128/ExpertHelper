@@ -58,6 +58,8 @@
 		D9B0CC891A03B17500544323 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D9B0CC681A03B17500544323 /* UIKit.framework */; };
 		D9B0CC911A03B17500544323 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D9B0CC8F1A03B17500544323 /* InfoPlist.strings */; };
 		D9B0CC931A03B17500544323 /* ExpertHelperTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D9B0CC921A03B17500544323 /* ExpertHelperTests.m */; };
+		D9BC6A441A3214A7002EA40E /* EHListOfRecruitersCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D9BC6A421A3214A7002EA40E /* EHListOfRecruitersCell.m */; };
+		D9BC6A481A321A72002EA40E /* EHRecruitersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D9BC6A471A321A72002EA40E /* EHRecruitersViewController.m */; };
 		D9BE54011A10B16700AD5D3D /* EHExternalCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D9BE53F81A10B16700AD5D3D /* EHExternalCell.m */; };
 		D9BE54021A10B16700AD5D3D /* EHExternalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D9BE53FA1A10B16700AD5D3D /* EHExternalViewController.m */; };
 		D9BE54041A10B16700AD5D3D /* EHProgrammingLanguagesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D9BE53FE1A10B16700AD5D3D /* EHProgrammingLanguagesViewController.m */; };
@@ -142,6 +144,10 @@
 		D9B0CC8E1A03B17500544323 /* ExpertHelperTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ExpertHelperTests-Info.plist"; sourceTree = "<group>"; };
 		D9B0CC901A03B17500544323 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		D9B0CC921A03B17500544323 /* ExpertHelperTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ExpertHelperTests.m; sourceTree = "<group>"; };
+		D9BC6A411A3214A7002EA40E /* EHListOfRecruitersCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EHListOfRecruitersCell.h; sourceTree = "<group>"; };
+		D9BC6A421A3214A7002EA40E /* EHListOfRecruitersCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EHListOfRecruitersCell.m; sourceTree = "<group>"; };
+		D9BC6A461A321A72002EA40E /* EHRecruitersViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EHRecruitersViewController.h; sourceTree = "<group>"; };
+		D9BC6A471A321A72002EA40E /* EHRecruitersViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EHRecruitersViewController.m; sourceTree = "<group>"; };
 		D9BE53F71A10B16700AD5D3D /* EHExternalCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EHExternalCell.h; sourceTree = "<group>"; };
 		D9BE53F81A10B16700AD5D3D /* EHExternalCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EHExternalCell.m; sourceTree = "<group>"; };
 		D9BE53F91A10B16700AD5D3D /* EHExternalViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EHExternalViewController.h; sourceTree = "<group>"; };
@@ -220,6 +226,7 @@
 		2790F4E01A139735001B0956 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				D9BC6A451A3214BF002EA40E /* HR */,
 				D9D836A61A1F402D00148854 /* External */,
 				D9D836A51A1F3FCC00148854 /* ProgrammingLanguages */,
 				D9D836A41A1F3F1700148854 /* Recruiter */,
@@ -414,6 +421,18 @@
 				D9B0CC8F1A03B17500544323 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		D9BC6A451A3214BF002EA40E /* HR */ = {
+			isa = PBXGroup;
+			children = (
+				D9BC6A461A321A72002EA40E /* EHRecruitersViewController.h */,
+				D9BC6A471A321A72002EA40E /* EHRecruitersViewController.m */,
+				D9BC6A411A3214A7002EA40E /* EHListOfRecruitersCell.h */,
+				D9BC6A421A3214A7002EA40E /* EHListOfRecruitersCell.m */,
+			);
+			name = HR;
+			path = ..;
 			sourceTree = "<group>";
 		};
 		D9D8369F1A1F3E7900148854 /* Candidate */ = {
@@ -650,6 +669,7 @@
 				D9E7B7B21A31E0A3002DA710 /* _SkillsLevels.m in Sources */,
 				D92B76E41A1F847F00B76F5E /* EHSkillLevelCommentPopup.m in Sources */,
 				D9998EE11A221CE9002E019A /* EHCalendarFormViewController.m in Sources */,
+				D9BC6A481A321A72002EA40E /* EHRecruitersViewController.m in Sources */,
 				D9B0CC751A03B17500544323 /* EHAppDelegate.m in Sources */,
 				D90A1BBE1A16335F00B610C6 /* EHViewController.m in Sources */,
 				D9998EE21A221CE9002E019A /* EHEventsGetInfoParser.m in Sources */,
@@ -659,6 +679,7 @@
 				D9E7B7971A31E079002DA710 /* Candidate.m in Sources */,
 				D9E7B79C1A31E079002DA710 /* Skills.m in Sources */,
 				D9E7B7AC1A31E0A3002DA710 /* _Candidate.m in Sources */,
+				D9BC6A441A3214A7002EA40E /* EHListOfRecruitersCell.m in Sources */,
 				D9E7B7B11A31E0A3002DA710 /* _Skills.m in Sources */,
 				D9E7B7AD1A31E0A3002DA710 /* _ExternalInterview.m in Sources */,
 			);

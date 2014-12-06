@@ -291,25 +291,22 @@
     
     if (!(string == nil))
     {
-        //  NSString * pat3 = @"([A-Z]([a-z'-]*))\\s([A-Z]([a-z'-]*))\\s*";
-        NSString *pat4 = @"([A-Z]([a-z'-]*))([-']*[A-Z]*[a-z']*)*\\s([A-Z]([a-z'-]*))([-']*[A-Z]*[a-z']*)*\\s*";
+      
+        NSString *pat4 = @"([A-Z]([a-z'-]*))([-']*[A-Z]*[a-z']*)*\\s([A-Z]([a-z'-]*))([-']*[A-Z]*[a-z']*)*\\s*"; // pattern of search
+        
         NSRange range = NSMakeRange(0, string.length);
         NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:pat4 options:0 error:&error];
         NSArray *matches = [regex matchesInString:string options:NSMatchingReportCompletion range:range];
+        
         for (NSTextCheckingResult *match in matches)
         {
             NSRange matchRange = match.range;
-            //  matchRange.location += 1;
             matchRange.length -= 1;
-            
-            //  NSLog(@"%@",[string substringWithRange:matchRange]);
-            
             [results addObject:[string substringWithRange:matchRange]];
         }
         
         EHCalendarParseResult * parseResult ;
-        
-        
+ 
         for (NSString * str in results)
         {
             NSArray* parseWithSpaces = [str componentsSeparatedByString: @" "];
@@ -370,10 +367,11 @@
     NSString * eventURL = [@"myApp/" stringByAppendingString:eventID];
     
     EKEvent *eventChange = [_calEventParser.eventStore eventWithIdentifier:eventID];
-    if (eventChange) {
-        eventChange.URL = [NSURL URLWithString: eventURL];
-        [_calEventParser.eventStore saveEvent:eventChange span:EKSpanThisEvent commit:YES error:nil];
-    }
+        if (eventChange)
+        {
+            eventChange.URL = [NSURL URLWithString: eventURL];
+            [_calEventParser.eventStore saveEvent:eventChange span:EKSpanThisEvent commit:YES error:nil];
+        }
     interview.url = eventURL;
     
     NSError *error;

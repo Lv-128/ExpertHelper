@@ -66,8 +66,8 @@ enum {None,ITA, Internal,External};
         
         
         NSString * keyForDictionary = [MONTHS objectAtIndex:monthday - 1];
-        keyForDictionary = [keyForDictionary stringByAppendingString:[NSString stringWithFormat: @", %d", yearday]];
-        int curMonth = monthday - 1;
+        keyForDictionary = [keyForDictionary stringByAppendingString:[NSString stringWithFormat: @", %ld", (long)yearday]];
+        NSInteger curMonth = monthday - 1;
         
         
         NSArray *dictionaryOfInterviews = _interviewFromEventsParser.sortAllInterviewsToDictionary;
