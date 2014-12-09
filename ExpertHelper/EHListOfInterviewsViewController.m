@@ -8,7 +8,6 @@
 
 #import "EHListOfInterviewsViewController.h"
 #import <EventKit/EventKit.h>
-
 #import "EHEventsGetInfoParser.h"
 #import "EHCandidateFormViewController.h"
 #import "EHRecruiterViewController.h"
@@ -16,15 +15,15 @@
 #import "EHEventsGetInfoParser.h"
 #import <MessageUI/MessageUI.h>
 #import "EHAppDelegate.h"
-
+#import "EHRecruitersViewController.h"
 
 //#define  INTERVIEWTYPE [NSMutableArray arrayWithObjects:@"None", @"IT Academy",@"Internal",@"External",nil]
-enum {None,ITA, Internal,External};
+enum {None, ITA, Internal, External};
 @interface EHListOfInterviewsViewController () <UICollectionViewDataSource, UICollectionViewDelegate, UIGestureRecognizerDelegate, UIActionSheetDelegate, MFMailComposeViewControllerDelegate>
 
-@property (weak, nonatomic) IBOutlet UIBarButtonItem *barButton;
-
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *barButtonMenu;
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
+
 @property (strong, nonatomic) NSDateFormatter *cellDateFormatter;
 @property (strong, nonatomic) InterviewAppointment *curInterview ;
 @property (strong, nonatomic) UIActionSheet *actionSheetTypes;
@@ -45,15 +44,38 @@ enum {None,ITA, Internal,External};
     self.cellDateFormatter = [[NSDateFormatter alloc] init];
     [self.cellDateFormatter setDateStyle:NSDateFormatterFullStyle];
     [self.cellDateFormatter setTimeStyle:NSDateFormatterShortStyle];
-   
-    _barButton.target = self.revealViewController;
-    _barButton.action = @selector(revealToggle:);
     
+    _barButtonMenu.target = self.revealViewController;
+    _barButtonMenu.action = @selector(revealToggle:);
+    
+    /// button HR
+    UIImage* imageHR = [UIImage imageNamed:@"hr.png"];
+    
+    CGRect frameimg = CGRectMake(0, 0, 55, 55);
+    UIButton *someButton = [[UIButton alloc] initWithFrame:frameimg];
+    [someButton setBackgroundImage:imageHR forState:UIControlStateNormal];
+    [someButton addTarget:self action:@selector(goToHR)
+         forControlEvents:UIControlEventTouchUpInside];
+    [someButton setShowsTouchWhenHighlighted:YES];
+    
+    UIBarButtonItem *butHR =[[UIBarButtonItem alloc] initWithCustomView:someButton];
+    self.navigationItem.rightBarButtonItem=butHR;
+    ////////////
+    
+    /// left slide menu
     [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
     
     
-      _interviewFromEventsParser = [[EHEventsGetInfoParser alloc]init];
     
+    
+    //parser
+    _interviewFromEventsParser = [[EHEventsGetInfoParser alloc]init];
+    [self checkTheFirstLoad];
+    
+}
+
+- (void) checkTheFirstLoad
+{
     if (!_notFirstLoad)
     {
         NSDate *today = [NSDate date];
@@ -96,16 +118,19 @@ enum {None,ITA, Internal,External};
             
         }
         
-        
     }
-    
-    
 }
 
+
+- (void) goToHR
+{
+    EHRecruitersViewController *itaViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"RecruitersForm"];
+    [self.navigationController pushViewController:itaViewController animated: YES];
+}
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-
+    
 }
 
 #pragma mark Collection View Methods
@@ -142,7 +167,7 @@ enum {None,ITA, Internal,External};
     
     
     
-
+    
     labelType.text = [NSString stringWithString:[INTERVIEWTYPE objectAtIndex:event.type.intValue]];
     labelDate.text = [@" "stringByAppendingString:[cellDateFormatter stringFromDate:event.startDate]];
     
@@ -153,7 +178,7 @@ enum {None,ITA, Internal,External};
     else
         labelLocation.text = [@" " stringByAppendingString:event.location];
     
-   
+    
     if (event.type == [NSNumber numberWithInt:External])
     {
         
@@ -168,17 +193,17 @@ enum {None,ITA, Internal,External};
     }
     else
     {
-
         
-
-//        labelCandidate.text = @" many candidates";
-//
-//        UITapGestureRecognizer *goToInfoForm5 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showAllCandidates: )];
-//        [goToInfoForm5 setDelegate:self];
-//        [labelCandidate addGestureRecognizer:goToInfoForm5];
-//        goToInfoForm5.numberOfTapsRequired = 1;
+        
+        
+        //        labelCandidate.text = @" many candidates";
+        //
+        //        UITapGestureRecognizer *goToInfoForm5 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showAllCandidates: )];
+        //        [goToInfoForm5 setDelegate:self];
+        //        [labelCandidate addGestureRecognizer:goToInfoForm5];
+        //        goToInfoForm5.numberOfTapsRequired = 1;
     }
-                      
+    
     NSString *firstName = event.idRecruiter.firstName;
     NSString *lastName = event.idRecruiter.lastName;
     labelRecruiter.text = [NSString stringWithFormat:@"%@ %@", firstName, lastName] ;
@@ -195,14 +220,14 @@ enum {None,ITA, Internal,External};
     [cell.layer setBorderColor:[UIColor grayColor].CGColor];
     
     [cell.layer setCornerRadius:20.0f];
-
+    
     UITapGestureRecognizer *goToInfoForm2 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(goToInfo:)];
     [goToInfoForm2 setDelegate:self];
     [labelRecruiter addGestureRecognizer:goToInfoForm2];
     goToInfoForm2.numberOfTapsRequired = 1;
     
     
-
+    
     
     UITapGestureRecognizer *goToInfoForm3 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(goToITAForm:)];
     [goToInfoForm3 setDelegate:self];
@@ -221,7 +246,7 @@ enum {None,ITA, Internal,External};
     [goToInfoForm4 setDelegate:self];
     [labelType addGestureRecognizer:goToInfoForm4];
     goToInfoForm4.numberOfTapsRequired = 1;
-
+    
     UITapGestureRecognizer *startInterview = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(goToITAForm:)];
     [startInterview setDelegate:self];
     [butStart addGestureRecognizer:startInterview];
@@ -231,7 +256,7 @@ enum {None,ITA, Internal,External};
     [changeType setDelegate:self];
     [labelType addGestureRecognizer:changeType];
     changeType.numberOfTapsRequired = 1;
-
+    
     return cell;
 }
 
@@ -241,11 +266,11 @@ enum {None,ITA, Internal,External};
 //    UITapGestureRecognizer *tapGR = (UITapGestureRecognizer*)sender;
 //    CGPoint touchLocation = [tapGR locationOfTouch:0 inView:self.collectionView];
 //    NSIndexPath *tappedRow = [self.collectionView indexPathForItemAtPoint:touchLocation];
-//    
+//
 //    NSArray *eventsOnThisDay = [[self.sortedWeeks objectAtIndex:tappedRow.section] interviews];
 //    InterviewAppointment *event = [eventsOnThisDay objectAtIndex:tappedRow.row];
 //    NSMutableArray *array = [[NSMutableArray alloc]initWithCapacity:0];
-//    
+//
 //    for (int i = 0; i< event.nameAndLastNameOfCandidates.count; i++)
 //    {
 //        [array addObject: [event.nameAndLastNameOfCandidates objectAtIndex:i]];
@@ -257,37 +282,37 @@ enum {None,ITA, Internal,External};
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     
-        if(buttonIndex != _actionSheetTypes.cancelButtonIndex)
-        {
-            //_curInterview.idType = [NSNumber numberWithInt:buttonIndex];
-            _label.text = [_actionSheetTypes buttonTitleAtIndex:buttonIndex];
-            
-            EHAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
-            NSManagedObjectContext *context = [appDelegate managedObjectContext];
-            NSError * error = nil;
-            NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-            NSPredicate *predicate =
-            [NSPredicate predicateWithFormat:@"eventId == %@",_curInterview.eventId];
-            NSEntityDescription *entity = [NSEntityDescription entityForName:[InterviewAppointment entityName]
-                                                      inManagedObjectContext:context];
-            [fetchRequest setEntity:entity];
-            [fetchRequest setPredicate:predicate];
-            NSArray *fetchedObjects = [context executeFetchRequest:fetchRequest error:&error];
-            for (InterviewAppointment *info in fetchedObjects) {
-                info.type = [NSNumber numberWithInt:buttonIndex];
-            }
-            [_collectionView reloadData];
-            if (![context save:&error]) {
-                NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
-            }
+    if(buttonIndex != _actionSheetTypes.cancelButtonIndex)
+    {
+        //_curInterview.idType = [NSNumber numberWithInt:buttonIndex];
+        _label.text = [_actionSheetTypes buttonTitleAtIndex:buttonIndex];
+        
+        EHAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+        NSManagedObjectContext *context = [appDelegate managedObjectContext];
+        NSError * error = nil;
+        NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+        NSPredicate *predicate =
+        [NSPredicate predicateWithFormat:@"eventId == %@",_curInterview.eventId];
+        NSEntityDescription *entity = [NSEntityDescription entityForName:[InterviewAppointment entityName]
+                                                  inManagedObjectContext:context];
+        [fetchRequest setEntity:entity];
+        [fetchRequest setPredicate:predicate];
+        NSArray *fetchedObjects = [context executeFetchRequest:fetchRequest error:&error];
+        for (InterviewAppointment *info in fetchedObjects) {
+            info.type = [NSNumber numberWithInt:buttonIndex];
         }
+        [_collectionView reloadData];
+        if (![context save:&error]) {
+            NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
+        }
+    }
     
 }
 
 
 - (void)chooseTypeOfInterview:(id)sender
 {
-      UITapGestureRecognizer *tapGR = (UITapGestureRecognizer*)sender;
+    UITapGestureRecognizer *tapGR = (UITapGestureRecognizer*)sender;
     CGPoint touchLocation = [tapGR locationOfTouch:0 inView:self.collectionView];
     NSIndexPath *tappedRow = [self.collectionView indexPathForItemAtPoint:touchLocation];
     
@@ -296,21 +321,21 @@ enum {None,ITA, Internal,External};
     InterviewAppointment *event = [eventsOnThisDay objectAtIndex:tappedRow.row];
     
     _actionSheetTypes = [[UIActionSheet alloc] initWithTitle:@"Select type of interview:"
-                                                                 delegate:self
-                                                        cancelButtonTitle:@"Cancel"
-                                                   destructiveButtonTitle:nil
-                                                        otherButtonTitles:@"None", @"IT Academy", @"Internal", @"External",nil];
-        if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
-        {
-            UICollectionViewCell *curInterviewCell = [self.collectionView  cellForItemAtIndexPath:tappedRow];
-            _label = (UILabel *)[curInterviewCell viewWithTag:100];
-           _curInterview = event;
-            CGRect  rect = CGRectMake([_label frame].origin.x - [_label frame].size.width / 3 , [_label frame].origin.y, [_label frame].size.width,  [_label frame].size.height) ;
-           [_actionSheetTypes showFromRect:rect inView:curInterviewCell animated:YES ];//showFromRect:[label  frame] inView:self.view animated:YES];
-        }
-        else
-            [_actionSheetTypes showInView:self.view];
-
+                                                    delegate:self
+                                           cancelButtonTitle:@"Cancel"
+                                      destructiveButtonTitle:nil
+                                           otherButtonTitles:@"None", @"IT Academy", @"Internal", @"External",nil];
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+    {
+        UICollectionViewCell *curInterviewCell = [self.collectionView  cellForItemAtIndexPath:tappedRow];
+        _label = (UILabel *)[curInterviewCell viewWithTag:100];
+        _curInterview = event;
+        CGRect  rect = CGRectMake([_label frame].origin.x - [_label frame].size.width / 3 , [_label frame].origin.y, [_label frame].size.width,  [_label frame].size.height) ;
+        [_actionSheetTypes showFromRect:rect inView:curInterviewCell animated:YES ];//showFromRect:[label  frame] inView:self.view animated:YES];
+    }
+    else
+        [_actionSheetTypes showInView:self.view];
+    
 }
 
 - (void)goToInfo:(id)sender
@@ -323,7 +348,7 @@ enum {None,ITA, Internal,External};
         
         NSIndexPath *tappedRow = [self.collectionView indexPathForItemAtPoint:touchLocation];
         
-       // _curInterview = [[[sortedWeeks objectAtIndex:tappedRow.section ] interviews] objectAtIndex:tappedRow.row];
+        // _curInterview = [[[sortedWeeks objectAtIndex:tappedRow.section ] interviews] objectAtIndex:tappedRow.row];
         
         NSArray * arr = [[[sortedWeeks objectAtIndex:tappedRow.section ] interviews] allObjects];
         InterviewAppointment * curInterview = [arr objectAtIndex:tappedRow.row];
@@ -345,8 +370,8 @@ enum {None,ITA, Internal,External};
         
         NSIndexPath *tappedRow = [self.collectionView indexPathForItemAtPoint:touchLocation];
         
-
-       // InterviewAppointment * curInterview = [[[sortedWeeks objectAtIndex:tappedRow.section ] interviews] objectAtIndex:tappedRow.row];
+        
+        // InterviewAppointment * curInterview = [[[sortedWeeks objectAtIndex:tappedRow.section ] interviews] objectAtIndex:tappedRow.row];
         NSArray * arr = [[[sortedWeeks objectAtIndex:tappedRow.section ] interviews] allObjects];
         InterviewAppointment * curInterview = [arr objectAtIndex:tappedRow.row];
         EHRecruiterViewController *recruiterViewForm = [self.storyboard instantiateViewControllerWithIdentifier:@"RecruiterFormView"];
@@ -364,11 +389,10 @@ enum {None,ITA, Internal,External};
     
     CGPoint touchLocation = [tapGR locationOfTouch:0 inView:self.collectionView];
     
-
     if (tapGR.view.tag == 1000)
     {
         NSIndexPath *tappedRow = [self.collectionView indexPathForItemAtPoint:touchLocation];
-      //  InterviewAppointment *curInterview =[[[sortedWeeks objectAtIndex:tappedRow.section ] interviews] objectAtIndex:tappedRow.row];
+        //  InterviewAppointment *curInterview =[[[sortedWeeks objectAtIndex:tappedRow.section ] interviews] objectAtIndex:tappedRow.row];
         NSArray * arr = [[[sortedWeeks objectAtIndex:tappedRow.section ] interviews] allObjects];
         _curInterview = [arr objectAtIndex:tappedRow.row];
         if(_curInterview.type == [NSNumber numberWithInt:ITA])
@@ -382,13 +406,9 @@ enum {None,ITA, Internal,External};
             {
                 EHITAViewController *externalViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"InternalForm"];
                 [self.navigationController pushViewController:externalViewController animated: YES];
-        }
-   }
-
-
+            }
+    }
 }
-
-
 
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
 {
@@ -419,7 +439,7 @@ enum {None,ITA, Internal,External};
     [mailController setToRecipients:addressArray];
     [mailController setSubject:@""];
     [mailController setModalTransitionStyle:UIModalTransitionStyleFlipHorizontal];
-  //  [mailController addAttachmentData:<#(NSData *)#> mimeType:<#(NSString *)#> fileName:<#(NSString *)#>]
+    //  [mailController addAttachmentData:<#(NSData *)#> mimeType:<#(NSString *)#> fileName:<#(NSString *)#>]
     [self presentViewController:mailController animated:YES completion: nil];
     
 }
@@ -430,7 +450,7 @@ enum {None,ITA, Internal,External};
 
 - (IBAction)sendEmail:(id)sender event:(id)event
 {
-   
+    
     [self sendEmailToAddress:@"elena.pyanyh@gmail.com"];
 }
 
