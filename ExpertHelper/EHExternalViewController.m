@@ -7,10 +7,11 @@
 //
 
 #import "EHExternalViewController.h"
+#import "EHRecorderCommentController.h"
 #import "EHExternalCell.h"
 #import "EHSkillLevelPopup.h"
 
-@interface EHExternalViewController () <UITableViewDataSource, UITableViewDelegate, EHSkillLevelPopupDelegate>
+@interface EHExternalViewController () <UITableViewDataSource, UITableViewDelegate, EHSkillLevelPopupDelegate, EHRecorderCommentControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UIButton *openGeneralInfo;
 - (IBAction)openGeneralInfo:(UIButton *)sender;
@@ -22,6 +23,16 @@
 @end
 
 @implementation EHExternalViewController
+
+- (void)EHRecorderCommentController:(EHRecorderCommentController *)externalWithComment transmittingArray:(NSArray *)level withIndex:(NSIndexPath *)index
+{
+    
+    _array = [level mutableCopy];
+    
+    NSIndexPath *rowToReload = [NSIndexPath indexPathForRow: index.section inSection:index.row];
+    NSArray *rowsToReload = [NSArray arrayWithObjects:rowToReload, nil];
+    [self.tableView reloadRowsAtIndexPaths:rowsToReload withRowAnimation:UITableViewRowAnimationNone];
+}
 
 - (void)skillLevelPopup:(EHSkillLevelPopup *)popup
          didSelectLevel:(EHSkillLevel)level {
@@ -76,11 +87,22 @@
     }
     
     self.openGeneralInfo.layer.cornerRadius = 13;
-    self.openGeneralInfo.layer.borderWidth =1;
+    self.openGeneralInfo.layer.borderWidth = 1;
     self.openGeneralInfo.layer.borderColor = [UIColor grayColor].CGColor;
     [super viewDidLoad];
     
     // Do any additional setup after loading the view.
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([[segue identifier] isEqualToString:@"profa"])
+    {
+        EHRecorderCommentController *external = [segue destinationViewController];
+        external.delegate = self;
+        external.level = _array;
+        external.index = _index;
+    }
 }
 
 - (void)didReceiveMemoryWarning
@@ -138,6 +160,7 @@
 
 - (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath
 {
+    _index = indexPath;
     UITableViewCell *cell= [_tableView cellForRowAtIndexPath:indexPath];
     [self performSegueWithIdentifier:@"profa" sender:cell];
 }
