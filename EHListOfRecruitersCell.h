@@ -19,6 +19,4 @@
 @property (weak, nonatomic) IBOutlet UIImageView *skypePic;
 @property (weak, nonatomic) IBOutlet UIImageView *emailPic;
 
-
-
 @end
