@@ -81,15 +81,17 @@
     
     
     NSString *getWebInfo = @"https://softserve.ua/ru/vacancies/recruiters/?tax-directions=0&tax-country=117"; /// softserve.ua all recruiters from ukraine
-    
+    NSString *getWebInfo2 = @"https://softserve.ua/ru/vacancies/recruiters/page/2/?tax-directions=0&tax-country=117";
     
     NSURL *webUnFormatted = [NSURL URLWithString:getWebInfo];
+    NSURL *webUnFormatted2 = [NSURL URLWithString:getWebInfo2];
     // //  NSString *pattern = "<img src="https://softserve.ua/wp-content/uploads/2014/01/Tetyana-Klyuk11-150x150.png">" /// example of content with image link     
     NSString * webFormatted;
+    NSString * webFormatted2;
     @try
     {
         webFormatted = [NSString stringWithContentsOfURL:webUnFormatted encoding:NSASCIIStringEncoding error:&error];
-        
+        webFormatted2 = [NSString stringWithContentsOfURL:webUnFormatted2 encoding:NSASCIIStringEncoding error:&error];
     }
     @catch (NSException *exception)
     {
@@ -97,9 +99,10 @@
     }
     
     
-    if (webFormatted !=nil)
+    if (webFormatted !=nil && webFormatted != nil)
     {
         NSString *webContent = [NSString stringWithFormat:@"%@",webFormatted]; // web page content
+        webContent = [webContent stringByAppendingString:[NSString stringWithFormat:@" %@",webFormatted2]]; // web page content
         NSRange range = NSMakeRange(0, webContent.length);
         
         NSRegularExpressionOptions regexOptions = NSRegularExpressionCaseInsensitive;
