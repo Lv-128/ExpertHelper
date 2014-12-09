@@ -38,8 +38,11 @@
 		D92204751A2FAA4300B3BAAD /* mogend.sh in Resources */ = {isa = PBXBuildFile; fileRef = D922044F1A2FAA4300B3BAAD /* mogend.sh */; };
 		D92B76E41A1F847F00B76F5E /* EHSkillLevelCommentPopup.m in Sources */ = {isa = PBXBuildFile; fileRef = D92B76E21A1F847F00B76F5E /* EHSkillLevelCommentPopup.m */; };
 		D92B76E51A1F847F00B76F5E /* EHSkillLevelPopup.xib in Resources */ = {isa = PBXBuildFile; fileRef = D92B76E31A1F847F00B76F5E /* EHSkillLevelPopup.xib */; };
+		D93144861A37663D00AB470E /* EHListOfRecruitersCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D93144831A37663D00AB470E /* EHListOfRecruitersCell.m */; };
+		D93144871A37663D00AB470E /* EHRecruitersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D93144851A37663D00AB470E /* EHRecruitersViewController.m */; };
+		D931448D1A37672500AB470E /* EHAddRecruiterController.m in Sources */ = {isa = PBXBuildFile; fileRef = D931448C1A37672500AB470E /* EHAddRecruiterController.m */; };
+		D93144901A37677B00AB470E /* EHRecruiterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D931448F1A37677B00AB470E /* EHRecruiterViewController.m */; };
 		D967F2081A1E23BC0009639C /* EHCandidateFormViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D967F2071A1E23BC0009639C /* EHCandidateFormViewController.m */; };
-		D967F20B1A1E305D0009639C /* EHRecruiterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D967F20A1A1E305D0009639C /* EHRecruiterViewController.m */; };
 		D967F2101A1E4DEE0009639C /* EHITAViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D967F20D1A1E4DEE0009639C /* EHITAViewController.m */; };
 		D967F2111A1E4DEE0009639C /* EHITAViewControllerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D967F20F1A1E4DEE0009639C /* EHITAViewControllerCell.m */; };
 		D9998EE01A221CE9002E019A /* EHCalendarEventsParser.m in Sources */ = {isa = PBXBuildFile; fileRef = D9998ED51A221CE9002E019A /* EHCalendarEventsParser.m */; };
@@ -61,8 +64,6 @@
 		D9B0CC891A03B17500544323 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D9B0CC681A03B17500544323 /* UIKit.framework */; };
 		D9B0CC911A03B17500544323 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D9B0CC8F1A03B17500544323 /* InfoPlist.strings */; };
 		D9B0CC931A03B17500544323 /* ExpertHelperTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D9B0CC921A03B17500544323 /* ExpertHelperTests.m */; };
-		D9BC6A441A3214A7002EA40E /* EHListOfRecruitersCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D9BC6A421A3214A7002EA40E /* EHListOfRecruitersCell.m */; };
-		D9BC6A481A321A72002EA40E /* EHRecruitersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D9BC6A471A321A72002EA40E /* EHRecruitersViewController.m */; };
 		D9BE54011A10B16700AD5D3D /* EHExternalCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D9BE53F81A10B16700AD5D3D /* EHExternalCell.m */; };
 		D9BE54021A10B16700AD5D3D /* EHExternalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D9BE53FA1A10B16700AD5D3D /* EHExternalViewController.m */; };
 		D9BE54041A10B16700AD5D3D /* EHProgrammingLanguagesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D9BE53FE1A10B16700AD5D3D /* EHProgrammingLanguagesViewController.m */; };
@@ -117,10 +118,16 @@
 		D92B76E11A1F847F00B76F5E /* EHSkillLevelCommentPopup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EHSkillLevelCommentPopup.h; sourceTree = "<group>"; };
 		D92B76E21A1F847F00B76F5E /* EHSkillLevelCommentPopup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EHSkillLevelCommentPopup.m; sourceTree = "<group>"; };
 		D92B76E31A1F847F00B76F5E /* EHSkillLevelPopup.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EHSkillLevelPopup.xib; sourceTree = "<group>"; };
+		D93144821A37663D00AB470E /* EHListOfRecruitersCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EHListOfRecruitersCell.h; path = HRs/EHListOfRecruitersCell.h; sourceTree = "<group>"; };
+		D93144831A37663D00AB470E /* EHListOfRecruitersCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EHListOfRecruitersCell.m; path = HRs/EHListOfRecruitersCell.m; sourceTree = "<group>"; };
+		D93144841A37663D00AB470E /* EHRecruitersViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EHRecruitersViewController.h; path = HRs/EHRecruitersViewController.h; sourceTree = "<group>"; };
+		D93144851A37663D00AB470E /* EHRecruitersViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EHRecruitersViewController.m; path = HRs/EHRecruitersViewController.m; sourceTree = "<group>"; };
+		D931448B1A37672500AB470E /* EHAddRecruiterController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EHAddRecruiterController.h; path = HRs/EHAddRecruiterController.h; sourceTree = "<group>"; };
+		D931448C1A37672500AB470E /* EHAddRecruiterController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EHAddRecruiterController.m; path = HRs/EHAddRecruiterController.m; sourceTree = "<group>"; };
+		D931448E1A37677B00AB470E /* EHRecruiterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EHRecruiterViewController.h; path = ../EHRecruiterViewController.h; sourceTree = "<group>"; };
+		D931448F1A37677B00AB470E /* EHRecruiterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EHRecruiterViewController.m; path = ../EHRecruiterViewController.m; sourceTree = "<group>"; };
 		D967F2061A1E23BC0009639C /* EHCandidateFormViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EHCandidateFormViewController.h; sourceTree = "<group>"; };
 		D967F2071A1E23BC0009639C /* EHCandidateFormViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EHCandidateFormViewController.m; sourceTree = "<group>"; };
-		D967F2091A1E305D0009639C /* EHRecruiterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EHRecruiterViewController.h; sourceTree = "<group>"; };
-		D967F20A1A1E305D0009639C /* EHRecruiterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EHRecruiterViewController.m; sourceTree = "<group>"; };
 		D967F20C1A1E4DEE0009639C /* EHITAViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EHITAViewController.h; path = ExpertHelper/EHITAViewController.h; sourceTree = "<group>"; };
 		D967F20D1A1E4DEE0009639C /* EHITAViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EHITAViewController.m; path = ExpertHelper/EHITAViewController.m; sourceTree = "<group>"; };
 		D967F20E1A1E4DEE0009639C /* EHITAViewControllerCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EHITAViewControllerCell.h; path = ExpertHelper/EHITAViewControllerCell.h; sourceTree = "<group>"; };
@@ -153,10 +160,6 @@
 		D9B0CC8E1A03B17500544323 /* ExpertHelperTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ExpertHelperTests-Info.plist"; sourceTree = "<group>"; };
 		D9B0CC901A03B17500544323 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		D9B0CC921A03B17500544323 /* ExpertHelperTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ExpertHelperTests.m; sourceTree = "<group>"; };
-		D9BC6A411A3214A7002EA40E /* EHListOfRecruitersCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EHListOfRecruitersCell.h; sourceTree = "<group>"; };
-		D9BC6A421A3214A7002EA40E /* EHListOfRecruitersCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EHListOfRecruitersCell.m; sourceTree = "<group>"; };
-		D9BC6A461A321A72002EA40E /* EHRecruitersViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EHRecruitersViewController.h; sourceTree = "<group>"; };
-		D9BC6A471A321A72002EA40E /* EHRecruitersViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EHRecruitersViewController.m; sourceTree = "<group>"; };
 		D9BE53F71A10B16700AD5D3D /* EHExternalCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EHExternalCell.h; sourceTree = "<group>"; };
 		D9BE53F81A10B16700AD5D3D /* EHExternalCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EHExternalCell.m; sourceTree = "<group>"; };
 		D9BE53F91A10B16700AD5D3D /* EHExternalViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EHExternalViewController.h; sourceTree = "<group>"; };
@@ -435,10 +438,12 @@
 		D9BC6A451A3214BF002EA40E /* HR */ = {
 			isa = PBXGroup;
 			children = (
-				D9BC6A411A3214A7002EA40E /* EHListOfRecruitersCell.h */,
-				D9BC6A421A3214A7002EA40E /* EHListOfRecruitersCell.m */,
-				D9BC6A461A321A72002EA40E /* EHRecruitersViewController.h */,
-				D9BC6A471A321A72002EA40E /* EHRecruitersViewController.m */,
+				D931448B1A37672500AB470E /* EHAddRecruiterController.h */,
+				D931448C1A37672500AB470E /* EHAddRecruiterController.m */,
+				D93144821A37663D00AB470E /* EHListOfRecruitersCell.h */,
+				D93144831A37663D00AB470E /* EHListOfRecruitersCell.m */,
+				D93144841A37663D00AB470E /* EHRecruitersViewController.h */,
+				D93144851A37663D00AB470E /* EHRecruitersViewController.m */,
 			);
 			name = HR;
 			path = ..;
@@ -509,8 +514,8 @@
 		D9D836A41A1F3F1700148854 /* Recruiter */ = {
 			isa = PBXGroup;
 			children = (
-				D967F2091A1E305D0009639C /* EHRecruiterViewController.h */,
-				D967F20A1A1E305D0009639C /* EHRecruiterViewController.m */,
+				D931448E1A37677B00AB470E /* EHRecruiterViewController.h */,
+				D931448F1A37677B00AB470E /* EHRecruiterViewController.m */,
 			);
 			name = Recruiter;
 			sourceTree = "<group>";
@@ -677,7 +682,6 @@
 				D9E7B79D1A31E079002DA710 /* SkillsLevels.m in Sources */,
 				D9B0CC711A03B17500544323 /* main.m in Sources */,
 				D9F15AD11A1A575A00E4DC62 /* EHListOfInterviewsViewController.m in Sources */,
-				D967F20B1A1E305D0009639C /* EHRecruiterViewController.m in Sources */,
 				D9BE54021A10B16700AD5D3D /* EHExternalViewController.m in Sources */,
 				D967F2101A1E4DEE0009639C /* EHITAViewController.m in Sources */,
 				2790F4E61A1398D8001B0956 /* EHProfilesViewController.m in Sources */,
@@ -690,22 +694,24 @@
 				D9998EE01A221CE9002E019A /* EHCalendarEventsParser.m in Sources */,
 				D9E7B79A1A31E079002DA710 /* InterviewAppointment.m in Sources */,
 				D92204701A2FAA4300B3BAAD /* Model.xcdatamodeld in Sources */,
+				D93144901A37677B00AB470E /* EHRecruiterViewController.m in Sources */,
 				D9E7B7991A31E079002DA710 /* Group.m in Sources */,
 				D9E7B7B21A31E0A3002DA710 /* _SkillsLevels.m in Sources */,
 				D92B76E41A1F847F00B76F5E /* EHSkillLevelCommentPopup.m in Sources */,
 				D9998EE11A221CE9002E019A /* EHCalendarFormViewController.m in Sources */,
-				D9BC6A481A321A72002EA40E /* EHRecruitersViewController.m in Sources */,
 				D9B0CC751A03B17500544323 /* EHAppDelegate.m in Sources */,
 				D90A1BBE1A16335F00B610C6 /* EHViewController.m in Sources */,
 				D9998EE21A221CE9002E019A /* EHEventsGetInfoParser.m in Sources */,
+				D93144871A37663D00AB470E /* EHRecruitersViewController.m in Sources */,
 				D90A1BC11A16366500B610C6 /* EHSkillLevelPopup.m in Sources */,
 				D9BE54011A10B16700AD5D3D /* EHExternalCell.m in Sources */,
 				D9E7B7B01A31E0A3002DA710 /* _Recruiter.m in Sources */,
 				D9E7B7971A31E079002DA710 /* Candidate.m in Sources */,
+				D93144861A37663D00AB470E /* EHListOfRecruitersCell.m in Sources */,
 				D9E7B79C1A31E079002DA710 /* Skills.m in Sources */,
 				D9E7B7AC1A31E0A3002DA710 /* _Candidate.m in Sources */,
+				D931448D1A37672500AB470E /* EHAddRecruiterController.m in Sources */,
 				D9AD2EB71A3384D2003D7E14 /* EHRecorderCommentController.m in Sources */,
-				D9BC6A441A3214A7002EA40E /* EHListOfRecruitersCell.m in Sources */,
 				D9E7B7B11A31E0A3002DA710 /* _Skills.m in Sources */,
 				D9E7B7AD1A31E0A3002DA710 /* _ExternalInterview.m in Sources */,
 			);
