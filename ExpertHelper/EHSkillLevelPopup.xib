@@ -73,7 +73,7 @@
                     <nil key="highlightedColor"/>
                 </label>
             </subviews>
-            <color key="backgroundColor" red="0.40000000596046448" green="0.80000001192092896" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+            <color key="backgroundColor" red="0.74917204479999999" green="0.45753053770000002" blue="0.10376516349999999" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="xUV-uv-Vao" secondAttribute="trailing" id="59a-Rd-Rgj"/>
                 <constraint firstItem="xUV-uv-Vao" firstAttribute="top" secondItem="K9L-Xk-f3n" secondAttribute="bottom" constant="8" id="JYm-bK-JE3"/>
@@ -86,8 +86,8 @@
                 <constraint firstItem="ZnE-Jl-BYM" firstAttribute="leading" secondItem="7Bg-jh-JXW" secondAttribute="leading" constant="20" id="eCU-b1-Bkz"/>
                 <constraint firstItem="Z1R-Pr-vz1" firstAttribute="width" secondItem="K9L-Xk-f3n" secondAttribute="width" id="hZe-Kp-xnY"/>
                 <constraint firstItem="ZnE-Jl-BYM" firstAttribute="top" secondItem="7Bg-jh-JXW" secondAttribute="top" constant="7" id="htN-R2-y5R"/>
+                <constraint firstAttribute="trailing" secondItem="K9L-Xk-f3n" secondAttribute="trailing" id="new-fy-2be"/>
                 <constraint firstItem="CXC-jw-feY" firstAttribute="top" secondItem="Z1R-Pr-vz1" secondAttribute="bottom" constant="8" id="pXe-gf-XI2"/>
-                <constraint firstAttribute="trailing" secondItem="K9L-Xk-f3n" secondAttribute="trailing" id="qZX-IE-qJV"/>
                 <constraint firstAttribute="bottom" secondItem="CXC-jw-feY" secondAttribute="bottom" id="rh0-a1-tVf"/>
                 <constraint firstItem="Z1R-Pr-vz1" firstAttribute="leading" secondItem="7Bg-jh-JXW" secondAttribute="leading" id="tW6-3I-YNS"/>
                 <constraint firstItem="Z1R-Pr-vz1" firstAttribute="top" secondItem="ZnE-Jl-BYM" secondAttribute="bottom" constant="35" id="yG2-9C-0R7"/>

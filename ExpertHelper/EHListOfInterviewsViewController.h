@@ -19,6 +19,4 @@
 @property (strong, nonatomic) EHEventsGetInfoParser *interviewFromEventsParser;
 @property (nonatomic,strong) NSManagedObjectContext* managedObjectContext;
 
-- (void) goToHR;
-
 @end
