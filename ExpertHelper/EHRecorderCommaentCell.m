@@ -1,14 +1,14 @@
 //
-//  EHListOfRecruitersCell.m
+//  EHRecorderCommaentCell.m
 //  ExpertHelper
 //
-//  Created by Oleksandr Shymanskyi on 12/4/14.
+//  Created by Katolyk S. on 12/8/14.
 //  Copyright (c) 2014 Katolyk S. All rights reserved.
 //
 
-#import "EHListOfRecruitersCell.h"
+#import "EHRecorderCommaentCell.h"
 
-@implementation EHListOfRecruitersCell
+@implementation EHRecorderCommaentCell
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -17,6 +17,13 @@
         // Initialization code
     }
     return self;
+}
+
+- (void)awakeFromNib
+{
+    _button = [EHPlayPause buttonWithType:UIButtonTypeRoundedRect];
+    _button.frame = CGRectMake(self.frame.size.width - (self.frame.size.height + 5), self.frame.origin.y, self.frame.size.height, self.frame.size.height);
+    self.accessoryView = _button;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
