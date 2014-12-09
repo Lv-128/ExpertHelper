@@ -12,6 +12,7 @@
 #import "Recruiter.h"
 #import "Candidate.h"
 #import "Group.h"
+#import "EHRecruitersViewController.h"
 
 #ifndef ExpertHelper_EHConstantsDefines_h
 #define ExpertHelper_EHConstantsDefines_h

@@ -18,6 +18,7 @@
 #import "EHAppDelegate.h"
 
 
+
 //#define  INTERVIEWTYPE [NSMutableArray arrayWithObjects:@"None", @"IT Academy",@"Internal",@"External",nil]
 enum {None,ITA, Internal,External};
 @interface EHListOfInterviewsViewController () <UICollectionViewDataSource, UICollectionViewDelegate, UIGestureRecognizerDelegate, UIActionSheetDelegate, MFMailComposeViewControllerDelegate>
@@ -49,11 +50,37 @@ enum {None,ITA, Internal,External};
     _barButton.target = self.revealViewController;
     _barButton.action = @selector(revealToggle:);
     
+    // button HR
+    UIImage* imageHR = [UIImage imageNamed:@"hr.png"];
+    
+    CGRect frameimg = CGRectMake(0, 0, 55, 55);
+    UIButton *someButton = [[UIButton alloc] initWithFrame:frameimg];
+    [someButton setBackgroundImage:imageHR forState:UIControlStateNormal];
+    [someButton addTarget:self action:@selector(goToHR)
+         forControlEvents:UIControlEventTouchUpInside];
+    [someButton setShowsTouchWhenHighlighted:YES];
+    
+    UIBarButtonItem *butHR =[[UIBarButtonItem alloc] initWithCustomView:someButton];
+    self.navigationItem.rightBarButtonItem=butHR;
+    ////////////
+    
+    /// left slide menu
     [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
     
     
-      _interviewFromEventsParser = [[EHEventsGetInfoParser alloc]init];
     
+    
+    //parser
+    _interviewFromEventsParser = [[EHEventsGetInfoParser alloc]init];
+    [self checkTheFirstLoad];
+
+    
+    
+}
+
+
+- (void) checkTheFirstLoad
+{
     if (!_notFirstLoad)
     {
         NSDate *today = [NSDate date];
@@ -96,11 +123,16 @@ enum {None,ITA, Internal,External};
             
         }
         
-        
     }
-    
-    
 }
+
+
+- (void) goToHR
+{
+    EHRecruitersViewController *itaViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"RecruitersForm"];
+    [self.navigationController pushViewController:itaViewController animated: YES];
+}
+
 
 - (void)didReceiveMemoryWarning
 {
