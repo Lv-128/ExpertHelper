@@ -1,4 +1,4 @@
-//
+    //
 //  EHRecruitersViewController.m
 //  ExpertHelper
 //
@@ -8,7 +8,9 @@
 
 #import "EHRecruitersViewController.h"
 #import "EHListOfRecruitersCell.h"
-@interface EHRecruitersViewController ()
+#import <MessageUI/MessageUI.h>
+
+@interface EHRecruitersViewController ()<MFMailComposeViewControllerDelegate, UIGestureRecognizerDelegate>
 
 
 @end
@@ -22,11 +24,10 @@
     _recruitersArray = [[NSArray alloc] init];
     EHAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
     _managedObjectContext = [appDelegate managedObjectContext];
-    
+
     [self getAllRecruitersFromDB];
 
 }
-
 
 
 
@@ -57,7 +58,7 @@
     
     cell.nameLabel.text = [NSString stringWithFormat: @" %@ %@ ", [_recruitersArray[indexPath.row] firstName], [_recruitersArray[indexPath.row] lastName]];
     cell.skypeLabel.text = [_recruitersArray[indexPath.row] skypeAccount];
-    cell.recruiterEmail.text = [_recruitersArray[indexPath.row] email];
+   // cell.recruiterEmail.text = [_recruitersArray[indexPath.row] email];
     if ([_recruitersArray[indexPath.row] photoUrl] == nil)
     {
       
@@ -65,7 +66,33 @@
         
         
     }
+    else
+    {
+        
+      
+        
+        NSURL *imgURL = [NSURL URLWithString:[_recruitersArray[indexPath.row] photoUrl]];
+        
+        NSData *imgdata=[[NSData alloc]initWithContentsOfURL:imgURL];
+        
+        UIImage *image=[[UIImage alloc]initWithData:imgdata];
+        
+        [cell.picture setImage:image];
+    }
     
+    
+
+    UITapGestureRecognizer *sendEmailTp = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(sendEmail:)];
+    [sendEmailTp setDelegate:self];
+    [cell.emailPic addGestureRecognizer:sendEmailTp];
+    //[cell.recruiterEmail addGestureRecognizer:sendEmailTp];
+    sendEmailTp.numberOfTapsRequired = 1;
+    
+    UITapGestureRecognizer *sendEmailTp2 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(sendEmail:)];
+    [sendEmailTp2 setDelegate:self];
+    //[cell.emailPic addGestureRecognizer:sendEmailTp2];
+    [cell.recruiterEmail addGestureRecognizer:sendEmailTp2];
+    sendEmailTp2.numberOfTapsRequired = 1;
    // cell.detailTextLabel.text = [NSString stringWithFormat: @" %d interviews", numOfInterviews];
     
     return cell;
@@ -82,6 +109,57 @@
     
     _recruitersArray= [_managedObjectContext executeFetchRequest:fetchRequest error:nil];
     
+    if (_recruitersArray.count == 0)
+    {
+        UIAlertView *message = [[UIAlertView alloc] initWithTitle:@""
+                                                          message:@"There is no recruiters in DB yet!"
+                                                         delegate:nil
+                                                cancelButtonTitle:@"OK"
+                                                otherButtonTitles:nil];
+        [message show];
+    }
+    
 }
+
+
+
+
+
+
+- (IBAction)sendEmailMsg:(NSString*)address
+{
+    
+    
+    MFMailComposeViewController *mailController = [[MFMailComposeViewController alloc]init];
+    [mailController setMailComposeDelegate:self];
+    
+    NSArray *addressArray = [[NSArray alloc]initWithObjects:address, nil];
+    [mailController setMessageBody:@"Print message here!" isHTML:NO];
+    [mailController setToRecipients:addressArray];
+    [mailController setSubject:@""];
+    [mailController setModalTransitionStyle:UIModalTransitionStyleFlipHorizontal];
+    //  [mailController addAttachmentData:<#(NSData *)#> mimeType:<#(NSString *)#> fileName:<#(NSString *)#>]
+    [self presentViewController:mailController animated:YES completion: nil];
+    
+    
+    
+}
+
+
+- (void)mailComposeController:(MFMailComposeViewController *) controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error{
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (IBAction)sendEmail:(id)sender
+{
+    UITapGestureRecognizer *tapGR = (UITapGestureRecognizer*)sender;
+    
+    CGPoint touchLocation = [tapGR locationOfTouch:0 inView:self.tableView];
+  
+    NSIndexPath *indexPath = [_tableView indexPathForRowAtPoint: touchLocation];
+    
+    EHListOfRecruitersCell *cell = (EHListOfRecruitersCell *)[_tableView cellForRowAtIndexPath:indexPath];
+    
+    [self sendEmailMsg:cell.recruiterEmail.text];}
 
 @end

@@ -16,13 +16,14 @@
 #import "EHEventsGetInfoParser.h"
 #import <MessageUI/MessageUI.h>
 #import "EHAppDelegate.h"
+#import "EHRecruitersViewController.h"
 
 
 //#define  INTERVIEWTYPE [NSMutableArray arrayWithObjects:@"None", @"IT Academy",@"Internal",@"External",nil]
 enum {None,ITA, Internal,External};
 @interface EHListOfInterviewsViewController () <UICollectionViewDataSource, UICollectionViewDelegate, UIGestureRecognizerDelegate, UIActionSheetDelegate, MFMailComposeViewControllerDelegate>
 
-@property (weak, nonatomic) IBOutlet UIBarButtonItem *barButton;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *barButtonMenu;
 
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (strong, nonatomic) NSDateFormatter *cellDateFormatter;
@@ -38,6 +39,7 @@ enum {None,ITA, Internal,External};
 @synthesize sortedWeeks;
 @synthesize managedObjectContext;
 
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -46,20 +48,45 @@ enum {None,ITA, Internal,External};
     [self.cellDateFormatter setDateStyle:NSDateFormatterFullStyle];
     [self.cellDateFormatter setTimeStyle:NSDateFormatterShortStyle];
    
-    _barButton.target = self.revealViewController;
-    _barButton.action = @selector(revealToggle:);
+    _barButtonMenu.target = self.revealViewController;
+    _barButtonMenu.action = @selector(revealToggle:);
     
+    
+    
+    /// button HR
+    UIImage* imageHR = [UIImage imageNamed:@"hr.png"];
+    
+    CGRect frameimg = CGRectMake(0, 0, 55, 55);
+    UIButton *someButton = [[UIButton alloc] initWithFrame:frameimg];
+    [someButton setBackgroundImage:imageHR forState:UIControlStateNormal];
+    [someButton addTarget:self action:@selector(goToHR)
+         forControlEvents:UIControlEventTouchUpInside];
+    [someButton setShowsTouchWhenHighlighted:YES];
+    
+    UIBarButtonItem *butHR =[[UIBarButtonItem alloc] initWithCustomView:someButton];
+    self.navigationItem.rightBarButtonItem=butHR;
+    ////////////   
+    
+    /// left slide menu
     [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
     
     
-      _interviewFromEventsParser = [[EHEventsGetInfoParser alloc]init];
     
+    
+    //parser
+      _interviewFromEventsParser = [[EHEventsGetInfoParser alloc]init];
+    [self checkTheFirstLoad];
+   
+}
+
+- (void) checkTheFirstLoad
+{
     if (!_notFirstLoad)
     {
         NSDate *today = [NSDate date];
         
         unsigned int  compon = NSYearCalendarUnit|  NSMonthCalendarUnit ;
-        
+      
         
         NSInteger monthday = [[[NSCalendar currentCalendar] components: compon fromDate:today] month];
         NSInteger yearday  =[[[NSCalendar currentCalendar] components: compon fromDate:today] year];
@@ -95,13 +122,16 @@ enum {None,ITA, Internal,External};
             [message show];
             
         }
-        
-        
+   
     }
-    
-    
 }
 
+
+- (void) goToHR
+{
+    EHRecruitersViewController *itaViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"RecruitersForm"];
+    [self.navigationController pushViewController:itaViewController animated: YES];
+}
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];

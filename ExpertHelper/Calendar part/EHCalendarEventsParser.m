@@ -214,11 +214,93 @@
         recruiter.firstName = parseNameAndLastnameOfRecruiter.firstName;
         recruiter.lastName = parseNameAndLastnameOfRecruiter.lastName;
         recruiter.email = email;
+        NSString * urlString = [self callToWebAndGetPictureOfRecruiterWithName:recruiter.firstName andLastName:recruiter.lastName];
+        if (urlString != nil)
+        {
+            recruiter.photoUrl = [NSURL URLWithString:urlString];
+        }
         
         return recruiter;
     }
     return nil;
 }
+
+
+- (NSString *) callToWebAndGetPictureOfRecruiterWithName: (NSString*)firstName andLastName:(NSString*)lastName
+{
+    NSError *error;
+    
+    
+    NSString *patternLastnameFirst = [NSString stringWithFormat:@"(<img src(.)*softserve.ua.wp-content.uploads(.)*%@-%@(.)*png.>)|",lastName,firstName];
+    NSString *patternFirstnameFirst =[NSString stringWithFormat:@"(<img src(.)*softserve.ua.wp-content.uploads(.)*%@-%@(.)*png.>)",firstName,lastName];
+    NSString *pattern = [patternLastnameFirst stringByAppendingString:patternFirstnameFirst];
+    
+    
+    NSString *getWebInfo = @"https://softserve.ua/ru/vacancies/recruiters/?tax-directions=0&tax-country=117"; /// softserve.ua all recruiters from ukraine
+    
+    
+    NSURL *webUnFormatted = [NSURL URLWithString:getWebInfo];
+    // //  NSString *pattern = "<img src="https://softserve.ua/wp-content/uploads/2014/01/Tetyana-Klyuk11-150x150.png">"
+    NSString * webFormatted;
+    @try
+    {
+        webFormatted = [NSString stringWithContentsOfURL:webUnFormatted encoding:NSASCIIStringEncoding error:&error];
+        
+    }
+    @catch (NSException *exception)
+    {
+        NSLog(@"%@", exception);
+    }
+    
+   
+    if (webFormatted !=nil)
+    {
+        NSString *webContent = [NSString stringWithFormat:@"%@",webFormatted]; // web page content
+        NSRange range = NSMakeRange(0, webContent.length);
+       
+    NSRegularExpressionOptions regexOptions = NSRegularExpressionCaseInsensitive;
+    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:pattern options:regexOptions error:&error];
+    NSArray *matches = [regex matchesInString:webContent options:(NSMatchingOptions)regexOptions range:range];
+     
+        NSString * neededString;
+    NSMutableArray *results = [[NSMutableArray alloc]init];
+    if ([matches count] > 0)
+    {
+        for (NSTextCheckingResult *match in matches)
+        {
+            NSRange matchRange = match.range;
+            matchRange.length -= 1;
+            [results addObject:[webContent substringWithRange:matchRange]];
+        }
+        
+        NSArray* parseWithSpaces = [results[0] componentsSeparatedByString: @"\""]; // separation  with  "
+        neededString = parseWithSpaces[0];
+        for (int i = 0; i < parseWithSpaces.count;i++)
+        {
+            if (neededString.length < [parseWithSpaces[i] length])
+            {
+                neededString = parseWithSpaces[i]; // the url of picture
+            }
+        }
+        
+        
+        return neededString;
+    }
+    else
+    {
+        return  nil;
+    }
+        
+ }
+
+   else
+   {
+       return  nil;
+   }
+   
+}
+
+
 
 -(Candidate *)getCandidateFromEvent:(EKEvent*)event andAddToDB:(NSManagedObjectContext*)context
 {

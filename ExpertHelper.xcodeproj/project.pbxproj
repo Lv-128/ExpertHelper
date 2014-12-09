@@ -64,6 +64,7 @@
 		D9BE54021A10B16700AD5D3D /* EHExternalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D9BE53FA1A10B16700AD5D3D /* EHExternalViewController.m */; };
 		D9BE54041A10B16700AD5D3D /* EHProgrammingLanguagesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D9BE53FE1A10B16700AD5D3D /* EHProgrammingLanguagesViewController.m */; };
 		D9BE54071A10B1A200AD5D3D /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D9BE54061A10B1A200AD5D3D /* Images.xcassets */; };
+		D9D69A571A37164D00F303A6 /* EHAddRecruiterController.m in Sources */ = {isa = PBXBuildFile; fileRef = D9D69A561A37164D00F303A6 /* EHAddRecruiterController.m */; };
 		D9E7B7971A31E079002DA710 /* Candidate.m in Sources */ = {isa = PBXBuildFile; fileRef = D9E7B78A1A31E079002DA710 /* Candidate.m */; };
 		D9E7B7981A31E079002DA710 /* ExternalInterview.m in Sources */ = {isa = PBXBuildFile; fileRef = D9E7B78C1A31E079002DA710 /* ExternalInterview.m */; };
 		D9E7B7991A31E079002DA710 /* Group.m in Sources */ = {isa = PBXBuildFile; fileRef = D9E7B78E1A31E079002DA710 /* Group.m */; };
@@ -155,6 +156,8 @@
 		D9BE53FD1A10B16700AD5D3D /* EHProgrammingLanguagesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EHProgrammingLanguagesViewController.h; sourceTree = "<group>"; };
 		D9BE53FE1A10B16700AD5D3D /* EHProgrammingLanguagesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EHProgrammingLanguagesViewController.m; sourceTree = "<group>"; };
 		D9BE54061A10B1A200AD5D3D /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		D9D69A551A37164D00F303A6 /* EHAddRecruiterController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EHAddRecruiterController.h; path = ExpertHelper/EHAddRecruiterController.h; sourceTree = "<group>"; };
+		D9D69A561A37164D00F303A6 /* EHAddRecruiterController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EHAddRecruiterController.m; path = ExpertHelper/EHAddRecruiterController.m; sourceTree = "<group>"; };
 		D9E7B7891A31E079002DA710 /* Candidate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Candidate.h; sourceTree = "<group>"; };
 		D9E7B78A1A31E079002DA710 /* Candidate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Candidate.m; sourceTree = "<group>"; };
 		D9E7B78B1A31E079002DA710 /* ExternalInterview.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExternalInterview.h; sourceTree = "<group>"; };
@@ -426,6 +429,8 @@
 		D9BC6A451A3214BF002EA40E /* HR */ = {
 			isa = PBXGroup;
 			children = (
+				D9D69A551A37164D00F303A6 /* EHAddRecruiterController.h */,
+				D9D69A561A37164D00F303A6 /* EHAddRecruiterController.m */,
 				D9BC6A461A321A72002EA40E /* EHRecruitersViewController.h */,
 				D9BC6A471A321A72002EA40E /* EHRecruitersViewController.m */,
 				D9BC6A411A3214A7002EA40E /* EHListOfRecruitersCell.h */,
@@ -660,6 +665,7 @@
 				D9E7B7981A31E079002DA710 /* ExternalInterview.m in Sources */,
 				D9E7B7AF1A31E0A3002DA710 /* _InterviewAppointment.m in Sources */,
 				D967F2081A1E23BC0009639C /* EHCandidateFormViewController.m in Sources */,
+				D9D69A571A37164D00F303A6 /* EHAddRecruiterController.m in Sources */,
 				D9998EE41A221CE9002E019A /* EHRevealViewController.m in Sources */,
 				D9BE54041A10B16700AD5D3D /* EHProgrammingLanguagesViewController.m in Sources */,
 				D9998EE01A221CE9002E019A /* EHCalendarEventsParser.m in Sources */,
