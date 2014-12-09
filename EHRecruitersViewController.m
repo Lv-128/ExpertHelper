@@ -24,7 +24,11 @@
     _managedObjectContext = [appDelegate managedObjectContext];
     
     [self getAllRecruitersFromDB];
+
 }
+
+
+
 
 #pragma mark - UITableViewDataSource methods
 

@@ -16,6 +16,4 @@
     NSInteger lostData;
 }
 
-@property (nonatomic, strong) NSIndexPath *index;
-
 @end
