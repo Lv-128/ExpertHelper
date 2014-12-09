@@ -34,6 +34,10 @@
 {
     [self.tableView reloadData];
 }
+- (void)viewDidAppear:(BOOL)animated
+{
+    [self.tableView reloadData];
+}
 #pragma mark - UITableViewDataSource methods
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView

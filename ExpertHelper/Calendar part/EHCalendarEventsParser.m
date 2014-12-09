@@ -406,25 +406,23 @@
         NSManagedObjectContext *context = [self managedObjectContext];
         
  
-        if (event.URL != nil) // if there is interview in DB
+        NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+        NSEntityDescription *entity = [NSEntityDescription entityForName:[InterviewAppointment entityName]
+                                                  inManagedObjectContext:context];
+        NSPredicate *predicate =
+        [NSPredicate predicateWithFormat:@"eventId == %@", event.eventIdentifier];
+        [fetchRequest setPredicate:predicate];
+        [fetchRequest setEntity:entity];
+        
+        NSArray *fetchedObjects = [context executeFetchRequest:fetchRequest error:nil];
+        
+        if(fetchedObjects.count>0)// we don't need this actually
         {
-            NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-            NSEntityDescription *entity = [NSEntityDescription entityForName:[InterviewAppointment entityName]
-                                                      inManagedObjectContext:context];
-            NSPredicate *predicate =
-            [NSPredicate predicateWithFormat:@"eventId == %@", event.eventIdentifier];
-            [fetchRequest setPredicate:predicate];
-            [fetchRequest setEntity:entity];
-            
-            NSArray *fetchedObjects = [context executeFetchRequest:fetchRequest error:nil];
-            
-            if(fetchedObjects.count>0)// we don't need this actually
-            {
-                for (InterviewAppointment *interview in fetchedObjects)
+              for (InterviewAppointment *interview in fetchedObjects)
                 {
                     [allInterviews addObject:interview];
                 }
-            }
+            
         }
         else // there is no interview? let's add it
         {
