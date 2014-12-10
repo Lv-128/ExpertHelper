@@ -78,54 +78,102 @@ enum {None,ITA, Internal,External};
     
 }
 
-
 - (void) checkTheFirstLoad
 {
     if (!_notFirstLoad)
     {
         NSDate *today = [NSDate date];
         
-        unsigned int  compon = NSYearCalendarUnit|  NSMonthCalendarUnit ;
+        unsigned int compon = NSYearCalendarUnit| NSMonthCalendarUnit ;
         
         
         NSInteger monthday = [[[NSCalendar currentCalendar] components: compon fromDate:today] month];
-        NSInteger yearday  =[[[NSCalendar currentCalendar] components: compon fromDate:today] year];
+        NSInteger yearday =[[[NSCalendar currentCalendar] components: compon fromDate:today] year];
         
         
         NSString * keyForDictionary = [MONTHS objectAtIndex:monthday - 1];
         keyForDictionary = [keyForDictionary stringByAppendingString:[NSString stringWithFormat: @", %ld", (long)yearday]];
-        NSInteger curMonth = monthday - 1;
         
         
         NSArray *dictionaryOfInterviews = _interviewFromEventsParser.sortAllInterviewsToDictionary;
-        if(dictionaryOfInterviews.count>0)
-        {
+        NSInteger tempCurMonth = -1;
+        
+       
             for (int i=0;i<dictionaryOfInterviews.count;i++)
             {
-                if ([[dictionaryOfInterviews[i]  nameOfMonth] isEqualToString:keyForDictionary])
+                if ([[dictionaryOfInterviews[i] nameOfMonth] isEqualToString:keyForDictionary])
                 {
-                    curMonth = i;
+                    tempCurMonth = i;
                     break;
                 }
                 
             }
-            
-            self.sortedWeeks = [[dictionaryOfInterviews objectAtIndex:curMonth] weeks] ;
-        }
-        else
-        {
-            UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Warning!"
-                                                              message:@"You have no interview - events this month"
-                                                             delegate:nil
-                                                    cancelButtonTitle:@"OK"
-                                                    otherButtonTitles:nil];
-            [message show];
-            
-        }
-        
+            if(tempCurMonth != -1)
+            {
+                self.sortedWeeks = [[dictionaryOfInterviews objectAtIndex:tempCurMonth] weeks] ;
+            }
+            else
+            {
+                UIAlertView *message  = [[UIAlertView alloc] initWithTitle:@"Warning!"
+                                                                        message:@"You have no interview - events this month"
+                                                                       delegate:nil
+                                                              cancelButtonTitle:@"OK"
+                                                              otherButtonTitles:nil];
+                [message show];
+                
+            }
+    
     }
+    
 }
-
+//
+//- (void) checkTheFirstLoad
+//{
+//    if (!_notFirstLoad)
+//    {
+//        NSDate *today = [NSDate date];
+//        
+//        unsigned int  compon = NSYearCalendarUnit|  NSMonthCalendarUnit ;
+//        
+//        
+//        NSInteger monthday = [[[NSCalendar currentCalendar] components: compon fromDate:today] month];
+//        NSInteger yearday  =[[[NSCalendar currentCalendar] components: compon fromDate:today] year];
+//        
+//        
+//        NSString * keyForDictionary = [MONTHS objectAtIndex:monthday - 1];
+//        keyForDictionary = [keyForDictionary stringByAppendingString:[NSString stringWithFormat: @", %ld", (long)yearday]];
+//        NSInteger curMonth = monthday - 1;
+//        
+//        
+//        NSArray *dictionaryOfInterviews = _interviewFromEventsParser.sortAllInterviewsToDictionary;
+//        if(dictionaryOfInterviews.count>0)
+//        {
+//            for (int i=0;i<dictionaryOfInterviews.count;i++)
+//            {
+//                if ([[dictionaryOfInterviews[i]  nameOfMonth] isEqualToString:keyForDictionary])
+//                {
+//                    curMonth = i;
+//                    break;
+//                }
+//                
+//            }
+//            
+//            self.sortedWeeks = [[dictionaryOfInterviews objectAtIndex:curMonth] weeks] ;
+//        }
+//        else
+//        {
+//            UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Warning!"
+//                                                              message:@"You have no interview - events this month"
+//                                                             delegate:nil
+//                                                    cancelButtonTitle:@"OK"
+//                                                    otherButtonTitles:nil];
+//            [message show];
+//            
+//        }
+//        
+//    }
+//}
+//
 
 - (void) goToHR
 {
