@@ -46,6 +46,22 @@ enum {None,ITA, Internal,External};
     [self.cellDateFormatter setDateStyle:NSDateFormatterFullStyle];
     [self.cellDateFormatter setTimeStyle:NSDateFormatterShortStyle];
    
+    //set bar buttons
+    [self setBarButtons];
+    
+    /// left slide menu
+    [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
+    
+    //parser
+    _interviewFromEventsParser = [[EHEventsGetInfoParser alloc]init];
+    [self checkTheFirstLoad];
+
+    
+    
+}
+- (void)setBarButtons
+{
+    // menu
     _barButton.target = self.revealViewController;
     _barButton.action = @selector(revealToggle:);
     
@@ -54,27 +70,15 @@ enum {None,ITA, Internal,External};
     
     CGRect frameimg = CGRectMake(0, 0, 55, 55);
     UIButton *someButton = [[UIButton alloc] initWithFrame:frameimg];
-    [someButton setBackgroundImage:imageHR forState:UIControlStateNormal];
+    [someButton setBackgroundImage:imageHR
+                          forState:UIControlStateNormal];
     [someButton addTarget:self action:@selector(goToHR)
          forControlEvents:UIControlEventTouchUpInside];
     [someButton setShowsTouchWhenHighlighted:YES];
     
     UIBarButtonItem *butHR =[[UIBarButtonItem alloc] initWithCustomView:someButton];
     self.navigationItem.rightBarButtonItem=butHR;
-    ////////////
-    
-    /// left slide menu
-    [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
-    
-    
-    
-    
-    //parser
-    _interviewFromEventsParser = [[EHEventsGetInfoParser alloc]init];
-    [self checkTheFirstLoad];
 
-    
-    
 }
 
 - (void) checkTheFirstLoad
@@ -125,55 +129,8 @@ enum {None,ITA, Internal,External};
     }
     
 }
-//
-//- (void) checkTheFirstLoad
-//{
-//    if (!_notFirstLoad)
-//    {
-//        NSDate *today = [NSDate date];
-//        
-//        unsigned int  compon = NSYearCalendarUnit|  NSMonthCalendarUnit ;
-//        
-//        
-//        NSInteger monthday = [[[NSCalendar currentCalendar] components: compon fromDate:today] month];
-//        NSInteger yearday  =[[[NSCalendar currentCalendar] components: compon fromDate:today] year];
-//        
-//        
-//        NSString * keyForDictionary = [MONTHS objectAtIndex:monthday - 1];
-//        keyForDictionary = [keyForDictionary stringByAppendingString:[NSString stringWithFormat: @", %ld", (long)yearday]];
-//        NSInteger curMonth = monthday - 1;
-//        
-//        
-//        NSArray *dictionaryOfInterviews = _interviewFromEventsParser.sortAllInterviewsToDictionary;
-//        if(dictionaryOfInterviews.count>0)
-//        {
-//            for (int i=0;i<dictionaryOfInterviews.count;i++)
-//            {
-//                if ([[dictionaryOfInterviews[i]  nameOfMonth] isEqualToString:keyForDictionary])
-//                {
-//                    curMonth = i;
-//                    break;
-//                }
-//                
-//            }
-//            
-//            self.sortedWeeks = [[dictionaryOfInterviews objectAtIndex:curMonth] weeks] ;
-//        }
-//        else
-//        {
-//            UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Warning!"
-//                                                              message:@"You have no interview - events this month"
-//                                                             delegate:nil
-//                                                    cancelButtonTitle:@"OK"
-//                                                    otherButtonTitles:nil];
-//            [message show];
-//            
-//        }
-//        
-//    }
-//}
-//
 
+#pragma mark SEGUES
 - (void) goToHR
 {
     EHRecruitersViewController *itaViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"RecruitersForm"];
@@ -181,11 +138,34 @@ enum {None,ITA, Internal,External};
 }
 
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
 
+
+- (IBAction)startInterview:(UIButton *)button
+{
+    NSIndexPath *indexPath = [self indexPathOfButton:button];
+    EHWeek *week = [self.sortedWeeks objectAtIndex:indexPath.section];
+    NSArray *eventsOnThisDay = week.interviews;
+    InterviewAppointment *event = [eventsOnThisDay objectAtIndex:indexPath.row];
+    NSLog(@"%@", event);
+
+    NSArray * arr = [[[sortedWeeks objectAtIndex:indexPath.section ] interviews] allObjects];
+        _curInterview = [arr objectAtIndex:indexPath.row];
+        if(_curInterview.type == [NSNumber numberWithInt:ITA])
+        {
+            EHITAViewController *itaViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"ITAForm"];
+            [self.navigationController pushViewController:itaViewController animated: YES];
+            
+        }
+        else
+            if(_curInterview.type == [NSNumber numberWithInt:External])
+            {
+                EHExternalViewController *externalViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"ExternalForm"];
+                [self.navigationController pushViewController:externalViewController animated: YES];
+            }
+   
+    
 }
+
 
 #pragma mark Collection View Methods
 
@@ -209,13 +189,7 @@ enum {None,ITA, Internal,External};
     return [_collectionView indexPathForCell:(UICollectionViewCell *)view];
 }
 
-- (void)onStartButton:(UIButton *)button {
-    NSIndexPath *indexPath = [self indexPathOfButton:button];
-    EHWeek *week = [self.sortedWeeks objectAtIndex:indexPath.section];
-    NSArray *eventsOnThisDay = week.interviews;
-    InterviewAppointment *event = [eventsOnThisDay objectAtIndex:indexPath.row];
-    NSLog(@"%@", event);
-}
+
 
 - (void)onSkypeButton:(UIButton *)button {
     NSIndexPath *indexPath = [self indexPathOfButton:button];
@@ -238,8 +212,8 @@ enum {None,ITA, Internal,External};
 {
     EHInterviewViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"Cell" forIndexPath:indexPath];
     cell.tag = indexPath.row;
-    [cell.startButton addTarget:self action:@selector(onStartButton:) forControlEvents:UIControlEventTouchUpInside];
-    [cell.skypeView addTarget:self action:@selector(onSkypeButton:) forControlEvents:UIControlEventTouchUpInside];
+    [cell.startButton addTarget:self action:@selector(startInterview:) forControlEvents:UIControlEventTouchUpInside];
+    [cell.skypeButton addTarget:self action:@selector(onSkypeButton:) forControlEvents:UIControlEventTouchUpInside];
     [cell.mailButton addTarget:self action:@selector(onMailButton:) forControlEvents:UIControlEventTouchUpInside];
     
     
@@ -404,35 +378,6 @@ enum {None,ITA, Internal,External};
     }
 }
 
-- (IBAction)goToITAForm:(id)sender
-{
-    UITapGestureRecognizer *tapGR = (UITapGestureRecognizer*)sender;
-    
-    CGPoint touchLocation = [tapGR locationOfTouch:0 inView:self.collectionView];
-    
-
-    if (tapGR.view.tag == 1000)
-    {
-        NSIndexPath *tappedRow = [self.collectionView indexPathForItemAtPoint:touchLocation];
-      //  InterviewAppointment *curInterview =[[[sortedWeeks objectAtIndex:tappedRow.section ] interviews] objectAtIndex:tappedRow.row];
-        NSArray * arr = [[[sortedWeeks objectAtIndex:tappedRow.section ] interviews] allObjects];
-        _curInterview = [arr objectAtIndex:tappedRow.row];
-        if(_curInterview.type == [NSNumber numberWithInt:ITA])
-        {
-            EHITAViewController *itaViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"ITAForm"];
-            [self.navigationController pushViewController:itaViewController animated: YES];
-            
-        }
-        else
-            if(_curInterview.type == [NSNumber numberWithInt:External])
-            {
-                EHITAViewController *externalViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"InternalForm"];
-                [self.navigationController pushViewController:externalViewController animated: YES];
-        }
-   }
-
-
-}
 
 
 

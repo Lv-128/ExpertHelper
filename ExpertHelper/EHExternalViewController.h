@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "EHAppDelegate.h"
 @interface EHExternalViewController : UIViewController
 {
     BOOL isPopup;
@@ -15,7 +15,8 @@
     NSInteger RowAtIndexPathOfSkills;
     NSInteger lostData;
 }
-
+@property (nonatomic, strong) InterviewAppointment * currentInterviewDescription;
+@property (nonatomic, strong) ExternalInterview * currentExternalInterview;
 @property (nonatomic, strong) NSIndexPath *index;
 
 @end

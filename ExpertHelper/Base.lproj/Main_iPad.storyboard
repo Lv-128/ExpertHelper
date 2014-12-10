@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4510" systemVersion="13F34" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="696-TH-eQE">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13E28" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="696-TH-eQE">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3742"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
     <scenes>
         <!--Reveal View Controller-->
@@ -240,7 +240,7 @@
         <!--External View Controller - External-->
         <scene sceneID="4M7-gB-h3Y">
             <objects>
-                <viewController storyboardIdentifier="InternalForm" id="ioK-KF-1C8" customClass="EHExternalViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ExternalForm" id="ioK-KF-1C8" customClass="EHExternalViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="syB-ah-Lm1"/>
                         <viewControllerLayoutGuide type="bottom" id="lBk-cG-nzN"/>
@@ -484,9 +484,14 @@
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
                                         <connections>
+                                            <outlet property="addressLabel" destination="g4a-LG-UJa" id="84m-O8-Awc"/>
+                                            <outlet property="candidateLabel" destination="umz-Ed-Ttg" id="iYM-Ih-B7r"/>
+                                            <outlet property="dateLabel" destination="I0f-Kc-Qu9" id="ELP-p5-4TR"/>
                                             <outlet property="mailButton" destination="bZg-4S-mqi" id="ddA-Oe-TRu"/>
-                                            <outlet property="skypeView" destination="yL8-Jc-Xel" id="PZT-l9-ema"/>
+                                            <outlet property="recruiterLabel" destination="9gQ-kk-ExE" id="VqI-UB-qs2"/>
+                                            <outlet property="skypeButton" destination="yL8-Jc-Xel" id="jWM-9z-v2Q"/>
                                             <outlet property="startButton" destination="BC0-cq-d0u" id="HJC-nT-HJG"/>
+                                            <outlet property="typeLabel" destination="Bkh-Tf-meK" id="SxR-bb-eAi"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
@@ -986,11 +991,9 @@
         <image name="checkBoxMarked.png" width="849" height="757"/>
         <image name="mail" width="110" height="110"/>
         <image name="mail-1" width="75" height="80"/>
-        <image name="mail-1" width="75" height="80"/>
         <image name="phone" width="88" height="88"/>
         <image name="record_button" width="1024" height="1024"/>
         <image name="skype" width="300" height="300"/>
-        <image name="skype-1" width="70" height="79"/>
         <image name="skype-1" width="70" height="79"/>
         <image name="stewie" width="184" height="104"/>
     </resources>

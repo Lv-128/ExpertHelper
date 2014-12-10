@@ -10,8 +10,13 @@
 
 @interface EHInterviewViewCell : UICollectionViewCell
 
-@property (weak, nonatomic) IBOutlet UIButton *skypeView;
+@property (weak, nonatomic) IBOutlet UIButton *skypeButton;
 @property (weak, nonatomic) IBOutlet UIButton *mailButton;
 @property (weak, nonatomic) IBOutlet UIButton *startButton;
 
+@property (weak, nonatomic) IBOutlet UILabel *dateLabel;
+@property (weak, nonatomic) IBOutlet UILabel *addressLabel;
+@property (weak, nonatomic) IBOutlet UILabel *candidateLabel;
+@property (weak, nonatomic) IBOutlet UILabel *recruiterLabel;
+@property (weak, nonatomic) IBOutlet UILabel *typeLabel;
 @end

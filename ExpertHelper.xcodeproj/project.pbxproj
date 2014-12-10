@@ -117,7 +117,7 @@
 		D922044C1A2FAA4300B3BAAD /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		D922044E1A2FAA4300B3BAAD /* mogen.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = mogen.sh; sourceTree = "<group>"; };
 		D922044F1A2FAA4300B3BAAD /* mogend.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = mogend.sh; sourceTree = "<group>"; };
-		D92204761A2FAF6900B3BAAD /* EHConstantsDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EHConstantsDefines.h; path = ../EHConstantsDefines.h; sourceTree = "<group>"; };
+		D92204761A2FAF6900B3BAAD /* EHConstantsDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EHConstantsDefines.h; sourceTree = "<group>"; };
 		D92B76E11A1F847F00B76F5E /* EHSkillLevelCommentPopup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EHSkillLevelCommentPopup.h; sourceTree = "<group>"; };
 		D92B76E21A1F847F00B76F5E /* EHSkillLevelCommentPopup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EHSkillLevelCommentPopup.m; sourceTree = "<group>"; };
 		D92B76E31A1F847F00B76F5E /* EHSkillLevelPopup.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EHSkillLevelPopup.xib; sourceTree = "<group>"; };
@@ -265,7 +265,6 @@
 				D92204291A2FAA4300B3BAAD /* Human */,
 				D922043A1A2FAA4300B3BAAD /* Machine */,
 				D922044B1A2FAA4300B3BAAD /* Model.xcdatamodeld */,
-				D92204761A2FAF6900B3BAAD /* EHConstantsDefines.h */,
 				D922044D1A2FAA4300B3BAAD /* Scripts */,
 			);
 			path = CoreData;
@@ -431,6 +430,7 @@
 			children = (
 				D9998EDD1A221CE9002E019A /* SlideOutMenuFiles */,
 				D9BE54061A10B1A200AD5D3D /* Images.xcassets */,
+				D92204761A2FAF6900B3BAAD /* EHConstantsDefines.h */,
 				D9C4DC331A3840FC00BC1AEA /* Reachability */,
 				D9B0CC731A03B17500544323 /* EHAppDelegate.h */,
 				D9B0CC741A03B17500544323 /* EHAppDelegate.m */,
