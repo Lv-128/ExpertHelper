@@ -16,6 +16,7 @@
 #import "EHEventsGetInfoParser.h"
 #import <MessageUI/MessageUI.h>
 #import "EHAppDelegate.h"
+#import "EHInterviewViewCell.h"
 
 
 
@@ -24,8 +25,6 @@ enum {None,ITA, Internal,External};
 @interface EHListOfInterviewsViewController () <UICollectionViewDataSource, UICollectionViewDelegate, UIGestureRecognizerDelegate, UIActionSheetDelegate, MFMailComposeViewControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *barButton;
-
-@property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (strong, nonatomic) NSDateFormatter *cellDateFormatter;
 @property (strong, nonatomic) InterviewAppointment *curInterview ;
 @property (strong, nonatomic) UIActionSheet *actionSheetTypes;
@@ -202,63 +201,65 @@ enum {None,ITA, Internal,External};
     return [weekOfMonth.interviews count];
 }
 
+- (NSIndexPath *)indexPathOfButton:(UIButton *)button {
+    UIView *view = button.superview;
+    while (![view isKindOfClass:[EHInterviewViewCell class]]) {
+        view = view.superview;
+    }
+    return [_collectionView indexPathForCell:(UICollectionViewCell *)view];
+}
 
-- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
-    
-    UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"Cell" forIndexPath:indexPath];
+- (void)onStartButton:(UIButton *)button {
+    NSIndexPath *indexPath = [self indexPathOfButton:button];
+    EHWeek *week = [self.sortedWeeks objectAtIndex:indexPath.section];
+    NSArray *eventsOnThisDay = week.interviews;
+    InterviewAppointment *event = [eventsOnThisDay objectAtIndex:indexPath.row];
+    NSLog(@"%@", event);
+}
+
+- (void)onSkypeButton:(UIButton *)button {
+    NSIndexPath *indexPath = [self indexPathOfButton:button];
+    EHWeek *week = [self.sortedWeeks objectAtIndex:indexPath.section];
+    NSArray *eventsOnThisDay = week.interviews;
+    InterviewAppointment *event = [eventsOnThisDay objectAtIndex:indexPath.row];
+    NSLog(@"%@", event);
+}
+
+- (void)onMailButton:(UIButton *)button {
+    NSIndexPath *indexPath = [self indexPathOfButton:button];
+    EHWeek *week = [self.sortedWeeks objectAtIndex:indexPath.section];
+    NSArray *eventsOnThisDay = week.interviews;
+    InterviewAppointment *event = [eventsOnThisDay objectAtIndex:indexPath.row];
+    NSLog(@"%@", event);
+}
+
+
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    EHInterviewViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"Cell" forIndexPath:indexPath];
+    cell.tag = indexPath.row;
+    [cell.startButton addTarget:self action:@selector(onStartButton:) forControlEvents:UIControlEventTouchUpInside];
+    [cell.skypeView addTarget:self action:@selector(onSkypeButton:) forControlEvents:UIControlEventTouchUpInside];
+    [cell.mailButton addTarget:self action:@selector(onMailButton:) forControlEvents:UIControlEventTouchUpInside];
     
     
     EHWeek *week = [self.sortedWeeks objectAtIndex:indexPath.section];
     NSArray *eventsOnThisDay = week.interviews;
     InterviewAppointment *event = [eventsOnThisDay objectAtIndex:indexPath.row];
     
-    
     UILabel *labelType = (UILabel *) [cell viewWithTag: 100];
     UILabel *labelDate = (UILabel *) [cell viewWithTag: 101];
     UILabel *labelLocation = (UILabel *) [cell viewWithTag: 102];
     UILabel *labelCandidate = (UILabel *) [cell viewWithTag: 103];
     UILabel *labelRecruiter = (UILabel *) [cell viewWithTag: 104];
-    UIButton *butStart = (UIButton *) [cell viewWithTag: 1000];
-    
-    
-    
 
     labelType.text = [NSString stringWithString:[INTERVIEWTYPE objectAtIndex:event.type.intValue]];
     labelDate.text = [@" "stringByAppendingString:[cellDateFormatter stringFromDate:event.startDate]];
-    
-    if (event.location == nil)
-    {
-        labelLocation.text = @" 1" ;
-    }
-    else
-        labelLocation.text = [@" " stringByAppendingString:event.location];
-    
-   
-    if (event.type == [NSNumber numberWithInt:External])
-    {
-        
-        
-        labelCandidate.text = [@" " stringByAppendingString:event.idExternal.idCandidate.firstName];
-        labelCandidate.text = [labelCandidate.text stringByAppendingString:[@" " stringByAppendingString:event.idExternal.idCandidate.lastName]];
-        UITapGestureRecognizer *goToInfoForm = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(goToInfo:)];
-        [goToInfoForm setDelegate:self];
-        [labelRecruiter addGestureRecognizer:goToInfoForm];
-        [labelCandidate addGestureRecognizer:goToInfoForm];
-        goToInfoForm.numberOfTapsRequired = 1;
-    }
-    else
-    {
+    labelLocation.text = event.location == nil ? @"N/A" : event.location;
 
-        
-
-//        labelCandidate.text = @" many candidates";
-//
-//        UITapGestureRecognizer *goToInfoForm5 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showAllCandidates: )];
-//        [goToInfoForm5 setDelegate:self];
-//        [labelCandidate addGestureRecognizer:goToInfoForm5];
-//        goToInfoForm5.numberOfTapsRequired = 1;
-    }
-                      
+    labelCandidate.text = [@" " stringByAppendingString:event.idExternal.idCandidate.firstName];
+    labelCandidate.text = [labelCandidate.text stringByAppendingString:[@" " stringByAppendingString:event.idExternal.idCandidate.lastName]];
+    
     NSString *firstName = event.idRecruiter.firstName;
     NSString *lastName = event.idRecruiter.lastName;
     labelRecruiter.text = [NSString stringWithFormat:@"%@ %@", firstName, lastName] ;
@@ -275,43 +276,8 @@ enum {None,ITA, Internal,External};
     [cell.layer setBorderColor:[UIColor grayColor].CGColor];
     
     [cell.layer setCornerRadius:20.0f];
-
-    UITapGestureRecognizer *goToInfoForm2 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(goToInfo:)];
-    [goToInfoForm2 setDelegate:self];
-    [labelRecruiter addGestureRecognizer:goToInfoForm2];
-    goToInfoForm2.numberOfTapsRequired = 1;
-    
-    
-
-    
-    UITapGestureRecognizer *goToInfoForm3 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(goToITAForm:)];
-    [goToInfoForm3 setDelegate:self];
-    [butStart addGestureRecognizer:goToInfoForm3];
-    goToInfoForm3.numberOfTapsRequired = 1;
-    
-    if (event.type.intValue==0)
-    {
-        butStart.enabled = NO;
-        
-    }
-    else
-        butStart.enabled = YES;
-    
-    UITapGestureRecognizer *goToInfoForm4 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(chooseTypeOfInterview:)];
-    [goToInfoForm4 setDelegate:self];
-    [labelType addGestureRecognizer:goToInfoForm4];
-    goToInfoForm4.numberOfTapsRequired = 1;
-
-    UITapGestureRecognizer *startInterview = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(goToITAForm:)];
-    [startInterview setDelegate:self];
-    [butStart addGestureRecognizer:startInterview];
-    startInterview.numberOfTapsRequired = 1;
-    
-    UITapGestureRecognizer *changeType = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(chooseTypeOfInterview:)];
-    [changeType setDelegate:self];
-    [labelType addGestureRecognizer:changeType];
-    changeType.numberOfTapsRequired = 1;
-
+    cell.startButton.enabled = event.type.intValue != 0;
+   
     return cell;
 }
 

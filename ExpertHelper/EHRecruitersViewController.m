@@ -61,6 +61,7 @@ Reachability *internetReachable;
     NSString *cellIdentifier = @"recruiterCell";
     EHListOfRecruitersCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
 
+    Recruiter *recr = _recruitersArray[indexPath.row];
     if (!cell) {
         cell = [[EHListOfRecruitersCell alloc]
                 initWithStyle:UITableViewCellStyleDefault
@@ -69,7 +70,7 @@ Reachability *internetReachable;
     
     cell.nameLabel.text = [NSString stringWithFormat: @" %@ %@ ", [_recruitersArray[indexPath.row] firstName], [_recruitersArray[indexPath.row] lastName]];
     cell.skypeLabel.text = [_recruitersArray[indexPath.row] skypeAccount];
-   // cell.recruiterEmail.text = [_recruitersArray[indexPath.row] email];
+    cell.recruiterEmail.text = [_recruitersArray[indexPath.row] email];
     if ([_recruitersArray[indexPath.row] photoUrl] == nil)
     {
       

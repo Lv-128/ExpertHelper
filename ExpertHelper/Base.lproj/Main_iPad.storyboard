@@ -375,8 +375,8 @@
                                     <inset key="sectionInset" minX="0.0" minY="1" maxX="0.0" maxY="1"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Cell" id="RGc-qo-3gI">
-                                        <rect key="frame" x="6" y="115" width="756" height="324"/>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Cell" id="RGc-qo-3gI" customClass="EHInterviewViewCell">
+                                        <rect key="frame" x="6" y="51" width="756" height="324"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="756" height="324"/>
@@ -483,10 +483,15 @@
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
+                                        <connections>
+                                            <outlet property="mailButton" destination="bZg-4S-mqi" id="ddA-Oe-TRu"/>
+                                            <outlet property="skypeView" destination="yL8-Jc-Xel" id="PZT-l9-ema"/>
+                                            <outlet property="startButton" destination="BC0-cq-d0u" id="HJC-nT-HJG"/>
+                                        </connections>
                                     </collectionViewCell>
                                 </cells>
                                 <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" multipleTouchEnabled="YES" tag="500" contentMode="center" reuseIdentifier="HeaderView" id="hzC-2F-npg">
-                                    <rect key="frame" x="0.0" y="64" width="768" height="50"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="768" height="50"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="2000" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ue1-gG-VfW">
@@ -525,7 +530,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="barButton" destination="9vd-mj-onD" id="VFs-Yl-V8i"/>
-                        <outlet property="collectionView" destination="IrZ-3a-zL5" id="67Z-py-YcE"/>
+                        <outlet property="collectionView" destination="IrZ-3a-zL5" id="tRo-9A-YFR"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Jvg-4e-9QP" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -995,6 +1000,6 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="P7n-ca-jg9"/>
+        <segue reference="bCA-os-ODD"/>
     </inferredMetricsTieBreakers>
 </document>
