@@ -26,9 +26,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    _labelNameOfRecruiter.text = @"Name: ";
-    _labelNameOfRecruiter.text = [_labelNameOfRecruiter.text stringByAppendingString:[_nameOfRecruiter stringByAppendingString:[@" "stringByAppendingString:_lastnameOfRecruiter]]];
-    // Do any additional setup after loading the view.
+    _labelNameOfRecruiter.text = [NSString stringWithFormat:@"Name: %@ %@", _recruiter.firstName, _recruiter.lastName];
+    _emailRecruiter.text = _recruiter.email;
+    _skypeRecruiter.text = _recruiter.skypeAccount;
+  
 }
 
 - (void)didReceiveMemoryWarning

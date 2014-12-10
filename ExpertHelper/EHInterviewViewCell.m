@@ -15,7 +15,7 @@
     [_skypeButton removeTarget:nil action:NULL forControlEvents:UIControlEventAllEvents];
     [_mailButton removeTarget:nil action:NULL forControlEvents:UIControlEventAllEvents];
     [_startButton removeTarget:nil action:NULL forControlEvents:UIControlEventAllEvents];
-    
+
 }
 
 @end
