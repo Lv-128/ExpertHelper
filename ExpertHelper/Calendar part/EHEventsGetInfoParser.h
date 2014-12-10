@@ -19,9 +19,6 @@
 @end
 
 
-
-
-
 @interface EHWeek : NSObject
 
 @property (nonatomic, copy) NSArray *interviews;
@@ -30,22 +27,15 @@
 @end
 
 
-
-
-
 @interface EHCalendarParseResult : NSObject
 
 @property (nonatomic, copy) NSString *firstName;
 @property (nonatomic, copy) NSString *lastName;
 @property (nonatomic, copy) NSString * emailAddress;
 
--(id)initWithName:firstName andLastName:lastName;
+- (id)initWithName:firstName andLastName:lastName;
 
 @end
-
-
-
-
 
 
 @interface EHCalendarParseOptions : NSObject
@@ -53,11 +43,10 @@
 @property (nonatomic, assign) BOOL firstNameFirst;
 @property (nonatomic, assign) bool isOneCandidate;
 @property (nonatomic, assign) bool isIta;
-
 @property (nonatomic, assign) bool isExternal;
 
-
 @end
+
 
 @interface EHEventsGetInfoParser : NSObject
 
@@ -67,14 +56,14 @@
 
 - (void)canDefineTypeAsITA:(NSString *)string;
 - (EHCalendarParseResult *)getNameOfCandidateFromTitle:(NSString *)string;
-- (EHCalendarParseResult *)getNameOfRecruiter:(NSString*)string andEmailAddress :(NSString *) email;
+- (EHCalendarParseResult *)getNameOfRecruiter:(NSString *)string andEmailAddress:(NSString *) email;
 - (id)initWithObjection:(EHCalendarParseOptions *)options;
 - (NSArray *) parseAllEventsToInterviews;
 - (NSArray *)sortAllInterviewsToDictionary;
-- (NSArray *)getNamesOfCandidatesFromNote:(NSString*)string;
+- (NSArray *)getNamesOfCandidatesFromNote:(NSString *)string;
 
-@property (nonatomic , strong) EHCalendarEventsParser *calEventParser;
-
+@property (nonatomic, strong) EHCalendarEventsParser *calEventParser;
 @property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
+
 @end
 

@@ -24,12 +24,13 @@
 
 @implementation EHExternalViewController
 
-- (void)EHRecorderCommentController:(EHRecorderCommentController *)externalWithComment transmittingArray:(NSArray *)level withIndex:(NSIndexPath *)index
+- (void)EHRecorderCommentController:(EHRecorderCommentController *)externalWithComment
+                  transmittingArray:(NSArray *)level withIndex:(NSIndexPath *)index andCommentString:(NSString *)comment
 {
     
     _array = [level mutableCopy];
     
-    NSIndexPath *rowToReload = [NSIndexPath indexPathForRow: index.section inSection:index.row];
+    NSIndexPath *rowToReload = [NSIndexPath indexPathForRow:index.section inSection:index.row];
     NSArray *rowsToReload = [NSArray arrayWithObjects:rowToReload, nil];
     [self.tableView reloadRowsAtIndexPaths:rowsToReload withRowAnimation:UITableViewRowAnimationNone];
 }

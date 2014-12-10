@@ -61,7 +61,6 @@ Reachability *internetReachable;
     NSString *cellIdentifier = @"recruiterCell";
     EHListOfRecruitersCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
 
-    Recruiter *recr = _recruitersArray[indexPath.row];
     if (!cell) {
         cell = [[EHListOfRecruitersCell alloc]
                 initWithStyle:UITableViewCellStyleDefault

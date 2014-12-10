@@ -135,7 +135,8 @@
 - (void)viewDidDisappear:(BOOL)animated
 {
     [super viewDidDisappear:animated];
-    [_delegate EHRecorderCommentController:self transmittingArray:_level withIndex:_index];
+    _comment = self.commentText.text;
+    [_delegate EHRecorderCommentController:self transmittingArray:_level withIndex:_index andCommentString:_comment];
 }
 
 - (void)didReceiveMemoryWarning
@@ -270,7 +271,10 @@
 - (void)audioRecorderDidFinishRecording:(AVAudioRecorder *)avrecorder successfully:(BOOL)flag
 {
     [_recordStopButton setBackgroundImage:_buttonRecord forState:UIControlStateNormal];
-    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Finish recording" message:@"Recording successfully saved" delegate:self cancelButtonTitle:@"OK"otherButtonTitles:nil, nil];
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Finish recording"
+                                                        message:@"Recording successfully saved"
+                                                       delegate:self
+                                              cancelButtonTitle:@"OK"otherButtonTitles:nil, nil];
     [alertView show];
 }
 

@@ -65,6 +65,10 @@
 		D9B0CC911A03B17500544323 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D9B0CC8F1A03B17500544323 /* InfoPlist.strings */; };
 		D9B0CC931A03B17500544323 /* ExpertHelperTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D9B0CC921A03B17500544323 /* ExpertHelperTests.m */; };
 		D9BE338B1A3882E00063B6C6 /* EHInterviewViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D9BE338A1A3882E00063B6C6 /* EHInterviewViewCell.m */; };
+		D9BE338E1A3894610063B6C6 /* EHSkillsProfilesParser.m in Sources */ = {isa = PBXBuildFile; fileRef = D9BE338D1A3894610063B6C6 /* EHSkillsProfilesParser.m */; };
+		D9BE33941A38AEDC0063B6C6 /* EHCandidateProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D9BE33931A38AEDC0063B6C6 /* EHCandidateProfileViewController.m */; };
+		D9BE33991A38AFA90063B6C6 /* EHRoundedTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = D9BE33961A38AFA90063B6C6 /* EHRoundedTextView.m */; };
+		D9BE339A1A38AFA90063B6C6 /* EHRoundedAngleTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = D9BE33981A38AFA90063B6C6 /* EHRoundedAngleTextField.m */; };
 		D9BE54011A10B16700AD5D3D /* EHExternalCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D9BE53F81A10B16700AD5D3D /* EHExternalCell.m */; };
 		D9BE54021A10B16700AD5D3D /* EHExternalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D9BE53FA1A10B16700AD5D3D /* EHExternalViewController.m */; };
 		D9BE54041A10B16700AD5D3D /* EHProgrammingLanguagesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D9BE53FE1A10B16700AD5D3D /* EHProgrammingLanguagesViewController.m */; };
@@ -165,6 +169,14 @@
 		D9B0CC921A03B17500544323 /* ExpertHelperTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ExpertHelperTests.m; sourceTree = "<group>"; };
 		D9BE33891A3882E00063B6C6 /* EHInterviewViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EHInterviewViewCell.h; sourceTree = "<group>"; };
 		D9BE338A1A3882E00063B6C6 /* EHInterviewViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EHInterviewViewCell.m; sourceTree = "<group>"; };
+		D9BE338C1A3894610063B6C6 /* EHSkillsProfilesParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EHSkillsProfilesParser.h; path = ../EHSkillsProfilesParser.h; sourceTree = "<group>"; };
+		D9BE338D1A3894610063B6C6 /* EHSkillsProfilesParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EHSkillsProfilesParser.m; path = ../EHSkillsProfilesParser.m; sourceTree = "<group>"; };
+		D9BE33921A38AEDC0063B6C6 /* EHCandidateProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EHCandidateProfileViewController.h; sourceTree = "<group>"; };
+		D9BE33931A38AEDC0063B6C6 /* EHCandidateProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EHCandidateProfileViewController.m; sourceTree = "<group>"; };
+		D9BE33951A38AFA90063B6C6 /* EHRoundedTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EHRoundedTextView.h; sourceTree = "<group>"; };
+		D9BE33961A38AFA90063B6C6 /* EHRoundedTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EHRoundedTextView.m; sourceTree = "<group>"; };
+		D9BE33971A38AFA90063B6C6 /* EHRoundedAngleTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EHRoundedAngleTextField.h; sourceTree = "<group>"; };
+		D9BE33981A38AFA90063B6C6 /* EHRoundedAngleTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EHRoundedAngleTextField.m; sourceTree = "<group>"; };
 		D9BE53F71A10B16700AD5D3D /* EHExternalCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EHExternalCell.h; sourceTree = "<group>"; };
 		D9BE53F81A10B16700AD5D3D /* EHExternalCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EHExternalCell.m; sourceTree = "<group>"; };
 		D9BE53F91A10B16700AD5D3D /* EHExternalViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EHExternalViewController.h; sourceTree = "<group>"; };
@@ -472,6 +484,10 @@
 		D9D3658B1A375A90004D919E /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				D9BE33951A38AFA90063B6C6 /* EHRoundedTextView.h */,
+				D9BE33961A38AFA90063B6C6 /* EHRoundedTextView.m */,
+				D9BE33971A38AFA90063B6C6 /* EHRoundedAngleTextField.h */,
+				D9BE33981A38AFA90063B6C6 /* EHRoundedAngleTextField.m */,
 				D920F3EA1A361BFF002BC81A /* EHPlayPause.h */,
 				D920F3EB1A361BFF002BC81A /* EHPlayPause.m */,
 				D9BE53F71A10B16700AD5D3D /* EHExternalCell.h */,
@@ -553,8 +569,12 @@
 			isa = PBXGroup;
 			children = (
 				D9D3658B1A375A90004D919E /* Views */,
+				D9BE338C1A3894610063B6C6 /* EHSkillsProfilesParser.h */,
+				D9BE338D1A3894610063B6C6 /* EHSkillsProfilesParser.m */,
 				D9BE53F91A10B16700AD5D3D /* EHExternalViewController.h */,
 				D9BE53FA1A10B16700AD5D3D /* EHExternalViewController.m */,
+				D9BE33921A38AEDC0063B6C6 /* EHCandidateProfileViewController.h */,
+				D9BE33931A38AEDC0063B6C6 /* EHCandidateProfileViewController.m */,
 				D9AD2EB51A3384D2003D7E14 /* EHRecorderCommentController.h */,
 				D9AD2EB61A3384D2003D7E14 /* EHRecorderCommentController.m */,
 			);
@@ -708,17 +728,21 @@
 				D9BE54021A10B16700AD5D3D /* EHExternalViewController.m in Sources */,
 				D967F2101A1E4DEE0009639C /* EHITAViewController.m in Sources */,
 				2790F4E61A1398D8001B0956 /* EHProfilesViewController.m in Sources */,
+				D9BE33991A38AFA90063B6C6 /* EHRoundedTextView.m in Sources */,
 				D93144971A376D1900AB470E /* EHAddRecruiterController.m in Sources */,
 				D920F3EC1A361BFF002BC81A /* EHPlayPause.m in Sources */,
+				D9BE339A1A38AFA90063B6C6 /* EHRoundedAngleTextField.m in Sources */,
 				D9E7B7981A31E079002DA710 /* ExternalInterview.m in Sources */,
 				D9E7B7AF1A31E0A3002DA710 /* _InterviewAppointment.m in Sources */,
 				D93144981A376D1900AB470E /* EHRecruitersViewController.m in Sources */,
 				D967F2081A1E23BC0009639C /* EHCandidateFormViewController.m in Sources */,
 				D9998EE41A221CE9002E019A /* EHRevealViewController.m in Sources */,
+				D9BE338E1A3894610063B6C6 /* EHSkillsProfilesParser.m in Sources */,
 				D9BE338B1A3882E00063B6C6 /* EHInterviewViewCell.m in Sources */,
 				D9BE54041A10B16700AD5D3D /* EHProgrammingLanguagesViewController.m in Sources */,
 				D9C4DC361A38433D00BC1AEA /* EHCheckNetworkConnection.m in Sources */,
 				D9998EE01A221CE9002E019A /* EHCalendarEventsParser.m in Sources */,
+				D9BE33941A38AEDC0063B6C6 /* EHCandidateProfileViewController.m in Sources */,
 				D9E7B79A1A31E079002DA710 /* InterviewAppointment.m in Sources */,
 				D92204701A2FAA4300B3BAAD /* Model.xcdatamodeld in Sources */,
 				D9E7B7991A31E079002DA710 /* Group.m in Sources */,
