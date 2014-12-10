@@ -129,22 +129,22 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Stephanie-Hello-Kitty" translatesAutoresizingMaskIntoConstraints="NO" id="CeO-6Y-Uko">
-                                <rect key="frame" x="128" y="146" width="512" height="341"/>
+                                <rect key="frame" x="179" y="103" width="411" height="338"/>
                             </imageView>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Name: Ivanova Dasha" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7if-k9-rys">
-                                <rect key="frame" x="142" y="573" width="538" height="30"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="email" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="blZ-A4-AnZ">
+                                <rect key="frame" x="321" y="584" width="292" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Telephone num: 9999999999" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="blZ-A4-AnZ">
-                                <rect key="frame" x="142" y="629" width="319" height="30"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="adF-Sb-79p">
+                                <rect key="frame" x="321" y="503" width="292" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Skype: VashaDasha94" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DDp-ol-Zwm">
-                                <rect key="frame" x="142" y="683" width="249" height="30"/>
+                                <rect key="frame" x="321" y="670" width="292" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
@@ -173,12 +173,41 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Name :" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e3K-ie-Rpm">
+                                <rect key="frame" x="184" y="503" width="129" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Email  :" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7eU-Q4-4ag">
+                                <rect key="frame" x="184" y="584" width="129" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Skype :" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YKB-1J-V1u">
+                                <rect key="frame" x="184" y="670" width="129" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cMC-fl-G9Y">
+                                <rect key="frame" x="120" y="474" width="528" height="249"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="Recruiter" id="Yvb-4h-xNp"/>
                     <connections>
-                        <outlet property="labelNameOfRecruiter" destination="7if-k9-rys" id="1cf-kZ-qhs"/>
+                        <outlet property="emailRecruiter" destination="blZ-A4-AnZ" id="A01-HO-Zsk"/>
+                        <outlet property="labelNameOfRecruiter" destination="adF-Sb-79p" id="GM0-3J-phc"/>
+                        <outlet property="panel" destination="cMC-fl-G9Y" id="PiP-ds-2sM"/>
+                        <outlet property="photoRecruiter" destination="CeO-6Y-Uko" id="pDl-OW-Hwd"/>
+                        <outlet property="skypeRecruiter" destination="DDp-ol-Zwm" id="LJl-O2-DW4"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="g4T-cI-lzD" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -469,9 +498,6 @@
                                                     <state key="normal" backgroundImage="mail-1">
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
-                                                    <connections>
-                                                        <action selector="sendEmail:event:" destination="8ab-5p-1Xv" eventType="touchUpInside" id="ile-yK-SMr"/>
-                                                    </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="center" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yL8-Jc-Xel">
                                                     <rect key="frame" x="607" y="230" width="50" height="50"/>
@@ -485,11 +511,11 @@
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
                                         <connections>
-                                            <outlet property="addressLabel" destination="g4a-LG-UJa" id="84m-O8-Awc"/>
-                                            <outlet property="candidateLabel" destination="umz-Ed-Ttg" id="iYM-Ih-B7r"/>
+                                            <outlet property="addressLabel" destination="mRu-yt-AcV" id="zAI-bE-8d8"/>
+                                            <outlet property="candidateLabel" destination="MGc-gU-r0r" id="WE5-Gg-L8L"/>
                                             <outlet property="dateLabel" destination="I0f-Kc-Qu9" id="ELP-p5-4TR"/>
                                             <outlet property="mailButton" destination="bZg-4S-mqi" id="ddA-Oe-TRu"/>
-                                            <outlet property="recruiterLabel" destination="9gQ-kk-ExE" id="VqI-UB-qs2"/>
+                                            <outlet property="recruiterLabel" destination="fcn-Bz-1Ie" id="1or-E2-eqK"/>
                                             <outlet property="skypeButton" destination="yL8-Jc-Xel" id="jWM-9z-v2Q"/>
                                             <outlet property="startButton" destination="BC0-cq-d0u" id="HJC-nT-HJG"/>
                                             <outlet property="typeLabel" destination="Bkh-Tf-meK" id="SxR-bb-eAi"/>

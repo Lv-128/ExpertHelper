@@ -26,16 +26,14 @@
 {
     self = [super init];
     if (self) {
-        _nameOfCandidate = @"Name: ";
-        _lastnameOfCandidate = @"Last Name: ";
     }
     return self;
 }
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    _labelNameOfCandidate.text = @"Name: ";
-    _labelNameOfCandidate.text = [_labelNameOfCandidate.text stringByAppendingString:[_nameOfCandidate stringByAppendingString:[@" "stringByAppendingString:_lastnameOfCandidate]]];
+    _labelNameOfCandidate.text = [NSString stringWithFormat:@"Name: %@ %@", _candidate.firstName, _candidate.lastName];
+
     // Do any additional setup after loading the view.
 }
 

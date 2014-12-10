@@ -7,11 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "EHAppDelegate.h"
 @interface EHCandidateFormViewController : UIViewController
 
 @property (weak, nonatomic) IBOutlet UILabel *labelNameOfCandidate;
-@property (strong, nonatomic) NSString *nameOfCandidate;
-@property (strong, nonatomic) NSString *lastnameOfCandidate;
+@property (strong, nonatomic) Candidate *candidate;
 
 @end
