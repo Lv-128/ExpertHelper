@@ -44,7 +44,10 @@
 @end
 @implementation EHCalendarParseOptions
 
--(id) initWithOptionFirstNameFirst:(bool) firstNameFirst andTheOneCandidate:(BOOL)theOneCandidate andIsIta:(bool)isIta andIsExternal:(bool)isExternal
+-(id) initWithOptionFirstNameFirst:(bool)firstNameFirst
+                andTheOneCandidate:(BOOL)theOneCandidate
+                          andIsIta:(bool)isIta
+                     andIsExternal:(bool)isExternal
 {
     self = [super init];
     {
@@ -112,7 +115,9 @@
     
     
     NSRegularExpressionOptions regexOptions = NSRegularExpressionCaseInsensitive;
-    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:pattern options:regexOptions error:&error];
+    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:pattern
+                                                                           options:regexOptions
+                                                                             error:&error];
     NSArray *matches = [regex matchesInString:string options:(NSMatchingOptions)regexOptions range:range];
     if ([matches count] > 0)
     {
@@ -131,7 +136,9 @@
     
     
     NSRegularExpressionOptions regexOptions = NSRegularExpressionCaseInsensitive;
-    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:pattern options:regexOptions error:&error];
+    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:pattern
+                                                                           options:regexOptions
+                                                                             error:&error];
     NSArray *matches = [regex matchesInString:string options:(NSMatchingOptions)regexOptions range:range];
     if (([matches count] > 0)||(self.parseOptions.isOneCandidate))
     {
@@ -168,7 +175,9 @@
     
     
     NSRegularExpressionOptions regexOptions = NSRegularExpressionCaseInsensitive;
-    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:pattern options:regexOptions error:&error];
+    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:pattern
+                                                                           options:regexOptions
+                                                                             error:&error];
     NSArray *matches = [regex matchesInString:string options:(NSMatchingOptions)regexOptions range:range];
     if ([matches count] > 0)
     {
@@ -182,11 +191,16 @@
 #pragma mark Get people from event
 -(Recruiter *)getRecruiterFromEvent:(EKEvent*)event andAddToDB:(NSManagedObjectContext*)context
 {
-    
     ///////////////////////////recruiter///////////////////
-    NSString * name = [[event.attendees objectAtIndex: 0] name];
-    NSString * email = [[event.attendees objectAtIndex: 0] emailAddress];
-    EHCalendarParseResult * parseNameAndLastnameOfRecruiter = [self getNameOfRecruiter:name andEmailAddress:email];
+    EKParticipant *oranizer = event.organizer;
+    NSString * name = oranizer.name;
+    NSString * email = @"unknown@unknown.com";
+    if ([oranizer respondsToSelector:@selector(emailAddress)]) {
+        email = [oranizer performSelector:@selector(emailAddress)];
+    }
+    
+    EHCalendarParseResult * parseNameAndLastnameOfRecruiter = [self getNameOfRecruiter:name
+                                                                       andEmailAddress:email];
     
     
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
@@ -223,64 +237,32 @@
 -(Candidate *)getCandidateFromEvent:(EKEvent*)event andAddToDB:(NSManagedObjectContext*)context
 {
     Candidate * candidateResult;
-    if (_parseOptions.isOneCandidate)
+    EHCalendarParseResult * result = [self getNameOfCandidateFromTitle:event.title];
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:[Candidate entityName]
+                                              inManagedObjectContext:context];
+    NSPredicate *predicate =
+    [NSPredicate predicateWithFormat:@"firstName == %@ AND lastName == %@ ",result.firstName,result.lastName];
+    [fetchRequest setPredicate:predicate];
+    [fetchRequest setEntity:entity];
+    
+    NSArray *fetchedObjects = [context executeFetchRequest:fetchRequest error:nil];
+    if (fetchedObjects.count>0)// we don't need this actually
     {
-        EHCalendarParseResult * parseNameAndLastnameOfCandidate = [self getNameOfCandidateFromTitle:event.title];
-        
-        
-        
-        NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-        NSEntityDescription *entity = [NSEntityDescription entityForName:[Candidate entityName]
-                                                  inManagedObjectContext:context];
-        NSPredicate *predicate =
-        [NSPredicate predicateWithFormat:@"firstName == %@ AND lastName == %@ ",parseNameAndLastnameOfCandidate.firstName,parseNameAndLastnameOfCandidate.lastName];
-        [fetchRequest setPredicate:predicate];
-        [fetchRequest setEntity:entity];
-        
-        NSArray *fetchedObjects = [context executeFetchRequest:fetchRequest error:nil];
-        
-        if(fetchedObjects.count>0)// we don't need this actually
+        for (Candidate *candidate in fetchedObjects)
         {
-            for (Candidate *candidate in fetchedObjects)
-            {
-                candidateResult = candidate;
-                NSLog(@"found %lu candidates with name %@ and last name %@", (unsigned long)fetchedObjects.count,parseNameAndLastnameOfCandidate.firstName,parseNameAndLastnameOfCandidate.lastName);
-            }
+            candidateResult = candidate;
+            NSLog(@"found %lu candidates with name %@ and last name %@", (unsigned long)fetchedObjects.count,result.firstName,result.lastName);
         }
-        
-        else
-        {
-            
-            candidateResult = [NSEntityDescription
-                               insertNewObjectForEntityForName:[Candidate entityName]
-                               inManagedObjectContext:context];
-            candidateResult.firstName = parseNameAndLastnameOfCandidate.firstName;
-            candidateResult.lastName = parseNameAndLastnameOfCandidate.lastName;
-            
-        }
-        
-        
     }
-    else{
-        //here create itaestimate entity and array of candidates entities
-        //NSArray * parseNameAndLastnameOfCandidate = [self getNamesOfCandidatesFromNote:event.notes];
-        
-        //   interview.nameAndLastNameOfCandidates = parseNameAndLastnameOfCandidate;
-        
-        //            ItaEstimate *itaEstimate = [NSEntityDescription
-        //                                        insertNewObjectForEntityForName:@"ItaEstimate"
-        //                                        inManagedObjectContext:context];
-        //            itaEstimate.idInterview = interview;
-        //            itaEstimate.idCandidate = candidate;
-        //
-        // NSLog(@"%@",[[interview.nameAndLastNameOfCandidates objectAtIndex:0] firstName]);
+    else
+    {
+        candidateResult = [NSEntityDescription insertNewObjectForEntityForName:[Candidate entityName]
+                                                        inManagedObjectContext:context];
+        candidateResult.firstName = result.firstName;
+        candidateResult.lastName = result.lastName;
     }
-    
-    
     return candidateResult;
-    
-    
-    
 }
 
 - (NSArray *)getNamesOfCandidatesFromNote:(NSString*)string

@@ -134,6 +134,7 @@
 
 - (void)viewDidDisappear:(BOOL)animated
 {
+    [super viewDidDisappear:animated];
     [_delegate EHRecorderCommentController:self transmittingArray:_level withIndex:_index];
 }
 
