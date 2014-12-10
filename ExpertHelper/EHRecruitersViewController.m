@@ -80,7 +80,7 @@ Reachability *internetReachable;
     }
     else
     {
-         EHCheckNetworkConnection * checkConnection = [[EHCheckNetworkConnection alloc] initWithHost : [_recruitersArray[indexPath.row] photoUrl]];
+        EHCheckNetworkConnection * checkConnection = [[EHCheckNetworkConnection alloc] initWithHost : [_recruitersArray[indexPath.row] photoUrl]];
         if (checkConnection.internetActive == YES)
         {
         NSURL *imgURL = [NSURL URLWithString:[_recruitersArray[indexPath.row] photoUrl]];

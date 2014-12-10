@@ -15,6 +15,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *photoRecruiter;
 @property (weak, nonatomic) IBOutlet UILabel *emailRecruiter;
 @property (weak, nonatomic) IBOutlet UILabel *skypeRecruiter;
+@property (weak, nonatomic) IBOutlet UIImageView *panel;
 
 - (IBAction)skypeMe:(id)sender;
 

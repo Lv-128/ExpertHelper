@@ -208,7 +208,10 @@ enum {None,ITA, Internal,External};
     EHWeek *week = [self.sortedWeeks objectAtIndex:indexPath.section];
     NSArray *eventsOnThisDay = week.interviews;
     InterviewAppointment *event = [eventsOnThisDay objectAtIndex:indexPath.row];
-    NSLog(@"%@", event);
+    
+    [self sendEmailToAddress:event.idRecruiter.email];
+    
+    
 }
 
 
@@ -401,11 +404,6 @@ enum {None,ITA, Internal,External};
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
-- (IBAction)sendEmail:(id)sender event:(id)event
-{
-   
-    [self sendEmailToAddress:@"elena.pyanyh@gmail.com"];
-}
 
 
 @end

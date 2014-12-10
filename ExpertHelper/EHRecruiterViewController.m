@@ -7,7 +7,7 @@
 //
 
 #import "EHRecruiterViewController.h"
-
+#import "EHAppDelegate.h"
 @interface EHRecruiterViewController ()
 
 @end
@@ -18,7 +18,8 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
+       
+        
     }
     return self;
 }
@@ -26,10 +27,39 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    _photoRecruiter.layer.cornerRadius = 10;
+    _panel.layer.cornerRadius = 10;
+    _panel.layer.borderColor = [UIColor grayColor].CGColor;
+    _panel.layer.borderWidth = 2;
+  
+    
     _labelNameOfRecruiter.text = [NSString stringWithFormat:@"Name: %@ %@", _recruiter.firstName, _recruiter.lastName];
     _emailRecruiter.text = _recruiter.email;
     _skypeRecruiter.text = _recruiter.skypeAccount;
-  
+    
+    EHCheckNetworkConnection * checkConnection;
+    if (_recruiter.photoUrl!= nil)
+    {
+    checkConnection = [[EHCheckNetworkConnection alloc] initWithHost : _recruiter.photoUrl];
+    if (checkConnection.internetActive == YES)
+    {
+        NSURL *imgURL = [NSURL URLWithString:_recruiter.photoUrl];
+        
+        NSData *imgdata=[[NSData alloc]initWithContentsOfURL:imgURL];
+        
+        UIImage *image=[[UIImage alloc]initWithData:imgdata];
+        NSLog(@"%@",imgURL);
+        
+        [_photoRecruiter setImage:image];
+    }
+        
+    }
+    else
+     if (_recruiter.photoUrl == nil || checkConnection.internetActive == NO){
+        [_photoRecruiter setImage:[UIImage imageNamed:@"contact.png"]];
+      
+    }
 }
 
 - (void)didReceiveMemoryWarning
