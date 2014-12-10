@@ -75,8 +75,8 @@
     NSError *error;
     
     
-    NSString *patternLastnameFirst = [NSString stringWithFormat:@"(<img src(.)*softserve.ua.wp-content.uploads(.)*%@-%@(.)*png.>)|",lastName,firstName];
-    NSString *patternFirstnameFirst =[NSString stringWithFormat:@"(<img src(.)*softserve.ua.wp-content.uploads(.)*%@-%@(.)*png.>)",firstName,lastName];
+    NSString *patternLastnameFirst = [NSString stringWithFormat:@"(<img src(.)*softserve(.)*%@-%@(.)*png.>)|",lastName,firstName];
+    NSString *patternFirstnameFirst =[NSString stringWithFormat:@"(<img src(.)*softserve.ua(.)*%@-%@(.)*png.>)",firstName,lastName];
     NSString *pattern = [patternLastnameFirst stringByAppendingString:patternFirstnameFirst];
     
     
@@ -90,8 +90,8 @@
     NSString * webFormatted2;
     @try
     {
-        webFormatted = [NSString stringWithContentsOfURL:webUnFormatted encoding:NSASCIIStringEncoding error:&error];
-        webFormatted2 = [NSString stringWithContentsOfURL:webUnFormatted2 encoding:NSASCIIStringEncoding error:&error];
+            webFormatted = [NSString stringWithContentsOfURL:webUnFormatted encoding:NSASCIIStringEncoding error:&error];
+            webFormatted2 = [NSString stringWithContentsOfURL:webUnFormatted2 encoding:NSASCIIStringEncoding error:&error];
     }
     @catch (NSException *exception)
     {

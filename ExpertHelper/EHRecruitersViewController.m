@@ -10,9 +10,9 @@
 #import "EHListOfRecruitersCell.h"
 #import <MessageUI/MessageUI.h>
 
-@interface EHRecruitersViewController ()<MFMailComposeViewControllerDelegate, UIGestureRecognizerDelegate>
-
-
+@interface EHRecruitersViewController ()<MFMailComposeViewControllerDelegate, UIGestureRecognizerDelegate>{
+Reachability *internetReachable;
+}
 @end
 
 @implementation EHRecruitersViewController
@@ -75,16 +75,23 @@
     }
     else
     {
-        
-      
-        
+        cell.tempURL.text = [_recruitersArray[indexPath.row] photoUrl];
+        EHCheckNetworkConnection * checkConnection = [[EHCheckNetworkConnection alloc] initWithHost : [_recruitersArray[indexPath.row] photoUrl]];
+        if (checkConnection.internetActive == YES)
+        {
         NSURL *imgURL = [NSURL URLWithString:[_recruitersArray[indexPath.row] photoUrl]];
         
         NSData *imgdata=[[NSData alloc]initWithContentsOfURL:imgURL];
         
         UIImage *image=[[UIImage alloc]initWithData:imgdata];
+            NSLog(@"%@",imgURL);
         
         [cell.picture setImage:image];
+        }
+        else{
+             [cell.picture setImage:[UIImage imageNamed:@"contact.png"]];
+        }
+        
     }
     
     
@@ -104,6 +111,8 @@
     
     return cell;
 }
+
+
 
 - (void)getAllRecruitersFromDB
 {
