@@ -150,7 +150,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gW1-2H-UYC">
-                                <rect key="frame" x="128" y="850" width="60" height="60"/>
+                                <rect key="frame" x="203" y="837" width="60" height="60"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <state key="normal" backgroundImage="skype">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -160,16 +160,9 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1sj-JU-UDl">
-                                <rect key="frame" x="354" y="850" width="60" height="60"/>
+                                <rect key="frame" x="506" y="837" width="60" height="60"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <state key="normal" backgroundImage="mail">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9ug-Vu-gIU">
-                                <rect key="frame" x="580" y="850" width="60" height="60"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <state key="normal" backgroundImage="phone">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
@@ -283,9 +276,12 @@
                                 <constraints>
                                     <constraint firstAttribute="width" constant="94" id="f0o-34-M9w"/>
                                 </constraints>
-                                <state key="normal" title="Create form">
+                                <state key="normal" title="Save form">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="saveForm:" destination="ioK-KF-1C8" eventType="touchUpInside" id="4lh-ps-9Wd"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hKd-4V-4Eh">
                                 <rect key="frame" x="501" y="964" width="94" height="40"/>
@@ -803,8 +799,6 @@
                     </view>
                     <navigationItem key="navigationItem" id="XSO-MY-rsO"/>
                     <connections>
-                        <outlet property="commentText" destination="U8N-Uv-T6Z" id="5ba-sI-7JA"/>
-                        <outlet property="commentTextView" destination="U8N-Uv-T6Z" id="E9p-if-c8T"/>
                         <outlet property="commentView" destination="U8N-Uv-T6Z" id="rTc-Es-PDu"/>
                         <outlet property="levelLabel" destination="VTj-8M-ttN" id="9YV-hd-bk6"/>
                         <outlet property="recordStopButton" destination="asW-22-4we" id="476-jK-4Nm"/>
@@ -929,12 +923,6 @@
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" clipsSubviews="YES" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Recruiter email" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JkO-CJ-Dec">
-                                                    <rect key="frame" x="302" y="205" width="299" height="33"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
                                                 <label opaque="NO" clipsSubviews="YES" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Recruiter skype number" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nST-B2-40y">
                                                     <rect key="frame" x="302" y="97" width="293" height="33"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -984,7 +972,6 @@
                                             <outlet property="recruiterEmail" destination="vye-04-fsK" id="yN7-Jd-MNk"/>
                                             <outlet property="skypeLabel" destination="nST-B2-40y" id="Uq0-Zf-Vkr"/>
                                             <outlet property="skypePic" destination="YIf-J7-gxi" id="Zen-hQ-cmj"/>
-                                            <outlet property="tempURL" destination="JkO-CJ-Dec" id="ycn-Wu-9Fi"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -1162,7 +1149,6 @@
         <image name="checkBoxMarked.png" width="849" height="757"/>
         <image name="mail" width="110" height="110"/>
         <image name="mail-1" width="75" height="80"/>
-        <image name="phone" width="88" height="88"/>
         <image name="record_button" width="1024" height="1024"/>
         <image name="skype" width="300" height="300"/>
         <image name="skype-1" width="70" height="79"/>

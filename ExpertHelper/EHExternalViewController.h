@@ -17,6 +17,7 @@
 }
 @property (nonatomic, strong) InterviewAppointment * currentInterviewDescription;
 @property (nonatomic, strong) ExternalInterview * currentExternalInterview;
+- (IBAction)saveForm:(id)sender;
 @property (nonatomic, strong) NSIndexPath *index;
 
 @end

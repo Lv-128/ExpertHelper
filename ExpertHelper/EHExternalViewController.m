@@ -10,6 +10,7 @@
 #import "EHRecorderCommentController.h"
 #import "EHExternalCell.h"
 #import "EHSkillLevelPopup.h"
+#import "EHSkillsProfilesParser.h"
 
 @interface EHExternalViewController () <UITableViewDataSource, UITableViewDelegate, EHSkillLevelPopupDelegate, EHRecorderCommentControllerDelegate>
 
@@ -19,16 +20,17 @@
 @property (nonatomic, strong) NSArray *tableSections;
 @property (nonatomic, strong) NSArray *sectionContent;
 @property (nonatomic, strong) NSMutableArray *array;
+@property (nonatomic, strong) NSMutableArray *comment;
 
 @end
 
 @implementation EHExternalViewController
 
 - (void)EHRecorderCommentController:(EHRecorderCommentController *)externalWithComment
-                  transmittingArray:(NSArray *)level withIndex:(NSIndexPath *)index andCommentString:(NSString *)comment
+                  transmittingArray:(NSArray *)level withIndex:(NSIndexPath *)index andCommentArray:(NSArray *)comment
 {
-    
     _array = [level mutableCopy];
+    _comment = [comment mutableCopy];
     
     NSIndexPath *rowToReload = [NSIndexPath indexPathForRow:index.section inSection:index.row];
     NSArray *rowsToReload = [NSArray arrayWithObjects:rowToReload, nil];
@@ -77,6 +79,7 @@
                             @[ @"Core", @"Desktop", @"Web", @"DB", @"BI", @"RIA", @"Multimedia", @"Mobile", @"Embedded", @"Integration" ]];
     
     _array = [[NSMutableArray alloc]initWithCapacity:0];
+    _comment = [[NSMutableArray alloc]initWithCapacity:0];
     
     for (int i = 0; i < self.tableSections.count; i++)
     {
@@ -85,6 +88,7 @@
             [temp addObject:@""];
         
         [_array insertObject:temp atIndex:i];
+        [_comment insertObject:temp atIndex:i];
     }
     
     self.openGeneralInfo.layer.cornerRadius = 13;
@@ -103,6 +107,7 @@
         external.delegate = self;
         external.level = _array;
         external.index = _index;
+        external.comment = _comment;
     }
 }
 
@@ -162,7 +167,7 @@
 - (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath
 {
     _index = indexPath;
-    UITableViewCell *cell= [_tableView cellForRowAtIndexPath:indexPath];
+    UITableViewCell *cell = [_tableView cellForRowAtIndexPath:indexPath];
     [self performSegueWithIdentifier:@"profa" sender:cell];
 }
 
@@ -204,6 +209,43 @@
 
 - (IBAction)openGeneralInfo:(UIButton *)sender {
 
+}
+
+
+
+//self.tableSections = @[@"Design", @"Construction", @"Quality", @"Configuration Management", @"Scope Management and Software Engineering", @"Profiles"];
+//self.sectionContent = @[@[ @"Object oriented programming and design", @"Designing solution architecture", @"Database design" ],
+//                        @[ @"Coding (primary language and standard libraries)", @"Debugging and bug fixing" ],
+//                        @[ @"Using issue tracking systems", @"Reviewing code" ],
+//                        @[ @"Versions management", @"Build management" ],
+//                        @[ @"Gathering and managing requirements", @"Preparing estimations", @"Writing proposals" ],
+//                        @[ @"Core", @"Desktop", @"Web", @"DB", @"BI", @"RIA", @"Multimedia", @"Mobile", @"Embedded", @"Integration" ]];
+
+- (void)pars
+{
+    EHSkillsProfilesParser *prof = [[EHSkillsProfilesParser alloc]init];
+    NSMutableArray *profTransmitting = [[NSMutableArray alloc]init];
+    
+    for (int y = 0; y < _tableSections.count; y++) {
+        EHGroups *groups = [[EHGroups alloc]init];
+        NSMutableArray *groupsTransmitting = [[NSMutableArray alloc]init];
+        
+        for (int x = 0; x < [[self.sectionContent objectAtIndex:y] count]; x++) {
+            EHSkill *skills = [[EHSkill alloc]init];
+            skills.nameOfSkill = _sectionContent[y][x];
+            skills.estimate = _array[y][x];
+            skills.comment = _comment[y][x];
+            [groupsTransmitting addObject:skills];
+        }
+        groups.skills = groupsTransmitting;
+        groups.nameOfSections = _tableSections[y];
+        [profTransmitting addObject:groups];
+    }
+    prof.groups = profTransmitting;
+}
+
+- (IBAction)saveForm:(id)sender {
+    [self pars];
 }
 
 @end

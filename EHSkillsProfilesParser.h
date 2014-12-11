@@ -46,6 +46,6 @@
 @interface EHSkillsProfilesParser : NSObject
 
 @property (nonatomic, copy) NSArray *groups;
-@property (nonatomic, copy) NSArray *getInfo;
+@property (nonatomic, copy) NSArray *genInfo;
 
 @end

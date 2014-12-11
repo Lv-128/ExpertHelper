@@ -283,10 +283,11 @@ enum {None,ITA, Internal,External};
             for (InterviewAppointment *info in fetchedObjects) {
                 info.type = [NSNumber numberWithInt:buttonIndex];
             }
+            [_collectionView reloadData];
+
             if (![context save:&error]) {
                 NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
-            [_collectionView reloadData];
-            }
+                        }
         }
     
 }

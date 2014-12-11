@@ -69,6 +69,7 @@
 		D9BE33941A38AEDC0063B6C6 /* EHCandidateProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D9BE33931A38AEDC0063B6C6 /* EHCandidateProfileViewController.m */; };
 		D9BE33991A38AFA90063B6C6 /* EHRoundedTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = D9BE33961A38AFA90063B6C6 /* EHRoundedTextView.m */; };
 		D9BE339A1A38AFA90063B6C6 /* EHRoundedAngleTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = D9BE33981A38AFA90063B6C6 /* EHRoundedAngleTextField.m */; };
+		D9BE339C1A38B87B0063B6C6 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D9BE339B1A38B87B0063B6C6 /* QuartzCore.framework */; };
 		D9BE54011A10B16700AD5D3D /* EHExternalCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D9BE53F81A10B16700AD5D3D /* EHExternalCell.m */; };
 		D9BE54021A10B16700AD5D3D /* EHExternalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D9BE53FA1A10B16700AD5D3D /* EHExternalViewController.m */; };
 		D9BE54041A10B16700AD5D3D /* EHProgrammingLanguagesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D9BE53FE1A10B16700AD5D3D /* EHProgrammingLanguagesViewController.m */; };
@@ -177,6 +178,7 @@
 		D9BE33961A38AFA90063B6C6 /* EHRoundedTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EHRoundedTextView.m; sourceTree = "<group>"; };
 		D9BE33971A38AFA90063B6C6 /* EHRoundedAngleTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EHRoundedAngleTextField.h; sourceTree = "<group>"; };
 		D9BE33981A38AFA90063B6C6 /* EHRoundedAngleTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EHRoundedAngleTextField.m; sourceTree = "<group>"; };
+		D9BE339B1A38B87B0063B6C6 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		D9BE53F71A10B16700AD5D3D /* EHExternalCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EHExternalCell.h; sourceTree = "<group>"; };
 		D9BE53F81A10B16700AD5D3D /* EHExternalCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EHExternalCell.m; sourceTree = "<group>"; };
 		D9BE53F91A10B16700AD5D3D /* EHExternalViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EHExternalViewController.h; sourceTree = "<group>"; };
@@ -225,6 +227,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D9BE339C1A38B87B0063B6C6 /* QuartzCore.framework in Frameworks */,
 				D92204251A2F70D200B3BAAD /* CoreData.framework in Frameworks */,
 				D913A8001A2D0C3B00656CDE /* MessageUI.framework in Frameworks */,
 				D90A1BC31A16371800B610C6 /* AVFoundation.framework in Frameworks */,
@@ -413,6 +416,7 @@
 		D9B0CC631A03B17500544323 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D9BE339B1A38B87B0063B6C6 /* QuartzCore.framework */,
 				D92204241A2F70D200B3BAAD /* CoreData.framework */,
 				D913A7FF1A2D0C3B00656CDE /* MessageUI.framework */,
 				D90A1BC21A16371800B610C6 /* AVFoundation.framework */,

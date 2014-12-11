@@ -23,7 +23,6 @@
 }
 
 @property (weak, nonatomic) IBOutlet UILabel *levelLabel;
-@property (weak, nonatomic) IBOutlet UITextView *commentTextView;
 @property (weak, nonatomic) IBOutlet UITableView *tableForRecords;
 @property (copy, nonatomic) NSArray *arrayOfRecords;
 @property (strong, nonatomic) UIImage *buttonRecord;
@@ -54,7 +53,7 @@
     _levelLabel.text = popup.skillLevel;
     
     NSMutableArray *temp = [_level mutableCopy];
-    [temp[_index.section] setObject:_levelLabel.text atIndex:_index.row ];
+    [temp[_index.section] setObject:_levelLabel.text atIndex:_index.row];
     _level = temp;
 }
 
@@ -80,17 +79,15 @@
     _buttonPlay = [UIImage imageNamed:@"play_button"];
     _buttonPause = [UIImage imageNamed:@"pause_button"];
     
-    _commentTextView.layer.borderWidth = 2.0f;
-    _commentTextView.layer.cornerRadius = 20;
-    _commentTextView.clipsToBounds = YES;
+    _commentView.layer.borderWidth = 2.0f;
+    _commentView.layer.cornerRadius = 20;
+    _commentView.clipsToBounds = YES;
     
     _tableForRecords.layer.borderWidth = 2.0f;
     _tableForRecords.layer.cornerRadius = 20;
     _tableForRecords.clipsToBounds = YES;
     
     _arrayOfRecords = [[NSArray alloc] initWithObjects:@"record 1", @"record 2", @"record 3", nil];
-    
-    
     
     AVAudioSession *audioSession = [AVAudioSession sharedInstance];
     
@@ -135,8 +132,7 @@
 - (void)viewDidDisappear:(BOOL)animated
 {
     [super viewDidDisappear:animated];
-    _comment = self.commentText.text;
-    [_delegate EHRecorderCommentController:self transmittingArray:_level withIndex:_index andCommentString:_comment];
+    [_delegate EHRecorderCommentController:self transmittingArray:_level withIndex:_index andCommentArray:_comment];
 }
 
 - (void)didReceiveMemoryWarning
@@ -191,10 +187,14 @@
     NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"$\\n" options:0 error:NULL];
     NSUInteger a = [regex numberOfMatchesInString:textView.text options:0 range:NSMakeRange(0, [textView.text length])];
     
-        if(_commentView.text.length == 0||a){
-            _commentView.textColor = [UIColor lightGrayColor];
-            _commentView.text = @"Please post your comments";
-            [_commentView resignFirstResponder];
+    if(_commentView.text.length == 0||a){
+        _commentView.textColor = [UIColor lightGrayColor];
+        _commentView.text = @"Please post your comments";
+        [_commentView resignFirstResponder];
+    }else{
+//        NSMutableArray *commentTemp = [_comment mutableCopy];
+//        [commentTemp[_index.section] setObject:_commentView.text forKey:_index.row];
+//        _comment = commentTemp;
     }
     return YES;
 }

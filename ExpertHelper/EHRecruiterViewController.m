@@ -26,8 +26,7 @@
 
 - (void)viewDidLoad
 {
-    [super viewDidLoad];
-    
+    _photoRecruiter.layer.masksToBounds = YES;
     _photoRecruiter.layer.cornerRadius = 10;
     _panel.layer.cornerRadius = 10;
     _panel.layer.borderColor = [UIColor grayColor].CGColor;
@@ -40,26 +39,27 @@
     
     EHCheckNetworkConnection * checkConnection;
     if (_recruiter.photoUrl!= nil)
-    {
-    checkConnection = [[EHCheckNetworkConnection alloc] initWithHost : _recruiter.photoUrl];
-    if (checkConnection.internetActive == YES)
-    {
-        NSURL *imgURL = [NSURL URLWithString:_recruiter.photoUrl];
+        {
+            checkConnection = [[EHCheckNetworkConnection alloc] initWithHost : _recruiter.photoUrl];
+            if (checkConnection.internetActive == YES)
+                {
+                    NSURL *imgURL = [NSURL URLWithString:_recruiter.photoUrl];
         
-        NSData *imgdata=[[NSData alloc]initWithContentsOfURL:imgURL];
+                    NSData *imgdata=[[NSData alloc]initWithContentsOfURL:imgURL];
         
-        UIImage *image=[[UIImage alloc]initWithData:imgdata];
-        NSLog(@"%@",imgURL);
+                    UIImage *image=[[UIImage alloc]initWithData:imgdata];
         
-        [_photoRecruiter setImage:image];
-    }
-        
-    }
-    else
-     if (_recruiter.photoUrl == nil || checkConnection.internetActive == NO){
-        [_photoRecruiter setImage:[UIImage imageNamed:@"contact.png"]];
-      
-    }
+                    NSLog(@"%@",imgURL);
+
+                    [_photoRecruiter setImage:image];
+                }
+        }
+        else
+            if (_recruiter.photoUrl == nil || checkConnection.internetActive == NO){
+                [_photoRecruiter setImage:[UIImage imageNamed:@"contact.png"]];
+            }
+
+    [super viewDidLoad];
 }
 
 - (void)didReceiveMemoryWarning

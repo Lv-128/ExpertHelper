@@ -16,19 +16,17 @@
 - (void)EHRecorderCommentController:(EHRecorderCommentController *)externalWithComment
                   transmittingArray:(NSArray *)level
                           withIndex:(NSIndexPath *)index
-                   andCommentString:(NSString *)comment;
+                   andCommentArray:(NSArray *)comment;
 
 @end
 
 @interface EHRecorderCommentController : UIViewController <UITableViewDataSource, UITableViewDelegate, AVAudioRecorderDelegate, AVAudioPlayerDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (nonatomic, strong) NSString *comment;
+@property (nonatomic, strong) NSArray *comment;
 @property (nonatomic, strong) NSArray *level;
 @property (nonatomic, strong) NSIndexPath *index;
 @property (nonatomic, strong) NSArray *arrayListOfRecordSound;
-@property (weak, nonatomic) IBOutlet UITextView *commentText;
-
 
 @property (nonatomic, weak) id<EHRecorderCommentControllerDelegate> delegate;
 
