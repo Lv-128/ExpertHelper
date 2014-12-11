@@ -227,19 +227,19 @@
     NSMutableArray *profTransmitting = [[NSMutableArray alloc]init];
     
     for (int y = 0; y < _tableSections.count; y++) {
-        EHGroups *groups = [[EHGroups alloc]init];
+        EHGroups *groupsOfExternal = [[EHGroups alloc]init];
         NSMutableArray *groupsTransmitting = [[NSMutableArray alloc]init];
         
         for (int x = 0; x < [[self.sectionContent objectAtIndex:y] count]; x++) {
-            EHSkill *skills = [[EHSkill alloc]init];
-            skills.nameOfSkill = _sectionContent[y][x];
-            skills.estimate = _array[y][x];
-            skills.comment = _comment[y][x];
-            [groupsTransmitting addObject:skills];
+            EHSkill *skillsOfExternal = [[EHSkill alloc]init];
+            skillsOfExternal.nameOfSkill = _sectionContent[y][x];
+            (_array[y][x] != nil) ? (skillsOfExternal.estimate = _array[y][x]): (skillsOfExternal.estimate = @"None");
+            (_comment[y][x] != nil) ? (skillsOfExternal.comment = _comment[y][x]): (skillsOfExternal.comment = @"None");
+            [groupsTransmitting addObject:skillsOfExternal];
         }
-        groups.skills = groupsTransmitting;
-        groups.nameOfSections = _tableSections[y];
-        [profTransmitting addObject:groups];
+        groupsOfExternal.skills = groupsTransmitting;
+        groupsOfExternal.nameOfSections = _tableSections[y];
+        [profTransmitting addObject:groupsOfExternal];
     }
     prof.groups = profTransmitting;
 }

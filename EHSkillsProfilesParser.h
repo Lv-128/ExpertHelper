@@ -19,9 +19,9 @@
 
 @interface EHSkill : NSObject
 
-@property (nonatomic, strong) NSString *nameOfSkill;
-@property (nonatomic, strong) NSString *estimate;
-@property (nonatomic, strong) NSString *comment;
+@property (nonatomic, copy) NSString *nameOfSkill;
+@property (nonatomic, copy) NSString *estimate;
+@property (nonatomic, copy) NSString *comment;
 
 @end
 
@@ -29,7 +29,7 @@
 @interface EHGenInfo : NSObject
 
 @property (nonatomic, strong) NSString *expertName;
-@property (nonatomic, strong) NSDate *dateOfInterview;
+@property (nonatomic, strong) NSString *dateOfInterview;
 @property (nonatomic, strong) NSString *competenceGroup;
 @property (nonatomic, strong) NSString *typeOfProject;
 @property (nonatomic, strong) NSString *skillsSummary;
@@ -37,8 +37,8 @@
 @property (nonatomic, strong) NSString *recommendations;
 @property (nonatomic, strong) NSString *potentialCandidate;
 @property (nonatomic, strong) NSString *levelEstimate;
+@property (nonatomic, strong) NSString *hire;
 @property (nonatomic, strong) NSArray *records;
-@property (nonatomic) BOOL hire;
 
 @end
 
@@ -46,6 +46,5 @@
 @interface EHSkillsProfilesParser : NSObject
 
 @property (nonatomic, copy) NSArray *groups;
-@property (nonatomic, copy) NSArray *genInfo;
 
 @end

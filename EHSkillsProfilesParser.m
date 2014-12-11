@@ -36,6 +36,11 @@
     return self;
 }
 
+- (void)setEstimate:(NSString *)estimate
+{
+    _estimate = estimate;
+}
+
 - (void)dealloc {
     self.estimate = nil;
     self.nameOfSkill = nil;

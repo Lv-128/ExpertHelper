@@ -1129,11 +1129,16 @@
                     </view>
                     <navigationItem key="navigationItem" id="LvI-sJ-lRz"/>
                     <connections>
+                        <outlet property="competenceGroup" destination="onm-Zf-qzg" id="OYf-vH-hjZ"/>
                         <outlet property="dateLabel" destination="UIc-fv-DX3" id="GBC-m7-rDQ"/>
                         <outlet property="englishTexField" destination="K7u-H1-uKl" id="LoA-3t-eBZ"/>
+                        <outlet property="expertName" destination="lDC-fB-WJB" id="KAd-Ix-B2p"/>
                         <outlet property="highPotentionalTextField" destination="NCY-1x-Rzm" id="cro-qD-O5f"/>
                         <outlet property="levelEstimateTextField" destination="QE4-hS-Vph" id="gI3-ic-R34"/>
+                        <outlet property="recomendations" destination="2LJ-50-jpX" id="FFp-hb-bYc"/>
+                        <outlet property="skillSummary" destination="ZUB-mH-c8E" id="HBi-1Q-b9d"/>
                         <outlet property="switchView" destination="OdZ-Ev-vuh" id="k1z-AO-Hts"/>
+                        <outlet property="typeOfProject" destination="PUL-NA-kj5" id="H46-YW-7kn"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UIb-JM-ghH" userLabel="First Responder" sceneMemberID="firstResponder"/>
