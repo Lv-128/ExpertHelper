@@ -223,7 +223,6 @@
 
 - (void)pars
 {
-    EHSkillsProfilesParser *prof = [[EHSkillsProfilesParser alloc]init];
     NSMutableArray *profTransmitting = [[NSMutableArray alloc]init];
     
     for (int y = 0; y < _tableSections.count; y++) {
@@ -241,7 +240,9 @@
         groupsOfExternal.nameOfSections = _tableSections[y];
         [profTransmitting addObject:groupsOfExternal];
     }
-    prof.groups = profTransmitting;
+    EHGenInfo *generInfo = [[EHGenInfo alloc]init];
+    EHSkillsProfilesParser *prof = [[EHSkillsProfilesParser alloc]initWithDataGroups:profTransmitting andInterview:_interview andGenInfo:nil];
+    
 }
 
 - (IBAction)saveForm:(id)sender {

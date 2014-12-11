@@ -9,7 +9,8 @@
 #import "EHSkillsProfilesParser.h"
 
 @implementation EHGroups
--(id)init
+
+- (id)init
 {
     self = [super init];
     if (self)
@@ -27,7 +28,8 @@
 @end
 
 @implementation EHSkill
--(id)init
+
+- (id)init
 {
     self = [super init];
     if (self)
@@ -50,7 +52,7 @@
 @end
 
 @implementation EHGenInfo
--(id)init
+- (id)init
 {
     self = [super init];
     if (self)
@@ -69,7 +71,6 @@
     self.recommendations = nil;
     self.skillsSummary = nil;
     self.potentialCandidate = nil;
-    self.potentialCandidate = nil;
     self.levelEstimate = nil;
     self.records = nil;
 }
@@ -78,5 +79,105 @@
 
 
 @implementation EHSkillsProfilesParser
+
+- (id)initWithDataGroups:(NSArray *)groups andInterview:(InterviewAppointment *)interview andGenInfo:(EHGenInfo *)genInfo
+{
+    self = [super init];
+    if(self)
+    {
+        _groups = groups;
+        _interview = interview;
+      //  _genInfo = genInfo;
+        _externalInterview = interview.idExternal;
+        EHAppDelegate *appDelegate = [[UIApplication sharedApplication]delegate];
+        _managedObjectContext = [appDelegate managedObjectContext];
+        
+        if (groups != nil && genInfo != nil) {
+            [self saveInfoToDB];
+        }
+    }
+    return self;
+}
+
+- (void)saveInfoToDB
+{
+    NSManagedObjectContext *context = [self managedObjectContext];
+    
+    GeneralInfo *genInfo = [NSEntityDescription
+                                       insertNewObjectForEntityForName:[GeneralInfo entityName]
+                                       inManagedObjectContext:context];
+    genInfo.competenceGroup = _genInfo.competenceGroup;
+    genInfo.creatingDate = _genInfo.dateOfInterview;
+    genInfo.expertName = _genInfo.expertName;
+    
+    NSNumber *hireResult;
+    (_genInfo.hire) ? (hireResult = [NSNumber numberWithInt:1]) : (hireResult = 0);
+    
+    genInfo.hire = hireResult;
+    genInfo.levelEstimate = _genInfo.levelEstimate;
+    genInfo.potentialCandidate = _genInfo.potentialCandidate;
+    genInfo.projectType = _genInfo.typeOfProject;
+    genInfo.recommendations = _genInfo.recommendations;
+    genInfo.skillsSummary = _genInfo.skillsSummary;
+    genInfo.techEnglish = _genInfo.techEnglish;
+    genInfo.idExternalInterview = _interview.idExternal;
+    _interview.idExternal = genInfo.idExternalInterview;
+    
+    NSError *error;
+    if (![context save:&error]) {
+        NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
+    }
+        for (int i = 0; i < _groups.count; i++)
+        {
+            
+            Group *group;
+            
+            NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+            NSEntityDescription *entity = [NSEntityDescription entityForName:[Group entityName]
+                                                      inManagedObjectContext:context];
+            NSPredicate *predicate = [NSPredicate predicateWithFormat:@"title == %@", [[_groups objectAtIndex:i]nameOfSections]];
+            [fetchRequest setPredicate:predicate];
+            [fetchRequest setEntity:entity];
+            NSArray *fetchedObjects = [context executeFetchRequest:fetchRequest error:nil];
+            
+            if(fetchedObjects.count > 0)// we don't need this actually
+            {
+               group = fetchedObjects[0];
+            }
+            else
+            {
+                group = [NSEntityDescription
+                                    insertNewObjectForEntityForName:[Group entityName]
+                                    inManagedObjectContext:context];
+                group.title = [[_groups objectAtIndex:i]nameOfSections];
+            }
+            for (EHSkill *skill in _groups[i])
+            {
+                Skills *curSkill = [NSEntityDescription
+                                insertNewObjectForEntityForName:[Skills entityName]
+                                inManagedObjectContext:context];
+                curSkill.title = skill.nameOfSkill;
+                SkillsLevels *skillLevel = [NSEntityDescription
+                                           insertNewObjectForEntityForName:[SkillsLevels entityName]                                                                            inManagedObjectContext:context];
+                skillLevel.comment = skill.comment;
+                skillLevel.level = 0;//skill.estimate;
+                
+                skillLevel.idSkill = curSkill;
+                curSkill.level = skillLevel;
+                
+                curSkill.idGroup = group;
+                [group.allSkillsSet addObject:curSkill];
+                curSkill.idExternalInterview = _interview.idExternal;
+                [_interview.idExternal.skillsSet addObject:curSkill];
+                
+            }
+        }
+    
+  
+    if (![context save:&error]) {
+        NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
+        
+    }
+}
 
 @end

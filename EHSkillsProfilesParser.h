@@ -8,10 +8,11 @@
 
 #import <Foundation/Foundation.h>
 #import "EHAppDelegate.h"
+#import "EHAppDelegate.h"
 
 @interface EHGroups : NSObject
 
-@property (nonatomic, strong) NSString *nameOfSections;
+@property (nonatomic, copy) NSString *nameOfSections;
 @property (nonatomic, copy) NSArray *skills;
 
 @end
@@ -28,17 +29,17 @@
 
 @interface EHGenInfo : NSObject
 
-@property (nonatomic, strong) NSString *expertName;
-@property (nonatomic, strong) NSString *dateOfInterview;
-@property (nonatomic, strong) NSString *competenceGroup;
-@property (nonatomic, strong) NSString *typeOfProject;
-@property (nonatomic, strong) NSString *skillsSummary;
-@property (nonatomic, strong) NSString *techEnglish;
-@property (nonatomic, strong) NSString *recommendations;
-@property (nonatomic, strong) NSString *potentialCandidate;
-@property (nonatomic, strong) NSString *levelEstimate;
-@property (nonatomic, strong) NSString *hire;
-@property (nonatomic, strong) NSArray *records;
+@property (nonatomic, copy) NSString *expertName;
+@property (nonatomic, strong) NSDate *dateOfInterview;
+@property (nonatomic, copy) NSString *competenceGroup;
+@property (nonatomic, copy) NSString *typeOfProject;
+@property (nonatomic, copy) NSString *skillsSummary;
+@property (nonatomic, copy) NSString *techEnglish;
+@property (nonatomic, copy) NSString *recommendations;
+@property (nonatomic, copy) NSString *potentialCandidate;
+@property (nonatomic, copy) NSString *levelEstimate;
+@property (nonatomic) BOOL hire;
+@property (nonatomic, copy) NSArray *records;
 
 @end
 
@@ -46,12 +47,15 @@
 @interface EHSkillsProfilesParser : NSObject
 
 @property (nonatomic, copy) NSArray *groups;
-@property (nonatomic, copy) EHGenInfo *genInfo;
-@property (nonatomic, strong) NSArray  *dataToSave;
+@property (nonatomic, copy) NSArray *dataToSave;
 
+@property (nonatomic, strong) EHGenInfo *genInfo;
 @property (nonatomic, strong) InterviewAppointment *interview;
 @property (nonatomic, strong) ExternalInterview *externalInterview;
 
+@property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
+
 - (id)initWithDataGroups:(NSArray *)groups andInterview:(InterviewAppointment *)interview andGenInfo:(EHGenInfo *)genInfo;
+- (void)saveInfoToDB;
 
 @end
