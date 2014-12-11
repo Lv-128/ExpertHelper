@@ -5,16 +5,18 @@
 
 extern const struct ExternalInterviewAttributes {
 	 __unsafe_unretained NSString *expert;
-	 __unsafe_unretained NSString *pass;
+	 __unsafe_unretained  NSString *pass;
 } ExternalInterviewAttributes;
 
 extern const struct ExternalInterviewRelationships {
 	 __unsafe_unretained NSString *idCandidate;
+	 __unsafe_unretained NSString *idGeneralInfo;
 	 __unsafe_unretained NSString *idInterview;
 	 __unsafe_unretained NSString *skills;
 } ExternalInterviewRelationships;
 
 @class Candidate;
+@class GeneralInfo;
 @class InterviewAppointment;
 @class Skills;
 
@@ -42,6 +44,10 @@ extern const struct ExternalInterviewRelationships {
 @property (nonatomic, retain) Candidate *idCandidate;
 
 //- (BOOL)validateIdCandidate:(id*)value_ error:(NSError**)error_;
+
+@property (nonatomic, retain) GeneralInfo *idGeneralInfo;
+
+//- (BOOL)validateIdGeneralInfo:(id*)value_ error:(NSError**)error_;
 
 @property (nonatomic, retain) InterviewAppointment *idInterview;
 
@@ -74,6 +80,9 @@ extern const struct ExternalInterviewRelationships {
 
 - (Candidate*)primitiveIdCandidate;
 - (void)setPrimitiveIdCandidate:(Candidate*)value;
+
+- (GeneralInfo*)primitiveIdGeneralInfo;
+- (void)setPrimitiveIdGeneralInfo:(GeneralInfo*)value;
 
 - (InterviewAppointment*)primitiveIdInterview;
 - (void)setPrimitiveIdInterview:(InterviewAppointment*)value;

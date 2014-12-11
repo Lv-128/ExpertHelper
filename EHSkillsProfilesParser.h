@@ -46,5 +46,12 @@
 @interface EHSkillsProfilesParser : NSObject
 
 @property (nonatomic, copy) NSArray *groups;
+@property (nonatomic, copy) EHGenInfo *genInfo;
+@property (nonatomic, strong) NSArray  *dataToSave;
+
+@property (nonatomic, strong) InterviewAppointment *interview;
+@property (nonatomic, strong) ExternalInterview *externalInterview;
+
+- (id)initWithDataGroups:(NSArray *)groups andInterview:(InterviewAppointment *)interview andGenInfo:(EHGenInfo *)genInfo;
 
 @end

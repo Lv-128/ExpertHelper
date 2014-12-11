@@ -12,8 +12,11 @@
 #import "Recruiter.h"
 #import "Candidate.h"
 #import "Group.h"
+#import "GeneralInfo.h"
+#import "VoiceRecorders.h"
 #import "Reachability.h"
 #import "EHCheckNetworkConnection.h"
+
 #import "EHExternalViewController.h"
 
 #import "EHRecruitersViewController.h"

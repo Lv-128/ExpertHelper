@@ -164,6 +164,7 @@ enum {None,ITA, Internal,External};
             if(_curInterview.type == [NSNumber numberWithInt:External])
             {
                 EHExternalViewController *externalViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"ExternalForm"];
+                externalViewController.interview = [arr objectAtIndex:indexPath.row];
                 [self.navigationController pushViewController:externalViewController animated: YES];
             }
    

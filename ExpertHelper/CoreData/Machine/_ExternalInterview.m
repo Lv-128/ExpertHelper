@@ -10,6 +10,7 @@ const struct ExternalInterviewAttributes ExternalInterviewAttributes = {
 
 const struct ExternalInterviewRelationships ExternalInterviewRelationships = {
 	.idCandidate = @"idCandidate",
+	.idGeneralInfo = @"idGeneralInfo",
 	.idInterview = @"idInterview",
 	.skills = @"skills",
 };
@@ -72,6 +73,8 @@ const struct ExternalInterviewRelationships ExternalInterviewRelationships = {
 }
 
 @dynamic idCandidate;
+
+@dynamic idGeneralInfo;
 
 @dynamic idInterview;
 

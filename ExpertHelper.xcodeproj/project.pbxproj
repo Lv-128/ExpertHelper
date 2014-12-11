@@ -70,6 +70,16 @@
 		D9BE33991A38AFA90063B6C6 /* EHRoundedTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = D9BE33961A38AFA90063B6C6 /* EHRoundedTextView.m */; };
 		D9BE339A1A38AFA90063B6C6 /* EHRoundedAngleTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = D9BE33981A38AFA90063B6C6 /* EHRoundedAngleTextField.m */; };
 		D9BE339C1A38B87B0063B6C6 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D9BE339B1A38B87B0063B6C6 /* QuartzCore.framework */; };
+		D9BE33A01A3A00690063B6C6 /* EHExternalInterviewToDBSaver.m in Sources */ = {isa = PBXBuildFile; fileRef = D9BE339F1A3A00690063B6C6 /* EHExternalInterviewToDBSaver.m */; };
+		D9BE33A11A3A00690063B6C6 /* EHExternalInterviewToDBSaver.m in Sources */ = {isa = PBXBuildFile; fileRef = D9BE339F1A3A00690063B6C6 /* EHExternalInterviewToDBSaver.m */; };
+		D9BE33A61A3A0AEF0063B6C6 /* _GeneralInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = D9BE33A31A3A0AEF0063B6C6 /* _GeneralInfo.m */; };
+		D9BE33A71A3A0AEF0063B6C6 /* _GeneralInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = D9BE33A31A3A0AEF0063B6C6 /* _GeneralInfo.m */; };
+		D9BE33A81A3A0AEF0063B6C6 /* _VoiceRecorders.m in Sources */ = {isa = PBXBuildFile; fileRef = D9BE33A51A3A0AEF0063B6C6 /* _VoiceRecorders.m */; };
+		D9BE33A91A3A0AEF0063B6C6 /* _VoiceRecorders.m in Sources */ = {isa = PBXBuildFile; fileRef = D9BE33A51A3A0AEF0063B6C6 /* _VoiceRecorders.m */; };
+		D9BE33AE1A3A0AFF0063B6C6 /* GeneralInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = D9BE33AB1A3A0AFF0063B6C6 /* GeneralInfo.m */; };
+		D9BE33AF1A3A0AFF0063B6C6 /* GeneralInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = D9BE33AB1A3A0AFF0063B6C6 /* GeneralInfo.m */; };
+		D9BE33B01A3A0AFF0063B6C6 /* VoiceRecorders.m in Sources */ = {isa = PBXBuildFile; fileRef = D9BE33AD1A3A0AFF0063B6C6 /* VoiceRecorders.m */; };
+		D9BE33B11A3A0AFF0063B6C6 /* VoiceRecorders.m in Sources */ = {isa = PBXBuildFile; fileRef = D9BE33AD1A3A0AFF0063B6C6 /* VoiceRecorders.m */; };
 		D9BE54011A10B16700AD5D3D /* EHExternalCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D9BE53F81A10B16700AD5D3D /* EHExternalCell.m */; };
 		D9BE54021A10B16700AD5D3D /* EHExternalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D9BE53FA1A10B16700AD5D3D /* EHExternalViewController.m */; };
 		D9BE54041A10B16700AD5D3D /* EHProgrammingLanguagesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D9BE53FE1A10B16700AD5D3D /* EHProgrammingLanguagesViewController.m */; };
@@ -179,6 +189,16 @@
 		D9BE33971A38AFA90063B6C6 /* EHRoundedAngleTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EHRoundedAngleTextField.h; sourceTree = "<group>"; };
 		D9BE33981A38AFA90063B6C6 /* EHRoundedAngleTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EHRoundedAngleTextField.m; sourceTree = "<group>"; };
 		D9BE339B1A38B87B0063B6C6 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		D9BE339E1A3A00690063B6C6 /* EHExternalInterviewToDBSaver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EHExternalInterviewToDBSaver.h; sourceTree = "<group>"; };
+		D9BE339F1A3A00690063B6C6 /* EHExternalInterviewToDBSaver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EHExternalInterviewToDBSaver.m; sourceTree = "<group>"; };
+		D9BE33A21A3A0AEF0063B6C6 /* _GeneralInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _GeneralInfo.h; sourceTree = "<group>"; };
+		D9BE33A31A3A0AEF0063B6C6 /* _GeneralInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _GeneralInfo.m; sourceTree = "<group>"; };
+		D9BE33A41A3A0AEF0063B6C6 /* _VoiceRecorders.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _VoiceRecorders.h; sourceTree = "<group>"; };
+		D9BE33A51A3A0AEF0063B6C6 /* _VoiceRecorders.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _VoiceRecorders.m; sourceTree = "<group>"; };
+		D9BE33AA1A3A0AFF0063B6C6 /* GeneralInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GeneralInfo.h; sourceTree = "<group>"; };
+		D9BE33AB1A3A0AFF0063B6C6 /* GeneralInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeneralInfo.m; sourceTree = "<group>"; };
+		D9BE33AC1A3A0AFF0063B6C6 /* VoiceRecorders.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VoiceRecorders.h; sourceTree = "<group>"; };
+		D9BE33AD1A3A0AFF0063B6C6 /* VoiceRecorders.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VoiceRecorders.m; sourceTree = "<group>"; };
 		D9BE53F71A10B16700AD5D3D /* EHExternalCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EHExternalCell.h; sourceTree = "<group>"; };
 		D9BE53F81A10B16700AD5D3D /* EHExternalCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EHExternalCell.m; sourceTree = "<group>"; };
 		D9BE53F91A10B16700AD5D3D /* EHExternalViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EHExternalViewController.h; sourceTree = "<group>"; };
@@ -288,6 +308,10 @@
 		D92204291A2FAA4300B3BAAD /* Human */ = {
 			isa = PBXGroup;
 			children = (
+				D9BE33AA1A3A0AFF0063B6C6 /* GeneralInfo.h */,
+				D9BE33AB1A3A0AFF0063B6C6 /* GeneralInfo.m */,
+				D9BE33AC1A3A0AFF0063B6C6 /* VoiceRecorders.h */,
+				D9BE33AD1A3A0AFF0063B6C6 /* VoiceRecorders.m */,
 				D9E7B7891A31E079002DA710 /* Candidate.h */,
 				D9E7B78A1A31E079002DA710 /* Candidate.m */,
 				D9E7B78B1A31E079002DA710 /* ExternalInterview.h */,
@@ -309,6 +333,10 @@
 		D922043A1A2FAA4300B3BAAD /* Machine */ = {
 			isa = PBXGroup;
 			children = (
+				D9BE33A21A3A0AEF0063B6C6 /* _GeneralInfo.h */,
+				D9BE33A31A3A0AEF0063B6C6 /* _GeneralInfo.m */,
+				D9BE33A41A3A0AEF0063B6C6 /* _VoiceRecorders.h */,
+				D9BE33A51A3A0AEF0063B6C6 /* _VoiceRecorders.m */,
 				D9E7B79E1A31E0A3002DA710 /* _Candidate.h */,
 				D9E7B79F1A31E0A3002DA710 /* _Candidate.m */,
 				D9E7B7A01A31E0A3002DA710 /* _ExternalInterview.h */,
@@ -476,6 +504,15 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		D9BE339D1A3A00180063B6C6 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				D9BE339E1A3A00690063B6C6 /* EHExternalInterviewToDBSaver.h */,
+				D9BE339F1A3A00690063B6C6 /* EHExternalInterviewToDBSaver.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
 		D9C4DC331A3840FC00BC1AEA /* Reachability */ = {
 			isa = PBXGroup;
 			children = (
@@ -572,6 +609,7 @@
 		D9D836A61A1F402D00148854 /* External */ = {
 			isa = PBXGroup;
 			children = (
+				D9BE339D1A3A00180063B6C6 /* Model */,
 				D9D3658B1A375A90004D919E /* Views */,
 				D9BE338C1A3894610063B6C6 /* EHSkillsProfilesParser.h */,
 				D9BE338D1A3894610063B6C6 /* EHSkillsProfilesParser.m */,
@@ -720,13 +758,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D9BE33A01A3A00690063B6C6 /* EHExternalInterviewToDBSaver.m in Sources */,
 				D9E7B79B1A31E079002DA710 /* Recruiter.m in Sources */,
+				D9BE33B01A3A0AFF0063B6C6 /* VoiceRecorders.m in Sources */,
 				D967F2111A1E4DEE0009639C /* EHITAViewControllerCell.m in Sources */,
 				2790F4E31A139854001B0956 /* EHProfilesTableViewCell.m in Sources */,
 				D9E7B7AE1A31E0A3002DA710 /* _Group.m in Sources */,
 				D920F3E91A361847002BC81A /* EHRecorderCommaentCell.m in Sources */,
 				D9E7B79D1A31E079002DA710 /* SkillsLevels.m in Sources */,
 				D9B0CC711A03B17500544323 /* main.m in Sources */,
+				D9BE33A81A3A0AEF0063B6C6 /* _VoiceRecorders.m in Sources */,
 				D9F15AD11A1A575A00E4DC62 /* EHListOfInterviewsViewController.m in Sources */,
 				D967F20B1A1E305D0009639C /* EHRecruiterViewController.m in Sources */,
 				D9BE54021A10B16700AD5D3D /* EHExternalViewController.m in Sources */,
@@ -745,6 +786,7 @@
 				D9BE338B1A3882E00063B6C6 /* EHInterviewViewCell.m in Sources */,
 				D9BE54041A10B16700AD5D3D /* EHProgrammingLanguagesViewController.m in Sources */,
 				D9C4DC361A38433D00BC1AEA /* EHCheckNetworkConnection.m in Sources */,
+				D9BE33AE1A3A0AFF0063B6C6 /* GeneralInfo.m in Sources */,
 				D9998EE01A221CE9002E019A /* EHCalendarEventsParser.m in Sources */,
 				D9BE33941A38AEDC0063B6C6 /* EHCandidateProfileViewController.m in Sources */,
 				D9E7B79A1A31E079002DA710 /* InterviewAppointment.m in Sources */,
@@ -763,6 +805,7 @@
 				D9E7B7971A31E079002DA710 /* Candidate.m in Sources */,
 				D9E7B79C1A31E079002DA710 /* Skills.m in Sources */,
 				D9E7B7AC1A31E0A3002DA710 /* _Candidate.m in Sources */,
+				D9BE33A61A3A0AEF0063B6C6 /* _GeneralInfo.m in Sources */,
 				D9AD2EB71A3384D2003D7E14 /* EHRecorderCommentController.m in Sources */,
 				D9E7B7B11A31E0A3002DA710 /* _Skills.m in Sources */,
 				D9C4DC321A3840F400BC1AEA /* Reachability.m in Sources */,
@@ -774,7 +817,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D9BE33AF1A3A0AFF0063B6C6 /* GeneralInfo.m in Sources */,
+				D9BE33A11A3A00690063B6C6 /* EHExternalInterviewToDBSaver.m in Sources */,
 				D9B0CC931A03B17500544323 /* ExpertHelperTests.m in Sources */,
+				D9BE33A71A3A0AEF0063B6C6 /* _GeneralInfo.m in Sources */,
+				D9BE33B11A3A0AFF0063B6C6 /* VoiceRecorders.m in Sources */,
+				D9BE33A91A3A0AEF0063B6C6 /* _VoiceRecorders.m in Sources */,
 				D92204711A2FAA4300B3BAAD /* Model.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
