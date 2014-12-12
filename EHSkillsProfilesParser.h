@@ -30,7 +30,6 @@
 @interface EHGenInfo : NSObject
 
 @property (nonatomic, copy) NSString *expertName;
-@property (nonatomic, strong) NSDate *dateOfInterview;
 @property (nonatomic, copy) NSString *competenceGroup;
 @property (nonatomic, copy) NSString *typeOfProject;
 @property (nonatomic, copy) NSString *skillsSummary;
@@ -38,8 +37,9 @@
 @property (nonatomic, copy) NSString *recommendations;
 @property (nonatomic, copy) NSString *potentialCandidate;
 @property (nonatomic, copy) NSString *levelEstimate;
-@property (nonatomic) BOOL hire;
+@property (nonatomic, strong) NSDate *dateOfInterview;
 @property (nonatomic, copy) NSArray *records;
+@property (nonatomic) BOOL hire;
 
 @end
 

@@ -21,6 +21,7 @@
 @property (nonatomic, strong) NSArray *sectionContent;
 @property (nonatomic, strong) NSMutableArray *array;
 @property (nonatomic, strong) NSMutableArray *comment;
+@property (nonatomic, strong) EHGenInfo *generInfo;
 
 @end
 
@@ -81,6 +82,8 @@
     _array = [[NSMutableArray alloc]initWithCapacity:0];
     _comment = [[NSMutableArray alloc]initWithCapacity:0];
     
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(getGeninfo:) name:@"GetInfo" object:nil];
+    
     for (int i = 0; i < self.tableSections.count; i++)
     {
         NSMutableArray *temp = [[NSMutableArray alloc]initWithCapacity:0];
@@ -124,7 +127,7 @@
 
 - (NSInteger)tableView:(UITableView *)table numberOfRowsInSection:(NSInteger)section
 {
-    return [self.sectionContent[section] count];
+    return [self.sectionContent[section]count];
 }
 
 #pragma mark tableview methods
@@ -211,16 +214,6 @@
 
 }
 
-
-
-//self.tableSections = @[@"Design", @"Construction", @"Quality", @"Configuration Management", @"Scope Management and Software Engineering", @"Profiles"];
-//self.sectionContent = @[@[ @"Object oriented programming and design", @"Designing solution architecture", @"Database design" ],
-//                        @[ @"Coding (primary language and standard libraries)", @"Debugging and bug fixing" ],
-//                        @[ @"Using issue tracking systems", @"Reviewing code" ],
-//                        @[ @"Versions management", @"Build management" ],
-//                        @[ @"Gathering and managing requirements", @"Preparing estimations", @"Writing proposals" ],
-//                        @[ @"Core", @"Desktop", @"Web", @"DB", @"BI", @"RIA", @"Multimedia", @"Mobile", @"Embedded", @"Integration" ]];
-
 - (void)pars
 {
     NSMutableArray *profTransmitting = [[NSMutableArray alloc]init];
@@ -240,9 +233,13 @@
         groupsOfExternal.nameOfSections = _tableSections[y];
         [profTransmitting addObject:groupsOfExternal];
     }
-    EHGenInfo *generInfo = [[EHGenInfo alloc]init];
-    EHSkillsProfilesParser *prof = [[EHSkillsProfilesParser alloc]initWithDataGroups:profTransmitting andInterview:_interview andGenInfo:nil];
     
+    __unused EHSkillsProfilesParser *prof = [[EHSkillsProfilesParser alloc]initWithDataGroups:profTransmitting andInterview:_interview andGenInfo:_generInfo];
+}
+
+- (void)getGeninfo:(NSNotification *)notification
+{
+        self.generInfo = notification.userInfo[@"genInfo"];
 }
 
 - (IBAction)saveForm:(id)sender {

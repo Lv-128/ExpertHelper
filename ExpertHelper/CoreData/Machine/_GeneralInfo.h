@@ -7,7 +7,7 @@ extern const struct GeneralInfoAttributes {
 	 __unsafe_unretained NSString *competenceGroup;
 	 __unsafe_unretained NSString *creatingDate;
 	 __unsafe_unretained NSString *expertName;
-	 __unsafe_unretained NSNumber *hire;
+	 __unsafe_unretained NSString *hire;
 	 __unsafe_unretained NSString *levelEstimate;
 	 __unsafe_unretained NSString *potentialCandidate;
 	 __unsafe_unretained NSString *projectType;

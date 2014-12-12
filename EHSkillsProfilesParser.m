@@ -87,7 +87,7 @@
     {
         _groups = groups;
         _interview = interview;
-      //  _genInfo = genInfo;
+        _genInfo = genInfo;
         _externalInterview = interview.idExternal;
         EHAppDelegate *appDelegate = [[UIApplication sharedApplication]delegate];
         _managedObjectContext = [appDelegate managedObjectContext];
@@ -104,8 +104,8 @@
     NSManagedObjectContext *context = [self managedObjectContext];
     
     GeneralInfo *genInfo = [NSEntityDescription
-                                       insertNewObjectForEntityForName:[GeneralInfo entityName]
-                                       inManagedObjectContext:context];
+                            insertNewObjectForEntityForName:[GeneralInfo entityName]
+                            inManagedObjectContext:context];
     genInfo.competenceGroup = _genInfo.competenceGroup;
     genInfo.creatingDate = _genInfo.dateOfInterview;
     genInfo.expertName = _genInfo.expertName;
@@ -127,56 +127,83 @@
     if (![context save:&error]) {
         NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
     }
-        for (int i = 0; i < _groups.count; i++)
+    for (int i = 0; i < _groups.count; i++)
+    {
+        Group *group;
+        
+        NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+        NSEntityDescription *entity = [NSEntityDescription entityForName:[Group entityName]
+                                                  inManagedObjectContext:context];
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"title == %@", [[_groups objectAtIndex:i]nameOfSections]];
+        [fetchRequest setPredicate:predicate];
+        [fetchRequest setEntity:entity];
+        NSArray *fetchedObjects = [context executeFetchRequest:fetchRequest error:nil];
+        
+        if(fetchedObjects.count > 0)// we don't need this actually
         {
-            
-            Group *group;
-            
-            NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-            NSEntityDescription *entity = [NSEntityDescription entityForName:[Group entityName]
-                                                      inManagedObjectContext:context];
-            NSPredicate *predicate = [NSPredicate predicateWithFormat:@"title == %@", [[_groups objectAtIndex:i]nameOfSections]];
-            [fetchRequest setPredicate:predicate];
-            [fetchRequest setEntity:entity];
-            NSArray *fetchedObjects = [context executeFetchRequest:fetchRequest error:nil];
-            
-            if(fetchedObjects.count > 0)// we don't need this actually
-            {
-               group = fetchedObjects[0];
-            }
-            else
-            {
-                group = [NSEntityDescription
-                                    insertNewObjectForEntityForName:[Group entityName]
-                                    inManagedObjectContext:context];
-                group.title = [[_groups objectAtIndex:i]nameOfSections];
-            }
-            for (EHSkill *skill in _groups[i])
-            {
-                Skills *curSkill = [NSEntityDescription
+            group = fetchedObjects[0];
+        }
+        else
+        {
+            group = [NSEntityDescription
+                     insertNewObjectForEntityForName:[Group entityName]
+                     inManagedObjectContext:context];
+            group.title = [[_groups objectAtIndex:i]nameOfSections];
+        }
+        
+        for (EHSkill *skill in [_groups[i] skills])
+        {
+            Skills *curSkill = [NSEntityDescription
                                 insertNewObjectForEntityForName:[Skills entityName]
                                 inManagedObjectContext:context];
-                curSkill.title = skill.nameOfSkill;
-                SkillsLevels *skillLevel = [NSEntityDescription
-                                           insertNewObjectForEntityForName:[SkillsLevels entityName]                                                                            inManagedObjectContext:context];
-                skillLevel.comment = skill.comment;
-                skillLevel.level = 0;//skill.estimate;
-                
-                skillLevel.idSkill = curSkill;
-                curSkill.level = skillLevel;
-                
-                curSkill.idGroup = group;
-                [group.allSkillsSet addObject:curSkill];
-                curSkill.idExternalInterview = _interview.idExternal;
-                [_interview.idExternal.skillsSet addObject:curSkill];
-                
-            }
+            curSkill.title = skill.nameOfSkill;
+            SkillsLevels *skillLevel = [NSEntityDescription
+                                        insertNewObjectForEntityForName:[SkillsLevels entityName]                                                                            inManagedObjectContext:context];
+            skillLevel.comment = skill.comment;
+            skillLevel.level = 0;//skill.estimate;
+            
+            skillLevel.idSkill = curSkill;
+            curSkill.level = skillLevel;
+            
+            curSkill.idGroup = group;
+            [group.allSkillsSet addObject:curSkill];
+            curSkill.idExternalInterview = _interview.idExternal;
+            [_interview.idExternal.skillsSet addObject:curSkill];
         }
+    }
     
-  
     if (![context save:&error]) {
         NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
         
+    }
+    
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:[Group entityName]
+                                              inManagedObjectContext:context];
+    
+    [fetchRequest setEntity:entity];
+    NSArray *fetchedObjects = [context executeFetchRequest:fetchRequest error:nil];
+    
+    if(fetchedObjects.count > 0)// we don't need this actually
+    {
+        for(Group *gr in fetchedObjects)
+        {
+            NSLog(@"%@", gr.title);
+        }
+    }
+    
+    entity = [NSEntityDescription entityForName:[Skills entityName]
+                         inManagedObjectContext:context];
+    
+    [fetchRequest setEntity:entity];
+    fetchedObjects = [context executeFetchRequest:fetchRequest error:nil];
+    
+    if(fetchedObjects.count > 0)// we don't need this actually
+    {
+        for(Group *gr in fetchedObjects)
+        {
+            NSLog(@"%@", gr.title);
+        }
     }
 }
 

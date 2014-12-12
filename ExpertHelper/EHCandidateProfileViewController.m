@@ -30,7 +30,6 @@
 @property (copy, nonatomic) NSArray *highPotentionalArray;
 @property (copy, nonatomic) NSArray *levelEstimateArray;
 
-
 @property (weak, nonatomic) IBOutlet EHRoundedAngleTextField *expertName;
 @property (weak, nonatomic) IBOutlet EHRoundedTextView *competenceGroup;
 @property (weak, nonatomic) IBOutlet EHRoundedTextView *skillSummary;
@@ -61,11 +60,12 @@
 	// Do any additional setup after loading the view.
 }
 
-- (void)viewWillDisappear:(BOOL)animated
+- (void)viewDidDisappear:(BOOL)animated
 {
     EHGenInfo *genInfo = [[EHGenInfo alloc]init];
+   
     (![self.expertName.text isEqualToString:@""]) ? (genInfo.expertName = self.expertName.text): (genInfo.expertName = @"None");
-    (![self.dateLabel.text isEqualToString:@""]) ? (genInfo.dateOfInterview = self.dateLabel.text): (genInfo.dateOfInterview = @"None");
+    genInfo.dateOfInterview = [NSDate date];
     (![self.competenceGroup.text isEqualToString:@""]) ? (genInfo.competenceGroup = self.competenceGroup.text): (genInfo.competenceGroup = @"None");
     (![self.typeOfProject.text isEqualToString:@""]) ? (genInfo.typeOfProject = self.typeOfProject.text): (genInfo.typeOfProject = @"None");
     (![self.skillSummary.text isEqualToString:@""]) ? (genInfo.skillsSummary = self.skillSummary.text): (genInfo.skillsSummary = @"None");
@@ -73,7 +73,9 @@
     (![self.recomendations.text isEqualToString:@""]) ? (genInfo.recommendations = self.recomendations.text): (genInfo.recommendations = @"None");
     (![self.highPotentionalTextField.text isEqualToString:@""]) ? (genInfo.potentialCandidate = self.highPotentionalTextField.text): (genInfo.potentialCandidate = @"None");
     (![self.levelEstimateTextField.text isEqualToString:@""]) ? (genInfo.levelEstimate = self.levelEstimateTextField.text): (genInfo.levelEstimate = @"None");
-    (!self.switchView.on) ? (genInfo.hire = @"Yes"): (genInfo.hire = @"No");
+    genInfo.hire = self.switchView.on;
+    NSDictionary *dict = [NSDictionary dictionaryWithObject:genInfo forKey:@"genInfo"];
+    [[NSNotificationCenter defaultCenter]postNotificationName:@"GetInfo" object:nil userInfo:dict];
 }
 
 - (void)configureArrays
