@@ -99,12 +99,15 @@
     return self;
 }
 
-- (GeneralInfo *)createGeneralInfoEntity
+- (GeneralInfo *)createGeneralInfoEntity:(GeneralInfo *)genInfo
 {
      NSManagedObjectContext *context = [self managedObjectContext];
-    GeneralInfo *genInfo = [NSEntityDescription
+    if (genInfo == nil)
+    {
+    genInfo = [NSEntityDescription
                             insertNewObjectForEntityForName:[GeneralInfo entityName]
                             inManagedObjectContext:context];
+    }
     genInfo.competenceGroup = _genInfo.competenceGroup;
     genInfo.creatingDate = _genInfo.dateOfInterview;
     genInfo.expertName = _genInfo.expertName;
@@ -123,13 +126,48 @@
     return genInfo;
 }
 
-- (void)saveInfoToDB
+
+
+
+- (Group *)createGroup:(int)index
 {
     NSManagedObjectContext *context = [self managedObjectContext];
     
-    GeneralInfo *genInfo = [self createGeneralInfoEntity];
-    genInfo.idExternalInterview = _interview.idExternal;
-    _interview.idExternal = genInfo.idExternalInterview;
+    Group *group;
+    
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:[Group entityName]
+                                              inManagedObjectContext:context];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"title == %@", [[_groups objectAtIndex:index]nameOfSections]];
+    [fetchRequest setPredicate:predicate];
+    [fetchRequest setEntity:entity];
+    NSArray *fetchedObjects = [context executeFetchRequest:fetchRequest error:nil];
+    
+    if(fetchedObjects.count > 0)// we don't need this actually
+    {
+        group = fetchedObjects[0];
+    }
+    else
+    {
+        group = [NSEntityDescription
+                 insertNewObjectForEntityForName:[Group entityName]
+                 inManagedObjectContext:context];
+        group.title = [[_groups objectAtIndex:index]nameOfSections];
+    }
+    return group;
+}
+- (void)saveInfoToDB
+{
+    NSManagedObjectContext *context = [self managedObjectContext];
+    bool wasExisted = NO;
+    if (_interview.idExternal.idGeneralInfo == nil || _interview.idExternal.skills.count == 0)
+    {
+        wasExisted = YES;
+    }
+    GeneralInfo *genInfo = [self createGeneralInfoEntity:_interview.idExternal.idGeneralInfo];
+        genInfo.idExternalInterview = _interview.idExternal;
+        _interview.idExternal = genInfo.idExternalInterview;
+    
     
     NSError *error;
     if (![context save:&error]) {
@@ -137,36 +175,36 @@
     }
     for (int i = 0; i < _groups.count; i++)
     {
-        Group *group;
         
-        NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-        NSEntityDescription *entity = [NSEntityDescription entityForName:[Group entityName]
-                                                  inManagedObjectContext:context];
-        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"title == %@", [[_groups objectAtIndex:i]nameOfSections]];
-        [fetchRequest setPredicate:predicate];
-        [fetchRequest setEntity:entity];
-        NSArray *fetchedObjects = [context executeFetchRequest:fetchRequest error:nil];
+        Group *group = [self createGroup:i];
         
-        if(fetchedObjects.count > 0)// we don't need this actually
-        {
-            group = fetchedObjects[0];
+        
+        
+        for (NSManagedObject * skill in _interview.idExternal.skills) {
+            [context deleteObject:skill];
         }
-        else
-        {
-            group = [NSEntityDescription
-                     insertNewObjectForEntityForName:[Group entityName]
-                     inManagedObjectContext:context];
-            group.title = [[_groups objectAtIndex:i]nameOfSections];
-        }
+        NSError *saveError = nil;
+        [context save:&saveError];
         
         for (EHSkill *skill in [_groups[i] skills])
         {
-            Skills *curSkill = [NSEntityDescription
+            
+            Skills *curSkill;
+            SkillsLevels *skillLevel;
+            
+            
+           
+                curSkill = [NSEntityDescription
                                 insertNewObjectForEntityForName:[Skills entityName]
                                 inManagedObjectContext:context];
-            curSkill.title = skill.nameOfSkill;
-            SkillsLevels *skillLevel = [NSEntityDescription
-                                        insertNewObjectForEntityForName:[SkillsLevels entityName]                                                                            inManagedObjectContext:context];
+            
+                curSkill.title = skill.nameOfSkill;
+            
+                skillLevel = [NSEntityDescription
+                              insertNewObjectForEntityForName:[SkillsLevels entityName]                                                                            inManagedObjectContext:context];
+     
+         
+
             skillLevel.comment = skill.comment;
             skillLevel.level = 0;//skill.estimate;
             
