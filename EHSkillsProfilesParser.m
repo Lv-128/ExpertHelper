@@ -8,6 +8,7 @@
 
 #import "EHSkillsProfilesParser.h"
 
+
 @implementation EHGroups
 
 - (id)init
@@ -95,9 +96,16 @@
         if (groups != nil && genInfo != nil) {
             [self saveInfoToDB];
         }
+        else
+        {
+            _groups = [[NSArray alloc]init];
+            
+        }
     }
     return self;
 }
+
+
 
 - (GeneralInfo *)createGeneralInfoEntity:(GeneralInfo *)genInfo
 {
@@ -192,8 +200,6 @@
             Skills *curSkill;
             SkillsLevels *skillLevel;
             
-            
-           
                 curSkill = [NSEntityDescription
                                 insertNewObjectForEntityForName:[Skills entityName]
                                 inManagedObjectContext:context];
@@ -201,9 +207,8 @@
                 curSkill.title = skill.nameOfSkill;
             
                 skillLevel = [NSEntityDescription
-                              insertNewObjectForEntityForName:[SkillsLevels entityName]                                                                            inManagedObjectContext:context];
-     
-         
+                              insertNewObjectForEntityForName:[SkillsLevels entityName]
+                              inManagedObjectContext:context];
 
             skillLevel.comment = skill.comment;
             skillLevel.level = 0;//skill.estimate;
@@ -238,11 +243,12 @@
         }
     }
     
-    entity = [NSEntityDescription entityForName:[Skills entityName]
+    NSFetchRequest *fetchRequest2 = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity2 = [NSEntityDescription entityForName:[Skills entityName]
                          inManagedObjectContext:context];
     
-    [fetchRequest setEntity:entity];
-    fetchedObjects = [context executeFetchRequest:fetchRequest error:nil];
+    [fetchRequest2 setEntity:entity2];
+    fetchedObjects = [context executeFetchRequest:fetchRequest2 error:nil];
     
     if(fetchedObjects.count > 0)// we don't need this actually
     {
@@ -253,4 +259,76 @@
     }
 }
 
+
+
+
+
+
+
+- (void)getFromDB
+{
+    NSManagedObjectContext *context = [self managedObjectContext];
+    NSMutableArray *curGroups = [[NSMutableArray alloc]init];
+    NSMutableArray *curSkills = [[NSMutableArray alloc]init];
+    
+    
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:[Group entityName]
+                                              inManagedObjectContext:context];
+    
+    [fetchRequest setEntity:entity];
+    NSArray *fetchedObjects = [context executeFetchRequest:fetchRequest error:nil];
+    
+    if (_interview.idExternal.idGeneralInfo != nil && _interview.idExternal.skills.count != 0)
+    {
+        curGroups = [[NSMutableArray alloc]initWithCapacity:0];
+        for(int i = 0; i < fetchedObjects.count; i++)
+        {
+            NSArray *array = [[NSArray alloc]init];
+            EHGroups *gr = [[EHGroups alloc]init];
+            gr.skills = array;
+            gr.nameOfSections = [fetchedObjects[i] title];
+            curSkills = [[NSMutableArray alloc]initWithCapacity:0];
+            
+            for (Skills *curSk in _interview.idExternal.skills) {
+                if (curSk.idGroup.title == gr.nameOfSections)
+                {
+                    EHSkill *tranSkill = [[EHSkill alloc]init];
+                    tranSkill.comment = curSk.level.comment;
+                    NSInteger i = [curSk.level.level integerValue];
+                    tranSkill.estimate = [ESTIMATES objectAtIndex:i];
+                    tranSkill.nameOfSkill = curSk.title;
+                    [curSkills addObject:tranSkill];
+                }
+            }
+            [curGroups addObject:curSkills];
+        }
+    EHGenInfo *genInfo = [self getGeneralInfo:_interview.idExternal.idGeneralInfo];
+    self.genInfo = genInfo;
+    self.groups = curGroups;
+    }
+}
+
+
+- (EHGenInfo *)getGeneralInfo:(GeneralInfo *)genInfo
+{
+    EHGenInfo *result = [[EHGenInfo alloc]init];
+    
+    result.competenceGroup = genInfo.competenceGroup;
+    result.dateOfInterview = genInfo.creatingDate;
+    result.expertName = genInfo.expertName;
+    
+    BOOL hireResult;
+    (result.hire) ? (hireResult = YES) : (hireResult = NO);
+    
+    result.hire = hireResult;
+    result.levelEstimate = genInfo.levelEstimate;
+    result.potentialCandidate = genInfo.potentialCandidate;
+    result.typeOfProject = genInfo.projectType;
+    result.recommendations = genInfo.recommendations;
+    result.skillsSummary = genInfo.skillsSummary;
+    result.techEnglish = genInfo.techEnglish;
+    
+    return result;
+}
 @end

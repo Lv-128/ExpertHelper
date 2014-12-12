@@ -21,6 +21,7 @@
 @property (nonatomic, strong) NSArray *sectionContent;
 @property (nonatomic, strong) NSMutableArray *array;
 @property (nonatomic, strong) NSMutableArray *comment;
+@property (nonatomic, strong) EHSkillsProfilesParser *pars;
 @property (nonatomic, strong) EHGenInfo *generInfo;
 
 @end
@@ -84,6 +85,14 @@
     
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(getGeninfo:) name:@"GetInfo" object:nil];
     
+    _pars = [[EHSkillsProfilesParser alloc]init];
+    
+    
+    if (_interview.idExternal.idGeneralInfo != nil && _interview.idExternal.skills.count != 0)
+    {
+        [_pars getFromDB];
+    }
+    else{
     for (int i = 0; i < self.tableSections.count; i++)
     {
         NSMutableArray *temp = [[NSMutableArray alloc]initWithCapacity:0];
@@ -93,13 +102,14 @@
         [_array insertObject:temp atIndex:i];
         [_comment insertObject:temp atIndex:i];
     }
-    
+    }
     self.openGeneralInfo.layer.cornerRadius = 13;
     self.openGeneralInfo.layer.borderWidth = 1;
     self.openGeneralInfo.layer.borderColor = [UIColor grayColor].CGColor;
     [super viewDidLoad];
     
     // Do any additional setup after loading the view.
+
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -214,7 +224,7 @@
 
 }
 
-- (void)pars
+- (void)parsFunc
 {
     NSMutableArray *profTransmitting = [[NSMutableArray alloc]init];
     
@@ -234,7 +244,7 @@
         [profTransmitting addObject:groupsOfExternal];
     }
     
-    __unused EHSkillsProfilesParser *prof = [[EHSkillsProfilesParser alloc]initWithDataGroups:profTransmitting andInterview:_interview andGenInfo:_generInfo];
+   _pars = [[EHSkillsProfilesParser alloc]initWithDataGroups:profTransmitting andInterview:_interview andGenInfo:_generInfo];
 }
 
 - (void)getGeninfo:(NSNotification *)notification
@@ -243,7 +253,7 @@
 }
 
 - (IBAction)saveForm:(id)sender {
-    [self pars];
+    [self parsFunc];
 }
 
 @end
