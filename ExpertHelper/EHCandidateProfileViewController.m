@@ -12,7 +12,7 @@
 #import "EHRoundedTextView.h"
 
 
-@interface EHCandidateProfileViewController () <UIPickerViewDelegate, UIPickerViewDataSource>
+@interface EHCandidateProfileViewController () <UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate>
 
 @property (strong, nonatomic) NSDateFormatter *formatter;
 
@@ -86,7 +86,7 @@
 
 - (void)configureTextFields
 {
-    [self insertPickerView:self.englishPicker inTextField:self.englishTexField withTag:1];
+    //[self insertPickerView:self.englishPicker inTextField:self.englishTexField withTag:1];
     [self insertPickerView:self.levelEstimatePicker inTextField:self.levelEstimateTextField withTag:2];
     [self insertPickerView:self.highPotentionalPicker inTextField:self.highPotentionalTextField withTag:3];
 }
@@ -97,6 +97,8 @@
     pickerView.tag = tag;
     pickerView.delegate = self;
     pickerView.dataSource = self;
+    textField.delegate = self;
+    textField.tag = tag;
     textField.inputView = pickerView;
 }
 
@@ -206,6 +208,21 @@
     [self.englishTexField resignFirstResponder];
     [self.highPotentionalTextField resignFirstResponder];
     [self.levelEstimateTextField resignFirstResponder];
+}
+
+- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField
+{
+    if (([textField.text isEqualToString:@""]))
+    {
+        if (textField.tag == 2)
+        {
+            textField.text = self.levelEstimateArray[0][0];
+            textField.text = [textField.text stringByAppendingString:[self.levelEstimateArray[1][0] substringFromIndex:1]];
+        }
+        else
+            textField.text = self.highPotentionalArray[0];
+    }
+    return YES;
 }
 
 - (void)didReceiveMemoryWarning
