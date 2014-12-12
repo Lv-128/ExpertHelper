@@ -99,10 +99,9 @@
     return self;
 }
 
-- (void)saveInfoToDB
+- (GeneralInfo *)createGeneralInfoEntity
 {
-    NSManagedObjectContext *context = [self managedObjectContext];
-    
+     NSManagedObjectContext *context = [self managedObjectContext];
     GeneralInfo *genInfo = [NSEntityDescription
                             insertNewObjectForEntityForName:[GeneralInfo entityName]
                             inManagedObjectContext:context];
@@ -120,6 +119,15 @@
     genInfo.recommendations = _genInfo.recommendations;
     genInfo.skillsSummary = _genInfo.skillsSummary;
     genInfo.techEnglish = _genInfo.techEnglish;
+    
+    return genInfo;
+}
+
+- (void)saveInfoToDB
+{
+    NSManagedObjectContext *context = [self managedObjectContext];
+    
+    GeneralInfo *genInfo = [self createGeneralInfoEntity];
     genInfo.idExternalInterview = _interview.idExternal;
     _interview.idExternal = genInfo.idExternalInterview;
     
