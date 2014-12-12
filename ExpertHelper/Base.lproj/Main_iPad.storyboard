@@ -504,11 +504,14 @@
                                                     </state>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IJP-A5-hwW">
-                                                    <rect key="frame" x="607" y="189" width="108" height="30"/>
+                                                    <rect key="frame" x="616" y="176" width="108" height="37"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <state key="normal" backgroundImage="facebookicon">
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
+                                                    <connections>
+                                                        <action selector="facebookButton:" destination="8ab-5p-1Xv" eventType="touchUpInside" id="l3X-Fe-XiT"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -1162,8 +1165,10 @@
         <image name="facebookicon" width="600" height="195"/>
         <image name="mail" width="110" height="110"/>
         <image name="mail-1" width="75" height="80"/>
+        <image name="mail-1" width="75" height="80"/>
         <image name="record_button" width="1024" height="1024"/>
         <image name="skype" width="300" height="300"/>
+        <image name="skype-1" width="70" height="79"/>
         <image name="skype-1" width="70" height="79"/>
         <image name="stewie" width="184" height="104"/>
     </resources>
