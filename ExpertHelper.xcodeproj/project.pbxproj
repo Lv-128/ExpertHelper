@@ -23,7 +23,6 @@
 /* Begin PBXBuildFile section */
 		2790F4E31A139854001B0956 /* EHProfilesTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2790F4E21A139854001B0956 /* EHProfilesTableViewCell.m */; };
 		2790F4E61A1398D8001B0956 /* EHProfilesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2790F4E51A1398D8001B0956 /* EHProfilesViewController.m */; };
-		83CD96951A3B432C00115744 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83CD96941A3B432C00115744 /* FacebookSDK.framework */; };
 		D90A1BBE1A16335F00B610C6 /* EHViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D90A1BBD1A16335F00B610C6 /* EHViewController.m */; };
 		D90A1BC11A16366500B610C6 /* EHSkillLevelPopup.m in Sources */ = {isa = PBXBuildFile; fileRef = D90A1BC01A16366500B610C6 /* EHSkillLevelPopup.m */; };
 		D90A1BC31A16371800B610C6 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D90A1BC21A16371800B610C6 /* AVFoundation.framework */; };
@@ -39,6 +38,7 @@
 		D92204751A2FAA4300B3BAAD /* mogend.sh in Resources */ = {isa = PBXBuildFile; fileRef = D922044F1A2FAA4300B3BAAD /* mogend.sh */; };
 		D92B76E41A1F847F00B76F5E /* EHSkillLevelCommentPopup.m in Sources */ = {isa = PBXBuildFile; fileRef = D92B76E21A1F847F00B76F5E /* EHSkillLevelCommentPopup.m */; };
 		D92B76E51A1F847F00B76F5E /* EHSkillLevelPopup.xib in Resources */ = {isa = PBXBuildFile; fileRef = D92B76E31A1F847F00B76F5E /* EHSkillLevelPopup.xib */; };
+		D92E8BA51A3B581C008EDD97 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D92E8BA41A3B581C008EDD97 /* FacebookSDK.framework */; };
 		D93144971A376D1900AB470E /* EHAddRecruiterController.m in Sources */ = {isa = PBXBuildFile; fileRef = D93144921A376D1900AB470E /* EHAddRecruiterController.m */; };
 		D93144981A376D1900AB470E /* EHRecruitersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D93144941A376D1900AB470E /* EHRecruitersViewController.m */; };
 		D93144991A376D1900AB470E /* EHListOfRecruitersCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D93144961A376D1900AB470E /* EHListOfRecruitersCell.m */; };
@@ -117,7 +117,6 @@
 		2790F4E21A139854001B0956 /* EHProfilesTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EHProfilesTableViewCell.m; path = Views/EHProfilesTableViewCell.m; sourceTree = "<group>"; };
 		2790F4E41A1398D8001B0956 /* EHProfilesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EHProfilesViewController.h; path = ViewControllers/EHProfilesViewController.h; sourceTree = "<group>"; };
 		2790F4E51A1398D8001B0956 /* EHProfilesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EHProfilesViewController.m; path = ViewControllers/EHProfilesViewController.m; sourceTree = "<group>"; };
-		83CD96941A3B432C00115744 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FacebookSDK.framework; sourceTree = "<group>"; };
 		D90A1BBC1A16335F00B610C6 /* EHViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EHViewController.h; path = ViewControllers/EHViewController.h; sourceTree = "<group>"; };
 		D90A1BBD1A16335F00B610C6 /* EHViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EHViewController.m; path = ViewControllers/EHViewController.m; sourceTree = "<group>"; };
 		D90A1BBF1A16366500B610C6 /* EHSkillLevelPopup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EHSkillLevelPopup.h; path = ViewControllers/EHSkillLevelPopup.h; sourceTree = "<group>"; };
@@ -136,6 +135,7 @@
 		D92B76E11A1F847F00B76F5E /* EHSkillLevelCommentPopup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EHSkillLevelCommentPopup.h; sourceTree = "<group>"; };
 		D92B76E21A1F847F00B76F5E /* EHSkillLevelCommentPopup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EHSkillLevelCommentPopup.m; sourceTree = "<group>"; };
 		D92B76E31A1F847F00B76F5E /* EHSkillLevelPopup.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EHSkillLevelPopup.xib; sourceTree = "<group>"; };
+		D92E8BA41A3B581C008EDD97 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FacebookSDK.framework; sourceTree = "<group>"; };
 		D93144911A376D1900AB470E /* EHAddRecruiterController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EHAddRecruiterController.h; sourceTree = "<group>"; };
 		D93144921A376D1900AB470E /* EHAddRecruiterController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EHAddRecruiterController.m; sourceTree = "<group>"; };
 		D93144931A376D1900AB470E /* EHRecruitersViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EHRecruitersViewController.h; sourceTree = "<group>"; };
@@ -250,7 +250,7 @@
 				D913A8001A2D0C3B00656CDE /* MessageUI.framework in Frameworks */,
 				D90A1BC31A16371800B610C6 /* AVFoundation.framework in Frameworks */,
 				D9B0CC671A03B17500544323 /* CoreGraphics.framework in Frameworks */,
-				83CD96951A3B432C00115744 /* FacebookSDK.framework in Frameworks */,
+				D92E8BA51A3B581C008EDD97 /* FacebookSDK.framework in Frameworks */,
 				D9B0CC691A03B17500544323 /* UIKit.framework in Frameworks */,
 				D9B0CC651A03B17500544323 /* Foundation.framework in Frameworks */,
 			);
@@ -443,7 +443,7 @@
 		D9B0CC631A03B17500544323 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				83CD96941A3B432C00115744 /* FacebookSDK.framework */,
+				D92E8BA41A3B581C008EDD97 /* FacebookSDK.framework */,
 				D9BE339B1A38B87B0063B6C6 /* QuartzCore.framework */,
 				D92204241A2F70D200B3BAAD /* CoreData.framework */,
 				D913A7FF1A2D0C3B00656CDE /* MessageUI.framework */,
@@ -964,7 +964,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					/Users/nvlizlo/Documents/ExpertHelper,
+					/Users/Sewer/ExpertHelper,
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ExpertHelper/ExpertHelper-Prefix.pch";
@@ -982,7 +982,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					/Users/nvlizlo/Documents/ExpertHelper,
+					/Users/Sewer/ExpertHelper,
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ExpertHelper/ExpertHelper-Prefix.pch";
