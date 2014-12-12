@@ -11,6 +11,7 @@
 #import "EHExternalCell.h"
 #import "EHSkillLevelPopup.h"
 #import "EHSkillsProfilesParser.h"
+#import "ZipArchive.h"
 
 @interface EHExternalViewController () <UITableViewDataSource, UITableViewDelegate, EHSkillLevelPopupDelegate, EHRecorderCommentControllerDelegate>
 
@@ -242,9 +243,69 @@
         self.generInfo = notification.userInfo[@"genInfo"];
 }
 
+//-------------------- Parser part --------------------
+
 - (IBAction)saveForm:(id)sender {
     [self pars];
+    [self unzip];
+    [self zip];
+
 }
+
+// convert from xlsx to zip
+- (void)unzip {
+    NSString *yourFileName = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
+    NSString *zipFilePath = [yourFileName stringByAppendingPathComponent:@"Workbook.xlsx"];
+    NSString *output = [yourFileName stringByAppendingPathComponent:@"unZipDirName1"];
+    
+    ZipArchive* za = [[ZipArchive alloc] init];
+    
+    if ([za UnzipOpenFile:zipFilePath]) {
+        if ( [za UnzipFileTo:output overWrite:YES] != NO ) {
+            //unzip data success
+            //do something
+        }
+        [za UnzipCloseFile];
+    }
+}
+
+// convert from zip to xlsx
+- (void)zip {
+    BOOL isDir = NO;
+    NSString *documentsDirectory = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
+    NSArray *subpaths;
+    NSString *toCompress = @"unZipDirName1";
+    NSString *pathToCompress = [documentsDirectory stringByAppendingPathComponent:toCompress];
+    
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    if ([fileManager fileExistsAtPath:pathToCompress isDirectory:&isDir] && isDir == true) {
+        subpaths = [fileManager subpathsAtPath:pathToCompress];
+    }
+    else {
+        if ([fileManager fileExistsAtPath:pathToCompress]) {
+            subpaths = [NSArray arrayWithObject:pathToCompress];
+        }
+    }
+
+    NSString *zipFilePath = [documentsDirectory stringByAppendingPathComponent:@"myZipFileName.xlsx"];
+    
+    ZipArchive *za = [[ZipArchive alloc] init];
+    [za CreateZipFile2:zipFilePath];
+    if (isDir == true) {
+        for(NSString *path in subpaths) {
+            NSString *fullPath = [pathToCompress stringByAppendingPathComponent:path];
+            if([fileManager fileExistsAtPath:fullPath isDirectory:&isDir] && !isDir) {
+                [za addFileToZip:fullPath newname:path];
+            }
+        }
+    }
+    else {
+        [za addFileToZip:pathToCompress newname:toCompress];
+    }
+    
+    [za CloseZipFile2];
+}
+
 
 @end
 

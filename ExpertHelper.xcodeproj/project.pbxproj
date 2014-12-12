@@ -21,6 +21,12 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		11EFE56A1A3B634F0005FDF4 /* libz.1.2.5.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 11EFE5691A3B634F0005FDF4 /* libz.1.2.5.dylib */; };
+		11EFE56E1A3B63A20005FDF4 /* ZipArchive.mm in Sources */ = {isa = PBXBuildFile; fileRef = 11EFE56C1A3B63A20005FDF4 /* ZipArchive.mm */; };
+		11EFE5B61A3B64A00005FDF4 /* ioapi.c in Sources */ = {isa = PBXBuildFile; fileRef = 11EFE5AE1A3B64A00005FDF4 /* ioapi.c */; };
+		11EFE5B71A3B64A00005FDF4 /* mztools.c in Sources */ = {isa = PBXBuildFile; fileRef = 11EFE5B01A3B64A00005FDF4 /* mztools.c */; };
+		11EFE5B81A3B64A00005FDF4 /* unzip.c in Sources */ = {isa = PBXBuildFile; fileRef = 11EFE5B21A3B64A00005FDF4 /* unzip.c */; };
+		11EFE5B91A3B64A00005FDF4 /* zip.c in Sources */ = {isa = PBXBuildFile; fileRef = 11EFE5B41A3B64A00005FDF4 /* zip.c */; };
 		2790F4E31A139854001B0956 /* EHProfilesTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2790F4E21A139854001B0956 /* EHProfilesTableViewCell.m */; };
 		2790F4E61A1398D8001B0956 /* EHProfilesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2790F4E51A1398D8001B0956 /* EHProfilesViewController.m */; };
 		D90A1BBE1A16335F00B610C6 /* EHViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D90A1BBD1A16335F00B610C6 /* EHViewController.m */; };
@@ -113,6 +119,18 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		11EFE5691A3B634F0005FDF4 /* libz.1.2.5.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.2.5.dylib; path = usr/lib/libz.1.2.5.dylib; sourceTree = SDKROOT; };
+		11EFE56C1A3B63A20005FDF4 /* ZipArchive.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ZipArchive.mm; sourceTree = "<group>"; };
+		11EFE56D1A3B63A20005FDF4 /* ZipArchive.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZipArchive.h; sourceTree = "<group>"; };
+		11EFE5AD1A3B64A00005FDF4 /* crypt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = crypt.h; sourceTree = "<group>"; };
+		11EFE5AE1A3B64A00005FDF4 /* ioapi.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ioapi.c; sourceTree = "<group>"; };
+		11EFE5AF1A3B64A00005FDF4 /* ioapi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ioapi.h; sourceTree = "<group>"; };
+		11EFE5B01A3B64A00005FDF4 /* mztools.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = mztools.c; sourceTree = "<group>"; };
+		11EFE5B11A3B64A00005FDF4 /* mztools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mztools.h; sourceTree = "<group>"; };
+		11EFE5B21A3B64A00005FDF4 /* unzip.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = unzip.c; sourceTree = "<group>"; };
+		11EFE5B31A3B64A00005FDF4 /* unzip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = unzip.h; sourceTree = "<group>"; };
+		11EFE5B41A3B64A00005FDF4 /* zip.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = zip.c; sourceTree = "<group>"; };
+		11EFE5B51A3B64A00005FDF4 /* zip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = zip.h; sourceTree = "<group>"; };
 		2790F4E11A139854001B0956 /* EHProfilesTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EHProfilesTableViewCell.h; path = Views/EHProfilesTableViewCell.h; sourceTree = "<group>"; };
 		2790F4E21A139854001B0956 /* EHProfilesTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EHProfilesTableViewCell.m; path = Views/EHProfilesTableViewCell.m; sourceTree = "<group>"; };
 		2790F4E41A1398D8001B0956 /* EHProfilesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EHProfilesViewController.h; path = ViewControllers/EHProfilesViewController.h; sourceTree = "<group>"; };
@@ -245,6 +263,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				11EFE56A1A3B634F0005FDF4 /* libz.1.2.5.dylib in Frameworks */,
 				D9BE339C1A38B87B0063B6C6 /* QuartzCore.framework in Frameworks */,
 				D92204251A2F70D200B3BAAD /* CoreData.framework in Frameworks */,
 				D913A8001A2D0C3B00656CDE /* MessageUI.framework in Frameworks */,
@@ -269,6 +288,32 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		11EFE56B1A3B63720005FDF4 /* ZipUnzip */ = {
+			isa = PBXGroup;
+			children = (
+				11EFE5AC1A3B64A00005FDF4 /* minizip */,
+				11EFE56C1A3B63A20005FDF4 /* ZipArchive.mm */,
+				11EFE56D1A3B63A20005FDF4 /* ZipArchive.h */,
+			);
+			name = ZipUnzip;
+			sourceTree = "<group>";
+		};
+		11EFE5AC1A3B64A00005FDF4 /* minizip */ = {
+			isa = PBXGroup;
+			children = (
+				11EFE5AD1A3B64A00005FDF4 /* crypt.h */,
+				11EFE5AE1A3B64A00005FDF4 /* ioapi.c */,
+				11EFE5AF1A3B64A00005FDF4 /* ioapi.h */,
+				11EFE5B01A3B64A00005FDF4 /* mztools.c */,
+				11EFE5B11A3B64A00005FDF4 /* mztools.h */,
+				11EFE5B21A3B64A00005FDF4 /* unzip.c */,
+				11EFE5B31A3B64A00005FDF4 /* unzip.h */,
+				11EFE5B41A3B64A00005FDF4 /* zip.c */,
+				11EFE5B51A3B64A00005FDF4 /* zip.h */,
+			);
+			path = minizip;
+			sourceTree = "<group>";
+		};
 		2790F4DF1A1396EB001B0956 /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -443,6 +488,7 @@
 		D9B0CC631A03B17500544323 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				11EFE5691A3B634F0005FDF4 /* libz.1.2.5.dylib */,
 				D92E8BA41A3B581C008EDD97 /* FacebookSDK.framework */,
 				D9BE339B1A38B87B0063B6C6 /* QuartzCore.framework */,
 				D92204241A2F70D200B3BAAD /* CoreData.framework */,
@@ -472,6 +518,7 @@
 		D9B0CC6B1A03B17500544323 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				11EFE56B1A3B63720005FDF4 /* ZipUnzip */,
 				D9998EDD1A221CE9002E019A /* SlideOutMenuFiles */,
 				D9BE54061A10B1A200AD5D3D /* Images.xcassets */,
 				D92204761A2FAF6900B3BAAD /* EHConstantsDefines.h */,
@@ -757,7 +804,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				D9E7B79B1A31E079002DA710 /* Recruiter.m in Sources */,
+				11EFE5B81A3B64A00005FDF4 /* unzip.c in Sources */,
 				D9BE33B01A3A0AFF0063B6C6 /* VoiceRecorders.m in Sources */,
+				11EFE5B71A3B64A00005FDF4 /* mztools.c in Sources */,
 				D967F2111A1E4DEE0009639C /* EHITAViewControllerCell.m in Sources */,
 				2790F4E31A139854001B0956 /* EHProfilesTableViewCell.m in Sources */,
 				D9E7B7AE1A31E0A3002DA710 /* _Group.m in Sources */,
@@ -779,13 +828,16 @@
 				D93144981A376D1900AB470E /* EHRecruitersViewController.m in Sources */,
 				D967F2081A1E23BC0009639C /* EHCandidateFormViewController.m in Sources */,
 				D9998EE41A221CE9002E019A /* EHRevealViewController.m in Sources */,
+				11EFE5B91A3B64A00005FDF4 /* zip.c in Sources */,
 				D9BE338E1A3894610063B6C6 /* EHSkillsProfilesParser.m in Sources */,
+				11EFE5B61A3B64A00005FDF4 /* ioapi.c in Sources */,
 				D9BE338B1A3882E00063B6C6 /* EHInterviewViewCell.m in Sources */,
 				D9BE54041A10B16700AD5D3D /* EHProgrammingLanguagesViewController.m in Sources */,
 				D9C4DC361A38433D00BC1AEA /* EHCheckNetworkConnection.m in Sources */,
 				D9BE33AE1A3A0AFF0063B6C6 /* GeneralInfo.m in Sources */,
 				D9998EE01A221CE9002E019A /* EHCalendarEventsParser.m in Sources */,
 				D9BE33941A38AEDC0063B6C6 /* EHCandidateProfileViewController.m in Sources */,
+				11EFE56E1A3B63A20005FDF4 /* ZipArchive.mm in Sources */,
 				D9E7B79A1A31E079002DA710 /* InterviewAppointment.m in Sources */,
 				D92204701A2FAA4300B3BAAD /* Model.xcdatamodeld in Sources */,
 				D9E7B7991A31E079002DA710 /* Group.m in Sources */,
@@ -964,7 +1016,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					/Users/Sewer/ExpertHelper,
+					"$(PROJECT_DIR)/**",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ExpertHelper/ExpertHelper-Prefix.pch";
@@ -982,7 +1034,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					/Users/Sewer/ExpertHelper,
+					"$(PROJECT_DIR)/**",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ExpertHelper/ExpertHelper-Prefix.pch";
