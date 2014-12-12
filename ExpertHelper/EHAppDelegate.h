@@ -7,6 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <FacebookSDK/FacebookSDK.h>
+//#import "EHFacebookPopoverViewController.h"
 #import "EHConstantsDefines.h"
 @interface EHAppDelegate : UIResponder <UIApplicationDelegate>
 
@@ -14,6 +16,9 @@
 @property (readonly, strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 @property (readonly, strong, nonatomic) NSManagedObjectModel *managedObjectModel;
 @property (readonly, strong, nonatomic) NSPersistentStoreCoordinator *persistentStoreCoordinator;
+//@property (strong, nonatomic) EHFacebookPopoverViewController *popoverController;
+
+- (void)sessionStateChanged:(FBSession *)session state:(FBSessionState) state error:(NSError *)error;
 
 - (void) saveContext;
 - (NSURL *) applicationDocumentsDirectory;

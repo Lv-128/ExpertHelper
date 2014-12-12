@@ -969,6 +969,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ExpertHelper/ExpertHelper-Prefix.pch";
 				INFOPLIST_FILE = "ExpertHelper/ExpertHelper-Info.plist";
+				LIBRARY_SEARCH_PATHS = "$(PROJECT_DIR)/**";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -986,6 +987,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ExpertHelper/ExpertHelper-Prefix.pch";
 				INFOPLIST_FILE = "ExpertHelper/ExpertHelper-Info.plist";
+				LIBRARY_SEARCH_PATHS = "$(PROJECT_DIR)/**";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
