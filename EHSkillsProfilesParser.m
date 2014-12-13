@@ -98,8 +98,7 @@
         }
         else
         {
-          //  _groups = [[NSArray alloc]init];
-            
+            _groups = [[NSArray alloc]init];
             
         }
     }
@@ -178,7 +177,11 @@
 - (void)saveInfoToDB
 {
     NSManagedObjectContext *context = [self managedObjectContext];
-
+    bool wasExisted = NO;
+    if (_interview.idExternal.idGeneralInfo == nil || _interview.idExternal.skills.count == 0)
+    {
+        wasExisted = YES;
+    }
     GeneralInfo *genInfo = [self createGeneralInfoEntity:_interview.idExternal.idGeneralInfo];
         genInfo.idExternalInterview = _interview.idExternal;
         _interview.idExternal = genInfo.idExternalInterview;
@@ -218,14 +221,8 @@
                               inManagedObjectContext:context];
 
             skillLevel.comment = skill.comment;
+            skillLevel.level = 0;//skill.estimate;
             
-            for (int i = 0; i< ESTIMATES.count;i++)
-            {
-                if ([ESTIMATES[i] isEqualToString:skill.estimate])
-                {
-                skillLevel.level = [NSNumber numberWithInt:i];
-                }
-            }
             skillLevel.idSkill = curSkill;
             curSkill.level = skillLevel;
             
@@ -244,18 +241,35 @@
     if (![context save:&error]) {
         NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
     }
-   
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:[Group entityName]
+                                              inManagedObjectContext:context];
     
+    [fetchRequest setEntity:entity];
+    NSArray *fetchedObjects = [context executeFetchRequest:fetchRequest error:nil];
     
-    NSArray *arr = [_interview.idExternal.skills allObjects];
-    
-    for(int i = 0; i< _interview.idExternal.skills.count; i++)
+    if(fetchedObjects.count > 0)// we don't need this actually
     {
-        NSLog(@"%@",[ arr[i] title]);
-        NSLog(@" group name   %@",[arr[i] idGroup].title);
+        for(Group *gr in fetchedObjects)
+        {
+            NSLog(@"%@", gr.title);
+        }
     }
     
-  
+    NSFetchRequest *fetchRequest2 = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity2 = [NSEntityDescription entityForName:[Skills entityName]
+                         inManagedObjectContext:context];
+    
+    [fetchRequest2 setEntity:entity2];
+    fetchedObjects = [context executeFetchRequest:fetchRequest2 error:nil];
+    
+    if(fetchedObjects.count > 0)// we don't need this actually
+    {
+        for(Group *gr in fetchedObjects)
+        {
+            NSLog(@"%@", gr.title);
+        }
+    }
 }
 
 
@@ -295,9 +309,21 @@
             gr.skills = array;
             gr.nameOfSections = [fetchedObjects[i] title];
             curSkills = [[NSMutableArray alloc]initWithCapacity:0];
+            
 
+            
+            NSLog(@"%d",_interview.idExternal.skills.count);
+            for (Skills * d in _interview.idExternal.skills)
+            {
+                NSLog(@"%@",d.title);
+            }
+            
             for (Skills *curSk in _interview.idExternal.skills) {
-                 if ([curSk.idGroup.title isEqualToString: [fetchedObjects[i] title]])
+                
+                NSLog(@"%@",curSk.idGroup.title);
+                NSLog(@"%@",[fetchedObjects[i] title]);
+                
+                if ([curSk.idGroup.title isEqualToString: [fetchedObjects[i] title]])
                 {
                     EHSkill *tranSkill = [[EHSkill alloc]init];
                     tranSkill.comment = curSk.level.comment;
@@ -308,15 +334,6 @@
                 }
                
             }
-            
-            
-            for(int i = 0; i< curSkills.count; i++)
-            {
-                NSLog(@"%@",[curSkills[i] nameOfSkill]);
-            }
-            
-            NSLog(@" group name   %@",gr.nameOfSections);
-            
              gr.skills = curSkills;
             [curGroups addObject:gr];
         }
