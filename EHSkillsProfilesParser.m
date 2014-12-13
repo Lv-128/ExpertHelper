@@ -98,7 +98,8 @@
         }
         else
         {
-            _groups = [[NSArray alloc]init];
+          //  _groups = [[NSArray alloc]init];
+            
             
         }
     }
