@@ -105,7 +105,17 @@
     return self;
 }
 
-
+- (id) init
+{
+    self = [super init];
+    if (self)
+    {
+   
+        EHAppDelegate *appDelegate = [[UIApplication sharedApplication]delegate];
+        _managedObjectContext = [appDelegate managedObjectContext];
+    }
+    return  self;
+}
 
 - (GeneralInfo *)createGeneralInfoEntity:(GeneralInfo *)genInfo
 {
@@ -181,19 +191,19 @@
     if (![context save:&error]) {
         NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
     }
+    
+    
+    for (NSManagedObject * skill in _interview.idExternal.skills) {
+        [context deleteObject:skill];
+    }
+    NSError *saveError = nil;
+    [context save:&saveError];
     for (int i = 0; i < _groups.count; i++)
     {
         
         Group *group = [self createGroup:i];
-        
-        
-        
-        for (NSManagedObject * skill in _interview.idExternal.skills) {
-            [context deleteObject:skill];
-        }
-        NSError *saveError = nil;
-        [context save:&saveError];
-        
+
+       
         for (EHSkill *skill in [_groups[i] skills])
         {
             
@@ -228,6 +238,9 @@
         
     }
     
+    if (![context save:&error]) {
+        NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
+    }
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     NSEntityDescription *entity = [NSEntityDescription entityForName:[Group entityName]
                                               inManagedObjectContext:context];
@@ -268,9 +281,10 @@
 - (void)getFromDB
 {
     NSManagedObjectContext *context = [self managedObjectContext];
+    
     NSMutableArray *curGroups = [[NSMutableArray alloc]init];
     NSMutableArray *curSkills = [[NSMutableArray alloc]init];
-    
+      
     
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     NSEntityDescription *entity = [NSEntityDescription entityForName:[Group entityName]
@@ -279,9 +293,15 @@
     [fetchRequest setEntity:entity];
     NSArray *fetchedObjects = [context executeFetchRequest:fetchRequest error:nil];
     
+    
+    
+    
+    NSLog(@"%d",fetchedObjects.count);
+    
     if (_interview.idExternal.idGeneralInfo != nil && _interview.idExternal.skills.count != 0)
     {
         curGroups = [[NSMutableArray alloc]initWithCapacity:0];
+        
         for(int i = 0; i < fetchedObjects.count; i++)
         {
             NSArray *array = [[NSArray alloc]init];
@@ -290,8 +310,20 @@
             gr.nameOfSections = [fetchedObjects[i] title];
             curSkills = [[NSMutableArray alloc]initWithCapacity:0];
             
+
+            
+            NSLog(@"%d",_interview.idExternal.skills.count);
+            for (Skills * d in _interview.idExternal.skills)
+            {
+                NSLog(@"%@",d.title);
+            }
+            
             for (Skills *curSk in _interview.idExternal.skills) {
-                if (curSk.idGroup.title == gr.nameOfSections)
+                
+                NSLog(@"%@",curSk.idGroup.title);
+                NSLog(@"%@",[fetchedObjects[i] title]);
+                
+                if ([curSk.idGroup.title isEqualToString: [fetchedObjects[i] title]])
                 {
                     EHSkill *tranSkill = [[EHSkill alloc]init];
                     tranSkill.comment = curSk.level.comment;
@@ -300,19 +332,52 @@
                     tranSkill.nameOfSkill = curSk.title;
                     [curSkills addObject:tranSkill];
                 }
+               
             }
-            [curGroups addObject:curSkills];
+             gr.skills = curSkills;
+            [curGroups addObject:gr];
         }
-    EHGenInfo *genInfo = [self getGeneralInfo:_interview.idExternal.idGeneralInfo];
-    self.genInfo = genInfo;
+        
+        
+          NSLog(@"%@",_interview.idExternal.idGeneralInfo.expertName);
+        
+        
+        
+        EHGenInfo *result = [[EHGenInfo alloc]init];
+        
+        GeneralInfo *genInfo = _interview.idExternal.idGeneralInfo;
+        NSLog(@"%@",_interview.idExternal.idGeneralInfo.expertName);
+        
+        result.competenceGroup = genInfo.competenceGroup;
+        result.dateOfInterview = genInfo.creatingDate;
+        result.expertName = genInfo.expertName;
+        
+        BOOL hireResult;
+        (result.hire) ? (hireResult = YES) : (hireResult = NO);
+        
+        result.hire = hireResult;
+        result.levelEstimate = genInfo.levelEstimate;
+        result.potentialCandidate = genInfo.potentialCandidate;
+        result.typeOfProject = genInfo.projectType;
+        result.recommendations = genInfo.recommendations;
+        result.skillsSummary = genInfo.skillsSummary;
+        result.techEnglish = genInfo.techEnglish;
+        
+        
+        
+    self.genInfo = result;
     self.groups = curGroups;
     }
 }
 
 
-- (EHGenInfo *)getGeneralInfo:(GeneralInfo *)genInfo
+/*- (EHGenInfo *)getGeneralInfo:(GeneralInfo *)genInfo
 {
+    NSManagedObjectContext *context = [self managedObjectContext];
     EHGenInfo *result = [[EHGenInfo alloc]init];
+    
+    
+     NSLog(@"%@",_interview.idExternal.idGeneralInfo.expertName);
     
     result.competenceGroup = genInfo.competenceGroup;
     result.dateOfInterview = genInfo.creatingDate;
@@ -330,5 +395,5 @@
     result.techEnglish = genInfo.techEnglish;
     
     return result;
-}
+}*/
 @end

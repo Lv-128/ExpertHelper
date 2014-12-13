@@ -88,15 +88,59 @@
     _pars = [[EHSkillsProfilesParser alloc]init];
     
     
+    
     if (_interview.idExternal.idGeneralInfo != nil && _interview.idExternal.skills.count != 0)
     {
+        _pars.interview = _interview;
+        _pars.externalInterview = _interview.idExternal;
+       // _pars.genInfo = _interview.idExternal.idGeneralInfo;
+        
         [_pars getFromDB];
+        
+        
+        for (int i = 0; i < self.tableSections.count; i++)
+       {
+           for(int j = 0; j<_pars.groups.count; j++)
+           {
+               if ([[self.tableSections[i] nameOfSections] isEqualToString: [_pars.groups[j] title]])
+                   {
+                      
+                       NSArray *arr = [[_pars.groups[j] skills] allObjects];
+                   
+                       _array[i] = arr;
+                   }
+               
+           }
+           
+           
+//            NSMutableArray *temp = [[NSMutableArray alloc]initWithCapacity:0];
+//            for (int b = 0; b < [[self.sectionContent objectAtIndex:i] count]; b++)
+//            {
+//            
+//                NSLog(@"%@",[_pars.groups[i] nameOfSections]);
+//                NSLog(@"%d",[[_pars.groups[i] skills ]count]);
+//            
+//                NSArray *tt = [[_pars.groups[i] skills]allObjects];
+//                [temp addObject:[tt objectAtIndex:b]];
+//
+//            }
+//            [_array insertObject:temp atIndex:i];
+        
+        }
+        
     }
     else{
-    for (int i = 0; i < self.tableSections.count; i++)
+        
+        
+    for (int i = 0; i < self.tableSections.count; i++)//6
     {
-        NSMutableArray *temp = [[NSMutableArray alloc]initWithCapacity:0];
+        NSMutableArray *temp = [[NSMutableArray alloc]initWithCapacity:0];// group
+        NSLog(@"%d",[temp count]);
+        
+        
+        NSLog(@"%d",[[self.sectionContent objectAtIndex:i] count]);
         for (int b = 0; b < [[self.sectionContent objectAtIndex:i] count]; b++)
+            
             [temp addObject:@""];
         
         [_array insertObject:temp atIndex:i];
