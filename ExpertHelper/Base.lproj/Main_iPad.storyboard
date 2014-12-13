@@ -344,7 +344,7 @@
                                 </state>
                                 <connections>
                                     <action selector="openGeneralInfo:" destination="ioK-KF-1C8" eventType="touchUpInside" id="9hx-wC-DWp"/>
-                                    <segue destination="QWz-uc-3pi" kind="push" id="F9E-IP-Rq9"/>
+                                    <segue destination="QWz-uc-3pi" kind="push" id="CLC-qw-PBK"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -369,7 +369,6 @@
                     </navigationItem>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
                     <connections>
-                        <outlet property="openGeneralInfo" destination="X3Z-sJ-DVu" id="TSQ-8i-VkR"/>
                         <outlet property="tableView" destination="e0g-9P-WPS" id="dkm-YK-eWC"/>
                         <segue destination="1SL-6X-SWp" kind="push" identifier="profa" id="oyY-t6-ZgU"/>
                     </connections>
@@ -1165,10 +1164,8 @@
         <image name="facebookicon" width="600" height="195"/>
         <image name="mail" width="110" height="110"/>
         <image name="mail-1" width="75" height="80"/>
-        <image name="mail-1" width="75" height="80"/>
         <image name="record_button" width="1024" height="1024"/>
         <image name="skype" width="300" height="300"/>
-        <image name="skype-1" width="70" height="79"/>
         <image name="skype-1" width="70" height="79"/>
         <image name="stewie" width="184" height="104"/>
     </resources>
