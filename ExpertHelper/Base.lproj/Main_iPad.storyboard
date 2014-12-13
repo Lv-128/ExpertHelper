@@ -1165,10 +1165,8 @@
         <image name="facebookicon" width="600" height="195"/>
         <image name="mail" width="110" height="110"/>
         <image name="mail-1" width="75" height="80"/>
-        <image name="mail-1" width="75" height="80"/>
         <image name="record_button" width="1024" height="1024"/>
         <image name="skype" width="300" height="300"/>
-        <image name="skype-1" width="70" height="79"/>
         <image name="skype-1" width="70" height="79"/>
         <image name="stewie" width="184" height="104"/>
     </resources>

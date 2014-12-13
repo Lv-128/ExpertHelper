@@ -109,7 +109,6 @@
                     
                     myArr[i] = arr;
                 }
-                
             }
             
         }
@@ -132,11 +131,7 @@
                         [tt addObject:[myArr[i][j] estimate]];
                     }
                 }
-                
             }
-            
-            
-            
             [_array insertObject:tt atIndex:i];
         }
         
