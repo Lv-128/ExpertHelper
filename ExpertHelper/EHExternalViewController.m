@@ -15,7 +15,6 @@
 @interface EHExternalViewController () <UITableViewDataSource, UITableViewDelegate, EHSkillLevelPopupDelegate, EHRecorderCommentControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UIButton *openGeneralInfo;
-- (IBAction)openGeneralInfo:(UIButton *)sender;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) NSArray *tableSections;
 @property (nonatomic, strong) NSArray *sectionContent;
