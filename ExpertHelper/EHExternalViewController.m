@@ -1,4 +1,4 @@
-//
+
 //  CLExternalViewController.m
 //  firstCalendarFrom
 //
@@ -97,35 +97,55 @@
         
         [_pars getFromDB];
         
-        
+        NSMutableArray *myArr = [[NSMutableArray alloc]initWithCapacity:_array.count];
         for (int i = 0; i < self.tableSections.count; i++)
        {
            for(int j = 0; j<_pars.groups.count; j++)
            {
-               if ([[self.tableSections[i] nameOfSections] isEqualToString: [_pars.groups[j] title]])
+               if ([self.tableSections[i]  isEqualToString: [_pars.groups[j] nameOfSections]])
                    {
                       
                        NSArray *arr = [[_pars.groups[j] skills] allObjects];
                    
-                       _array[i] = arr;
+                       myArr[i] = arr;
                    }
-               
+           
            }
            
-           
-//            NSMutableArray *temp = [[NSMutableArray alloc]initWithCapacity:0];
-//            for (int b = 0; b < [[self.sectionContent objectAtIndex:i] count]; b++)
-//            {
-//            
-//                NSLog(@"%@",[_pars.groups[i] nameOfSections]);
-//                NSLog(@"%d",[[_pars.groups[i] skills ]count]);
-//            
-//                NSArray *tt = [[_pars.groups[i] skills]allObjects];
-//                [temp addObject:[tt objectAtIndex:b]];
-//
-//            }
-//            [_array insertObject:temp atIndex:i];
+       }
         
+        
+        
+        
+           NSMutableArray * tt = [[NSMutableArray alloc]initWithCapacity:0];
+           for (int i = 0; i < myArr.count; i++)
+           {
+               tt = [[NSMutableArray alloc]initWithCapacity:0];
+               for(int j = 0; j<[myArr[i]count];j++)
+               {
+                   
+                   [tt addObject:[myArr[i][j] estimate]];
+
+                   }
+                    [_array insertObject:tt atIndex:i];
+               }
+        
+        
+        
+        
+        
+        for (int i = 0; i < self.tableSections.count; i++)//6
+        {
+            NSMutableArray *temp = [[NSMutableArray alloc]initWithCapacity:0];// group
+            NSLog(@"%d",[temp count]);
+            
+            
+            NSLog(@"%d",[[self.sectionContent objectAtIndex:i] count]);
+            for (int b = 0; b < [[self.sectionContent objectAtIndex:i] count]; b++)
+                
+                [temp addObject:@""];
+            
+               [_comment insertObject:temp atIndex:i];
         }
         
     }
@@ -279,8 +299,11 @@
         for (int x = 0; x < [[self.sectionContent objectAtIndex:y] count]; x++) {
             EHSkill *skillsOfExternal = [[EHSkill alloc]init];
             skillsOfExternal.nameOfSkill = _sectionContent[y][x];
-            (_array[y][x] != nil) ? (skillsOfExternal.estimate = _array[y][x]): (skillsOfExternal.estimate = @"None");
-            (_comment[y][x] != nil) ? (skillsOfExternal.comment = _comment[y][x]): (skillsOfExternal.comment = @"None");
+            (![_array[y][x] isEqual:@""]) ? (skillsOfExternal.estimate = _array[y][x]): (skillsOfExternal.estimate = @"None");
+            
+           
+            (![_comment[y][x] isEqual:@""]) ? (skillsOfExternal.comment = _comment[y][x]): (skillsOfExternal.comment = @"None");
+            
             [groupsTransmitting addObject:skillsOfExternal];
         }
         groupsOfExternal.skills = groupsTransmitting;
