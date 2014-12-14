@@ -11,6 +11,7 @@
 #import "EHExternalCell.h"
 #import "EHSkillLevelPopup.h"
 #import "EHSkillsProfilesParser.h"
+#import "ZipArchive.h"
 
 @interface EHExternalViewController () <UITableViewDataSource, UITableViewDelegate, EHSkillLevelPopupDelegate, EHRecorderCommentControllerDelegate>
 
@@ -68,6 +69,9 @@
 
 - (void)viewDidLoad
 {
+    self.cellDateFormatter = [[NSDateFormatter alloc] init];
+    [self.cellDateFormatter setDateStyle:NSDateFormatterFullStyle];
+    [self.cellDateFormatter setTimeStyle:NSDateFormatterLongStyle];  
     isPopup = NO;
     newCell = NO;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
@@ -299,10 +303,21 @@
         for (int x = 0; x < [[self.sectionContent objectAtIndex:y] count]; x++) {
             EHSkill *skillsOfExternal = [[EHSkill alloc]init];
             skillsOfExternal.nameOfSkill = _sectionContent[y][x];
-            (![_array[y][x] isEqual:@""]) ? (skillsOfExternal.estimate = _array[y][x]): (skillsOfExternal.estimate = @"None");
+            if (![_array[y][x]  isEqual: @""]) {
+                skillsOfExternal.estimate = _array[y][x];
+            }
+            else {
+                skillsOfExternal.estimate = @"None";
+                _array[y][x] = @"None";
+            }
             
-            
-            (![_comment[y][x] isEqual:@""]) ? (skillsOfExternal.comment = _comment[y][x]): (skillsOfExternal.comment = @"None");
+            if (![_comment[y][x]  isEqual: @""]) {
+                skillsOfExternal.estimate = _comment[y][x];
+            }
+            else {
+                skillsOfExternal.estimate = @"None";
+                _comment[y][x] = @"None";
+            }
             
             [groupsTransmitting addObject:skillsOfExternal];
         }
@@ -323,8 +338,170 @@
 }
 
 - (IBAction)saveForm:(id)sender {
+    NSLog(@"%@", NSHomeDirectory());
     [self parsFunc];
+    [self unzip];
+    //----------------------------------- start parsing part inside action -------------------------------
+    
+    NSError *error;
+    
+    NSString *filePath1 = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
+    filePath1 = [filePath1 stringByAppendingPathComponent:@"unZipDirName1"];
+    filePath1 = [filePath1 stringByAppendingPathComponent:@"xl"];
+    filePath1 = [filePath1 stringByAppendingPathComponent:@"worksheets"];
+    NSString *filePath2 = [filePath1 stringByAppendingPathComponent:@"sheet4.xml"];
+    filePath1 = [filePath1 stringByAppendingPathComponent:@"sheet3.xml"];
+    NSMutableString* xml = [[NSMutableString alloc] initWithString:[NSMutableString stringWithContentsOfFile:filePath1 encoding:NSUTF8StringEncoding error:&error]];
+    
+    NSArray *a = [[NSArray alloc] initWithObjects:@"E21", @"E22", @"E23", @"E25", @"E26", @"E28", @"E29", @"E31", @"E32", @"E34", @"E35", @"E36", nil];
+    int indexForA = 0;
+    NSString *ss = [[NSString alloc] init];
+    NSString *stringForComparing = @"<c r=\"";
+    
+    NSDictionary *map= [[NSDictionary alloc] initWithObjectsAndKeys:@"291", @"None", @"292", @"Low", @"293", @"Middle", @"294", @"Strong", nil];
+    int nextPart = 0;
+    
+    for (int y = 0; y < _tableSections.count; y++) {
+        if (indexForA >= 12) break;
+        for (int x = 0; x < [[self.sectionContent objectAtIndex:y] count]; x++) {
+            stringForComparing = @"<c r=\"";
+            stringForComparing = [stringForComparing stringByAppendingString:a[indexForA]];
+            stringForComparing = [stringForComparing stringByAppendingString:@"\""];
+            
+            for (int i = nextPart; i < xml.length - 10; i++) {
+                ss = [xml substringWithRange:NSMakeRange(i, 10)];
+                if ([ss isEqual:stringForComparing]) {
+                    int k = 0;
+                    for (int j = i + 10; j < xml.length - 10; j++) {
+                        if ([xml characterAtIndex:j] == '/') {
+                            k = j + 1;
+                            break;
+                        }
+                    }
+                    NSMutableString *str = [[NSMutableString alloc] init];
+                    str = [@"<c r=\"" mutableCopy];
+                    [str appendString:a[indexForA]];
+                    [str appendString:@"\" s=\"105\" t=\"s\"><v>"];
+                    [str appendString:[map valueForKey:_array[y][x]]];
+                    [str appendString:@"</v></c>"];
+                    
+                    xml = [[xml stringByReplacingCharactersInRange: NSMakeRange(i, k - i + 1) withString:str] mutableCopy];
+                    
+                    str = [@"" mutableCopy];
+                    indexForA++;
+                    nextPart = i;
+                    break;
+                }
+            }
+        }
+    }
+    [xml writeToFile:filePath1 atomically:YES encoding:NSUTF8StringEncoding error:&error];
+    
+    // ------------------------------------------- parsing for profiles -----------------------------
+    
+    NSMutableString* xml1 = [[NSMutableString alloc] initWithString:[NSMutableString stringWithContentsOfFile:filePath2 encoding:NSUTF8StringEncoding error:&error]];
+    
+    NSArray *b = [[NSArray alloc] initWithObjects:@"B8", @"C8", @"D8", @"E8", @"F8", @"G8", @"H8", @"I8", @"J8", @"K8", nil];
+    int indexForB = 0;
+    nextPart = 0;
+    for (int x = 0; x < [[self.sectionContent objectAtIndex:_tableSections.count-1] count]; x++) {
+        stringForComparing = @"<c r=\"";
+        stringForComparing = [stringForComparing stringByAppendingString:b[indexForB]];
+        stringForComparing = [stringForComparing stringByAppendingString:@"\""];
+        ss=@"";
+        for (int i = nextPart; i < xml1.length - 9; i++) {
+            if (indexForB >= 10) break;
+            ss = [xml1 substringWithRange:NSMakeRange(i, 9)];
+            if ([ss isEqual:stringForComparing]) {
+                int k = 0;
+                for (int j = i + 10; j < xml1.length - 9; j++) {
+                    if ([xml1 characterAtIndex:j] == '/') {
+                        k = j + 1;
+                        break;
+                    }
+                }
+                NSMutableString *str = [[NSMutableString alloc] init];
+                str = [@"<c r=\"" mutableCopy];
+                [str appendString:b[indexForB]];
+                [str appendString:@"\" s=\"40\" t=\"s\"><v>"];
+                [str appendString:[map valueForKey:_array[_tableSections.count-1][x]]];
+                [str appendString:@"</v></c>"];
+                
+                xml1 = [[xml1 stringByReplacingCharactersInRange: NSMakeRange(i, k - i + 1) withString:str] mutableCopy];
+                
+                str = [@"" mutableCopy];
+                indexForB++;
+                nextPart = i;
+                break;
+            }
+        }
+    }
+    //----------------------------------- end parsing parts inside action ------------------------------
+    
+    [xml1 writeToFile:filePath2 atomically:YES encoding:NSUTF8StringEncoding error:&error];
+    [self zip];
 }
+
+// convert from xlsx to zip
+- (void)unzip {
+    NSString *yourFileName = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
+    NSString *zipFilePath = [yourFileName stringByAppendingPathComponent:@"Workbook.xlsx"];
+    NSString *output = [yourFileName stringByAppendingPathComponent:@"unZipDirName1"];
+    
+    ZipArchive* za = [[ZipArchive alloc] init];
+    
+    if ([za UnzipOpenFile:zipFilePath]) {
+        if ( [za UnzipFileTo:output overWrite:YES] != NO ) {
+            //unzip data success
+            //do something
+        }
+        [za UnzipCloseFile];
+    }
+}
+
+// convert from zip to xlsx
+- (void)zip {
+    BOOL isDir = NO;
+    NSString *documentsDirectory = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
+    NSArray *subpaths;
+    NSString *toCompress = @"unZipDirName1";
+    NSString *pathToCompress = [documentsDirectory stringByAppendingPathComponent:toCompress];
+    
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    if ([fileManager fileExistsAtPath:pathToCompress isDirectory:&isDir] && isDir == true) {
+        subpaths = [fileManager subpathsAtPath:pathToCompress];
+    }
+    else {
+        if ([fileManager fileExistsAtPath:pathToCompress]) {
+            subpaths = [NSArray arrayWithObject:pathToCompress];
+        }
+    }
+    
+    NSMutableString *excelName = [[NSMutableString alloc] initWithString: _interview.idExternal.idCandidate.firstName];
+    [excelName appendString:_interview.idExternal.idCandidate.lastName];
+    [excelName appendString:[_cellDateFormatter stringFromDate:_interview.startDate]];
+    excelName = [[excelName stringByReplacingOccurrencesOfString:@":" withString:@""] mutableCopy];
+    
+    NSString *zipFilePath = [documentsDirectory stringByAppendingPathComponent:[NSString stringWithFormat: @"%@,.xlsx",excelName]];
+    
+    ZipArchive *za = [[ZipArchive alloc] init];
+    [za CreateZipFile2:zipFilePath];
+    if (isDir == true) {
+        for(NSString *path in subpaths) {
+            NSString *fullPath = [pathToCompress stringByAppendingPathComponent:path];
+            if([fileManager fileExistsAtPath:fullPath isDirectory:&isDir] && !isDir) {
+                [za addFileToZip:fullPath newname:path];
+            }
+        }
+    }
+    else {
+        [za addFileToZip:pathToCompress newname:toCompress];
+    }
+    
+    [za CloseZipFile2];
+}
+
+
 
 @end
 
