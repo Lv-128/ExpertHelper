@@ -1,4 +1,4 @@
-
+//
 //  CLExternalViewController.m
 //  firstCalendarFrom
 //
@@ -15,12 +15,12 @@
 @interface EHExternalViewController () <UITableViewDataSource, UITableViewDelegate, EHSkillLevelPopupDelegate, EHRecorderCommentControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UIButton *openGeneralInfo;
+- (IBAction)openGeneralInfo:(UIButton *)sender;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) NSArray *tableSections;
 @property (nonatomic, strong) NSArray *sectionContent;
 @property (nonatomic, strong) NSMutableArray *array;
 @property (nonatomic, strong) NSMutableArray *comment;
-@property (nonatomic, strong) EHSkillsProfilesParser *pars;
 @property (nonatomic, strong) EHGenInfo *generInfo;
 
 @end
@@ -84,12 +84,9 @@
     
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(getGeninfo:) name:@"GetInfo" object:nil];
     
-    _pars = [[EHSkillsProfilesParser alloc]init];
-    
-    
-    
-    if (_interview.idExternal.idGeneralInfo != nil && _interview.idExternal.skills.count != 0)
+    for (int i = 0; i < self.tableSections.count; i++)
     {
+<<<<<<< HEAD
         _pars.interview = _interview;
         _pars.externalInterview = _interview.idExternal;
         // _pars.genInfo = _interview.idExternal.idGeneralInfo;
@@ -154,30 +151,22 @@
         
     }
     else{
+=======
+        NSMutableArray *temp = [[NSMutableArray alloc]initWithCapacity:0];
+        for (int b = 0; b < [[self.sectionContent objectAtIndex:i] count]; b++)
+            [temp addObject:@""];
+>>>>>>> FETCH_HEAD
         
-        
-        for (int i = 0; i < self.tableSections.count; i++)//6
-        {
-            NSMutableArray *temp = [[NSMutableArray alloc]initWithCapacity:0];// group
-            NSLog(@"%d",[temp count]);
-            
-            
-            NSLog(@"%d",[[self.sectionContent objectAtIndex:i] count]);
-            for (int b = 0; b < [[self.sectionContent objectAtIndex:i] count]; b++)
-                
-                [temp addObject:@""];
-            
-            [_array insertObject:temp atIndex:i];
-            [_comment insertObject:temp atIndex:i];
-        }
+        [_array insertObject:temp atIndex:i];
+        [_comment insertObject:temp atIndex:i];
     }
+    
     self.openGeneralInfo.layer.cornerRadius = 13;
     self.openGeneralInfo.layer.borderWidth = 1;
     self.openGeneralInfo.layer.borderColor = [UIColor grayColor].CGColor;
     [super viewDidLoad];
     
     // Do any additional setup after loading the view.
-    
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -220,7 +209,7 @@
     [labelLeft setTextAlignment:NSTextAlignmentCenter];
     
     labelLeft.text = [self.tableSections objectAtIndex:section];
-    
+
     [view addSubview:labelLeft];
     [view setBackgroundColor:[UIColor colorWithRed:166/255.0 green:177/255.0 blue:186/255.0 alpha:1.0]];
     
@@ -241,7 +230,7 @@
     } else {
         cell.rightLabel.text = @"";
     }
-    
+
     return cell;
 }
 
@@ -275,7 +264,7 @@
         
         popup.delegate = self;
         popup.transform = CGAffineTransformMakeScale(1.3, 1.3);
-        
+
         popup.titleLabel.text = [NSString stringWithFormat:@"Select the desired level for direction: %@", message];
         [self.view addSubview:popup];
         
@@ -288,7 +277,11 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
-- (void)parsFunc
+- (IBAction)openGeneralInfo:(UIButton *)sender {
+
+}
+
+- (void)pars
 {
     NSMutableArray *profTransmitting = [[NSMutableArray alloc]init];
     
@@ -299,11 +292,8 @@
         for (int x = 0; x < [[self.sectionContent objectAtIndex:y] count]; x++) {
             EHSkill *skillsOfExternal = [[EHSkill alloc]init];
             skillsOfExternal.nameOfSkill = _sectionContent[y][x];
-            (![_array[y][x] isEqual:@""]) ? (skillsOfExternal.estimate = _array[y][x]): (skillsOfExternal.estimate = @"None");
-            
-            
-            (![_comment[y][x] isEqual:@""]) ? (skillsOfExternal.comment = _comment[y][x]): (skillsOfExternal.comment = @"None");
-            
+            (_array[y][x] != nil) ? (skillsOfExternal.estimate = _array[y][x]): (skillsOfExternal.estimate = @"None");
+            (_comment[y][x] != nil) ? (skillsOfExternal.comment = _comment[y][x]): (skillsOfExternal.comment = @"None");
             [groupsTransmitting addObject:skillsOfExternal];
         }
         groupsOfExternal.skills = groupsTransmitting;
@@ -311,19 +301,16 @@
         [profTransmitting addObject:groupsOfExternal];
     }
     
-    _pars = [[EHSkillsProfilesParser alloc]initWithDataGroups:profTransmitting andInterview:_interview andGenInfo:_generInfo];
-    [_pars saveInfoToDB];
-    
+    __unused EHSkillsProfilesParser *prof = [[EHSkillsProfilesParser alloc]initWithDataGroups:profTransmitting andInterview:_interview andGenInfo:_generInfo];
 }
-
 
 - (void)getGeninfo:(NSNotification *)notification
 {
-    self.generInfo = notification.userInfo[@"genInfo"];
+        self.generInfo = notification.userInfo[@"genInfo"];
 }
 
 - (IBAction)saveForm:(id)sender {
-    [self parsFunc];
+    [self pars];
 }
 
 @end

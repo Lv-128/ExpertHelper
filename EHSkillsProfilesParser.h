@@ -57,7 +57,5 @@
 
 - (id)initWithDataGroups:(NSArray *)groups andInterview:(InterviewAppointment *)interview andGenInfo:(EHGenInfo *)genInfo;
 - (void)saveInfoToDB;
-- (void)getFromDB;
-
 
 @end
