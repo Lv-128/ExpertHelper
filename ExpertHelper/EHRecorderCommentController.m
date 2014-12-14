@@ -10,6 +10,7 @@
 #import "EHExternalViewController.h"
 #import "EHSkillLevelPopup.h"
 #import "EHRecorderCommaentCell.h"
+#import "EHSkillsProfilesParser.h"
 
 
 @interface EHRecorderCommentController () <EHSkillLevelPopupDelegate, UITextViewDelegate, AVAudioSessionDelegate,AVAudioRecorderDelegate, AVAudioPlayerDelegate>
@@ -22,17 +23,17 @@
     BOOL isPopup;
 }
 
+- (IBAction)recordStopButton:(UIButton *)sender;
+@property (weak, nonatomic) IBOutlet UIButton *recordStopButton;
 @property (weak, nonatomic) IBOutlet UILabel *levelLabel;
 @property (weak, nonatomic) IBOutlet UITableView *tableForRecords;
+@property (weak, nonatomic) IBOutlet UITextView *commentView;
 @property (copy, nonatomic) NSArray *arrayOfRecords;
 @property (strong, nonatomic) UIImage *buttonRecord;
 @property (strong, nonatomic) UIImage *buttonStop;
 @property (strong, nonatomic) UIImage *buttonPlay;
 @property (strong, nonatomic) UIImage *buttonPause;
-@property (weak, nonatomic) IBOutlet UITextView *commentView;
-
-- (IBAction)recordStopButton:(UIButton *)sender;
-@property (weak, nonatomic) IBOutlet UIButton *recordStopButton;
+@property (strong, nonatomic) EHGenInfo *genInfo;
 
 @end
 
@@ -61,10 +62,21 @@
 {
     [super viewDidLoad];
     isPopup = NO;
+    NSLog(@"%@",NSHomeDirectory());
+   
+    NSLog(@"%@",[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject]);
+    
     
     [_commentView setDelegate:self];
     [_commentView setReturnKeyType:UIReturnKeyDone];
-    [_commentView setText:@"Please post your comments"];
+    
+    
+    if ([[[_comment objectAtIndex:_index.section] objectAtIndex:_index.row] isEqualToString:@""]) {
+        [_commentView setText:@"Please post your comments"];
+    }else{
+        _commentView.text = [[_comment objectAtIndex:_index.section] objectAtIndex:_index.row];
+    }
+    
     [_commentView setFont:[UIFont fontWithName:@"HelveticaNeue" size:20]];
     [_commentView setTextColor:[UIColor lightGrayColor]];
     
@@ -87,7 +99,8 @@
     _tableForRecords.layer.cornerRadius = 20;
     _tableForRecords.clipsToBounds = YES;
     
-    _arrayOfRecords = [[NSArray alloc] initWithObjects:@"record 1", @"record 2", @"record 3", nil];
+//    _arrayOfRecords = [[NSArray alloc] initWithObjects:@"record 1", @"record 2", @"record 3", nil];
+    _arrayOfRecords = [[NSArray alloc]init];
     
     AVAudioSession *audioSession = [AVAudioSession sharedInstance];
     
@@ -154,7 +167,15 @@
 - (EHRecorderCommaentCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     EHRecorderCommaentCell *cell = (EHRecorderCommaentCell *)[tableView dequeueReusableCellWithIdentifier:@"RecordCell"];
-    cell.textLabel.text = _arrayOfRecords[indexPath.row];
+   
+    NSURL *curUrl = _arrayOfRecords[indexPath.row];
+    
+    NSString *nameFromUrl = [NSString stringWithContentsOfURL:curUrl encoding:NSASCIIStringEncoding error:nil];
+    
+    NSArray *parseWithSpaces = [nameFromUrl componentsSeparatedByString: @"/"];
+    
+    
+    cell.textLabel.text = parseWithSpaces[parseWithSpaces.count-1];
     
     if (cell.button.isPlaying) {
         [cell.button setBackgroundImage:_buttonStop forState:UIControlStateNormal];
@@ -172,7 +193,7 @@
     return cell;
 }
 
-- (BOOL) textViewShouldBeginEditing:(UITextView *)textView
+- (BOOL)textViewShouldBeginEditing:(UITextView *)textView
 {
     if (_commentView.textColor == [UIColor lightGrayColor]) {
         _commentView.text = @"";
@@ -182,7 +203,7 @@
     return YES;
 }
 
-- (BOOL) textViewShouldEndEditing:(UITextView *)textView
+- (BOOL)textViewShouldEndEditing:(UITextView *)textView
 {
     NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"$\\n" options:0 error:NULL];
     NSUInteger a = [regex numberOfMatchesInString:textView.text options:0 range:NSMakeRange(0, [textView.text length])];
@@ -196,6 +217,9 @@
 //        [commentTemp[_index.section] setObject:_commentView.text forKey:_index.row];
 //        _comment = commentTemp;
     }
+   NSMutableArray *temp = [_comment mutableCopy];
+   [[temp objectAtIndex:_index.section] setObject: _commentView.text atIndex:_index.row];
+    _comment = temp;
     return YES;
 }
 
@@ -228,6 +252,8 @@
 
 - (IBAction)recordStopButton:(UIButton *)sender {
     
+    NSMutableArray *recordsTransmitting = [[NSMutableArray alloc]initWithCapacity:0];
+    recordsTransmitting = [_arrayOfRecords mutableCopy];
     if (player.playing) {
         [player stop];
     }
@@ -245,7 +271,13 @@
         [sender setBackgroundImage:self.buttonRecord forState:UIControlStateNormal];
         
         AVAudioSession *audioSession = [AVAudioSession sharedInstance];
+        [recordsTransmitting addObject:recorder.url];
+        _arrayOfRecords = recordsTransmitting;
         [audioSession setActive:NO error:nil];
+        [_tableView reloadData];
+
+        //[recordsTransmitting addObject:audioSession];
+        //_genInfo.records = recordsTransmitting;
     }
 }
 
@@ -290,189 +322,170 @@
     [alert show];
     [_tableView reloadData];
 }
-//
-//
-//
-//
-//- (NSString *)dateString
+
+
+- (NSString *)dateString
+{
+    // return a formatted string for a file name
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    formatter.dateFormat = @"dd.MMM.YYYY_hh:mm:ssa";
+    return [[formatter stringFromDate:[NSDate date]] stringByAppendingString:@".aif"];
+}
+
+//- (BOOL)startAudioSession
 //{
-//    // return a formatted string for a file name
-//    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-//    formatter.dateFormat = @"ddMMMYY_hhmmssa";
-//    return [[formatter stringFromDate:[NSDate date]] stringByAppendingString:@".aif"];
-//}
-//
-////- (BOOL)startAudioSession
-////{
-////    // Prepare the audio session
-////    NSError *error;
-////    AVAudioSession *session = [AVAudioSession sharedInstance];
-////    
-////    if (![session setCategory:AVAudioSessionCategoryPlayAndRecord error:&error])
-////    {
-////        NSLog(@"Error setting session category: %@", error.localizedFailureReason);
-////        return NO;
-////    }
-////    
-////    
-////    if (![session setActive:YES error:&error])
-////    {
-////        NSLog(@"Error activating audio session: %@", error.localizedFailureReason);
-////        return NO;
-////    }
-////    
-////    return session.inputAvailable;
-////}
-//
-//- (BOOL)record
-//{
+//    // Prepare the audio session
 //    NSError *error;
+//    AVAudioSession *session = [AVAudioSession sharedInstance];
 //    
-//    // Recording settings
-//    NSMutableDictionary *settings = [NSMutableDictionary dictionary];
+//    if (![session setCategory:AVAudioSessionCategoryPlayAndRecord error:&error])
+//    {
+//        NSLog(@"Error setting session category: %@", error.localizedFailureReason);
+//        return NO;
+//    }
 //    
-//    [settings setValue: [NSNumber numberWithInt:kAudioFormatLinearPCM] forKey:AVFormatIDKey];
-//    [settings setValue: [NSNumber numberWithFloat:8000.0] forKey:AVSampleRateKey];
-//    [settings setValue: [NSNumber numberWithInt:1] forKey:AVNumberOfChannelsKey];
-//    [settings setValue: [NSNumber numberWithInt:16] forKey:AVLinearPCMBitDepthKey];
-//    [settings setValue: [NSNumber numberWithBool:NO] forKey:AVLinearPCMIsBigEndianKey];
-//    [settings setValue: [NSNumber numberWithBool:NO] forKey:AVLinearPCMIsFloatKey];
-//    [settings setValue: [NSNumber numberWithInt:AVAudioQualityMax] forKey:AVEncoderAudioQualityKey];
 //    
+//    if (![session setActive:YES error:&error])
+//    {
+//        NSLog(@"Error activating audio session: %@", error.localizedFailureReason);
+//        return NO;
+//    }
+//    
+//    return session.inputAvailable;
+//}
+
+- (BOOL)record
+{
+    NSError *error;
+    
+    // Recording settings
+    NSMutableDictionary *settings = [NSMutableDictionary dictionary];
+    
+    [settings setValue: [NSNumber numberWithInt:kAudioFormatLinearPCM] forKey:AVFormatIDKey];
+    [settings setValue: [NSNumber numberWithFloat:8000.0] forKey:AVSampleRateKey];
+    [settings setValue: [NSNumber numberWithInt:1] forKey:AVNumberOfChannelsKey];
+    [settings setValue: [NSNumber numberWithInt:16] forKey:AVLinearPCMBitDepthKey];
+    [settings setValue: [NSNumber numberWithBool:NO] forKey:AVLinearPCMIsBigEndianKey];
+    [settings setValue: [NSNumber numberWithBool:NO] forKey:AVLinearPCMIsFloatKey];
+    [settings setValue: [NSNumber numberWithInt:AVAudioQualityMax] forKey:AVEncoderAudioQualityKey];
+    
+    NSArray *searchPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentPath_ = [searchPaths objectAtIndex: 0];
+    
+    NSString *pathToSave = [documentPath_ stringByAppendingPathComponent:[self dateString]];
+    
+    // File URL
+    NSURL *url = [NSURL fileURLWithPath:pathToSave];//FILEPATH];
+    
+    NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
+    
+    [prefs setURL:url forKey:@"Test1"];
+    [prefs synchronize];
+    
+    recorder = [[AVAudioRecorder alloc]initWithURL:url settings:settings error:&error];
+    recorder.meteringEnabled = YES;
+    
+    [recorder prepareToRecord];
+    [recorder record];
+    
+    // Create recorder
+//    recorder = [[AVAudioRecorder alloc] initWithURL:url settings:settings error:&error];
+//    if (!recorder)
+//    {
+//        NSLog(@"Error establishing recorder: %@", error.localizedFailureReason);
+//        return NO;
+//    }
+//    
+//    // Initialize degate, metering, etc.
+//    recorder.delegate = self;
+//    recorder.meteringEnabled = YES;
+//    //self.title = @"0:00";
+//
+//    if (![recorder prepareToRecord])
+//    {
+//        NSLog(@"Error: Prepare to record failed");
+//        //[self say:@"Error while preparing recording"];
+//        return NO;
+//    }
+//    
+//    if (![recorder record])
+//    {
+//        NSLog(@"Error: Record failed");
+//        //  [self say:@"Error while attempting to record audio"];
+//        return NO;
+//    }
+    
+    // Set a timer to monitor levels, current time
+    
+    //timer = [NSTimer scheduledTimerWithTimeInterval:0.1f target:self selector:@selector(updateMeters) userInfo:nil repeats:YES];
+    
+    return YES;
+}
+
+- (void)playBack
+{
+    AVAudioSession *audioSession = [AVAudioSession sharedInstance];
+    
+    [audioSession setCategory:AVAudioSessionCategoryPlayback error:nil];
+    
+    [audioSession setActive:YES error:nil];
+    
+    //Load recording path from preferences
+    NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
+    
+    temporaryRecFile = [prefs URLForKey:@"Test1"];
+    
+    player = [[AVAudioPlayer alloc] initWithContentsOfURL:temporaryRecFile error:nil];
+    
+    player.delegate = self;
+    
+    [player setNumberOfLoops:0];
+    player.volume = 1;
+    
+//    //NSString *filePath = [[NSBundle mainBundle] pathForResource:@"example" ofType:@"aif"];
 //    NSArray *searchPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
 //    NSString *documentPath_ = [searchPaths objectAtIndex: 0];
 //    
-//    NSString *pathToSave = [documentPath_ stringByAppendingPathComponent:[self dateString]];
+//    NSFileManager *fileManager = [NSFileManager defaultManager];
 //    
-//    // File URL
-//    NSURL *url = [NSURL fileURLWithPath:pathToSave];//FILEPATH];
-//    
-//    NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
-//    
-//    [prefs setURL:url forKey:@"Test1"];
-//    [prefs synchronize];
-//    
-//    recorder = [[AVAudioRecorder alloc]initWithURL:url settings:settings error:&error];
-//    recorder.meteringEnabled = YES;
-//    
-//    [recorder prepareToRecord];
-//    [recorder record];
-//    
-//    // Create recorder
-////    recorder = [[AVAudioRecorder alloc] initWithURL:url settings:settings error:&error];
-////    if (!recorder)
-////    {
-////        NSLog(@"Error establishing recorder: %@", error.localizedFailureReason);
-////        return NO;
-////    }
-////    
-////    // Initialize degate, metering, etc.
-////    recorder.delegate = self;
-////    recorder.meteringEnabled = YES;
-////    //self.title = @"0:00";
-////
-////    if (![recorder prepareToRecord])
-////    {
-////        NSLog(@"Error: Prepare to record failed");
-////        //[self say:@"Error while preparing recording"];
-////        return NO;
-////    }
-////    
-////    if (![recorder record])
-////    {
-////        NSLog(@"Error: Record failed");
-////        //  [self say:@"Error while attempting to record audio"];
-////        return NO;
-////    }
-//    
-//    // Set a timer to monitor levels, current time
-//    
-//    //timer = [NSTimer scheduledTimerWithTimeInterval:0.1f target:self selector:@selector(updateMeters) userInfo:nil repeats:YES];
-//    
-//    return YES;
-//}
 //
-//- (void)playBack
-//{
-//    AVAudioSession *audioSession = [AVAudioSession sharedInstance];
 //    
-//    [audioSession setCategory:AVAudioSessionCategoryPlayback error:nil];
+//    if ([fileManager fileExistsAtPath:[self recordingFolder]])
+//    {
+//        
+//        _arrayListOfRecordSound = [[NSMutableArray alloc]initWithArray:[fileManager  contentsOfDirectoryAtPath:documentPath_ error:nil]];
+//        
+//        NSLog(@"====%@", _arrayListOfRecordSound);
+//        
+//    }
 //    
-//    [audioSession setActive:YES error:nil];
+//    NSString *selectedSound = [documentPath_ stringByAppendingPathComponent:[_arrayListOfRecordSound objectAtIndex:0]];
 //    
-//    //Load recording path from preferences
-//    NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
+//
 //    
-//    temporaryRecFile = [prefs URLForKey:@"Test1"];
+//    //Start playback
+//    player = [[AVAudioPlayer alloc] initWithContentsOfURL:url error:&error];
 //    
-//    player = [[AVAudioPlayer alloc] initWithContentsOfURL:temporaryRecFile error:nil];
+//    if (!player)
+//    {
+//        NSLog(@"Error establishing player for %@: %@", recorder.url, error.localizedFailureReason);
+//        return;
+//    }
 //    
 //    player.delegate = self;
 //    
-//    [player setNumberOfLoops:0];
-//    player.volume = 1;
+//    // Change audio session for playback
+//    if (![[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback error:&error])
+//    {
+//        NSLog(@"Error updating audio session: %@", error.localizedFailureReason);
+//        return;
+//    }
 //    
-////    //NSString *filePath = [[NSBundle mainBundle] pathForResource:@"example" ofType:@"aif"];
-////    NSArray *searchPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-////    NSString *documentPath_ = [searchPaths objectAtIndex: 0];
-////    
-////    NSFileManager *fileManager = [NSFileManager defaultManager];
-////    
-////
-////    
-////    if ([fileManager fileExistsAtPath:[self recordingFolder]])
-////    {
-////        
-////        _arrayListOfRecordSound = [[NSMutableArray alloc]initWithArray:[fileManager  contentsOfDirectoryAtPath:documentPath_ error:nil]];
-////        
-////        NSLog(@"====%@", _arrayListOfRecordSound);
-////        
-////    }
-////    
-////    NSString *selectedSound = [documentPath_ stringByAppendingPathComponent:[_arrayListOfRecordSound objectAtIndex:0]];
-////    
-////
-////    
-////    //Start playback
-////    player = [[AVAudioPlayer alloc] initWithContentsOfURL:url error:&error];
-////    
-////    if (!player)
-////    {
-////        NSLog(@"Error establishing player for %@: %@", recorder.url, error.localizedFailureReason);
-////        return;
-////    }
-////    
-////    player.delegate = self;
-////    
-////    // Change audio session for playback
-////    if (![[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback error:&error])
-////    {
-////        NSLog(@"Error updating audio session: %@", error.localizedFailureReason);
-////        return;
-////    }
-////    
-////    self.title = @"Playing back recording...";
-//    
-//    [player prepareToPlay];
-//    [player play];
-//}
-////
-////- (void)stopRecording
-////{
-////    // This causes the didFinishRecording delegate method to fire
-////    [recorder stop];
-////}
-////
-////- (void)continueRecording
-////{
-////    // resume from a paused recording
-////    [recorder record];
-////}
-////
-////- (void)pauseRecording
-////{  // pause an ongoing recording
-////    [recorder pause];
-////}
+//    self.title = @"Playing back recording...";
+    
+    [player prepareToPlay];
+    [player play];
+}
 
 @end
 

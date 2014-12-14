@@ -90,8 +90,6 @@
     
     _pars = [[EHSkillsProfilesParser alloc]init];
     
-    
-    
     if (_interview.idExternal.idGeneralInfo != nil && _interview.idExternal.skills.count != 0)
     {
         _pars.interview = _interview;
@@ -107,42 +105,36 @@
             {
                 if ([self.tableSections[i]  isEqualToString: [_pars.groups[j] nameOfSections]])
                 {
-                    
                     NSArray *arr = [[_pars.groups[j] skills] allObjects];
                     
                     myArr[i] = arr;
                 }
             }
-            
         }
         
-        
-        
-        
         NSMutableArray * tt = [[NSMutableArray alloc]initWithCapacity:0];
+        NSMutableArray * tr = [[NSMutableArray alloc]initWithCapacity:0];
         for (int i = 0; i < myArr.count; i++)
         {
             tt = [[NSMutableArray alloc]initWithCapacity:0];
+            tr = [[NSMutableArray alloc]initWithCapacity:0];
             for (int b =0; b<[self.sectionContent[i]count];b++)
             {
-                for(int j = 0; j<[myArr[i]count];j++)
+                for(int j = 0; j < [myArr[i]count];j++)
                 {
-                    
-                    
                     if ([[myArr[i][j] nameOfSkill] isEqualToString:self.sectionContent[i][b]])
                     {
                         [tt addObject:[myArr[i][j] estimate]];
+                        EHSkill *kkk=myArr[i][j];
+                      [tr addObject:[kkk comment]];
                     }
                 }
             }
             [_array insertObject:tt atIndex:i];
+            [_comment insertObject:tr atIndex:i];
         }
         
-        
-        
-        
-        
-        for (int i = 0; i < self.tableSections.count; i++)//6
+      /*  for (int i = 0; i < self.tableSections.count; i++)//6
         {
             NSMutableArray *temp = [[NSMutableArray alloc]initWithCapacity:0];// group
             for (int b = 0; b < [[self.sectionContent objectAtIndex:i] count]; b++)
@@ -150,21 +142,19 @@
                 [temp addObject:@""];
             
             [_comment insertObject:temp atIndex:i];
-        }
-        
+        }*/
     }
     else{
-        
-        
         for (int i = 0; i < self.tableSections.count; i++)//6
         {
-            NSMutableArray *temp = [[NSMutableArray alloc]initWithCapacity:0];// group
-            for (int b = 0; b < [[self.sectionContent objectAtIndex:i] count]; b++)
-                
+            NSMutableArray *temp = [[NSMutableArray alloc]initWithCapacity:0];// group]
+            NSMutableArray *temp2 = [[NSMutableArray alloc]initWithCapacity:0];
+            for (int b = 0; b < [[self.sectionContent objectAtIndex:i] count]; b++){
+                [temp2 addObject:@""];
                 [temp addObject:@""];
-            
+            }
             [_array insertObject:temp atIndex:i];
-            [_comment insertObject:temp atIndex:i];
+            [_comment insertObject:temp2 atIndex:i];
         }
     }
     self.openGeneralInfo.layer.cornerRadius = 13;
@@ -293,7 +283,9 @@
         NSMutableArray *groupsTransmitting = [[NSMutableArray alloc]init];
         
         for (int x = 0; x < [[self.sectionContent objectAtIndex:y] count]; x++) {
+            
             EHSkill *skillsOfExternal = [[EHSkill alloc]init];
+            
             skillsOfExternal.nameOfSkill = _sectionContent[y][x];
             if (![_array[y][x]  isEqual: @""]) {
                 skillsOfExternal.estimate = _array[y][x];
@@ -304,15 +296,16 @@
             }
             
             if (![_comment[y][x]  isEqual: @""]) {
-                skillsOfExternal.estimate = _comment[y][x];
+                skillsOfExternal.comment = _comment[y][x];
             }
             else {
-                skillsOfExternal.estimate = @"None";
+                skillsOfExternal.comment = @"None";
                 _comment[y][x] = @"None";
             }
             
             [groupsTransmitting addObject:skillsOfExternal];
         }
+        
         groupsOfExternal.skills = groupsTransmitting;
         groupsOfExternal.nameOfSections = _tableSections[y];
         [profTransmitting addObject:groupsOfExternal];
@@ -507,7 +500,6 @@
     else {
         [za addFileToZip:pathToCompress newname:toCompress];
     }
-    
     [za CloseZipFile2];
 }
 

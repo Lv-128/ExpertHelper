@@ -197,9 +197,7 @@
     [context save:&saveError];
     for (int i = 0; i < _groups.count; i++)
     {
-        
         Group *group = [self createGroup:i];
-
        
         for (EHSkill *skill in [_groups[i] skills])
         {
