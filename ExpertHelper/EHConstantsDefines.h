@@ -18,7 +18,7 @@
 #import "EHCheckNetworkConnection.h"
 
 #import "EHExternalViewController.h"
-
+#import <MessageUI/MessageUI.h>
 #import "EHRecruitersViewController.h"
 
 #ifndef ExpertHelper_EHConstantsDefines_h

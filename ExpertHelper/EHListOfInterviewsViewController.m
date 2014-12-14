@@ -14,7 +14,7 @@
 #import "EHRecruiterViewController.h"
 #import "EHITAViewController.h"
 #import "EHEventsGetInfoParser.h"
-#import <MessageUI/MessageUI.h>
+
 #import "EHAppDelegate.h"
 #import "EHInterviewViewCell.h"
 #import "EHFacebookPopoverViewController.h"

@@ -8,7 +8,8 @@
 
 #import "EHRecruiterViewController.h"
 #import "EHAppDelegate.h"
-@interface EHRecruiterViewController ()
+
+@interface EHRecruiterViewController ()  <MFMailComposeViewControllerDelegate>
 
 @end
 
@@ -62,6 +63,31 @@
     [super viewDidLoad];
 }
 
+#pragma mark Send Email To Recruiter
+- (void)sendEmailToAddress:(NSString*)address
+{
+    MFMailComposeViewController *mailController = [[MFMailComposeViewController alloc]init];
+    [mailController setMailComposeDelegate:self];
+    
+    NSArray *addressArray = [[NSArray alloc]initWithObjects:address, nil];
+    [mailController setMessageBody:@"Print message here!" isHTML:NO];
+    [mailController setToRecipients:addressArray];
+    [mailController setSubject:@""];
+    [mailController setModalTransitionStyle:UIModalTransitionStyleFlipHorizontal];
+    //  [mailController addAttachmentData:<#(NSData *)#> mimeType:<#(NSString *)#> fileName:<#(NSString *)#>]
+    [self presentViewController:mailController animated:YES completion: nil];
+    
+}
+
+- (void)mailComposeController:(MFMailComposeViewController *) controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error{
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (IBAction)emailMe:(id)sender
+{
+    [self sendEmailToAddress:_recruiter.email];
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -93,4 +119,5 @@
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://itunes.com/apps/skype/skype"]];
     }
 }
+
 @end

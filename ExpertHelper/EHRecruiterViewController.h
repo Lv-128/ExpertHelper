@@ -19,5 +19,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *panel;
 
 - (IBAction)skypeMe:(id)sender;
+@property (weak, nonatomic) IBOutlet UIButton *sendEmailMe;
+- (IBAction)emailMe:(id)sender;
 
 @end
