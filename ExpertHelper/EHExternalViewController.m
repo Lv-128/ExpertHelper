@@ -451,13 +451,16 @@
 
 // convert from xlsx to zip
 - (void)unzip {
+    NSString *filePath = [[NSBundle mainBundle] pathForResource:@"Workbook" ofType:@"xlsx"];
+
     NSString *yourFileName = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
-    NSString *zipFilePath = [yourFileName stringByAppendingPathComponent:@"Workbook.xlsx"];
+    
+    //  NSString *zipFilePath = [yourFileName stringByAppendingPathComponent:@"Workbook.xlsx"];
     NSString *output = [yourFileName stringByAppendingPathComponent:@"unZipDirName1"];
     
     ZipArchive* za = [[ZipArchive alloc] init];
     
-    if ([za UnzipOpenFile:zipFilePath]) {
+    if ([za UnzipOpenFile:filePath]) {
         if ( [za UnzipFileTo:output overWrite:YES] != NO ) {
             //unzip data success
             //do something
@@ -507,8 +510,6 @@
     
     [za CloseZipFile2];
 }
-
-
 
 @end
 
