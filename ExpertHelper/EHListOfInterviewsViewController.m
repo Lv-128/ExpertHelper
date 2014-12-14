@@ -17,22 +17,18 @@
 #import <MessageUI/MessageUI.h>
 #import "EHAppDelegate.h"
 #import "EHInterviewViewCell.h"
-#import "EHFacebookPopoverViewController.h"
 
 
 
 //#define  INTERVIEWTYPE [NSMutableArray arrayWithObjects:@"None", @"IT Academy",@"Internal",@"External",nil]
 enum {None,ITA, Internal,External};
-@interface EHListOfInterviewsViewController () <UICollectionViewDataSource, UICollectionViewDelegate, UIGestureRecognizerDelegate,
-UIActionSheetDelegate, MFMailComposeViewControllerDelegate>
+@interface EHListOfInterviewsViewController () <UICollectionViewDataSource, UICollectionViewDelegate, UIGestureRecognizerDelegate, UIActionSheetDelegate, MFMailComposeViewControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *barButton;
 @property (strong, nonatomic) NSDateFormatter *cellDateFormatter;
 @property (strong, nonatomic) InterviewAppointment *curInterview ;
 @property (strong, nonatomic) UIActionSheet *actionSheetTypes;
 @property (strong, nonatomic) UILabel *label;
-@property (nonatomic, strong) EHFacebookPopoverViewController *popController;
-@property (nonatomic, strong) UIPopoverController *popover;
 
 @end
 
@@ -217,50 +213,6 @@ UIActionSheetDelegate, MFMailComposeViewControllerDelegate>
     [self sendEmailToAddress:event.idRecruiter.email];
     
     
-}
-- (IBAction)facebookButton:(id)sender {
-    NSIndexPath *indexPath = [self indexPathOfButton:sender];
-    EHWeek *week = [self.sortedWeeks objectAtIndex:indexPath.section];
-    NSArray *eventsOnThisDay = week.interviews;
-    InterviewAppointment *event = [eventsOnThisDay objectAtIndex:indexPath.row];
-    
-    // If the session state is any of the two "open" states when the button is clicked
-    NSLog(@"%d", FBSession.activeSession.state == FBSessionStateOpen);
-    if (FBSession.activeSession.state == FBSessionStateOpen
-        || FBSession.activeSession.state == FBSessionStateOpenTokenExtended) {
-        
-        // Close the session and remove the access token from the cache
-        // The session state handler (in the app delegate) will be called automatically
-        //[FBSession.activeSession closeAndClearTokenInformation];
-        _popController = [[EHFacebookPopoverViewController alloc] initWithNibName:@"EHFacebookPopoverViewController" bundle:nil];
-        //_popController.delegate = self;
-
-        _popController.firstName = event.idExternal.idCandidate.firstName;
-        _popController.lastName = event.idExternal.idCandidate.lastName;
-        self.popover = [[UIPopoverController alloc] initWithContentViewController:_popController];
-        self.popover.popoverContentSize = CGSizeMake(400.0, 400.0);
-        [self.popover presentPopoverFromRect: [(UIButton *)sender bounds]
-                                      inView:sender
-                    permittedArrowDirections:UIPopoverArrowDirectionAny
-                                    animated:YES];
-        
-        // If the session state is not any of the two "open" states when the button is clicked
-    } else {
-        // Open a session showing the user the login UI
-        // You must ALWAYS ask for public_profile permissions when opening a session
-        [FBSession openActiveSessionWithReadPermissions:@[@"public_profile"]
-                                           allowLoginUI:YES
-                                      completionHandler:
-         ^(FBSession *session, FBSessionState state, NSError *error) {
-             
-             // Retrieve the app delegate
-             EHAppDelegate* appDelegate = [UIApplication sharedApplication].delegate;
-             // Call the app delegate's sessionStateChanged:state:error method to handle session state changes
-             [appDelegate sessionStateChanged:session state:state error:error];
-         }];
-    }
-    
-
 }
 
 

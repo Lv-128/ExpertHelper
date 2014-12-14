@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13E28" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="696-TH-eQE">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4510" systemVersion="13E28" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="696-TH-eQE">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3742"/>
     </dependencies>
     <scenes>
         <!--Reveal View Controller-->
@@ -343,7 +343,8 @@
                                     <color key="titleShadowColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
-                                    <segue destination="QWz-uc-3pi" kind="push" id="jKz-SU-mek"/>
+                                    <action selector="openGeneralInfo:" destination="ioK-KF-1C8" eventType="touchUpInside" id="9hx-wC-DWp"/>
+                                    <segue destination="QWz-uc-3pi" kind="push" id="F9E-IP-Rq9"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -368,6 +369,7 @@
                     </navigationItem>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
                     <connections>
+                        <outlet property="openGeneralInfo" destination="X3Z-sJ-DVu" id="TSQ-8i-VkR"/>
                         <outlet property="tableView" destination="e0g-9P-WPS" id="dkm-YK-eWC"/>
                         <segue destination="1SL-6X-SWp" kind="push" identifier="profa" id="oyY-t6-ZgU"/>
                     </connections>
@@ -502,14 +504,11 @@
                                                     </state>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IJP-A5-hwW">
-                                                    <rect key="frame" x="616" y="176" width="108" height="37"/>
+                                                    <rect key="frame" x="607" y="189" width="108" height="30"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <state key="normal" backgroundImage="facebookicon">
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
-                                                    <connections>
-                                                        <action selector="facebookButton:" destination="8ab-5p-1Xv" eventType="touchUpInside" id="l3X-Fe-XiT"/>
-                                                    </connections>
                                                 </button>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
