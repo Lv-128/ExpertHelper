@@ -19,4 +19,5 @@
 @property (weak, nonatomic) IBOutlet UILabel *candidateLabel;
 @property (weak, nonatomic) IBOutlet UILabel *recruiterLabel;
 @property (weak, nonatomic) IBOutlet UILabel *typeLabel;
+
 @end

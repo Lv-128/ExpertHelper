@@ -222,12 +222,20 @@
         recruiter.firstName = parseNameAndLastnameOfRecruiter.firstName;
         recruiter.lastName = parseNameAndLastnameOfRecruiter.lastName;
         recruiter.email = email;
-        
+        recruiter.skypeAccount = @"echo";
         NSString * urlString = [self callToWebAndGetPictureOfRecruiterWithName:recruiter.firstName andLastName:recruiter.lastName];
         if (urlString != nil)
         {
             recruiter.photoUrl = urlString;
         }
+        NSString *skype = [self callToWebAndGetSkypeOfRecruiterfromName:(NSString *)recruiter.firstName
+                                                               lastname:(NSString*)recruiter.lastName];
+        if (skype != nil)
+        {
+            recruiter.skypeAccount = skype;
+        }
+        
+        
         
         return recruiter;
     }
@@ -310,7 +318,6 @@
 
 
 
-<<<<<<< HEAD
 
 - (NSString *) callToWebAndGetSkypeOfRecruiterfromName:(NSString *)name
                                               lastname:(NSString*)lastname
@@ -369,7 +376,9 @@
                     neededString = parseWithSpaces[i]; // the url
                 }
             }
+            
             return   [self getSkypeFromUrl:neededString];
+            
         }
     }
     return nil;
@@ -444,15 +453,15 @@
                 }
             }
             return neededString;
+            
         }
-        return nil;
     }
-    return nil;
+    
+    
+    
 }
 
 
-=======
->>>>>>> FETCH_HEAD
 -(Candidate *)getCandidateFromEvent:(EKEvent *)event andAddToDB:(NSManagedObjectContext *)context
 {
     Candidate *candidateResult;

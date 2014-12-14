@@ -8,6 +8,7 @@
 
 #import "EHSkillsProfilesParser.h"
 
+
 @implementation EHGroups
 
 - (id)init
@@ -95,16 +96,37 @@
         if (groups != nil && genInfo != nil) {
             [self saveInfoToDB];
         }
+        else
+        {
+          //  _groups = [[NSArray alloc]init];
+            
+            
+        }
     }
     return self;
 }
 
-- (GeneralInfo *)createGeneralInfoEntity
+- (id) init
+{
+    self = [super init];
+    if (self)
+    {
+   
+        EHAppDelegate *appDelegate = [[UIApplication sharedApplication]delegate];
+        _managedObjectContext = [appDelegate managedObjectContext];
+    }
+    return  self;
+}
+
+- (GeneralInfo *)createGeneralInfoEntity:(GeneralInfo *)genInfo
 {
      NSManagedObjectContext *context = [self managedObjectContext];
-    GeneralInfo *genInfo = [NSEntityDescription
+    if (genInfo == nil)
+    {
+    genInfo = [NSEntityDescription
                             insertNewObjectForEntityForName:[GeneralInfo entityName]
                             inManagedObjectContext:context];
+    }
     genInfo.competenceGroup = _genInfo.competenceGroup;
     genInfo.creatingDate = _genInfo.dateOfInterview;
     genInfo.expertName = _genInfo.expertName;
@@ -123,53 +145,87 @@
     return genInfo;
 }
 
-- (void)saveInfoToDB
+
+
+
+- (Group *)createGroup:(int)index
 {
     NSManagedObjectContext *context = [self managedObjectContext];
     
-    GeneralInfo *genInfo = [self createGeneralInfoEntity];
-    genInfo.idExternalInterview = _interview.idExternal;
-    _interview.idExternal = genInfo.idExternalInterview;
+    Group *group;
+    
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:[Group entityName]
+                                              inManagedObjectContext:context];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"title == %@", [[_groups objectAtIndex:index]nameOfSections]];
+    [fetchRequest setPredicate:predicate];
+    [fetchRequest setEntity:entity];
+    NSArray *fetchedObjects = [context executeFetchRequest:fetchRequest error:nil];
+    
+    if(fetchedObjects.count > 0)// we don't need this actually
+    {
+        group = fetchedObjects[0];
+    }
+    else
+    {
+        group = [NSEntityDescription
+                 insertNewObjectForEntityForName:[Group entityName]
+                 inManagedObjectContext:context];
+        group.title = [[_groups objectAtIndex:index]nameOfSections];
+    }
+    return group;
+}
+- (void)saveInfoToDB
+{
+    NSManagedObjectContext *context = [self managedObjectContext];
+
+    GeneralInfo *genInfo = [self createGeneralInfoEntity:_interview.idExternal.idGeneralInfo];
+        genInfo.idExternalInterview = _interview.idExternal;
+        _interview.idExternal = genInfo.idExternalInterview;
+    
     
     NSError *error;
     if (![context save:&error]) {
         NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
     }
+    
+    
+    for (NSManagedObject * skill in _interview.idExternal.skills) {
+        [context deleteObject:skill];
+    }
+    NSError *saveError = nil;
+    [context save:&saveError];
     for (int i = 0; i < _groups.count; i++)
     {
-        Group *group;
         
-        NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-        NSEntityDescription *entity = [NSEntityDescription entityForName:[Group entityName]
-                                                  inManagedObjectContext:context];
-        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"title == %@", [[_groups objectAtIndex:i]nameOfSections]];
-        [fetchRequest setPredicate:predicate];
-        [fetchRequest setEntity:entity];
-        NSArray *fetchedObjects = [context executeFetchRequest:fetchRequest error:nil];
-        
-        if(fetchedObjects.count > 0)// we don't need this actually
-        {
-            group = fetchedObjects[0];
-        }
-        else
-        {
-            group = [NSEntityDescription
-                     insertNewObjectForEntityForName:[Group entityName]
-                     inManagedObjectContext:context];
-            group.title = [[_groups objectAtIndex:i]nameOfSections];
-        }
-        
+        Group *group = [self createGroup:i];
+
+       
         for (EHSkill *skill in [_groups[i] skills])
         {
-            Skills *curSkill = [NSEntityDescription
+            
+            Skills *curSkill;
+            SkillsLevels *skillLevel;
+            
+                curSkill = [NSEntityDescription
                                 insertNewObjectForEntityForName:[Skills entityName]
                                 inManagedObjectContext:context];
-            curSkill.title = skill.nameOfSkill;
-            SkillsLevels *skillLevel = [NSEntityDescription
-                                        insertNewObjectForEntityForName:[SkillsLevels entityName]                                                                            inManagedObjectContext:context];
-            skillLevel.comment = skill.comment;
-            skillLevel.level = 0;//skill.estimate;
             
+                curSkill.title = skill.nameOfSkill;
+            
+                skillLevel = [NSEntityDescription
+                              insertNewObjectForEntityForName:[SkillsLevels entityName]
+                              inManagedObjectContext:context];
+
+            skillLevel.comment = skill.comment;
+            
+            for (int i = 0; i< ESTIMATES.count;i++)
+            {
+                if ([ESTIMATES[i] isEqualToString:skill.estimate])
+                {
+                skillLevel.level = [NSNumber numberWithInt:i];
+                }
+            }
             skillLevel.idSkill = curSkill;
             curSkill.level = skillLevel;
             
@@ -185,7 +241,6 @@
         
     }
     
-<<<<<<< HEAD
     if (![context save:&error]) {
         NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
     }
@@ -213,8 +268,10 @@
 {
     NSManagedObjectContext *context = [self managedObjectContext];
     
-=======
->>>>>>> FETCH_HEAD
+    NSMutableArray *curGroups = [[NSMutableArray alloc]init];
+    NSMutableArray *curSkills = [[NSMutableArray alloc]init];
+      
+    
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     NSEntityDescription *entity = [NSEntityDescription entityForName:[Group entityName]
                                               inManagedObjectContext:context];
@@ -222,12 +279,14 @@
     [fetchRequest setEntity:entity];
     NSArray *fetchedObjects = [context executeFetchRequest:fetchRequest error:nil];
     
-<<<<<<< HEAD
+    
+    
+    
     NSLog(@"%d",fetchedObjects.count);
     
     if (_interview.idExternal.idGeneralInfo != nil && _interview.idExternal.skills.count != 0)
     {
-        NSMutableArray *curGroups = [[NSMutableArray alloc]initWithCapacity:0];
+        curGroups = [[NSMutableArray alloc]initWithCapacity:0];
         
         for(int i = 0; i < fetchedObjects.count; i++)
         {
@@ -235,7 +294,7 @@
             EHGroups *gr = [[EHGroups alloc]init];
             gr.skills = array;
             gr.nameOfSections = [fetchedObjects[i] title];
-            NSMutableArray *curSkills = [[NSMutableArray alloc]initWithCapacity:0];
+            curSkills = [[NSMutableArray alloc]initWithCapacity:0];
 
             for (Skills *curSk in _interview.idExternal.skills) {
                  if ([curSk.idGroup.title isEqualToString: [fetchedObjects[i] title]])
@@ -260,29 +319,64 @@
             
              gr.skills = curSkills;
             [curGroups addObject:gr];
-=======
-    if(fetchedObjects.count > 0)// we don't need this actually
-    {
-        for(Group *gr in fetchedObjects)
-        {
-            NSLog(@"%@", gr.title);
         }
-    }
-    
-    entity = [NSEntityDescription entityForName:[Skills entityName]
-                         inManagedObjectContext:context];
-    
-    [fetchRequest setEntity:entity];
-    fetchedObjects = [context executeFetchRequest:fetchRequest error:nil];
-    
-    if(fetchedObjects.count > 0)// we don't need this actually
-    {
-        for(Group *gr in fetchedObjects)
-        {
-            NSLog(@"%@", gr.title);
->>>>>>> FETCH_HEAD
-        }
+        
+        
+          NSLog(@"%@",_interview.idExternal.idGeneralInfo.expertName);
+        
+        
+        
+        EHGenInfo *result = [[EHGenInfo alloc]init];
+        
+        GeneralInfo *genInfo = _interview.idExternal.idGeneralInfo;
+        NSLog(@"%@",_interview.idExternal.idGeneralInfo.expertName);
+        
+        result.competenceGroup = genInfo.competenceGroup;
+        result.dateOfInterview = genInfo.creatingDate;
+        result.expertName = genInfo.expertName;
+        
+        BOOL hireResult;
+        (result.hire) ? (hireResult = YES) : (hireResult = NO);
+        
+        result.hire = hireResult;
+        result.levelEstimate = genInfo.levelEstimate;
+        result.potentialCandidate = genInfo.potentialCandidate;
+        result.typeOfProject = genInfo.projectType;
+        result.recommendations = genInfo.recommendations;
+        result.skillsSummary = genInfo.skillsSummary;
+        result.techEnglish = genInfo.techEnglish;
+        
+        
+        
+    self.genInfo = result;
+    self.groups = curGroups;
     }
 }
 
+
+/*- (EHGenInfo *)getGeneralInfo:(GeneralInfo *)genInfo
+{
+    NSManagedObjectContext *context = [self managedObjectContext];
+    EHGenInfo *result = [[EHGenInfo alloc]init];
+    
+    
+     NSLog(@"%@",_interview.idExternal.idGeneralInfo.expertName);
+    
+    result.competenceGroup = genInfo.competenceGroup;
+    result.dateOfInterview = genInfo.creatingDate;
+    result.expertName = genInfo.expertName;
+    
+    BOOL hireResult;
+    (result.hire) ? (hireResult = YES) : (hireResult = NO);
+    
+    result.hire = hireResult;
+    result.levelEstimate = genInfo.levelEstimate;
+    result.potentialCandidate = genInfo.potentialCandidate;
+    result.typeOfProject = genInfo.projectType;
+    result.recommendations = genInfo.recommendations;
+    result.skillsSummary = genInfo.skillsSummary;
+    result.techEnglish = genInfo.techEnglish;
+    
+    return result;
+}*/
 @end
