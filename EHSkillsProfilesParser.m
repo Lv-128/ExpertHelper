@@ -244,18 +244,7 @@
     if (![context save:&error]) {
         NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
     }
-   
-    
-    
-    NSArray *arr = [_interview.idExternal.skills allObjects];
-    
-    for(int i = 0; i< _interview.idExternal.skills.count; i++)
-    {
-        NSLog(@"%@",[ arr[i] title]);
-        NSLog(@" group name   %@",[arr[i] idGroup].title);
-    }
-    
-  
+ 
 }
 
 
@@ -278,11 +267,6 @@
     
     [fetchRequest setEntity:entity];
     NSArray *fetchedObjects = [context executeFetchRequest:fetchRequest error:nil];
-    
-    
-    
-    
-    NSLog(@"%d",fetchedObjects.count);
     
     if (_interview.idExternal.idGeneralInfo != nil && _interview.idExternal.skills.count != 0)
     {
@@ -308,28 +292,14 @@
                 }
                
             }
-            
-            
-            for(int i = 0; i< curSkills.count; i++)
-            {
-                NSLog(@"%@",[curSkills[i] nameOfSkill]);
-            }
-            
-            NSLog(@" group name   %@",gr.nameOfSections);
-            
-             gr.skills = curSkills;
+            gr.skills = curSkills;
             [curGroups addObject:gr];
         }
-        
-        
-          NSLog(@"%@",_interview.idExternal.idGeneralInfo.expertName);
-        
         
         
         EHGenInfo *result = [[EHGenInfo alloc]init];
         
         GeneralInfo *genInfo = _interview.idExternal.idGeneralInfo;
-        NSLog(@"%@",_interview.idExternal.idGeneralInfo.expertName);
         
         result.competenceGroup = genInfo.competenceGroup;
         result.dateOfInterview = genInfo.creatingDate;

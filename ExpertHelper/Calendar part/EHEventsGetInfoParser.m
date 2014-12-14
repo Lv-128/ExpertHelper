@@ -455,10 +455,11 @@
             return neededString;
             
         }
+        return nil;
     }
     
     
-    
+    return nil;
 }
 
 
@@ -479,7 +480,6 @@
         for (Candidate *candidate in fetchedObjects)
         {
             candidateResult = candidate;
-            NSLog(@"found %lu candidates with name %@ and last name %@", (unsigned long)fetchedObjects.count,result.firstName,result.lastName);
         }
     }
     else

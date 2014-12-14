@@ -49,8 +49,6 @@
                     NSData *imgdata=[[NSData alloc]initWithContentsOfURL:imgURL];
         
                     UIImage *image=[[UIImage alloc]initWithData:imgdata];
-        
-                    NSLog(@"%@",imgURL);
 
                     [_photoRecruiter setImage:image];
                 }

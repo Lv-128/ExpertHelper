@@ -154,8 +154,6 @@ UIActionSheetDelegate, MFMailComposeViewControllerDelegate>
     EHWeek *week = [self.sortedWeeks objectAtIndex:indexPath.section];
     NSArray *eventsOnThisDay = week.interviews;
     InterviewAppointment *event = [eventsOnThisDay objectAtIndex:indexPath.row];
-    NSLog(@"%@", event);
-
     NSArray * arr = [[[sortedWeeks objectAtIndex:indexPath.section ] interviews] allObjects];
         _curInterview = [arr objectAtIndex:indexPath.row];
         if(_curInterview.type == [NSNumber numberWithInt:ITA])
@@ -205,7 +203,7 @@ UIActionSheetDelegate, MFMailComposeViewControllerDelegate>
     EHWeek *week = [self.sortedWeeks objectAtIndex:indexPath.section];
     NSArray *eventsOnThisDay = week.interviews;
     InterviewAppointment *event = [eventsOnThisDay objectAtIndex:indexPath.row];
-    NSLog(@"%@", event);
+
 }
 
 - (void)onMailButton:(UIButton *)button {

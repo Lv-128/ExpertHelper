@@ -145,10 +145,6 @@
         for (int i = 0; i < self.tableSections.count; i++)//6
         {
             NSMutableArray *temp = [[NSMutableArray alloc]initWithCapacity:0];// group
-            NSLog(@"%d",[temp count]);
-            
-            
-            NSLog(@"%d",[[self.sectionContent objectAtIndex:i] count]);
             for (int b = 0; b < [[self.sectionContent objectAtIndex:i] count]; b++)
                 
                 [temp addObject:@""];
@@ -163,10 +159,6 @@
         for (int i = 0; i < self.tableSections.count; i++)//6
         {
             NSMutableArray *temp = [[NSMutableArray alloc]initWithCapacity:0];// group
-            NSLog(@"%d",[temp count]);
-            
-            
-            NSLog(@"%d",[[self.sectionContent objectAtIndex:i] count]);
             for (int b = 0; b < [[self.sectionContent objectAtIndex:i] count]; b++)
                 
                 [temp addObject:@""];
@@ -326,8 +318,21 @@
         [profTransmitting addObject:groupsOfExternal];
     }
     
-    _pars = [[EHSkillsProfilesParser alloc]initWithDataGroups:profTransmitting andInterview:_interview andGenInfo:_generInfo];
-    [_pars saveInfoToDB];
+    
+    if (_generInfo == nil)
+    {
+        UIAlertView *message  = [[UIAlertView alloc] initWithTitle:@"Warning!"
+                                                           message:@"Fill general info!!"
+                                                          delegate:nil
+                                                 cancelButtonTitle:@"OK"
+                                                 otherButtonTitles:nil];
+        [message show];
+    }
+    else
+    {
+        _pars = [[EHSkillsProfilesParser alloc]initWithDataGroups:profTransmitting andInterview:_interview andGenInfo:_generInfo];
+        [_pars saveInfoToDB];
+    }
     
 }
 
@@ -338,9 +343,11 @@
 }
 
 - (IBAction)saveForm:(id)sender {
-    NSLog(@"%@", NSHomeDirectory());
+    //NSLog(@"%@", NSHomeDirectory());
     [self parsFunc];
     [self unzip];
+    
+    
     //----------------------------------- start parsing part inside action -------------------------------
     
     NSError *error;

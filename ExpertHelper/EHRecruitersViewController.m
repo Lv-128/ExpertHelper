@@ -87,7 +87,6 @@ Reachability *internetReachable;
         NSData *imgdata=[[NSData alloc]initWithContentsOfURL:imgURL];
         
         UIImage *image=[[UIImage alloc]initWithData:imgdata];
-            NSLog(@"%@",imgURL);
         
         [cell.picture setImage:image];
         }

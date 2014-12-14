@@ -60,21 +60,7 @@
     if (![context save:&error]) {
         NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
     }
-    // Test listing all FailedBankInfos from the store
-    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Recruiter"
-                                              inManagedObjectContext:context];
-    [fetchRequest setEntity:entity];
-    NSArray *fetchedObjects = [context executeFetchRequest:fetchRequest error:&error];
-    for (Recruiter *info in fetchedObjects) {
-        NSLog(@"Name: %@", info.firstName);
-        NSLog(@"Last Name: %@", info.lastName);
-        
-    }
-    
-
-    
-    
+ 
 }
 
 - (NSString *) callToWebAndGetPictureOfRecruiterWithName: (NSString*)firstName andLastName:(NSString*)lastName
