@@ -310,7 +310,7 @@
                     [str appendString:[map valueForKey:_array[y][x]]];
                     [str appendString:@"</v></c>"];
                     
-                    xml = [xml stringByReplacingCharactersInRange: NSMakeRange(i, k - i + 1) withString:str];
+                    xml = [[xml stringByReplacingCharactersInRange: NSMakeRange(i, k - i + 1) withString:str] mutableCopy];
                     
                     str = [@"" mutableCopy];
                     indexForA++;
@@ -352,7 +352,7 @@
                 [str appendString:[map valueForKey:_array[_tableSections.count-1][x]]];
                 [str appendString:@"</v></c>"];
                 
-                xml1 = [xml1 stringByReplacingCharactersInRange: NSMakeRange(i, k - i + 1) withString:str];
+                xml1 = [[xml1 stringByReplacingCharactersInRange: NSMakeRange(i, k - i + 1) withString:str] mutableCopy];
                 
                 str = [@"" mutableCopy];
                 indexForB++;
@@ -405,9 +405,9 @@
     NSMutableString *excelName = [[NSMutableString alloc] initWithString: _interview.idExternal.idCandidate.firstName];
     [excelName appendString:_interview.idExternal.idCandidate.lastName];
     [excelName appendString:[_cellDateFormatter stringFromDate:_interview.startDate]];
-    excelName = [excelName stringByReplacingOccurrencesOfString:@"/" withString:@""];
+    excelName = [[excelName stringByReplacingOccurrencesOfString:@":" withString:@""] mutableCopy];
     
-    NSString *zipFilePath = [documentsDirectory stringByAppendingPathComponent:[NSString stringWithFormat: @"1.xlsx"]];
+    NSString *zipFilePath = [documentsDirectory stringByAppendingPathComponent:[NSString stringWithFormat: @"%@,.xlsx",excelName]];
     
     ZipArchive *za = [[ZipArchive alloc] init];
     [za CreateZipFile2:zipFilePath];
