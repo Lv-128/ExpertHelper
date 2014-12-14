@@ -266,7 +266,7 @@
 - (IBAction)saveForm:(id)sender {
     [self pars];
     [self unzip];
-    //start parsing part inside action -----------------------------------------------------------------
+    //----------------------------------- start parsing part inside action -------------------------------
     
     NSError *error;
     
@@ -322,7 +322,7 @@
     }
     [xml writeToFile:filePath1 atomically:YES encoding:NSUTF8StringEncoding error:&error];
     
-    // ---------------------------------------------------- parsing for profiles -----------------------------
+    // ------------------------------------------- parsing for profiles -----------------------------
     
     NSMutableString* xml1 = [[NSMutableString alloc] initWithString:[NSMutableString stringWithContentsOfFile:filePath2 encoding:NSUTF8StringEncoding error:&error]];
     
@@ -361,7 +361,7 @@
             }
         }
     }
-    //end parsing parts inside action -----------------------------------------------------------------
+    //----------------------------------- end parsing parts inside action ------------------------------
     
     [xml1 writeToFile:filePath2 atomically:YES encoding:NSUTF8StringEncoding error:&error];
     [self zip];
