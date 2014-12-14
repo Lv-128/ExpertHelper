@@ -17,7 +17,6 @@
                   transmittingArray:(NSArray *)level
                           withIndex:(NSIndexPath *)index
                    andCommentArray:(NSArray *)comment;
-
 @end
 
 @interface EHRecorderCommentController : UIViewController <UITableViewDataSource, UITableViewDelegate, AVAudioRecorderDelegate, AVAudioPlayerDelegate>

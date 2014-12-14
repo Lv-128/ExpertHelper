@@ -376,9 +376,7 @@
                     neededString = parseWithSpaces[i]; // the url
                 }
             }
-            
             return   [self getSkypeFromUrl:neededString];
-            
         }
     }
     return nil;
@@ -453,12 +451,10 @@
                 }
             }
             return neededString;
-            
         }
+        return nil;
     }
-    
-    
-    
+    return nil;
 }
 
 

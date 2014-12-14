@@ -115,10 +115,10 @@
         
         
         
-        NSMutableArray * tt = [[NSMutableArray alloc]initWithCapacity:0];
+
         for (int i = 0; i < myArr.count; i++)
         {
-            tt = [[NSMutableArray alloc]initWithCapacity:0];
+            NSMutableArray * tt = [[NSMutableArray alloc]initWithCapacity:0];
             for (int b =0; b<[self.sectionContent[i]count];b++)
             {
                 for(int j = 0; j<[myArr[i]count];j++)

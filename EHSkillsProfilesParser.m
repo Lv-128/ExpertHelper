@@ -268,10 +268,6 @@
 {
     NSManagedObjectContext *context = [self managedObjectContext];
     
-    NSMutableArray *curGroups = [[NSMutableArray alloc]init];
-    NSMutableArray *curSkills = [[NSMutableArray alloc]init];
-      
-    
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     NSEntityDescription *entity = [NSEntityDescription entityForName:[Group entityName]
                                               inManagedObjectContext:context];
@@ -279,14 +275,11 @@
     [fetchRequest setEntity:entity];
     NSArray *fetchedObjects = [context executeFetchRequest:fetchRequest error:nil];
     
-    
-    
-    
     NSLog(@"%d",fetchedObjects.count);
     
     if (_interview.idExternal.idGeneralInfo != nil && _interview.idExternal.skills.count != 0)
     {
-        curGroups = [[NSMutableArray alloc]initWithCapacity:0];
+        NSMutableArray *curGroups = [[NSMutableArray alloc]initWithCapacity:0];
         
         for(int i = 0; i < fetchedObjects.count; i++)
         {
@@ -294,7 +287,7 @@
             EHGroups *gr = [[EHGroups alloc]init];
             gr.skills = array;
             gr.nameOfSections = [fetchedObjects[i] title];
-            curSkills = [[NSMutableArray alloc]initWithCapacity:0];
+            NSMutableArray *curSkills = [[NSMutableArray alloc]initWithCapacity:0];
 
             for (Skills *curSk in _interview.idExternal.skills) {
                  if ([curSk.idGroup.title isEqualToString: [fetchedObjects[i] title]])
