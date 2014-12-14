@@ -21,6 +21,12 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		11F4CA851A3DED40000CF71E /* libz.1.2.5.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 11F4CA841A3DED40000CF71E /* libz.1.2.5.dylib */; };
+		11F4CA921A3DF04C000CF71E /* ioapi.c in Sources */ = {isa = PBXBuildFile; fileRef = 11F4CA881A3DF04C000CF71E /* ioapi.c */; };
+		11F4CA931A3DF04C000CF71E /* mztools.c in Sources */ = {isa = PBXBuildFile; fileRef = 11F4CA8A1A3DF04C000CF71E /* mztools.c */; };
+		11F4CA941A3DF04C000CF71E /* unzip.c in Sources */ = {isa = PBXBuildFile; fileRef = 11F4CA8C1A3DF04C000CF71E /* unzip.c */; };
+		11F4CA951A3DF04C000CF71E /* zip.c in Sources */ = {isa = PBXBuildFile; fileRef = 11F4CA8E1A3DF04C000CF71E /* zip.c */; };
+		11F4CA961A3DF04C000CF71E /* ZipArchive.mm in Sources */ = {isa = PBXBuildFile; fileRef = 11F4CA911A3DF04C000CF71E /* ZipArchive.mm */; };
 		2790F4E31A139854001B0956 /* EHProfilesTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2790F4E21A139854001B0956 /* EHProfilesTableViewCell.m */; };
 		2790F4E61A1398D8001B0956 /* EHProfilesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2790F4E51A1398D8001B0956 /* EHProfilesViewController.m */; };
 		83CD96951A3B432C00115744 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83CD96941A3B432C00115744 /* FacebookSDK.framework */; };
@@ -116,6 +122,18 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		11F4CA841A3DED40000CF71E /* libz.1.2.5.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.2.5.dylib; path = usr/lib/libz.1.2.5.dylib; sourceTree = SDKROOT; };
+		11F4CA871A3DF04C000CF71E /* crypt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = crypt.h; sourceTree = "<group>"; };
+		11F4CA881A3DF04C000CF71E /* ioapi.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ioapi.c; sourceTree = "<group>"; };
+		11F4CA891A3DF04C000CF71E /* ioapi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ioapi.h; sourceTree = "<group>"; };
+		11F4CA8A1A3DF04C000CF71E /* mztools.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = mztools.c; sourceTree = "<group>"; };
+		11F4CA8B1A3DF04C000CF71E /* mztools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mztools.h; sourceTree = "<group>"; };
+		11F4CA8C1A3DF04C000CF71E /* unzip.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = unzip.c; sourceTree = "<group>"; };
+		11F4CA8D1A3DF04C000CF71E /* unzip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = unzip.h; sourceTree = "<group>"; };
+		11F4CA8E1A3DF04C000CF71E /* zip.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = zip.c; sourceTree = "<group>"; };
+		11F4CA8F1A3DF04C000CF71E /* zip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = zip.h; sourceTree = "<group>"; };
+		11F4CA901A3DF04C000CF71E /* ZipArchive.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZipArchive.h; sourceTree = "<group>"; };
+		11F4CA911A3DF04C000CF71E /* ZipArchive.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ZipArchive.mm; sourceTree = "<group>"; };
 		2790F4E11A139854001B0956 /* EHProfilesTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EHProfilesTableViewCell.h; path = Views/EHProfilesTableViewCell.h; sourceTree = "<group>"; };
 		2790F4E21A139854001B0956 /* EHProfilesTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EHProfilesTableViewCell.m; path = Views/EHProfilesTableViewCell.m; sourceTree = "<group>"; };
 		2790F4E41A1398D8001B0956 /* EHProfilesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EHProfilesViewController.h; path = ViewControllers/EHProfilesViewController.h; sourceTree = "<group>"; };
@@ -253,6 +271,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				11F4CA851A3DED40000CF71E /* libz.1.2.5.dylib in Frameworks */,
 				D9BE339C1A38B87B0063B6C6 /* QuartzCore.framework in Frameworks */,
 				D92204251A2F70D200B3BAAD /* CoreData.framework in Frameworks */,
 				D913A8001A2D0C3B00656CDE /* MessageUI.framework in Frameworks */,
@@ -277,6 +296,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		11F4CA861A3DF04C000CF71E /* minizip */ = {
+			isa = PBXGroup;
+			children = (
+				11F4CA871A3DF04C000CF71E /* crypt.h */,
+				11F4CA881A3DF04C000CF71E /* ioapi.c */,
+				11F4CA891A3DF04C000CF71E /* ioapi.h */,
+				11F4CA8A1A3DF04C000CF71E /* mztools.c */,
+				11F4CA8B1A3DF04C000CF71E /* mztools.h */,
+				11F4CA8C1A3DF04C000CF71E /* unzip.c */,
+				11F4CA8D1A3DF04C000CF71E /* unzip.h */,
+				11F4CA8E1A3DF04C000CF71E /* zip.c */,
+				11F4CA8F1A3DF04C000CF71E /* zip.h */,
+			);
+			path = minizip;
+			sourceTree = "<group>";
+		};
 		2790F4DF1A1396EB001B0956 /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -464,6 +499,7 @@
 		D9B0CC631A03B17500544323 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				11F4CA841A3DED40000CF71E /* libz.1.2.5.dylib */,
 				83CD96941A3B432C00115744 /* FacebookSDK.framework */,
 				D9BE339B1A38B87B0063B6C6 /* QuartzCore.framework */,
 				D92204241A2F70D200B3BAAD /* CoreData.framework */,
@@ -493,6 +529,9 @@
 		D9B0CC6B1A03B17500544323 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				11F4CA861A3DF04C000CF71E /* minizip */,
+				11F4CA901A3DF04C000CF71E /* ZipArchive.h */,
+				11F4CA911A3DF04C000CF71E /* ZipArchive.mm */,
 				D9998EDD1A221CE9002E019A /* SlideOutMenuFiles */,
 				D9BE54061A10B1A200AD5D3D /* Images.xcassets */,
 				D92204761A2FAF6900B3BAAD /* EHConstantsDefines.h */,
@@ -784,6 +823,7 @@
 				2790F4E31A139854001B0956 /* EHProfilesTableViewCell.m in Sources */,
 				83CD969D1A3B5C5600115744 /* EHFacebookPopoverViewController.m in Sources */,
 				D9E7B7AE1A31E0A3002DA710 /* _Group.m in Sources */,
+				11F4CA951A3DF04C000CF71E /* zip.c in Sources */,
 				D920F3E91A361847002BC81A /* EHRecorderCommaentCell.m in Sources */,
 				D9E7B79D1A31E079002DA710 /* SkillsLevels.m in Sources */,
 				D9B0CC711A03B17500544323 /* main.m in Sources */,
@@ -799,7 +839,9 @@
 				D920F3EC1A361BFF002BC81A /* EHPlayPause.m in Sources */,
 				D9BE339A1A38AFA90063B6C6 /* EHRoundedAngleTextField.m in Sources */,
 				D9E7B7981A31E079002DA710 /* ExternalInterview.m in Sources */,
+				11F4CA961A3DF04C000CF71E /* ZipArchive.mm in Sources */,
 				D9E7B7AF1A31E0A3002DA710 /* _InterviewAppointment.m in Sources */,
+				11F4CA941A3DF04C000CF71E /* unzip.c in Sources */,
 				D93144981A376D1900AB470E /* EHRecruitersViewController.m in Sources */,
 				D967F2081A1E23BC0009639C /* EHCandidateFormViewController.m in Sources */,
 				D9998EE41A221CE9002E019A /* EHRevealViewController.m in Sources */,
@@ -820,12 +862,14 @@
 				D90A1BBE1A16335F00B610C6 /* EHViewController.m in Sources */,
 				D9998EE21A221CE9002E019A /* EHEventsGetInfoParser.m in Sources */,
 				D90A1BC11A16366500B610C6 /* EHSkillLevelPopup.m in Sources */,
+				11F4CA921A3DF04C000CF71E /* ioapi.c in Sources */,
 				D9BE54011A10B16700AD5D3D /* EHExternalCell.m in Sources */,
 				D9E7B7B01A31E0A3002DA710 /* _Recruiter.m in Sources */,
 				D93144991A376D1900AB470E /* EHListOfRecruitersCell.m in Sources */,
 				D9E7B7971A31E079002DA710 /* Candidate.m in Sources */,
 				D9E7B79C1A31E079002DA710 /* Skills.m in Sources */,
 				D9E7B7AC1A31E0A3002DA710 /* _Candidate.m in Sources */,
+				11F4CA931A3DF04C000CF71E /* mztools.c in Sources */,
 				D9BE33A61A3A0AEF0063B6C6 /* _GeneralInfo.m in Sources */,
 				D9AD2EB71A3384D2003D7E14 /* EHRecorderCommentController.m in Sources */,
 				D9E7B7B11A31E0A3002DA710 /* _Skills.m in Sources */,
