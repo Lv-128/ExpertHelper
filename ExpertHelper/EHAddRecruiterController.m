@@ -278,10 +278,12 @@
             
             
             
-            NSArray* words = [results[0] componentsSeparatedByCharactersInSet :[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+            NSArray* words = [results[0] componentsSeparatedByCharactersInSet:
+                              [NSCharacterSet whitespaceAndNewlineCharacterSet]];
             NSString* nospacestring = [words componentsJoinedByString:@""];
              [nospacestring stringByReplacingOccurrencesOfString:@" " withString:@""];
-            NSArray* parseWithSpaces = [nospacestring componentsSeparatedByCharactersInSet: [NSCharacterSet characterSetWithCharactersInString:@"<>"]]; // separation  with  "
+            NSArray* parseWithSpaces = [nospacestring componentsSeparatedByCharactersInSet:
+                                        [NSCharacterSet characterSetWithCharactersInString:@"<>"]]; // separation  with  "
             neededString = parseWithSpaces[0];
             for (int i = 0; i < parseWithSpaces.count;i++)
             {
