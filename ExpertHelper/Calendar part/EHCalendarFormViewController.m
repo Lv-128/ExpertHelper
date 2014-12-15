@@ -43,7 +43,7 @@
 @synthesize cellDateFormatter;
 
 
--(IBAction)segmentButton:(id)sender {    
+-(IBAction)segmentButton:(id)sender {
 }
 
 
@@ -51,7 +51,7 @@
 
 -(void) dealloc
 {
- /////////////////////////////////////////////////
+    /////////////////////////////////////////////////
 }
 
 - (void)viewDidLoad
@@ -114,17 +114,13 @@
             [message show];
         }
         else{
-            
-            //interviewsParser.events = _interviewFromEventsParser.calEventParser.eventsList;
-            
             self.eventsList = [_interviewFromEventsParser sortAllInterviewsToDictionary];
             self.sections = _interviewFromEventsParser.interviews;
-           
             self.sortedDays = _eventsList;
         }
         
         [self.tableView reloadData]; // Update the UI with the  events
-          [self.refreshControl endRefreshing];
+        [self.refreshControl endRefreshing];
     }
     // Reload table data
     [self.tableView reloadData];
@@ -154,24 +150,13 @@
             NSArray *weeksOnThisMonth = [[self.sortedDays objectAtIndex:myIndexPath.row] weeks];
             eventsMainForm.sortedWeeks = weeksOnThisMonth;
             eventsMainForm.notFirstLoad = true;
-                UINavigationController* navController = (UINavigationController*)self.revealViewController.frontViewController;
-                [navController setViewControllers: @[dvc] animated: NO ];
-                [self.revealViewController setFrontViewPosition: FrontViewPositionLeft animated: YES];
-        
-            };
+            UINavigationController* navController = (UINavigationController*)self.revealViewController.frontViewController;
+            [navController setViewControllers: @[dvc] animated: NO ];
+            [self.revealViewController setFrontViewPosition: FrontViewPositionLeft animated: YES];
             
-        }
+        };
         
-    
-//    if ( [[segue identifier] isEqualToString:@"GoToMainEventsForm"])
-//    {
-//        EHListOfInterviewsViewController * eventsMainForm = [segue destinationViewController];
-//        NSIndexPath * myIndexPath = [self.tableView indexPathForSelectedRow];
-//        //  NSString *selectedMonth = [self.sortedDays objectAtIndex:myIndexPath.row];
-//        NSArray *weeksOnThisMonth = [[self.sortedDays objectAtIndex:myIndexPath.row] weeks];
-//        
-//        eventsMainForm.sortedWeeks = weeksOnThisMonth;
-//    }
+    }
 }
 
 #pragma mark - UITableViewDataSource methods
@@ -198,25 +183,21 @@
     NSString *reuseIdentifier = @"Cell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
     
-    //    NSDate *dateRepresentingThisDay = [self.sortedDays objectAtIndex:indexPath.section];
-    //    NSArray *eventsOnThisDay = [self.sections objectForKey:dateRepresentingThisDay];
-    //    EKEvent *event = [eventsOnThisDay objectAtIndex:indexPath.row];
-    
     NSString * namesOfMonths = [[self.sortedDays objectAtIndex:indexPath.row]nameOfMonth];
     
     cell.textLabel.text = namesOfMonths;
     
     
     int numOfInterviews = 0;
-  
-        for (int j =0 ; j<[[sortedDays objectAtIndex:indexPath.row] weeks].count;j++)
-        {
-            numOfInterviews+=[[[[sortedDays objectAtIndex:indexPath.row] weeks] objectAtIndex:j] interviews].count;
-        }
-
+    
+    for (int j =0 ; j<[[sortedDays objectAtIndex:indexPath.row] weeks].count;j++)
+    {
+        numOfInterviews+=[[[[sortedDays objectAtIndex:indexPath.row] weeks] objectAtIndex:j] interviews].count;
+    }
+    
     
     cell.detailTextLabel.text = [NSString stringWithFormat: @" %d interviews", numOfInterviews];
-   
+    
     return cell;
 }
 

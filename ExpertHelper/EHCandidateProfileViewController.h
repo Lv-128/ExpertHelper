@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "EHAppDelegate.h"
+#import "EHSkillsProfilesParser.h"
 
 @interface EHCandidateProfileViewController : UIViewController
-
+@property (nonatomic, strong) EHGenInfo *genInfo;
 @end

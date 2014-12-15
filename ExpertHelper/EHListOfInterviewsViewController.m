@@ -10,7 +10,7 @@
 #import <EventKit/EventKit.h>
 
 #import "EHEventsGetInfoParser.h"
-#import "EHCandidateFormViewController.h"
+
 #import "EHRecruiterViewController.h"
 #import "EHITAViewController.h"
 #import "EHEventsGetInfoParser.h"
@@ -49,7 +49,7 @@ UIActionSheetDelegate, MFMailComposeViewControllerDelegate>
     self.cellDateFormatter = [[NSDateFormatter alloc] init];
     [self.cellDateFormatter setDateStyle:NSDateFormatterFullStyle];
     [self.cellDateFormatter setTimeStyle:NSDateFormatterShortStyle];
-   
+    
     //set bar buttons
     [self setBarButtons];
     
@@ -59,7 +59,7 @@ UIActionSheetDelegate, MFMailComposeViewControllerDelegate>
     //parser
     _interviewFromEventsParser = [[EHEventsGetInfoParser alloc]init];
     [self checkTheFirstLoad];
-
+    
     
     
 }
@@ -86,7 +86,7 @@ UIActionSheetDelegate, MFMailComposeViewControllerDelegate>
     
     UIBarButtonItem *butHR =[[UIBarButtonItem alloc] initWithCustomView:someButton];
     self.navigationItem.rightBarButtonItem=butHR;
-
+    
 }
 
 - (void) checkTheFirstLoad
@@ -109,31 +109,31 @@ UIActionSheetDelegate, MFMailComposeViewControllerDelegate>
         NSArray *dictionaryOfInterviews = _interviewFromEventsParser.sortAllInterviewsToDictionary;
         NSInteger tempCurMonth = -1;
         
-       
-            for (int i=0;i<dictionaryOfInterviews.count;i++)
+        
+        for (int i=0;i<dictionaryOfInterviews.count;i++)
+        {
+            if ([[dictionaryOfInterviews[i] nameOfMonth] isEqualToString:keyForDictionary])
             {
-                if ([[dictionaryOfInterviews[i] nameOfMonth] isEqualToString:keyForDictionary])
-                {
-                    tempCurMonth = i;
-                    break;
-                }
-                
+                tempCurMonth = i;
+                break;
             }
-            if(tempCurMonth != -1)
-            {
-                self.sortedWeeks = [[dictionaryOfInterviews objectAtIndex:tempCurMonth] weeks] ;
-            }
-            else
-            {
-                UIAlertView *message  = [[UIAlertView alloc] initWithTitle:@"Warning!"
-                                                                        message:@"You have no interview - events this month"
-                                                                       delegate:nil
-                                                              cancelButtonTitle:@"OK"
-                                                              otherButtonTitles:nil];
-                [message show];
-                
-            }
-    
+            
+        }
+        if(tempCurMonth != -1)
+        {
+            self.sortedWeeks = [[dictionaryOfInterviews objectAtIndex:tempCurMonth] weeks] ;
+        }
+        else
+        {
+            UIAlertView *message  = [[UIAlertView alloc] initWithTitle:@"Warning!"
+                                                               message:@"You have no interview - events this month"
+                                                              delegate:nil
+                                                     cancelButtonTitle:@"OK"
+                                                     otherButtonTitles:nil];
+            [message show];
+            
+        }
+        
     }
     
 }
@@ -151,25 +151,22 @@ UIActionSheetDelegate, MFMailComposeViewControllerDelegate>
 - (IBAction)startInterview:(UIButton *)button
 {
     NSIndexPath *indexPath = [self indexPathOfButton:button];
-    EHWeek *week = [self.sortedWeeks objectAtIndex:indexPath.section];
-    NSArray *eventsOnThisDay = week.interviews;
-    InterviewAppointment *event = [eventsOnThisDay objectAtIndex:indexPath.row];
     NSArray * arr = [[[sortedWeeks objectAtIndex:indexPath.section ] interviews] allObjects];
-        _curInterview = [arr objectAtIndex:indexPath.row];
-        if(_curInterview.type == [NSNumber numberWithInt:ITA])
+    _curInterview = [arr objectAtIndex:indexPath.row];
+    if(_curInterview.type == [NSNumber numberWithInt:ITA])
+    {
+        EHITAViewController *itaViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"ITAForm"];
+        [self.navigationController pushViewController:itaViewController animated: YES];
+        
+    }
+    else
+        if(_curInterview.type == [NSNumber numberWithInt:External])
         {
-            EHITAViewController *itaViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"ITAForm"];
-            [self.navigationController pushViewController:itaViewController animated: YES];
-            
+            EHExternalViewController *externalViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"ExternalForm"];
+            externalViewController.interview = [arr objectAtIndex:indexPath.row];
+            [self.navigationController pushViewController:externalViewController animated: YES];
         }
-        else
-            if(_curInterview.type == [NSNumber numberWithInt:External])
-            {
-                EHExternalViewController *externalViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"ExternalForm"];
-                externalViewController.interview = [arr objectAtIndex:indexPath.row];
-                [self.navigationController pushViewController:externalViewController animated: YES];
-            }
-   
+    
     
 }
 
@@ -184,7 +181,6 @@ UIActionSheetDelegate, MFMailComposeViewControllerDelegate>
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
     
     EHWeek *weekOfMonth = [self.sortedWeeks objectAtIndex:section];
-    
     return [weekOfMonth.interviews count];
 }
 
@@ -202,8 +198,8 @@ UIActionSheetDelegate, MFMailComposeViewControllerDelegate>
     NSIndexPath *indexPath = [self indexPathOfButton:button];
     EHWeek *week = [self.sortedWeeks objectAtIndex:indexPath.section];
     NSArray *eventsOnThisDay = week.interviews;
-    InterviewAppointment *event = [eventsOnThisDay objectAtIndex:indexPath.row];
-
+  __unused  InterviewAppointment *event = [eventsOnThisDay objectAtIndex:indexPath.row];
+    
 }
 
 - (void)onMailButton:(UIButton *)button {
@@ -232,7 +228,7 @@ UIActionSheetDelegate, MFMailComposeViewControllerDelegate>
         //[FBSession.activeSession closeAndClearTokenInformation];
         _popController = [[EHFacebookPopoverViewController alloc] initWithNibName:@"EHFacebookPopoverViewController" bundle:nil];
         //_popController.delegate = self;
-
+        
         _popController.firstName = event.idExternal.idCandidate.firstName;
         _popController.lastName = event.idExternal.idCandidate.lastName;
         self.popover = [[UIPopoverController alloc] initWithContentViewController:_popController];
@@ -258,7 +254,7 @@ UIActionSheetDelegate, MFMailComposeViewControllerDelegate>
          }];
     }
     
-
+    
 }
 
 
@@ -278,7 +274,7 @@ UIActionSheetDelegate, MFMailComposeViewControllerDelegate>
     cell.typeLabel.text = [NSString stringWithString:[INTERVIEWTYPE objectAtIndex:event.type.intValue]];
     cell.dateLabel.text = [cellDateFormatter stringFromDate:event.startDate];
     cell.addressLabel.text = event.location == nil ? @"N/A" : event.location;
-
+    
     Candidate *candidate = event.idExternal.idCandidate;
     cell.candidateLabel.text = [NSString stringWithFormat:@"%@ %@" ,candidate.firstName, candidate.lastName];
     
@@ -296,13 +292,10 @@ UIActionSheetDelegate, MFMailComposeViewControllerDelegate>
     [gestureAction setDelegate:self];
     [cell.recruiterLabel addGestureRecognizer:gestureAction];
     
-    gestureAction = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(goToInfo:)];
-    [cell.candidateLabel addGestureRecognizer:gestureAction];
-    
     gestureAction = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(chooseTypeOfInterview:)];
     [cell.typeLabel addGestureRecognizer:gestureAction];
     
-  
+    
     return cell;
 }
 
@@ -311,31 +304,31 @@ UIActionSheetDelegate, MFMailComposeViewControllerDelegate>
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     
-        if(buttonIndex != _actionSheetTypes.cancelButtonIndex)
-        {
-           
-            _label.text = [_actionSheetTypes buttonTitleAtIndex:buttonIndex];
-            
-            EHAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
-            NSManagedObjectContext *context = [appDelegate managedObjectContext];
-            NSError * error = nil;
-            NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-            NSPredicate *predicate =
-            [NSPredicate predicateWithFormat:@"eventId == %@",_curInterview.eventId];
-            NSEntityDescription *entity = [NSEntityDescription entityForName:[InterviewAppointment entityName]
-                                                      inManagedObjectContext:context];
-            [fetchRequest setEntity:entity];
-            [fetchRequest setPredicate:predicate];
-            NSArray *fetchedObjects = [context executeFetchRequest:fetchRequest error:&error];
-            for (InterviewAppointment *info in fetchedObjects) {
-                info.type = [NSNumber numberWithInt:buttonIndex];
-            }
-            [_collectionView reloadData];
-
-            if (![context save:&error]) {
-                NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
-                        }
+    if(buttonIndex != _actionSheetTypes.cancelButtonIndex)
+    {
+        
+        _label.text = [_actionSheetTypes buttonTitleAtIndex:buttonIndex];
+        
+        EHAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+        NSManagedObjectContext *context = [appDelegate managedObjectContext];
+        NSError * error = nil;
+        NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+        NSPredicate *predicate =
+        [NSPredicate predicateWithFormat:@"eventId == %@",_curInterview.eventId];
+        NSEntityDescription *entity = [NSEntityDescription entityForName:[InterviewAppointment entityName]
+                                                  inManagedObjectContext:context];
+        [fetchRequest setEntity:entity];
+        [fetchRequest setPredicate:predicate];
+        NSArray *fetchedObjects = [context executeFetchRequest:fetchRequest error:&error];
+        for (InterviewAppointment *info in fetchedObjects) {
+            info.type = [NSNumber numberWithInt:buttonIndex];
         }
+        [_collectionView reloadData];
+        
+        if (![context save:&error]) {
+            NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
+        }
+    }
     
 }
 
@@ -351,56 +344,34 @@ UIActionSheetDelegate, MFMailComposeViewControllerDelegate>
     InterviewAppointment *event = [eventsOnThisDay objectAtIndex:tappedRow.row];
     
     _actionSheetTypes = [[UIActionSheet alloc] initWithTitle:@"Select type of interview:"
-                                                                 delegate:self
-                                                        cancelButtonTitle:@"Cancel"
-                                                   destructiveButtonTitle:nil
-                                                        otherButtonTitles:@"None", @"IT Academy", @"Internal", @"External",nil];
-        if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
-        {
-            UICollectionViewCell *curInterviewCell = [self.collectionView  cellForItemAtIndexPath:tappedRow];
-            _label = (UILabel *)[curInterviewCell viewWithTag:100];
-           _curInterview = event;
-            CGRect  rect = CGRectMake([_label frame].origin.x - [_label frame].size.width / 3 ,
-                                      [_label frame].origin.y,
-                                      [_label frame].size.width,
-                                      [_label frame].size.height) ;
-           [_actionSheetTypes showFromRect:rect inView:curInterviewCell animated:YES ];
-        }
-        else
-            [_actionSheetTypes showInView:self.view];
-
+                                                    delegate:self
+                                           cancelButtonTitle:@"Cancel"
+                                      destructiveButtonTitle:nil
+                                           otherButtonTitles:@"None", @"IT Academy", @"Internal", @"External",nil];
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+    {
+        UICollectionViewCell *curInterviewCell = [self.collectionView  cellForItemAtIndexPath:tappedRow];
+        _label = (UILabel *)[curInterviewCell viewWithTag:100];
+        _curInterview = event;
+        CGRect  rect = CGRectMake([_label frame].origin.x - [_label frame].size.width / 3 ,
+                                  [_label frame].origin.y,
+                                  [_label frame].size.width,
+                                  [_label frame].size.height) ;
+        [_actionSheetTypes showFromRect:rect inView:curInterviewCell animated:YES ];
+    }
+    else
+        [_actionSheetTypes showInView:self.view];
+    
 }
 
 - (void)goToInfo:(id)sender
 {
     UITapGestureRecognizer *tapGR = (UITapGestureRecognizer*)sender;
-    
-    if (tapGR.view.tag == 103)
-    {
-        CGPoint touchLocation = [tapGR locationOfTouch:0 inView:self.collectionView];
-        
-        NSIndexPath *tappedRow = [self.collectionView indexPathForItemAtPoint:touchLocation];
-       
-        NSArray * arr = [[[sortedWeeks objectAtIndex:tappedRow.section ] interviews] allObjects];
-        InterviewAppointment * curInterview = [arr objectAtIndex:tappedRow.row];
-        EHCandidateFormViewController *candidateForm = [self.storyboard instantiateViewControllerWithIdentifier:@"CandidateFormView"];
-        
-        
-        if (![curInterview.idExternal.idCandidate.firstName isEqualToString: @"Unknown"])
-        {
-            candidateForm.candidate = curInterview.idExternal.idCandidate;
-            candidateForm.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
-            [self.navigationController pushViewController:candidateForm animated:YES ];
-        }
-    }
     if (tapGR.view.tag == 104)
     {
         CGPoint touchLocation = [tapGR locationOfTouch:0 inView:self.collectionView];
         
         NSIndexPath *tappedRow = [self.collectionView indexPathForItemAtPoint:touchLocation];
-        
-
-       // InterviewAppointment * curInterview = [[[sortedWeeks objectAtIndex:tappedRow.section ] interviews] objectAtIndex:tappedRow.row];
         NSArray * arr = [[[sortedWeeks objectAtIndex:tappedRow.section ] interviews] allObjects];
         InterviewAppointment * curInterview = [arr objectAtIndex:tappedRow.row];
         EHRecruiterViewController *recruiterViewForm = [self.storyboard instantiateViewControllerWithIdentifier:@"RecruiterFormView"];
@@ -443,7 +414,6 @@ UIActionSheetDelegate, MFMailComposeViewControllerDelegate>
     [mailController setToRecipients:addressArray];
     [mailController setSubject:@""];
     [mailController setModalTransitionStyle:UIModalTransitionStyleFlipHorizontal];
-  //  [mailController addAttachmentData:<#(NSData *)#> mimeType:<#(NSString *)#> fileName:<#(NSString *)#>]
     [self presentViewController:mailController animated:YES completion: nil];
     
 }

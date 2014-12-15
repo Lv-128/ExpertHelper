@@ -52,7 +52,6 @@
 		D93144971A376D1900AB470E /* EHAddRecruiterController.m in Sources */ = {isa = PBXBuildFile; fileRef = D93144921A376D1900AB470E /* EHAddRecruiterController.m */; };
 		D93144981A376D1900AB470E /* EHRecruitersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D93144941A376D1900AB470E /* EHRecruitersViewController.m */; };
 		D93144991A376D1900AB470E /* EHListOfRecruitersCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D93144961A376D1900AB470E /* EHListOfRecruitersCell.m */; };
-		D967F2081A1E23BC0009639C /* EHCandidateFormViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D967F2071A1E23BC0009639C /* EHCandidateFormViewController.m */; };
 		D967F20B1A1E305D0009639C /* EHRecruiterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D967F20A1A1E305D0009639C /* EHRecruiterViewController.m */; };
 		D967F2101A1E4DEE0009639C /* EHITAViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D967F20D1A1E4DEE0009639C /* EHITAViewController.m */; };
 		D967F2111A1E4DEE0009639C /* EHITAViewControllerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D967F20F1A1E4DEE0009639C /* EHITAViewControllerCell.m */; };
@@ -170,8 +169,6 @@
 		D93144941A376D1900AB470E /* EHRecruitersViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EHRecruitersViewController.m; sourceTree = "<group>"; };
 		D93144951A376D1900AB470E /* EHListOfRecruitersCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EHListOfRecruitersCell.h; sourceTree = "<group>"; };
 		D93144961A376D1900AB470E /* EHListOfRecruitersCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EHListOfRecruitersCell.m; sourceTree = "<group>"; };
-		D967F2061A1E23BC0009639C /* EHCandidateFormViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EHCandidateFormViewController.h; sourceTree = "<group>"; };
-		D967F2071A1E23BC0009639C /* EHCandidateFormViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EHCandidateFormViewController.m; sourceTree = "<group>"; };
 		D967F2091A1E305D0009639C /* EHRecruiterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EHRecruiterViewController.h; sourceTree = "<group>"; };
 		D967F20A1A1E305D0009639C /* EHRecruiterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EHRecruiterViewController.m; sourceTree = "<group>"; };
 		D967F20C1A1E4DEE0009639C /* EHITAViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EHITAViewController.h; path = ExpertHelper/EHITAViewController.h; sourceTree = "<group>"; };
@@ -343,7 +340,6 @@
 				D9D836A41A1F3F1700148854 /* Recruiter */,
 				D9D836A31A1F3F0600148854 /* Profiles */,
 				D9D836A21A1F3EA800148854 /* VoiceRecorder */,
-				D9D8369F1A1F3E7900148854 /* Candidate */,
 				D967F2121A1E4E290009639C /* ITA */,
 			);
 			name = ViewControllers;
@@ -434,14 +430,12 @@
 		D931449A1A376D2000AB470E /* HR */ = {
 			isa = PBXGroup;
 			children = (
-				D93144911A376D1900AB470E /* EHAddRecruiterController.h */,
-				D93144921A376D1900AB470E /* EHAddRecruiterController.m */,
+				D9EA891A1A3EC25500908CD5 /* help controller */,
 				D93144931A376D1900AB470E /* EHRecruitersViewController.h */,
 				D93144941A376D1900AB470E /* EHRecruitersViewController.m */,
 				D93144951A376D1900AB470E /* EHListOfRecruitersCell.h */,
 				D93144961A376D1900AB470E /* EHListOfRecruitersCell.m */,
-				D9C4DC341A38433D00BC1AEA /* EHCheckNetworkConnection.h */,
-				D9C4DC351A38433D00BC1AEA /* EHCheckNetworkConnection.m */,
+				D9EA891B1A3EC2F200908CD5 /* check internet connection */,
 			);
 			name = HR;
 			sourceTree = "<group>";
@@ -610,15 +604,6 @@
 			name = Views;
 			sourceTree = "<group>";
 		};
-		D9D8369F1A1F3E7900148854 /* Candidate */ = {
-			isa = PBXGroup;
-			children = (
-				D967F2061A1E23BC0009639C /* EHCandidateFormViewController.h */,
-				D967F2071A1E23BC0009639C /* EHCandidateFormViewController.m */,
-			);
-			name = Candidate;
-			sourceTree = "<group>";
-		};
 		D9D836A01A1F3EA400148854 /* SkillLevelPopup */ = {
 			isa = PBXGroup;
 			children = (
@@ -703,6 +688,24 @@
 				D9BE338A1A3882E00063B6C6 /* EHInterviewViewCell.m */,
 			);
 			name = Controllers;
+			sourceTree = "<group>";
+		};
+		D9EA891A1A3EC25500908CD5 /* help controller */ = {
+			isa = PBXGroup;
+			children = (
+				D93144911A376D1900AB470E /* EHAddRecruiterController.h */,
+				D93144921A376D1900AB470E /* EHAddRecruiterController.m */,
+			);
+			name = "help controller";
+			sourceTree = "<group>";
+		};
+		D9EA891B1A3EC2F200908CD5 /* check internet connection */ = {
+			isa = PBXGroup;
+			children = (
+				D9C4DC341A38433D00BC1AEA /* EHCheckNetworkConnection.h */,
+				D9C4DC351A38433D00BC1AEA /* EHCheckNetworkConnection.m */,
+			);
+			name = "check internet connection";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -855,7 +858,6 @@
 				D9E7B7981A31E079002DA710 /* ExternalInterview.m in Sources */,
 				D9E7B7AF1A31E0A3002DA710 /* _InterviewAppointment.m in Sources */,
 				D93144981A376D1900AB470E /* EHRecruitersViewController.m in Sources */,
-				D967F2081A1E23BC0009639C /* EHCandidateFormViewController.m in Sources */,
 				D9998EE41A221CE9002E019A /* EHRevealViewController.m in Sources */,
 				D9BE338E1A3894610063B6C6 /* EHSkillsProfilesParser.m in Sources */,
 				D9BE338B1A3882E00063B6C6 /* EHInterviewViewCell.m in Sources */,
@@ -1052,6 +1054,7 @@
 				INFOPLIST_FILE = "ExpertHelper/ExpertHelper-Info.plist";
 				LIBRARY_SEARCH_PATHS = "$(PROJECT_DIR)/**";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 2;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -1071,6 +1074,7 @@
 				INFOPLIST_FILE = "ExpertHelper/ExpertHelper-Info.plist";
 				LIBRARY_SEARCH_PATHS = "$(PROJECT_DIR)/**";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 2;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

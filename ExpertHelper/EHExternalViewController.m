@@ -12,6 +12,7 @@
 #import "EHSkillLevelPopup.h"
 #import "EHSkillsProfilesParser.h"
 #import "ZipArchive.h"
+#import "EHCandidateProfileViewController.h"
 
 @interface EHExternalViewController () <UITableViewDataSource, UITableViewDelegate, EHSkillLevelPopupDelegate, EHRecorderCommentControllerDelegate>
 
@@ -66,6 +67,9 @@
     
     [self.tableView reloadRowsAtIndexPaths: rowsToReload withRowAnimation:UITableViewRowAnimationNone];
 }
+
+
+
 
 - (void)viewDidLoad
 {
@@ -152,6 +156,9 @@
             [_comment insertObject:temp atIndex:i];
         }
         
+        _generInfo = [[EHGenInfo alloc]init];
+        _generInfo = _pars.genInfo;
+        
     }
     else{
         
@@ -186,6 +193,15 @@
         external.index = _index;
         external.comment = _comment;
     }
+
+        if ( [[segue identifier] isEqualToString:@"GoToGenInfoForm"])
+        {
+            EHCandidateProfileViewController * genInfoForm = [segue destinationViewController];
+            genInfoForm.genInfo = _pars.genInfo;
+            
+            
+        }
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -343,7 +359,7 @@
 }
 
 - (IBAction)saveForm:(id)sender {
-    //NSLog(@"%@", NSHomeDirectory());
+    NSLog(@"%@", NSHomeDirectory());
     [self parsFunc];
     [self unzip];
     

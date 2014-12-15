@@ -1,4 +1,4 @@
-    //
+//
 //  EHRecruitersViewController.m
 //  ExpertHelper
 //
@@ -10,8 +10,9 @@
 #import "EHListOfRecruitersCell.h"
 #import <MessageUI/MessageUI.h>
 
+
 @interface EHRecruitersViewController ()<MFMailComposeViewControllerDelegate, UIGestureRecognizerDelegate>{
-Reachability *internetReachable;
+    Reachability *internetReachable;
 }
 @end
 
@@ -24,9 +25,9 @@ Reachability *internetReachable;
     _recruitersArray = [[NSArray alloc] init];
     EHAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
     _managedObjectContext = [appDelegate managedObjectContext];
-
+    
     [self getAllRecruitersFromDB];
-
+    
 }
 
 
@@ -60,56 +61,58 @@ Reachability *internetReachable;
 {
     NSString *cellIdentifier = @"recruiterCell";
     EHListOfRecruitersCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-
+    
     if (!cell) {
         cell = [[EHListOfRecruitersCell alloc]
                 initWithStyle:UITableViewCellStyleDefault
                 reuseIdentifier:cellIdentifier];
     }
     
-    cell.nameLabel.text = [NSString stringWithFormat: @" %@ %@ ", [_recruitersArray[indexPath.row] firstName], [_recruitersArray[indexPath.row] lastName]];
+    cell.nameLabel.text = [NSString stringWithFormat: @" %@ %@ ", [_recruitersArray[indexPath.row] firstName],
+                           [_recruitersArray[indexPath.row] lastName]];
     cell.skypeLabel.text = [_recruitersArray[indexPath.row] skypeAccount];
     cell.recruiterEmail.text = [_recruitersArray[indexPath.row] email];
     if ([_recruitersArray[indexPath.row] photoUrl] == nil)
     {
-      
+        
         [cell.picture setImage:[UIImage imageNamed:@"contact.png"]];
         
         
     }
     else
     {
-        EHCheckNetworkConnection * checkConnection = [[EHCheckNetworkConnection alloc] initWithHost : [_recruitersArray[indexPath.row] photoUrl]];
+        EHCheckNetworkConnection * checkConnection = [[EHCheckNetworkConnection alloc]
+                                                      initWithHost : [_recruitersArray[indexPath.row] photoUrl]];
         if (checkConnection.internetActive == YES)
         {
-        NSURL *imgURL = [NSURL URLWithString:[_recruitersArray[indexPath.row] photoUrl]];
-        
-        NSData *imgdata=[[NSData alloc]initWithContentsOfURL:imgURL];
-        
-        UIImage *image=[[UIImage alloc]initWithData:imgdata];
-        
-        [cell.picture setImage:image];
+            NSURL *imgURL = [NSURL URLWithString:[_recruitersArray[indexPath.row] photoUrl]];
+            
+            NSData *imgdata=[[NSData alloc]initWithContentsOfURL:imgURL];
+            
+            UIImage *image=[[UIImage alloc]initWithData:imgdata];
+            
+            [cell.picture setImage:image];
         }
         else{
-             [cell.picture setImage:[UIImage imageNamed:@"contact.png"]];
+            [cell.picture setImage:[UIImage imageNamed:@"contact.png"]];
         }
         
     }
     
     
-
-    UITapGestureRecognizer *sendEmailTp = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(sendEmail:)];
+    
+    UITapGestureRecognizer *sendEmailTp = [[UITapGestureRecognizer alloc] initWithTarget:self
+                                                                                  action:@selector(sendEmail:)];
     [sendEmailTp setDelegate:self];
     [cell.emailPic addGestureRecognizer:sendEmailTp];
-    //[cell.recruiterEmail addGestureRecognizer:sendEmailTp];
     sendEmailTp.numberOfTapsRequired = 1;
     
-    UITapGestureRecognizer *sendEmailTp2 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(sendEmail:)];
+    UITapGestureRecognizer *sendEmailTp2 = [[UITapGestureRecognizer alloc] initWithTarget:self
+                                                                                   action:@selector(sendEmail:)];
     [sendEmailTp2 setDelegate:self];
-    //[cell.emailPic addGestureRecognizer:sendEmailTp2];
+    
     [cell.recruiterEmail addGestureRecognizer:sendEmailTp2];
     sendEmailTp2.numberOfTapsRequired = 1;
-   // cell.detailTextLabel.text = [NSString stringWithFormat: @" %d interviews", numOfInterviews];
     
     return cell;
 }
@@ -173,7 +176,7 @@ Reachability *internetReachable;
     UITapGestureRecognizer *tapGR = (UITapGestureRecognizer*)sender;
     
     CGPoint touchLocation = [tapGR locationOfTouch:0 inView:self.tableView];
-  
+    
     NSIndexPath *indexPath = [_tableView indexPathForRowAtPoint: touchLocation];
     
     EHListOfRecruitersCell *cell = (EHListOfRecruitersCell *)[_tableView cellForRowAtIndexPath:indexPath];

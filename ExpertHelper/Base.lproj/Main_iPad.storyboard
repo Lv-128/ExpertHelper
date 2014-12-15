@@ -346,7 +346,7 @@
                                     <color key="titleShadowColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
-                                    <segue destination="QWz-uc-3pi" kind="push" id="jKz-SU-mek"/>
+                                    <segue destination="QWz-uc-3pi" kind="push" identifier="GoToGenInfoForm" id="jKz-SU-mek"/>
                                 </connections>
                             </button>
                         </subviews>

@@ -41,7 +41,8 @@
         case EKAuthorizationStatusDenied:
         case EKAuthorizationStatusRestricted:
         {
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Privacy Warning" message:@"Permission was not granted for Calendar"
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Privacy Warning"
+                                                            message:@"Permission was not granted for Calendar"
                                                            delegate:nil
                                                   cancelButtonTitle:@"OK"
                                                   otherButtonTitles:nil];
@@ -138,7 +139,8 @@
     [calendar setTimeZone:timeZone];
     
     // Selectively convert the date components (year, month, day) of the input date
-    NSDateComponents *dateComps = [calendar components:NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit fromDate:inputDate];
+    NSDateComponents *dateComps = [calendar components:NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit
+                                              fromDate:inputDate];
     
     // Set the time components manually
     [dateComps setHour:0];
@@ -150,7 +152,8 @@
     return beginningOfDay;
 }
 
-- (NSDate *)dateByAddingYears:(NSInteger)numberOfYears toDate:(NSDate *)inputDate
+- (NSDate *)dateByAddingYears:(NSInteger)numberOfYears
+                       toDate:(NSDate *)inputDate
 {
     // Use the user's current calendar
     NSCalendar *calendar = [NSCalendar currentCalendar];
@@ -158,7 +161,8 @@
     NSDateComponents *dateComps = [[NSDateComponents alloc] init];
     [dateComps setYear:numberOfYears];
     
-    NSDate *newDate = [calendar dateByAddingComponents:dateComps toDate:inputDate options:0];
+    NSDate *newDate = [calendar dateByAddingComponents:dateComps
+                                                toDate:inputDate options:0];
     return newDate;
 }
 
