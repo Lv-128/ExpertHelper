@@ -110,7 +110,7 @@
     BOOL installed = [[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"skype:"]];
     if(installed)
     {
-        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"skype:echo123?call"]];
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"skype:%@?call",_recruiter.skypeAccount]]];
     }
     else
     {

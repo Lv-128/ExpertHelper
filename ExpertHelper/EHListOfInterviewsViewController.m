@@ -200,6 +200,18 @@ UIActionSheetDelegate, MFMailComposeViewControllerDelegate>
     NSArray *eventsOnThisDay = week.interviews;
   __unused  InterviewAppointment *event = [eventsOnThisDay objectAtIndex:indexPath.row];
     
+ 
+        
+        BOOL installed = [[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"skype:"]];
+        if(installed)
+        {
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"skype:%@?call",event.idRecruiter.skypeAccount]]];
+        }
+        else
+        {
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://itunes.com/apps/skype/skype"]];
+        }
+ 
 }
 
 - (void)onMailButton:(UIButton *)button {

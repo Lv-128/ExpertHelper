@@ -30,4 +30,11 @@
     // Configure the view for the selected state
 }
 
+- (void)prepareForReuse {
+    [super prepareForReuse];
+    [_skypeBut removeTarget:nil action:NULL forControlEvents:UIControlEventAllEvents];
+    [_mailBut removeTarget:nil action:NULL forControlEvents:UIControlEventAllEvents];
+    
+}
+
 @end

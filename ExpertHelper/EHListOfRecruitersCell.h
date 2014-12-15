@@ -20,6 +20,8 @@
 @property (weak, nonatomic) IBOutlet UIImageView *emailPic;
 @property (weak, nonatomic) IBOutlet UILabel *tempURL;
 
+@property (weak, nonatomic) IBOutlet UIButton *skypeBut;
+@property (weak, nonatomic) IBOutlet UIButton *mailBut;
 
 
 @end

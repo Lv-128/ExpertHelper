@@ -220,7 +220,7 @@
         recruiter.firstName = parseNameAndLastnameOfRecruiter.firstName;
         recruiter.lastName = parseNameAndLastnameOfRecruiter.lastName;
         recruiter.email = email;
-        recruiter.skypeAccount = @"echo";
+        recruiter.skypeAccount = @"echo123";
         NSString * urlString = [self callToWebAndGetPictureOfRecruiterWithName:recruiter.firstName
                                                                    andLastName:recruiter.lastName];
         if (urlString != nil)

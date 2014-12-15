@@ -98,21 +98,24 @@
         }
         
     }
+    cell.skypeBut.tag = indexPath.row;
+    [cell.skypeBut addTarget:self action:@selector(skypeMe:) forControlEvents:UIControlEventTouchUpInside];
+    [cell.mailBut addTarget:self action:@selector(sendEmail:) forControlEvents:UIControlEventTouchUpInside];
     
     
-    
-    UITapGestureRecognizer *sendEmailTp = [[UITapGestureRecognizer alloc] initWithTarget:self
-                                                                                  action:@selector(sendEmail:)];
-    [sendEmailTp setDelegate:self];
-    [cell.emailPic addGestureRecognizer:sendEmailTp];
-    sendEmailTp.numberOfTapsRequired = 1;
-    
-    UITapGestureRecognizer *sendEmailTp2 = [[UITapGestureRecognizer alloc] initWithTarget:self
-                                                                                   action:@selector(sendEmail:)];
-    [sendEmailTp2 setDelegate:self];
-    
-    [cell.recruiterEmail addGestureRecognizer:sendEmailTp2];
-    sendEmailTp2.numberOfTapsRequired = 1;
+//    
+//    UITapGestureRecognizer *sendEmailTp = [[UITapGestureRecognizer alloc] initWithTarget:self
+//                                                                                  action:@selector(sendEmail:)];
+//    [sendEmailTp setDelegate:self];
+//    [cell.mailBut addGestureRecognizer:sendEmailTp];
+//    sendEmailTp.numberOfTapsRequired = 1;
+//    
+//    UITapGestureRecognizer *sendEmailTp2 = [[UITapGestureRecognizer alloc] initWithTarget:self
+//                                                                                   action:@selector(skypeMe:)];
+//    [sendEmailTp2 setDelegate:self];
+//    
+//    [cell.skypeBut addGestureRecognizer:sendEmailTp2];
+//    sendEmailTp2.numberOfTapsRequired = 1;
     
     return cell;
 }
@@ -146,6 +149,25 @@
 
 
 
+//- (void)onSkypeButton:(UIButton *)button {
+//    NSIndexPath *indexPath = [self indexPathOfButton:button];
+//    EHWeek *week = [self.sortedWeeks objectAtIndex:indexPath.section];
+//    NSArray *eventsOnThisDay = week.interviews;
+//    __unused  InterviewAppointment *event = [eventsOnThisDay objectAtIndex:indexPath.row];
+//    
+//    
+//    
+//    BOOL installed = [[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"skype:"]];
+//    if(installed)
+//    {
+//        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"skype:%@?call",event.idRecruiter.skypeAccount]]];
+//    }
+//    else
+//    {
+//        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://itunes.com/apps/skype/skype"]];
+//    }
+//    
+//}
 
 - (IBAction)sendEmailMsg:(NSString*)address
 {
@@ -170,8 +192,43 @@
 - (void)mailComposeController:(MFMailComposeViewController *) controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error{
     [self dismissViewControllerAnimated:YES completion:nil];
 }
+- (NSIndexPath *)indexPathOfButton:(UIButton *)button {
+    UIView *view = button.superview;
+    while (![view isKindOfClass:[EHListOfRecruitersCell class]]) {
+        view = view.superview;
+    }
+    return [_tableView indexPathForCell:(UITableViewCell *)view];
+}
+- (void)sendEmail:(UIButton *)button {
+    NSIndexPath *indexPath = [self indexPathOfButton:button];
+    
+    EHListOfRecruitersCell *cell = (EHListOfRecruitersCell *)[_tableView cellForRowAtIndexPath:indexPath];
+    
+    [self sendEmailMsg:cell.recruiterEmail.text];
+    
+    
+}
 
-- (IBAction)sendEmail:(id)sender
+- (void)skypeMe:(UIButton *)button {
+    UIButton *btn = (UIButton *)button;
+    int index = [btn tag];
+    NSIndexPath *indexPath = [[NSIndexPath alloc] initWithIndex:index];
+    
+    
+    EHListOfRecruitersCell *cell = (EHListOfRecruitersCell *)[_tableView cellForRowAtIndexPath:indexPath];
+    
+    BOOL installed = [[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"skype:"]];
+    if(installed)
+    {
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"skype:%@?call",cell.skypeLabel.text]]];
+    }
+    else
+    {
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://itunes.com/apps/skype/skype"]];
+    }
+    
+}
+/*- (IBAction)sendEmail:(id)sender
 {
     UITapGestureRecognizer *tapGR = (UITapGestureRecognizer*)sender;
     
@@ -181,6 +238,6 @@
     
     EHListOfRecruitersCell *cell = (EHListOfRecruitersCell *)[_tableView cellForRowAtIndexPath:indexPath];
     
-    [self sendEmailMsg:cell.recruiterEmail.text];}
+    [self sendEmailMsg:cell.recruiterEmail.text];}*/
 
 @end
