@@ -245,6 +245,7 @@ UIActionSheetDelegate, MFMailComposeViewControllerDelegate>
         _popController.lastName = event.idExternal.idCandidate.lastName;
         self.popover = [[UIPopoverController alloc] initWithContentViewController:_popController];
         self.popover.popoverContentSize = CGSizeMake(400.0, 400.0);
+        [self searchUserWithFirstName:_popController.firstName lastName:_popController.lastName popover:self.popover];
         [self.popover presentPopoverFromRect: [(UIButton *)sender bounds]
                                       inView:sender
                     permittedArrowDirections:UIPopoverArrowDirectionAny
@@ -269,6 +270,37 @@ UIActionSheetDelegate, MFMailComposeViewControllerDelegate>
     
 }
 
+- (void)searchUserWithFirstName:(NSString *)firstName lastName:(NSString *)lastName popover:(UIPopoverController *)popover
+{
+    __block NSArray *links;
+    [FBRequestConnection startWithGraphPath:[NSString stringWithFormat:@"/search?q=%@+%@&type=user", firstName, lastName]
+                          completionHandler:^(FBRequestConnection *connection, id result, NSError *error) {
+                              if (error)
+                              {
+                                  NSLog(@"%@", [error description]);
+                              }
+                              else
+                              {
+                                  links = result[@"data"];
+                                  if (links.count == 0)
+                                  {
+                                      [popover dismissPopoverAnimated:YES];
+                                      [self showMessage:@"There aren't in facebook such people"];
+                                  }
+                                  
+                                  
+                              }
+                          }];
+}
+
+- (void)showMessage:(NSString *)message
+{
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Oops"
+                                                    message:message
+                                                   delegate:self
+                                          cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+    [alert show];
+}
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {

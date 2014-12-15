@@ -90,8 +90,8 @@ NSError *error = nil;
     
     UIApplication *application = [UIApplication sharedApplication];
     
-    if ([application canOpenURL:[NSURL URLWithString:[NSString stringWithFormat:@"fb://%@", _links[indexPath.row][@"id"]]]])
-        [application openURL:[NSURL URLWithString:[NSString stringWithFormat:@"fb://%@", _links[indexPath.row][@"id"]]]];
+    if ([application canOpenURL:[NSURL URLWithString:[NSString stringWithFormat:@"fb://profile/%@", _links[indexPath.row][@"id"]]]])
+        [application openURL:[NSURL URLWithString:[NSString stringWithFormat:@"fb://profile/%@", _links[indexPath.row][@"id"]]]];
     else
         [application openURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://facebook.com/%@", _links[indexPath.row][@"id"]]]];
     
