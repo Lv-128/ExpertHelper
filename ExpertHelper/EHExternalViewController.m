@@ -113,12 +113,10 @@
             }
         }
         
-        NSMutableArray * tt = [[NSMutableArray alloc]initWithCapacity:0];
-        NSMutableArray * tr = [[NSMutableArray alloc]initWithCapacity:0];
         for (int i = 0; i < myArr.count; i++)
         {
-            tt = [[NSMutableArray alloc]initWithCapacity:0];
-            tr = [[NSMutableArray alloc]initWithCapacity:0];
+            NSMutableArray *tt = [[NSMutableArray alloc]initWithCapacity:0];
+            NSMutableArray *tr = [[NSMutableArray alloc]initWithCapacity:0];
             for (int b =0; b<[self.sectionContent[i]count];b++)
             {
                 for(int j = 0; j < [myArr[i]count];j++)
@@ -180,7 +178,7 @@
     }
     if ([[segue identifier] isEqualToString:@"GoToGenInfoForm"])
     {
-         EHCandidateProfileViewController *genInfoForm = [segue destinationViewController];
+        EHCandidateProfileViewController *genInfoForm = [segue destinationViewController];
         genInfoForm.genInfo = _generInfo;
         
     }
@@ -363,7 +361,7 @@
     
     NSArray *a = [[NSArray alloc] initWithObjects:@"E21", @"E22", @"E23", @"E25", @"E26", @"E28", @"E29", @"E31", @"E32", @"E34", @"E35", @"E36", nil];
     int indexForA = 0;
-    NSString *ss = [[NSString alloc] init];
+    //NSString *ss = [[NSString alloc] init];
     NSString *stringForComparing = @"<c r=\"";
     
     NSDictionary *map= [[NSDictionary alloc] initWithObjectsAndKeys:@"291", @"None", @"292", @"Low", @"293", @"Middle", @"294", @"Strong", nil];
@@ -377,7 +375,7 @@
             stringForComparing = [stringForComparing stringByAppendingString:@"\""];
             
             for (int i = nextPart; i < xml.length - 10; i++) {
-                ss = [xml substringWithRange:NSMakeRange(i, 10)];
+                NSString *ss = [xml substringWithRange:NSMakeRange(i, 10)];
                 if ([ss isEqual:stringForComparing]) {
                     int k = 0;
                     for (int j = i + 10; j < xml.length - 10; j++) {
@@ -386,8 +384,8 @@
                             break;
                         }
                     }
-                    NSMutableString *str = [[NSMutableString alloc] init];
-                    str = [@"<c r=\"" mutableCopy];
+                    
+                    NSMutableString *str = [@"<c r=\"" mutableCopy];
                     [str appendString:a[indexForA]];
                     [str appendString:@"\" s=\"105\" t=\"s\"><v>"];
                     [str appendString:[map valueForKey:_array[y][x]]];
@@ -395,7 +393,6 @@
                     
                     xml = [[xml stringByReplacingCharactersInRange: NSMakeRange(i, k - i + 1) withString:str] mutableCopy];
                     
-                    str = [@"" mutableCopy];
                     indexForA++;
                     nextPart = i;
                     break;
@@ -416,10 +413,10 @@
         stringForComparing = @"<c r=\"";
         stringForComparing = [stringForComparing stringByAppendingString:b[indexForB]];
         stringForComparing = [stringForComparing stringByAppendingString:@"\""];
-        ss=@"";
+        //ss=@"";
         for (int i = nextPart; i < xml1.length - 9; i++) {
             if (indexForB >= 10) break;
-            ss = [xml1 substringWithRange:NSMakeRange(i, 9)];
+            NSString *ss = [xml1 substringWithRange:NSMakeRange(i, 9)];
             if ([ss isEqual:stringForComparing]) {
                 int k = 0;
                 for (int j = i + 10; j < xml1.length - 9; j++) {
@@ -428,8 +425,8 @@
                         break;
                     }
                 }
-                NSMutableString *str = [[NSMutableString alloc] init];
-                str = [@"<c r=\"" mutableCopy];
+                
+                NSMutableString *str = [@"<c r=\"" mutableCopy];
                 [str appendString:b[indexForB]];
                 [str appendString:@"\" s=\"40\" t=\"s\"><v>"];
                 [str appendString:[map valueForKey:_array[_tableSections.count-1][x]]];
@@ -437,7 +434,7 @@
                 
                 xml1 = [[xml1 stringByReplacingCharactersInRange: NSMakeRange(i, k - i + 1) withString:str] mutableCopy];
                 
-                str = [@"" mutableCopy];
+                
                 indexForB++;
                 nextPart = i;
                 break;

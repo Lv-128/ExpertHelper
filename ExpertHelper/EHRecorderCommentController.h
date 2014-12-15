@@ -16,7 +16,7 @@
 - (void)EHRecorderCommentController:(EHRecorderCommentController *)externalWithComment
                   transmittingArray:(NSArray *)level
                           withIndex:(NSIndexPath *)index
-                   andCommentArray:(NSArray *)comment;
+                    andCommentArray:(NSArray *)comment;
 
 @end
 
@@ -26,7 +26,7 @@
 @property (nonatomic, strong) NSArray *comment;
 @property (nonatomic, strong) NSArray *level;
 @property (nonatomic, strong) NSIndexPath *index;
-@property (nonatomic, strong) NSArray *arrayListOfRecordSound;
+
 
 @property (nonatomic, weak) id<EHRecorderCommentControllerDelegate> delegate;
 
