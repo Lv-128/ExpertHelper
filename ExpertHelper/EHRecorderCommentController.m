@@ -73,12 +73,14 @@
     
     if ([[[_comment objectAtIndex:_index.section] objectAtIndex:_index.row] isEqualToString:@""]) {
         [_commentView setText:@"Please post your comments"];
+        [_commentView setTextColor:[UIColor lightGrayColor]];
     }else{
         _commentView.text = [[_comment objectAtIndex:_index.section] objectAtIndex:_index.row];
+        [_commentView setTextColor:[UIColor blackColor]];
     }
     
-    [_commentView setFont:[UIFont fontWithName:@"HelveticaNeue" size:20]];
-    [_commentView setTextColor:[UIColor lightGrayColor]];
+    [_commentView setFont:[UIFont fontWithName:@"HelveticaNeue" size:25]];
+    
     
     if (![[[_level objectAtIndex:_index.section] objectAtIndex:_index.row] isEqual:@""]) {
         _levelLabel.text = [[_level objectAtIndex:_index.section] objectAtIndex:_index.row];
@@ -209,7 +211,7 @@
 
 - (BOOL)textViewShouldEndEditing:(UITextView *)textView
 {
-    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"$\\n" options:0 error:NULL];
+    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"^\n" options:0 error:NULL];
     NSUInteger a = [regex numberOfMatchesInString:textView.text options:0 range:NSMakeRange(0, [textView.text length])];
     
     if(_commentView.text.length == 0||a){
