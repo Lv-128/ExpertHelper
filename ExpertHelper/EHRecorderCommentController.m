@@ -252,8 +252,7 @@
 
 - (IBAction)recordStopButton:(UIButton *)sender {
     
-    NSMutableArray *recordsTransmitting = [[NSMutableArray alloc]initWithCapacity:0];
-    recordsTransmitting = [_arrayOfRecords mutableCopy];
+    NSMutableArray *recordsTransmitting = [_arrayOfRecords mutableCopy];
     if (player.playing) {
         [player stop];
     }

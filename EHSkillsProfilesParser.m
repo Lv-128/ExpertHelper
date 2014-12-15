@@ -111,9 +111,12 @@
     self = [super init];
     if (self)
     {
-   
+        _groups =[[NSArray alloc]init];
+        _genInfo = [[EHGenInfo alloc]init];
+        
         EHAppDelegate *appDelegate = [[UIApplication sharedApplication]delegate];
         _managedObjectContext = [appDelegate managedObjectContext];
+        
     }
     return  self;
 }
