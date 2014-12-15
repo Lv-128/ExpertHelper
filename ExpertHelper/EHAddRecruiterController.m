@@ -49,7 +49,8 @@
 
     }
         NSString *skype = [self callToWebAndGetSkypeOfRecruiterfromName:(NSString *)recruiter.firstName
-                                                              lastname:(NSString*)recruiter.lastName];
+                                                              lastname:(NSString*)recruiter.lastName
+                                                              andImage:urlString];
       if (skype != nil)
        {
            recruiter.skypeAccount = skype;
@@ -147,6 +148,7 @@
 
 - (NSString *) callToWebAndGetSkypeOfRecruiterfromName:(NSString *)name
                                                  lastname:(NSString*)lastname
+                                              andImage:(NSString *)img
 {
     NSError *error;
     
@@ -175,7 +177,13 @@
         NSString *webContent = [NSString stringWithFormat:@"%@",webFormatted]; // web page content
         webContent = [webContent stringByAppendingString:[NSString stringWithFormat:@" %@",webFormatted2]]; // web page content
         
-     NSString *pattern = [NSString stringWithFormat:@"(a href=(.)*%@.)|(a href=(.)*%@.)",name,lastname];
+        NSArray* parseWitNextLine = [webContent componentsSeparatedByString: @"\n"]; // separation  with  "
+         NSString* nospacestring = [parseWitNextLine componentsJoinedByString:@""];
+        webContent = nospacestring;
+   
+       // NSString *pattern = [NSString stringWithFormat:@"(a href=.https...softserve.ua.ru.vacancies.recruiters.(.)*%@((.)*)%@)|(a href=(.)*%@.((.)*)%@)",name,lastname,img,img];
+        
+         NSString *pattern = [NSString stringWithFormat:@"(%@)",img];
         NSRange range = NSMakeRange(0, webContent.length);
         
         NSRegularExpressionOptions regexOptions = NSRegularExpressionCaseInsensitive;
@@ -183,16 +191,21 @@
         NSArray *matches = [regex matchesInString:webContent options:(NSMatchingOptions)regexOptions range:range];
         
         NSString * neededString;
+        
         NSMutableArray *results = [[NSMutableArray alloc]init];
         if ([matches count] > 0)
         {
             for (NSTextCheckingResult *match in matches)
             {
-                NSRange matchRange = match.range;
-                matchRange.length -= 1;
-                [results addObject:[webContent substringWithRange:matchRange]];
+                
+                NSRange r = NSMakeRange(match.range.location-match.range.length*5,match.range.length*2);
+                [results addObject:[webContent substringWithRange:r]];
             }
             
+      
+            NSArray* parseWitNextLine = [results[0] componentsSeparatedByString: @" "]; // separation  with  "
+            NSString* nospacestring = [parseWitNextLine componentsJoinedByString:@""];
+            results[0] = nospacestring;
             NSArray* parseWithSpaces = [results[0] componentsSeparatedByString: @"\""]; // separation  with  "
             neededString = parseWithSpaces[0];
             for (int i = 0; i < parseWithSpaces.count;i++)
