@@ -166,6 +166,7 @@
         for (int i = 0; i < self.tableSections.count; i++)//6
         {
             NSMutableArray *temp = [[NSMutableArray alloc]initWithCapacity:0];// group
+            
             for (int b = 0; b < [[self.sectionContent objectAtIndex:i] count]; b++)
                 
                 [temp addObject:@""];
