@@ -94,7 +94,7 @@ NSError *error = nil;
         [application openURL:[NSURL URLWithString:[NSString stringWithFormat:@"fb://profile/%@", _links[indexPath.row][@"id"]]]];
     else
         [application openURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://facebook.com/%@", _links[indexPath.row][@"id"]]]];
-    
+    NSLog(@"%@",_links[indexPath.row][@"id"]);
 }
 
 - (NSDictionary *)dictionaryFromUrl:(NSString *)urlString
