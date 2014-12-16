@@ -356,9 +356,15 @@
                     </view>
                     <navigationItem key="navigationItem" title="External" id="tPJ-li-VyP">
                         <barButtonItem key="backBarButtonItem" title="Back" id="LJ5-OP-fEx"/>
+                        <barButtonItem key="rightBarButtonItem" title="Menu" id="oyF-Yl-NkY" userLabel="Bar Button Menu">
+                            <connections>
+                                <action selector="pressMenu:" destination="ioK-KF-1C8" id="AfM-Ic-JCc"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
                     <connections>
+                        <outlet property="barButMenu" destination="oyF-Yl-NkY" id="hGK-hr-Box"/>
                         <outlet property="openGeneralInfo" destination="X3Z-sJ-DVu" id="P6M-sd-cvA"/>
                         <outlet property="tableView" destination="e0g-9P-WPS" id="dkm-YK-eWC"/>
                         <segue destination="1SL-6X-SWp" kind="push" identifier="profa" id="oyY-t6-ZgU"/>

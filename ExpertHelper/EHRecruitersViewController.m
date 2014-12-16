@@ -11,7 +11,8 @@
 #import <MessageUI/MessageUI.h>
 
 
-@interface EHRecruitersViewController ()<MFMailComposeViewControllerDelegate, UIGestureRecognizerDelegate>{
+@interface EHRecruitersViewController ()<MFMailComposeViewControllerDelegate, UIGestureRecognizerDelegate>
+{
     Reachability *internetReachable;
 }
 @end

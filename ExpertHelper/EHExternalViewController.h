@@ -21,6 +21,7 @@
 @property (nonatomic, strong) NSIndexPath *index;
 @property (strong, nonatomic) NSDateFormatter *cellDateFormatter;
 
-- (IBAction)saveForm:(id)sender;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *barButMenu;
+
 
 @end

@@ -14,7 +14,7 @@
 #import "ZipArchive.h"
 #import "EHCandidateProfileViewController.h"
 
-@interface EHExternalViewController () <UITableViewDataSource, UITableViewDelegate, EHSkillLevelPopupDelegate, EHRecorderCommentControllerDelegate>
+@interface EHExternalViewController () <UITableViewDataSource, UITableViewDelegate, EHSkillLevelPopupDelegate, EHRecorderCommentControllerDelegate, UIActionSheetDelegate, MFMailComposeViewControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UIButton *openGeneralInfo;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -25,6 +25,7 @@
 @property (nonatomic, strong) EHSkillsProfilesParser *pars;
 @property (nonatomic, strong) EHGenInfo *generInfo;
 @property (nonatomic, strong) EHSkillLevelPopup *popup;
+@property (strong, nonatomic) UIActionSheet *actionSheetMenu;
 
 @end
 
@@ -159,12 +160,80 @@
     self.openGeneralInfo.layer.borderWidth = 1;
     self.openGeneralInfo.layer.borderColor = [UIColor grayColor].CGColor;
     
-    UIBarButtonItem *anotherButton = [[UIBarButtonItem alloc] initWithTitle:@"Export to XML"
+   /* UIBarButtonItem *anotherButton = [[UIBarButtonItem alloc] initWithTitle:@"Export to XML"
                                                                       style:UIBarButtonItemStyleDone
                                                                      target:self
                                                                      action:@selector(saveFormZip)];
-    self.navigationItem.rightBarButtonItem = anotherButton;
+    self.navigationItem.rightBarButtonItem = anotherButton;*/
     // Do any additional setup after loading the view.
+}
+
+
+#pragma mark Send Email To Recruiter
+- (void)sendEmailToAddressWithUrl:(NSString *)url fileName:(NSString *)fileName{
+    MFMailComposeViewController *mailController = [[MFMailComposeViewController alloc]init];
+    [mailController setMailComposeDelegate:self];
+    
+    NSArray *addressArray = [[NSArray alloc]initWithObjects:@"", nil];
+    [mailController setMessageBody:@"Print message here!" isHTML:NO];
+    //attachment
+    NSData *fileData = [NSData dataWithContentsOfFile:url];
+    if (fileData != nil)
+    {
+        [mailController addAttachmentData:fileData mimeType:@"document/xls" fileName:fileName];
+        [mailController setToRecipients:addressArray];
+        [mailController setSubject:@""];
+        [mailController setModalTransitionStyle:UIModalTransitionStyleFlipHorizontal];
+        [self presentViewController:mailController animated:YES completion: nil];
+    }
+    
+}
+
+- (void)mailComposeController:(MFMailComposeViewController *) controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error{
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+#pragma mark Work with Action sheet
+- (IBAction)pressMenu:(id)sender
+{
+    _actionSheetMenu = [[UIActionSheet alloc] initWithTitle:@"Select type of interview:"
+                                                    delegate:self
+                                           cancelButtonTitle:@"Cancel"
+                                      destructiveButtonTitle:nil
+                                           otherButtonTitles:@"Export to XLS", @"Send via Email", @"Chart",nil];
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+    {
+        CGRect  rect = CGRectMake(self.view.frame.size.width - 80, 10, 15, 50) ;
+        [_actionSheetMenu showFromRect:rect inView:self.view animated:YES ];
+    }
+    else
+        [_actionSheetMenu showInView:self.view];
+
+}
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    
+    
+    if(buttonIndex == 0)
+    {
+        [self saveFormZip];
+    }
+    if(buttonIndex == 1)
+       {
+           NSString *documentsDirectory = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
+     
+           NSMutableString *excelName = [[NSMutableString alloc] initWithString: _interview.idExternal.idCandidate.firstName];
+           [excelName appendString:_interview.idExternal.idCandidate.lastName];
+           [excelName appendString:[_cellDateFormatter stringFromDate:_interview.startDate]];
+           excelName = [[excelName stringByReplacingOccurrencesOfString:@":" withString:@""] mutableCopy];
+           
+           NSString *zipFilePath = [documentsDirectory stringByAppendingPathComponent:[NSString stringWithFormat: @"%@,.xlsx",excelName]];
+             [self sendEmailToAddressWithUrl:zipFilePath fileName:excelName];
+       }
+    if (buttonIndex == 2)
+    {
+      
+    }
+    
 }
 
 - (void)didMoveToParentViewController:(UIViewController *)parent
