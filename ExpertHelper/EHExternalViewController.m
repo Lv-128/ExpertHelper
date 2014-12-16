@@ -167,8 +167,9 @@
     // Do any additional setup after loading the view.
 }
 
-- (void)willMoveToParentViewController:(UIViewController *)parent
+- (void)didMoveToParentViewController:(UIViewController *)parent
 {
+   
     if (![parent isEqual:self.parentViewController]) {
         NSLog(@"Back pressed");
         [self parsFunc];

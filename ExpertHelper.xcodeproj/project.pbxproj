@@ -37,6 +37,7 @@
 		D90A1BBE1A16335F00B610C6 /* EHViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D90A1BBD1A16335F00B610C6 /* EHViewController.m */; };
 		D90A1BC11A16366500B610C6 /* EHSkillLevelPopup.m in Sources */ = {isa = PBXBuildFile; fileRef = D90A1BC01A16366500B610C6 /* EHSkillLevelPopup.m */; };
 		D90A1BC31A16371800B610C6 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D90A1BC21A16371800B610C6 /* AVFoundation.framework */; };
+		D912ADF61A4088F700D95DFB /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D912ADF51A4088F700D95DFB /* Images.xcassets */; };
 		D913A8001A2D0C3B00656CDE /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D913A7FF1A2D0C3B00656CDE /* MessageUI.framework */; };
 		D920F3E91A361847002BC81A /* EHRecorderCommaentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D920F3E81A361847002BC81A /* EHRecorderCommaentCell.m */; };
 		D920F3EC1A361BFF002BC81A /* EHPlayPause.m in Sources */ = {isa = PBXBuildFile; fileRef = D920F3EB1A361BFF002BC81A /* EHPlayPause.m */; };
@@ -89,7 +90,6 @@
 		D9BE54011A10B16700AD5D3D /* EHExternalCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D9BE53F81A10B16700AD5D3D /* EHExternalCell.m */; };
 		D9BE54021A10B16700AD5D3D /* EHExternalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D9BE53FA1A10B16700AD5D3D /* EHExternalViewController.m */; };
 		D9BE54041A10B16700AD5D3D /* EHProgrammingLanguagesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D9BE53FE1A10B16700AD5D3D /* EHProgrammingLanguagesViewController.m */; };
-		D9BE54071A10B1A200AD5D3D /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D9BE54061A10B1A200AD5D3D /* Images.xcassets */; };
 		D9C4DC321A3840F400BC1AEA /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = D9C4DC311A3840F400BC1AEA /* Reachability.m */; };
 		D9C4DC361A38433D00BC1AEA /* EHCheckNetworkConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = D9C4DC351A38433D00BC1AEA /* EHCheckNetworkConnection.m */; };
 		D9E7B7971A31E079002DA710 /* Candidate.m in Sources */ = {isa = PBXBuildFile; fileRef = D9E7B78A1A31E079002DA710 /* Candidate.m */; };
@@ -148,6 +148,7 @@
 		D90A1BBF1A16366500B610C6 /* EHSkillLevelPopup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EHSkillLevelPopup.h; path = ViewControllers/EHSkillLevelPopup.h; sourceTree = "<group>"; };
 		D90A1BC01A16366500B610C6 /* EHSkillLevelPopup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EHSkillLevelPopup.m; path = ViewControllers/EHSkillLevelPopup.m; sourceTree = "<group>"; };
 		D90A1BC21A16371800B610C6 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		D912ADF51A4088F700D95DFB /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		D913A7FF1A2D0C3B00656CDE /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		D920F3E71A361847002BC81A /* EHRecorderCommaentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EHRecorderCommaentCell.h; sourceTree = "<group>"; };
 		D920F3E81A361847002BC81A /* EHRecorderCommaentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EHRecorderCommaentCell.m; sourceTree = "<group>"; };
@@ -223,7 +224,6 @@
 		D9BE53FA1A10B16700AD5D3D /* EHExternalViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EHExternalViewController.m; sourceTree = "<group>"; };
 		D9BE53FD1A10B16700AD5D3D /* EHProgrammingLanguagesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EHProgrammingLanguagesViewController.h; sourceTree = "<group>"; };
 		D9BE53FE1A10B16700AD5D3D /* EHProgrammingLanguagesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EHProgrammingLanguagesViewController.m; sourceTree = "<group>"; };
-		D9BE54061A10B1A200AD5D3D /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		D9C4DC301A3840F400BC1AEA /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		D9C4DC311A3840F400BC1AEA /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		D9C4DC341A38433D00BC1AEA /* EHCheckNetworkConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EHCheckNetworkConnection.h; sourceTree = "<group>"; };
@@ -530,9 +530,9 @@
 		D9B0CC6B1A03B17500544323 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				D912ADF51A4088F700D95DFB /* Images.xcassets */,
 				11DA2D7B1A3DF8840051CBAC /* Compressor */,
 				D9998EDD1A221CE9002E019A /* SlideOutMenuFiles */,
-				D9BE54061A10B1A200AD5D3D /* Images.xcassets */,
 				D92204761A2FAF6900B3BAAD /* EHConstantsDefines.h */,
 				D9C4DC331A3840FC00BC1AEA /* Reachability */,
 				D9B0CC731A03B17500544323 /* EHAppDelegate.h */,
@@ -770,8 +770,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D912ADF61A4088F700D95DFB /* Images.xcassets in Resources */,
 				D9B0CC7B1A03B17500544323 /* Main_iPad.storyboard in Resources */,
-				D9BE54071A10B1A200AD5D3D /* Images.xcassets in Resources */,
 				D92B76E51A1F847F00B76F5E /* EHSkillLevelPopup.xib in Resources */,
 				11DA2E051A3E03340051CBAC /* Workbook.xlsx in Resources */,
 				D92204741A2FAA4300B3BAAD /* mogend.sh in Resources */,

@@ -47,7 +47,7 @@ UIActionSheetDelegate, MFMailComposeViewControllerDelegate>
     [super viewDidLoad];
     
     self.cellDateFormatter = [[NSDateFormatter alloc] init];
-    [self.cellDateFormatter setDateStyle:NSDateFormatterFullStyle];
+    [self.cellDateFormatter setDateStyle:NSDateFormatterMediumStyle];
     [self.cellDateFormatter setTimeStyle:NSDateFormatterShortStyle];
     
     //set bar buttons
@@ -323,9 +323,9 @@ UIActionSheetDelegate, MFMailComposeViewControllerDelegate>
     Recruiter *recruiter = event.idRecruiter;
     cell.recruiterLabel.text = [NSString stringWithFormat:@"%@ %@", recruiter.firstName, recruiter.lastName] ;
     
-    [cell.layer setBorderWidth:1.0f];
+    [cell.layer setBorderWidth:0.7f];
     [cell.layer setBorderColor:[UIColor grayColor].CGColor];
-    [cell.layer setCornerRadius:20.0f];
+    
     
     cell.startButton.enabled = event.type.intValue != 0;
     
