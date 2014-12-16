@@ -47,6 +47,7 @@
 		D92204731A2FAA4300B3BAAD /* mogen.sh in Resources */ = {isa = PBXBuildFile; fileRef = D922044E1A2FAA4300B3BAAD /* mogen.sh */; };
 		D92204741A2FAA4300B3BAAD /* mogend.sh in Resources */ = {isa = PBXBuildFile; fileRef = D922044F1A2FAA4300B3BAAD /* mogend.sh */; };
 		D92204751A2FAA4300B3BAAD /* mogend.sh in Resources */ = {isa = PBXBuildFile; fileRef = D922044F1A2FAA4300B3BAAD /* mogend.sh */; };
+		D92B76E41A1F847F00B76F5E /* EHSkillLevelCommentPopup.m in Sources */ = {isa = PBXBuildFile; fileRef = D92B76E21A1F847F00B76F5E /* EHSkillLevelCommentPopup.m */; };
 		D92B76E51A1F847F00B76F5E /* EHSkillLevelPopup.xib in Resources */ = {isa = PBXBuildFile; fileRef = D92B76E31A1F847F00B76F5E /* EHSkillLevelPopup.xib */; };
 		D93144971A376D1900AB470E /* EHAddRecruiterController.m in Sources */ = {isa = PBXBuildFile; fileRef = D93144921A376D1900AB470E /* EHAddRecruiterController.m */; };
 		D93144981A376D1900AB470E /* EHRecruitersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D93144941A376D1900AB470E /* EHRecruitersViewController.m */; };
@@ -58,6 +59,7 @@
 		D9998EE11A221CE9002E019A /* EHCalendarFormViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D9998ED71A221CE9002E019A /* EHCalendarFormViewController.m */; };
 		D9998EE21A221CE9002E019A /* EHEventsGetInfoParser.m in Sources */ = {isa = PBXBuildFile; fileRef = D9998EDA1A221CE9002E019A /* EHEventsGetInfoParser.m */; };
 		D9998EE41A221CE9002E019A /* EHRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D9998EDF1A221CE9002E019A /* EHRevealViewController.m */; };
+		D9ACCD291A152EF30076DFB4 /* EHSkillLevelCommentPopup.xib in Resources */ = {isa = PBXBuildFile; fileRef = D9ACCD281A152EF30076DFB4 /* EHSkillLevelCommentPopup.xib */; };
 		D9AD2EB71A3384D2003D7E14 /* EHRecorderCommentController.m in Sources */ = {isa = PBXBuildFile; fileRef = D9AD2EB61A3384D2003D7E14 /* EHRecorderCommentController.m */; };
 		D9B0CC651A03B17500544323 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D9B0CC641A03B17500544323 /* Foundation.framework */; };
 		D9B0CC671A03B17500544323 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D9B0CC661A03B17500544323 /* CoreGraphics.framework */; };
@@ -158,6 +160,8 @@
 		D922044E1A2FAA4300B3BAAD /* mogen.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = mogen.sh; sourceTree = "<group>"; };
 		D922044F1A2FAA4300B3BAAD /* mogend.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = mogend.sh; sourceTree = "<group>"; };
 		D92204761A2FAF6900B3BAAD /* EHConstantsDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EHConstantsDefines.h; sourceTree = "<group>"; };
+		D92B76E11A1F847F00B76F5E /* EHSkillLevelCommentPopup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EHSkillLevelCommentPopup.h; sourceTree = "<group>"; };
+		D92B76E21A1F847F00B76F5E /* EHSkillLevelCommentPopup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EHSkillLevelCommentPopup.m; sourceTree = "<group>"; };
 		D92B76E31A1F847F00B76F5E /* EHSkillLevelPopup.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EHSkillLevelPopup.xib; sourceTree = "<group>"; };
 		D93144911A376D1900AB470E /* EHAddRecruiterController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EHAddRecruiterController.h; sourceTree = "<group>"; };
 		D93144921A376D1900AB470E /* EHAddRecruiterController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EHAddRecruiterController.m; sourceTree = "<group>"; };
@@ -179,6 +183,7 @@
 		D9998EDA1A221CE9002E019A /* EHEventsGetInfoParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EHEventsGetInfoParser.m; path = "Calendar part/EHEventsGetInfoParser.m"; sourceTree = "<group>"; };
 		D9998EDE1A221CE9002E019A /* EHRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EHRevealViewController.h; sourceTree = "<group>"; };
 		D9998EDF1A221CE9002E019A /* EHRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EHRevealViewController.m; sourceTree = "<group>"; };
+		D9ACCD281A152EF30076DFB4 /* EHSkillLevelCommentPopup.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EHSkillLevelCommentPopup.xib; sourceTree = "<group>"; };
 		D9AD2EB51A3384D2003D7E14 /* EHRecorderCommentController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EHRecorderCommentController.h; sourceTree = "<group>"; };
 		D9AD2EB61A3384D2003D7E14 /* EHRecorderCommentController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EHRecorderCommentController.m; sourceTree = "<group>"; };
 		D9B0CC611A03B17500544323 /* ExpertHelper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ExpertHelper.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -320,6 +325,7 @@
 			isa = PBXGroup;
 			children = (
 				D9D836A01A1F3EA400148854 /* SkillLevelPopup */,
+				D9D836A11A1F3EA600148854 /* SkillLevelCommentPopup */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -608,6 +614,16 @@
 			name = SkillLevelPopup;
 			sourceTree = "<group>";
 		};
+		D9D836A11A1F3EA600148854 /* SkillLevelCommentPopup */ = {
+			isa = PBXGroup;
+			children = (
+				D92B76E11A1F847F00B76F5E /* EHSkillLevelCommentPopup.h */,
+				D92B76E21A1F847F00B76F5E /* EHSkillLevelCommentPopup.m */,
+				D9ACCD281A152EF30076DFB4 /* EHSkillLevelCommentPopup.xib */,
+			);
+			name = SkillLevelCommentPopup;
+			sourceTree = "<group>";
+		};
 		D9D836A21A1F3EA800148854 /* VoiceRecorder */ = {
 			isa = PBXGroup;
 			children = (
@@ -770,6 +786,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D9ACCD291A152EF30076DFB4 /* EHSkillLevelCommentPopup.xib in Resources */,
 				D9B0CC7B1A03B17500544323 /* Main_iPad.storyboard in Resources */,
 				D9BE54071A10B1A200AD5D3D /* Images.xcassets in Resources */,
 				D92B76E51A1F847F00B76F5E /* EHSkillLevelPopup.xib in Resources */,
@@ -854,6 +871,7 @@
 				D9E7B7991A31E079002DA710 /* Group.m in Sources */,
 				D9E7B7B21A31E0A3002DA710 /* _SkillsLevels.m in Sources */,
 				11DA2E031A3DF9A40051CBAC /* zip.c in Sources */,
+				D92B76E41A1F847F00B76F5E /* EHSkillLevelCommentPopup.m in Sources */,
 				D9998EE11A221CE9002E019A /* EHCalendarFormViewController.m in Sources */,
 				D9B0CC751A03B17500544323 /* EHAppDelegate.m in Sources */,
 				D90A1BBE1A16335F00B610C6 /* EHViewController.m in Sources */,

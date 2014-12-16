@@ -24,7 +24,6 @@
 @property (nonatomic, strong) NSMutableArray *comment;
 @property (nonatomic, strong) EHSkillsProfilesParser *pars;
 @property (nonatomic, strong) EHGenInfo *generInfo;
-@property (nonatomic, strong) EHSkillLevelPopup *popup;
 
 @end
 
@@ -44,7 +43,14 @@
 - (void)skillLevelPopup:(EHSkillLevelPopup *)popup
          didSelectLevel:(EHSkillLevel)level {
     
-    [self closePopup];
+    [UIView animateWithDuration:0.85 animations:^{
+        popup.transform = CGAffineTransformMakeScale(0, 0);
+        popup.alpha = 0.0;
+        
+    } completion:^(BOOL finished) {
+        [super viewDidLoad];
+    }];
+    isPopup = NO;
     newCell = YES;
     
     NSIndexPath *rowToReload = [NSIndexPath indexPathForRow: RowAtIndexPathOfSkills inSection:lostData];
@@ -64,10 +70,6 @@
 
 - (void)viewDidLoad
 {
-    [super viewDidLoad];
-    
-    self.navigationItem.title = [NSString stringWithFormat:@"%@ %@", _interview.idExternal.idCandidate.firstName, _interview.idExternal.idCandidate.lastName];
-    
     self.cellDateFormatter = [[NSDateFormatter alloc] init];
     [self.cellDateFormatter setDateStyle:NSDateFormatterFullStyle];
     [self.cellDateFormatter setTimeStyle:NSDateFormatterLongStyle];
@@ -158,27 +160,14 @@
     self.openGeneralInfo.layer.cornerRadius = 13;
     self.openGeneralInfo.layer.borderWidth = 1;
     self.openGeneralInfo.layer.borderColor = [UIColor grayColor].CGColor;
+    [super viewDidLoad];
     
-    UIBarButtonItem *anotherButton = [[UIBarButtonItem alloc] initWithTitle:@"Export to XML"
-                                                                      style:UIBarButtonItemStyleDone
-                                                                     target:self
-                                                                     action:@selector(saveFormZip)];
-    self.navigationItem.rightBarButtonItem = anotherButton;
     // Do any additional setup after loading the view.
-}
-
-- (void)willMoveToParentViewController:(UIViewController *)parent
-{
-    if (![parent isEqual:self.parentViewController]) {
-        NSLog(@"Back pressed");
-        [self parsFunc];
-    }
+    
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    [self closePopup];
-    
     if ([[segue identifier] isEqualToString:@"profa"])
     {
         EHRecorderCommentController *external = [segue destinationViewController];
@@ -191,6 +180,7 @@
     {
         EHCandidateProfileViewController *genInfoForm = [segue destinationViewController];
         genInfoForm.genInfo = _generInfo;
+        
     }
 }
 
@@ -199,8 +189,6 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
-#pragma mark tableview methods
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -212,6 +200,7 @@
     return [self.sectionContent[section]count];
 }
 
+#pragma mark tableview methods
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
@@ -257,16 +246,18 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    //    NSArray *listData = [self.sectionContent objectAtIndex:[indexPath section]];
+    NSArray *listData = [self.sectionContent objectAtIndex:[indexPath section]];
     NSUInteger row = [indexPath row];
-    //    NSString *rowValue = [listData objectAtIndex:row];
+    NSString *rowValue = [listData objectAtIndex:row];
     
     lostData = [indexPath section];
     RowAtIndexPathOfSkills = row;
     
+    NSString *message = [[NSString alloc] initWithString:rowValue];
+    UINib *nib = [UINib nibWithNibName:@"EHSkillLevelPopup" bundle:nil];
+    EHSkillLevelPopup *popup = [[nib instantiateWithOwner:nil options:nil] lastObject];
+    
     if (isPopup == NO) {
-        UINib *nib = [UINib nibWithNibName:@"EHSkillLevelPopup" bundle:nil];
-        EHSkillLevelPopup *popup = [[nib instantiateWithOwner:nil options:nil] lastObject];
         CGRect selfFrame = self.view.frame;
         CGRect popupFrame = popup.frame;
         popupFrame.size.width = selfFrame.size.width;
@@ -277,8 +268,7 @@
         popup.delegate = self;
         popup.transform = CGAffineTransformMakeScale(1.3, 1.3);
         
-        popup.titleLabel.text = @"Select the desired level";
-        _popup = popup;
+        popup.titleLabel.text = [NSString stringWithFormat:@"Select the desired level for direction: %@", message];
         [self.view addSubview:popup];
         
         [UIView animateWithDuration:0.5 animations:^{
@@ -286,29 +276,8 @@
             popup.transform = CGAffineTransformMakeScale(1, 1);
         }];
         isPopup = YES;
-    } else
-        [self closePopup];
-    
+    }
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-}
-
-- (void)closePopup
-{
-    [UIView animateWithDuration:0.85 animations:^{
-        _popup.transform = CGAffineTransformMakeScale(0, 0);
-        _popup.alpha = 0.0;
-        
-    } completion:^(BOOL finished) {
-        [super viewDidLoad];
-        
-    }];
-    if (_popup.alpha == 0.0)
-        isPopup = NO;
-}
-
-- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
-{
-    [self closePopup];
 }
 
 - (void)parsFunc
@@ -322,8 +291,8 @@
         for (int x = 0; x < [[self.sectionContent objectAtIndex:y] count]; x++) {
             
             EHSkill *skillsOfExternal = [[EHSkill alloc]init];
-            skillsOfExternal.nameOfSkill = _sectionContent[y][x];
             
+            skillsOfExternal.nameOfSkill = _sectionContent[y][x];
             if (![_array[y][x]  isEqual: @""]) {
                 skillsOfExternal.estimate = _array[y][x];
             }
@@ -339,6 +308,7 @@
                 skillsOfExternal.comment = @"None";
                 _comment[y][x] = @"None";
             }
+            
             [groupsTransmitting addObject:skillsOfExternal];
         }
         
@@ -371,11 +341,14 @@
     self.generInfo = notification.userInfo[@"genInfo"];
 }
 
-- (void)saveFormZip {
+- (IBAction)saveForm:(id)sender {
+    //NSLog(@"%@", NSHomeDirectory());
     [self parsFunc];
     [self unzip];
     
+    
     //----------------------------------- start parsing part inside action -------------------------------
+    
     NSError *error;
     
     NSString *filePath1 = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
