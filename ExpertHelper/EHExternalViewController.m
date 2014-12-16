@@ -65,7 +65,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
+    
     self.navigationItem.title = [NSString stringWithFormat:@"%@ %@", _interview.idExternal.idCandidate.firstName, _interview.idExternal.idCandidate.lastName];
     
     self.cellDateFormatter = [[NSDateFormatter alloc] init];
@@ -167,26 +167,30 @@
     // Do any additional setup after loading the view.
 }
 
+- (void)willMoveToParentViewController:(UIViewController *)parent
+{
+    if (![parent isEqual:self.parentViewController]) {
+        NSLog(@"Back pressed");
+        [self parsFunc];
+    }
+}
+
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     [self closePopup];
     
-    if (isPopup == NO) {
-        
-        
-        if ([[segue identifier] isEqualToString:@"profa"])
-        {
-            EHRecorderCommentController *external = [segue destinationViewController];
-            external.delegate = self;
-            external.level = _array;
-            external.index = _index;
-            external.comment = _comment;
-        }
-        if ([[segue identifier] isEqualToString:@"GoToGenInfoForm"])
-        {
-            EHCandidateProfileViewController *genInfoForm = [segue destinationViewController];
-            genInfoForm.genInfo = _generInfo;
-        }
+    if ([[segue identifier] isEqualToString:@"profa"])
+    {
+        EHRecorderCommentController *external = [segue destinationViewController];
+        external.delegate = self;
+        external.level = _array;
+        external.index = _index;
+        external.comment = _comment;
+    }
+    if ([[segue identifier] isEqualToString:@"GoToGenInfoForm"])
+    {
+        EHCandidateProfileViewController *genInfoForm = [segue destinationViewController];
+        genInfoForm.genInfo = _generInfo;
     }
 }
 
@@ -195,6 +199,8 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+#pragma mark tableview methods
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -206,7 +212,6 @@
     return [self.sectionContent[section]count];
 }
 
-#pragma mark tableview methods
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
@@ -317,8 +322,8 @@
         for (int x = 0; x < [[self.sectionContent objectAtIndex:y] count]; x++) {
             
             EHSkill *skillsOfExternal = [[EHSkill alloc]init];
-            
             skillsOfExternal.nameOfSkill = _sectionContent[y][x];
+            
             if (![_array[y][x]  isEqual: @""]) {
                 skillsOfExternal.estimate = _array[y][x];
             }
@@ -334,7 +339,6 @@
                 skillsOfExternal.comment = @"None";
                 _comment[y][x] = @"None";
             }
-            
             [groupsTransmitting addObject:skillsOfExternal];
         }
         
@@ -368,13 +372,10 @@
 }
 
 - (void)saveFormZip {
-    //NSLog(@"%@", NSHomeDirectory());
     [self parsFunc];
     [self unzip];
     
-    
     //----------------------------------- start parsing part inside action -------------------------------
-    
     NSError *error;
     
     NSString *filePath1 = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
