@@ -34,6 +34,7 @@
 @property (strong, nonatomic) UIImage *buttonPlay;
 @property (strong, nonatomic) UIImage *buttonPause;
 @property (strong, nonatomic) EHGenInfo *genInfo;
+@property (nonatomic, strong) EHSkillLevelPopup *popup;
 
 @end
 
@@ -62,23 +63,21 @@
 {
     [super viewDidLoad];
     isPopup = NO;
-    NSLog(@"%@",NSHomeDirectory());
-    
-    NSLog(@"%@",[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject]);
-    
     
     [_commentView setDelegate:self];
     [_commentView setReturnKeyType:UIReturnKeyDone];
     
     
-    if ([[[_comment objectAtIndex:_index.section] objectAtIndex:_index.row] isEqualToString:@""]) {
+    if ([[[_comment objectAtIndex:_index.section] objectAtIndex:_index.row] isEqualToString:@""] || [[[_comment objectAtIndex:_index.section] objectAtIndex:_index.row] isEqualToString:@"None"]) {
         [_commentView setText:@"Please post your comments"];
+        [_commentView setTextColor:[UIColor lightGrayColor]];
     }else{
         _commentView.text = [[_comment objectAtIndex:_index.section] objectAtIndex:_index.row];
+        [_commentView setTextColor:[UIColor blackColor]];
     }
     
-    [_commentView setFont:[UIFont fontWithName:@"HelveticaNeue" size:20]];
-    [_commentView setTextColor:[UIColor lightGrayColor]];
+    [_commentView setFont:[UIFont fontWithName:@"HelveticaNeue" size:25]];
+    
     
     if (![[[_level objectAtIndex:_index.section] objectAtIndex:_index.row] isEqual:@""]) {
         _levelLabel.text = [[_level objectAtIndex:_index.section] objectAtIndex:_index.row];
@@ -144,6 +143,7 @@
 
 - (void)viewDidDisappear:(BOOL)animated
 {
+    [self closePopup];
     [super viewDidDisappear:animated];
     [_delegate EHRecorderCommentController:self transmittingArray:_level withIndex:_index andCommentArray:_comment];
 }
@@ -153,6 +153,13 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    [self closePopup];
+}
+
+#pragma mark tableview methods
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -199,6 +206,7 @@
 
 - (BOOL)textViewShouldBeginEditing:(UITextView *)textView
 {
+    [self closePopup];
     if (_commentView.textColor == [UIColor lightGrayColor]) {
         _commentView.text = @"";
         _commentView.textColor = [UIColor blackColor];
@@ -209,7 +217,9 @@
 
 - (BOOL)textViewShouldEndEditing:(UITextView *)textView
 {
-    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"$\\n" options:0 error:NULL];
+    //[self closePopup];
+
+    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"^\n" options:0 error:NULL];
     NSUInteger a = [regex numberOfMatchesInString:textView.text options:0 range:NSMakeRange(0, [textView.text length])];
     
     if(_commentView.text.length == 0||a){
@@ -244,6 +254,7 @@
         popup.transform = CGAffineTransformMakeScale(1.3, 1.3);
         
         popup.titleLabel.text = @"Select the desired level";
+        _popup = popup;
         [self.view addSubview:popup];
         
         [UIView animateWithDuration:0.5 animations:^{
@@ -251,7 +262,23 @@
             popup.transform = CGAffineTransformMakeScale(1, 1);
         }];
         isPopup = YES;
+    }else{
+        [self closePopup];
     }
+}
+
+- (void)closePopup
+{
+    [UIView animateWithDuration:0.85 animations:^{
+        _popup.transform = CGAffineTransformMakeScale(0, 0);
+        _popup.alpha = 0.0;
+        
+    } completion:^(BOOL finished) {
+        [super viewDidLoad];
+        
+    }];
+    if (_popup.alpha == 0.0)
+        isPopup = NO;
 }
 
 - (IBAction)recordStopButton:(UIButton *)sender {

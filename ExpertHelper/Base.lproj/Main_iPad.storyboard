@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<<<<<<< HEAD
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4510" systemVersion="13E28" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" initialViewController="696-TH-eQE">
+=======
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4510" systemVersion="13F34" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="696-TH-eQE">
+>>>>>>> FETCH_HEAD
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3742"/>
     </dependencies>
@@ -260,13 +264,22 @@
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="FYW-af-gF9">
                                 <rect key="frame" x="654" y="964" width="94" height="40"/>
+<<<<<<< HEAD
                                 <state key="normal" title="Save form">
+=======
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="Y1M-p6-dmp"/>
+                                    <constraint firstAttribute="width" constant="94" id="icp-D1-kcE"/>
+                                </constraints>
+                                <state key="normal">
+>>>>>>> FETCH_HEAD
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <action selector="saveForm:" destination="ioK-KF-1C8" eventType="touchUpInside" id="4lh-ps-9Wd"/>
                                 </connections>
                             </button>
+<<<<<<< HEAD
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="hKd-4V-4Eh">
                                 <rect key="frame" x="501" y="964" width="94" height="40"/>
                                 <state key="normal" title="Button">
@@ -275,6 +288,10 @@
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelectionDuringEditing="YES" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="72" sectionHeaderHeight="22" sectionFooterHeight="22" id="e0g-9P-WPS">
                                 <rect key="frame" x="20" y="169" width="728" height="787"/>
+=======
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelectionDuringEditing="YES" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="72" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="e0g-9P-WPS">
+                                <rect key="frame" x="20" y="169" width="728" height="835"/>
+>>>>>>> FETCH_HEAD
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" accessoryType="detailDisclosureButton" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ExternalCell" rowHeight="72" id="J67-Vg-vfH" customClass="EHExternalCell">
@@ -307,6 +324,12 @@
                                 <rect key="frame" x="20" y="84" width="728" height="72"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.79197225765306123" green="0.79197225765306123" blue="0.79197225765306123" alpha="0.90000000000000002" colorSpace="calibratedRGB"/>
+<<<<<<< HEAD
+=======
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="72" id="8hV-A4-D1E"/>
+                                </constraints>
+>>>>>>> FETCH_HEAD
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="30"/>
                                 <state key="normal" title="General Info">
                                     <color key="titleShadowColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -317,12 +340,27 @@
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="0.98718510839999996" green="0.98718510839999996" blue="0.98718510839999996" alpha="1" colorSpace="calibratedRGB"/>
+<<<<<<< HEAD
+=======
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="e0g-9P-WPS" secondAttribute="bottom" constant="20" symbolic="YES" id="AYd-66-8Ed"/>
+                            <constraint firstItem="X3Z-sJ-DVu" firstAttribute="leading" secondItem="e0g-9P-WPS" secondAttribute="leading" id="AgQ-4o-GWe"/>
+                            <constraint firstItem="e0g-9P-WPS" firstAttribute="trailing" secondItem="FYW-af-gF9" secondAttribute="trailing" id="QM8-i2-Tzj"/>
+                            <constraint firstAttribute="trailing" secondItem="X3Z-sJ-DVu" secondAttribute="trailing" constant="20" symbolic="YES" id="jbO-qX-IMc"/>
+                            <constraint firstItem="X3Z-sJ-DVu" firstAttribute="top" secondItem="syB-ah-Lm1" secondAttribute="bottom" constant="64" id="lNI-LD-5BO"/>
+                            <constraint firstItem="X3Z-sJ-DVu" firstAttribute="trailing" secondItem="FYW-af-gF9" secondAttribute="trailing" id="rNv-id-RqE"/>
+                            <constraint firstItem="e0g-9P-WPS" firstAttribute="bottom" secondItem="FYW-af-gF9" secondAttribute="bottom" id="uUN-5v-0bw"/>
+                            <constraint firstItem="e0g-9P-WPS" firstAttribute="top" secondItem="X3Z-sJ-DVu" secondAttribute="bottom" constant="13" id="uUa-fy-ez0"/>
+                            <constraint firstItem="X3Z-sJ-DVu" firstAttribute="leading" secondItem="m5u-Md-51f" secondAttribute="leading" constant="20" symbolic="YES" id="xwe-7n-pNc"/>
+                        </constraints>
+>>>>>>> FETCH_HEAD
                     </view>
                     <navigationItem key="navigationItem" title="External" id="tPJ-li-VyP">
                         <barButtonItem key="backBarButtonItem" title="Back" id="LJ5-OP-fEx"/>
                     </navigationItem>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
                     <connections>
+                        <outlet property="openGeneralInfo" destination="X3Z-sJ-DVu" id="P6M-sd-cvA"/>
                         <outlet property="tableView" destination="e0g-9P-WPS" id="dkm-YK-eWC"/>
                         <segue destination="1SL-6X-SWp" kind="push" identifier="profa" id="oyY-t6-ZgU"/>
                     </connections>

@@ -15,12 +15,11 @@
     NSInteger RowAtIndexPathOfSkills;
     NSInteger lostData;
 }
-@property (nonatomic, strong) InterviewAppointment * currentInterviewDescription;
-@property (nonatomic, strong) ExternalInterview * currentExternalInterview;
+
+@property (nonatomic, strong) InterviewAppointment *currentInterviewDescription;
+@property (nonatomic, strong) ExternalInterview *currentExternalInterview;
 @property (nonatomic, strong) InterviewAppointment *interview;
 @property (nonatomic, strong) NSIndexPath *index;
 @property (strong, nonatomic) NSDateFormatter *cellDateFormatter;
-
-- (IBAction)saveForm:(id)sender;
 
 @end

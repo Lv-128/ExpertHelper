@@ -166,8 +166,6 @@ UIActionSheetDelegate, MFMailComposeViewControllerDelegate>
             externalViewController.interview = [arr objectAtIndex:indexPath.row];
             [self.navigationController pushViewController:externalViewController animated: YES];
         }
-    
-    
 }
 
 
