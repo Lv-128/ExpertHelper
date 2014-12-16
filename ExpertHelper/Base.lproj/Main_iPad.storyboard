@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13E28" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="696-TH-eQE">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4510" systemVersion="13F34" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="696-TH-eQE">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3742"/>
     </dependencies>
     <scenes>
         <!--Reveal View Controller-->
@@ -208,59 +208,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="g4T-cI-lzD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1801" y="-1564"/>
-        </scene>
-        <!--Candidate Form View Controller - Candidate-->
-        <scene sceneID="iu6-y0-tYv">
-            <objects>
-                <viewController storyboardIdentifier="CandidateFormView" useStoryboardIdentifierAsRestorationIdentifier="YES" id="mYL-4e-viI" customClass="EHCandidateFormViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="CJG-3G-QBJ"/>
-                        <viewControllerLayoutGuide type="bottom" id="uDF-n0-4av"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="ruq-v7-hHv" customClass="EHC">
-                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="stewie" translatesAutoresizingMaskIntoConstraints="NO" id="umg-T9-T3l">
-                                <rect key="frame" x="128" y="134" width="512" height="341"/>
-                            </imageView>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Name: Stewie Griffin" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="flJ-Vp-gGQ">
-                                <rect key="frame" x="128" y="550" width="463" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IJn-YU-YpI">
-                                <rect key="frame" x="334" y="868" width="100" height="100"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <state key="normal" image="Facebook">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nMG-tg-WwB">
-                                <rect key="frame" x="540" y="868" width="100" height="100"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <state key="normal" title="Button" image="Linkedin">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                            </button>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Search on:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vw1-Vj-8TM">
-                                <rect key="frame" x="329" y="798" width="111" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                    </view>
-                    <navigationItem key="navigationItem" title="Candidate" id="igG-d6-pMy"/>
-                    <connections>
-                        <outlet property="labelNameOfCandidate" destination="flJ-Vp-gGQ" id="xHt-Ew-Cu5"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="kWV-dl-YOd" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1801" y="-2696"/>
+            <point key="canvasLocation" x="1777" y="-2146"/>
         </scene>
         <!--External View Controller - External-->
         <scene sceneID="4M7-gB-h3Y">
@@ -1162,8 +1110,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Facebook" width="113" height="113"/>
-        <image name="Linkedin" width="113" height="113"/>
         <image name="Logos-Skype-Copyrighted-icon" width="512" height="512"/>
         <image name="Stephanie-Hello-Kitty" width="849" height="757"/>
         <image name="checkBox.png" width="849" height="757"/>
@@ -1176,7 +1122,6 @@
         <image name="record_button" width="1024" height="1024"/>
         <image name="skype" width="300" height="300"/>
         <image name="skype-1" width="512" height="512"/>
-        <image name="stewie" width="184" height="104"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar" statusBarStyle="blackOpaque"/>
