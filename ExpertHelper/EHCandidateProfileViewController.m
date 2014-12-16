@@ -12,7 +12,7 @@
 #import "EHRoundedTextView.h"
 
 
-@interface EHCandidateProfileViewController () <UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate, UITextViewDelegate, UIScrollViewDelegate>
+@interface EHCandidateProfileViewController () <UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate>
 
 @property (strong, nonatomic) NSDateFormatter *formatter;
 
@@ -35,7 +35,6 @@
 @property (weak, nonatomic) IBOutlet EHRoundedTextView *skillSummary;
 @property (weak, nonatomic) IBOutlet EHRoundedAngleTextField *typeOfProject;
 @property (weak, nonatomic) IBOutlet EHRoundedAngleTextField *recomendations;
-@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 
 
 @end
@@ -55,10 +54,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    NSLog(@"%@", NSStringFromCGSize(self.scrollView.frame.size));
-    
-    [self sizeForScrollView:self.scrollView inInterfaceOrientation:self.interfaceOrientation];
-        
     self.dateLabel.text = [self.formatter stringFromDate:[NSDate date]];
     [self configureArrays];
     [self configureTextFields];
@@ -81,22 +76,6 @@
         
     }
 	// Do any additional setup after loading the view.
-}
-
-- (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
-{
-    [super willRotateToInterfaceOrientation:toInterfaceOrientation duration:duration];
-    [self sizeForScrollView:self.scrollView inInterfaceOrientation:toInterfaceOrientation];
-        
-}
-
-- (void)sizeForScrollView:(UIScrollView *)scrollView inInterfaceOrientation:(UIInterfaceOrientation)orientation
-{
-    if ((orientation == UIDeviceOrientationPortrait) ||
-        (orientation == UIDeviceOrientationPortraitUpsideDown))
-        self.scrollView.contentSize = CGSizeMake(0, 1024);
-    else
-        self.scrollView.contentSize = CGSizeMake(0, 1152);
 }
 
 - (void)viewDidDisappear:(BOOL)animated
@@ -125,8 +104,6 @@
     self.highPotentionalArray = @[@"low", @"regular", @"high"];
 }
 
-#pragma mark text field methods
-
 - (void)configureTextFields
 {
     //[self insertPickerView:self.englishPicker inTextField:self.englishTexField withTag:1];
@@ -144,7 +121,6 @@
     textField.tag = tag;
     textField.inputView = pickerView;
 }
-
 
 - (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
 {
@@ -247,6 +223,13 @@
     }
 }
 
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    [self.englishTexField resignFirstResponder];
+    [self.highPotentionalTextField resignFirstResponder];
+    [self.levelEstimateTextField resignFirstResponder];
+}
+
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField
 {
     if (([textField.text isEqualToString:@""]))
@@ -260,51 +243,6 @@
             textField.text = self.highPotentionalArray[0];
     }
     return YES;
-}
-
-- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
-{
-    [self.typeOfProject resignFirstResponder];
-    [self.expertName resignFirstResponder];
-    [self.skillSummary resignFirstResponder];
-    [self.recomendations resignFirstResponder];
-    [self.competenceGroup resignFirstResponder];
-    [self.englishTexField resignFirstResponder];
-    [self.highPotentionalTextField resignFirstResponder];
-    [self.levelEstimateTextField resignFirstResponder];
-}
-
-#pragma mark configure text views
-
-- (void)textViewDidBeginEditing:(UITextView *)textView
-{
-    if (([textView.text isEqualToString:@"Enter competence group here..."]) ||
-        ([textView.text isEqualToString:@"Enter skills..."]))
-    {
-        textView.text = @"";
-        textView.textColor = [UIColor blackColor];
-    }
-    [textView becomeFirstResponder];
-}
-
-- (void)textViewDidEndEditing:(UITextView *)textView
-{
-    if ([textView.text isEqualToString:@""])
-        {
-            textView.textColor = [UIColor lightGrayColor];
-            switch (textView.tag)
-            {
-                case 1:
-                    textView.text = @"Enter competence group here...";
-                    break;
-                case 2:
-                    textView.text = @"Enter skills...";
-                    break;
-                default:
-                    break;
-            }
-       }
-    [textView resignFirstResponder];
 }
 
 - (void)didReceiveMemoryWarning
