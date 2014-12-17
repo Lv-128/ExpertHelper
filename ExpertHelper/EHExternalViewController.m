@@ -195,22 +195,7 @@
       
 
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)orientation
-{
-    if ((orientation == UIInterfaceOrientationPortrait) ||
-        (orientation == UIInterfaceOrientationLandscapeLeft))
-    {
-        [self actionSheet:_actionSheetMenu clickedButtonAtIndex:_actionSheetMenu.cancelButtonIndex];
-        return YES;
-    }
-    return NO;
-}
 
-- (BOOL)shouldAutorotateToLandscapeOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-    [self actionSheet:_actionSheetMenu clickedButtonAtIndex:_actionSheetMenu.cancelButtonIndex];
-    return true;
-}
 #pragma mark Work with Action sheet
 - (IBAction)pressMenu:(id)sender
 {
@@ -235,6 +220,13 @@
     if(buttonIndex == 0)
     {
         [self saveFormZip];
+        UIAlertView *message  = [[UIAlertView alloc] initWithTitle:@"Warning!"
+                                                           message:@"Export to .xlsx successed!"
+                                                          delegate:nil
+                                                 cancelButtonTitle:@"OK"
+                                                 otherButtonTitles:nil];
+        [message show];
+        
     }
     if(buttonIndex == 1)
        {
@@ -431,7 +423,7 @@
         groupsOfExternal.nameOfSections = _tableSections[y];
         [profTransmitting addObject:groupsOfExternal];
     }
-    
+   ///need to assign general info
     if (_generInfo == nil)
     {
         UIAlertView *message  = [[UIAlertView alloc] initWithTitle:@"Warning!"
