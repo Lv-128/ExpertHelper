@@ -98,18 +98,15 @@
         [_pars getFromDB];
         
         NSMutableArray *myArr = [[NSMutableArray alloc]initWithCapacity:_array.count];
+        
         for (int i = 0; i < self.tableSections.count; i++)
-        {
             for(int j = 0; j<_pars.groups.count; j++)
-            {
                 if ([self.tableSections[i]  isEqualToString: [_pars.groups[j] nameOfSections]])
                 {
                     NSArray *arr = [[_pars.groups[j] skills] allObjects];
                     
                     myArr[i] = arr;
                 }
-            }
-        }
         
         for (int i = 0; i < myArr.count; i++)
         {
@@ -151,8 +148,8 @@
     // Do any additional setup after loading the view.
 }
 
-
 #pragma mark Send Email To Recruiter
+
 - (void)sendEmailToAddressWithUrl:(NSString *)url fileName:(NSString *)fileName{
     MFMailComposeViewController *mailController = [[MFMailComposeViewController alloc]init];
     [mailController setMailComposeDelegate:self];
@@ -169,7 +166,6 @@
         [mailController setModalTransitionStyle:UIModalTransitionStyleFlipHorizontal];
         [self presentViewController:mailController animated:YES completion: nil];
     }
-    
 }
 
 - (void)mailComposeController:(MFMailComposeViewController *) controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error{
@@ -190,8 +186,8 @@
     }
     else
         [_actionSheetMenu showInView:self.view];
-    
 }
+
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     if(buttonIndex == 0)
@@ -203,8 +199,8 @@
                                                  cancelButtonTitle:@"OK"
                                                  otherButtonTitles:nil];
         [message show];
-        
     }
+    
     if(buttonIndex == 1)
     {
         NSString *documentsDirectory = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
@@ -225,7 +221,8 @@
 
 - (void)didMoveToParentViewController:(UIViewController *)parent
 {
-    if (![parent isEqual:self.parentViewController]) {
+    if (![parent isEqual:self.parentViewController])
+    {
         NSLog(@"Back pressed");
         [self parsFunc];
     }
@@ -389,8 +386,8 @@
                 skillsOfExternal.comment = _comment[y][x];
             }
             else {
-                skillsOfExternal.comment = @"None";
-                _comment[y][x] = @"None";
+                skillsOfExternal.comment = @"";
+                _comment[y][x] = @"";
             }
             [groupsTransmitting addObject:skillsOfExternal];
         }
