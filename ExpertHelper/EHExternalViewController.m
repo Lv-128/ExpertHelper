@@ -214,10 +214,7 @@
 #pragma mark Work with Action sheet
 - (IBAction)pressMenu:(id)sender
 {
-    UIBarButtonItem *bar = (UIBarItem *)sender;
-    
 
-    
     _actionSheetMenu = [[UIActionSheet alloc] initWithTitle:@"Select type of interview:"
                                                     delegate:self
                                            cancelButtonTitle:@"Cancel"
@@ -225,8 +222,7 @@
                                            otherButtonTitles:@"Export to XLS", @"Send via Email", @"Chart",nil];
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
     {
-        CGRect  rect = CGRectMake(self.view.frame.size.width - 50, 15, 50    , 50) ;
-        [_actionSheetMenu showFromRect:rect inView:self.view animated:YES ];
+        [_actionSheetMenu showFromBarButtonItem:sender animated:YES];
     }
     else
         [_actionSheetMenu showInView:self.view];
