@@ -56,11 +56,7 @@
 {
     [super viewDidLoad];
     isPopup = NO;
-    NSLog(@"%@",NSHomeDirectory());
-    
-    NSLog(@"%@",[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject]);
-    
-    
+
     [_commentView setDelegate:self];
     [_commentView setReturnKeyType:UIReturnKeyDone];
     
@@ -93,7 +89,6 @@
     _tableForRecords.layer.cornerRadius = 20;
     _tableForRecords.clipsToBounds = YES;
     
-    //    _arrayOfRecords = [[NSArray alloc] initWithObjects:@"record 1", @"record 2", @"record 3", nil];
     _arrayOfRecords = [[NSArray alloc]init];
     
     AVAudioSession *audioSession = [AVAudioSession sharedInstance];
@@ -104,14 +99,8 @@
     
     [recorder setDelegate:self];
     
-    
-    
-    
     // File URL
     //FILEPATH];
-    
-    
-
 
     ///
     // Set the audio file
@@ -185,17 +174,26 @@
 
 - (EHRecorderCommaentCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    EHRecorderCommaentCell *cell = (EHRecorderCommaentCell *)[tableView dequeueReusableCellWithIdentifier:@"RecordCell"];
-    
+    NSMutableArray *namesOfRecordings = [[NSMutableArray alloc]init];
+    for (int i = 0; i < _arrayOfRecords.count; i++) {
     NSURL *curUrl = _arrayOfRecords.lastObject;
     
     NSString *nameFromUrl = [NSString stringWithContentsOfURL:curUrl encoding:NSASCIIStringEncoding error:nil];
     
     NSArray *parseWithSpaces = [nameFromUrl componentsSeparatedByString: @"/"];
+    [namesOfRecordings addObject:_arrayOfRecords.lastObject];
+    }
+    EHRecorderCommaentCell *cell = (EHRecorderCommaentCell *)[tableView dequeueReusableCellWithIdentifier:@"RecordCell"];
     
-    
-    cell.textLabel.text = parseWithSpaces.lastObject;
-    
+    NSObject *tt = [_arrayOfRecords objectAtIndex:[indexPath row]];
+    if (tt != nil) {
+        cell.textLabel.text = [namesOfRecordings objectAtIndex:[indexPath row]];
+    } else {
+        cell.textLabel.text = @"";
+    }
+
+    //cell.textLabel.text = [_arrayOfRecords objectAtIndex:[indexPath row]];
+
     //    NSMutableArray *tt = [_arrayOfRecords mutableCopy];
     //    [tt addObject:cell.textLabel.text];
     //    _arrayOfRecords = tt;
@@ -315,10 +313,6 @@
         [audioSession setActive:NO error:nil];
 
         [_tableView reloadData];
-//        NSIndexPath *rowToReload = _arrayOfRecords.lastObject;
-//        NSArray *rowsToReload = [NSArray arrayWithObjects:rowToReload, nil];
-//        
-//        [self.tableView reloadRowsAtIndexPaths:rowsToReload withRowAnimation:UITableViewRowAnimationNone];
         
         //[recordsTransmitting addObject:audioSession];
         //_genInfo.records = recordsTransmitting;
@@ -462,7 +456,6 @@
     // Set a timer to monitor levels, current time
     
     //timer = [NSTimer scheduledTimerWithTimeInterval:0.1f target:self selector:@selector(updateMeters) userInfo:nil repeats:YES];
-    
     return YES;
 }
 

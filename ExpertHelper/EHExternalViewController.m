@@ -131,7 +131,6 @@
             [_array insertObject:tt atIndex:i];
             [_comment insertObject:tr atIndex:i];
         }
-        
         /*  for (int i = 0; i < self.tableSections.count; i++)//6
          {
          NSMutableArray *temp = [[NSMutableArray alloc]initWithCapacity:0];// group
@@ -142,8 +141,7 @@
          [_comment insertObject:temp atIndex:i];
          }*/
         _generInfo = _pars.genInfo;
-    }
-    else{
+    }else{
         for (int i = 0; i < self.tableSections.count; i++)//6
         {
             NSMutableArray *temp = [[NSMutableArray alloc]initWithCapacity:0];// group]
@@ -263,7 +261,6 @@
 
 - (void)didMoveToParentViewController:(UIViewController *)parent
 {
-   
     if (![parent isEqual:self.parentViewController]) {
         NSLog(@"Back pressed");
         [self parsFunc];
@@ -352,9 +349,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    //    NSArray *listData = [self.sectionContent objectAtIndex:[indexPath section]];
     NSUInteger row = [indexPath row];
-    //    NSString *rowValue = [listData objectAtIndex:row];
     
     lostData = [indexPath section];
     RowAtIndexPathOfSkills = row;
@@ -436,12 +431,10 @@
             }
             [groupsTransmitting addObject:skillsOfExternal];
         }
-        
         groupsOfExternal.skills = groupsTransmitting;
         groupsOfExternal.nameOfSections = _tableSections[y];
         [profTransmitting addObject:groupsOfExternal];
     }
-    
     
     if (_generInfo == nil)
     {
@@ -457,9 +450,7 @@
         _pars = [[EHSkillsProfilesParser alloc]initWithDataGroups:profTransmitting andInterview:_interview andGenInfo:_generInfo];
         [_pars saveInfoToDB];
     }
-    
 }
-
 
 - (void)getGeninfo:(NSNotification *)notification
 {
