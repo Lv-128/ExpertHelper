@@ -25,7 +25,7 @@
 @property (nonatomic, strong) EHSkillsProfilesParser *pars;
 @property (nonatomic, strong) EHGenInfo *generInfo;
 @property (nonatomic, strong) EHSkillLevelPopup *popup;
-@property (strong, nonatomic) UIActionSheet *actionSheetMenu;
+@property (nonatomic, strong) UIActionSheet *actionSheetMenu;
 
 @end
 
@@ -94,7 +94,6 @@
     {
         _pars.interview = _interview;
         _pars.externalInterview = _interview.idExternal;
-        // _pars.genInfo = _interview.idExternal.idGeneralInfo;
         
         [_pars getFromDB];
         
@@ -131,15 +130,7 @@
             [_array insertObject:tt atIndex:i];
             [_comment insertObject:tr atIndex:i];
         }
-        /*  for (int i = 0; i < self.tableSections.count; i++)//6
-         {
-         NSMutableArray *temp = [[NSMutableArray alloc]initWithCapacity:0];// group
-         for (int b = 0; b < [[self.sectionContent objectAtIndex:i] count]; b++)
-         
-         [temp addObject:@""];
-         
-         [_comment insertObject:temp atIndex:i];
-         }*/
+        
         _generInfo = _pars.genInfo;
     }else{
         for (int i = 0; i < self.tableSections.count; i++)//6
@@ -157,12 +148,6 @@
     self.openGeneralInfo.layer.cornerRadius = 13;
     self.openGeneralInfo.layer.borderWidth = 1;
     self.openGeneralInfo.layer.borderColor = [UIColor grayColor].CGColor;
-    
-   /* UIBarButtonItem *anotherButton = [[UIBarButtonItem alloc] initWithTitle:@"Export to XML"
-                                                                      style:UIBarButtonItemStyleDone
-                                                                     target:self
-                                                                     action:@selector(saveFormZip)];
-    self.navigationItem.rightBarButtonItem = anotherButton;*/
     // Do any additional setup after loading the view.
 }
 
@@ -191,32 +176,24 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
-
-      
-
-
-
 #pragma mark Work with Action sheet
 - (IBAction)pressMenu:(id)sender
 {
-
     _actionSheetMenu = [[UIActionSheet alloc] initWithTitle:@"Select type of interview:"
-                                                    delegate:self
-                                           cancelButtonTitle:@"Cancel"
-                                      destructiveButtonTitle:nil
-                                           otherButtonTitles:@"Export to XLS", @"Send via Email", @"Chart",nil];
+                                                   delegate:self
+                                          cancelButtonTitle:@"Cancel"
+                                     destructiveButtonTitle:nil
+                                          otherButtonTitles:@"Export to XLS", @"Send via Email", @"Chart",nil];
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
     {
         [_actionSheetMenu showFromBarButtonItem:sender animated:YES];
     }
     else
         [_actionSheetMenu showInView:self.view];
-
+    
 }
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    
-    
     if(buttonIndex == 0)
     {
         [self saveFormZip];
@@ -229,22 +206,21 @@
         
     }
     if(buttonIndex == 1)
-       {
-           NSString *documentsDirectory = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
-     
-           NSMutableString *excelName = [[NSMutableString alloc] initWithString: _interview.idExternal.idCandidate.firstName];
-           [excelName appendString:_interview.idExternal.idCandidate.lastName];
-           [excelName appendString:[_cellDateFormatter stringFromDate:_interview.startDate]];
-           excelName = [[excelName stringByReplacingOccurrencesOfString:@":" withString:@""] mutableCopy];
-           
-           NSString *zipFilePath = [documentsDirectory stringByAppendingPathComponent:[NSString stringWithFormat: @"%@,.xlsx",excelName]];
-             [self sendEmailToAddressWithUrl:zipFilePath fileName:excelName];
-       }
+    {
+        NSString *documentsDirectory = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
+        
+        NSMutableString *excelName = [[NSMutableString alloc] initWithString: _interview.idExternal.idCandidate.firstName];
+        [excelName appendString:_interview.idExternal.idCandidate.lastName];
+        [excelName appendString:[_cellDateFormatter stringFromDate:_interview.startDate]];
+        excelName = [[excelName stringByReplacingOccurrencesOfString:@":" withString:@""] mutableCopy];
+        
+        NSString *zipFilePath = [documentsDirectory stringByAppendingPathComponent:[NSString stringWithFormat: @"%@,.xlsx",excelName]];
+        [self sendEmailToAddressWithUrl:zipFilePath fileName:excelName];
+    }
     if (buttonIndex == 2)
     {
-      
+        
     }
-    
 }
 
 - (void)didMoveToParentViewController:(UIViewController *)parent
@@ -324,7 +300,6 @@
     } else {
         cell.rightLabel.text = @"";
     }
-    
     return cell;
 }
 
@@ -419,25 +394,32 @@
             }
             [groupsTransmitting addObject:skillsOfExternal];
         }
+        
         groupsOfExternal.skills = groupsTransmitting;
         groupsOfExternal.nameOfSections = _tableSections[y];
         [profTransmitting addObject:groupsOfExternal];
     }
-   ///need to assign general info
-    if (_generInfo == nil)
+    
+    if(_generInfo == nil)
     {
-        UIAlertView *message  = [[UIAlertView alloc] initWithTitle:@"Warning!"
-                                                           message:@"Fill general info!!"
-                                                          delegate:nil
-                                                 cancelButtonTitle:@"OK"
-                                                 otherButtonTitles:nil];
-        [message show];
+        _generInfo = [[EHGenInfo alloc]init];
     }
-    else
-    {
+
+    if (_generInfo.expertName == NULL)
+        _generInfo.expertName = @"None";
+    if (_generInfo.competenceGroup == NULL)
+        _generInfo.competenceGroup = @"None";
+    if (_generInfo.typeOfProject == NULL)
+        _generInfo.typeOfProject = @"None";
+    if (_generInfo.skillsSummary == NULL)
+        _generInfo.skillsSummary = @"None";
+    if (_generInfo.techEnglish == NULL)
+        _generInfo.techEnglish = @"None";
+    if (_generInfo.recommendations == NULL)
+        _generInfo.recommendations = @"None";
+    
         _pars = [[EHSkillsProfilesParser alloc]initWithDataGroups:profTransmitting andInterview:_interview andGenInfo:_generInfo];
         [_pars saveInfoToDB];
-    }
 }
 
 - (void)getGeninfo:(NSNotification *)notification
