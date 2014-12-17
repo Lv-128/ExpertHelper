@@ -60,7 +60,7 @@
     }else
         [[_array objectAtIndex:rowToReload.section] insertObject:popup.skillLevel atIndex:rowToReload.row];
     
-    [self.tableView reloadRowsAtIndexPaths: rowsToReload withRowAnimation:UITableViewRowAnimationNone];
+    [self.tableView reloadRowsAtIndexPaths:rowsToReload withRowAnimation:UITableViewRowAnimationNone];
 }
 
 - (void)viewDidLoad
@@ -192,9 +192,34 @@
 - (void)mailComposeController:(MFMailComposeViewController *) controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error{
     [self dismissViewControllerAnimated:YES completion:nil];
 }
+
+
+      
+
+
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)orientation
+{
+    if ((orientation == UIInterfaceOrientationPortrait) ||
+        (orientation == UIInterfaceOrientationLandscapeLeft))
+    {
+        [self actionSheet:_actionSheetMenu clickedButtonAtIndex:_actionSheetMenu.cancelButtonIndex];
+        return YES;
+    }
+    return NO;
+}
+
+- (BOOL)shouldAutorotateToLandscapeOrientation:(UIInterfaceOrientation)interfaceOrientation
+{
+    [self actionSheet:_actionSheetMenu clickedButtonAtIndex:_actionSheetMenu.cancelButtonIndex];
+    return true;
+}
 #pragma mark Work with Action sheet
 - (IBAction)pressMenu:(id)sender
 {
+    UIBarButtonItem *bar = (UIBarItem *)sender;
+    
+
+    
     _actionSheetMenu = [[UIActionSheet alloc] initWithTitle:@"Select type of interview:"
                                                     delegate:self
                                            cancelButtonTitle:@"Cancel"
@@ -202,7 +227,7 @@
                                            otherButtonTitles:@"Export to XLS", @"Send via Email", @"Chart",nil];
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
     {
-        CGRect  rect = CGRectMake(self.view.frame.size.width - 80, 10, 15, 50) ;
+        CGRect  rect = CGRectMake(self.view.frame.size.width - 50, 15, 50    , 50) ;
         [_actionSheetMenu showFromRect:rect inView:self.view animated:YES ];
     }
     else

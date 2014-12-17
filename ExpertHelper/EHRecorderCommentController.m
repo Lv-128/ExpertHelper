@@ -34,6 +34,7 @@
 @property (strong, nonatomic) UIImage *buttonPlay;
 @property (strong, nonatomic) UIImage *buttonPause;
 @property (strong, nonatomic) EHGenInfo *genInfo;
+@property (nonatomic, strong) EHSkillLevelPopup *popup;
 
 @end
 
@@ -42,14 +43,7 @@
 - (void)skillLevelPopup:(EHSkillLevelPopup *)popup
          didSelectLevel:(EHSkillLevel)level {
     
-    [UIView animateWithDuration:0.85 animations:^{
-        popup.transform = CGAffineTransformMakeScale(0, 0);
-        popup.alpha = 0.0;
-        
-    } completion:^(BOOL finished) {
-        [super viewDidLoad];
-    }];
-    isPopup = NO;
+    [self closePopup];
     
     _levelLabel.text = popup.skillLevel;
     
@@ -110,13 +104,34 @@
     
     [recorder setDelegate:self];
     
+    
+    
+    
+    // File URL
+    //FILEPATH];
+    
+    
+
+
     ///
     // Set the audio file
-    NSArray *pathComponents = [NSArray arrayWithObjects:
-                               [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject],
-                               @"MyAudioMemo.m4a",
-                               nil];
-    NSURL *outputFileURL = [NSURL fileURLWithPathComponents:pathComponents];
+//    NSArray *pathComponents = [NSArray arrayWithObjects:
+//                               [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject],
+//                               @"MyAudioMemo.m4a",
+//                               nil];
+    
+    NSArray *searchPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentPath_ = [searchPaths objectAtIndex: 0];
+    
+    NSString *pathToSave = [documentPath_ stringByAppendingPathComponent:[self dateString]];
+    NSURL *url = [NSURL fileURLWithPath:pathToSave];
+    
+    NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
+    
+    [prefs setURL:url forKey:@"Test1"];
+    [prefs synchronize];
+
+    //NSURL *outputFileURL = [NSURL fileURLWithPathComponents:pathComponents];
     
     // Setup audio session
     AVAudioSession *session = [AVAudioSession sharedInstance];
@@ -128,9 +143,13 @@
     [recordSetting setValue:[NSNumber numberWithInt:kAudioFormatMPEG4AAC] forKey:AVFormatIDKey];
     [recordSetting setValue:[NSNumber numberWithFloat:44100.0] forKey:AVSampleRateKey];
     [recordSetting setValue:[NSNumber numberWithInt:2] forKey:AVNumberOfChannelsKey];
+    [recordSetting setValue:[NSNumber numberWithInt:16] forKey:AVLinearPCMBitDepthKey];
+    [recordSetting setValue:[NSNumber numberWithBool:NO] forKey:AVLinearPCMIsBigEndianKey];
+    [recordSetting setValue:[NSNumber numberWithBool:NO] forKey:AVLinearPCMIsFloatKey];
+    [recordSetting setValue:[NSNumber numberWithInt:AVAudioQualityMax] forKey:AVEncoderAudioQualityKey];
     
     // Initiate and prepare the recorder
-    recorder = [[AVAudioRecorder alloc] initWithURL:outputFileURL settings:recordSetting error:nil];
+    recorder = [[AVAudioRecorder alloc] initWithURL:url settings:recordSetting error:nil];
     recorder.delegate = self;
     recorder.meteringEnabled = YES;
     [recorder prepareToRecord];
@@ -168,14 +187,14 @@
 {
     EHRecorderCommaentCell *cell = (EHRecorderCommaentCell *)[tableView dequeueReusableCellWithIdentifier:@"RecordCell"];
     
-    NSURL *curUrl = _arrayOfRecords[indexPath.row];
+    NSURL *curUrl = _arrayOfRecords.lastObject;
     
     NSString *nameFromUrl = [NSString stringWithContentsOfURL:curUrl encoding:NSASCIIStringEncoding error:nil];
     
-    __unused NSArray *parseWithSpaces = [nameFromUrl componentsSeparatedByString: @"/"];
+    NSArray *parseWithSpaces = [nameFromUrl componentsSeparatedByString: @"/"];
     
     
-    cell.textLabel.text = [self dateString];
+    cell.textLabel.text = parseWithSpaces.lastObject;
     
     //    NSMutableArray *tt = [_arrayOfRecords mutableCopy];
     //    [tt addObject:cell.textLabel.text];
@@ -199,11 +218,11 @@
 
 - (BOOL)textViewShouldBeginEditing:(UITextView *)textView
 {
+    [self closePopup];
     if (_commentView.textColor == [UIColor lightGrayColor]) {
         _commentView.text = @"";
         _commentView.textColor = [UIColor blackColor];
     }
-    
     return YES;
 }
 
@@ -216,11 +235,8 @@
         _commentView.textColor = [UIColor lightGrayColor];
         _commentView.text = @"Please post your comments";
         [_commentView resignFirstResponder];
-    }else{
-        //        NSMutableArray *commentTemp = [_comment mutableCopy];
-        //        [commentTemp[_index.section] setObject:_commentView.text forKey:_index.row];
-        //        _comment = commentTemp;
     }
+    
     NSMutableArray *temp = [_comment mutableCopy];
     [[temp objectAtIndex:_index.section] setObject: _commentView.text atIndex:_index.row];
     _comment = temp;
@@ -244,6 +260,7 @@
         popup.transform = CGAffineTransformMakeScale(1.3, 1.3);
         
         popup.titleLabel.text = @"Select the desired level";
+        _popup = popup;
         [self.view addSubview:popup];
         
         [UIView animateWithDuration:0.5 animations:^{
@@ -252,6 +269,25 @@
         }];
         isPopup = YES;
     }
+}
+
+- (void)closePopup
+{
+    [UIView animateWithDuration:0.85 animations:^{
+        _popup.transform = CGAffineTransformMakeScale(0, 0);
+        _popup.alpha = 0.0;
+        
+    } completion:^(BOOL finished) {
+        [super viewDidLoad];
+        
+    }];
+    if (_popup.alpha == 0.0)
+        isPopup = NO;
+}
+
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    [self closePopup];
 }
 
 - (IBAction)recordStopButton:(UIButton *)sender {
@@ -277,14 +313,19 @@
         [recordsTransmitting addObject:recorder.url];
         _arrayOfRecords = recordsTransmitting;
         [audioSession setActive:NO error:nil];
+
         [_tableView reloadData];
+//        NSIndexPath *rowToReload = _arrayOfRecords.lastObject;
+//        NSArray *rowsToReload = [NSArray arrayWithObjects:rowToReload, nil];
+//        
+//        [self.tableView reloadRowsAtIndexPaths:rowsToReload withRowAnimation:UITableViewRowAnimationNone];
         
         //[recordsTransmitting addObject:audioSession];
         //_genInfo.records = recordsTransmitting;
     }
 }
 
-- (IBAction)playPauseButton:(EHPlayPause *)sender {
+- (void)playPauseButton:(EHPlayPause *)sender {
     sender.isPlaying = !sender.isPlaying;
     if (!player.playing) {
         [sender setBackgroundImage:_buttonPause forState:UIControlStateNormal];
@@ -332,7 +373,7 @@
     // return a formatted string for a file name
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     formatter.dateFormat = @"dd.MMM.YYYY_hh:mm:ssa";
-    return [[formatter stringFromDate:[NSDate date]] stringByAppendingString:@".aif"];
+    return [[formatter stringFromDate:[NSDate date]] stringByAppendingString:@".m4a"];
 }
 
 //- (BOOL)startAudioSession
