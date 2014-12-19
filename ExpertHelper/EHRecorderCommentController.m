@@ -47,7 +47,6 @@
 - (void)skillLevelPopup:(EHSkillLevelPopup *)popup
          didSelectLevel:(EHSkillLevel)level
 {
-    
     [self closePopup];
     
     _levelLabel.text = popup.skillLevel;
@@ -66,14 +65,15 @@
     [_commentView setReturnKeyType:UIReturnKeyDone];
     
     
-    if ([[[_comment objectAtIndex:_index.section] objectAtIndex:_index.row] isEqualToString:@""]) {
+    if ([[[_comment objectAtIndex:_index.section] objectAtIndex:_index.row] isEqualToString:@""] || [[[_comment objectAtIndex:_index.section] objectAtIndex:_index.row] isEqualToString:@"Please post your comments"]) {
         [_commentView setText:@"Please post your comments"];
+        [_commentView setTextColor:[UIColor lightGrayColor]];
     }else{
         _commentView.text = [[_comment objectAtIndex:_index.section] objectAtIndex:_index.row];
     }
     
     [_commentView setFont:[UIFont fontWithName:@"HelveticaNeue" size:20]];
-    [_commentView setTextColor:[UIColor lightGrayColor]];
+    
     
     if (![[[_level objectAtIndex:_index.section] objectAtIndex:_index.row] isEqual:@""]) {
         _levelLabel.text = [[_level objectAtIndex:_index.section] objectAtIndex:_index.row];
@@ -180,10 +180,11 @@
 
 - (BOOL)textViewShouldEndEditing:(UITextView *)textView
 {
-    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"$\\n" options:0 error:NULL];
+    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"^\\n" options:0 error:NULL];
     NSUInteger a = [regex numberOfMatchesInString:textView.text options:0 range:NSMakeRange(0, [textView.text length])];
     
-    if(_commentView.text.length == 0||a){
+    if(_commentView.text.length == 0||a)
+    {
         _commentView.textColor = [UIColor lightGrayColor];
         _commentView.text = @"Please post your comments";
         [_commentView resignFirstResponder];
@@ -251,9 +252,8 @@
     }
     
     if (!recorder.recording) {
-        [self prepareToRecording];
-        
         [sender setBackgroundImage:_buttonStop forState:UIControlStateNormal];
+        [self prepareToRecording];
         // Start recording
         [recorder record];
     } else {
