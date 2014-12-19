@@ -13,8 +13,6 @@
 #import "EHSkillsProfilesParser.h"
 #import "ZipArchive.h"
 #import "EHCandidateProfileViewController.h"
-#import "EHChart.h"
-
 
 @interface EHExternalViewController () <UITableViewDataSource, UITableViewDelegate, EHSkillLevelPopupDelegate, EHRecorderCommentControllerDelegate, UIActionSheetDelegate, MFMailComposeViewControllerDelegate>
 
@@ -68,7 +66,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    NSLog(@"%@", NSHomeDirectory());
+    
     self.navigationItem.title = [NSString stringWithFormat:@"%@ %@", _interview.idExternal.idCandidate.firstName, _interview.idExternal.idCandidate.lastName];
     
     self.cellDateFormatter = [[NSDateFormatter alloc] init];
@@ -193,8 +191,12 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
-#pragma mark Work with Action sheet
 
+      
+
+
+
+#pragma mark Work with Action sheet
 - (IBAction)pressMenu:(id)sender
 {
 
@@ -211,7 +213,6 @@
         [_actionSheetMenu showInView:self.view];
 
 }
-
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     
@@ -239,19 +240,11 @@
            NSString *zipFilePath = [documentsDirectory stringByAppendingPathComponent:[NSString stringWithFormat: @"%@,.xlsx",excelName]];
              [self sendEmailToAddressWithUrl:zipFilePath fileName:excelName];
        }
-    if(buttonIndex == 2)
+    if (buttonIndex == 2)
     {
-        EHChart *chartForm = [self.storyboard instantiateViewControllerWithIdentifier:@"ChartView"];
-  
-        chartForm.points = _array.lastObject;
-        chartForm.titles = _sectionContent.lastObject;
-        chartForm.size = 700;
-        self.popover = [[UIPopoverController alloc] initWithContentViewController:chartForm];
-        self.popover.popoverContentSize = CGSizeMake(700.0, 700.0);
-        
-        [self.popover presentPopoverFromBarButtonItem:_barButMenu permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
-  
+      
     }
+    
 }
 
 - (void)didMoveToParentViewController:(UIViewController *)parent
@@ -279,7 +272,6 @@
         EHCandidateProfileViewController *genInfoForm = [segue destinationViewController];
         genInfoForm.genInfo = _generInfo;
     }
-    
 }
 
 - (void)didReceiveMemoryWarning
