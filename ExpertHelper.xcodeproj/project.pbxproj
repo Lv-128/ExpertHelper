@@ -86,7 +86,6 @@
 		D9BE33B11A3A0AFF0063B6C6 /* VoiceRecorders.m in Sources */ = {isa = PBXBuildFile; fileRef = D9BE33AD1A3A0AFF0063B6C6 /* VoiceRecorders.m */; };
 		D9BE54011A10B16700AD5D3D /* EHExternalCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D9BE53F81A10B16700AD5D3D /* EHExternalCell.m */; };
 		D9BE54021A10B16700AD5D3D /* EHExternalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D9BE53FA1A10B16700AD5D3D /* EHExternalViewController.m */; };
-		D9BE54041A10B16700AD5D3D /* EHProgrammingLanguagesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D9BE53FE1A10B16700AD5D3D /* EHProgrammingLanguagesViewController.m */; };
 		D9C4DC321A3840F400BC1AEA /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = D9C4DC311A3840F400BC1AEA /* Reachability.m */; };
 		D9C4DC361A38433D00BC1AEA /* EHCheckNetworkConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = D9C4DC351A38433D00BC1AEA /* EHCheckNetworkConnection.m */; };
 		D9DCA8EC1A43327700A1D157 /* EHChart.m in Sources */ = {isa = PBXBuildFile; fileRef = D9DCA8EB1A43327700A1D157 /* EHChart.m */; };
@@ -216,8 +215,6 @@
 		D9BE53F81A10B16700AD5D3D /* EHExternalCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EHExternalCell.m; sourceTree = "<group>"; };
 		D9BE53F91A10B16700AD5D3D /* EHExternalViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EHExternalViewController.h; sourceTree = "<group>"; };
 		D9BE53FA1A10B16700AD5D3D /* EHExternalViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EHExternalViewController.m; sourceTree = "<group>"; };
-		D9BE53FD1A10B16700AD5D3D /* EHProgrammingLanguagesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EHProgrammingLanguagesViewController.h; sourceTree = "<group>"; };
-		D9BE53FE1A10B16700AD5D3D /* EHProgrammingLanguagesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EHProgrammingLanguagesViewController.m; sourceTree = "<group>"; };
 		D9C4DC301A3840F400BC1AEA /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		D9C4DC311A3840F400BC1AEA /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		D9C4DC341A38433D00BC1AEA /* EHCheckNetworkConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EHCheckNetworkConnection.h; sourceTree = "<group>"; };
@@ -331,7 +328,6 @@
 				83CD96961A3B5C0D00115744 /* EHPopoverController */,
 				D931449A1A376D2000AB470E /* HR */,
 				D9D836A61A1F402D00148854 /* External */,
-				D9D836A51A1F3FCC00148854 /* ProgrammingLanguages */,
 				D9D836A41A1F3F1700148854 /* Recruiter */,
 				D967F2121A1E4E290009639C /* ITA */,
 			);
@@ -616,15 +612,6 @@
 			name = Recruiter;
 			sourceTree = "<group>";
 		};
-		D9D836A51A1F3FCC00148854 /* ProgrammingLanguages */ = {
-			isa = PBXGroup;
-			children = (
-				D9BE53FD1A10B16700AD5D3D /* EHProgrammingLanguagesViewController.h */,
-				D9BE53FE1A10B16700AD5D3D /* EHProgrammingLanguagesViewController.m */,
-			);
-			name = ProgrammingLanguages;
-			sourceTree = "<group>";
-		};
 		D9D836A61A1F402D00148854 /* External */ = {
 			isa = PBXGroup;
 			children = (
@@ -838,7 +825,6 @@
 				D9998EE41A221CE9002E019A /* EHRevealViewController.m in Sources */,
 				D9BE338E1A3894610063B6C6 /* EHSkillsProfilesParser.m in Sources */,
 				D9BE338B1A3882E00063B6C6 /* EHInterviewViewCell.m in Sources */,
-				D9BE54041A10B16700AD5D3D /* EHProgrammingLanguagesViewController.m in Sources */,
 				D9C4DC361A38433D00BC1AEA /* EHCheckNetworkConnection.m in Sources */,
 				D9BE33AE1A3A0AFF0063B6C6 /* GeneralInfo.m in Sources */,
 				D9998EE01A221CE9002E019A /* EHCalendarEventsParser.m in Sources */,
