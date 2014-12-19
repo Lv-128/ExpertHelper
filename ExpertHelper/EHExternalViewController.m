@@ -211,6 +211,7 @@
     }
     else
         [_actionSheetMenu showInView:self.view];
+    
 }
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
@@ -225,6 +226,7 @@
                                                  cancelButtonTitle:@"OK"
                                                  otherButtonTitles:nil];
         [message show];
+        
     }
     if(buttonIndex == 1)
     {
