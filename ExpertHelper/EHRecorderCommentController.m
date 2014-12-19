@@ -47,9 +47,9 @@
     
     _levelLabel.text = popup.skillLevel;
     
-    NSMutableArray *temp1 = [_level mutableCopy];
-    [temp1[_index.section] setObject:_levelLabel.text atIndex:_index.row];
-    _level = temp1;
+    NSMutableArray *temp = [_level mutableCopy];
+    [temp[_index.section] setObject:_levelLabel.text atIndex:_index.row];
+    _level = temp;
 }
 
 - (void)viewDidLoad
