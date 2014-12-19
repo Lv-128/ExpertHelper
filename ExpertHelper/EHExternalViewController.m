@@ -211,7 +211,7 @@
     }
     else
         [_actionSheetMenu showInView:self.view];
-    
+
 }
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
@@ -226,17 +226,6 @@
                                                  cancelButtonTitle:@"OK"
                                                  otherButtonTitles:nil];
         [message show];
-        
-    }
-    if(buttonIndex == 1)
-    {
-        NSString *documentsDirectory = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
-        
-        NSMutableString *excelName = [[NSMutableString alloc] initWithString: _interview.idExternal.idCandidate.firstName];
-        [excelName appendString:_interview.idExternal.idCandidate.lastName];
-        [excelName appendString:[_cellDateFormatter stringFromDate:_interview.startDate]];
-        excelName = [[excelName stringByReplacingOccurrencesOfString:@":" withString:@""] mutableCopy];
-
         
     }
     if(buttonIndex == 1)
