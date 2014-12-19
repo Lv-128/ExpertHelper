@@ -20,7 +20,7 @@
 @property (nonatomic, strong) InterviewAppointment *interview;
 @property (nonatomic, strong) NSIndexPath *index;
 @property (strong, nonatomic) NSDateFormatter *cellDateFormatter;
-
+@property (nonatomic, strong) UIPopoverController *popover;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *barButMenu;
 
 

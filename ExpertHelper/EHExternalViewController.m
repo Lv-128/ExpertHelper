@@ -13,6 +13,8 @@
 #import "EHSkillsProfilesParser.h"
 #import "ZipArchive.h"
 #import "EHCandidateProfileViewController.h"
+#import "EHChart.h"
+
 
 @interface EHExternalViewController () <UITableViewDataSource, UITableViewDelegate, EHSkillLevelPopupDelegate, EHRecorderCommentControllerDelegate, UIActionSheetDelegate, MFMailComposeViewControllerDelegate>
 
@@ -66,12 +68,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-<<<<<<< HEAD
     NSLog(@"%@", NSHomeDirectory());
-
-=======
-    
->>>>>>> FETCH_HEAD
     self.navigationItem.title = [NSString stringWithFormat:@"%@ %@", _interview.idExternal.idCandidate.firstName, _interview.idExternal.idCandidate.lastName];
     
     self.cellDateFormatter = [[NSDateFormatter alloc] init];
@@ -245,11 +242,19 @@
            NSString *zipFilePath = [documentsDirectory stringByAppendingPathComponent:[NSString stringWithFormat: @"%@,.xlsx",excelName]];
              [self sendEmailToAddressWithUrl:zipFilePath fileName:excelName];
        }
-    if (buttonIndex == 2)
+    if(buttonIndex == 2)
     {
-      
+        EHChart *chartForm = [self.storyboard instantiateViewControllerWithIdentifier:@"ChartView"];
+  
+        chartForm.points = _array.lastObject;
+        chartForm.titles = _sectionContent.lastObject;
+        chartForm.size = 700;
+        self.popover = [[UIPopoverController alloc] initWithContentViewController:chartForm];
+        self.popover.popoverContentSize = CGSizeMake(700.0, 700.0);
+        
+        [self.popover presentPopoverFromBarButtonItem:_barButMenu permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
+  
     }
-    
 }
 
 - (void)didMoveToParentViewController:(UIViewController *)parent
@@ -277,6 +282,7 @@
         EHCandidateProfileViewController *genInfoForm = [segue destinationViewController];
         genInfoForm.genInfo = _generInfo;
     }
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -453,16 +459,13 @@
 - (void)saveFormZip {
     [self parsFunc];
     [self unzip];
-    [self insertIntoExclesSharedString];
     
     //----------------------------------- start parsing part inside action -------------------------------
-    
     NSError *error;
     
     NSString *filePath1 = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
     filePath1 = [filePath1 stringByAppendingPathComponent:@"unZipDirName1"];
     filePath1 = [filePath1 stringByAppendingPathComponent:@"xl"];
-    
     filePath1 = [filePath1 stringByAppendingPathComponent:@"worksheets"];
     NSString *filePath2 = [filePath1 stringByAppendingPathComponent:@"sheet4.xml"];
     filePath1 = [filePath1 stringByAppendingPathComponent:@"sheet3.xml"];
@@ -617,49 +620,20 @@
     [za CloseZipFile2];
 }
 
-
-- (void) insertIntoExclesSharedString {
-    NSError *error;
-    
-    NSString *filePath1 = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
-    filePath1 = [filePath1 stringByAppendingPathComponent:@"unZipDirName1"];
-    filePath1 = [filePath1 stringByAppendingPathComponent:@"xl"];
-    filePath1 = [filePath1 stringByAppendingPathComponent:@"sharedStrings.xml"];
-    NSMutableString* xml = [[NSMutableString alloc] initWithString:[NSMutableString stringWithContentsOfFile:filePath1 encoding:NSUTF8StringEncoding error:&error]];
-    int uniqueCountIndex = 0;
-    
-    NSMutableString *stringForComparing = [@"</sst>" mutableCopy];
-    int k = 0;
-
-     NSMutableString *stringForComparing1 = [@"uniqueCount=\"" mutableCopy];
-    
-    for (int i = 0; i < xml.length - 14; i++) {
-        NSString *s = [xml substringWithRange:NSMakeRange(i, 13)];
-        if ([s isEqualToString:stringForComparing1]) {
-            xml = [[xml stringByReplacingCharactersInRange: NSMakeRange(i+13, 3) withString:@"295"] mutableCopy];
-            break;
-        }
-    }
-    
-    for (int i = 0; i < xml.length - 5; i++) {
-       
-        NSString *ss = [xml substringWithRange:NSMakeRange(i, 6)];
-        if ([ss isEqualToString:stringForComparing]) {
-            k = i;
-            
-            [xml insertString:@"<si><t>Strong</t></si>" atIndex:k];
-            [xml insertString:@"<si><t>Good</t></si>" atIndex:k];
-            [xml insertString:@"<si><t>Beginner</t></si>" atIndex:k];
-            [xml insertString:@"<si><t>None</t></si>" atIndex:k];
-
-            break;
-        }
-
-    }
-    
-    [xml writeToFile:filePath1 atomically:YES encoding:NSUTF8StringEncoding error:&error];
-}
 @end
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

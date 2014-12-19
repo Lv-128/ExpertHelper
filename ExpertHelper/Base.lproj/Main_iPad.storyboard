@@ -1114,6 +1114,24 @@
             </objects>
             <point key="canvasLocation" x="904" y="-951"/>
         </scene>
+        <!--Chart-->
+        <scene sceneID="BRH-R3-kmK">
+            <objects>
+                <viewController storyboardIdentifier="ChartView" useStoryboardIdentifierAsRestorationIdentifier="YES" id="vwU-AM-aOf" customClass="EHChart" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="mIf-kK-umy"/>
+                        <viewControllerLayoutGuide type="bottom" id="SIa-FU-607"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Cz8-GN-ieV">
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="st4-Ky-STD" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-803" y="165"/>
+        </scene>
     </scenes>
     <resources>
         <image name="Stephanie-Hello-Kitty" width="849" height="757"/>
