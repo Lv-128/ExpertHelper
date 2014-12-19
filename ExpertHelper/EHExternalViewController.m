@@ -193,12 +193,8 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
-
-      
-
-
-
 #pragma mark Work with Action sheet
+
 - (IBAction)pressMenu:(id)sender
 {
 
@@ -215,6 +211,7 @@
         [_actionSheetMenu showInView:self.view];
 
 }
+
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     
