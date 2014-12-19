@@ -72,12 +72,12 @@
         {
             [tempAr addObject: [NSNumber numberWithFloat:4]];
         }
-        else   [tempAr addObject: [NSNumber numberWithFloat:0]];
-        
+        else 
+            [tempAr addObject: [NSNumber numberWithFloat:1]];
     }
     return tempAr;
-    
 }
+
 - (void)updateData {
 	int n = 7;
 	NSMutableArray *a = [NSMutableArray array];

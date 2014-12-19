@@ -73,6 +73,22 @@
 	// Do any additional setup after loading the view.
 }
 
+- (void)viewDidDisappear:(BOOL)animated
+{
+    (![self.expertName.text isEqualToString:@""]) ? (_genInfo.expertName = self.expertName.text): (_genInfo.expertName = @"None");
+    _genInfo.dateOfInterview = [NSDate date];
+    (![self.competenceGroup.text isEqualToString:@""]) ? (_genInfo.competenceGroup = self.competenceGroup.text): (_genInfo.competenceGroup = @"None");
+    (![self.typeOfProject.text isEqualToString:@""]) ? (_genInfo.typeOfProject = self.typeOfProject.text): (_genInfo.typeOfProject = @"None");
+    (![self.skillSummary.text isEqualToString:@""]) ? (_genInfo.skillsSummary = self.skillSummary.text): (_genInfo.skillsSummary = @"None");
+    (![self.englishTexField.text isEqualToString:@""]) ? (_genInfo.techEnglish = self.englishTexField.text): (_genInfo.techEnglish = @"None");
+    (![self.recomendations.text isEqualToString:@""]) ? (_genInfo.recommendations = self.recomendations.text): (_genInfo.recommendations = @"None");
+    (![self.highPotentionalTextField.text isEqualToString:@""]) ? (_genInfo.potentialCandidate = self.highPotentionalTextField.text): (_genInfo.potentialCandidate = @"None");
+    (![self.levelEstimateTextField.text isEqualToString:@""]) ? (_genInfo.levelEstimate = self.levelEstimateTextField.text): (_genInfo.levelEstimate = @"None");
+    _genInfo.hire = self.switchView.on;
+    NSDictionary *dict = [NSDictionary dictionaryWithObject:_genInfo forKey:@"genInfo"];
+    [[NSNotificationCenter defaultCenter]postNotificationName:@"GetInfo" object:nil userInfo:dict];
+}
+
 - (void)configureArrays
 {
     NSArray *level = @[@" high", @" low"];

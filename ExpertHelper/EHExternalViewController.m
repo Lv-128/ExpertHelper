@@ -133,17 +133,9 @@
             [_array insertObject:tt atIndex:i];
             [_comment insertObject:tr atIndex:i];
         }
-        /*  for (int i = 0; i < self.tableSections.count; i++)//6
-         {
-         NSMutableArray *temp = [[NSMutableArray alloc]initWithCapacity:0];// group
-         for (int b = 0; b < [[self.sectionContent objectAtIndex:i] count]; b++)
-         
-         [temp addObject:@""];
-         
-         [_comment insertObject:temp atIndex:i];
-         }*/
-        _generInfo = _pars.genInfo;
-    }else{
+             _generInfo = _pars.genInfo;
+    }
+    else{
         for (int i = 0; i < self.tableSections.count; i++)//6
         {
             NSMutableArray *temp = [[NSMutableArray alloc]initWithCapacity:0];// group]
@@ -193,12 +185,8 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
-
-      
-
-
-
 #pragma mark Work with Action sheet
+
 - (IBAction)pressMenu:(id)sender
 {
 
@@ -425,8 +413,8 @@
                 skillsOfExternal.comment = _comment[y][x];
             }
             else {
-                skillsOfExternal.comment = @"None";
-                _comment[y][x] = @"None";
+                skillsOfExternal.comment = @"";
+                _comment[y][x] = @"";
             }
             [groupsTransmitting addObject:skillsOfExternal];
         }
@@ -437,18 +425,22 @@
    ///need to assign general info
     if (_generInfo == nil)
     {
-        UIAlertView *message  = [[UIAlertView alloc] initWithTitle:@"Warning!"
-                                                           message:@"Fill general info!!"
-                                                          delegate:nil
-                                                 cancelButtonTitle:@"OK"
-                                                 otherButtonTitles:nil];
-        [message show];
+        _generInfo = [[EHGenInfo alloc]init];
     }
-    else
-    {
+        if (_generInfo.expertName == NULL)
+            _generInfo.expertName = @"None";
+        if (_generInfo.competenceGroup == NULL)
+            _generInfo.competenceGroup = @"None";
+        if (_generInfo.typeOfProject == NULL)
+            _generInfo.typeOfProject = @"None";
+        if (_generInfo.skillsSummary == NULL)
+            _generInfo.skillsSummary = @"None";
+        if (_generInfo.techEnglish == NULL)
+            _generInfo.techEnglish = @"None";
+        if (_generInfo.recommendations == NULL)
+            _generInfo.recommendations = @"None";
         _pars = [[EHSkillsProfilesParser alloc]initWithDataGroups:profTransmitting andInterview:_interview andGenInfo:_generInfo];
         [_pars saveInfoToDB];
-    }
 }
 
 - (void)getGeninfo:(NSNotification *)notification
