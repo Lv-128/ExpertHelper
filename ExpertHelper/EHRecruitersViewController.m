@@ -15,6 +15,7 @@
 {
     Reachability *internetReachable;
 }
+
 @end
 
 @implementation EHRecruitersViewController
@@ -62,15 +63,8 @@
 {
     NSString *cellIdentifier = @"recruiterCell";
     EHListOfRecruitersCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-    
-    if (!cell) {
-        cell = [[EHListOfRecruitersCell alloc]
-                initWithStyle:UITableViewCellStyleDefault
-                reuseIdentifier:cellIdentifier];
-    }
-    
-    cell.nameLabel.text = [NSString stringWithFormat: @" %@ %@ ", [_recruitersArray[indexPath.row] firstName],
-                           [_recruitersArray[indexPath.row] lastName]];
+    cell.tag = indexPath.row;
+    cell.nameLabel.text = [NSString stringWithFormat: @" %@ %@ ", [_recruitersArray[indexPath.row] firstName],[_recruitersArray[indexPath.row] lastName]];
     cell.skypeLabel.text = [_recruitersArray[indexPath.row] skypeAccount];
     cell.recruiterEmail.text = [_recruitersArray[indexPath.row] email];
     if ([_recruitersArray[indexPath.row] photoUrl] == nil)
@@ -100,8 +94,10 @@
         
     }
     cell.skypeBut.tag = indexPath.row;
-    [cell.skypeBut addTarget:self action:@selector(skypeMe:) forControlEvents:UIControlEventTouchUpInside];
-    [cell.mailBut addTarget:self action:@selector(sendEmail:) forControlEvents:UIControlEventTouchUpInside];
+    cell.mailBut.tag = indexPath.row;
+    
+ //   [cell.skypeBut addTarget:self action:@selector(skypeMe:) forControlEvents:UIControlEventTouchUpInside];
+   // [cell.mailBut addTarget:self action:@selector(sendEmail:) forControlEvents:UIControlEventTouchUpInside];
     
     
 //    
@@ -200,9 +196,11 @@
     }
     return [_tableView indexPathForCell:(UITableViewCell *)view];
 }
-- (void)sendEmail:(UIButton *)button {
+
+- (IBAction)sendEmail:(id)sender {
+    UIButton *button = sender;
     NSIndexPath *indexPath = [self indexPathOfButton:button];
-    
+    //NSIndexPath *indexPath  = [NSIndexPath indexPathForRow:button.tag inSection:0];
     EHListOfRecruitersCell *cell = (EHListOfRecruitersCell *)[_tableView cellForRowAtIndexPath:indexPath];
     
     [self sendEmailMsg:cell.recruiterEmail.text];

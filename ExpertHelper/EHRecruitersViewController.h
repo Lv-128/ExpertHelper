@@ -11,7 +11,9 @@
 
 @interface EHRecruitersViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 
-@property (weak, nonatomic) IBOutlet UITableView *tableView;
+
 @property (copy, nonatomic) NSArray *recruitersArray;
 @property (strong,nonatomic) NSManagedObjectContext *managedObjectContext;
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
+
 @end
