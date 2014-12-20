@@ -16,7 +16,7 @@
 #import "EHChart.h"
 
 
-@interface EHExternalViewController () <UITableViewDataSource, UITableViewDelegate, EHSkillLevelPopupDelegate, EHRecorderCommentControllerDelegate, UIActionSheetDelegate, MFMailComposeViewControllerDelegate>
+@interface EHExternalViewController () <UITableViewDataSource, UITableViewDelegate, EHSkillLevelPopupDelegate, UIActionSheetDelegate, MFMailComposeViewControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UIButton *openGeneralInfo;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -25,6 +25,7 @@
 @property (nonatomic, strong) NSMutableArray *array;
 @property (nonatomic, strong) NSMutableArray *comment;
 @property (nonatomic, strong) EHSkillsProfilesParser *pars;
+@property (nonatomic, strong) EHRecorderCommentController *recorderComment;
 @property (nonatomic, strong) EHGenInfo *generInfo;
 @property (nonatomic, strong) EHSkillLevelPopup *popup;
 @property (strong, nonatomic) UIActionSheet *actionSheetMenu;
@@ -89,6 +90,7 @@
     _comment = [[NSMutableArray alloc]initWithCapacity:0];
     
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(getGeninfo:) name:@"GetInfo" object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(getrecorderComment:) name:@"RecorderComment" object:nil];
     
     _pars = [[EHSkillsProfilesParser alloc]init];
     
@@ -151,13 +153,6 @@
     self.openGeneralInfo.layer.cornerRadius = 13;
     self.openGeneralInfo.layer.borderWidth = 1;
     self.openGeneralInfo.layer.borderColor = [UIColor grayColor].CGColor;
-    
-   /* UIBarButtonItem *anotherButton = [[UIBarButtonItem alloc] initWithTitle:@"Export to XML"
-                                                                      style:UIBarButtonItemStyleDone
-                                                                     target:self
-                                                                     action:@selector(saveFormZip)];
-    self.navigationItem.rightBarButtonItem = anotherButton;*/
-    // Do any additional setup after loading the view.
 }
 
 
@@ -178,7 +173,6 @@
         [mailController setModalTransitionStyle:UIModalTransitionStyleFlipHorizontal];
         [self presentViewController:mailController animated:YES completion: nil];
     }
-    
 }
 
 - (void)mailComposeController:(MFMailComposeViewController *) controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error{
@@ -205,8 +199,6 @@
 }
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    
-    
     if(buttonIndex == 0)
     {
         [self saveFormZip];
@@ -216,7 +208,6 @@
                                                  cancelButtonTitle:@"OK"
                                                  otherButtonTitles:nil];
         [message show];
-        
     }
     if(buttonIndex == 1)
        {
@@ -243,7 +234,6 @@
         self.popover.popoverContentSize = CGSizeMake(size*0.9,size*0.9);
         
         [self.popover presentPopoverFromBarButtonItem:_barButMenu permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
-  
     }
 }
 
@@ -259,20 +249,11 @@
 {
     [self closePopup];
     
-    if ([[segue identifier] isEqualToString:@"profa"])
-    {
-        EHRecorderCommentController *external = [segue destinationViewController];
-        external.delegate = self;
-        external.level = _array;
-        external.index = _index;
-        external.comment = _comment;
-    }
     if ([[segue identifier] isEqualToString:@"GoToGenInfoForm"])
     {
         EHCandidateProfileViewController *genInfoForm = [segue destinationViewController];
         genInfoForm.genInfo = _generInfo;
     }
-    
 }
 
 - (void)didReceiveMemoryWarning
@@ -325,7 +306,6 @@
     } else {
         cell.rightLabel.text = @"";
     }
-    
     return cell;
 }
 
@@ -333,7 +313,20 @@
 {
     _index = indexPath;
     UITableViewCell *cell = [_tableView cellForRowAtIndexPath:indexPath];
-    [self performSegueWithIdentifier:@"profa" sender:cell];
+//    [self performSegueWithIdentifier:@"profa" sender:cell];
+    
+    self.recorderComment = [self.storyboard instantiateViewControllerWithIdentifier:@"RecorderComment"];
+    
+    self.recorderComment.level = _array;
+    self.recorderComment.index = _index;
+    self.recorderComment.comment = _comment;
+
+    self.recorder = [[UIPopoverController alloc] initWithContentViewController:self.recorderComment];
+    self.recorder.popoverContentSize = CGSizeMake(700.0, 700.0);
+    
+    CGRect rect = CGRectMake(cell.frame.size.width - 50, cell.frame.origin.y, 70, 10);
+    
+    [self.recorder presentPopoverFromRect:rect inView:self.tableView permittedArrowDirections:UIPopoverArrowDirectionRight animated:YES];
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -424,7 +417,7 @@
         groupsOfExternal.nameOfSections = _tableSections[y];
         [profTransmitting addObject:groupsOfExternal];
     }
-   ///need to assign general info
+
     if (_generInfo == nil)
     {
         _generInfo = [[EHGenInfo alloc]init];
@@ -448,6 +441,14 @@
 - (void)getGeninfo:(NSNotification *)notification
 {
     self.generInfo = notification.userInfo[@"genInfo"];
+    
+}
+
+- (void)getrecorderComment:(NSNotification *)notification
+{
+    self.recorderComment = notification.userInfo[@"recorderComment"];
+    self.array = notification.userInfo[@"recorderLevel"];
+    [self.tableView reloadData];
 }
 
 - (void)saveFormZip {

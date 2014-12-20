@@ -8,16 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import <AVFoundation/AVFoundation.h>
-
-@class EHRecorderCommentController;
-
-@protocol EHRecorderCommentControllerDelegate <NSObject>
-
-- (void)EHRecorderCommentController:(EHRecorderCommentController *)externalWithComment
-                  transmittingArray:(NSArray *)level
-                          withIndex:(NSIndexPath *)index
-                    andCommentArray:(NSArray *)comment;
-@end
+#import "EHSkillsProfilesParser.h"
 
 @interface EHRecorderCommentController : UIViewController <UITableViewDataSource, UITableViewDelegate, AVAudioRecorderDelegate, AVAudioPlayerDelegate>
 
@@ -25,8 +16,8 @@
 @property (nonatomic, strong) NSArray *comment;
 @property (nonatomic, strong) NSArray *level;
 @property (nonatomic, strong) NSIndexPath *index;
+@property (nonatomic, strong) EHGenInfo *genInfo;
+@property (nonatomic, strong) EHSkill *skill;
 @property (nonatomic) NSInteger indexOfCell;
-
-@property (nonatomic, weak) id<EHRecorderCommentControllerDelegate> delegate;
 
 @end

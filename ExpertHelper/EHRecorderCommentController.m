@@ -37,7 +37,6 @@
 @property (nonatomic, strong) UIImage *buttonStop;
 @property (nonatomic, strong) UIImage *buttonPlay;
 @property (nonatomic, strong) UIImage *buttonPause;
-@property (nonatomic, strong) EHGenInfo *genInfo;
 @property (nonatomic, strong) EHSkillLevelPopup *popup;
 
 @end
@@ -101,11 +100,13 @@
     [_levelLabel addGestureRecognizer:tap];
     _levelLabel.userInteractionEnabled = YES;
 }
-
 - (void)viewDidDisappear:(BOOL)animated
 {
-    [super viewDidDisappear:animated];
-    [_delegate EHRecorderCommentController:self transmittingArray:_level withIndex:_index andCommentArray:_comment];
+    (![[[_comment objectAtIndex:_index.section] objectAtIndex:_index.row] isEqualToString:@""]) ? (_skill.comment = [[_comment objectAtIndex:_index.section] objectAtIndex:_index.row]): (_skill.comment = @"");
+    (![[[_level objectAtIndex:_index.section] objectAtIndex:_index.row] isEqual:@""]) ? (_skill.estimate = [[_level objectAtIndex:_index.section] objectAtIndex:_index.row]): (_skill.estimate = @"");
+
+    NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:_level, @"recorderLevel", _comment, @"recorderComment", _arrayOfRecordsUrl, @"recorderUrl", nil];
+    [[NSNotificationCenter defaultCenter]postNotificationName:@"RecorderComment" object:nil userInfo:dict];
 }
 
 - (void)didReceiveMemoryWarning
@@ -330,24 +331,6 @@
         //[recordsTransmitting addObject:audioSession];
         //_genInfo.records = recordsTransmitting;
     }
-}
-
-- (IBAction)sendEmailMsg:(NSString*)address
-{
-    MFMailComposeViewController *mailController = [[MFMailComposeViewController alloc]init];
-    [mailController setMailComposeDelegate:self];
-    
-    NSArray *addressArray = [[NSArray alloc]initWithObjects:address, nil];
-    [mailController setMessageBody:@"Print message here!" isHTML:NO];
-    [mailController setToRecipients:addressArray];
-    [mailController setSubject:@""];
-    [mailController setModalTransitionStyle:UIModalTransitionStyleFlipHorizontal];
-    //  [mailController addAttachmentData:<#(NSData *)#> mimeType:<#(NSString *)#> fileName:<#(NSString *)#>]
-    [self presentViewController:mailController animated:YES completion: nil];
-}
-
-- (void)mailComposeController:(MFMailComposeViewController *) controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error{
-    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (NSIndexPath *)indexPathOfButton:(UIButton *)button {
