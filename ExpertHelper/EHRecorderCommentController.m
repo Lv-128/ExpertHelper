@@ -60,10 +60,9 @@
 {
     [super viewDidLoad];
     isPopup = NO;
-
+    
     [_commentView setDelegate:self];
     [_commentView setReturnKeyType:UIReturnKeyDone];
-    
     
     if ([[[_comment objectAtIndex:_index.section] objectAtIndex:_index.row] isEqualToString:@""] || [[[_comment objectAtIndex:_index.section] objectAtIndex:_index.row] isEqualToString:@"Please post your comments"]) {
         [_commentView setText:@"Please post your comments"];
@@ -73,7 +72,6 @@
     }
     
     [_commentView setFont:[UIFont fontWithName:@"HelveticaNeue" size:20]];
-    
     
     if (![[[_level objectAtIndex:_index.section] objectAtIndex:_index.row] isEqual:@""]) {
         _levelLabel.text = [[_level objectAtIndex:_index.section] objectAtIndex:_index.row];
@@ -95,6 +93,7 @@
     _tableForRecords.clipsToBounds = YES;
     
     _arrayOfRecordsString = [[NSArray alloc]init];
+    _arrayOfRecordsUrl = [[NSMutableArray alloc] init];
     
     //Choose level label
     
@@ -151,6 +150,8 @@
 {
     EHRecorderCommaentCell *cell = (EHRecorderCommaentCell *)[tableView dequeueReusableCellWithIdentifier:@"RecordCell"];
     [self playPauseButton:(EHPlayPause *)cell.button];
+    
+    cell.button.tag = indexPath.row;
     if (cell.button.isPlaying) {
         [cell.button setBackgroundImage:_buttonStop forState:UIControlStateNormal];
     } else {
@@ -243,9 +244,60 @@
     [self closePopup];
 }
 
+- (NSString *)dateString
+{
+    // return a formatted string for a file name
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    formatter.dateFormat = @"dd.MMM.YYYY_hh:mm:ssa";
+    return [[formatter stringFromDate:[NSDate date]] stringByAppendingString:@".m4a"];
+}
+
+- (void)prepareToRecording
+{
+    AVAudioSession *audioSession = [AVAudioSession sharedInstance];
+    
+    [audioSession setCategory:AVAudioSessionCategoryPlayAndRecord error:nil];
+    
+    [audioSession setActive:YES error:nil];
+    
+    [recorder setDelegate:self];
+    
+    ///
+    // Set the audio file
+    
+    // File URL
+    NSURL *url = [NSURL fileURLWithPath:FILEPATH];
+    
+    NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
+    
+    [prefs setURL:url forKey:@"Test1"];
+    [prefs synchronize];
+    
+    // Setup audio session
+    AVAudioSession *session = [AVAudioSession sharedInstance];
+    [session setCategory:AVAudioSessionCategoryPlayAndRecord error:nil];
+    
+    // Define the recorder setting
+    NSMutableDictionary *recordSetting = [[NSMutableDictionary alloc] init];
+    
+    [recordSetting setValue:[NSNumber numberWithInt:kAudioFormatMPEG4AAC] forKey:AVFormatIDKey];
+    [recordSetting setValue:[NSNumber numberWithFloat:44100.0] forKey:AVSampleRateKey];
+    [recordSetting setValue:[NSNumber numberWithInt:2] forKey:AVNumberOfChannelsKey];
+    [recordSetting setValue:[NSNumber numberWithInt:16] forKey:AVLinearPCMBitDepthKey];
+    [recordSetting setValue:[NSNumber numberWithBool:NO] forKey:AVLinearPCMIsBigEndianKey];
+    [recordSetting setValue:[NSNumber numberWithBool:NO] forKey:AVLinearPCMIsFloatKey];
+    [recordSetting setValue:[NSNumber numberWithInt:AVAudioQualityMax] forKey:AVEncoderAudioQualityKey];
+    
+    // Initiate and prepare the recorder
+    recorder = [[AVAudioRecorder alloc] initWithURL:url settings:recordSetting error:nil];
+    recorder.delegate = self;
+    recorder.meteringEnabled = YES;
+    [recorder prepareToRecord];
+}
+
 - (IBAction)recordStopButton:(UIButton *)sender {
     
-    NSMutableArray *recordsTransmitting = [_arrayOfRecordsString mutableCopy];
+    NSMutableArray *recordsTransmitting = [_arrayOfRecordsUrl mutableCopy];
     NSMutableArray *recordsStringTransmitting = [_arrayOfRecordsString mutableCopy];
     if (player.playing) {
         [player stop];
@@ -280,65 +332,40 @@
     }
 }
 
-- (NSString *)dateString
+- (IBAction)sendEmailMsg:(NSString*)address
 {
-    // return a formatted string for a file name
-    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    formatter.dateFormat = @"dd.MMM.YYYY_hh:mm:ssa";
-    return [[formatter stringFromDate:[NSDate date]] stringByAppendingString:@".m4a"];
+    MFMailComposeViewController *mailController = [[MFMailComposeViewController alloc]init];
+    [mailController setMailComposeDelegate:self];
+    
+    NSArray *addressArray = [[NSArray alloc]initWithObjects:address, nil];
+    [mailController setMessageBody:@"Print message here!" isHTML:NO];
+    [mailController setToRecipients:addressArray];
+    [mailController setSubject:@""];
+    [mailController setModalTransitionStyle:UIModalTransitionStyleFlipHorizontal];
+    //  [mailController addAttachmentData:<#(NSData *)#> mimeType:<#(NSString *)#> fileName:<#(NSString *)#>]
+    [self presentViewController:mailController animated:YES completion: nil];
 }
 
-- (void)prepareToRecording
-{
-    AVAudioSession *audioSession = [AVAudioSession sharedInstance];
-    
-    [audioSession setCategory:AVAudioSessionCategoryPlayAndRecord error:nil];
-    
-    [audioSession setActive:YES error:nil];
-    
-    [recorder setDelegate:self];
-    
-    ///
-    // Set the audio file
-    
-    // File URL
-    NSURL *url = [NSURL fileURLWithPath:FILEPATH];
-    
-    NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
-    
-    [prefs setURL:url forKey:@"Test1"];
-    [prefs synchronize];
-    
-    //NSURL *outputFileURL = [NSURL fileURLWithPathComponents:pathComponents];
-    
-    // Setup audio session
-    AVAudioSession *session = [AVAudioSession sharedInstance];
-    [session setCategory:AVAudioSessionCategoryPlayAndRecord error:nil];
-    
-    // Define the recorder setting
-    NSMutableDictionary *recordSetting = [[NSMutableDictionary alloc] init];
-    
-    [recordSetting setValue:[NSNumber numberWithInt:kAudioFormatMPEG4AAC] forKey:AVFormatIDKey];
-    [recordSetting setValue:[NSNumber numberWithFloat:44100.0] forKey:AVSampleRateKey];
-    [recordSetting setValue:[NSNumber numberWithInt:2] forKey:AVNumberOfChannelsKey];
-    [recordSetting setValue:[NSNumber numberWithInt:16] forKey:AVLinearPCMBitDepthKey];
-    [recordSetting setValue:[NSNumber numberWithBool:NO] forKey:AVLinearPCMIsBigEndianKey];
-    [recordSetting setValue:[NSNumber numberWithBool:NO] forKey:AVLinearPCMIsFloatKey];
-    [recordSetting setValue:[NSNumber numberWithInt:AVAudioQualityMax] forKey:AVEncoderAudioQualityKey];
-    
-    // Initiate and prepare the recorder
-    recorder = [[AVAudioRecorder alloc] initWithURL:url settings:recordSetting error:nil];
-    recorder.delegate = self;
-    recorder.meteringEnabled = YES;
-    [recorder prepareToRecord];
+- (void)mailComposeController:(MFMailComposeViewController *) controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error{
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (NSIndexPath *)indexPathOfButton:(UIButton *)button {
+    UIView *view = button.superview;
+    while (![view isKindOfClass:[EHRecorderCommaentCell class]]) {
+        view = view.superview;
+    }
+    return [_tableView indexPathForCell:(UITableViewCell *)view];
 }
 
 - (void)playPauseButton:(EHPlayPause *)sender {
+    UIButton *button = sender;
+    NSIndexPath *indexPath = [self indexPathOfButton:button];
     sender.isPlaying = !sender.isPlaying;
     if (!player.playing) {
         [sender setBackgroundImage:_buttonPause forState:UIControlStateNormal];
         if (!recorder.recording){
-            player = [[AVAudioPlayer alloc] initWithContentsOfURL:recorder.url error:nil];
+            player = [[AVAudioPlayer alloc] initWithContentsOfURL:[_arrayOfRecordsUrl objectAtIndex:indexPath.row] error:nil];
             [player setDelegate:self];
             [player play];
         }

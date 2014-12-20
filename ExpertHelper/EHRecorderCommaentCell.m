@@ -26,6 +26,11 @@
     self.accessoryView = _button;
 }
 
+- (void)prepareForReuse {
+    [super prepareForReuse];
+    [_button removeTarget:nil action:NULL forControlEvents:UIControlEventAllEvents];
+}
+
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
 {
     [super setSelected:selected animated:animated];

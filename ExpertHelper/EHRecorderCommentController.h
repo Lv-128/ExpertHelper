@@ -17,16 +17,15 @@
                   transmittingArray:(NSArray *)level
                           withIndex:(NSIndexPath *)index
                     andCommentArray:(NSArray *)comment;
-
 @end
 
 @interface EHRecorderCommentController : UIViewController <UITableViewDataSource, UITableViewDelegate, AVAudioRecorderDelegate, AVAudioPlayerDelegate>
 
-@property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (nonatomic, weak) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) NSArray *comment;
 @property (nonatomic, strong) NSArray *level;
 @property (nonatomic, strong) NSIndexPath *index;
-
+@property (nonatomic) NSInteger indexOfCell;
 
 @property (nonatomic, weak) id<EHRecorderCommentControllerDelegate> delegate;
 

@@ -93,8 +93,7 @@
         }
         
     }
-    cell.skypeBut.tag = indexPath.row;
-    cell.mailBut.tag = indexPath.row;
+
     
  //   [cell.skypeBut addTarget:self action:@selector(skypeMe:) forControlEvents:UIControlEventTouchUpInside];
    // [cell.mailBut addTarget:self action:@selector(sendEmail:) forControlEvents:UIControlEventTouchUpInside];
