@@ -7,18 +7,18 @@
 //
 
 #import "EHRadarChart.h"
-#import "EHLegendView.h"
 
-#define PADDING 13
-#define LEGEND_PADDING 3
-#define ATTRIBUTE_TEXT_SIZE 10
+
+#define PADDING 75
+
+#define ATTRIBUTE_TEXT_SIZE 14
 #define COLOR_HUE_STEP 5
 #define MAX_NUM_OF_COLOR 17
 
 @interface EHRadarChart ()
 
 @property (nonatomic, assign) NSUInteger numOfV;
-@property (nonatomic, strong) EHLegendView *legendView;
+
 @property (nonatomic, strong) UIFont *scaleFont;
 
 @end
@@ -43,8 +43,8 @@
 
 - (void)setDefaultValues {
     self.backgroundColor = [UIColor whiteColor];
-    _maxValue = 100.0;
-    _centerPoint = CGPointMake(self.bounds.size.width / 2, self.bounds.size.height / 2);
+   // _maxValue = 100.0;
+    _centerPoint = CGPointMake(self.frame.size.width / 2, self.frame.size.height / 2);
     _r = MIN(self.frame.size.width / 2 - PADDING, self.frame.size.height / 2 - PADDING);
     _steps = 1;
     _drawPoints = NO;
@@ -56,10 +56,8 @@
     _backgroundLineColorRadial = [UIColor darkGrayColor];
     _backgroundFillColor = [UIColor whiteColor];
 
-    _legendView = [[EHLegendView alloc] init];
-    _legendView.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleBottomMargin;
-    _legendView.backgroundColor = [UIColor clearColor];
-    _legendView.colors = [NSMutableArray array];
+  
+    _colors = [[NSArray alloc]init];
     _attributes = @[@"you", @"should", @"set", @"these", @"data", @"titles,",
                         @"this", @"is", @"just", @"a", @"placeholder"];
     _countLevels = 4;
@@ -68,62 +66,40 @@
     _scaleFont = [UIFont systemFontOfSize:ATTRIBUTE_TEXT_SIZE];
 }
 
-- (void)setShowLegend:(BOOL)showLegend {
-	_showLegend = showLegend;
-	if (_showLegend) {
-		[self addSubview:self.legendView];
-	}
-	else {
-		for (UIView *subView in self.subviews) {
-			if ([subView isKindOfClass:[EHLegendView class]]) {
-				[subView removeFromSuperview];
-			}
-		}
-	}
-}
 
-- (void)setTitles:(NSArray *)titles {
-	self.legendView.titles = titles;
-}
+
 
 - (void)setColors:(NSArray *)colors {
-    [self.legendView.colors removeAllObjects];
+    NSMutableArray *array = [_colors mutableCopy];
+    [array removeAllObjects];
     for (UIColor *color in colors) {
-        [self.legendView.colors addObject:[color colorWithAlphaComponent:self.colorOpacity]];
+        [array addObject:[color colorWithAlphaComponent:self.colorOpacity]];
     }
+    _colors = array;
 }
 
-- (void)setNeedsDisplay {
-	[super setNeedsDisplay];
-	[self.legendView sizeToFit];
-	[self.legendView setNeedsDisplay];
-}
+
 
 - (void)setDataSeries:(NSArray *)dataSeries {
 	_dataSeries = dataSeries;
 	_numOfV = [_dataSeries[0] count];
-	if (self.legendView.colors.count < _dataSeries.count) {
+    NSMutableArray *array = [self.colors mutableCopy];
+	if (self.colors.count < _dataSeries.count) {
 		for (int i = 0; i < _dataSeries.count; i++) {
 			UIColor *color = [UIColor colorWithHue:1.0 * (i * COLOR_HUE_STEP % MAX_NUM_OF_COLOR) / MAX_NUM_OF_COLOR
 			                            saturation:1
 			                            brightness:1
 			                                 alpha:self.colorOpacity];
-			self.legendView.colors[i] = color;
+			array[i] = color;
 		}
 	}
+    self.colors = array;
 }
 
-- (void)layoutSubviews {
-	[self.legendView sizeToFit];
-	CGRect r = self.legendView.frame;
-	r.origin.x = self.frame.size.width - self.legendView.frame.size.width - LEGEND_PADDING;
-	r.origin.y = LEGEND_PADDING;
-	self.legendView.frame = r;
-	[self bringSubviewToFront:self.legendView];
-}
+
 
 - (void)drawRect:(CGRect)rect {
-	NSArray *colors = [self.legendView.colors copy];
+	NSArray *colors = [self.colors copy];
 	CGFloat radPerV = M_PI * 2 / _numOfV;
 	CGContextRef context = UIGraphicsGetCurrentContext();
     

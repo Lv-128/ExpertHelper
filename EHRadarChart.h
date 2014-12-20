@@ -8,6 +8,16 @@
 
 #import <UIKit/UIKit.h>
 
+#define EH_TEXT_SIZE(text, font) [text length] > 0 ? [text sizeWithAttributes : @{ NSFontAttributeName : font }] : CGSizeZero;
+#define EH_DRAW_TEXT_AT_POINT(text, point, font) [text drawAtPoint : point withAttributes : @{ NSFontAttributeName:font }];
+#define EH_DRAW_TEXT_IN_RECT(text, rect, font) [text drawInRect : rect withAttributes : @{ NSFontAttributeName:font }];
+
+#define COLOR_PADDING 15
+
+#define FONT_SIZE 14
+
+#define CIRCLE_DIAMETER 5
+
 @interface EHRadarChart : UIView
 
 @property (nonatomic, assign) CGFloat r;
@@ -27,8 +37,9 @@
 
 @property (nonatomic, assign) NSInteger koeficient;
 @property (nonatomic, assign) NSInteger countLevels;
+@property (nonatomic, copy) NSArray *colors;
 
-- (void)setTitles:(NSArray *)titles;
+
 - (void)setColors:(NSArray *)colors;
 
 @end

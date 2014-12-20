@@ -207,8 +207,8 @@
     
 }
 
-- (void)skypeMe:(UIButton *)button {
-    UIButton *btn = (UIButton *)button;
+- (IBAction)skypeMe:(id)sender{
+    UIButton *btn = (UIButton *)sender;
     int index = [btn tag];
     NSIndexPath *indexPath = [[NSIndexPath alloc] initWithIndex:index];
     

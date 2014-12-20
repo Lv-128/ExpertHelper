@@ -13,5 +13,6 @@
 
 @property (nonatomic, copy) NSArray *points;
 @property (nonatomic, copy) NSArray *titles;
-@property (nonatomic) NSInteger size;
+@property (nonatomic) NSInteger width;
+@property (nonatomic) NSInteger height;
 @end

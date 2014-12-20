@@ -8,15 +8,12 @@
 
 #import "EHLegendView.h"
 
-#define COLOR_PADDING 15
-#define PADDING 3
-#define FONT_SIZE 10
-#define LEGEND_ROUND_RADIUS 7
-#define CIRCLE_DIAMETER 6
+
 
 @interface EHLegendView ()
 
 @property (nonatomic, strong) UIFont *legendFont;
+
 
 @end
 

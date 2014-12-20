@@ -89,7 +89,6 @@
 		D9C4DC321A3840F400BC1AEA /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = D9C4DC311A3840F400BC1AEA /* Reachability.m */; };
 		D9C4DC361A38433D00BC1AEA /* EHCheckNetworkConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = D9C4DC351A38433D00BC1AEA /* EHCheckNetworkConnection.m */; };
 		D9DCA8EC1A43327700A1D157 /* EHChart.m in Sources */ = {isa = PBXBuildFile; fileRef = D9DCA8EB1A43327700A1D157 /* EHChart.m */; };
-		D9DCA8F21A4332FB00A1D157 /* EHLegendView.m in Sources */ = {isa = PBXBuildFile; fileRef = D9DCA8EF1A4332FB00A1D157 /* EHLegendView.m */; };
 		D9DCA8F31A4332FB00A1D157 /* EHRadarChart.m in Sources */ = {isa = PBXBuildFile; fileRef = D9DCA8F11A4332FB00A1D157 /* EHRadarChart.m */; };
 		D9E7B7971A31E079002DA710 /* Candidate.m in Sources */ = {isa = PBXBuildFile; fileRef = D9E7B78A1A31E079002DA710 /* Candidate.m */; };
 		D9E7B7981A31E079002DA710 /* ExternalInterview.m in Sources */ = {isa = PBXBuildFile; fileRef = D9E7B78C1A31E079002DA710 /* ExternalInterview.m */; };
@@ -221,8 +220,6 @@
 		D9C4DC351A38433D00BC1AEA /* EHCheckNetworkConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EHCheckNetworkConnection.m; sourceTree = "<group>"; };
 		D9DCA8EA1A43327700A1D157 /* EHChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EHChart.h; path = ExpertHelper/EHChart.h; sourceTree = "<group>"; };
 		D9DCA8EB1A43327700A1D157 /* EHChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EHChart.m; path = ExpertHelper/EHChart.m; sourceTree = "<group>"; };
-		D9DCA8EE1A4332FB00A1D157 /* EHLegendView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EHLegendView.h; sourceTree = "<group>"; };
-		D9DCA8EF1A4332FB00A1D157 /* EHLegendView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EHLegendView.m; sourceTree = "<group>"; };
 		D9DCA8F01A4332FB00A1D157 /* EHRadarChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EHRadarChart.h; sourceTree = "<group>"; };
 		D9DCA8F11A4332FB00A1D157 /* EHRadarChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EHRadarChart.m; sourceTree = "<group>"; };
 		D9E7B7891A31E079002DA710 /* Candidate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Candidate.h; sourceTree = "<group>"; };
@@ -632,8 +629,6 @@
 			children = (
 				D9DCA8EA1A43327700A1D157 /* EHChart.h */,
 				D9DCA8EB1A43327700A1D157 /* EHChart.m */,
-				D9DCA8EE1A4332FB00A1D157 /* EHLegendView.h */,
-				D9DCA8EF1A4332FB00A1D157 /* EHLegendView.m */,
 				D9DCA8F01A4332FB00A1D157 /* EHRadarChart.h */,
 				D9DCA8F11A4332FB00A1D157 /* EHRadarChart.m */,
 			);
@@ -798,7 +793,6 @@
 				D9E7B79B1A31E079002DA710 /* Recruiter.m in Sources */,
 				D9BE33B01A3A0AFF0063B6C6 /* VoiceRecorders.m in Sources */,
 				D967F2111A1E4DEE0009639C /* EHITAViewControllerCell.m in Sources */,
-				D9DCA8F21A4332FB00A1D157 /* EHLegendView.m in Sources */,
 				83CD969D1A3B5C5600115744 /* EHFacebookPopoverViewController.m in Sources */,
 				D9DCA8F31A4332FB00A1D157 /* EHRadarChart.m in Sources */,
 				D9E7B7AE1A31E0A3002DA710 /* _Group.m in Sources */,

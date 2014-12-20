@@ -233,12 +233,14 @@
     if(buttonIndex == 2)
     {
         EHChart *chartForm = [self.storyboard instantiateViewControllerWithIdentifier:@"ChartView"];
-  
+        
+        int size = self.view.frame.size.width > self.view.frame.size.height ? self.view.frame.size.height : self.view.frame.size.width;
         chartForm.points = _array.lastObject;
         chartForm.titles = _sectionContent.lastObject;
-        chartForm.size = 700;
+        chartForm.width = size*0.9;
+        chartForm.height = size*0.9;
         self.popover = [[UIPopoverController alloc] initWithContentViewController:chartForm];
-        self.popover.popoverContentSize = CGSizeMake(700.0, 700.0);
+        self.popover.popoverContentSize = CGSizeMake(size*0.9,size*0.9);
         
         [self.popover presentPopoverFromBarButtonItem:_barButMenu permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
   

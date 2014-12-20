@@ -301,18 +301,20 @@ UIActionSheetDelegate, MFMailComposeViewControllerDelegate>
                                           cancelButtonTitle:@"Ok" otherButtonTitles:nil];
     [alert show];
 }
-
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    EHInterviewViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"Cell" forIndexPath:indexPath];
+     EHInterviewViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"Cell" forIndexPath:indexPath];
     cell.tag = indexPath.row;
     [cell.startButton addTarget:self action:@selector(startInterview:) forControlEvents:UIControlEventTouchUpInside];
     [cell.skypeButton addTarget:self action:@selector(onSkypeButton:) forControlEvents:UIControlEventTouchUpInside];
     [cell.mailButton addTarget:self action:@selector(onMailButton:) forControlEvents:UIControlEventTouchUpInside];
     
+
     
     EHWeek *week = [self.sortedWeeks objectAtIndex:indexPath.section];
     NSArray *eventsOnThisDay = week.interviews;
+
+    
     InterviewAppointment *event = [eventsOnThisDay objectAtIndex:indexPath.row];
     
     cell.typeLabel.text = [NSString stringWithString:[INTERVIEWTYPE objectAtIndex:event.type.intValue]];
