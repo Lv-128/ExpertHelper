@@ -36,10 +36,11 @@
     
 	NSArray *b1 = [self pointsToNumericArray];
 	p2.dataSeries = @[b1];
-	p2.steps = 1;
-	p2.backgroundColor = [UIColor grayColor];
+	p2.steps = 4;
+	p2.backgroundColor = [UIColor whiteColor];
     p2.countLevels = 4;
     p2.koeficient = p2.maxValue/p2.countLevels;
+    p2.showStepText = YES;
 	[self.view addSubview:p2];
 }
 - (NSArray *)pointsToNumericArray{

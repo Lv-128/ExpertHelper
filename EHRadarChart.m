@@ -7,11 +7,12 @@
 //
 
 #import "EHRadarChart.h"
+#import "EHAppDelegate.h"
 
 
 #define PADDING 75
-
-#define ATTRIBUTE_TEXT_SIZE 14
+#define ATTRIBUTE_TEXT_SIZE 17
+#define SCALE_TEXT_SIZE 12
 #define COLOR_HUE_STEP 5
 #define MAX_NUM_OF_COLOR 17
 
@@ -20,6 +21,7 @@
 @property (nonatomic, assign) NSUInteger numOfV;
 
 @property (nonatomic, strong) UIFont *scaleFont;
+@property (nonatomic, strong) UIFont *scaleLevelsFont;
 
 @end
 
@@ -64,6 +66,8 @@
     _koeficient = _maxValue / _countLevels;
     _minValue = _koeficient;
     _scaleFont = [UIFont systemFontOfSize:ATTRIBUTE_TEXT_SIZE];
+    _scaleLevelsFont = [UIFont systemFontOfSize:SCALE_TEXT_SIZE];
+    
 }
 
 
@@ -117,7 +121,6 @@
 		CGFloat yOffset = pointOnEdge.y >= _centerPoint.y ? height / 2.0 + padding : -height / 2.0 - padding;
 		CGPoint legendCenter = CGPointMake(pointOnEdge.x + xOffset, pointOnEdge.y + yOffset);
 
-        if (__IPHONE_OS_VERSION_MIN_REQUIRED >= 70000) {
             NSMutableParagraphStyle *paragraphStyle = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
             [paragraphStyle setLineBreakMode:NSLineBreakByClipping];
             [paragraphStyle setAlignment:NSTextAlignmentCenter];
@@ -130,18 +133,10 @@
                                                  width,
                                                  height)
                        withAttributes:attributes];
-        }
-        else {
-            [attributeName drawInRect:CGRectMake(legendCenter.x - width / 2.0,
-                                                 legendCenter.y - height / 2.0,
-                                                 width,
-                                                 height)
-                             withFont:self.scaleFont
-                        lineBreakMode:NSLineBreakByClipping
-                            alignment:NSTextAlignmentCenter];
-        }
-    }
+        
+            }
 
+    
     //draw background fill color
     [_backgroundFillColor setFill];
     CGContextMoveToPoint(context, _centerPoint.x, _centerPoint.y - _r);
@@ -152,7 +147,7 @@
     CGContextFillPath(context);
 
 	//draw steps line
-	static CGFloat dashedPattern[] = {3,3};
+	static CGFloat dashedPattern[] = {4,4};
 	//TODO: make this color a variable
 	[[UIColor lightGrayColor] setStroke];
 	CGContextSaveGState(context);
@@ -233,15 +228,17 @@
 		//draw step label text, alone y axis
 		//TODO: make this color a variable
 		[[UIColor blackColor] setFill];
-		for (int step = 0; step <= _steps; step++) {
-			CGFloat value = _minValue + (_maxValue - _minValue) * step / _steps;
-			NSString *currentLabel = [NSString stringWithFormat:@"%.0f", value];
+		for (int step = 1; step <= _steps; step++) {
+			//CGFloat value = _minValue + (_maxValue - _minValue) * step / _steps;
+			//NSString *currentLabel = [NSString stringWithFormat:@"%.0f", value];
+            NSString *currentLabel = [NSString stringWithFormat:@"%@", ESTIMATES[step-1]];
+            
 			EH_DRAW_TEXT_IN_RECT(currentLabel,
 			                     CGRectMake(_centerPoint.x + 3,
 			                                _centerPoint.y - _r * step / _steps - 3,
-			                                20,
-			                                10),
-			                     self.scaleFont);
+			                                50,
+			                                15),
+			                     self.scaleLevelsFont);
 		}
 	}
 }
