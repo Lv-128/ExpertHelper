@@ -73,12 +73,14 @@
     NSLog(@"%@", NSHomeDirectory());
 
 
-
-
     [self.tableView registerNib:[UINib nibWithNibName:@"EHGeneralInfoCell" bundle:nil]
          forCellReuseIdentifier:@"GeneralInfo"];
 
-    self.navigationItem.title = [NSString stringWithFormat:@"%@ %@", _interview.idExternal.idCandidate.firstName, _interview.idExternal.idCandidate.lastName];
+    self.navigationItem.title = [NSString stringWithFormat:@"%@ %@", _interview.idExternal.idCandidate.firstName,
+                                                                     _interview.idExternal.idCandidate.lastName];
+
+
+
     
     self.cellDateFormatter = [[NSDateFormatter alloc] init];
     [self.cellDateFormatter setDateStyle:NSDateFormatterFullStyle];
@@ -98,8 +100,10 @@
     _array = [[NSMutableArray alloc]initWithCapacity:0];
     _comment = [[NSMutableArray alloc]initWithCapacity:0];
     
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(getGeninfo:) name:@"GetInfo" object:nil];
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(getrecorderComment:) name:@"RecorderComment" object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(getGeninfo:)
+                                                name:@"GetInfo" object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(getrecorderComment:)
+                                                name:@"RecorderComment" object:nil];
     
     _pars = [[EHSkillsProfilesParser alloc]init];
     
@@ -191,7 +195,9 @@
     }
 }
 
-- (void)mailComposeController:(MFMailComposeViewController *) controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error{
+- (void)mailComposeController:(MFMailComposeViewController *) controller
+          didFinishWithResult:(MFMailComposeResult)result
+                        error:(NSError *)error{
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
@@ -218,7 +224,7 @@
     if(buttonIndex == 0)
     {
         [self saveFormZip];
-        UIAlertView *message  = [[UIAlertView alloc] initWithTitle:@"Warning!"
+        UIAlertView *message  = [[UIAlertView alloc] initWithTitle:@""
                                                            message:@"Export to .xlsx successed!"
                                                           delegate:nil
                                                  cancelButtonTitle:@"OK"
@@ -229,19 +235,22 @@
     {
         NSString *documentsDirectory = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
         
-        NSMutableString *excelName = [[NSMutableString alloc] initWithString: _interview.idExternal.idCandidate.firstName];
+        NSMutableString *excelName = [[NSMutableString alloc]
+                                      initWithString: _interview.idExternal.idCandidate.firstName];
         [excelName appendString:_interview.idExternal.idCandidate.lastName];
         [excelName appendString:[_cellDateFormatter stringFromDate:_interview.startDate]];
         excelName = [[excelName stringByReplacingOccurrencesOfString:@":" withString:@""] mutableCopy];
         
-        NSString *zipFilePath = [documentsDirectory stringByAppendingPathComponent:[NSString stringWithFormat: @"%@,.xlsx",excelName]];
+        NSString *zipFilePath = [documentsDirectory stringByAppendingPathComponent:
+                                 [NSString stringWithFormat: @"%@,.xlsx",excelName]];
         [self sendEmailToAddressWithUrl:zipFilePath fileName:excelName];
     }
     if(buttonIndex == 2)
     {
         EHChart *chartForm = [self.storyboard instantiateViewControllerWithIdentifier:@"ChartView"];
         
-        int size = self.view.frame.size.width > self.view.frame.size.height ? self.view.frame.size.height : self.view.frame.size.width;
+        int size = self.view.frame.size.width > self.view.frame.size.height ? self.view.frame.size.height :
+                                            self.view.frame.size.width;
         chartForm.points = _array.lastObject;
         chartForm.titles = _sectionContent.lastObject;
         chartForm.width = size*0.9;
@@ -249,7 +258,9 @@
         self.popover = [[UIPopoverController alloc] initWithContentViewController:chartForm];
         self.popover.popoverContentSize = CGSizeMake(size*0.9,size*0.9);
         
-        [self.popover presentPopoverFromBarButtonItem:_barButMenu permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
+        [self.popover presentPopoverFromBarButtonItem:_barButMenu
+                             permittedArrowDirections:UIPopoverArrowDirectionUp
+                                             animated:YES];
     }
 }
 
@@ -376,7 +387,9 @@
     
     CGRect rect = CGRectMake(cell.frame.size.width - 50, cell.frame.origin.y, 70, 10);
     
-    [self.recorder presentPopoverFromRect:rect inView:self.tableView permittedArrowDirections:UIPopoverArrowDirectionRight animated:YES];
+    [self.recorder presentPopoverFromRect:rect inView:self.tableView
+                 permittedArrowDirections:UIPopoverArrowDirectionRight
+                                 animated:YES];
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -491,7 +504,9 @@
         _generInfo.techEnglish = @"None";
     if (_generInfo.recommendations == NULL)
         _generInfo.recommendations = @"None";
-    _pars = [[EHSkillsProfilesParser alloc]initWithDataGroups:profTransmitting andInterview:_interview andGenInfo:_generInfo];
+    _pars = [[EHSkillsProfilesParser alloc]initWithDataGroups:profTransmitting
+                                                 andInterview:_interview
+                                                   andGenInfo:_generInfo];
     [_pars saveInfoToDB];
 }
 
@@ -521,7 +536,10 @@
     filePath1 = [filePath1 stringByAppendingPathComponent:@"worksheets"];
     NSString *filePath2 = [filePath1 stringByAppendingPathComponent:@"sheet4.xml"];
     filePath1 = [filePath1 stringByAppendingPathComponent:@"sheet3.xml"];
-    NSMutableString* xml = [[NSMutableString alloc] initWithString:[NSMutableString stringWithContentsOfFile:filePath1 encoding:NSUTF8StringEncoding error:&error]];
+    NSMutableString* xml = [[NSMutableString alloc]
+                            initWithString:[NSMutableString stringWithContentsOfFile:filePath1
+                                                                            encoding:NSUTF8StringEncoding
+                                                                               error:&error]];
     
     NSArray *a = [[NSArray alloc] initWithObjects:@"E21", @"E22", @"E23", @"E25", @"E26", @"E28", @"E29", @"E31", @"E32", @"E34", @"E35", @"E36", nil];
     int indexForA = 0;
@@ -671,18 +689,6 @@
     }
     [za CloseZipFile2];
 }
-
-
-
-
-
-
-
-
-
-
-
-
 
 - (void) insertIntoExclesSharedString {
     NSError *error;
