@@ -71,13 +71,13 @@
 {
     [super viewDidLoad];
     NSLog(@"%@", NSHomeDirectory());
-<<<<<<< HEAD
 
 
-=======
+
+
     [self.tableView registerNib:[UINib nibWithNibName:@"EHGeneralInfoCell" bundle:nil]
          forCellReuseIdentifier:@"GeneralInfo"];
->>>>>>> FETCH_HEAD
+
     self.navigationItem.title = [NSString stringWithFormat:@"%@ %@", _interview.idExternal.idCandidate.firstName, _interview.idExternal.idCandidate.lastName];
     
     self.cellDateFormatter = [[NSDateFormatter alloc] init];
@@ -672,7 +672,6 @@
     [za CloseZipFile2];
 }
 
-@end
 
 
 
@@ -683,7 +682,8 @@
 
 
 
-<<<<<<< HEAD
+
+
 - (void) insertIntoExclesSharedString {
     NSError *error;
     
@@ -732,9 +732,10 @@
                     [xml insertString:s atIndex:k];
                 }
             }
-=======
-
->>>>>>> FETCH_HEAD
+        }
+    }
+}
+@end
 
 
 

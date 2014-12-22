@@ -152,7 +152,7 @@
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gW1-2H-UYC">
                                 <rect key="frame" x="203" y="837" width="60" height="60"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <state key="normal" backgroundImage="skype">
+                                <state key="normal" backgroundImage="skype final">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -162,7 +162,7 @@
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1sj-JU-UDl">
                                 <rect key="frame" x="506" y="837" width="60" height="60"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <state key="normal" backgroundImage="mail">
+                                <state key="normal" backgroundImage="email-3">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -960,7 +960,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="d4p-6D-Ttr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2125" y="-951"/>
+            <point key="canvasLocation" x="-1920" y="-951"/>
         </scene>
         <!--Candidate Profile View Controller-->
         <scene sceneID="Q3O-4G-SpQ">
@@ -1126,7 +1126,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="st4-Ky-STD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-803" y="165"/>
+            <point key="canvasLocation" x="-1031" y="197"/>
         </scene>
     </scenes>
     <resources>
@@ -1134,12 +1134,12 @@
         <image name="checkBox.png" width="849" height="757"/>
         <image name="checkBoxMarked.png" width="849" height="757"/>
         <image name="email-3" width="225" height="225"/>
+        <image name="email-3" width="225" height="225"/>
         <image name="facebook-2" width="512" height="512"/>
-        <image name="mail" width="110" height="110"/>
         <image name="mail-1" width="300" height="300"/>
         <image name="play-1" width="128" height="128"/>
         <image name="record_button" width="1024" height="1024"/>
-        <image name="skype" width="300" height="300"/>
+        <image name="skype final" width="201" height="200"/>
         <image name="skype final" width="201" height="200"/>
         <image name="skype-1" width="512" height="512"/>
     </resources>
