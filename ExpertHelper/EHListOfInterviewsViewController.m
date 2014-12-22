@@ -198,10 +198,12 @@ UIActionSheetDelegate, MFMailComposeViewControllerDelegate>
     NSIndexPath *indexPath = [self indexPathOfButton:button];
     EHWeek *week = [self.sortedWeeks objectAtIndex:indexPath.section];
     NSArray *eventsOnThisDay = week.interviews;
-  __unused  InterviewAppointment *event = [eventsOnThisDay objectAtIndex:indexPath.row];
+    __unused  InterviewAppointment *event = [eventsOnThisDay objectAtIndex:indexPath.row];
     
- 
-        
+    
+    
+    if(![event.idRecruiter.skypeAccount isEqualToString:@"echo123"])
+    {
         BOOL installed = [[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"skype:"]];
         if(installed)
         {
@@ -211,7 +213,16 @@ UIActionSheetDelegate, MFMailComposeViewControllerDelegate>
         {
             [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://itunes.com/apps/skype/skype"]];
         }
- 
+    }else
+    {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Warning"
+                                                        message:@"Sorry, can't find recruiter's skype"
+                                                       delegate:nil
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil];
+        [alert show];
+    }
+    
 }
 
 - (void)onMailButton:(UIButton *)button {
@@ -303,17 +314,17 @@ UIActionSheetDelegate, MFMailComposeViewControllerDelegate>
 }
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-     EHInterviewViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"Cell" forIndexPath:indexPath];
+    EHInterviewViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"Cell" forIndexPath:indexPath];
     cell.tag = indexPath.row;
     [cell.startButton addTarget:self action:@selector(startInterview:) forControlEvents:UIControlEventTouchUpInside];
     [cell.skypeButton addTarget:self action:@selector(onSkypeButton:) forControlEvents:UIControlEventTouchUpInside];
     [cell.mailButton addTarget:self action:@selector(onMailButton:) forControlEvents:UIControlEventTouchUpInside];
     
-
+    
     
     EHWeek *week = [self.sortedWeeks objectAtIndex:indexPath.section];
     NSArray *eventsOnThisDay = week.interviews;
-
+    
     
     InterviewAppointment *event = [eventsOnThisDay objectAtIndex:indexPath.row];
     
@@ -455,12 +466,28 @@ UIActionSheetDelegate, MFMailComposeViewControllerDelegate>
     MFMailComposeViewController *mailController = [[MFMailComposeViewController alloc]init];
     [mailController setMailComposeDelegate:self];
     
-    NSArray *addressArray = [[NSArray alloc]initWithObjects:address, nil];
-    [mailController setMessageBody:@"Print message here!" isHTML:NO];
-    [mailController setToRecipients:addressArray];
-    [mailController setSubject:@""];
-    [mailController setModalTransitionStyle:UIModalTransitionStyleFlipHorizontal];
-    [self presentViewController:mailController animated:YES completion: nil];
+    NSArray *addressArray;
+    if(![address isEqualToString:@"unknown@unknown.com"])
+    {
+        (addressArray = [[NSArray alloc]initWithObjects:address, nil]);
+        [mailController setMessageBody:@"Print message here!" isHTML:NO];
+        [mailController setToRecipients:addressArray];
+        [mailController setSubject:@""];
+        [mailController setModalTransitionStyle:UIModalTransitionStyleFlipHorizontal];
+        [self presentViewController:mailController animated:YES completion: nil];
+    }
+    else
+    {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Warning"
+                                                        message:@"Sorry, can't find recruiter's email"
+                                                       delegate:nil
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil];
+        [alert show];
+    }
+    
+    
+    
     
 }
 
