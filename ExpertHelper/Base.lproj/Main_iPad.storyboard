@@ -222,7 +222,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FYW-af-gF9">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FYW-af-gF9">
                                 <rect key="frame" x="654" y="964" width="94" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="Y1M-p6-dmp"/>
@@ -235,8 +235,8 @@
                                     <action selector="saveForm:" destination="ioK-KF-1C8" eventType="touchUpInside" id="4lh-ps-9Wd"/>
                                 </connections>
                             </button>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelectionDuringEditing="YES" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="72" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="e0g-9P-WPS">
-                                <rect key="frame" x="20" y="70" width="728" height="740"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelectionDuringEditing="YES" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="72" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="e0g-9P-WPS">
+                                <rect key="frame" x="20" y="26" width="728" height="978"/>
                                 <color key="backgroundColor" red="0.98431372549019602" green="0.98431372549019602" blue="0.98431372549019602" alpha="1" colorSpace="calibratedRGB"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="GeneralInfo" id="bKq-hk-fXc" customClass="EHGeneralInfoCell">
@@ -287,9 +287,12 @@
                         </subviews>
                         <color key="backgroundColor" red="0.98431372549019602" green="0.98431372549019602" blue="0.98431372549019602" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstAttribute="bottom" secondItem="e0g-9P-WPS" secondAttribute="bottom" constant="20" symbolic="YES" id="AYd-66-8Ed"/>
-                            <constraint firstItem="e0g-9P-WPS" firstAttribute="trailing" secondItem="FYW-af-gF9" secondAttribute="trailing" id="QM8-i2-Tzj"/>
-                            <constraint firstItem="e0g-9P-WPS" firstAttribute="bottom" secondItem="FYW-af-gF9" secondAttribute="bottom" id="uUN-5v-0bw"/>
+                            <constraint firstItem="e0g-9P-WPS" firstAttribute="bottom" secondItem="FYW-af-gF9" secondAttribute="bottom" id="9i9-CH-erk"/>
+                            <constraint firstItem="e0g-9P-WPS" firstAttribute="trailing" secondItem="FYW-af-gF9" secondAttribute="trailing" id="9iC-ef-dra"/>
+                            <constraint firstAttribute="bottom" secondItem="e0g-9P-WPS" secondAttribute="bottom" constant="20" symbolic="YES" id="H24-wa-tgP"/>
+                            <constraint firstItem="e0g-9P-WPS" firstAttribute="leading" secondItem="m5u-Md-51f" secondAttribute="leading" constant="20" symbolic="YES" id="XJ2-QN-Gbu"/>
+                            <constraint firstAttribute="trailing" secondItem="e0g-9P-WPS" secondAttribute="trailing" constant="20" symbolic="YES" id="iKb-Xk-YHy"/>
+                            <constraint firstItem="e0g-9P-WPS" firstAttribute="top" secondItem="syB-ah-Lm1" secondAttribute="bottom" constant="6" id="mAM-kw-kFh"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="External" id="tPJ-li-VyP">
