@@ -727,8 +727,10 @@
     int uniqueCountIndex = 295;
     
     for (int i = 0; i < _comment.count; i++) {
-        if (![_comment[i] isEqualToString:@""]) {
-            uniqueCountIndex++;
+        for (int j = 0; j < [_comment[i] count]; j++) {
+            if (![_comment[i][j] isEqualToString:@""]) {
+                uniqueCountIndex++;
+            }
         }
     }
     
@@ -751,21 +753,24 @@
         if ([ss isEqualToString:stringForComparing]) {
             k = i;
             
-            [xml insertString:@"<si><t>Strong</t></si>" atIndex:k];
-            [xml insertString:@"<si><t>Good</t></si>" atIndex:k];
-            [xml insertString:@"<si><t>Beginner</t></si>" atIndex:k];
-            [xml insertString:@"<si><t>None</t></si>" atIndex:k];
-            for (int i = 0; i < _comment.count; i++) {
-                if (![_comment[i] isEqualToString:@""]) {
-                    NSString *s =@"<si><t>";
-                    [s stringByAppendingString:_comment[i]];
-                    [s stringByAppendingString:@"</t></si>"];
-                    
-                    [xml insertString:s atIndex:k];
-
+       //     [xml insertString:@"<si><t>Strong</t></si>" atIndex:k];
+       //     [xml insertString:@"<si><t>Good</t></si>" atIndex:k];
+      //      [xml insertString:@"<si><t>Beginner</t></si>" atIndex:k];
+     //       [xml insertString:@"<si><t>None</t></si>" atIndex:k];
+            for (int ii = 0; ii < _comment.count; ii++) {
+                for (int j = 0; j < [_comment[ii] count]; j++) {
+                    if (![_comment[ii][j] isEqualToString:@""]) {
+                        NSString *s =@"<si><t>";
+                        s = [s stringByAppendingString:_comment[ii][j]];
+                        s = [s stringByAppendingString:@"</t></si>"];
+                        
+                        [xml insertString:s atIndex:k];
+                    }
                 }
             }
+            break;
         }
+        
     }
 
     

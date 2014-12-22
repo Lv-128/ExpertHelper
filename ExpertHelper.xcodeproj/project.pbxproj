@@ -21,6 +21,7 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		11B730361A48907100D524A4 /* EHExternalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 11B730351A48907100D524A4 /* EHExternalViewController.m */; };
 		11DA2D7F1A3DF8C90051CBAC /* ZipArchive.mm in Sources */ = {isa = PBXBuildFile; fileRef = 11DA2D7E1A3DF8C90051CBAC /* ZipArchive.mm */; };
 		11DA2E001A3DF9A40051CBAC /* ioapi.c in Sources */ = {isa = PBXBuildFile; fileRef = 11DA2DF81A3DF9A40051CBAC /* ioapi.c */; };
 		11DA2E011A3DF9A40051CBAC /* mztools.c in Sources */ = {isa = PBXBuildFile; fileRef = 11DA2DFA1A3DF9A40051CBAC /* mztools.c */; };
@@ -84,7 +85,6 @@
 		D9BE33B01A3A0AFF0063B6C6 /* VoiceRecorders.m in Sources */ = {isa = PBXBuildFile; fileRef = D9BE33AD1A3A0AFF0063B6C6 /* VoiceRecorders.m */; };
 		D9BE33B11A3A0AFF0063B6C6 /* VoiceRecorders.m in Sources */ = {isa = PBXBuildFile; fileRef = D9BE33AD1A3A0AFF0063B6C6 /* VoiceRecorders.m */; };
 		D9BE54011A10B16700AD5D3D /* EHExternalCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D9BE53F81A10B16700AD5D3D /* EHExternalCell.m */; };
-		D9BE54021A10B16700AD5D3D /* EHExternalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D9BE53FA1A10B16700AD5D3D /* EHExternalViewController.m */; };
 		D9C4DC321A3840F400BC1AEA /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = D9C4DC311A3840F400BC1AEA /* Reachability.m */; };
 		D9D748241A4866210074160F /* EHRadarChart.m in Sources */ = {isa = PBXBuildFile; fileRef = D9D748231A4866210074160F /* EHRadarChart.m */; };
 		D9D748271A4866470074160F /* EHChart.m in Sources */ = {isa = PBXBuildFile; fileRef = D9D748261A4866470074160F /* EHChart.m */; };
@@ -120,6 +120,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		11B730341A48907100D524A4 /* EHExternalViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EHExternalViewController.h; path = ../EHExternalViewController.h; sourceTree = "<group>"; };
+		11B730351A48907100D524A4 /* EHExternalViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EHExternalViewController.m; path = ../EHExternalViewController.m; sourceTree = "<group>"; };
 		11DA2D7D1A3DF8C90051CBAC /* ZipArchive.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZipArchive.h; sourceTree = "<group>"; };
 		11DA2D7E1A3DF8C90051CBAC /* ZipArchive.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ZipArchive.mm; sourceTree = "<group>"; };
 		11DA2DF71A3DF9A40051CBAC /* crypt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = crypt.h; sourceTree = "<group>"; };
@@ -211,8 +213,6 @@
 		D9BE33AD1A3A0AFF0063B6C6 /* VoiceRecorders.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VoiceRecorders.m; sourceTree = "<group>"; };
 		D9BE53F71A10B16700AD5D3D /* EHExternalCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EHExternalCell.h; sourceTree = "<group>"; };
 		D9BE53F81A10B16700AD5D3D /* EHExternalCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EHExternalCell.m; sourceTree = "<group>"; };
-		D9BE53F91A10B16700AD5D3D /* EHExternalViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EHExternalViewController.h; sourceTree = "<group>"; };
-		D9BE53FA1A10B16700AD5D3D /* EHExternalViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EHExternalViewController.m; sourceTree = "<group>"; };
 		D9C4DC301A3840F400BC1AEA /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		D9C4DC311A3840F400BC1AEA /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		D9D748221A4866210074160F /* EHRadarChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EHRadarChart.h; path = ExpertHelper/Chart/EHRadarChart.h; sourceTree = "<group>"; };
@@ -622,11 +622,11 @@
 			children = (
 				D9BE339D1A3A00180063B6C6 /* Model */,
 				D9D3658B1A375A90004D919E /* Views */,
-				D9BE53F91A10B16700AD5D3D /* EHExternalViewController.h */,
-				D9BE53FA1A10B16700AD5D3D /* EHExternalViewController.m */,
 				D9BE33921A38AEDC0063B6C6 /* EHCandidateProfileViewController.h */,
 				D9BE33931A38AEDC0063B6C6 /* EHCandidateProfileViewController.m */,
 				D9AD2EB51A3384D2003D7E14 /* EHRecorderCommentController.h */,
+				11B730351A48907100D524A4 /* EHExternalViewController.m */,
+				11B730341A48907100D524A4 /* EHExternalViewController.h */,
 				D9AD2EB61A3384D2003D7E14 /* EHRecorderCommentController.m */,
 			);
 			name = External;
@@ -812,7 +812,6 @@
 				D9F15AD11A1A575A00E4DC62 /* EHListOfInterviewsViewController.m in Sources */,
 				D967F20B1A1E305D0009639C /* EHRecruiterViewController.m in Sources */,
 				11DA2E021A3DF9A40051CBAC /* unzip.c in Sources */,
-				D9BE54021A10B16700AD5D3D /* EHExternalViewController.m in Sources */,
 				D967F2101A1E4DEE0009639C /* EHITAViewController.m in Sources */,
 				83CD969C1A3B5C5600115744 /* EHLinkCell.m in Sources */,
 				D9D7482A1A4866940074160F /* EHListOfRecruitersCell.m in Sources */,
@@ -826,6 +825,7 @@
 				D9E7B7981A31E079002DA710 /* ExternalInterview.m in Sources */,
 				D9E7B7AF1A31E0A3002DA710 /* _InterviewAppointment.m in Sources */,
 				D9998EE41A221CE9002E019A /* EHRevealViewController.m in Sources */,
+				11B730361A48907100D524A4 /* EHExternalViewController.m in Sources */,
 				D9BE338E1A3894610063B6C6 /* EHSkillsProfilesParser.m in Sources */,
 				D9BE338B1A3882E00063B6C6 /* EHInterviewViewCell.m in Sources */,
 				D9BE33AE1A3A0AFF0063B6C6 /* GeneralInfo.m in Sources */,
