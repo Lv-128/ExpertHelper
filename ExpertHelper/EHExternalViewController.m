@@ -13,8 +13,11 @@
 #import "EHSkillsProfilesParser.h"
 #import "ZipArchive.h"
 #import "EHCandidateProfileViewController.h"
+#import "EHChart.h"
+#import "EHGeneralInfoCell.h"
 
-@interface EHExternalViewController () <UITableViewDataSource, UITableViewDelegate, EHSkillLevelPopupDelegate, EHRecorderCommentControllerDelegate, UIActionSheetDelegate, MFMailComposeViewControllerDelegate>
+
+@interface EHExternalViewController () <UITableViewDataSource, UITableViewDelegate, EHSkillLevelPopupDelegate, UIActionSheetDelegate, MFMailComposeViewControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UIButton *openGeneralInfo;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -23,6 +26,7 @@
 @property (nonatomic, strong) NSMutableArray *array;
 @property (nonatomic, strong) NSMutableArray *comment;
 @property (nonatomic, strong) EHSkillsProfilesParser *pars;
+@property (nonatomic, strong) EHRecorderCommentController *recorderComment;
 @property (nonatomic, strong) EHGenInfo *generInfo;
 @property (nonatomic, strong) EHSkillLevelPopup *popup;
 @property (strong, nonatomic) UIActionSheet *actionSheetMenu;
@@ -67,8 +71,13 @@
 {
     [super viewDidLoad];
     NSLog(@"%@", NSHomeDirectory());
+<<<<<<< HEAD
 
 
+=======
+    [self.tableView registerNib:[UINib nibWithNibName:@"EHGeneralInfoCell" bundle:nil]
+         forCellReuseIdentifier:@"GeneralInfo"];
+>>>>>>> FETCH_HEAD
     self.navigationItem.title = [NSString stringWithFormat:@"%@ %@", _interview.idExternal.idCandidate.firstName, _interview.idExternal.idCandidate.lastName];
     
     self.cellDateFormatter = [[NSDateFormatter alloc] init];
@@ -77,8 +86,9 @@
     isPopup = NO;
     newCell = NO;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    self.tableSections = @[@"Design", @"Construction", @"Quality", @"Configuration Management", @"Scope Management and Software Engineering", @"Profiles"];
-    self.sectionContent = @[@[ @"Object oriented programming and design", @"Designing solution architecture", @"Database design" ],
+    self.tableSections = @[@"General info", @"Design", @"Construction", @"Quality", @"Configuration Management", @"Scope Management and Software Engineering", @"Profiles"];
+    self.sectionContent = @[@[],
+                            @[ @"Object oriented programming and design", @"Designing solution architecture", @"Database design" ],
                             @[ @"Coding (primary language and standard libraries)", @"Debugging and bug fixing" ],
                             @[ @"Using issue tracking systems", @"Reviewing code" ],
                             @[ @"Versions management", @"Build management" ],
@@ -89,6 +99,7 @@
     _comment = [[NSMutableArray alloc]initWithCapacity:0];
     
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(getGeninfo:) name:@"GetInfo" object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(getrecorderComment:) name:@"RecorderComment" object:nil];
     
     _pars = [[EHSkillsProfilesParser alloc]init];
     
@@ -133,17 +144,9 @@
             [_array insertObject:tt atIndex:i];
             [_comment insertObject:tr atIndex:i];
         }
-        /*  for (int i = 0; i < self.tableSections.count; i++)//6
-         {
-         NSMutableArray *temp = [[NSMutableArray alloc]initWithCapacity:0];// group
-         for (int b = 0; b < [[self.sectionContent objectAtIndex:i] count]; b++)
-         
-         [temp addObject:@""];
-         
-         [_comment insertObject:temp atIndex:i];
-         }*/
         _generInfo = _pars.genInfo;
-    }else{
+    }
+    else{
         for (int i = 0; i < self.tableSections.count; i++)//6
         {
             NSMutableArray *temp = [[NSMutableArray alloc]initWithCapacity:0];// group]
@@ -159,13 +162,13 @@
     self.openGeneralInfo.layer.cornerRadius = 13;
     self.openGeneralInfo.layer.borderWidth = 1;
     self.openGeneralInfo.layer.borderColor = [UIColor grayColor].CGColor;
-    
-   /* UIBarButtonItem *anotherButton = [[UIBarButtonItem alloc] initWithTitle:@"Export to XML"
-                                                                      style:UIBarButtonItemStyleDone
-                                                                     target:self
-                                                                     action:@selector(saveFormZip)];
-    self.navigationItem.rightBarButtonItem = anotherButton;*/
-    // Do any additional setup after loading the view.
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    NSIndexPath *generalInfoIndex = [NSIndexPath indexPathForRow:0 inSection:0];
+    [self.tableView reloadRowsAtIndexPaths:@[generalInfoIndex] withRowAnimation:UITableViewRowAnimationNone];
 }
 
 
@@ -186,39 +189,32 @@
         [mailController setModalTransitionStyle:UIModalTransitionStyleFlipHorizontal];
         [self presentViewController:mailController animated:YES completion: nil];
     }
-    
 }
 
 - (void)mailComposeController:(MFMailComposeViewController *) controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error{
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
-
-      
-
-
-
 #pragma mark Work with Action sheet
+
 - (IBAction)pressMenu:(id)sender
 {
-
+    
     _actionSheetMenu = [[UIActionSheet alloc] initWithTitle:@"Select type of interview:"
-                                                    delegate:self
-                                           cancelButtonTitle:@"Cancel"
-                                      destructiveButtonTitle:nil
-                                           otherButtonTitles:@"Export to XLS", @"Send via Email", @"Chart",nil];
+                                                   delegate:self
+                                          cancelButtonTitle:@"Cancel"
+                                     destructiveButtonTitle:nil
+                                          otherButtonTitles:@"Export to XLS", @"Send via Email", @"Chart",nil];
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
     {
         [_actionSheetMenu showFromBarButtonItem:sender animated:YES];
     }
     else
         [_actionSheetMenu showInView:self.view];
-
+    
 }
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    
-    
     if(buttonIndex == 0)
     {
         [self saveFormZip];
@@ -228,25 +224,33 @@
                                                  cancelButtonTitle:@"OK"
                                                  otherButtonTitles:nil];
         [message show];
-        
     }
     if(buttonIndex == 1)
-       {
-           NSString *documentsDirectory = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
-     
-           NSMutableString *excelName = [[NSMutableString alloc] initWithString: _interview.idExternal.idCandidate.firstName];
-           [excelName appendString:_interview.idExternal.idCandidate.lastName];
-           [excelName appendString:[_cellDateFormatter stringFromDate:_interview.startDate]];
-           excelName = [[excelName stringByReplacingOccurrencesOfString:@":" withString:@""] mutableCopy];
-           
-           NSString *zipFilePath = [documentsDirectory stringByAppendingPathComponent:[NSString stringWithFormat: @"%@,.xlsx",excelName]];
-             [self sendEmailToAddressWithUrl:zipFilePath fileName:excelName];
-       }
-    if (buttonIndex == 2)
     {
-      
+        NSString *documentsDirectory = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
+        
+        NSMutableString *excelName = [[NSMutableString alloc] initWithString: _interview.idExternal.idCandidate.firstName];
+        [excelName appendString:_interview.idExternal.idCandidate.lastName];
+        [excelName appendString:[_cellDateFormatter stringFromDate:_interview.startDate]];
+        excelName = [[excelName stringByReplacingOccurrencesOfString:@":" withString:@""] mutableCopy];
+        
+        NSString *zipFilePath = [documentsDirectory stringByAppendingPathComponent:[NSString stringWithFormat: @"%@,.xlsx",excelName]];
+        [self sendEmailToAddressWithUrl:zipFilePath fileName:excelName];
     }
-    
+    if(buttonIndex == 2)
+    {
+        EHChart *chartForm = [self.storyboard instantiateViewControllerWithIdentifier:@"ChartView"];
+        
+        int size = self.view.frame.size.width > self.view.frame.size.height ? self.view.frame.size.height : self.view.frame.size.width;
+        chartForm.points = _array.lastObject;
+        chartForm.titles = _sectionContent.lastObject;
+        chartForm.width = size*0.9;
+        chartForm.height = size*0.9;
+        self.popover = [[UIPopoverController alloc] initWithContentViewController:chartForm];
+        self.popover.popoverContentSize = CGSizeMake(size*0.9,size*0.9);
+        
+        [self.popover presentPopoverFromBarButtonItem:_barButMenu permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
+    }
 }
 
 - (void)didMoveToParentViewController:(UIViewController *)parent
@@ -261,14 +265,6 @@
 {
     [self closePopup];
     
-    if ([[segue identifier] isEqualToString:@"profa"])
-    {
-        EHRecorderCommentController *external = [segue destinationViewController];
-        external.delegate = self;
-        external.level = _array;
-        external.index = _index;
-        external.comment = _comment;
-    }
     if ([[segue identifier] isEqualToString:@"GoToGenInfoForm"])
     {
         EHCandidateProfileViewController *genInfoForm = [segue destinationViewController];
@@ -291,6 +287,8 @@
 
 - (NSInteger)tableView:(UITableView *)table numberOfRowsInSection:(NSInteger)section
 {
+    if (section == 0)
+        return 1;
     return [self.sectionContent[section]count];
 }
 
@@ -312,64 +310,115 @@
     return view;
 }
 
-- (EHExternalCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSInteger row = [indexPath row];
     NSArray *listData = [self.sectionContent objectAtIndex:[indexPath section]];
     
-    EHExternalCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ExternalCell"];
-    cell.textLabel.text = [listData objectAtIndex:row];
-    
-    NSObject *tt = [[_array objectAtIndex:indexPath.section] objectAtIndex:row];
-    if (tt != nil) {
-        cell.rightLabel.text = [[_array objectAtIndex:indexPath.section] objectAtIndex:row];
-    } else {
-        cell.rightLabel.text = @"";
+    if (indexPath.section == 0)
+    {
+        EHGeneralInfoCell *cell = (EHGeneralInfoCell *)[tableView dequeueReusableCellWithIdentifier:@"GeneralInfo"];
+        if(cell.genInfo == nil)
+        {
+            cell.genInfo = [[EHGenInfo alloc] init];
+        }
+        else
+        {
+            cell.expertName.text = self.generInfo.expertName;
+            //  self.dateLabel.text = _genInfo.dateOfInterview;
+            cell.competenceGroup.text = self.generInfo.competenceGroup;
+            cell.typeOfProject.text = self.generInfo.typeOfProject;
+            cell.skillSummary.text = self.generInfo.skillsSummary;
+            cell.englishLabel.text = self.generInfo.techEnglish;
+            cell.recomendations.text = self.generInfo.recommendations;
+            //   self.levelEstimateTextField.text = _genInfo.levelEstimate;
+            cell.switchView.on = self.generInfo.hire;
+            
+        }
+        return cell;
     }
-    
-    return cell;
+    else
+    {
+        EHExternalCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ExternalCell"];
+        cell.textLabel.text = [listData objectAtIndex:row];
+        
+        NSObject *tt = [[_array objectAtIndex:indexPath.section] objectAtIndex:row];
+        if (tt != nil) {
+            cell.rightLabel.text = [[_array objectAtIndex:indexPath.section] objectAtIndex:row];
+        } else {
+            cell.rightLabel.text = @"";
+        }
+        return cell;
+    }
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.section == 0)
+        return 718.0;
+    return 72.0;
 }
 
 - (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath
 {
     _index = indexPath;
     UITableViewCell *cell = [_tableView cellForRowAtIndexPath:indexPath];
-    [self performSegueWithIdentifier:@"profa" sender:cell];
+    //    [self performSegueWithIdentifier:@"profa" sender:cell];
+    
+    self.recorderComment = [self.storyboard instantiateViewControllerWithIdentifier:@"RecorderComment"];
+    
+    self.recorderComment.level = _array;
+    self.recorderComment.index = _index;
+    self.recorderComment.comment = _comment;
+    
+    self.recorder = [[UIPopoverController alloc] initWithContentViewController:self.recorderComment];
+    self.recorder.popoverContentSize = CGSizeMake(700.0, 700.0);
+    
+    CGRect rect = CGRectMake(cell.frame.size.width - 50, cell.frame.origin.y, 70, 10);
+    
+    [self.recorder presentPopoverFromRect:rect inView:self.tableView permittedArrowDirections:UIPopoverArrowDirectionRight animated:YES];
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSUInteger row = [indexPath row];
-    
-    lostData = [indexPath section];
-    RowAtIndexPathOfSkills = row;
-    
-    if (isPopup == NO) {
-        UINib *nib = [UINib nibWithNibName:@"EHSkillLevelPopup" bundle:nil];
-        EHSkillLevelPopup *popup = [[nib instantiateWithOwner:nil options:nil] lastObject];
-        CGRect selfFrame = self.view.frame;
-        CGRect popupFrame = popup.frame;
-        popupFrame.size.width = selfFrame.size.width;
-        popupFrame.origin.y = selfFrame.size.height;
-        popupFrame.origin.y -= popupFrame.size.height;
-        popup.frame = popupFrame;
+    if (indexPath.section == 0)
+    {
+        [self performSegueWithIdentifier:@"GoToGenInfoForm" sender:self];
+    }
+    else
+    {
+        NSUInteger row = [indexPath row];
         
-        popup.delegate = self;
-        popup.transform = CGAffineTransformMakeScale(1.3, 1.3);
+        lostData = [indexPath section];
+        RowAtIndexPathOfSkills = row;
         
-        popup.titleLabel.text = @"Select the desired level";
-        _popup = popup;
-        [self.view addSubview:popup];
+        if (isPopup == NO) {
+            UINib *nib = [UINib nibWithNibName:@"EHSkillLevelPopup" bundle:nil];
+            EHSkillLevelPopup *popup = [[nib instantiateWithOwner:nil options:nil] lastObject];
+            CGRect selfFrame = self.view.frame;
+            CGRect popupFrame = popup.frame;
+            popupFrame.size.width = selfFrame.size.width;
+            popupFrame.origin.y = selfFrame.size.height;
+            popupFrame.origin.y -= popupFrame.size.height;
+            popup.frame = popupFrame;
+            
+            popup.delegate = self;
+            popup.transform = CGAffineTransformMakeScale(1.3, 1.3);
+            
+            popup.titleLabel.text = @"Select the desired level";
+            _popup = popup;
+            [self.view addSubview:popup];
+            
+            [UIView animateWithDuration:0.5 animations:^{
+                popup.alpha = 1;
+                popup.transform = CGAffineTransformMakeScale(1, 1);
+            }];
+            isPopup = YES;
+        } else
+            [self closePopup];
         
-        [UIView animateWithDuration:0.5 animations:^{
-            popup.alpha = 1;
-            popup.transform = CGAffineTransformMakeScale(1, 1);
-        }];
-        isPopup = YES;
-    } else
-        [self closePopup];
-    
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+        [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    }
 }
 
 - (void)closePopup
@@ -416,8 +465,8 @@
                 skillsOfExternal.comment = _comment[y][x];
             }
             else {
-                skillsOfExternal.comment = @"None";
-                _comment[y][x] = @"None";
+                skillsOfExternal.comment = @"";
+                _comment[y][x] = @"";
             }
             [groupsTransmitting addObject:skillsOfExternal];
         }
@@ -425,41 +474,50 @@
         groupsOfExternal.nameOfSections = _tableSections[y];
         [profTransmitting addObject:groupsOfExternal];
     }
-   ///need to assign general info
+    
     if (_generInfo == nil)
     {
-        UIAlertView *message  = [[UIAlertView alloc] initWithTitle:@"Warning!"
-                                                           message:@"Fill general info!!"
-                                                          delegate:nil
-                                                 cancelButtonTitle:@"OK"
-                                                 otherButtonTitles:nil];
-        [message show];
+        _generInfo = [[EHGenInfo alloc]init];
     }
-    else
-    {
-        _pars = [[EHSkillsProfilesParser alloc]initWithDataGroups:profTransmitting andInterview:_interview andGenInfo:_generInfo];
-        [_pars saveInfoToDB];
-    }
+    if (_generInfo.expertName == NULL)
+        _generInfo.expertName = @"None";
+    if (_generInfo.competenceGroup == NULL)
+        _generInfo.competenceGroup = @"None";
+    if (_generInfo.typeOfProject == NULL)
+        _generInfo.typeOfProject = @"None";
+    if (_generInfo.skillsSummary == NULL)
+        _generInfo.skillsSummary = @"None";
+    if (_generInfo.techEnglish == NULL)
+        _generInfo.techEnglish = @"None";
+    if (_generInfo.recommendations == NULL)
+        _generInfo.recommendations = @"None";
+    _pars = [[EHSkillsProfilesParser alloc]initWithDataGroups:profTransmitting andInterview:_interview andGenInfo:_generInfo];
+    [_pars saveInfoToDB];
 }
 
 - (void)getGeninfo:(NSNotification *)notification
 {
     self.generInfo = notification.userInfo[@"genInfo"];
+    
+}
+
+- (void)getrecorderComment:(NSNotification *)notification
+{
+    self.recorderComment = notification.userInfo[@"recorderComment"];
+    self.array = notification.userInfo[@"recorderLevel"];
+    [self.tableView reloadData];
 }
 
 - (void)saveFormZip {
     [self parsFunc];
     [self unzip];
-    [self insertIntoExclesSharedString];
     
     //----------------------------------- start parsing part inside action -------------------------------
-    
     NSError *error;
     
     NSString *filePath1 = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
     filePath1 = [filePath1 stringByAppendingPathComponent:@"unZipDirName1"];
     filePath1 = [filePath1 stringByAppendingPathComponent:@"xl"];
-    
     filePath1 = [filePath1 stringByAppendingPathComponent:@"worksheets"];
     NSString *filePath2 = [filePath1 stringByAppendingPathComponent:@"sheet4.xml"];
     filePath1 = [filePath1 stringByAppendingPathComponent:@"sheet3.xml"];
@@ -614,7 +672,18 @@
     [za CloseZipFile2];
 }
 
+@end
 
+
+
+
+
+
+
+
+
+
+<<<<<<< HEAD
 - (void) insertIntoExclesSharedString {
     NSError *error;
     
@@ -663,15 +732,11 @@
                     [xml insertString:s atIndex:k];
                 }
             }
+=======
 
-            break;
-        }
+>>>>>>> FETCH_HEAD
 
-    }
-    
-    [xml writeToFile:filePath1 atomically:YES encoding:NSUTF8StringEncoding error:&error];
-}
-@end
+
 
 
 

@@ -11,10 +11,10 @@
 
 @interface EHITAViewController ()
 
-@property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (copy, nonatomic) NSArray *namesArray;
+@property (nonatomic, weak) IBOutlet UITableView *tableView;
+@property (nonatomic, copy) NSArray *namesArray;
 @property (copy) NSMutableArray *checked;
-@property (strong, nonatomic) UIImageView* imageView;
+@property (nonatomic, strong) UIImageView* imageView;
 
 @end
 
@@ -100,14 +100,13 @@ UIButton *button;
 - (void)changeImage:(UIButton *)sender {
     button = (UIButton *)sender;
    
-    UIImagePickerController *pickerController = [[UIImagePickerController alloc]
-                                                 init];
+    UIImagePickerController *pickerController = [[UIImagePickerController alloc] init];
     pickerController.delegate = self;
  
     [self presentViewController:pickerController animated:YES completion:nil];
 }
 
-- (void) imagePickerController:(UIImagePickerController *)picker
+- (void)imagePickerController:(UIImagePickerController *)picker
          didFinishPickingImage:(UIImage *)image
                    editingInfo:(NSDictionary *)editingInfo
 {
@@ -116,13 +115,13 @@ UIButton *button;
     [self dismissModalViewControllerAnimated:YES];
 }
 
--(void)setImageForCell:(UIImage *)image {
+- (void)setImageForCell:(UIImage *)image {
     [button setImage:image forState:UIControlStateNormal];
 }
 
 //--------------- create PopUp with picker of scores ---------------
 
--(void)openPopUpClick:(UIButton *)sender {
+- (void)openPopUpClick:(UIButton *)sender {
     
     scoreOption = sender;
     
@@ -204,7 +203,6 @@ UIButton *button;
 }
 
 - (UIBarButtonItem *)createButtonWithType:(UIBarButtonSystemItem)type target:(id)target action:(SEL)buttonAction {
-    
     return [[UIBarButtonItem alloc] initWithBarButtonSystemItem:type target:target action:buttonAction];
 }
 

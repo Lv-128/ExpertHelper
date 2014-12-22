@@ -21,20 +21,19 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
-		117146791A41E36800512072 /* Workbook.xlsx in Resources */ = {isa = PBXBuildFile; fileRef = 117146781A41E36800512072 /* Workbook.xlsx */; };
 		11DA2D7F1A3DF8C90051CBAC /* ZipArchive.mm in Sources */ = {isa = PBXBuildFile; fileRef = 11DA2D7E1A3DF8C90051CBAC /* ZipArchive.mm */; };
 		11DA2E001A3DF9A40051CBAC /* ioapi.c in Sources */ = {isa = PBXBuildFile; fileRef = 11DA2DF81A3DF9A40051CBAC /* ioapi.c */; };
 		11DA2E011A3DF9A40051CBAC /* mztools.c in Sources */ = {isa = PBXBuildFile; fileRef = 11DA2DFA1A3DF9A40051CBAC /* mztools.c */; };
 		11DA2E021A3DF9A40051CBAC /* unzip.c in Sources */ = {isa = PBXBuildFile; fileRef = 11DA2DFC1A3DF9A40051CBAC /* unzip.c */; };
 		11DA2E031A3DF9A40051CBAC /* zip.c in Sources */ = {isa = PBXBuildFile; fileRef = 11DA2DFE1A3DF9A40051CBAC /* zip.c */; };
+		11DA2E051A3E03340051CBAC /* Workbook.xlsx in Resources */ = {isa = PBXBuildFile; fileRef = 11DA2E041A3E03340051CBAC /* Workbook.xlsx */; };
 		11F4CA981A3DF855000CF71E /* libz.1.2.5.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 11F4CA971A3DF855000CF71E /* libz.1.2.5.dylib */; };
-		2790F4E31A139854001B0956 /* EHProfilesTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2790F4E21A139854001B0956 /* EHProfilesTableViewCell.m */; };
-		2790F4E61A1398D8001B0956 /* EHProfilesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2790F4E51A1398D8001B0956 /* EHProfilesViewController.m */; };
+		8390BB5E1A4856660032CC92 /* EHGeneralInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8390BB5C1A4856660032CC92 /* EHGeneralInfoCell.m */; };
+		8390BB5F1A4856660032CC92 /* EHGeneralInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8390BB5D1A4856660032CC92 /* EHGeneralInfoCell.xib */; };
 		83CD96951A3B432C00115744 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83CD96941A3B432C00115744 /* FacebookSDK.framework */; };
 		83CD969C1A3B5C5600115744 /* EHLinkCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 83CD96981A3B5C5600115744 /* EHLinkCell.m */; };
 		83CD969D1A3B5C5600115744 /* EHFacebookPopoverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83CD969A1A3B5C5600115744 /* EHFacebookPopoverViewController.m */; };
 		83CD969E1A3B5C5600115744 /* EHFacebookPopoverViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83CD969B1A3B5C5600115744 /* EHFacebookPopoverViewController.xib */; };
-		D90A1BBE1A16335F00B610C6 /* EHViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D90A1BBD1A16335F00B610C6 /* EHViewController.m */; };
 		D90A1BC11A16366500B610C6 /* EHSkillLevelPopup.m in Sources */ = {isa = PBXBuildFile; fileRef = D90A1BC01A16366500B610C6 /* EHSkillLevelPopup.m */; };
 		D90A1BC31A16371800B610C6 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D90A1BC21A16371800B610C6 /* AVFoundation.framework */; };
 		D912ADF61A4088F700D95DFB /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D912ADF51A4088F700D95DFB /* Images.xcassets */; };
@@ -89,9 +88,10 @@
 		D9BE33B11A3A0AFF0063B6C6 /* VoiceRecorders.m in Sources */ = {isa = PBXBuildFile; fileRef = D9BE33AD1A3A0AFF0063B6C6 /* VoiceRecorders.m */; };
 		D9BE54011A10B16700AD5D3D /* EHExternalCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D9BE53F81A10B16700AD5D3D /* EHExternalCell.m */; };
 		D9BE54021A10B16700AD5D3D /* EHExternalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D9BE53FA1A10B16700AD5D3D /* EHExternalViewController.m */; };
-		D9BE54041A10B16700AD5D3D /* EHProgrammingLanguagesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D9BE53FE1A10B16700AD5D3D /* EHProgrammingLanguagesViewController.m */; };
 		D9C4DC321A3840F400BC1AEA /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = D9C4DC311A3840F400BC1AEA /* Reachability.m */; };
 		D9C4DC361A38433D00BC1AEA /* EHCheckNetworkConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = D9C4DC351A38433D00BC1AEA /* EHCheckNetworkConnection.m */; };
+		D9DCA8EC1A43327700A1D157 /* EHChart.m in Sources */ = {isa = PBXBuildFile; fileRef = D9DCA8EB1A43327700A1D157 /* EHChart.m */; };
+		D9DCA8F31A4332FB00A1D157 /* EHRadarChart.m in Sources */ = {isa = PBXBuildFile; fileRef = D9DCA8F11A4332FB00A1D157 /* EHRadarChart.m */; };
 		D9E7B7971A31E079002DA710 /* Candidate.m in Sources */ = {isa = PBXBuildFile; fileRef = D9E7B78A1A31E079002DA710 /* Candidate.m */; };
 		D9E7B7981A31E079002DA710 /* ExternalInterview.m in Sources */ = {isa = PBXBuildFile; fileRef = D9E7B78C1A31E079002DA710 /* ExternalInterview.m */; };
 		D9E7B7991A31E079002DA710 /* Group.m in Sources */ = {isa = PBXBuildFile; fileRef = D9E7B78E1A31E079002DA710 /* Group.m */; };
@@ -120,7 +120,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		117146781A41E36800512072 /* Workbook.xlsx */ = {isa = PBXFileReference; lastKnownFileType = file; path = Workbook.xlsx; sourceTree = "<group>"; };
 		11DA2D7D1A3DF8C90051CBAC /* ZipArchive.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZipArchive.h; sourceTree = "<group>"; };
 		11DA2D7E1A3DF8C90051CBAC /* ZipArchive.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ZipArchive.mm; sourceTree = "<group>"; };
 		11DA2DF71A3DF9A40051CBAC /* crypt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = crypt.h; sourceTree = "<group>"; };
@@ -132,19 +131,17 @@
 		11DA2DFD1A3DF9A40051CBAC /* unzip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = unzip.h; sourceTree = "<group>"; };
 		11DA2DFE1A3DF9A40051CBAC /* zip.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = zip.c; sourceTree = "<group>"; };
 		11DA2DFF1A3DF9A40051CBAC /* zip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = zip.h; sourceTree = "<group>"; };
+		11DA2E041A3E03340051CBAC /* Workbook.xlsx */ = {isa = PBXFileReference; lastKnownFileType = file; path = Workbook.xlsx; sourceTree = "<group>"; };
 		11F4CA971A3DF855000CF71E /* libz.1.2.5.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.2.5.dylib; path = usr/lib/libz.1.2.5.dylib; sourceTree = SDKROOT; };
-		2790F4E11A139854001B0956 /* EHProfilesTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EHProfilesTableViewCell.h; path = Views/EHProfilesTableViewCell.h; sourceTree = "<group>"; };
-		2790F4E21A139854001B0956 /* EHProfilesTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EHProfilesTableViewCell.m; path = Views/EHProfilesTableViewCell.m; sourceTree = "<group>"; };
-		2790F4E41A1398D8001B0956 /* EHProfilesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EHProfilesViewController.h; path = ViewControllers/EHProfilesViewController.h; sourceTree = "<group>"; };
-		2790F4E51A1398D8001B0956 /* EHProfilesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EHProfilesViewController.m; path = ViewControllers/EHProfilesViewController.m; sourceTree = "<group>"; };
+		8390BB5B1A4856660032CC92 /* EHGeneralInfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EHGeneralInfoCell.h; sourceTree = "<group>"; };
+		8390BB5C1A4856660032CC92 /* EHGeneralInfoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EHGeneralInfoCell.m; sourceTree = "<group>"; };
+		8390BB5D1A4856660032CC92 /* EHGeneralInfoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EHGeneralInfoCell.xib; sourceTree = "<group>"; };
 		83CD96941A3B432C00115744 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FacebookSDK.framework; sourceTree = "<group>"; };
 		83CD96971A3B5C5600115744 /* EHLinkCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EHLinkCell.h; sourceTree = "<group>"; };
 		83CD96981A3B5C5600115744 /* EHLinkCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EHLinkCell.m; sourceTree = "<group>"; };
 		83CD96991A3B5C5600115744 /* EHFacebookPopoverViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EHFacebookPopoverViewController.h; sourceTree = "<group>"; };
 		83CD969A1A3B5C5600115744 /* EHFacebookPopoverViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EHFacebookPopoverViewController.m; sourceTree = "<group>"; };
 		83CD969B1A3B5C5600115744 /* EHFacebookPopoverViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EHFacebookPopoverViewController.xib; sourceTree = "<group>"; };
-		D90A1BBC1A16335F00B610C6 /* EHViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EHViewController.h; path = ViewControllers/EHViewController.h; sourceTree = "<group>"; };
-		D90A1BBD1A16335F00B610C6 /* EHViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EHViewController.m; path = ViewControllers/EHViewController.m; sourceTree = "<group>"; };
 		D90A1BBF1A16366500B610C6 /* EHSkillLevelPopup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EHSkillLevelPopup.h; path = ViewControllers/EHSkillLevelPopup.h; sourceTree = "<group>"; };
 		D90A1BC01A16366500B610C6 /* EHSkillLevelPopup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EHSkillLevelPopup.m; path = ViewControllers/EHSkillLevelPopup.m; sourceTree = "<group>"; };
 		D90A1BC21A16371800B610C6 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
@@ -222,12 +219,14 @@
 		D9BE53F81A10B16700AD5D3D /* EHExternalCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EHExternalCell.m; sourceTree = "<group>"; };
 		D9BE53F91A10B16700AD5D3D /* EHExternalViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EHExternalViewController.h; sourceTree = "<group>"; };
 		D9BE53FA1A10B16700AD5D3D /* EHExternalViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EHExternalViewController.m; sourceTree = "<group>"; };
-		D9BE53FD1A10B16700AD5D3D /* EHProgrammingLanguagesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EHProgrammingLanguagesViewController.h; sourceTree = "<group>"; };
-		D9BE53FE1A10B16700AD5D3D /* EHProgrammingLanguagesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EHProgrammingLanguagesViewController.m; sourceTree = "<group>"; };
 		D9C4DC301A3840F400BC1AEA /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		D9C4DC311A3840F400BC1AEA /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		D9C4DC341A38433D00BC1AEA /* EHCheckNetworkConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EHCheckNetworkConnection.h; sourceTree = "<group>"; };
 		D9C4DC351A38433D00BC1AEA /* EHCheckNetworkConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EHCheckNetworkConnection.m; sourceTree = "<group>"; };
+		D9DCA8EA1A43327700A1D157 /* EHChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EHChart.h; path = ExpertHelper/EHChart.h; sourceTree = "<group>"; };
+		D9DCA8EB1A43327700A1D157 /* EHChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EHChart.m; path = ExpertHelper/EHChart.m; sourceTree = "<group>"; };
+		D9DCA8F01A4332FB00A1D157 /* EHRadarChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EHRadarChart.h; sourceTree = "<group>"; };
+		D9DCA8F11A4332FB00A1D157 /* EHRadarChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EHRadarChart.m; sourceTree = "<group>"; };
 		D9E7B7891A31E079002DA710 /* Candidate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Candidate.h; sourceTree = "<group>"; };
 		D9E7B78A1A31E079002DA710 /* Candidate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Candidate.m; sourceTree = "<group>"; };
 		D9E7B78B1A31E079002DA710 /* ExternalInterview.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExternalInterview.h; sourceTree = "<group>"; };
@@ -265,12 +264,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D9B0CC671A03B17500544323 /* CoreGraphics.framework in Frameworks */,
 				11F4CA981A3DF855000CF71E /* libz.1.2.5.dylib in Frameworks */,
 				D9BE339C1A38B87B0063B6C6 /* QuartzCore.framework in Frameworks */,
 				D92204251A2F70D200B3BAAD /* CoreData.framework in Frameworks */,
 				D913A8001A2D0C3B00656CDE /* MessageUI.framework in Frameworks */,
 				D90A1BC31A16371800B610C6 /* AVFoundation.framework in Frameworks */,
-				D9B0CC671A03B17500544323 /* CoreGraphics.framework in Frameworks */,
 				83CD96951A3B432C00115744 /* FacebookSDK.framework in Frameworks */,
 				D9B0CC691A03B17500544323 /* UIKit.framework in Frameworks */,
 				D9B0CC651A03B17500544323 /* Foundation.framework in Frameworks */,
@@ -327,13 +326,11 @@
 		2790F4E01A139735001B0956 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				D9DCA8ED1A43329D00A1D157 /* Chart */,
 				83CD96961A3B5C0D00115744 /* EHPopoverController */,
 				D931449A1A376D2000AB470E /* HR */,
 				D9D836A61A1F402D00148854 /* External */,
-				D9D836A51A1F3FCC00148854 /* ProgrammingLanguages */,
 				D9D836A41A1F3F1700148854 /* Recruiter */,
-				D9D836A31A1F3F0600148854 /* Profiles */,
-				D9D836A21A1F3EA800148854 /* VoiceRecorder */,
 				D967F2121A1E4E290009639C /* ITA */,
 			);
 			name = ViewControllers;
@@ -516,7 +513,7 @@
 		D9B0CC6A1A03B17500544323 /* ExpertHelper */ = {
 			isa = PBXGroup;
 			children = (
-				117146781A41E36800512072 /* Workbook.xlsx */,
+				11DA2E041A3E03340051CBAC /* Workbook.xlsx */,
 				D93583FD1A1CB3AD00135A2D /* WorkWithEvents */,
 				2790F4E01A139735001B0956 /* ViewControllers */,
 				2790F4DF1A1396EB001B0956 /* Views */,
@@ -584,6 +581,9 @@
 		D9D3658B1A375A90004D919E /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				8390BB5B1A4856660032CC92 /* EHGeneralInfoCell.h */,
+				8390BB5C1A4856660032CC92 /* EHGeneralInfoCell.m */,
+				8390BB5D1A4856660032CC92 /* EHGeneralInfoCell.xib */,
 				D9BE33951A38AFA90063B6C6 /* EHRoundedTextView.h */,
 				D9BE33961A38AFA90063B6C6 /* EHRoundedTextView.m */,
 				D9BE33971A38AFA90063B6C6 /* EHRoundedAngleTextField.h */,
@@ -608,26 +608,6 @@
 			name = SkillLevelPopup;
 			sourceTree = "<group>";
 		};
-		D9D836A21A1F3EA800148854 /* VoiceRecorder */ = {
-			isa = PBXGroup;
-			children = (
-				D90A1BBC1A16335F00B610C6 /* EHViewController.h */,
-				D90A1BBD1A16335F00B610C6 /* EHViewController.m */,
-			);
-			name = VoiceRecorder;
-			sourceTree = "<group>";
-		};
-		D9D836A31A1F3F0600148854 /* Profiles */ = {
-			isa = PBXGroup;
-			children = (
-				2790F4E11A139854001B0956 /* EHProfilesTableViewCell.h */,
-				2790F4E21A139854001B0956 /* EHProfilesTableViewCell.m */,
-				2790F4E41A1398D8001B0956 /* EHProfilesViewController.h */,
-				2790F4E51A1398D8001B0956 /* EHProfilesViewController.m */,
-			);
-			name = Profiles;
-			sourceTree = "<group>";
-		};
 		D9D836A41A1F3F1700148854 /* Recruiter */ = {
 			isa = PBXGroup;
 			children = (
@@ -635,15 +615,6 @@
 				D967F20A1A1E305D0009639C /* EHRecruiterViewController.m */,
 			);
 			name = Recruiter;
-			sourceTree = "<group>";
-		};
-		D9D836A51A1F3FCC00148854 /* ProgrammingLanguages */ = {
-			isa = PBXGroup;
-			children = (
-				D9BE53FD1A10B16700AD5D3D /* EHProgrammingLanguagesViewController.h */,
-				D9BE53FE1A10B16700AD5D3D /* EHProgrammingLanguagesViewController.m */,
-			);
-			name = ProgrammingLanguages;
 			sourceTree = "<group>";
 		};
 		D9D836A61A1F402D00148854 /* External */ = {
@@ -659,6 +630,18 @@
 				D9AD2EB61A3384D2003D7E14 /* EHRecorderCommentController.m */,
 			);
 			name = External;
+			sourceTree = "<group>";
+		};
+		D9DCA8ED1A43329D00A1D157 /* Chart */ = {
+			isa = PBXGroup;
+			children = (
+				D9DCA8EA1A43327700A1D157 /* EHChart.h */,
+				D9DCA8EB1A43327700A1D157 /* EHChart.m */,
+				D9DCA8F01A4332FB00A1D157 /* EHRadarChart.h */,
+				D9DCA8F11A4332FB00A1D157 /* EHRadarChart.m */,
+			);
+			name = Chart;
+			path = ..;
 			sourceTree = "<group>";
 		};
 		D9DF27D21A1BDABA008555E4 /* Controllers */ = {
@@ -771,13 +754,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				D912ADF61A4088F700D95DFB /* Images.xcassets in Resources */,
+				8390BB5F1A4856660032CC92 /* EHGeneralInfoCell.xib in Resources */,
 				D9B0CC7B1A03B17500544323 /* Main_iPad.storyboard in Resources */,
 				D92B76E51A1F847F00B76F5E /* EHSkillLevelPopup.xib in Resources */,
+				11DA2E051A3E03340051CBAC /* Workbook.xlsx in Resources */,
 				D92204741A2FAA4300B3BAAD /* mogend.sh in Resources */,
 				D92204721A2FAA4300B3BAAD /* mogen.sh in Resources */,
 				D9B0CC781A03B17500544323 /* Main_iPhone.storyboard in Resources */,
 				83CD969E1A3B5C5600115744 /* EHFacebookPopoverViewController.xib in Resources */,
-				117146791A41E36800512072 /* Workbook.xlsx in Resources */,
 				D9B0CC6F1A03B17500544323 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -818,19 +802,19 @@
 				D9E7B79B1A31E079002DA710 /* Recruiter.m in Sources */,
 				D9BE33B01A3A0AFF0063B6C6 /* VoiceRecorders.m in Sources */,
 				D967F2111A1E4DEE0009639C /* EHITAViewControllerCell.m in Sources */,
-				2790F4E31A139854001B0956 /* EHProfilesTableViewCell.m in Sources */,
 				83CD969D1A3B5C5600115744 /* EHFacebookPopoverViewController.m in Sources */,
+				D9DCA8F31A4332FB00A1D157 /* EHRadarChart.m in Sources */,
 				D9E7B7AE1A31E0A3002DA710 /* _Group.m in Sources */,
 				D920F3E91A361847002BC81A /* EHRecorderCommaentCell.m in Sources */,
 				D9E7B79D1A31E079002DA710 /* SkillsLevels.m in Sources */,
 				D9B0CC711A03B17500544323 /* main.m in Sources */,
 				D9BE33A81A3A0AEF0063B6C6 /* _VoiceRecorders.m in Sources */,
+				D9DCA8EC1A43327700A1D157 /* EHChart.m in Sources */,
 				D9F15AD11A1A575A00E4DC62 /* EHListOfInterviewsViewController.m in Sources */,
 				D967F20B1A1E305D0009639C /* EHRecruiterViewController.m in Sources */,
 				11DA2E021A3DF9A40051CBAC /* unzip.c in Sources */,
 				D9BE54021A10B16700AD5D3D /* EHExternalViewController.m in Sources */,
 				D967F2101A1E4DEE0009639C /* EHITAViewController.m in Sources */,
-				2790F4E61A1398D8001B0956 /* EHProfilesViewController.m in Sources */,
 				83CD969C1A3B5C5600115744 /* EHLinkCell.m in Sources */,
 				D9BE33991A38AFA90063B6C6 /* EHRoundedTextView.m in Sources */,
 				D93144971A376D1900AB470E /* EHAddRecruiterController.m in Sources */,
@@ -844,11 +828,11 @@
 				D9998EE41A221CE9002E019A /* EHRevealViewController.m in Sources */,
 				D9BE338E1A3894610063B6C6 /* EHSkillsProfilesParser.m in Sources */,
 				D9BE338B1A3882E00063B6C6 /* EHInterviewViewCell.m in Sources */,
-				D9BE54041A10B16700AD5D3D /* EHProgrammingLanguagesViewController.m in Sources */,
 				D9C4DC361A38433D00BC1AEA /* EHCheckNetworkConnection.m in Sources */,
 				D9BE33AE1A3A0AFF0063B6C6 /* GeneralInfo.m in Sources */,
 				D9998EE01A221CE9002E019A /* EHCalendarEventsParser.m in Sources */,
 				D9BE33941A38AEDC0063B6C6 /* EHCandidateProfileViewController.m in Sources */,
+				8390BB5E1A4856660032CC92 /* EHGeneralInfoCell.m in Sources */,
 				D9E7B79A1A31E079002DA710 /* InterviewAppointment.m in Sources */,
 				D92204701A2FAA4300B3BAAD /* Model.xcdatamodeld in Sources */,
 				D9E7B7991A31E079002DA710 /* Group.m in Sources */,
@@ -856,7 +840,6 @@
 				11DA2E031A3DF9A40051CBAC /* zip.c in Sources */,
 				D9998EE11A221CE9002E019A /* EHCalendarFormViewController.m in Sources */,
 				D9B0CC751A03B17500544323 /* EHAppDelegate.m in Sources */,
-				D90A1BBE1A16335F00B610C6 /* EHViewController.m in Sources */,
 				D9998EE21A221CE9002E019A /* EHEventsGetInfoParser.m in Sources */,
 				D90A1BC11A16366500B610C6 /* EHSkillLevelPopup.m in Sources */,
 				D9BE54011A10B16700AD5D3D /* EHExternalCell.m in Sources */,
