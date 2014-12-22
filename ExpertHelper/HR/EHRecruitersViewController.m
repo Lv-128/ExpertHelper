@@ -93,25 +93,6 @@
         }
         
     }
-
-    
- //   [cell.skypeBut addTarget:self action:@selector(skypeMe:) forControlEvents:UIControlEventTouchUpInside];
-   // [cell.mailBut addTarget:self action:@selector(sendEmail:) forControlEvents:UIControlEventTouchUpInside];
-    
-    
-//    
-//    UITapGestureRecognizer *sendEmailTp = [[UITapGestureRecognizer alloc] initWithTarget:self
-//                                                                                  action:@selector(sendEmail:)];
-//    [sendEmailTp setDelegate:self];
-//    [cell.mailBut addGestureRecognizer:sendEmailTp];
-//    sendEmailTp.numberOfTapsRequired = 1;
-//    
-//    UITapGestureRecognizer *sendEmailTp2 = [[UITapGestureRecognizer alloc] initWithTarget:self
-//                                                                                   action:@selector(skypeMe:)];
-//    [sendEmailTp2 setDelegate:self];
-//    
-//    [cell.skypeBut addGestureRecognizer:sendEmailTp2];
-//    sendEmailTp2.numberOfTapsRequired = 1;
     
     return cell;
 }
@@ -142,50 +123,42 @@
 }
 
 
-
-
-
-//- (void)onSkypeButton:(UIButton *)button {
-//    NSIndexPath *indexPath = [self indexPathOfButton:button];
-//    EHWeek *week = [self.sortedWeeks objectAtIndex:indexPath.section];
-//    NSArray *eventsOnThisDay = week.interviews;
-//    __unused  InterviewAppointment *event = [eventsOnThisDay objectAtIndex:indexPath.row];
-//    
-//    
-//    
-//    BOOL installed = [[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"skype:"]];
-//    if(installed)
-//    {
-//        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"skype:%@?call",event.idRecruiter.skypeAccount]]];
-//    }
-//    else
-//    {
-//        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://itunes.com/apps/skype/skype"]];
-//    }
-//    
-//}
-
 - (IBAction)sendEmailMsg:(NSString*)address
 {
-    
     
     MFMailComposeViewController *mailController = [[MFMailComposeViewController alloc]init];
     [mailController setMailComposeDelegate:self];
     
-    NSArray *addressArray = [[NSArray alloc]initWithObjects:address, nil];
+    NSArray *addressArray;
+    
+   if(![address isEqualToString:@"unknown@unknown.com"])
+   {
+    (addressArray = [[NSArray alloc]initWithObjects:address, nil]);
     [mailController setMessageBody:@"Print message here!" isHTML:NO];
     [mailController setToRecipients:addressArray];
     [mailController setSubject:@""];
     [mailController setModalTransitionStyle:UIModalTransitionStyleFlipHorizontal];
-    //  [mailController addAttachmentData:<#(NSData *)#> mimeType:<#(NSString *)#> fileName:<#(NSString *)#>]
     [self presentViewController:mailController animated:YES completion: nil];
+   }   
+    else
+    {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Warning"
+                                                        message:@"Sorry, can't find recruiter's email"
+                                                       delegate:nil
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil];
+        [alert show];
+    }
+   
     
     
     
 }
 
 
-- (void)mailComposeController:(MFMailComposeViewController *) controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error{
+- (void)mailComposeController:(MFMailComposeViewController *) controller
+          didFinishWithResult:(MFMailComposeResult)result
+                        error:(NSError *)error{
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 - (NSIndexPath *)indexPathOfButton:(UIButton *)button {
@@ -199,43 +172,41 @@
 - (IBAction)sendEmail:(id)sender {
     UIButton *button = sender;
     NSIndexPath *indexPath = [self indexPathOfButton:button];
-    //NSIndexPath *indexPath  = [NSIndexPath indexPathForRow:button.tag inSection:0];
     EHListOfRecruitersCell *cell = (EHListOfRecruitersCell *)[_tableView cellForRowAtIndexPath:indexPath];
-    
     [self sendEmailMsg:cell.recruiterEmail.text];
-    
     
 }
 
 - (IBAction)skypeMe:(id)sender{
     UIButton *btn = (UIButton *)sender;
-    int index = [btn tag];
-    NSIndexPath *indexPath = [[NSIndexPath alloc] initWithIndex:index];
-    
+    NSIndexPath *indexPath = [self indexPathOfButton:btn];
     
     EHListOfRecruitersCell *cell = (EHListOfRecruitersCell *)[_tableView cellForRowAtIndexPath:indexPath];
     
-    BOOL installed = [[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"skype:"]];
-    if(installed)
+    if(![cell.skypeLabel.text isEqualToString:@"echo123"])
     {
-        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"skype:%@?call",cell.skypeLabel.text]]];
+        BOOL installed = [[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"skype:"]];
+        if(installed)
+        {
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"skype:%@?call",
+                                                                             cell.skypeLabel.text]]];
+        }
+        else
+        {
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://itunes.com/apps/skype/skype"]];
+        }
     }
     else
     {
-        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://itunes.com/apps/skype/skype"]];
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Warning"
+                                                        message:@"Sorry, can't find recruiter's skype"
+                                                       delegate:nil
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil];
+        [alert show];
     }
     
 }
-/*- (IBAction)sendEmail:(id)sender
-{
-    UITapGestureRecognizer *tapGR = (UITapGestureRecognizer*)sender;
-    
-    CGPoint touchLocation = [tapGR locationOfTouch:0 inView:self.tableView];
-    
-    NSIndexPath *indexPath = [_tableView indexPathForRowAtPoint: touchLocation];
-    
-    EHListOfRecruitersCell *cell = (EHListOfRecruitersCell *)[_tableView cellForRowAtIndexPath:indexPath];
-    
-    [self sendEmailMsg:cell.recruiterEmail.text];}*/
+
 
 @end

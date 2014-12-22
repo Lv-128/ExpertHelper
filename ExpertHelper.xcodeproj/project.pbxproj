@@ -48,9 +48,6 @@
 		D92204741A2FAA4300B3BAAD /* mogend.sh in Resources */ = {isa = PBXBuildFile; fileRef = D922044F1A2FAA4300B3BAAD /* mogend.sh */; };
 		D92204751A2FAA4300B3BAAD /* mogend.sh in Resources */ = {isa = PBXBuildFile; fileRef = D922044F1A2FAA4300B3BAAD /* mogend.sh */; };
 		D92B76E51A1F847F00B76F5E /* EHSkillLevelPopup.xib in Resources */ = {isa = PBXBuildFile; fileRef = D92B76E31A1F847F00B76F5E /* EHSkillLevelPopup.xib */; };
-		D93144971A376D1900AB470E /* EHAddRecruiterController.m in Sources */ = {isa = PBXBuildFile; fileRef = D93144921A376D1900AB470E /* EHAddRecruiterController.m */; };
-		D93144981A376D1900AB470E /* EHRecruitersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D93144941A376D1900AB470E /* EHRecruitersViewController.m */; };
-		D93144991A376D1900AB470E /* EHListOfRecruitersCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D93144961A376D1900AB470E /* EHListOfRecruitersCell.m */; };
 		D967F20B1A1E305D0009639C /* EHRecruiterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D967F20A1A1E305D0009639C /* EHRecruiterViewController.m */; };
 		D967F2101A1E4DEE0009639C /* EHITAViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D967F20D1A1E4DEE0009639C /* EHITAViewController.m */; };
 		D967F2111A1E4DEE0009639C /* EHITAViewControllerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D967F20F1A1E4DEE0009639C /* EHITAViewControllerCell.m */; };
@@ -89,9 +86,12 @@
 		D9BE54011A10B16700AD5D3D /* EHExternalCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D9BE53F81A10B16700AD5D3D /* EHExternalCell.m */; };
 		D9BE54021A10B16700AD5D3D /* EHExternalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D9BE53FA1A10B16700AD5D3D /* EHExternalViewController.m */; };
 		D9C4DC321A3840F400BC1AEA /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = D9C4DC311A3840F400BC1AEA /* Reachability.m */; };
-		D9C4DC361A38433D00BC1AEA /* EHCheckNetworkConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = D9C4DC351A38433D00BC1AEA /* EHCheckNetworkConnection.m */; };
-		D9DCA8EC1A43327700A1D157 /* EHChart.m in Sources */ = {isa = PBXBuildFile; fileRef = D9DCA8EB1A43327700A1D157 /* EHChart.m */; };
-		D9DCA8F31A4332FB00A1D157 /* EHRadarChart.m in Sources */ = {isa = PBXBuildFile; fileRef = D9DCA8F11A4332FB00A1D157 /* EHRadarChart.m */; };
+		D9D748241A4866210074160F /* EHRadarChart.m in Sources */ = {isa = PBXBuildFile; fileRef = D9D748231A4866210074160F /* EHRadarChart.m */; };
+		D9D748271A4866470074160F /* EHChart.m in Sources */ = {isa = PBXBuildFile; fileRef = D9D748261A4866470074160F /* EHChart.m */; };
+		D9D7482A1A4866940074160F /* EHListOfRecruitersCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D9D748291A4866940074160F /* EHListOfRecruitersCell.m */; };
+		D9D7482F1A4866B40074160F /* EHAddRecruiterController.m in Sources */ = {isa = PBXBuildFile; fileRef = D9D7482C1A4866B40074160F /* EHAddRecruiterController.m */; };
+		D9D748301A4866B40074160F /* EHRecruitersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D9D7482E1A4866B40074160F /* EHRecruitersViewController.m */; };
+		D9D748331A4866F60074160F /* EHCheckNetworkConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = D9D748321A4866F60074160F /* EHCheckNetworkConnection.m */; };
 		D9E7B7971A31E079002DA710 /* Candidate.m in Sources */ = {isa = PBXBuildFile; fileRef = D9E7B78A1A31E079002DA710 /* Candidate.m */; };
 		D9E7B7981A31E079002DA710 /* ExternalInterview.m in Sources */ = {isa = PBXBuildFile; fileRef = D9E7B78C1A31E079002DA710 /* ExternalInterview.m */; };
 		D9E7B7991A31E079002DA710 /* Group.m in Sources */ = {isa = PBXBuildFile; fileRef = D9E7B78E1A31E079002DA710 /* Group.m */; };
@@ -157,12 +157,6 @@
 		D922044F1A2FAA4300B3BAAD /* mogend.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = mogend.sh; sourceTree = "<group>"; };
 		D92204761A2FAF6900B3BAAD /* EHConstantsDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EHConstantsDefines.h; sourceTree = "<group>"; };
 		D92B76E31A1F847F00B76F5E /* EHSkillLevelPopup.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EHSkillLevelPopup.xib; sourceTree = "<group>"; };
-		D93144911A376D1900AB470E /* EHAddRecruiterController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EHAddRecruiterController.h; sourceTree = "<group>"; };
-		D93144921A376D1900AB470E /* EHAddRecruiterController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EHAddRecruiterController.m; sourceTree = "<group>"; };
-		D93144931A376D1900AB470E /* EHRecruitersViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EHRecruitersViewController.h; sourceTree = "<group>"; };
-		D93144941A376D1900AB470E /* EHRecruitersViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EHRecruitersViewController.m; sourceTree = "<group>"; };
-		D93144951A376D1900AB470E /* EHListOfRecruitersCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EHListOfRecruitersCell.h; sourceTree = "<group>"; };
-		D93144961A376D1900AB470E /* EHListOfRecruitersCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EHListOfRecruitersCell.m; sourceTree = "<group>"; };
 		D967F2091A1E305D0009639C /* EHRecruiterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EHRecruiterViewController.h; sourceTree = "<group>"; };
 		D967F20A1A1E305D0009639C /* EHRecruiterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EHRecruiterViewController.m; sourceTree = "<group>"; };
 		D967F20C1A1E4DEE0009639C /* EHITAViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EHITAViewController.h; path = ExpertHelper/EHITAViewController.h; sourceTree = "<group>"; };
@@ -221,12 +215,18 @@
 		D9BE53FA1A10B16700AD5D3D /* EHExternalViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EHExternalViewController.m; sourceTree = "<group>"; };
 		D9C4DC301A3840F400BC1AEA /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		D9C4DC311A3840F400BC1AEA /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
-		D9C4DC341A38433D00BC1AEA /* EHCheckNetworkConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EHCheckNetworkConnection.h; sourceTree = "<group>"; };
-		D9C4DC351A38433D00BC1AEA /* EHCheckNetworkConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EHCheckNetworkConnection.m; sourceTree = "<group>"; };
-		D9DCA8EA1A43327700A1D157 /* EHChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EHChart.h; path = ExpertHelper/EHChart.h; sourceTree = "<group>"; };
-		D9DCA8EB1A43327700A1D157 /* EHChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EHChart.m; path = ExpertHelper/EHChart.m; sourceTree = "<group>"; };
-		D9DCA8F01A4332FB00A1D157 /* EHRadarChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EHRadarChart.h; sourceTree = "<group>"; };
-		D9DCA8F11A4332FB00A1D157 /* EHRadarChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EHRadarChart.m; sourceTree = "<group>"; };
+		D9D748221A4866210074160F /* EHRadarChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EHRadarChart.h; path = ExpertHelper/Chart/EHRadarChart.h; sourceTree = "<group>"; };
+		D9D748231A4866210074160F /* EHRadarChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EHRadarChart.m; path = ExpertHelper/Chart/EHRadarChart.m; sourceTree = "<group>"; };
+		D9D748251A4866470074160F /* EHChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EHChart.h; path = ExpertHelper/Chart/EHChart.h; sourceTree = "<group>"; };
+		D9D748261A4866470074160F /* EHChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EHChart.m; path = ExpertHelper/Chart/EHChart.m; sourceTree = "<group>"; };
+		D9D748281A4866940074160F /* EHListOfRecruitersCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EHListOfRecruitersCell.h; path = HR/EHListOfRecruitersCell.h; sourceTree = "<group>"; };
+		D9D748291A4866940074160F /* EHListOfRecruitersCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EHListOfRecruitersCell.m; path = HR/EHListOfRecruitersCell.m; sourceTree = "<group>"; };
+		D9D7482B1A4866B40074160F /* EHAddRecruiterController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EHAddRecruiterController.h; path = HR/EHAddRecruiterController.h; sourceTree = "<group>"; };
+		D9D7482C1A4866B40074160F /* EHAddRecruiterController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EHAddRecruiterController.m; path = HR/EHAddRecruiterController.m; sourceTree = "<group>"; };
+		D9D7482D1A4866B40074160F /* EHRecruitersViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EHRecruitersViewController.h; path = HR/EHRecruitersViewController.h; sourceTree = "<group>"; };
+		D9D7482E1A4866B40074160F /* EHRecruitersViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EHRecruitersViewController.m; path = HR/EHRecruitersViewController.m; sourceTree = "<group>"; };
+		D9D748311A4866F60074160F /* EHCheckNetworkConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EHCheckNetworkConnection.h; path = CheckNetConnection/EHCheckNetworkConnection.h; sourceTree = "<group>"; };
+		D9D748321A4866F60074160F /* EHCheckNetworkConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EHCheckNetworkConnection.m; path = CheckNetConnection/EHCheckNetworkConnection.m; sourceTree = "<group>"; };
 		D9E7B7891A31E079002DA710 /* Candidate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Candidate.h; sourceTree = "<group>"; };
 		D9E7B78A1A31E079002DA710 /* Candidate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Candidate.m; sourceTree = "<group>"; };
 		D9E7B78B1A31E079002DA710 /* ExternalInterview.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExternalInterview.h; sourceTree = "<group>"; };
@@ -421,11 +421,11 @@
 		D931449A1A376D2000AB470E /* HR */ = {
 			isa = PBXGroup;
 			children = (
+				D9D7482D1A4866B40074160F /* EHRecruitersViewController.h */,
+				D9D7482E1A4866B40074160F /* EHRecruitersViewController.m */,
+				D9D748281A4866940074160F /* EHListOfRecruitersCell.h */,
+				D9D748291A4866940074160F /* EHListOfRecruitersCell.m */,
 				D9EA891A1A3EC25500908CD5 /* help controller */,
-				D93144931A376D1900AB470E /* EHRecruitersViewController.h */,
-				D93144941A376D1900AB470E /* EHRecruitersViewController.m */,
-				D93144951A376D1900AB470E /* EHListOfRecruitersCell.h */,
-				D93144961A376D1900AB470E /* EHListOfRecruitersCell.m */,
 				D9EA891B1A3EC2F200908CD5 /* check internet connection */,
 			);
 			name = HR;
@@ -635,10 +635,10 @@
 		D9DCA8ED1A43329D00A1D157 /* Chart */ = {
 			isa = PBXGroup;
 			children = (
-				D9DCA8EA1A43327700A1D157 /* EHChart.h */,
-				D9DCA8EB1A43327700A1D157 /* EHChart.m */,
-				D9DCA8F01A4332FB00A1D157 /* EHRadarChart.h */,
-				D9DCA8F11A4332FB00A1D157 /* EHRadarChart.m */,
+				D9D748251A4866470074160F /* EHChart.h */,
+				D9D748261A4866470074160F /* EHChart.m */,
+				D9D748221A4866210074160F /* EHRadarChart.h */,
+				D9D748231A4866210074160F /* EHRadarChart.m */,
 			);
 			name = Chart;
 			path = ..;
@@ -660,8 +660,8 @@
 		D9EA891A1A3EC25500908CD5 /* help controller */ = {
 			isa = PBXGroup;
 			children = (
-				D93144911A376D1900AB470E /* EHAddRecruiterController.h */,
-				D93144921A376D1900AB470E /* EHAddRecruiterController.m */,
+				D9D7482B1A4866B40074160F /* EHAddRecruiterController.h */,
+				D9D7482C1A4866B40074160F /* EHAddRecruiterController.m */,
 			);
 			name = "help controller";
 			sourceTree = "<group>";
@@ -669,8 +669,8 @@
 		D9EA891B1A3EC2F200908CD5 /* check internet connection */ = {
 			isa = PBXGroup;
 			children = (
-				D9C4DC341A38433D00BC1AEA /* EHCheckNetworkConnection.h */,
-				D9C4DC351A38433D00BC1AEA /* EHCheckNetworkConnection.m */,
+				D9D748311A4866F60074160F /* EHCheckNetworkConnection.h */,
+				D9D748321A4866F60074160F /* EHCheckNetworkConnection.m */,
 			);
 			name = "check internet connection";
 			sourceTree = "<group>";
@@ -800,35 +800,34 @@
 			buildActionMask = 2147483647;
 			files = (
 				D9E7B79B1A31E079002DA710 /* Recruiter.m in Sources */,
+				D9D748301A4866B40074160F /* EHRecruitersViewController.m in Sources */,
 				D9BE33B01A3A0AFF0063B6C6 /* VoiceRecorders.m in Sources */,
 				D967F2111A1E4DEE0009639C /* EHITAViewControllerCell.m in Sources */,
 				83CD969D1A3B5C5600115744 /* EHFacebookPopoverViewController.m in Sources */,
-				D9DCA8F31A4332FB00A1D157 /* EHRadarChart.m in Sources */,
 				D9E7B7AE1A31E0A3002DA710 /* _Group.m in Sources */,
 				D920F3E91A361847002BC81A /* EHRecorderCommaentCell.m in Sources */,
 				D9E7B79D1A31E079002DA710 /* SkillsLevels.m in Sources */,
 				D9B0CC711A03B17500544323 /* main.m in Sources */,
 				D9BE33A81A3A0AEF0063B6C6 /* _VoiceRecorders.m in Sources */,
-				D9DCA8EC1A43327700A1D157 /* EHChart.m in Sources */,
 				D9F15AD11A1A575A00E4DC62 /* EHListOfInterviewsViewController.m in Sources */,
 				D967F20B1A1E305D0009639C /* EHRecruiterViewController.m in Sources */,
 				11DA2E021A3DF9A40051CBAC /* unzip.c in Sources */,
 				D9BE54021A10B16700AD5D3D /* EHExternalViewController.m in Sources */,
 				D967F2101A1E4DEE0009639C /* EHITAViewController.m in Sources */,
 				83CD969C1A3B5C5600115744 /* EHLinkCell.m in Sources */,
+				D9D7482A1A4866940074160F /* EHListOfRecruitersCell.m in Sources */,
 				D9BE33991A38AFA90063B6C6 /* EHRoundedTextView.m in Sources */,
-				D93144971A376D1900AB470E /* EHAddRecruiterController.m in Sources */,
+				D9D748241A4866210074160F /* EHRadarChart.m in Sources */,
 				11DA2E011A3DF9A40051CBAC /* mztools.c in Sources */,
+				D9D748271A4866470074160F /* EHChart.m in Sources */,
 				D920F3EC1A361BFF002BC81A /* EHPlayPause.m in Sources */,
 				11DA2E001A3DF9A40051CBAC /* ioapi.c in Sources */,
 				D9BE339A1A38AFA90063B6C6 /* EHRoundedAngleTextField.m in Sources */,
 				D9E7B7981A31E079002DA710 /* ExternalInterview.m in Sources */,
 				D9E7B7AF1A31E0A3002DA710 /* _InterviewAppointment.m in Sources */,
-				D93144981A376D1900AB470E /* EHRecruitersViewController.m in Sources */,
 				D9998EE41A221CE9002E019A /* EHRevealViewController.m in Sources */,
 				D9BE338E1A3894610063B6C6 /* EHSkillsProfilesParser.m in Sources */,
 				D9BE338B1A3882E00063B6C6 /* EHInterviewViewCell.m in Sources */,
-				D9C4DC361A38433D00BC1AEA /* EHCheckNetworkConnection.m in Sources */,
 				D9BE33AE1A3A0AFF0063B6C6 /* GeneralInfo.m in Sources */,
 				D9998EE01A221CE9002E019A /* EHCalendarEventsParser.m in Sources */,
 				D9BE33941A38AEDC0063B6C6 /* EHCandidateProfileViewController.m in Sources */,
@@ -844,13 +843,14 @@
 				D90A1BC11A16366500B610C6 /* EHSkillLevelPopup.m in Sources */,
 				D9BE54011A10B16700AD5D3D /* EHExternalCell.m in Sources */,
 				D9E7B7B01A31E0A3002DA710 /* _Recruiter.m in Sources */,
-				D93144991A376D1900AB470E /* EHListOfRecruitersCell.m in Sources */,
 				D9E7B7971A31E079002DA710 /* Candidate.m in Sources */,
 				D9E7B79C1A31E079002DA710 /* Skills.m in Sources */,
 				D9E7B7AC1A31E0A3002DA710 /* _Candidate.m in Sources */,
+				D9D7482F1A4866B40074160F /* EHAddRecruiterController.m in Sources */,
 				D9BE33A61A3A0AEF0063B6C6 /* _GeneralInfo.m in Sources */,
 				D9AD2EB71A3384D2003D7E14 /* EHRecorderCommentController.m in Sources */,
 				D9E7B7B11A31E0A3002DA710 /* _Skills.m in Sources */,
+				D9D748331A4866F60074160F /* EHCheckNetworkConnection.m in Sources */,
 				D9C4DC321A3840F400BC1AEA /* Reachability.m in Sources */,
 				11DA2D7F1A3DF8C90051CBAC /* ZipArchive.mm in Sources */,
 				D9E7B7AD1A31E0A3002DA710 /* _ExternalInterview.m in Sources */,
