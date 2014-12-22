@@ -28,6 +28,8 @@
 		11DA2E031A3DF9A40051CBAC /* zip.c in Sources */ = {isa = PBXBuildFile; fileRef = 11DA2DFE1A3DF9A40051CBAC /* zip.c */; };
 		11DA2E051A3E03340051CBAC /* Workbook.xlsx in Resources */ = {isa = PBXBuildFile; fileRef = 11DA2E041A3E03340051CBAC /* Workbook.xlsx */; };
 		11F4CA981A3DF855000CF71E /* libz.1.2.5.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 11F4CA971A3DF855000CF71E /* libz.1.2.5.dylib */; };
+		8390BB5E1A4856660032CC92 /* EHGeneralInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8390BB5C1A4856660032CC92 /* EHGeneralInfoCell.m */; };
+		8390BB5F1A4856660032CC92 /* EHGeneralInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8390BB5D1A4856660032CC92 /* EHGeneralInfoCell.xib */; };
 		83CD96951A3B432C00115744 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83CD96941A3B432C00115744 /* FacebookSDK.framework */; };
 		83CD969C1A3B5C5600115744 /* EHLinkCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 83CD96981A3B5C5600115744 /* EHLinkCell.m */; };
 		83CD969D1A3B5C5600115744 /* EHFacebookPopoverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83CD969A1A3B5C5600115744 /* EHFacebookPopoverViewController.m */; };
@@ -131,6 +133,9 @@
 		11DA2DFF1A3DF9A40051CBAC /* zip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = zip.h; sourceTree = "<group>"; };
 		11DA2E041A3E03340051CBAC /* Workbook.xlsx */ = {isa = PBXFileReference; lastKnownFileType = file; path = Workbook.xlsx; sourceTree = "<group>"; };
 		11F4CA971A3DF855000CF71E /* libz.1.2.5.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.2.5.dylib; path = usr/lib/libz.1.2.5.dylib; sourceTree = SDKROOT; };
+		8390BB5B1A4856660032CC92 /* EHGeneralInfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EHGeneralInfoCell.h; sourceTree = "<group>"; };
+		8390BB5C1A4856660032CC92 /* EHGeneralInfoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EHGeneralInfoCell.m; sourceTree = "<group>"; };
+		8390BB5D1A4856660032CC92 /* EHGeneralInfoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EHGeneralInfoCell.xib; sourceTree = "<group>"; };
 		83CD96941A3B432C00115744 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FacebookSDK.framework; sourceTree = "<group>"; };
 		83CD96971A3B5C5600115744 /* EHLinkCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EHLinkCell.h; sourceTree = "<group>"; };
 		83CD96981A3B5C5600115744 /* EHLinkCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EHLinkCell.m; sourceTree = "<group>"; };
@@ -576,6 +581,9 @@
 		D9D3658B1A375A90004D919E /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				8390BB5B1A4856660032CC92 /* EHGeneralInfoCell.h */,
+				8390BB5C1A4856660032CC92 /* EHGeneralInfoCell.m */,
+				8390BB5D1A4856660032CC92 /* EHGeneralInfoCell.xib */,
 				D9BE33951A38AFA90063B6C6 /* EHRoundedTextView.h */,
 				D9BE33961A38AFA90063B6C6 /* EHRoundedTextView.m */,
 				D9BE33971A38AFA90063B6C6 /* EHRoundedAngleTextField.h */,
@@ -746,6 +754,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D912ADF61A4088F700D95DFB /* Images.xcassets in Resources */,
+				8390BB5F1A4856660032CC92 /* EHGeneralInfoCell.xib in Resources */,
 				D9B0CC7B1A03B17500544323 /* Main_iPad.storyboard in Resources */,
 				D92B76E51A1F847F00B76F5E /* EHSkillLevelPopup.xib in Resources */,
 				11DA2E051A3E03340051CBAC /* Workbook.xlsx in Resources */,
@@ -823,6 +832,7 @@
 				D9BE33AE1A3A0AFF0063B6C6 /* GeneralInfo.m in Sources */,
 				D9998EE01A221CE9002E019A /* EHCalendarEventsParser.m in Sources */,
 				D9BE33941A38AEDC0063B6C6 /* EHCandidateProfileViewController.m in Sources */,
+				8390BB5E1A4856660032CC92 /* EHGeneralInfoCell.m in Sources */,
 				D9E7B79A1A31E079002DA710 /* InterviewAppointment.m in Sources */,
 				D92204701A2FAA4300B3BAAD /* Model.xcdatamodeld in Sources */,
 				D9E7B7991A31E079002DA710 /* Group.m in Sources */,
