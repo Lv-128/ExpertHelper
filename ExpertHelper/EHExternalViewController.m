@@ -690,24 +690,6 @@
     [za CloseZipFile2];
 }
 
-<<<<<<< HEAD
-=======
-
-
-
->>>>>>> FETCH_HEAD
-
-
-
-
-
-<<<<<<< HEAD
-=======
-
-
-
-
->>>>>>> FETCH_HEAD
 - (void) insertIntoExclesSharedString {
     NSError *error;
     
