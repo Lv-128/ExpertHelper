@@ -22,11 +22,38 @@ NSError *error = nil;
 @property (nonatomic, strong) NSMutableArray *ids;
 @property (nonatomic, copy) NSString *mainURL;
 @property (weak, nonatomic) IBOutlet UITableView *tablewView;
-
+@property (strong, nonatomic) UIActivityIndicatorView *activityIndicator;
 
 @end
 
 @implementation EHFacebookPopoverViewController
+- (void)dealloc {
+    [self hideLoadingIndicator];
+    self.firstName = nil;
+    self.lastName = nil;
+    self.mainURL = nil;
+    self.links = nil;
+    self.pictures = nil;
+    self.ids = nil;
+}
+
+- (void)showLoadingIndicator {
+    self.activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    self.activityIndicator.transform = CGAffineTransformMakeScale(1.5, 1.5);
+    self.activityIndicator.center = self.view.center;
+    [self.tablewView addSubview:self.activityIndicator];
+    [self.activityIndicator startAnimating];
+}
+
+- (void)hideLoadingIndicator {
+    [self.activityIndicator removeFromSuperview];
+    self.activityIndicator = nil;
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    [self searchUser];
+}
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -35,17 +62,6 @@ NSError *error = nil;
         
     }
     return self;
-}
-
-- (void)viewDidLoad
-{
-    [self searchUser];
-    [super viewDidLoad];
-    
-    NSString *s =  [[[FBSession activeSession] accessTokenData] accessToken];
-    NSString *accessToken = [NSString stringWithContentsOfURL:[NSURL URLWithString:s] encoding:NSUTF8StringEncoding error:nil];
-    NSLog(@"%@", accessToken);
-    // Do any additional setup after loading the view from its nib.access_token=401991143287460|F9_QPA6FmcSn1w5tepwysA5SkOQ
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -61,8 +77,10 @@ NSError *error = nil;
 
 - (void)searchUser
 {
+    [self showLoadingIndicator];
     [FBRequestConnection startWithGraphPath:[NSString stringWithFormat:@"/search?q=%@+%@&type=user", _firstName, _lastName]
                           completionHandler:^(FBRequestConnection *connection, id result, NSError *error) {
+                              [self hideLoadingIndicator];
         if (error)
             NSLog(@"%@", [error description]);
         else
