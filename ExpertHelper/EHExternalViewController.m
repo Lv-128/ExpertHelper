@@ -66,12 +66,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-<<<<<<< HEAD
     NSLog(@"%@", NSHomeDirectory());
 
-=======
-    
->>>>>>> FETCH_HEAD
+
     self.navigationItem.title = [NSString stringWithFormat:@"%@ %@", _interview.idExternal.idCandidate.firstName, _interview.idExternal.idCandidate.lastName];
     
     self.cellDateFormatter = [[NSDateFormatter alloc] init];
@@ -626,7 +623,13 @@
     filePath1 = [filePath1 stringByAppendingPathComponent:@"xl"];
     filePath1 = [filePath1 stringByAppendingPathComponent:@"sharedStrings.xml"];
     NSMutableString* xml = [[NSMutableString alloc] initWithString:[NSMutableString stringWithContentsOfFile:filePath1 encoding:NSUTF8StringEncoding error:&error]];
-    int uniqueCountIndex = 0;
+    int uniqueCountIndex = 295;
+    
+    for (int i = 0; i < _comment.count; i++) {
+        if (![_comment[i] isEqualToString:@""]) {
+            uniqueCountIndex++;
+        }
+    }
     
     NSMutableString *stringForComparing = [@"</sst>" mutableCopy];
     int k = 0;
@@ -636,7 +639,7 @@
     for (int i = 0; i < xml.length - 14; i++) {
         NSString *s = [xml substringWithRange:NSMakeRange(i, 13)];
         if ([s isEqualToString:stringForComparing1]) {
-            xml = [[xml stringByReplacingCharactersInRange: NSMakeRange(i+13, 3) withString:@"295"] mutableCopy];
+            xml = [[xml stringByReplacingCharactersInRange: NSMakeRange(i+13, 3) withString:[NSString stringWithFormat:@"%d",uniqueCountIndex]] mutableCopy];
             break;
         }
     }
@@ -651,6 +654,15 @@
             [xml insertString:@"<si><t>Good</t></si>" atIndex:k];
             [xml insertString:@"<si><t>Beginner</t></si>" atIndex:k];
             [xml insertString:@"<si><t>None</t></si>" atIndex:k];
+            for (int i = 0; i < _comment.count; i++) {
+                if (![_comment[i] isEqualToString:@""]) {
+                    NSString *s =@"<si><t>";
+                    [s stringByAppendingString:_comment[i]];
+                    [s stringByAppendingString:@"</t></si>"];
+                    
+                    [xml insertString:s atIndex:k];
+                }
+            }
 
             break;
         }
