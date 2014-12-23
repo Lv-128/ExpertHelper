@@ -4,12 +4,12 @@
 #import <CoreData/CoreData.h>
 
 extern const struct VoiceRecordersAttributes {
-	 __unsafe_unretained NSString *fileUrl;
-	 __unsafe_unretained NSString *recordName;
+	__unsafe_unretained NSString *fileUrl;
+	__unsafe_unretained NSString *recordName;
 } VoiceRecordersAttributes;
 
 extern const struct VoiceRecordersRelationships {
-	 __unsafe_unretained NSString *idGeneralInfo;
+	__unsafe_unretained NSString *idGeneralInfo;
 } VoiceRecordersRelationships;
 
 @class GeneralInfo;
@@ -23,15 +23,15 @@ extern const struct VoiceRecordersRelationships {
 + (NSEntityDescription*)entityInManagedObjectContext:(NSManagedObjectContext*)moc_;
 @property (nonatomic, readonly, strong) VoiceRecordersID* objectID;
 
-@property (nonatomic, retain) NSString* fileUrl;
+@property (nonatomic, strong) NSString* fileUrl;
 
 //- (BOOL)validateFileUrl:(id*)value_ error:(NSError**)error_;
 
-@property (nonatomic, retain) NSString* recordName;
+@property (nonatomic, strong) NSString* recordName;
 
 //- (BOOL)validateRecordName:(id*)value_ error:(NSError**)error_;
 
-@property (nonatomic, retain) GeneralInfo *idGeneralInfo;
+@property (nonatomic, strong) GeneralInfo *idGeneralInfo;
 
 //- (BOOL)validateIdGeneralInfo:(id*)value_ error:(NSError**)error_;
 

@@ -70,6 +70,8 @@
 		D9B0CC891A03B17500544323 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D9B0CC681A03B17500544323 /* UIKit.framework */; };
 		D9B0CC911A03B17500544323 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D9B0CC8F1A03B17500544323 /* InfoPlist.strings */; };
 		D9B0CC931A03B17500544323 /* ExpertHelperTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D9B0CC921A03B17500544323 /* ExpertHelperTests.m */; };
+		D9B499831A49C2990075F463 /* AudioRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = D9B499821A49C2990075F463 /* AudioRecord.m */; };
+		D9B499861A49C2A30075F463 /* _AudioRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = D9B499851A49C2A30075F463 /* _AudioRecord.m */; };
 		D9BE338B1A3882E00063B6C6 /* EHInterviewViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D9BE338A1A3882E00063B6C6 /* EHInterviewViewCell.m */; };
 		D9BE338E1A3894610063B6C6 /* EHSkillsProfilesParser.m in Sources */ = {isa = PBXBuildFile; fileRef = D9BE338D1A3894610063B6C6 /* EHSkillsProfilesParser.m */; };
 		D9BE33941A38AEDC0063B6C6 /* EHCandidateProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D9BE33931A38AEDC0063B6C6 /* EHCandidateProfileViewController.m */; };
@@ -192,6 +194,10 @@
 		D9B0CC8E1A03B17500544323 /* ExpertHelperTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ExpertHelperTests-Info.plist"; sourceTree = "<group>"; };
 		D9B0CC901A03B17500544323 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		D9B0CC921A03B17500544323 /* ExpertHelperTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ExpertHelperTests.m; sourceTree = "<group>"; };
+		D9B499811A49C2990075F463 /* AudioRecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioRecord.h; sourceTree = "<group>"; };
+		D9B499821A49C2990075F463 /* AudioRecord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioRecord.m; sourceTree = "<group>"; };
+		D9B499841A49C2A30075F463 /* _AudioRecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _AudioRecord.h; sourceTree = "<group>"; };
+		D9B499851A49C2A30075F463 /* _AudioRecord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _AudioRecord.m; sourceTree = "<group>"; };
 		D9BE33891A3882E00063B6C6 /* EHInterviewViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EHInterviewViewCell.h; sourceTree = "<group>"; };
 		D9BE338A1A3882E00063B6C6 /* EHInterviewViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EHInterviewViewCell.m; sourceTree = "<group>"; };
 		D9BE338C1A3894610063B6C6 /* EHSkillsProfilesParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EHSkillsProfilesParser.h; path = ../EHSkillsProfilesParser.h; sourceTree = "<group>"; };
@@ -362,6 +368,8 @@
 		D92204291A2FAA4300B3BAAD /* Human */ = {
 			isa = PBXGroup;
 			children = (
+				D9B499811A49C2990075F463 /* AudioRecord.h */,
+				D9B499821A49C2990075F463 /* AudioRecord.m */,
 				D9BE33AA1A3A0AFF0063B6C6 /* GeneralInfo.h */,
 				D9BE33AB1A3A0AFF0063B6C6 /* GeneralInfo.m */,
 				D9BE33AC1A3A0AFF0063B6C6 /* VoiceRecorders.h */,
@@ -387,6 +395,8 @@
 		D922043A1A2FAA4300B3BAAD /* Machine */ = {
 			isa = PBXGroup;
 			children = (
+				D9B499841A49C2A30075F463 /* _AudioRecord.h */,
+				D9B499851A49C2A30075F463 /* _AudioRecord.m */,
 				D9BE33A21A3A0AEF0063B6C6 /* _GeneralInfo.h */,
 				D9BE33A31A3A0AEF0063B6C6 /* _GeneralInfo.m */,
 				D9BE33A41A3A0AEF0063B6C6 /* _VoiceRecorders.h */,
@@ -790,7 +800,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "mogenerator -m ${SRCROOT}/ExpertHelper/CoreData/Model.xcdatamodeld -M ${SRCROOT}/ExpertHelper/CoreData/Machine -H ${SRCROOT}/ExpertHelper/CoreData/Human —template-var arc=true";
+			shellScript = "mogenerator --model ExpertHelper/CoreData/Model.xcdatamodeld -M ExpertHelper/CoreData/Machine -H ExpertHelper/CoreData/Human --template-var arc=true";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -823,6 +833,7 @@
 				11DA2E001A3DF9A40051CBAC /* ioapi.c in Sources */,
 				D9BE339A1A38AFA90063B6C6 /* EHRoundedAngleTextField.m in Sources */,
 				D9E7B7981A31E079002DA710 /* ExternalInterview.m in Sources */,
+				D9B499861A49C2A30075F463 /* _AudioRecord.m in Sources */,
 				D9E7B7AF1A31E0A3002DA710 /* _InterviewAppointment.m in Sources */,
 				D9998EE41A221CE9002E019A /* EHRevealViewController.m in Sources */,
 				11B730361A48907100D524A4 /* EHExternalViewController.m in Sources */,
@@ -848,6 +859,7 @@
 				D9E7B7AC1A31E0A3002DA710 /* _Candidate.m in Sources */,
 				D9D7482F1A4866B40074160F /* EHAddRecruiterController.m in Sources */,
 				D9BE33A61A3A0AEF0063B6C6 /* _GeneralInfo.m in Sources */,
+				D9B499831A49C2990075F463 /* AudioRecord.m in Sources */,
 				D9AD2EB71A3384D2003D7E14 /* EHRecorderCommentController.m in Sources */,
 				D9E7B7B11A31E0A3002DA710 /* _Skills.m in Sources */,
 				D9D748331A4866F60074160F /* EHCheckNetworkConnection.m in Sources */,

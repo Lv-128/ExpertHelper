@@ -4,12 +4,12 @@
 #import <CoreData/CoreData.h>
 
 extern const struct SkillsLevelsAttributes {
-	 __unsafe_unretained NSString *comment;
-	 __unsafe_unretained NSString *level;
+	__unsafe_unretained NSString *comment;
+	__unsafe_unretained NSString *level;
 } SkillsLevelsAttributes;
 
 extern const struct SkillsLevelsRelationships {
-	 __unsafe_unretained NSString *idSkill;
+	__unsafe_unretained NSString *idSkill;
 } SkillsLevelsRelationships;
 
 @class Skills;
@@ -23,11 +23,11 @@ extern const struct SkillsLevelsRelationships {
 + (NSEntityDescription*)entityInManagedObjectContext:(NSManagedObjectContext*)moc_;
 @property (nonatomic, readonly, strong) SkillsLevelsID* objectID;
 
-@property (nonatomic, retain) NSString* comment;
+@property (nonatomic, strong) NSString* comment;
 
 //- (BOOL)validateComment:(id*)value_ error:(NSError**)error_;
 
-@property (nonatomic, retain) NSNumber* level;
+@property (nonatomic, strong) NSNumber* level;
 
 @property (atomic) int32_t levelValue;
 - (int32_t)levelValue;
@@ -35,7 +35,7 @@ extern const struct SkillsLevelsRelationships {
 
 //- (BOOL)validateLevel:(id*)value_ error:(NSError**)error_;
 
-@property (nonatomic, retain) Skills *idSkill;
+@property (nonatomic, strong) Skills *idSkill;
 
 //- (BOOL)validateIdSkill:(id*)value_ error:(NSError**)error_;
 
