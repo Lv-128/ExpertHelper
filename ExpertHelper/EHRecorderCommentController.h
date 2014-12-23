@@ -15,6 +15,8 @@
 @property (nonatomic, weak) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) NSArray *comment;
 @property (nonatomic, strong) NSArray *level;
+@property (nonatomic, copy) NSArray *arrayOfRecordsUrl;
+@property (nonatomic, copy) NSArray *arrayOfRecordsString;
 @property (nonatomic, strong) NSIndexPath *index;
 @property (nonatomic, strong) EHGenInfo *genInfo;
 @property (nonatomic, strong) EHSkill *skill;

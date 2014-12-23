@@ -19,10 +19,11 @@
 
 @interface EHExternalViewController () <UITableViewDataSource, UITableViewDelegate, EHSkillLevelPopupDelegate, UIActionSheetDelegate, MFMailComposeViewControllerDelegate>
 
-@property (weak, nonatomic) IBOutlet UIButton *openGeneralInfo;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) NSArray *tableSections;
 @property (nonatomic, strong) NSArray *sectionContent;
+@property (nonatomic, strong) NSArray *arrayOfRecordsUrl;
+@property (nonatomic, strong) NSArray *arrayOfRecordsString;
 @property (nonatomic, strong) NSMutableArray *array;
 @property (nonatomic, strong) NSMutableArray *comment;
 @property (nonatomic, strong) EHSkillsProfilesParser *pars;
@@ -40,7 +41,7 @@
 {
     _array = [level mutableCopy];
     _comment = [comment mutableCopy];
-    
+  
     NSIndexPath *rowToReload = [NSIndexPath indexPathForRow:index.section inSection:index.row];
     NSArray *rowsToReload = [NSArray arrayWithObjects:rowToReload, nil];
     [self.tableView reloadRowsAtIndexPaths:rowsToReload withRowAnimation:UITableViewRowAnimationNone];
@@ -77,10 +78,6 @@
 
     self.navigationItem.title = [NSString stringWithFormat:@"%@ %@", _interview.idExternal.idCandidate.firstName,
                                                                      _interview.idExternal.idCandidate.lastName];
-
-
-
-    
     self.cellDateFormatter = [[NSDateFormatter alloc] init];
     [self.cellDateFormatter setDateStyle:NSDateFormatterFullStyle];
     [self.cellDateFormatter setTimeStyle:NSDateFormatterLongStyle];
@@ -148,8 +145,11 @@
             [_comment insertObject:tr atIndex:i];
         }
         _generInfo = _pars.genInfo;
+        _arrayOfRecordsString = _pars.recordsNames;
+        _arrayOfRecordsUrl = _pars.recordsUrls;
+        
     }
-    else{
+    else {
         for (int i = 0; i < self.tableSections.count; i++)//6
         {
             NSMutableArray *temp = [[NSMutableArray alloc]initWithCapacity:0];// group]
@@ -162,9 +162,6 @@
             [_comment insertObject:temp2 atIndex:i];
         }
     }
-    self.openGeneralInfo.layer.cornerRadius = 13;
-    self.openGeneralInfo.layer.borderWidth = 1;
-    self.openGeneralInfo.layer.borderColor = [UIColor grayColor].CGColor;
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -218,6 +215,7 @@
         [_actionSheetMenu showInView:self.view];
     
 }
+
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     if(buttonIndex == 0)
@@ -380,6 +378,8 @@
     self.recorderComment.level = _array;
     self.recorderComment.index = _index;
     self.recorderComment.comment = _comment;
+    self.recorderComment.arrayOfRecordsString = _arrayOfRecordsString;
+    self.recorderComment.arrayOfRecordsUrl = _arrayOfRecordsUrl;
     
     self.recorder = [[UIPopoverController alloc] initWithContentViewController:self.recorderComment];
     self.recorder.popoverContentSize = CGSizeMake(700.0, 700.0);
@@ -505,7 +505,9 @@
         _generInfo.recommendations = @"None";
     _pars = [[EHSkillsProfilesParser alloc]initWithDataGroups:profTransmitting
                                                  andInterview:_interview
-                                                   andGenInfo:_generInfo];
+                                                   andGenInfo:_generInfo
+                                           andRecordsNamesArr: self.arrayOfRecordsString
+                                                andRecordsUrl: self.arrayOfRecordsUrl];
     [_pars saveInfoToDB];
 }
 
@@ -519,6 +521,9 @@
 {
     self.recorderComment = notification.userInfo[@"recorderComment"];
     self.array = notification.userInfo[@"recorderLevel"];
+    self.arrayOfRecordsString = notification.userInfo[@"recorderName"];
+    self.arrayOfRecordsUrl = notification.userInfo[@"recorderUrl"];
+    
     [self.tableView reloadData];
 }
 

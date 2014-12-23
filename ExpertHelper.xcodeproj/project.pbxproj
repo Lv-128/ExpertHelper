@@ -632,11 +632,11 @@
 			children = (
 				D9BE339D1A3A00180063B6C6 /* Model */,
 				D9D3658B1A375A90004D919E /* Views */,
+				11B730341A48907100D524A4 /* EHExternalViewController.h */,
+				11B730351A48907100D524A4 /* EHExternalViewController.m */,
 				D9BE33921A38AEDC0063B6C6 /* EHCandidateProfileViewController.h */,
 				D9BE33931A38AEDC0063B6C6 /* EHCandidateProfileViewController.m */,
 				D9AD2EB51A3384D2003D7E14 /* EHRecorderCommentController.h */,
-				11B730351A48907100D524A4 /* EHExternalViewController.m */,
-				11B730341A48907100D524A4 /* EHExternalViewController.h */,
 				D9AD2EB61A3384D2003D7E14 /* EHRecorderCommentController.m */,
 			);
 			name = External;
