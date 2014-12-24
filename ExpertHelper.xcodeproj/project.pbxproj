@@ -51,8 +51,12 @@
 		D92204741A2FAA4300B3BAAD /* mogend.sh in Resources */ = {isa = PBXBuildFile; fileRef = D922044F1A2FAA4300B3BAAD /* mogend.sh */; };
 		D92204751A2FAA4300B3BAAD /* mogend.sh in Resources */ = {isa = PBXBuildFile; fileRef = D922044F1A2FAA4300B3BAAD /* mogend.sh */; };
 		D92B76E51A1F847F00B76F5E /* EHSkillLevelPopupIpad.xib in Resources */ = {isa = PBXBuildFile; fileRef = D92B76E31A1F847F00B76F5E /* EHSkillLevelPopupIpad.xib */; };
+<<<<<<< Updated upstream
 		D95C92B41A4B1444002D8CDD /* QuickComment.m in Sources */ = {isa = PBXBuildFile; fileRef = D95C92B31A4B1444002D8CDD /* QuickComment.m */; };
 		D95C92B71A4B1453002D8CDD /* _QuickComment.m in Sources */ = {isa = PBXBuildFile; fileRef = D95C92B61A4B1453002D8CDD /* _QuickComment.m */; };
+=======
+		D93515771A4B2639008F5F18 /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D93515751A4B2639008F5F18 /* Main_iPad.storyboard */; };
+>>>>>>> Stashed changes
 		D967F20B1A1E305D0009639C /* EHRecruiterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D967F20A1A1E305D0009639C /* EHRecruiterViewController.m */; };
 		D967F2101A1E4DEE0009639C /* EHITAViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D967F20D1A1E4DEE0009639C /* EHITAViewController.m */; };
 		D967F2111A1E4DEE0009639C /* EHITAViewControllerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D967F20F1A1E4DEE0009639C /* EHITAViewControllerCell.m */; };
@@ -68,7 +72,6 @@
 		D9B0CC711A03B17500544323 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D9B0CC701A03B17500544323 /* main.m */; };
 		D9B0CC751A03B17500544323 /* EHAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D9B0CC741A03B17500544323 /* EHAppDelegate.m */; };
 		D9B0CC781A03B17500544323 /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D9B0CC761A03B17500544323 /* Main_iPhone.storyboard */; };
-		D9B0CC7B1A03B17500544323 /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D9B0CC791A03B17500544323 /* Main_iPad.storyboard */; };
 		D9B0CC871A03B17500544323 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D9B0CC861A03B17500544323 /* XCTest.framework */; };
 		D9B0CC881A03B17500544323 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D9B0CC641A03B17500544323 /* Foundation.framework */; };
 		D9B0CC891A03B17500544323 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D9B0CC681A03B17500544323 /* UIKit.framework */; };
@@ -166,6 +169,7 @@
 		D922044F1A2FAA4300B3BAAD /* mogend.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = mogend.sh; sourceTree = "<group>"; };
 		D92204761A2FAF6900B3BAAD /* EHConstantsDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EHConstantsDefines.h; sourceTree = "<group>"; };
 		D92B76E31A1F847F00B76F5E /* EHSkillLevelPopupIpad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EHSkillLevelPopupIpad.xib; sourceTree = "<group>"; };
+		D93515761A4B2639008F5F18 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = ExpertHelper/Base.lproj/Main_iPad.storyboard; sourceTree = "<group>"; };
 		D94AB8471A4AF25B005D079D /* EHExternalViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EHExternalViewController.h; path = ../EHExternalViewController.h; sourceTree = "<group>"; };
 		D95C92B21A4B1444002D8CDD /* QuickComment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuickComment.h; sourceTree = "<group>"; };
 		D95C92B31A4B1444002D8CDD /* QuickComment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuickComment.m; sourceTree = "<group>"; };
@@ -198,7 +202,6 @@
 		D9B0CC731A03B17500544323 /* EHAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EHAppDelegate.h; sourceTree = "<group>"; };
 		D9B0CC741A03B17500544323 /* EHAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EHAppDelegate.m; sourceTree = "<group>"; };
 		D9B0CC771A03B17500544323 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPhone.storyboard; sourceTree = "<group>"; };
-		D9B0CC7A1A03B17500544323 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPad.storyboard; sourceTree = "<group>"; };
 		D9B0CC851A03B17500544323 /* ExpertHelperTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ExpertHelperTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D9B0CC861A03B17500544323 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		D9B0CC8E1A03B17500544323 /* ExpertHelperTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ExpertHelperTests-Info.plist"; sourceTree = "<group>"; };
@@ -551,8 +554,8 @@
 				11DA2E041A3E03340051CBAC /* Workbook.xlsx */,
 				D93583FD1A1CB3AD00135A2D /* WorkWithEvents */,
 				2790F4E01A139735001B0956 /* ViewControllers */,
-				D9B0CC791A03B17500544323 /* Main_iPad.storyboard */,
 				D9B0CC761A03B17500544323 /* Main_iPhone.storyboard */,
+				D93515751A4B2639008F5F18 /* Main_iPad.storyboard */,
 				D9B0CC6B1A03B17500544323 /* Supporting Files */,
 			);
 			path = ExpertHelper;
@@ -784,7 +787,6 @@
 			files = (
 				D912ADF61A4088F700D95DFB /* Images.xcassets in Resources */,
 				8390BB5F1A4856660032CC92 /* EHGeneralInfoCellIpad.xib in Resources */,
-				D9B0CC7B1A03B17500544323 /* Main_iPad.storyboard in Resources */,
 				D92B76E51A1F847F00B76F5E /* EHSkillLevelPopupIpad.xib in Resources */,
 				835D65561A4AC3DD0032CACA /* EHGeneralInfoCellIphone.xib in Resources */,
 				11DA2E051A3E03340051CBAC /* Workbook.xlsx in Resources */,
@@ -792,6 +794,7 @@
 				D92204721A2FAA4300B3BAAD /* mogen.sh in Resources */,
 				D9B0CC781A03B17500544323 /* Main_iPhone.storyboard in Resources */,
 				83CD969E1A3B5C5600115744 /* EHFacebookPopoverViewController.xib in Resources */,
+				D93515771A4B2639008F5F18 /* Main_iPad.storyboard in Resources */,
 				D9B0CC6F1A03B17500544323 /* InfoPlist.strings in Resources */,
 				835D655A1A4ACC200032CACA /* EHSkillLevelPopupIphone.xib in Resources */,
 			);
@@ -915,6 +918,15 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		D93515751A4B2639008F5F18 /* Main_iPad.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D93515761A4B2639008F5F18 /* Base */,
+			);
+			name = Main_iPad.storyboard;
+			path = ..;
+			sourceTree = "<group>";
+		};
 		D9B0CC6D1A03B17500544323 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -929,14 +941,6 @@
 				D9B0CC771A03B17500544323 /* Base */,
 			);
 			name = Main_iPhone.storyboard;
-			sourceTree = "<group>";
-		};
-		D9B0CC791A03B17500544323 /* Main_iPad.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				D9B0CC7A1A03B17500544323 /* Base */,
-			);
-			name = Main_iPad.storyboard;
 			sourceTree = "<group>";
 		};
 		D9B0CC8F1A03B17500544323 /* InfoPlist.strings */ = {
