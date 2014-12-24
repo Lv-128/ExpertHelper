@@ -24,6 +24,7 @@
     AVAudioPlayer *player;
     AVAudioRecorder *recorder;
     BOOL isPopup;
+    BOOL isTextView;
 }
 
 - (IBAction)recordStopButton:(UIButton *)sender;
@@ -36,6 +37,8 @@
 @property (nonatomic, strong) UIImage *buttonPlay;
 @property (nonatomic, strong) UIImage *buttonPause;
 @property (nonatomic, strong) EHSkillLevelPopup *popup;
+@property (nonatomic, strong) NSMutableArray *pastUrls;
+@property (nonatomic, strong) NSMutableArray *autocompleteUrls;
 
 @end
 
@@ -45,7 +48,7 @@
          didSelectLevel:(EHSkillLevel)level
 {
     [self closePopup];
-    
+    isTextView = YES;
     _levelLabel.text = popup.skillLevel;
     
     NSMutableArray *temp = [_level mutableCopy];
@@ -115,22 +118,57 @@
     // Dispose of any resources that can be recreated.
 }
 
--(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-    return 1;
-}
+
+
+
+#pragma mark UITableViewDataSource methods
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+    return tableView == _infoTableView
+    ? [self tableView:tableView numberOfRowsInSectionInfoTable:section]
+    : [self tableView:tableView numberOfRowsInSectionRecordsTable:section];
+}
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSectionRecordsTable:(NSInteger)section
+{
     return _arrayOfRecordsString.count;
 }
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSectionInfoTable:(NSInteger)section
+{
+    return _autocompleteUrls.count;
+}
 
-- (EHRecorderCommaentCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    return tableView == _infoTableView
+    ? [self infoTableView:tableView cellForRowAtIndexPath:indexPath]
+    : [self recordTableView:tableView cellForRowAtIndexPath:indexPath];
+    
+}
+
+- (UITableViewCell *)infoTableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    UITableViewCell *cell = nil;
+    static NSString *AutoCompleteRowIdentifier = @"AutoCompleteRowIdentifier";
+    cell = [tableView dequeueReusableCellWithIdentifier:AutoCompleteRowIdentifier];
+    
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc]
+                initWithStyle:UITableViewCellStyleDefault reuseIdentifier:AutoCompleteRowIdentifier] ;
+    }
+    
+    cell.textLabel.text = [_autocompleteUrls objectAtIndex:indexPath.row];
+    
+    return cell;
+}
+
+- (EHRecorderCommaentCell *)recordTableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     EHRecorderCommaentCell *cell = (EHRecorderCommaentCell *)[tableView dequeueReusableCellWithIdentifier:@"RecordCell"];
-
+    
     cell.textLabel.text = [_arrayOfRecordsString objectAtIndex:[indexPath row]];
-
+    
     if (cell.button.isPlaying) {
         [cell.button setBackgroundImage:_buttonStop forState:UIControlStateNormal];
     } else {
@@ -147,7 +185,30 @@
     return cell;
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+
+
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    tableView == _infoTableView
+    ? [self infoTableView:tableView didSelectRowAtIndexPath:indexPath]
+    : [self recordsTableView:tableView didSelectRowAtIndexPath:indexPath];
+    
+}
+
+
+- (void)infoTableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    UITableViewCell *selectedCell = [tableView cellForRowAtIndexPath:indexPath];
+    _infoTableView.hidden = YES;
+    _recordsTableView.hidden = NO;
+    isTextView= YES;
+    _commentView.text = [_commentView.text stringByAppendingString:selectedCell.textLabel.text];
+    
+}
+
+
+- (void)recordsTableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     EHRecorderCommaentCell *cell = (EHRecorderCommaentCell *)[tableView dequeueReusableCellWithIdentifier:@"RecordCell"];
     [self playPauseButton:(EHPlayPause *)cell.button];
@@ -167,7 +228,7 @@
     [cell.button addTarget:self action:@selector(playPauseButton:) forControlEvents:UIControlEventTouchUpInside];
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    [self.tableView reloadData];
+    [self.recordsTableView reloadData];
 }
 
 - (BOOL)textViewShouldBeginEditing:(UITextView *)textView
@@ -192,11 +253,24 @@
         [_commentView resignFirstResponder];
     }
     
+    
     NSMutableArray *temp = [_comment mutableCopy];
     [[temp objectAtIndex:_index.section] setObject: _commentView.text atIndex:_index.row];
     _comment = temp;
+    
+    ///////////////////
+    _infoTableView.hidden = YES;
+    if (![_pastUrls containsObject:self.commentView.text]) {
+        [_pastUrls addObject:self.commentView.text];
+    }
+    //////////////////////////
+    
+    
+    
     return YES;
 }
+
+
 
 - (void)pushAction
 {
@@ -326,7 +400,7 @@
         [recordsStringTransmitting addObject:truncatedString];
         _arrayOfRecordsString = recordsStringTransmitting;
         
-        [_tableView reloadData];
+        [_recordsTableView reloadData];
         
         //[recordsTransmitting addObject:audioSession];
         //_genInfo.records = recordsTransmitting;
@@ -338,7 +412,7 @@
     while (![view isKindOfClass:[EHRecorderCommaentCell class]]) {
         view = view.superview;
     }
-    return [_tableView indexPathForCell:(UITableViewCell *)view];
+    return [_recordsTableView indexPathForCell:(UITableViewCell *)view];
 }
 
 - (void)playPauseButton:(EHPlayPause *)sender {
@@ -357,7 +431,7 @@
         
         [sender setBackgroundImage:_buttonPlay forState:UIControlStateNormal];
     }
-    [_tableView reloadData];
+    [_recordsTableView reloadData];
 }
 
 #pragma mark - AVAudioRecorderDelegate
@@ -382,7 +456,7 @@
                                           cancelButtonTitle:@"OK"
                                           otherButtonTitles:nil];
     [alert show];
-    [_tableView reloadData];
+    [_recordsTableView reloadData];
 }
 
 
@@ -517,8 +591,20 @@
     [player prepareToPlay];
     [player play];
 }
-
+#pragma mark quick comment
 - (IBAction)quickComment:(id)sender {
+    
+    if(isTextView)
+    {
+        isTextView = NO;
+        _infoTableView.hidden = NO;
+        _commentView.hidden = YES;
+    }
+    else{
+        isTextView = YES;
+        _infoTableView.hidden = YES;
+        _commentView.hidden = NO;
+    }
 }
 @end
 

@@ -740,7 +740,7 @@
                                     <action selector="quickComment:" destination="1SL-6X-SWp" eventType="touchUpInside" id="Fzg-rm-GXi"/>
                                 </connections>
                             </button>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="1Io-Um-cbq">
+                            <tableView hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="1Io-Um-cbq">
                                 <rect key="frame" x="20" y="77" width="728" height="285"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -773,10 +773,11 @@
                     <size key="freeformSize" width="768" height="700"/>
                     <connections>
                         <outlet property="commentView" destination="U8N-Uv-T6Z" id="rTc-Es-PDu"/>
+                        <outlet property="infoTableView" destination="1Io-Um-cbq" id="V5h-ca-Gcs"/>
                         <outlet property="levelLabel" destination="VTj-8M-ttN" id="9YV-hd-bk6"/>
                         <outlet property="recordStopButton" destination="asW-22-4we" id="476-jK-4Nm"/>
+                        <outlet property="recordsTableView" destination="6fj-Ri-Bfl" id="sXP-dT-cMG"/>
                         <outlet property="tableForRecords" destination="6fj-Ri-Bfl" id="5pN-2d-XUv"/>
-                        <outlet property="tableView" destination="6fj-Ri-Bfl" id="vWn-BF-vP1"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="odn-Y3-sys" userLabel="First Responder" sceneMemberID="firstResponder"/>
