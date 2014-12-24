@@ -41,6 +41,8 @@
 		D913A8001A2D0C3B00656CDE /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D913A7FF1A2D0C3B00656CDE /* MessageUI.framework */; };
 		D920F3E91A361847002BC81A /* EHRecorderCommaentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D920F3E81A361847002BC81A /* EHRecorderCommaentCell.m */; };
 		D920F3EC1A361BFF002BC81A /* EHPlayPause.m in Sources */ = {isa = PBXBuildFile; fileRef = D920F3EB1A361BFF002BC81A /* EHPlayPause.m */; };
+		D92128A11A4AE5EF00E2DAFE /* AudioRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = D92128A01A4AE5EF00E2DAFE /* AudioRecord.m */; };
+		D92128A41A4AE5FC00E2DAFE /* _AudioRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = D92128A31A4AE5FC00E2DAFE /* _AudioRecord.m */; };
 		D92204251A2F70D200B3BAAD /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D92204241A2F70D200B3BAAD /* CoreData.framework */; };
 		D92204701A2FAA4300B3BAAD /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D922044B1A2FAA4300B3BAAD /* Model.xcdatamodeld */; };
 		D92204711A2FAA4300B3BAAD /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D922044B1A2FAA4300B3BAAD /* Model.xcdatamodeld */; };
@@ -152,6 +154,10 @@
 		D920F3E81A361847002BC81A /* EHRecorderCommaentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EHRecorderCommaentCell.m; sourceTree = "<group>"; };
 		D920F3EA1A361BFF002BC81A /* EHPlayPause.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EHPlayPause.h; path = ../EHPlayPause.h; sourceTree = "<group>"; };
 		D920F3EB1A361BFF002BC81A /* EHPlayPause.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EHPlayPause.m; path = ../EHPlayPause.m; sourceTree = "<group>"; };
+		D921289F1A4AE5EF00E2DAFE /* AudioRecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioRecord.h; sourceTree = "<group>"; };
+		D92128A01A4AE5EF00E2DAFE /* AudioRecord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioRecord.m; sourceTree = "<group>"; };
+		D92128A21A4AE5FC00E2DAFE /* _AudioRecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _AudioRecord.h; sourceTree = "<group>"; };
+		D92128A31A4AE5FC00E2DAFE /* _AudioRecord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _AudioRecord.m; sourceTree = "<group>"; };
 		D92204241A2F70D200B3BAAD /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		D922044C1A2FAA4300B3BAAD /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		D922044E1A2FAA4300B3BAAD /* mogen.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = mogen.sh; sourceTree = "<group>"; };
@@ -385,6 +391,8 @@
 		D92204291A2FAA4300B3BAAD /* Human */ = {
 			isa = PBXGroup;
 			children = (
+				D921289F1A4AE5EF00E2DAFE /* AudioRecord.h */,
+				D92128A01A4AE5EF00E2DAFE /* AudioRecord.m */,
 				D9BE33AA1A3A0AFF0063B6C6 /* GeneralInfo.h */,
 				D9BE33AB1A3A0AFF0063B6C6 /* GeneralInfo.m */,
 				D9BE33AC1A3A0AFF0063B6C6 /* VoiceRecorders.h */,
@@ -410,6 +418,8 @@
 		D922043A1A2FAA4300B3BAAD /* Machine */ = {
 			isa = PBXGroup;
 			children = (
+				D92128A21A4AE5FC00E2DAFE /* _AudioRecord.h */,
+				D92128A31A4AE5FC00E2DAFE /* _AudioRecord.m */,
 				D9BE33A21A3A0AEF0063B6C6 /* _GeneralInfo.h */,
 				D9BE33A31A3A0AEF0063B6C6 /* _GeneralInfo.m */,
 				D9BE33A41A3A0AEF0063B6C6 /* _VoiceRecorders.h */,
@@ -853,6 +863,7 @@
 				D9E7B79A1A31E079002DA710 /* InterviewAppointment.m in Sources */,
 				D92204701A2FAA4300B3BAAD /* Model.xcdatamodeld in Sources */,
 				D9E7B7991A31E079002DA710 /* Group.m in Sources */,
+				D92128A11A4AE5EF00E2DAFE /* AudioRecord.m in Sources */,
 				D9E7B7B21A31E0A3002DA710 /* _SkillsLevels.m in Sources */,
 				11DA2E031A3DF9A40051CBAC /* zip.c in Sources */,
 				D9998EE11A221CE9002E019A /* EHCalendarFormViewController.m in Sources */,
@@ -866,6 +877,7 @@
 				D9E7B7AC1A31E0A3002DA710 /* _Candidate.m in Sources */,
 				D9D7482F1A4866B40074160F /* EHAddRecruiterController.m in Sources */,
 				D9BE33A61A3A0AEF0063B6C6 /* _GeneralInfo.m in Sources */,
+				D92128A41A4AE5FC00E2DAFE /* _AudioRecord.m in Sources */,
 				D9AD2EB71A3384D2003D7E14 /* EHRecorderCommentController.m in Sources */,
 				D9E7B7B11A31E0A3002DA710 /* _Skills.m in Sources */,
 				D9D748331A4866F60074160F /* EHCheckNetworkConnection.m in Sources */,

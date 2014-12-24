@@ -547,7 +547,9 @@
         _generInfo.recommendations = @"None";
     _pars = [[EHSkillsProfilesParser alloc]initWithDataGroups:profTransmitting
                                                  andInterview:_interview
-                                                   andGenInfo:_generInfo];
+                                                   andGenInfo:_generInfo
+                                           andRecordsNamesArr:@[]
+                                                andRecordsUrl:@[]];
     [_pars saveInfoToDB];
 }
 
