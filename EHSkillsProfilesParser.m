@@ -58,7 +58,6 @@
     self = [super init];
     if (self)
     {
-        _records = [NSArray array];
     }
     return self;
 }
@@ -73,14 +72,13 @@
     self.skillsSummary = nil;
     self.potentialCandidate = nil;
     self.levelEstimate = nil;
-    self.records = nil;
 }
 
 @end
 
 @implementation EHSkillsProfilesParser
 
-- (id)initWithDataGroups:(NSArray *)groups andInterview:(InterviewAppointment *)interview andGenInfo:(EHGenInfo *)genInfo
+- (id)initWithDataGroups:(NSArray *)groups andInterview:(InterviewAppointment *)interview andGenInfo:(EHGenInfo *)genInfo andRecordsNamesArr:(NSArray *)recNames andRecordsUrl:(NSArray *)urlArr
 {
     self = [super init];
     if(self)
@@ -91,7 +89,8 @@
         _externalInterview = interview.idExternal;
         EHAppDelegate *appDelegate = [[UIApplication sharedApplication]delegate];
         _managedObjectContext = [appDelegate managedObjectContext];
-        
+        _recordsNames = recNames;
+        _recordsUrls = urlArr;
         if (groups != nil && genInfo != nil) {
             [self saveInfoToDB];
         }
@@ -108,9 +107,10 @@
     self = [super init];
     if (self)
     {
-        _groups =[[NSArray alloc]init];
+        _groups = [[NSArray alloc]init];
         _genInfo = [[EHGenInfo alloc]init];
-        
+        _recordsNames = [[NSArray alloc]init];
+        _recordsUrls = [[NSArray alloc]init];
         EHAppDelegate *appDelegate = [[UIApplication sharedApplication]delegate];
         _managedObjectContext = [appDelegate managedObjectContext];
         
@@ -173,6 +173,48 @@
     return group;
 }
 
+- (void) addRecordArrWithContext:(NSManagedObjectContext *) context
+{
+    for (NSManagedObject * audio in _interview.idExternal.audioRecords) {
+        [context deleteObject:audio];
+    }
+    NSError *saveError = nil;
+    [context save:&saveError];
+    
+    
+    for (int i = 0; i< _recordsNames.count; i++)
+    {
+        
+        AudioRecord * audioRec =  [NSEntityDescription
+                                             insertNewObjectForEntityForName:[AudioRecord entityName]
+                                             inManagedObjectContext:context];
+        audioRec.name =  _recordsNames[i];
+        audioRec.url = [_recordsUrls[i] absoluteString];
+        [_interview.idExternal.audioRecordsSet addObject: audioRec];
+        audioRec.idExternal = _interview.idExternal;
+        
+        
+    }
+    
+    saveError = nil;
+    [context save:&saveError];
+    
+}
+
+- (void) getRecordArrWithContext:(NSManagedObjectContext *) context
+{
+    
+    NSMutableArray * arrNames = [[NSMutableArray alloc]init];
+    NSMutableArray * arrUrl = [[NSMutableArray alloc]init];
+    
+        for (AudioRecord * audio in _interview.idExternal.audioRecords)
+        {
+            [arrNames addObject: audio.name];
+            [arrUrl addObject:[NSURL URLWithString: audio.url]];
+        }
+    _recordsNames = arrNames;
+    _recordsUrls = arrUrl;
+}
 - (void)saveInfoToDB
 {
     NSManagedObjectContext *context = [self managedObjectContext];
@@ -231,6 +273,8 @@
             [_interview.idExternal.skillsSet addObject:curSkill];
         }
     }
+    
+    [self addRecordArrWithContext:context];
     
     if (![context save:&error]) {
         NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
@@ -301,6 +345,12 @@
         
         self.genInfo = result;
         self.groups = curGroups;
+        
+        [self getRecordArrWithContext:context];
+        NSLog(@"%@", _recordsNames);
+        NSLog(@"%@",_recordsUrls);
+   
+        
     }
 }
 

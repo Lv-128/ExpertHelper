@@ -4,15 +4,15 @@
 #import <CoreData/CoreData.h>
 
 extern const struct RecruiterAttributes {
-	 __unsafe_unretained NSString *email;
-	 __unsafe_unretained NSString *firstName;
-	 __unsafe_unretained NSString *lastName;
-	 __unsafe_unretained NSString *photoUrl;
-	 __unsafe_unretained NSString *skypeAccount;
+	__unsafe_unretained NSString *email;
+	__unsafe_unretained NSString *firstName;
+	__unsafe_unretained NSString *lastName;
+	__unsafe_unretained NSString *photoUrl;
+	__unsafe_unretained NSString *skypeAccount;
 } RecruiterAttributes;
 
 extern const struct RecruiterRelationships {
-	 __unsafe_unretained NSString *interviews;
+	__unsafe_unretained NSString *interviews;
 } RecruiterRelationships;
 
 @class InterviewAppointment;
@@ -26,27 +26,27 @@ extern const struct RecruiterRelationships {
 + (NSEntityDescription*)entityInManagedObjectContext:(NSManagedObjectContext*)moc_;
 @property (nonatomic, readonly, strong) RecruiterID* objectID;
 
-@property (nonatomic, retain) NSString* email;
+@property (nonatomic, strong) NSString* email;
 
 //- (BOOL)validateEmail:(id*)value_ error:(NSError**)error_;
 
-@property (nonatomic, retain) NSString* firstName;
+@property (nonatomic, strong) NSString* firstName;
 
 //- (BOOL)validateFirstName:(id*)value_ error:(NSError**)error_;
 
-@property (nonatomic, retain) NSString* lastName;
+@property (nonatomic, strong) NSString* lastName;
 
 //- (BOOL)validateLastName:(id*)value_ error:(NSError**)error_;
 
-@property (nonatomic, retain) NSString* photoUrl;
+@property (nonatomic, strong) NSString* photoUrl;
 
 //- (BOOL)validatePhotoUrl:(id*)value_ error:(NSError**)error_;
 
-@property (nonatomic, retain) NSString* skypeAccount;
+@property (nonatomic, strong) NSString* skypeAccount;
 
 //- (BOOL)validateSkypeAccount:(id*)value_ error:(NSError**)error_;
 
-@property (nonatomic, retain) NSSet *interviews;
+@property (nonatomic, strong) NSSet *interviews;
 
 - (NSMutableSet*)interviewsSet;
 

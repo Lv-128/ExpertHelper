@@ -4,21 +4,21 @@
 #import <CoreData/CoreData.h>
 
 extern const struct GeneralInfoAttributes {
-	 __unsafe_unretained NSString *competenceGroup;
-	 __unsafe_unretained NSString *creatingDate;
-	 __unsafe_unretained NSString *expertName;
-	 __unsafe_unretained NSString *hire;
-	 __unsafe_unretained NSString *levelEstimate;
-	 __unsafe_unretained NSString *potentialCandidate;
-	 __unsafe_unretained NSString *projectType;
-	 __unsafe_unretained NSString *recommendations;
-	 __unsafe_unretained NSString *skillsSummary;
-	 __unsafe_unretained NSString *techEnglish;
+	__unsafe_unretained NSString *competenceGroup;
+	__unsafe_unretained NSString *creatingDate;
+	__unsafe_unretained NSString *expertName;
+	__unsafe_unretained NSString *hire;
+	__unsafe_unretained NSString *levelEstimate;
+	__unsafe_unretained NSString *potentialCandidate;
+	__unsafe_unretained NSString *projectType;
+	__unsafe_unretained NSString *recommendations;
+	__unsafe_unretained NSString *skillsSummary;
+	__unsafe_unretained NSString *techEnglish;
 } GeneralInfoAttributes;
 
 extern const struct GeneralInfoRelationships {
-	 __unsafe_unretained NSString *idExternalInterview;
-	 __unsafe_unretained NSString *voiceRecords;
+	__unsafe_unretained NSString *idExternalInterview;
+	__unsafe_unretained NSString *voiceRecords;
 } GeneralInfoRelationships;
 
 @class ExternalInterview;
@@ -33,19 +33,19 @@ extern const struct GeneralInfoRelationships {
 + (NSEntityDescription*)entityInManagedObjectContext:(NSManagedObjectContext*)moc_;
 @property (nonatomic, readonly, strong) GeneralInfoID* objectID;
 
-@property (nonatomic, retain) NSString* competenceGroup;
+@property (nonatomic, strong) NSString* competenceGroup;
 
 //- (BOOL)validateCompetenceGroup:(id*)value_ error:(NSError**)error_;
 
-@property (nonatomic, retain) NSDate* creatingDate;
+@property (nonatomic, strong) NSDate* creatingDate;
 
 //- (BOOL)validateCreatingDate:(id*)value_ error:(NSError**)error_;
 
-@property (nonatomic, retain) NSString* expertName;
+@property (nonatomic, strong) NSString* expertName;
 
 //- (BOOL)validateExpertName:(id*)value_ error:(NSError**)error_;
 
-@property (nonatomic, retain) NSNumber* hire;
+@property (nonatomic, strong) NSNumber* hire;
 
 @property (atomic) BOOL hireValue;
 - (BOOL)hireValue;
@@ -53,35 +53,35 @@ extern const struct GeneralInfoRelationships {
 
 //- (BOOL)validateHire:(id*)value_ error:(NSError**)error_;
 
-@property (nonatomic, retain) NSString* levelEstimate;
+@property (nonatomic, strong) NSString* levelEstimate;
 
 //- (BOOL)validateLevelEstimate:(id*)value_ error:(NSError**)error_;
 
-@property (nonatomic, retain) NSString* potentialCandidate;
+@property (nonatomic, strong) NSString* potentialCandidate;
 
 //- (BOOL)validatePotentialCandidate:(id*)value_ error:(NSError**)error_;
 
-@property (nonatomic, retain) NSString* projectType;
+@property (nonatomic, strong) NSString* projectType;
 
 //- (BOOL)validateProjectType:(id*)value_ error:(NSError**)error_;
 
-@property (nonatomic, retain) NSString* recommendations;
+@property (nonatomic, strong) NSString* recommendations;
 
 //- (BOOL)validateRecommendations:(id*)value_ error:(NSError**)error_;
 
-@property (nonatomic, retain) NSString* skillsSummary;
+@property (nonatomic, strong) NSString* skillsSummary;
 
 //- (BOOL)validateSkillsSummary:(id*)value_ error:(NSError**)error_;
 
-@property (nonatomic, retain) NSString* techEnglish;
+@property (nonatomic, strong) NSString* techEnglish;
 
 //- (BOOL)validateTechEnglish:(id*)value_ error:(NSError**)error_;
 
-@property (nonatomic, retain) ExternalInterview *idExternalInterview;
+@property (nonatomic, strong) ExternalInterview *idExternalInterview;
 
 //- (BOOL)validateIdExternalInterview:(id*)value_ error:(NSError**)error_;
 
-@property (nonatomic, retain) NSSet *voiceRecords;
+@property (nonatomic, strong) NSSet *voiceRecords;
 
 - (NSMutableSet*)voiceRecordsSet;
 

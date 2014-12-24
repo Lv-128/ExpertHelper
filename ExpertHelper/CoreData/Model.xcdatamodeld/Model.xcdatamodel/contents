@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="3396" systemVersion="13F34" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="5064" systemVersion="13E28" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="AudioRecord" representedClassName="AudioRecord" syncable="YES">
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="url" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="idExternal" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ExternalInterview" inverseName="audioRecords" inverseEntity="ExternalInterview" syncable="YES"/>
+    </entity>
     <entity name="Candidate" representedClassName="Candidate" syncable="YES">
         <attribute name="firstName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="lastName" optional="YES" attributeType="String" syncable="YES"/>
@@ -9,6 +14,7 @@
     <entity name="ExternalInterview" representedClassName="ExternalInterview" syncable="YES">
         <attribute name="expert" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="pass" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <relationship name="audioRecords" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="AudioRecord" inverseName="idExternal" inverseEntity="AudioRecord" syncable="YES"/>
         <relationship name="idCandidate" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Candidate" inverseName="idExternalInterview" inverseEntity="Candidate" syncable="YES"/>
         <relationship name="idGeneralInfo" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="GeneralInfo" inverseName="idExternalInterview" inverseEntity="GeneralInfo" syncable="YES"/>
         <relationship name="idInterview" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="InterviewAppointment" inverseName="idExternal" inverseEntity="InterviewAppointment" syncable="YES"/>
@@ -68,14 +74,15 @@
         <relationship name="idGeneralInfo" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="GeneralInfo" inverseName="voiceRecords" inverseEntity="GeneralInfo" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Candidate" positionX="-450" positionY="-207" width="128" height="103"/>
-        <element name="ExternalInterview" positionX="-729" positionY="-117" width="128" height="133"/>
+        <element name="Candidate" positionX="-522" positionY="-180" width="128" height="103"/>
+        <element name="ExternalInterview" positionX="-837" positionY="-126" width="128" height="148"/>
+        <element name="GeneralInfo" positionX="-524" positionY="47" width="128" height="223"/>
         <element name="Group" positionX="25" positionY="261" width="128" height="73"/>
         <element name="InterviewAppointment" positionX="-882" positionY="117" width="128" height="163"/>
         <element name="Recruiter" positionX="-686" positionY="297" width="128" height="133"/>
         <element name="Skills" positionX="-216" positionY="-54" width="128" height="118"/>
         <element name="SkillsLevels" positionX="7" positionY="44" width="128" height="88"/>
-        <element name="GeneralInfo" positionX="-524" positionY="47" width="128" height="223"/>
         <element name="VoiceRecorders" positionX="-360" positionY="281" width="128" height="88"/>
+        <element name="AudioRecord" positionX="-54" positionY="-178" width="128" height="88"/>
     </elements>
 </model>

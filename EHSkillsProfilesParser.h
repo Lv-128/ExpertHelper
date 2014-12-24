@@ -38,7 +38,6 @@
 @property (nonatomic, copy) NSString *potentialCandidate;
 @property (nonatomic, copy) NSString *levelEstimate;
 @property (nonatomic, strong) NSDate *dateOfInterview;
-@property (nonatomic, copy) NSArray *records;
 @property (nonatomic) BOOL hire;
 
 @end
@@ -49,13 +48,19 @@
 @property (nonatomic, copy) NSArray *groups;
 @property (nonatomic, copy) NSArray *dataToSave;
 
+@property (nonatomic, copy) NSArray *recordsNames;
+@property (nonatomic, copy) NSArray *recordsUrls;
+
 @property (nonatomic, strong) EHGenInfo *genInfo;
 @property (nonatomic, strong) InterviewAppointment *interview;
 @property (nonatomic, strong) ExternalInterview *externalInterview;
 
 @property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 
-- (id)initWithDataGroups:(NSArray *)groups andInterview:(InterviewAppointment *)interview andGenInfo:(EHGenInfo *)genInfo;
+- (id)initWithDataGroups:(NSArray *)groups andInterview:(InterviewAppointment *)interview
+              andGenInfo:(EHGenInfo *)genInfo
+      andRecordsNamesArr:(NSArray *)recNames
+           andRecordsUrl:(NSArray *)urlArr;
 - (void)saveInfoToDB;
 - (void)getFromDB;
 

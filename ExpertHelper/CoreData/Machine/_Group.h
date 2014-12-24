@@ -4,11 +4,11 @@
 #import <CoreData/CoreData.h>
 
 extern const struct GroupAttributes {
-	 __unsafe_unretained NSString *title;
+	__unsafe_unretained NSString *title;
 } GroupAttributes;
 
 extern const struct GroupRelationships {
-	 __unsafe_unretained NSString *allSkills;
+	__unsafe_unretained NSString *allSkills;
 } GroupRelationships;
 
 @class Skills;
@@ -22,11 +22,11 @@ extern const struct GroupRelationships {
 + (NSEntityDescription*)entityInManagedObjectContext:(NSManagedObjectContext*)moc_;
 @property (nonatomic, readonly, strong) GroupID* objectID;
 
-@property (nonatomic, retain) NSString* title;
+@property (nonatomic, strong) NSString* title;
 
 //- (BOOL)validateTitle:(id*)value_ error:(NSError**)error_;
 
-@property (nonatomic, retain) NSSet *allSkills;
+@property (nonatomic, strong) NSSet *allSkills;
 
 - (NSMutableSet*)allSkillsSet;
 

@@ -4,13 +4,13 @@
 #import <CoreData/CoreData.h>
 
 extern const struct CandidateAttributes {
-	 __unsafe_unretained NSString *firstName;
-	 __unsafe_unretained NSString *lastName;
-	 __unsafe_unretained NSString *photoURL;
+	__unsafe_unretained NSString *firstName;
+	__unsafe_unretained NSString *lastName;
+	__unsafe_unretained NSString *photoURL;
 } CandidateAttributes;
 
 extern const struct CandidateRelationships {
-	 __unsafe_unretained NSString *idExternalInterview;
+	__unsafe_unretained NSString *idExternalInterview;
 } CandidateRelationships;
 
 @class ExternalInterview;
@@ -24,19 +24,19 @@ extern const struct CandidateRelationships {
 + (NSEntityDescription*)entityInManagedObjectContext:(NSManagedObjectContext*)moc_;
 @property (nonatomic, readonly, strong) CandidateID* objectID;
 
-@property (nonatomic, retain) NSString* firstName;
+@property (nonatomic, strong) NSString* firstName;
 
 //- (BOOL)validateFirstName:(id*)value_ error:(NSError**)error_;
 
-@property (nonatomic, retain) NSString* lastName;
+@property (nonatomic, strong) NSString* lastName;
 
 //- (BOOL)validateLastName:(id*)value_ error:(NSError**)error_;
 
-@property (nonatomic, retain) NSString* photoURL;
+@property (nonatomic, strong) NSString* photoURL;
 
 //- (BOOL)validatePhotoURL:(id*)value_ error:(NSError**)error_;
 
-@property (nonatomic, retain) NSSet *idExternalInterview;
+@property (nonatomic, strong) NSSet *idExternalInterview;
 
 - (NSMutableSet*)idExternalInterviewSet;
 

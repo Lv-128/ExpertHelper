@@ -4,17 +4,19 @@
 #import <CoreData/CoreData.h>
 
 extern const struct ExternalInterviewAttributes {
-	 __unsafe_unretained NSString *expert;
-	 __unsafe_unretained  NSString *pass;
+	__unsafe_unretained NSString *expert;
+	__unsafe_unretained NSString *pass;
 } ExternalInterviewAttributes;
 
 extern const struct ExternalInterviewRelationships {
-	 __unsafe_unretained NSString *idCandidate;
-	 __unsafe_unretained NSString *idGeneralInfo;
-	 __unsafe_unretained NSString *idInterview;
-	 __unsafe_unretained NSString *skills;
+	__unsafe_unretained NSString *audioRecords;
+	__unsafe_unretained NSString *idCandidate;
+	__unsafe_unretained NSString *idGeneralInfo;
+	__unsafe_unretained NSString *idInterview;
+	__unsafe_unretained NSString *skills;
 } ExternalInterviewRelationships;
 
+@class AudioRecord;
 @class Candidate;
 @class GeneralInfo;
 @class InterviewAppointment;
@@ -29,11 +31,11 @@ extern const struct ExternalInterviewRelationships {
 + (NSEntityDescription*)entityInManagedObjectContext:(NSManagedObjectContext*)moc_;
 @property (nonatomic, readonly, strong) ExternalInterviewID* objectID;
 
-@property (nonatomic, retain) NSString* expert;
+@property (nonatomic, strong) NSString* expert;
 
 //- (BOOL)validateExpert:(id*)value_ error:(NSError**)error_;
 
-@property (nonatomic, retain) NSNumber* pass;
+@property (nonatomic, strong) NSNumber* pass;
 
 @property (atomic) BOOL passValue;
 - (BOOL)passValue;
@@ -41,21 +43,33 @@ extern const struct ExternalInterviewRelationships {
 
 //- (BOOL)validatePass:(id*)value_ error:(NSError**)error_;
 
-@property (nonatomic, retain) Candidate *idCandidate;
+@property (nonatomic, strong) NSSet *audioRecords;
+
+- (NSMutableSet*)audioRecordsSet;
+
+@property (nonatomic, strong) Candidate *idCandidate;
 
 //- (BOOL)validateIdCandidate:(id*)value_ error:(NSError**)error_;
 
-@property (nonatomic, retain) GeneralInfo *idGeneralInfo;
+@property (nonatomic, strong) GeneralInfo *idGeneralInfo;
 
 //- (BOOL)validateIdGeneralInfo:(id*)value_ error:(NSError**)error_;
 
-@property (nonatomic, retain) InterviewAppointment *idInterview;
+@property (nonatomic, strong) InterviewAppointment *idInterview;
 
 //- (BOOL)validateIdInterview:(id*)value_ error:(NSError**)error_;
 
-@property (nonatomic, retain) NSSet *skills;
+@property (nonatomic, strong) NSSet *skills;
 
 - (NSMutableSet*)skillsSet;
+
+@end
+
+@interface _ExternalInterview (AudioRecordsCoreDataGeneratedAccessors)
+- (void)addAudioRecords:(NSSet*)value_;
+- (void)removeAudioRecords:(NSSet*)value_;
+- (void)addAudioRecordsObject:(AudioRecord*)value_;
+- (void)removeAudioRecordsObject:(AudioRecord*)value_;
 
 @end
 
@@ -77,6 +91,9 @@ extern const struct ExternalInterviewRelationships {
 
 - (BOOL)primitivePassValue;
 - (void)setPrimitivePassValue:(BOOL)value_;
+
+- (NSMutableSet*)primitiveAudioRecords;
+- (void)setPrimitiveAudioRecords:(NSMutableSet*)value;
 
 - (Candidate*)primitiveIdCandidate;
 - (void)setPrimitiveIdCandidate:(Candidate*)value;

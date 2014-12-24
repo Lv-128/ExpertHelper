@@ -31,8 +31,6 @@
 @property (nonatomic, weak) IBOutlet UILabel *levelLabel;
 @property (nonatomic, weak) IBOutlet UITableView *tableForRecords;
 @property (nonatomic, weak) IBOutlet UITextView *commentView;
-@property (nonatomic, copy) NSArray *arrayOfRecordsUrl;
-@property (nonatomic, copy) NSArray *arrayOfRecordsString;
 @property (nonatomic, strong) UIImage *buttonRecord;
 @property (nonatomic, strong) UIImage *buttonStop;
 @property (nonatomic, strong) UIImage *buttonPlay;
@@ -91,8 +89,10 @@
     _tableForRecords.layer.cornerRadius = 20;
     _tableForRecords.clipsToBounds = YES;
     
-    _arrayOfRecordsString = [[NSArray alloc]init];
-    _arrayOfRecordsUrl = [[NSMutableArray alloc] init];
+    if (_arrayOfRecordsUrl == nil) {
+        _arrayOfRecordsUrl = [[NSMutableArray alloc] init];
+        _arrayOfRecordsString = [[NSArray alloc]init];
+    }
     
     //Choose level label
     
@@ -105,7 +105,7 @@
     (![[[_comment objectAtIndex:_index.section] objectAtIndex:_index.row] isEqualToString:@""]) ? (_skill.comment = [[_comment objectAtIndex:_index.section] objectAtIndex:_index.row]): (_skill.comment = @"");
     (![[[_level objectAtIndex:_index.section] objectAtIndex:_index.row] isEqual:@""]) ? (_skill.estimate = [[_level objectAtIndex:_index.section] objectAtIndex:_index.row]): (_skill.estimate = @"");
 
-    NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:_level, @"recorderLevel", _comment, @"recorderComment", _arrayOfRecordsUrl, @"recorderUrl", nil];
+    NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:_level, @"recorderLevel", _comment, @"recorderComment", _arrayOfRecordsUrl, @"recorderUrl", _arrayOfRecordsString, @"recorderName", nil];
     [[NSNotificationCenter defaultCenter]postNotificationName:@"RecorderComment" object:nil userInfo:dict];
 }
 

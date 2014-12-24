@@ -4,17 +4,17 @@
 #import <CoreData/CoreData.h>
 
 extern const struct InterviewAppointmentAttributes {
-	 __unsafe_unretained NSString *endDate;
-	 __unsafe_unretained NSString *eventId;
-	 __unsafe_unretained NSString *location;
-	 __unsafe_unretained NSString *startDate;
-	 __unsafe_unretained NSString *type;
-	 __unsafe_unretained NSString *url;
+	__unsafe_unretained NSString *endDate;
+	__unsafe_unretained NSString *eventId;
+	__unsafe_unretained NSString *location;
+	__unsafe_unretained NSString *startDate;
+	__unsafe_unretained NSString *type;
+	__unsafe_unretained NSString *url;
 } InterviewAppointmentAttributes;
 
 extern const struct InterviewAppointmentRelationships {
-	 __unsafe_unretained NSString *idExternal;
-	 __unsafe_unretained NSString *idRecruiter;
+	__unsafe_unretained NSString *idExternal;
+	__unsafe_unretained NSString *idRecruiter;
 } InterviewAppointmentRelationships;
 
 @class ExternalInterview;
@@ -29,23 +29,23 @@ extern const struct InterviewAppointmentRelationships {
 + (NSEntityDescription*)entityInManagedObjectContext:(NSManagedObjectContext*)moc_;
 @property (nonatomic, readonly, strong) InterviewAppointmentID* objectID;
 
-@property (nonatomic, retain) NSDate* endDate;
+@property (nonatomic, strong) NSDate* endDate;
 
 //- (BOOL)validateEndDate:(id*)value_ error:(NSError**)error_;
 
-@property (nonatomic, retain) NSString* eventId;
+@property (nonatomic, strong) NSString* eventId;
 
 //- (BOOL)validateEventId:(id*)value_ error:(NSError**)error_;
 
-@property (nonatomic, retain) NSString* location;
+@property (nonatomic, strong) NSString* location;
 
 //- (BOOL)validateLocation:(id*)value_ error:(NSError**)error_;
 
-@property (nonatomic, retain) NSDate* startDate;
+@property (nonatomic, strong) NSDate* startDate;
 
 //- (BOOL)validateStartDate:(id*)value_ error:(NSError**)error_;
 
-@property (nonatomic, retain) NSNumber* type;
+@property (nonatomic, strong) NSNumber* type;
 
 @property (atomic) int32_t typeValue;
 - (int32_t)typeValue;
@@ -53,15 +53,15 @@ extern const struct InterviewAppointmentRelationships {
 
 //- (BOOL)validateType:(id*)value_ error:(NSError**)error_;
 
-@property (nonatomic, retain) NSString* url;
+@property (nonatomic, strong) NSString* url;
 
 //- (BOOL)validateUrl:(id*)value_ error:(NSError**)error_;
 
-@property (nonatomic, retain) ExternalInterview *idExternal;
+@property (nonatomic, strong) ExternalInterview *idExternal;
 
 //- (BOOL)validateIdExternal:(id*)value_ error:(NSError**)error_;
 
-@property (nonatomic, retain) Recruiter *idRecruiter;
+@property (nonatomic, strong) Recruiter *idRecruiter;
 
 //- (BOOL)validateIdRecruiter:(id*)value_ error:(NSError**)error_;
 

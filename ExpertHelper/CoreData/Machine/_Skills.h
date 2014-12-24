@@ -4,14 +4,14 @@
 #import <CoreData/CoreData.h>
 
 extern const struct SkillsAttributes {
-	 __unsafe_unretained NSString *id;
-	 __unsafe_unretained NSString *title;
+	__unsafe_unretained NSString *id;
+	__unsafe_unretained NSString *title;
 } SkillsAttributes;
 
 extern const struct SkillsRelationships {
-	 __unsafe_unretained NSString *idExternalInterview;
-	 __unsafe_unretained NSString *idGroup;
-	 __unsafe_unretained NSString *level;
+	__unsafe_unretained NSString *idExternalInterview;
+	__unsafe_unretained NSString *idGroup;
+	__unsafe_unretained NSString *level;
 } SkillsRelationships;
 
 @class ExternalInterview;
@@ -27,7 +27,7 @@ extern const struct SkillsRelationships {
 + (NSEntityDescription*)entityInManagedObjectContext:(NSManagedObjectContext*)moc_;
 @property (nonatomic, readonly, strong) SkillsID* objectID;
 
-@property (nonatomic, retain) NSNumber* id;
+@property (nonatomic, strong) NSNumber* id;
 
 @property (atomic) int32_t idValue;
 - (int32_t)idValue;
@@ -35,19 +35,19 @@ extern const struct SkillsRelationships {
 
 //- (BOOL)validateId:(id*)value_ error:(NSError**)error_;
 
-@property (nonatomic, retain) NSString* title;
+@property (nonatomic, strong) NSString* title;
 
 //- (BOOL)validateTitle:(id*)value_ error:(NSError**)error_;
 
-@property (nonatomic, retain) ExternalInterview *idExternalInterview;
+@property (nonatomic, strong) ExternalInterview *idExternalInterview;
 
 //- (BOOL)validateIdExternalInterview:(id*)value_ error:(NSError**)error_;
 
-@property (nonatomic, retain) Group *idGroup;
+@property (nonatomic, strong) Group *idGroup;
 
 //- (BOOL)validateIdGroup:(id*)value_ error:(NSError**)error_;
 
-@property (nonatomic, retain) SkillsLevels *level;
+@property (nonatomic, strong) SkillsLevels *level;
 
 //- (BOOL)validateLevel:(id*)value_ error:(NSError**)error_;
 

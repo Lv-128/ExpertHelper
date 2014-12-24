@@ -16,6 +16,7 @@
 #import "VoiceRecorders.h"
 #import "Reachability.h"
 #import "EHCheckNetworkConnection.h"
+#import "AudioRecord.h"
 
 #import "EHExternalViewController.h"
 #import <MessageUI/MessageUI.h>

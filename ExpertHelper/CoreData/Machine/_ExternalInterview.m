@@ -9,6 +9,7 @@ const struct ExternalInterviewAttributes ExternalInterviewAttributes = {
 };
 
 const struct ExternalInterviewRelationships ExternalInterviewRelationships = {
+	.audioRecords = @"audioRecords",
 	.idCandidate = @"idCandidate",
 	.idGeneralInfo = @"idGeneralInfo",
 	.idInterview = @"idInterview",
@@ -70,6 +71,17 @@ const struct ExternalInterviewRelationships ExternalInterviewRelationships = {
 
 - (void)setPrimitivePassValue:(BOOL)value_ {
 	[self setPrimitivePass:[NSNumber numberWithBool:value_]];
+}
+
+@dynamic audioRecords;
+
+- (NSMutableSet*)audioRecordsSet {
+	[self willAccessValueForKey:@"audioRecords"];
+
+	NSMutableSet *result = (NSMutableSet*)[self mutableSetValueForKey:@"audioRecords"];
+
+	[self didAccessValueForKey:@"audioRecords"];
+	return result;
 }
 
 @dynamic idCandidate;
