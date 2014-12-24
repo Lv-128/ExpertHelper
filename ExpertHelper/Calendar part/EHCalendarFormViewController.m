@@ -9,11 +9,11 @@
 #import "EHCalendarFormViewController.h"
 #import "EHListOfInterviewsViewController.h"
 #import "EHCalendarEventsParser.h"
-
 #import "EHMainEventsTableViewController.h"
 #import "EHEventsGetInfoParser.h"
 
 @interface EHCalendarFormViewController () <UITableViewDataSource, UITabBarDelegate>
+
 @property (copy, nonatomic) NSArray *sections;
 @property (copy, nonatomic) NSArray *sortedDays;
 @property (strong, nonatomic) NSDateFormatter *sectionDateFormatter;
@@ -30,8 +30,6 @@
 
 @property (nonatomic,strong) EHEventsGetInfoParser * interviewFromEventsParser;
 @property (strong , nonatomic) UIRefreshControl * refreshControl;
-
-
 
 @end
 
@@ -57,8 +55,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    
     
     self.tableView.allowsMultipleSelectionDuringEditing = NO;
     
@@ -175,7 +171,7 @@
 {
     tableView.sectionHeaderHeight = 25;
     
-    return @"MONTHs";
+    return @"Months";
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -190,9 +186,9 @@
     
     int numOfInterviews = 0;
     
-    for (int j =0 ; j<[[sortedDays objectAtIndex:indexPath.row] weeks].count;j++)
+    for (int j = 0; j < [[sortedDays objectAtIndex:indexPath.row] weeks].count; j++)
     {
-        numOfInterviews+=[[[[sortedDays objectAtIndex:indexPath.row] weeks] objectAtIndex:j] interviews].count;
+        numOfInterviews += [[[[sortedDays objectAtIndex:indexPath.row] weeks] objectAtIndex:j] interviews].count;
     }
     
     

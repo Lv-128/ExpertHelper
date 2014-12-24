@@ -57,8 +57,6 @@
     return _recruitersArray.count;
 }
 
-
-
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSString *cellIdentifier = @"recruiterCell";
@@ -69,10 +67,7 @@
     cell.recruiterEmail.text = [_recruitersArray[indexPath.row] email];
     if ([_recruitersArray[indexPath.row] photoUrl] == nil)
     {
-        
         [cell.picture setImage:[UIImage imageNamed:@"contact.png"]];
-        
-        
     }
     else
     {
@@ -93,16 +88,12 @@
         }
         
     }
-    
+    NSLog(@"%@", NSStringFromCGRect(cell.frame));
     return cell;
 }
 
-
-
 - (void)getAllRecruitersFromDB
 {
-    
-    
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     NSEntityDescription *entity = [NSEntityDescription entityForName:[Recruiter entityName]
                                               inManagedObjectContext:_managedObjectContext];
@@ -119,27 +110,24 @@
                                                 otherButtonTitles:nil];
         [message show];
     }
-    
 }
-
 
 - (IBAction)sendEmailMsg:(NSString*)address
 {
-    
     MFMailComposeViewController *mailController = [[MFMailComposeViewController alloc]init];
     [mailController setMailComposeDelegate:self];
     
     NSArray *addressArray;
     
-   if(![address isEqualToString:@"unknown@unknown.com"])
-   {
-    (addressArray = [[NSArray alloc]initWithObjects:address, nil]);
-    [mailController setMessageBody:@"Print message here!" isHTML:NO];
-    [mailController setToRecipients:addressArray];
-    [mailController setSubject:@""];
-    [mailController setModalTransitionStyle:UIModalTransitionStyleFlipHorizontal];
-    [self presentViewController:mailController animated:YES completion: nil];
-   }   
+    if (![address isEqualToString:@"unknown@unknown.com"])
+    {
+        (addressArray = [[NSArray alloc]initWithObjects:address, nil]);
+        [mailController setMessageBody:@"Print message here!" isHTML:NO];
+        [mailController setToRecipients:addressArray];
+        [mailController setSubject:@""];
+        [mailController setModalTransitionStyle:UIModalTransitionStyleFlipHorizontal];
+        [self presentViewController:mailController animated:YES completion: nil];
+    }
     else
     {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Warning"
@@ -149,10 +137,6 @@
                                               otherButtonTitles:nil];
         [alert show];
     }
-   
-    
-    
-    
 }
 
 
@@ -207,6 +191,4 @@
     }
     
 }
-
-
 @end

@@ -63,10 +63,12 @@ UIActionSheetDelegate, MFMailComposeViewControllerDelegate>
     
     
 }
--(void)awakeFromNib
+
+- (void)awakeFromNib
 {
     
 }
+
 - (void)setBarButtons
 {
     // menu
@@ -141,9 +143,6 @@ UIActionSheetDelegate, MFMailComposeViewControllerDelegate>
     EHRecruitersViewController *itaViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"RecruitersForm"];
     [self.navigationController pushViewController:itaViewController animated: YES];
 }
-
-
-
 
 - (IBAction)startInterview:(UIButton *)button
 {
@@ -281,8 +280,6 @@ UIActionSheetDelegate, MFMailComposeViewControllerDelegate>
              [appDelegate sessionStateChanged:session state:state error:error];
          }];
     }
-    
-    
 }
 
 - (void)searchUserWithFirstName:(NSString *)firstName lastName:(NSString *)lastName popover:(UIPopoverController *)popover
@@ -324,11 +321,8 @@ UIActionSheetDelegate, MFMailComposeViewControllerDelegate>
     [cell.skypeButton addTarget:self action:@selector(onSkypeButton:) forControlEvents:UIControlEventTouchUpInside];
     [cell.mailButton addTarget:self action:@selector(onMailButton:) forControlEvents:UIControlEventTouchUpInside];
     
-    
-    
     EHWeek *week = [self.sortedWeeks objectAtIndex:indexPath.section];
     NSArray *eventsOnThisDay = week.interviews;
-    
     
     InterviewAppointment *event = [eventsOnThisDay objectAtIndex:indexPath.row];
     
@@ -345,7 +339,6 @@ UIActionSheetDelegate, MFMailComposeViewControllerDelegate>
     [cell.layer setBorderWidth:0.7f];
     [cell.layer setBorderColor:[UIColor grayColor].CGColor];
     
-    
     cell.startButton.enabled = event.type.intValue != 0;
     
     UITapGestureRecognizer *gestureAction = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(goToInfo:)];
@@ -355,7 +348,6 @@ UIActionSheetDelegate, MFMailComposeViewControllerDelegate>
     
     gestureAction = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(chooseTypeOfInterview:)];
     [cell.typeLabel addGestureRecognizer:gestureAction];
-    
     
     return cell;
 }
@@ -427,13 +419,13 @@ UIActionSheetDelegate, MFMailComposeViewControllerDelegate>
 
 - (void)goToInfo:(id)sender
 {
-    UITapGestureRecognizer *tapGR = (UITapGestureRecognizer*)sender;
+    UITapGestureRecognizer *tapGR = (UITapGestureRecognizer *)sender;
     if (tapGR.view.tag == 104)
     {
         CGPoint touchLocation = [tapGR locationOfTouch:0 inView:self.collectionView];
         
         NSIndexPath *tappedRow = [self.collectionView indexPathForItemAtPoint:touchLocation];
-        NSArray * arr = [[[sortedWeeks objectAtIndex:tappedRow.section ] interviews] allObjects];
+        NSArray *arr = [[[sortedWeeks objectAtIndex:tappedRow.section] interviews] allObjects];
         InterviewAppointment * curInterview = [arr objectAtIndex:tappedRow.row];
         EHRecruiterViewController *recruiterViewForm = [self.storyboard instantiateViewControllerWithIdentifier:@"RecruiterFormView"];
         recruiterViewForm.recruiter = curInterview.idRecruiter;

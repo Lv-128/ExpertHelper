@@ -11,10 +11,7 @@
 #import "EHAppDelegate.h"
 #import "EHEventsGetInfoParser.h"
 
-
-
 @interface EHListOfInterviewsViewController : UIViewController
-
 
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (copy, nonatomic) NSArray *interviews;
