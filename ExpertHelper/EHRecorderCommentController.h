@@ -22,4 +22,6 @@
 @property (nonatomic, strong) EHSkill *skill;
 @property (nonatomic) NSInteger indexOfCell;
 
+- (IBAction)quickComment:(id)sender;
+
 @end

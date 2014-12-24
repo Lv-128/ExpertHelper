@@ -518,6 +518,8 @@
     [player play];
 }
 
+- (IBAction)quickComment:(id)sender {
+}
 @end
 
 
