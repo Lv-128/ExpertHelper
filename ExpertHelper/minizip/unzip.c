@@ -179,7 +179,7 @@ local int unzlocal_getByte(pzlib_filefunc_def,filestream,pi)
 {
     unsigned char c;
     int err = (int)ZREAD(*pzlib_filefunc_def,filestream,&c,1);
-    if (err==1)
+    if (err == 1)
     {
         *pi = (int)c;
         return UNZ_OK;

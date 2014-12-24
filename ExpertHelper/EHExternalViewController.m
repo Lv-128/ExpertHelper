@@ -549,7 +549,11 @@
     [self parsFunc];
     [self unzip];
     
-    //----------------------------------- start parsing part inside action -------------------------------
+    [self insertIntoExclesSharedString];
+    
+    [self writeToSheet3Score];
+    [self writeToSheet4Score];
+    //--------------------- start parsing part inside action -------------------------------
     NSError *error;
     
     NSString *filePath1 = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
@@ -568,86 +572,110 @@
     //NSString *ss = [[NSString alloc] init];
     NSString *stringForComparing = @"<c r=\"";
     
-    NSDictionary *map= [[NSDictionary alloc] initWithObjectsAndKeys:@"291", @"None", @"292", @"Low", @"293", @"Middle", @"294", @"Strong", nil];
-    int nextPart = 0;
     
-    for (int y = 0; y < _tableSections.count; y++) {
-        if (indexForA >= 12) break;
-        for (int x = 0; x < [[self.sectionContent objectAtIndex:y] count]; x++) {
-            stringForComparing = @"<c r=\"";
-            stringForComparing = [stringForComparing stringByAppendingString:a[indexForA]];
-            stringForComparing = [stringForComparing stringByAppendingString:@"\""];
-            
-            for (int i = nextPart; i < xml.length - 10; i++) {
-                NSString *ss = [xml substringWithRange:NSMakeRange(i, 10)];
-                if ([ss isEqual:stringForComparing]) {
-                    int k = 0;
-                    for (int j = i + 10; j < xml.length - 10; j++) {
-                        if ([xml characterAtIndex:j] == '/') {
-                            k = j + 1;
-                            break;
-                        }
-                    }
-                    
-                    NSMutableString *str = [@"<c r=\"" mutableCopy];
-                    [str appendString:a[indexForA]];
-                    [str appendString:@"\" s=\"105\" t=\"s\"><v>"];
-                    [str appendString:[map valueForKey:_array[y][x]]];
-                    [str appendString:@"</v></c>"];
-                    
-                    xml = [[xml stringByReplacingCharactersInRange: NSMakeRange(i, k - i + 1) withString:str] mutableCopy];
-                    
-                    indexForA++;
-                    nextPart = i;
-                    break;
-                }
-            }
-        }
-    }
-    [xml writeToFile:filePath1 atomically:YES encoding:NSUTF8StringEncoding error:&error];
+    //----------------------------------- start parsing part inside action -------------------------------
+    //    NSError *error;
+    //
+    //    NSString *filePath1 = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
+    //    filePath1 = [filePath1 stringByAppendingPathComponent:@"unZipDirName1"];
+    //    filePath1 = [filePath1 stringByAppendingPathComponent:@"xl"];
+    //    filePath1 = [filePath1 stringByAppendingPathComponent:@"worksheets"];
+    //    NSString *filePath2 = [filePath1 stringByAppendingPathComponent:@"sheet4.xml"];
+    //    filePath1 = [filePath1 stringByAppendingPathComponent:@"sheet3.xml"];
+    //    NSMutableString* xml = [[NSMutableString alloc] initWithString:[NSMutableString stringWithContentsOfFile:filePath1 encoding:NSUTF8StringEncoding error:&error]];
+    //
+    //    NSArray *a = [[NSArray alloc] initWithObjects:@"E21", @"E22", @"E23", @"E25", @"E26", @"E28", @"E29", @"E31", @"E32", @"E34", @"E35", @"E36", nil];
+    //    int indexForA = 0;
+    //    //NSString *ss = [[NSString alloc] init];
+    //    NSString *stringForComparing = @"<c r=\"";
+    //
+    //    NSDictionary *map= [[NSDictionary alloc] initWithObjectsAndKeys:@"291", @"None", @"292", @"Low", @"293", @"Middle", @"294", @"Strong", nil];
+    //    int nextPart = 0;
+    //
+    //    for (int y = 0; y < _tableSections.count; y++) {
+    //        if (indexForA >= 12) break;
+    //        for (int x = 0; x < [[self.sectionContent objectAtIndex:y] count]; x++) {
+    //            stringForComparing = @"<c r=\"";
+    //            stringForComparing = [stringForComparing stringByAppendingString:a[indexForA]];
+    //            stringForComparing = [stringForComparing stringByAppendingString:@"\""];
+    //
+    //            for (int i = nextPart; i < xml.length - 10; i++) {
+    //                NSString *ss = [xml substringWithRange:NSMakeRange(i, 10)];
+    //                if ([ss isEqual:stringForComparing]) {
+    //                    int k = 0;
+    //                    for (int j = i + 10; j < xml.length - 10; j++) {
+    //                        if ([xml characterAtIndex:j] == '/') {
+    //                            k = j + 1;
+    //                            break;
+    //                        }
+    //                    }
+    //
+    //                    NSMutableString *str = [@"<c r=\"" mutableCopy];
+    //                    [str appendString:a[indexForA]];
+    //                    [str appendString:@"\" s=\"105\" t=\"s\"><v>"];
+    //                    [str appendString:[map valueForKey:_array[y][x]]];
+    //                    [str appendString:@"</v></c>"];
+    //
+    //                    xml = [[xml stringByReplacingCharactersInRange: NSMakeRange(i, k - i + 1) withString:str] mutableCopy];
+    //
+    //                    indexForA++;
+    //                    nextPart = i;
+    //                    break;
+    //                }
+    //            }
+    //        }
+    //    }
+    //    [xml writeToFile:filePath1 atomically:YES encoding:NSUTF8StringEncoding error:&error];
+    
+    // ------------------------------------------- esxport expert's comments to excel document -----------------------------
+    
     
     // ------------------------------------------- parsing for profiles -----------------------------
     
-    NSMutableString* xml1 = [[NSMutableString alloc] initWithString:[NSMutableString stringWithContentsOfFile:filePath2 encoding:NSUTF8StringEncoding error:&error]];
-    
-    NSArray *b = [[NSArray alloc] initWithObjects:@"B8", @"C8", @"D8", @"E8", @"F8", @"G8", @"H8", @"I8", @"J8", @"K8", nil];
-    int indexForB = 0;
-    nextPart = 0;
-    for (int x = 0; x < [[self.sectionContent objectAtIndex:_tableSections.count-1] count]; x++) {
-        stringForComparing = @"<c r=\"";
-        stringForComparing = [stringForComparing stringByAppendingString:b[indexForB]];
-        stringForComparing = [stringForComparing stringByAppendingString:@"\""];
-        //ss=@"";
-        for (int i = nextPart; i < xml1.length - 9; i++) {
-            if (indexForB >= 10) break;
-            NSString *ss = [xml1 substringWithRange:NSMakeRange(i, 9)];
-            if ([ss isEqual:stringForComparing]) {
-                int k = 0;
-                for (int j = i + 10; j < xml1.length - 9; j++) {
-                    if ([xml1 characterAtIndex:j] == '/') {
-                        k = j + 1;
-                        break;
-                    }
-                }
-                
-                NSMutableString *str = [@"<c r=\"" mutableCopy];
-                [str appendString:b[indexForB]];
-                [str appendString:@"\" s=\"40\" t=\"s\"><v>"];
-                [str appendString:[map valueForKey:_array[_tableSections.count-1][x]]];
-                [str appendString:@"</v></c>"];
-                
-                xml1 = [[xml1 stringByReplacingCharactersInRange: NSMakeRange(i, k - i + 1) withString:str] mutableCopy];
-                
-                
-                indexForB++;
-                nextPart = i;
-                break;
-            }
-        }
-    }
-    //----------------------------------- end parsing parts inside action ------------------------------
-    
-    [xml1 writeToFile:filePath2 atomically:YES encoding:NSUTF8StringEncoding error:&error];
+    //    NSMutableString* xml1 = [[NSMutableString alloc] initWithString:[NSMutableString stringWithContentsOfFile:filePath2 encoding:NSUTF8StringEncoding error:&error]];
+    //
+    //    NSArray *b = [[NSArray alloc] initWithObjects:@"B8", @"C8", @"D8", @"E8", @"F8", @"G8", @"H8", @"I8", @"J8", @"K8", nil];
+    //    int indexForB = 0;
+    //    nextPart = 0;
+    //    for (int x = 0; x < [[self.sectionContent objectAtIndex:_tableSections.count-1] count]; x++) {
+    //        stringForComparing = @"<c r=\"";
+    //        stringForComparing = [stringForComparing stringByAppendingString:b[indexForB]];
+    //        stringForComparing = [stringForComparing stringByAppendingString:@"\""];
+    //        //ss=@"";
+    //        for (int i = nextPart; i < xml1.length - 9; i++) {
+    //            if (indexForB >= 10) break;
+    //            NSString *ss = [xml1 substringWithRange:NSMakeRange(i, 9)];
+    //            if ([ss isEqual:stringForComparing]) {
+    //                int k = 0;
+    //                for (int j = i + 10; j < xml1.length - 9; j++) {
+    //                    if ([xml1 characterAtIndex:j] == '/') {
+    //                        k = j + 1;
+    //                        break;
+    //                    }
+    //                }
+    //
+    //                NSMutableString *str = [@"<c r=\"" mutableCopy];
+    //                [str appendString:b[indexForB]];
+    //                [str appendString:@"\" s=\"40\" t=\"s\"><v>"];
+    //                [str appendString:[map valueForKey:_array[_tableSections.count-1][x]]];
+    //                [str appendString:@"</v></c>"];
+    //
+    //                xml1 = [[xml1 stringByReplacingCharactersInRange: NSMakeRange(i, k - i + 1) withString:str] mutableCopy];
+    //
+    //
+    //                indexForB++;
+    //                nextPart = i;
+    //                break;
+    //            }
+    //        }
+    //    }
+    //
+    //
+    //
+    //
+    //    //----------------------------------- end parsing parts inside action ------------------------------
+    //
+    //    [xml1 writeToFile:filePath2 atomically:YES encoding:NSUTF8StringEncoding error:&error];
     [self zip];
 }
 
@@ -711,7 +739,6 @@
     }
     [za CloseZipFile2];
 }
-
 - (void) insertIntoExclesSharedString {
     NSError *error;
     
@@ -723,8 +750,10 @@
     int uniqueCountIndex = 295;
     
     for (int i = 0; i < _comment.count; i++) {
-        if (![_comment[i] isEqualToString:@""]) {
-            uniqueCountIndex++;
+        for (int j = 0; j < [_comment[i] count]; j++) {
+            if (![_comment[i][j] isEqualToString:@""]) {
+                uniqueCountIndex++;
+            }
         }
     }
     
@@ -747,22 +776,182 @@
         if ([ss isEqualToString:stringForComparing]) {
             k = i;
             
-            [xml insertString:@"<si><t>Strong</t></si>" atIndex:k];
-            [xml insertString:@"<si><t>Good</t></si>" atIndex:k];
-            [xml insertString:@"<si><t>Beginner</t></si>" atIndex:k];
-            [xml insertString:@"<si><t>None</t></si>" atIndex:k];
-            for (int i = 0; i < _comment.count; i++) {
-                if (![_comment[i] isEqualToString:@""]) {
-                    NSString *s =@"<si><t>";
-                    [s stringByAppendingString:_comment[i]];
-                    [s stringByAppendingString:@"</t></si>"];
+            //     [xml insertString:@"<si><t>Strong</t></si>" atIndex:k];
+            //     [xml insertString:@"<si><t>Good</t></si>" atIndex:k];
+            //      [xml insertString:@"<si><t>Beginner</t></si>" atIndex:k];
+            //       [xml insertString:@"<si><t>None</t></si>" atIndex:k];
+            for (int ii = 0; ii < _comment.count; ii++) {
+                for (int j = 0; j < [_comment[ii] count]; j++) {
+                    if (![_comment[ii][j] isEqualToString:@""]) {
+                        NSString *s =@"<si><t>";
+                        s = [s stringByAppendingString:_comment[ii][j]];
+                        s = [s stringByAppendingString:@"</t></si>"];
+                        
+                        [xml insertString:s atIndex:k];
+                    }
+                }
+            }
+            break;
+        }
+        
+    }
+    
+    
+    [xml writeToFile:filePath1 atomically:YES encoding:NSUTF8StringEncoding error:&error];
+}
+
+- (void) writeToSheet3Score {
+    NSError *error;
+    
+    NSString *filePath1 = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
+    filePath1 = [filePath1 stringByAppendingPathComponent:@"unZipDirName1"];
+    filePath1 = [filePath1 stringByAppendingPathComponent:@"xl"];
+    filePath1 = [filePath1 stringByAppendingPathComponent:@"worksheets"];
+    filePath1 = [filePath1 stringByAppendingPathComponent:@"sheet3.xml"];
+    NSMutableString* xml = [[NSMutableString alloc] initWithString:[NSMutableString stringWithContentsOfFile:filePath1 encoding:NSUTF8StringEncoding error:&error]];
+    
+    NSArray *a = [[NSArray alloc] initWithObjects:@"E21", @"E22", @"E23", @"E25", @"E26", @"E28", @"E29", @"E31", @"E32", @"E34", @"E35", @"E36", nil];
+    NSArray *b = [[NSArray alloc] initWithObjects:@"F21", @"F22", @"F23", @"F25", @"F26", @"F28", @"F29", @"F31", @"F32", @"F34", @"F35", @"F36", nil];
+    int indexForA = 0;
+    
+    NSString *stringForComparing = @"<c r=\"";
+    
+    NSDictionary *map= [[NSDictionary alloc] initWithObjectsAndKeys:@"291", @"None", @"292", @"Low", @"293", @"Middle", @"294", @"Strong", nil];
+    int nextPart = 0;
+    
+    for (int y = 0; y < _tableSections.count; y++) {
+        if (indexForA >= 12) break;
+        for (int x = 0; x < [[self.sectionContent objectAtIndex:y] count]; x++) {
+            stringForComparing = @"<c r=\"";
+            stringForComparing = [stringForComparing stringByAppendingString:a[indexForA]];
+            stringForComparing = [stringForComparing stringByAppendingString:@"\""];
+            
+            for (int i = nextPart; i < xml.length - 10; i++) {
+                NSString *ss = [xml substringWithRange:NSMakeRange(i, 10)];
+                if ([ss isEqual:stringForComparing]) {
+                    int k = 0;
+                    for (int j = i + 10; j < xml.length - 10; j++) {
+                        if ([xml characterAtIndex:j] == '/') {
+                            k = j + 1;
+                            break;
+                        }
+                    }
                     
-                    [xml insertString:s atIndex:k];
+                    NSMutableString *str = [@"<c r=\"" mutableCopy];
+                    [str appendString:a[indexForA]];
+                    [str appendString:@"\" s=\"105\" t=\"s\"><v>"];
+                    [str appendString:[map valueForKey:_array[y][x]]];
+                    [str appendString:@"</v></c>"];
+                    
+                    xml = [[xml stringByReplacingCharactersInRange: NSMakeRange(i, k - i + 1) withString:str] mutableCopy];
+                    
+                    indexForA++;
+                    nextPart = i;
+                    break;
+                    
                 }
             }
         }
     }
+    
+    // wriring comments
+    
+    nextPart = 0;
+    indexForA = 0;
+    
+    for (int y = 0; y < _tableSections.count; y++) {
+        if (indexForA >= 12) break;
+        for (int x = 0; x < [[self.sectionContent objectAtIndex:y] count]; x++) {
+            if (![_comment[y][x] isEqualToString:@""]) {
+                stringForComparing = @"<c r=\"";
+                stringForComparing = [stringForComparing stringByAppendingString:b[indexForA]];
+                stringForComparing = [stringForComparing stringByAppendingString:@"\""];
+                
+                for (int i = nextPart; i < xml.length - 10; i++) {
+                    NSString *ss = [xml substringWithRange:NSMakeRange(i, 10)];
+                    if ([ss isEqual:stringForComparing]) {
+                        int k = 0;
+                        for (int j = i + 10; j < xml.length - 10; j++) {
+                            if ([xml characterAtIndex:j] == '/') {
+                                k = j + 1;
+                                break;
+                            }
+                        }
+                        
+                        NSMutableString *str = [@"<c r=\"" mutableCopy];
+                        [str appendString:b[indexForA]];
+                        [str appendString:@"\" s=\"105\" t=\"s\"><v>"];
+                        [str appendString:_comment[y][x]];
+                        [str appendString:@"</v></c>"];
+                        
+                        xml = [[xml stringByReplacingCharactersInRange: NSMakeRange(i, k - i + 1) withString:str] mutableCopy];
+                        
+                        nextPart = i;
+                        break;
+                    }
+                }
+            }
+            indexForA++;
+        }
+    }
+    
+    [xml writeToFile:filePath1 atomically:YES encoding:NSUTF8StringEncoding error:&error];
 }
+
+- (void) writeToSheet4Score {
+    NSError *error;
+    
+    NSString *filePath1 = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
+    filePath1 = [filePath1 stringByAppendingPathComponent:@"unZipDirName1"];
+    filePath1 = [filePath1 stringByAppendingPathComponent:@"xl"];
+    filePath1 = [filePath1 stringByAppendingPathComponent:@"worksheets"];
+    NSString *filePath2 = [filePath1 stringByAppendingPathComponent:@"sheet4.xml"];
+    
+    NSString *stringForComparing;
+    
+    NSMutableString* xml1 = [[NSMutableString alloc] initWithString:[NSMutableString stringWithContentsOfFile:filePath2 encoding:NSUTF8StringEncoding error:&error]];
+    
+    NSArray *b = [[NSArray alloc] initWithObjects:@"B8", @"C8", @"D8", @"E8", @"F8", @"G8", @"H8", @"I8", @"J8", @"K8", nil];
+    NSDictionary *map= [[NSDictionary alloc] initWithObjectsAndKeys:@"291", @"None", @"292", @"Low", @"293", @"Middle", @"294", @"Strong", nil];
+    int indexForB = 0;
+    int nextPart = 0;
+    for (int x = 0; x < [[self.sectionContent objectAtIndex:_tableSections.count-1] count]; x++) {
+        stringForComparing = @"<c r=\"";
+        stringForComparing = [stringForComparing stringByAppendingString:b[indexForB]];
+        stringForComparing = [stringForComparing stringByAppendingString:@"\""];
+        //ss=@"";
+        for (int i = nextPart; i < xml1.length - 9; i++) {
+            if (indexForB >= 10) break;
+            NSString *ss = [xml1 substringWithRange:NSMakeRange(i, 9)];
+            if ([ss isEqual:stringForComparing]) {
+                int k = 0;
+                for (int j = i + 10; j < xml1.length - 9; j++) {
+                    if ([xml1 characterAtIndex:j] == '/') {
+                        k = j + 1;
+                        break;
+                    }
+                }
+                
+                NSMutableString *str = [@"<c r=\"" mutableCopy];
+                [str appendString:b[indexForB]];
+                [str appendString:@"\" s=\"40\" t=\"s\"><v>"];
+                [str appendString:[map valueForKey:_array[_tableSections.count-1][x]]];
+                [str appendString:@"</v></c>"];
+                
+                xml1 = [[xml1 stringByReplacingCharactersInRange: NSMakeRange(i, k - i + 1) withString:str] mutableCopy];
+                
+                
+                indexForB++;
+                nextPart = i;
+                break;
+            }
+        }
+    }
+    
+    [xml1 writeToFile:filePath2 atomically:YES encoding:NSUTF8StringEncoding error:&error];
+}
+
+
 @end
 
 

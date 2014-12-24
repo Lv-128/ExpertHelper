@@ -64,8 +64,9 @@
 	
 	zip_fileinfo zipInfo = {0};
 //	zipInfo.dosDate = (unsigned long) current;
-	
-	NSDictionary* attr = [[NSFileManager defaultManager] fileAttributesAtPath:file traverseLink:YES];
+    NSError *error;
+    
+	NSDictionary* attr = [[NSFileManager defaultManager] attributesOfItemAtPath: file error:&error];
 	if( attr )
 	{
 		NSDate* fileDate = (NSDate*)[attr objectForKey:NSFileModificationDate];
@@ -207,7 +208,7 @@
 		filename[fileInfo.size_filename] = '\0';
 		
 		// check if it contains directory
-		NSString * strPath = [NSString  stringWithCString:filename];
+		NSString * strPath = [NSString  stringWithUTF8String:filename];
 		BOOL isDirectory = NO;
 		if( filename[fileInfo.size_filename-1]=='/' || filename[fileInfo.size_filename-1]=='\\')
 			isDirectory = YES;
@@ -304,13 +305,13 @@
 #pragma mark wrapper for delegate
 -(void) OutputErrorMessage:(NSString*) msg
 {
-	if( _delegate && [_delegate respondsToSelector:@selector(ErrorMessage)] )
+	if( _delegate && [_delegate respondsToSelector:nil] )
 		[_delegate ErrorMessage:msg];
 }
 
 -(BOOL) OverWrite:(NSString*) file
 {
-	if( _delegate && [_delegate respondsToSelector:@selector(OverWriteOperation)] )
+	if( _delegate && [_delegate respondsToSelector:nil] )
 		return [_delegate OverWriteOperation:file];
 	return YES;
 }
