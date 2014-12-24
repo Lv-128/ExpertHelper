@@ -11,6 +11,7 @@
 #import "EHSkillLevelPopup.h"
 #import "EHRecorderCommaentCell.h"
 #import "EHSkillsProfilesParser.h"
+//#import <QuartzCore/QuartzCore.h>
 
 #define DOCUMENTS_FOLDER [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"]
 #define DOCUMENTS_FOLDER1 [DOCUMENTS_FOLDER stringByAppendingPathComponent:@"Recordering"]
@@ -85,11 +86,18 @@
     _buttonPlay = [UIImage imageNamed:@"play_button"];
     _buttonPause = [UIImage imageNamed:@"pause_button"];
     
-    _commentView.layer.borderWidth = 2.0f;
+    _commentView.layer.borderWidth = 1.0f;
+    _commentView.layer.borderColor = [UIColor grayColor].CGColor;
     _commentView.layer.cornerRadius = 20;
     _commentView.clipsToBounds = YES;
     
-    _tableForRecords.layer.borderWidth = 2.0f;
+    _infoTableView.layer.borderWidth = 1.0f;
+    _infoTableView.layer.borderColor = [UIColor grayColor].CGColor;
+    _infoTableView.layer.cornerRadius = 20;
+    _infoTableView.clipsToBounds = YES;
+    
+    _tableForRecords.layer.borderWidth = 1.0f;
+    _tableForRecords.layer.borderColor = [UIColor grayColor].CGColor;
     _tableForRecords.layer.cornerRadius = 20;
     _tableForRecords.clipsToBounds = YES;
     
@@ -104,6 +112,7 @@
     [_levelLabel addGestureRecognizer:tap];
     _levelLabel.userInteractionEnabled = YES;
 }
+
 - (void)viewDidDisappear:(BOOL)animated
 {
     [self addCommentToDB:_commentView.text];
@@ -120,9 +129,6 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
-
-
 
 #pragma mark UITableViewDataSource methods
 

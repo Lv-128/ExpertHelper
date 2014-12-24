@@ -60,6 +60,8 @@
 		D9998EE11A221CE9002E019A /* EHCalendarFormViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D9998ED71A221CE9002E019A /* EHCalendarFormViewController.m */; };
 		D9998EE21A221CE9002E019A /* EHEventsGetInfoParser.m in Sources */ = {isa = PBXBuildFile; fileRef = D9998EDA1A221CE9002E019A /* EHEventsGetInfoParser.m */; };
 		D9998EE41A221CE9002E019A /* EHRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D9998EDF1A221CE9002E019A /* EHRevealViewController.m */; };
+		D9ABF0B41A4B2D510040F216 /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D9ABF0B01A4B2D510040F216 /* Main_iPad.storyboard */; };
+		D9ABF0B51A4B2D510040F216 /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D9ABF0B21A4B2D510040F216 /* Main_iPhone.storyboard */; };
 		D9AD2EB71A3384D2003D7E14 /* EHRecorderCommentController.m in Sources */ = {isa = PBXBuildFile; fileRef = D9AD2EB61A3384D2003D7E14 /* EHRecorderCommentController.m */; };
 		D9B0CC651A03B17500544323 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D9B0CC641A03B17500544323 /* Foundation.framework */; };
 		D9B0CC671A03B17500544323 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D9B0CC661A03B17500544323 /* CoreGraphics.framework */; };
@@ -67,8 +69,6 @@
 		D9B0CC6F1A03B17500544323 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D9B0CC6D1A03B17500544323 /* InfoPlist.strings */; };
 		D9B0CC711A03B17500544323 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D9B0CC701A03B17500544323 /* main.m */; };
 		D9B0CC751A03B17500544323 /* EHAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D9B0CC741A03B17500544323 /* EHAppDelegate.m */; };
-		D9B0CC781A03B17500544323 /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D9B0CC761A03B17500544323 /* Main_iPhone.storyboard */; };
-		D9B0CC7B1A03B17500544323 /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D9B0CC791A03B17500544323 /* Main_iPad.storyboard */; };
 		D9B0CC871A03B17500544323 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D9B0CC861A03B17500544323 /* XCTest.framework */; };
 		D9B0CC881A03B17500544323 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D9B0CC641A03B17500544323 /* Foundation.framework */; };
 		D9B0CC891A03B17500544323 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D9B0CC681A03B17500544323 /* UIKit.framework */; };
@@ -185,6 +185,8 @@
 		D9998EDA1A221CE9002E019A /* EHEventsGetInfoParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EHEventsGetInfoParser.m; path = "Calendar part/EHEventsGetInfoParser.m"; sourceTree = "<group>"; };
 		D9998EDE1A221CE9002E019A /* EHRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EHRevealViewController.h; sourceTree = "<group>"; };
 		D9998EDF1A221CE9002E019A /* EHRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EHRevealViewController.m; sourceTree = "<group>"; };
+		D9ABF0B11A4B2D510040F216 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = ExpertHelper/Base.lproj/Main_iPad.storyboard; sourceTree = "<group>"; };
+		D9ABF0B31A4B2D510040F216 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = ExpertHelper/Base.lproj/Main_iPhone.storyboard; sourceTree = "<group>"; };
 		D9AD2EB51A3384D2003D7E14 /* EHRecorderCommentController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EHRecorderCommentController.h; sourceTree = "<group>"; };
 		D9AD2EB61A3384D2003D7E14 /* EHRecorderCommentController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EHRecorderCommentController.m; sourceTree = "<group>"; };
 		D9B0CC611A03B17500544323 /* ExpertHelper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ExpertHelper.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -197,8 +199,6 @@
 		D9B0CC721A03B17500544323 /* ExpertHelper-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ExpertHelper-Prefix.pch"; sourceTree = "<group>"; };
 		D9B0CC731A03B17500544323 /* EHAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EHAppDelegate.h; sourceTree = "<group>"; };
 		D9B0CC741A03B17500544323 /* EHAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EHAppDelegate.m; sourceTree = "<group>"; };
-		D9B0CC771A03B17500544323 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPhone.storyboard; sourceTree = "<group>"; };
-		D9B0CC7A1A03B17500544323 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPad.storyboard; sourceTree = "<group>"; };
 		D9B0CC851A03B17500544323 /* ExpertHelperTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ExpertHelperTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D9B0CC861A03B17500544323 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		D9B0CC8E1A03B17500544323 /* ExpertHelperTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ExpertHelperTests-Info.plist"; sourceTree = "<group>"; };
@@ -548,11 +548,11 @@
 		D9B0CC6A1A03B17500544323 /* ExpertHelper */ = {
 			isa = PBXGroup;
 			children = (
+				D9ABF0B01A4B2D510040F216 /* Main_iPad.storyboard */,
+				D9ABF0B21A4B2D510040F216 /* Main_iPhone.storyboard */,
 				11DA2E041A3E03340051CBAC /* Workbook.xlsx */,
 				D93583FD1A1CB3AD00135A2D /* WorkWithEvents */,
 				2790F4E01A139735001B0956 /* ViewControllers */,
-				D9B0CC791A03B17500544323 /* Main_iPad.storyboard */,
-				D9B0CC761A03B17500544323 /* Main_iPhone.storyboard */,
 				D9B0CC6B1A03B17500544323 /* Supporting Files */,
 			);
 			path = ExpertHelper;
@@ -784,13 +784,13 @@
 			files = (
 				D912ADF61A4088F700D95DFB /* Images.xcassets in Resources */,
 				8390BB5F1A4856660032CC92 /* EHGeneralInfoCellIpad.xib in Resources */,
-				D9B0CC7B1A03B17500544323 /* Main_iPad.storyboard in Resources */,
 				D92B76E51A1F847F00B76F5E /* EHSkillLevelPopupIpad.xib in Resources */,
+				D9ABF0B41A4B2D510040F216 /* Main_iPad.storyboard in Resources */,
 				835D65561A4AC3DD0032CACA /* EHGeneralInfoCellIphone.xib in Resources */,
 				11DA2E051A3E03340051CBAC /* Workbook.xlsx in Resources */,
 				D92204741A2FAA4300B3BAAD /* mogend.sh in Resources */,
 				D92204721A2FAA4300B3BAAD /* mogen.sh in Resources */,
-				D9B0CC781A03B17500544323 /* Main_iPhone.storyboard in Resources */,
+				D9ABF0B51A4B2D510040F216 /* Main_iPhone.storyboard in Resources */,
 				83CD969E1A3B5C5600115744 /* EHFacebookPopoverViewController.xib in Resources */,
 				D9B0CC6F1A03B17500544323 /* InfoPlist.strings in Resources */,
 				835D655A1A4ACC200032CACA /* EHSkillLevelPopupIphone.xib in Resources */,
@@ -915,28 +915,30 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		D9ABF0B01A4B2D510040F216 /* Main_iPad.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D9ABF0B11A4B2D510040F216 /* Base */,
+			);
+			name = Main_iPad.storyboard;
+			path = ..;
+			sourceTree = "<group>";
+		};
+		D9ABF0B21A4B2D510040F216 /* Main_iPhone.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D9ABF0B31A4B2D510040F216 /* Base */,
+			);
+			name = Main_iPhone.storyboard;
+			path = ..;
+			sourceTree = "<group>";
+		};
 		D9B0CC6D1A03B17500544323 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
 				D9B0CC6E1A03B17500544323 /* en */,
 			);
 			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		D9B0CC761A03B17500544323 /* Main_iPhone.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				D9B0CC771A03B17500544323 /* Base */,
-			);
-			name = Main_iPhone.storyboard;
-			sourceTree = "<group>";
-		};
-		D9B0CC791A03B17500544323 /* Main_iPad.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				D9B0CC7A1A03B17500544323 /* Base */,
-			);
-			name = Main_iPad.storyboard;
 			sourceTree = "<group>";
 		};
 		D9B0CC8F1A03B17500544323 /* InfoPlist.strings */ = {

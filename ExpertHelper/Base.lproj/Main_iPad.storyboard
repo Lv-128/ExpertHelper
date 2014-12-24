@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13E28" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="696-TH-eQE">
-
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4510" systemVersion="13F34" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="696-TH-eQE">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3742"/>
     </dependencies>
     <scenes>
         <!--Reveal View Controller-->
@@ -742,7 +740,7 @@
                                     <action selector="quickComment:" destination="1SL-6X-SWp" eventType="touchUpInside" id="Fzg-rm-GXi"/>
                                 </connections>
                             </button>
-                            <tableView hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="1Io-Um-cbq">
+                            <tableView hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="1Io-Um-cbq">
                                 <rect key="frame" x="20" y="77" width="728" height="285"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -759,12 +757,16 @@
                             <constraint firstItem="asW-22-4we" firstAttribute="leading" secondItem="6fj-Ri-Bfl" secondAttribute="trailing" constant="66" id="AqS-Va-wr2"/>
                             <constraint firstItem="law-Wp-Pxt" firstAttribute="top" secondItem="asW-22-4we" secondAttribute="bottom" constant="21" id="BNw-Gc-j58"/>
                             <constraint firstItem="VTj-8M-ttN" firstAttribute="leading" secondItem="de8-hN-jx9" secondAttribute="trailing" constant="64" id="BSZ-Ro-3fJ"/>
+                            <constraint firstItem="1Io-Um-cbq" firstAttribute="trailing" secondItem="U8N-Uv-T6Z" secondAttribute="trailing" id="BjL-39-Qg7"/>
                             <constraint firstItem="asW-22-4we" firstAttribute="trailing" secondItem="U8N-Uv-T6Z" secondAttribute="trailing" id="D3c-Km-7wt"/>
                             <constraint firstAttribute="bottom" secondItem="6fj-Ri-Bfl" secondAttribute="bottom" constant="20" symbolic="YES" id="GnX-fX-Ip9"/>
+                            <constraint firstItem="1Io-Um-cbq" firstAttribute="bottom" secondItem="U8N-Uv-T6Z" secondAttribute="bottom" id="J6D-SG-TyT"/>
                             <constraint firstItem="U8N-Uv-T6Z" firstAttribute="top" secondItem="de8-hN-jx9" secondAttribute="bottom" constant="18" id="SRW-ss-Vn4"/>
+                            <constraint firstItem="1Io-Um-cbq" firstAttribute="top" secondItem="U8N-Uv-T6Z" secondAttribute="top" id="Vpa-S2-ckQ"/>
                             <constraint firstItem="de8-hN-jx9" firstAttribute="leading" secondItem="meI-ro-khy" secondAttribute="leading" constant="67" id="bOO-Vu-4Wh"/>
                             <constraint firstItem="U8N-Uv-T6Z" firstAttribute="leading" secondItem="meI-ro-khy" secondAttribute="leading" constant="20" symbolic="YES" id="ffC-H9-f0t"/>
                             <constraint firstItem="U8N-Uv-T6Z" firstAttribute="leading" secondItem="6fj-Ri-Bfl" secondAttribute="leading" id="qqk-J7-fLx"/>
+                            <constraint firstItem="1Io-Um-cbq" firstAttribute="leading" secondItem="U8N-Uv-T6Z" secondAttribute="leading" id="tRq-XV-c2p"/>
                             <constraint firstItem="VTj-8M-ttN" firstAttribute="top" secondItem="de8-hN-jx9" secondAttribute="top" id="vRp-Fj-6k5"/>
                             <constraint firstItem="de8-hN-jx9" firstAttribute="top" secondItem="meI-ro-khy" secondAttribute="top" constant="20" symbolic="YES" id="vhH-dO-Oaz"/>
                             <constraint firstItem="de8-hN-jx9" firstAttribute="baseline" secondItem="VTj-8M-ttN" secondAttribute="baseline" id="weo-Gk-IAt"/>
@@ -772,7 +774,6 @@
                     </view>
                     <navigationItem key="navigationItem" id="XSO-MY-rsO"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="768" height="700"/>
                     <connections>
                         <outlet property="commentView" destination="U8N-Uv-T6Z" id="rTc-Es-PDu"/>
                         <outlet property="infoTableView" destination="1Io-Um-cbq" id="V5h-ca-Gcs"/>
