@@ -10,7 +10,6 @@
 #import "EHAppDelegate.h"
 @interface EHExternalViewController : UIViewController
 {
-    BOOL isPopup;
     BOOL newCell;
     NSInteger RowAtIndexPathOfSkills;
     NSInteger lostData;

@@ -30,4 +30,7 @@ typedef enum : NSUInteger {
 
 @property (nonatomic, weak) id<EHSkillLevelPopupDelegate> delegate;
 
+- (void)showInView:(UIView *)view;
+- (void)close;
+
 @end

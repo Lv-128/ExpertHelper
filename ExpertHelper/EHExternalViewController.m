@@ -48,8 +48,8 @@
 
 - (void)skillLevelPopup:(EHSkillLevelPopup *)popup
          didSelectLevel:(EHSkillLevel)level {
-    
-    [self closePopup];
+    [popup close];
+    self.popup = nil;
     newCell = YES;
     
     NSIndexPath *rowToReload = [NSIndexPath indexPathForRow: RowAtIndexPathOfSkills inSection:lostData];
@@ -92,7 +92,6 @@
     self.cellDateFormatter = [[NSDateFormatter alloc] init];
     [self.cellDateFormatter setDateStyle:NSDateFormatterFullStyle];
     [self.cellDateFormatter setTimeStyle:NSDateFormatterLongStyle];
-    isPopup = NO;
     newCell = NO;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableSections = @[@"General info", @"Design", @"Construction", @"Quality", @"Configuration Management", @"Scope Management and Software Engineering", @"Profiles"];
@@ -294,7 +293,7 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    [self closePopup];
+    [_popup close];
     
     if ([[segue identifier] isEqualToString:@"GoToGenInfoForm"])
     {
@@ -440,7 +439,7 @@
         lostData = [indexPath section];
         RowAtIndexPathOfSkills = row;
         
-        if (isPopup == NO){
+        if (_popup == nil){
             NSString *nibName;
             if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad)
                 nibName = @"EHSkillLevelPopupIpad";
@@ -449,49 +448,23 @@
             
             UINib *nib = [UINib nibWithNibName:nibName bundle:nil];
             EHSkillLevelPopup *popup = [[nib instantiateWithOwner:nil options:nil] lastObject];
-            CGRect selfFrame = self.view.frame;
-            CGRect popupFrame = popup.frame;
-            popupFrame.size.width = selfFrame.size.width;
-            popupFrame.origin.y = selfFrame.size.height;
-            popupFrame.origin.y -= popupFrame.size.height;
-            popup.frame = popupFrame;
-            
+            [popup showInView:self.view];
             popup.delegate = self;
-            popup.transform = CGAffineTransformMakeScale(1.3, 1.3);
-            
             popup.titleLabel.text = @"Select the desired level";
-            _popup = popup;
-            [self.view addSubview:popup];
-            
-            [UIView animateWithDuration:0.5 animations:^{
-                popup.alpha = 1;
-                popup.transform = CGAffineTransformMakeScale(1, 1);
-            }];
-            isPopup = YES;
-        } else
-            [self closePopup];
+            self.popup = popup;
+        } else {
+            [_popup close];
+            self.popup = nil;
+        }
         
         [tableView deselectRowAtIndexPath:indexPath animated:YES];
     }
 }
 
-- (void)closePopup
-{
-    [UIView animateWithDuration:0.85 animations:^{
-        _popup.transform = CGAffineTransformMakeScale(0, 0);
-        _popup.alpha = 0.0;
-        
-    } completion:^(BOOL finished) {
-        [super viewDidLoad];
-        
-    }];
-    if (_popup.alpha == 0.0)
-        isPopup = NO;
-}
-
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    [self closePopup];
+    [_popup close];
+    self.popup = nil;
 }
 
 - (void)parsFunc

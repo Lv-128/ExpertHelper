@@ -164,6 +164,7 @@
 		D922044F1A2FAA4300B3BAAD /* mogend.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = mogend.sh; sourceTree = "<group>"; };
 		D92204761A2FAF6900B3BAAD /* EHConstantsDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EHConstantsDefines.h; sourceTree = "<group>"; };
 		D92B76E31A1F847F00B76F5E /* EHSkillLevelPopupIpad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EHSkillLevelPopupIpad.xib; sourceTree = "<group>"; };
+		D94AB8471A4AF25B005D079D /* EHExternalViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EHExternalViewController.h; path = ../EHExternalViewController.h; sourceTree = "<group>"; };
 		D967F2091A1E305D0009639C /* EHRecruiterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EHRecruiterViewController.h; sourceTree = "<group>"; };
 		D967F20A1A1E305D0009639C /* EHRecruiterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EHRecruiterViewController.m; sourceTree = "<group>"; };
 		D967F20C1A1E4DEE0009639C /* EHITAViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EHITAViewController.h; path = ExpertHelper/EHITAViewController.h; sourceTree = "<group>"; };
@@ -218,7 +219,6 @@
 		D9BE33AD1A3A0AFF0063B6C6 /* VoiceRecorders.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VoiceRecorders.m; sourceTree = "<group>"; };
 		D9BE53F71A10B16700AD5D3D /* EHExternalCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EHExternalCell.h; sourceTree = "<group>"; };
 		D9BE53F81A10B16700AD5D3D /* EHExternalCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EHExternalCell.m; sourceTree = "<group>"; };
-		D9BE53F91A10B16700AD5D3D /* EHExternalViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EHExternalViewController.h; sourceTree = "<group>"; };
 		D9BE53FA1A10B16700AD5D3D /* EHExternalViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EHExternalViewController.m; sourceTree = "<group>"; };
 		D9C4DC301A3840F400BC1AEA /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		D9C4DC311A3840F400BC1AEA /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
@@ -349,7 +349,7 @@
 		835D65581A4AC5B60032CACA /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				D9BE53F91A10B16700AD5D3D /* EHExternalViewController.h */,
+				D94AB8471A4AF25B005D079D /* EHExternalViewController.h */,
 				D9BE53FA1A10B16700AD5D3D /* EHExternalViewController.m */,
 				D9BE33921A38AEDC0063B6C6 /* EHCandidateProfileViewController.h */,
 				D9BE33931A38AEDC0063B6C6 /* EHCandidateProfileViewController.m */,
