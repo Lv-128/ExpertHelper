@@ -31,7 +31,6 @@
 @property (nonatomic, strong) EHGenInfo *generInfo;
 @property (nonatomic, strong) EHSkillLevelPopup *popup;
 @property (strong, nonatomic) UIActionSheet *actionSheetMenu;
-@property (nonatomic) CGRect rect;
 
 @end
 
@@ -416,9 +415,9 @@
         self.recorder = [[UIPopoverController alloc] initWithContentViewController:self.recorderComment];
         self.recorder.popoverContentSize = CGSizeMake(700.0, 700.0);
         
-        self.rect = CGRectMake(cell.frame.size.width - 50, cell.frame.origin.y, 70, 10);
+        CGRect rect = CGRectMake(cell.frame.size.width - 50, cell.frame.origin.y, 70, 10);
         
-        [self.recorder presentPopoverFromRect:self.rect
+        [self.recorder presentPopoverFromRect:rect
                                        inView:self.tableView
                      permittedArrowDirections:UIPopoverArrowDirectionRight
                                      animated:YES];
@@ -427,47 +426,7 @@
     {
         [self.navigationController pushViewController:self.recorderComment animated:YES];
     }
-
-//        self.view.translatesAutoresizingMaskIntoConstraints = NO;
-//        
-//        NSLayoutConstraint *height = [NSLayoutConstraint constraintWithItem:self.tableView
-//                                                                  attribute:NSLayoutAttributeHeight
-//                                                                  relatedBy:NSLayoutRelationEqual
-//                                                                     toItem:nil
-//                                                                  attribute:NSLayoutAttributeNotAnAttribute
-//                                                                 multiplier:1.0
-//                                                                   constant:self.recorderComment.view.frame.size.height];
-//        NSLayoutConstraint *width = [NSLayoutConstraint constraintWithItem:self.tableView
-//                                                                 attribute:NSLayoutAttributeHeight
-//                                                                 relatedBy:NSLayoutRelationEqual
-//                                                                    toItem:nil
-//                                                                 attribute:NSLayoutAttributeNotAnAttribute
-//                                                                multiplier:1.0
-//                                                                  constant:self.recorderComment.view.frame.size.width];
-//        NSLayoutConstraint *right = [NSLayoutConstraint constraintWithItem:self.view
-//                                                                 attribute:NSLayoutAttributeRight
-//                                                                 relatedBy:NSLayoutRelationEqual
-//                                                                    toItem:self.tableView
-//                                                                 attribute:NSLayoutAttributeRight
-//                                                                multiplier:1.0
-//                                                                  constant:20];
-//
-//        [self.recorderComment.view addConstraints:@[height, width]];
-//        [self.recorderComment.view addConstraints:@[right]];
-//        [self.recorderComment.view layoutIfNeeded];
-
-//    [self.recorderComment showInView:self.recorder];
 }
-
-//- (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
-//{
-//            self.rect = [self.view convertRect:self.view.bounds toView:self.recorder ];
-//}
-//
-//- (void)viewDidLayoutSubviews
-//{
-//        self.rect = [self.view convertRect:self.view.bounds toView:self.recorder ];
-//}
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {

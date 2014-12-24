@@ -24,6 +24,5 @@
 @property (weak, nonatomic) IBOutlet UITableView *infoTableView;
 
 - (IBAction)quickComment:(id)sender;
-//- (void)showInView:(UIPopoverController *)view;
 
 @end

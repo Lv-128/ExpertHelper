@@ -23,6 +23,7 @@
     BOOL buttonPlayPressed;
     AVAudioPlayer *player;
     AVAudioRecorder *recorder;
+    BOOL isPopup;
     BOOL isTextView;
     NSArray *quickComments;
 }
@@ -46,10 +47,8 @@
 - (void)skillLevelPopup:(EHSkillLevelPopup *)popup
          didSelectLevel:(EHSkillLevel)level
 {
+    [self closePopup];
     isTextView = YES;
-
-    [popup close];
-    
     _levelLabel.text = popup.skillLevel;
     
     NSMutableArray *temp = [_level mutableCopy];
@@ -60,13 +59,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-<<<<<<< Updated upstream
     isPopup = NO;
     quickComments = [self getCommentFromDB];
     isTextView = YES;
-=======
-    
->>>>>>> Stashed changes
     [_commentView setDelegate:self];
     [_commentView setReturnKeyType:UIReturnKeyDone];
     
@@ -109,7 +104,6 @@
     [_levelLabel addGestureRecognizer:tap];
     _levelLabel.userInteractionEnabled = YES;
 }
-
 - (void)viewDidDisappear:(BOOL)animated
 {
     [self addCommentToDB:_commentView.text];
@@ -248,7 +242,7 @@
 
 - (BOOL)textViewShouldBeginEditing:(UITextView *)textView
 {
-    [_popup close];
+    [self closePopup];
     if (_commentView.textColor == [UIColor lightGrayColor]) {
         _commentView.text = @"";
         _commentView.textColor = [UIColor blackColor];
@@ -275,30 +269,53 @@
     return YES;
 }
 
+
+
 - (void)pushAction
 {
-    if (_popup == nil){
-        NSString *nibName;
-        if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad)
-            nibName = @"EHSkillLevelPopupIpad";
-        else
-            nibName = @"EHSkillLevelPopupIphone";
+    UINib *nib = [UINib nibWithNibName:@"EHSkillLevelPopup" bundle:nil];
+    EHSkillLevelPopup *popup = [[nib instantiateWithOwner:nil options:nil] lastObject];
+    
+    if (isPopup == NO) {
+        CGRect selfFrame = self.view.frame;
+        CGRect popupFrame = popup.frame;
+        popupFrame.size.width = selfFrame.size.width;
+        popupFrame.origin.y = selfFrame.size.height;
+        popupFrame.origin.y -= popupFrame.size.height;
+        popup.frame = popupFrame;
         
-        UINib *nib = [UINib nibWithNibName:nibName bundle:nil];
-        EHSkillLevelPopup *popup = [[nib instantiateWithOwner:nil options:nil] lastObject];
-        [popup showInView:self.view];
         popup.delegate = self;
+        popup.transform = CGAffineTransformMakeScale(1.3, 1.3);
+        
         popup.titleLabel.text = @"Select the desired level";
-        self.popup = popup;
-    } else {
-        [_popup close];
-        self.popup = nil;
+        _popup = popup;
+        [self.view addSubview:popup];
+        
+        [UIView animateWithDuration:0.5 animations:^{
+            popup.alpha = 1;
+            popup.transform = CGAffineTransformMakeScale(1, 1);
+        }];
+        isPopup = YES;
     }
+}
+
+- (void)closePopup
+{
+    [UIView animateWithDuration:0.85 animations:^{
+        _popup.transform = CGAffineTransformMakeScale(0, 0);
+        _popup.alpha = 0.0;
+        
+    } completion:^(BOOL finished) {
+        [super viewDidLoad];
+        
+    }];
+    if (_popup.alpha == 0.0)
+        isPopup = NO;
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    [_popup close];
+    [self closePopup];
 }
 
 - (NSString *)dateString
@@ -432,7 +449,6 @@
 
 - (void)audioPlayerDidFinishPlaying:(AVAudioPlayer *)player successfully:(BOOL)flag
 {
-
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle: @"Done"
                                                     message: @"Finish playing the recording!"
                                                    delegate: nil
@@ -574,9 +590,7 @@
     [player prepareToPlay];
     [player play];
 }
-
 #pragma mark quick comment
-
 - (IBAction)quickComment:(id)sender {
     
     if(isTextView)
@@ -585,14 +599,13 @@
         _infoTableView.hidden = NO;
         _commentView.hidden = YES;
     }
-    else {
+    else{
         isTextView = YES;
         _infoTableView.hidden = YES;
         _commentView.hidden = NO;
     }
 }
 
-<<<<<<< Updated upstream
 
 - (void) addCommentToDB:(NSString *)comment
 {
@@ -645,8 +658,6 @@
     
     
 }
-=======
->>>>>>> Stashed changes
 @end
 
 
