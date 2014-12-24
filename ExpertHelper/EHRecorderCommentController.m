@@ -107,6 +107,7 @@
 - (void)viewDidDisappear:(BOOL)animated
 {
     [self addCommentToDB:_commentView.text];
+    
     (![[[_comment objectAtIndex:_index.section] objectAtIndex:_index.row] isEqualToString:@""]) ? (_skill.comment = [[_comment objectAtIndex:_index.section] objectAtIndex:_index.row]): (_skill.comment = @"");
     (![[[_level objectAtIndex:_index.section] objectAtIndex:_index.row] isEqual:@""]) ? (_skill.estimate = [[_level objectAtIndex:_index.section] objectAtIndex:_index.row]): (_skill.estimate = @"");
     
@@ -209,10 +210,21 @@
     _infoTableView.hidden = YES;
     _commentView.hidden = NO;
     isTextView= YES;
+    
     if ([_commentView.text isEqualToString:@"Please post your comments"])
+    {
+          _commentView.textColor = [UIColor blackColor];
         _commentView.text = selectedCell.textLabel.text;
+    }
      else
+     {
+         _commentView.textColor = [UIColor blackColor];
          _commentView.text = [_commentView.text stringByAppendingString:selectedCell.textLabel.text];
+         
+     }
+    NSMutableArray *temp = [_comment mutableCopy];
+    [[temp objectAtIndex:_index.section] setObject: _commentView.text atIndex:_index.row];
+    _comment = temp;
     
 }
 
@@ -622,7 +634,7 @@
     for (QuickComment *myCom in fetchedObjects)
     {
         
-        if ([myCom.comment isEqualToString:comment])
+        if ([myCom.comment isEqualToString:comment]|| [comment isEqualToString: @"Please post your comments"] || [comment isEqualToString: @""])
         {
             isExist = true;
         }
