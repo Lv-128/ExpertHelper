@@ -14,17 +14,16 @@
     int borderSize;
 }
 
-
-
-
 - (void)viewDidLoad {
 	[super viewDidLoad];
-    
-    
     borderSize = 25;
     
-	p2 = [[EHRadarChart alloc] initWithFrame:CGRectMake(borderSize, borderSize, _width  - borderSize*2 , _height - borderSize*2)];
-	p2.centerPoint = CGPointMake((_width - 2*borderSize)/2, (_height - 2*borderSize)/2);
+	p2 = [[EHRadarChart alloc] initWithFrame:CGRectMake(borderSize, borderSize, _width  - borderSize * 2 , _height - borderSize * 2)];
+	p2.centerPoint = CGPointMake((_width - 2 * borderSize) / 2, (_height - 2 * borderSize) / 2);
+    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPhone)
+    {
+        p2.centerPoint = CGPointMake(p2.centerPoint.x - 45, p2.centerPoint.y);
+    }
 
     p2.backgroundFillColor = [UIColor whiteColor];
     
@@ -32,20 +31,21 @@
 	p2.drawPoints = YES;
 	p2.attributes = @[@"Core", @"Desktop", @"Web", @"DB", @"BI", @"RIA",
 	                  @"Multimedia", @"Mobile", @"Embedded", @"Integration"];
-    p2.maxValue = (_width>_height)? (_height - 2*borderSize)/2 - 70 : (_width - 2*borderSize)/2 - 70;
+    p2.maxValue = (_width>_height) ? (_height - 2 * borderSize) / 2 - 70 : (_width - 2 * borderSize) / 2 - 70;
     
 	NSArray *b1 = [self pointsToNumericArray];
 	p2.dataSeries = @[b1];
 	p2.steps = 4;
 	p2.backgroundColor = [UIColor whiteColor];
     p2.countLevels = 4;
-    p2.koeficient = p2.maxValue/p2.countLevels;
+    p2.koeficient = p2.maxValue / p2.countLevels;
     p2.showStepText = YES;
 	[self.view addSubview:p2];
 }
-- (NSArray *)pointsToNumericArray{
+
+- (NSArray *)pointsToNumericArray {
     NSMutableArray * tempAr = [[NSMutableArray alloc]initWithCapacity:0];
-    for (int i = 0; i <10; i++)
+    for (int i = 0; i < 10; i++)
     {
         NSString *str = _points[i];
         if ([str isEqualToString:@"None"])
@@ -69,8 +69,6 @@
     }
     return tempAr;
 }
-
-
 
 - (void)didReceiveMemoryWarning {
 	[super didReceiveMemoryWarning];

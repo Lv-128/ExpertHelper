@@ -56,7 +56,6 @@
         self.recomendations.text = _genInfo.recommendations;
         //   self.levelEstimateTextField.text = _genInfo.levelEstimate;
         self.switchView.on = _genInfo.hire;
-        
     }
 }
 

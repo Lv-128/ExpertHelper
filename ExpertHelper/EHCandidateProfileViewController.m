@@ -12,7 +12,7 @@
 #import "EHRoundedTextView.h"
 
 
-@interface EHCandidateProfileViewController () <UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate>
+@interface EHCandidateProfileViewController () <UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate, UIScrollViewDelegate>
 
 @property (strong, nonatomic) NSDateFormatter *formatter;
 
@@ -102,6 +102,10 @@
     //[self insertPickerView:self.englishPicker inTextField:self.englishTexField withTag:1];
     [self insertPickerView:self.levelEstimatePicker inTextField:self.levelEstimateTextField withTag:2];
     [self insertPickerView:self.highPotentionalPicker inTextField:self.highPotentionalTextField withTag:3];
+    self.highPotentionalTextField.inputView.frame = CGRectMake(CGRectGetMinX(self.highPotentionalTextField.inputView.frame),
+                                                               CGRectGetMinY(self.highPotentionalTextField.inputView.frame),
+                                                               CGRectGetWidth(self.highPotentionalTextField.inputView.frame),
+                                                               CGRectGetHeight(self.highPotentionalTextField.inputView.frame) - 54);
 }
 
 - (void)insertPickerView:(UIPickerView *)pickerView inTextField:(UITextField *)textField withTag:(NSInteger)tag
@@ -218,10 +222,9 @@
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    [self.englishTexField resignFirstResponder];
-    [self.highPotentionalTextField resignFirstResponder];
-    [self.levelEstimateTextField resignFirstResponder];
+    [self allViewsToResign];
 }
+
 
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField
 {
@@ -236,6 +239,23 @@
             textField.text = self.highPotentionalArray[0];
     }
     return YES;
+}
+
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
+{
+    [self allViewsToResign];
+}
+
+- (void)allViewsToResign
+{
+    [self.expertName resignFirstResponder];
+    [self.competenceGroup resignFirstResponder];
+    [self.typeOfProject resignFirstResponder];
+    [self.skillSummary resignFirstResponder];
+    [self.recomendations resignFirstResponder];
+    [self.englishTexField resignFirstResponder];
+    [self.highPotentionalTextField resignFirstResponder];
+    [self.levelEstimateTextField resignFirstResponder];
 }
 
 - (void)didReceiveMemoryWarning

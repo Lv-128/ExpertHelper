@@ -24,7 +24,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NW0-is-Aw5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2090" y="-2696"/>
+            <point key="canvasLocation" x="-2058" y="-2146"/>
         </scene>
         <!--Calendar Form View Controller-->
         <scene sceneID="H4l-gj-ZDF">
@@ -239,7 +239,7 @@
                                 <rect key="frame" x="20" y="26" width="728" height="978"/>
                                 <color key="backgroundColor" red="0.98431372549019602" green="0.98431372549019602" blue="0.98431372549019602" alpha="1" colorSpace="calibratedRGB"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="GeneralInfo" id="bKq-hk-fXc" customClass="EHGeneralInfoCell">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="GeneralInfoIpad" rowHeight="72" id="bKq-hk-fXc" customClass="EHGeneralInfoCell">
                                         <rect key="frame" x="0.0" y="22" width="728" height="72"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="bKq-hk-fXc" id="h23-Bs-FXy">
@@ -250,14 +250,14 @@
                                             <segue destination="QWz-uc-3pi" kind="custom" identifier="GoToGenInfoForm" id="ncE-vj-9wU"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" accessoryType="detailDisclosureButton" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ExternalCell" rowHeight="72" id="J67-Vg-vfH" customClass="EHExternalCell">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" accessoryType="detailButton" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ExternalCell" rowHeight="72" id="J67-Vg-vfH" customClass="EHExternalCell">
                                         <rect key="frame" x="0.0" y="94" width="728" height="72"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="J67-Vg-vfH" id="mYO-av-6mp">
-                                            <rect key="frame" x="0.0" y="0.0" width="661" height="71"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="681" height="71"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UAE-LT-LWT">
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UAE-LT-LWT">
                                                     <rect key="frame" x="515" y="0.0" width="126" height="71"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <constraints>
@@ -836,7 +836,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cbK-eh-sZP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2142" y="247"/>
+            <point key="canvasLocation" x="-2030" y="1191"/>
         </scene>
         <!--Recruiters View Controller - RecruiterForm-->
         <scene sceneID="MFv-rK-ZK6">
@@ -963,7 +963,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="d4p-6D-Ttr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1920" y="-951"/>
+            <point key="canvasLocation" x="-2730" y="-407"/>
         </scene>
         <!--Candidate Profile View Controller-->
         <scene sceneID="Q3O-4G-SpQ">
@@ -1137,12 +1137,10 @@
         <image name="checkBox.png" width="849" height="757"/>
         <image name="checkBoxMarked.png" width="849" height="757"/>
         <image name="email-3" width="225" height="225"/>
-        <image name="email-3" width="225" height="225"/>
         <image name="facebook-2" width="512" height="512"/>
         <image name="mail-1" width="300" height="300"/>
         <image name="play-1" width="128" height="128"/>
         <image name="record_button" width="1024" height="1024"/>
-        <image name="skype final" width="201" height="200"/>
         <image name="skype final" width="201" height="200"/>
         <image name="skype-1" width="512" height="512"/>
     </resources>

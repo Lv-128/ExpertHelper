@@ -85,7 +85,7 @@ UIActionSheetDelegate, MFMailComposeViewControllerDelegate>
     [someButton setShowsTouchWhenHighlighted:YES];
     
     UIBarButtonItem *butHR =[[UIBarButtonItem alloc] initWithCustomView:someButton];
-    self.navigationItem.rightBarButtonItem=butHR;
+    self.navigationItem.rightBarButtonItem = butHR;
     
 }
 
@@ -131,11 +131,8 @@ UIActionSheetDelegate, MFMailComposeViewControllerDelegate>
                                                      cancelButtonTitle:@"OK"
                                                      otherButtonTitles:nil];
             [message show];
-            
         }
-        
     }
-    
 }
 
 #pragma mark SEGUES
@@ -254,13 +251,20 @@ UIActionSheetDelegate, MFMailComposeViewControllerDelegate>
         
         _popController.firstName = event.idExternal.idCandidate.firstName;
         _popController.lastName = event.idExternal.idCandidate.lastName;
-        self.popover = [[UIPopoverController alloc] initWithContentViewController:_popController];
-        self.popover.popoverContentSize = CGSizeMake(400.0, 400.0);
-        [self searchUserWithFirstName:_popController.firstName lastName:_popController.lastName popover:self.popover];
-        [self.popover presentPopoverFromRect: [(UIButton *)sender bounds]
-                                      inView:sender
-                    permittedArrowDirections:UIPopoverArrowDirectionAny
-                                    animated:YES];
+        if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad)
+        {
+            self.popover = [[UIPopoverController alloc] initWithContentViewController:_popController];
+            self.popover.popoverContentSize = CGSizeMake(400.0, 400.0);
+            [self searchUserWithFirstName:_popController.firstName lastName:_popController.lastName popover:self.popover];
+            [self.popover presentPopoverFromRect: [(UIButton *)sender bounds]
+                                          inView:sender
+                        permittedArrowDirections:UIPopoverArrowDirectionAny
+                                        animated:YES];
+        }
+        else
+        {
+            [self.navigationController pushViewController:_popController animated:YES];
+        }
         
         // If the session state is not any of the two "open" states when the button is clicked
     } else {

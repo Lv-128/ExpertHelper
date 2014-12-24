@@ -28,10 +28,11 @@
 		11DA2E031A3DF9A40051CBAC /* zip.c in Sources */ = {isa = PBXBuildFile; fileRef = 11DA2DFE1A3DF9A40051CBAC /* zip.c */; };
 		11DA2E051A3E03340051CBAC /* Workbook.xlsx in Resources */ = {isa = PBXBuildFile; fileRef = 11DA2E041A3E03340051CBAC /* Workbook.xlsx */; };
 		11F4CA981A3DF855000CF71E /* libz.1.2.5.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 11F4CA971A3DF855000CF71E /* libz.1.2.5.dylib */; };
+		835D65561A4AC3DD0032CACA /* EHGeneralInfoCellIphone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 835D65551A4AC3DD0032CACA /* EHGeneralInfoCellIphone.xib */; };
+		835D655A1A4ACC200032CACA /* EHSkillLevelPopupIphone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 835D65591A4ACC200032CACA /* EHSkillLevelPopupIphone.xib */; };
 		8390BB5E1A4856660032CC92 /* EHGeneralInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8390BB5C1A4856660032CC92 /* EHGeneralInfoCell.m */; };
-		8390BB5F1A4856660032CC92 /* EHGeneralInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8390BB5D1A4856660032CC92 /* EHGeneralInfoCell.xib */; };
+		8390BB5F1A4856660032CC92 /* EHGeneralInfoCellIpad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8390BB5D1A4856660032CC92 /* EHGeneralInfoCellIpad.xib */; };
 		83CD96951A3B432C00115744 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83CD96941A3B432C00115744 /* FacebookSDK.framework */; };
-		83CD969C1A3B5C5600115744 /* EHLinkCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 83CD96981A3B5C5600115744 /* EHLinkCell.m */; };
 		83CD969D1A3B5C5600115744 /* EHFacebookPopoverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83CD969A1A3B5C5600115744 /* EHFacebookPopoverViewController.m */; };
 		83CD969E1A3B5C5600115744 /* EHFacebookPopoverViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83CD969B1A3B5C5600115744 /* EHFacebookPopoverViewController.xib */; };
 		D90A1BC11A16366500B610C6 /* EHSkillLevelPopup.m in Sources */ = {isa = PBXBuildFile; fileRef = D90A1BC01A16366500B610C6 /* EHSkillLevelPopup.m */; };
@@ -47,7 +48,7 @@
 		D92204731A2FAA4300B3BAAD /* mogen.sh in Resources */ = {isa = PBXBuildFile; fileRef = D922044E1A2FAA4300B3BAAD /* mogen.sh */; };
 		D92204741A2FAA4300B3BAAD /* mogend.sh in Resources */ = {isa = PBXBuildFile; fileRef = D922044F1A2FAA4300B3BAAD /* mogend.sh */; };
 		D92204751A2FAA4300B3BAAD /* mogend.sh in Resources */ = {isa = PBXBuildFile; fileRef = D922044F1A2FAA4300B3BAAD /* mogend.sh */; };
-		D92B76E51A1F847F00B76F5E /* EHSkillLevelPopup.xib in Resources */ = {isa = PBXBuildFile; fileRef = D92B76E31A1F847F00B76F5E /* EHSkillLevelPopup.xib */; };
+		D92B76E51A1F847F00B76F5E /* EHSkillLevelPopupIpad.xib in Resources */ = {isa = PBXBuildFile; fileRef = D92B76E31A1F847F00B76F5E /* EHSkillLevelPopupIpad.xib */; };
 		D967F20B1A1E305D0009639C /* EHRecruiterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D967F20A1A1E305D0009639C /* EHRecruiterViewController.m */; };
 		D967F2101A1E4DEE0009639C /* EHITAViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D967F20D1A1E4DEE0009639C /* EHITAViewController.m */; };
 		D967F2111A1E4DEE0009639C /* EHITAViewControllerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D967F20F1A1E4DEE0009639C /* EHITAViewControllerCell.m */; };
@@ -133,12 +134,12 @@
 		11DA2DFF1A3DF9A40051CBAC /* zip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = zip.h; sourceTree = "<group>"; };
 		11DA2E041A3E03340051CBAC /* Workbook.xlsx */ = {isa = PBXFileReference; lastKnownFileType = file; path = Workbook.xlsx; sourceTree = "<group>"; };
 		11F4CA971A3DF855000CF71E /* libz.1.2.5.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.2.5.dylib; path = usr/lib/libz.1.2.5.dylib; sourceTree = SDKROOT; };
+		835D65551A4AC3DD0032CACA /* EHGeneralInfoCellIphone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EHGeneralInfoCellIphone.xib; sourceTree = "<group>"; };
+		835D65591A4ACC200032CACA /* EHSkillLevelPopupIphone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EHSkillLevelPopupIphone.xib; sourceTree = "<group>"; };
 		8390BB5B1A4856660032CC92 /* EHGeneralInfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EHGeneralInfoCell.h; sourceTree = "<group>"; };
 		8390BB5C1A4856660032CC92 /* EHGeneralInfoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EHGeneralInfoCell.m; sourceTree = "<group>"; };
-		8390BB5D1A4856660032CC92 /* EHGeneralInfoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EHGeneralInfoCell.xib; sourceTree = "<group>"; };
+		8390BB5D1A4856660032CC92 /* EHGeneralInfoCellIpad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EHGeneralInfoCellIpad.xib; sourceTree = "<group>"; };
 		83CD96941A3B432C00115744 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FacebookSDK.framework; sourceTree = "<group>"; };
-		83CD96971A3B5C5600115744 /* EHLinkCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EHLinkCell.h; sourceTree = "<group>"; };
-		83CD96981A3B5C5600115744 /* EHLinkCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EHLinkCell.m; sourceTree = "<group>"; };
 		83CD96991A3B5C5600115744 /* EHFacebookPopoverViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EHFacebookPopoverViewController.h; sourceTree = "<group>"; };
 		83CD969A1A3B5C5600115744 /* EHFacebookPopoverViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EHFacebookPopoverViewController.m; sourceTree = "<group>"; };
 		83CD969B1A3B5C5600115744 /* EHFacebookPopoverViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EHFacebookPopoverViewController.xib; sourceTree = "<group>"; };
@@ -156,7 +157,7 @@
 		D922044E1A2FAA4300B3BAAD /* mogen.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = mogen.sh; sourceTree = "<group>"; };
 		D922044F1A2FAA4300B3BAAD /* mogend.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = mogend.sh; sourceTree = "<group>"; };
 		D92204761A2FAF6900B3BAAD /* EHConstantsDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EHConstantsDefines.h; sourceTree = "<group>"; };
-		D92B76E31A1F847F00B76F5E /* EHSkillLevelPopup.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EHSkillLevelPopup.xib; sourceTree = "<group>"; };
+		D92B76E31A1F847F00B76F5E /* EHSkillLevelPopupIpad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EHSkillLevelPopupIpad.xib; sourceTree = "<group>"; };
 		D967F2091A1E305D0009639C /* EHRecruiterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EHRecruiterViewController.h; sourceTree = "<group>"; };
 		D967F20A1A1E305D0009639C /* EHRecruiterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EHRecruiterViewController.m; sourceTree = "<group>"; };
 		D967F20C1A1E4DEE0009639C /* EHITAViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EHITAViewController.h; path = ExpertHelper/EHITAViewController.h; sourceTree = "<group>"; };
@@ -336,11 +337,33 @@
 			name = ViewControllers;
 			sourceTree = "<group>";
 		};
+		835D65571A4AC5990032CACA /* EHGeneralInfoCell */ = {
+			isa = PBXGroup;
+			children = (
+				8390BB5B1A4856660032CC92 /* EHGeneralInfoCell.h */,
+				8390BB5C1A4856660032CC92 /* EHGeneralInfoCell.m */,
+				8390BB5D1A4856660032CC92 /* EHGeneralInfoCellIpad.xib */,
+				835D65551A4AC3DD0032CACA /* EHGeneralInfoCellIphone.xib */,
+			);
+			name = EHGeneralInfoCell;
+			sourceTree = "<group>";
+		};
+		835D65581A4AC5B60032CACA /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				D9BE53F91A10B16700AD5D3D /* EHExternalViewController.h */,
+				D9BE53FA1A10B16700AD5D3D /* EHExternalViewController.m */,
+				D9BE33921A38AEDC0063B6C6 /* EHCandidateProfileViewController.h */,
+				D9BE33931A38AEDC0063B6C6 /* EHCandidateProfileViewController.m */,
+				D9AD2EB51A3384D2003D7E14 /* EHRecorderCommentController.h */,
+				D9AD2EB61A3384D2003D7E14 /* EHRecorderCommentController.m */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
 		83CD96961A3B5C0D00115744 /* EHPopoverController */ = {
 			isa = PBXGroup;
 			children = (
-				83CD96971A3B5C5600115744 /* EHLinkCell.h */,
-				83CD96981A3B5C5600115744 /* EHLinkCell.m */,
 				83CD96991A3B5C5600115744 /* EHFacebookPopoverViewController.h */,
 				83CD969A1A3B5C5600115744 /* EHFacebookPopoverViewController.m */,
 				83CD969B1A3B5C5600115744 /* EHFacebookPopoverViewController.xib */,
@@ -581,9 +604,7 @@
 		D9D3658B1A375A90004D919E /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				8390BB5B1A4856660032CC92 /* EHGeneralInfoCell.h */,
-				8390BB5C1A4856660032CC92 /* EHGeneralInfoCell.m */,
-				8390BB5D1A4856660032CC92 /* EHGeneralInfoCell.xib */,
+				835D65571A4AC5990032CACA /* EHGeneralInfoCell */,
 				D9BE33951A38AFA90063B6C6 /* EHRoundedTextView.h */,
 				D9BE33961A38AFA90063B6C6 /* EHRoundedTextView.m */,
 				D9BE33971A38AFA90063B6C6 /* EHRoundedAngleTextField.h */,
@@ -603,7 +624,8 @@
 			children = (
 				D90A1BBF1A16366500B610C6 /* EHSkillLevelPopup.h */,
 				D90A1BC01A16366500B610C6 /* EHSkillLevelPopup.m */,
-				D92B76E31A1F847F00B76F5E /* EHSkillLevelPopup.xib */,
+				D92B76E31A1F847F00B76F5E /* EHSkillLevelPopupIpad.xib */,
+				835D65591A4ACC200032CACA /* EHSkillLevelPopupIphone.xib */,
 			);
 			name = SkillLevelPopup;
 			sourceTree = "<group>";
@@ -620,14 +642,9 @@
 		D9D836A61A1F402D00148854 /* External */ = {
 			isa = PBXGroup;
 			children = (
+				835D65581A4AC5B60032CACA /* Controllers */,
 				D9BE339D1A3A00180063B6C6 /* Model */,
 				D9D3658B1A375A90004D919E /* Views */,
-				D9BE53F91A10B16700AD5D3D /* EHExternalViewController.h */,
-				D9BE53FA1A10B16700AD5D3D /* EHExternalViewController.m */,
-				D9BE33921A38AEDC0063B6C6 /* EHCandidateProfileViewController.h */,
-				D9BE33931A38AEDC0063B6C6 /* EHCandidateProfileViewController.m */,
-				D9AD2EB51A3384D2003D7E14 /* EHRecorderCommentController.h */,
-				D9AD2EB61A3384D2003D7E14 /* EHRecorderCommentController.m */,
 			);
 			name = External;
 			sourceTree = "<group>";
@@ -754,15 +771,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				D912ADF61A4088F700D95DFB /* Images.xcassets in Resources */,
-				8390BB5F1A4856660032CC92 /* EHGeneralInfoCell.xib in Resources */,
+				8390BB5F1A4856660032CC92 /* EHGeneralInfoCellIpad.xib in Resources */,
 				D9B0CC7B1A03B17500544323 /* Main_iPad.storyboard in Resources */,
-				D92B76E51A1F847F00B76F5E /* EHSkillLevelPopup.xib in Resources */,
+				D92B76E51A1F847F00B76F5E /* EHSkillLevelPopupIpad.xib in Resources */,
+				835D65561A4AC3DD0032CACA /* EHGeneralInfoCellIphone.xib in Resources */,
 				11DA2E051A3E03340051CBAC /* Workbook.xlsx in Resources */,
 				D92204741A2FAA4300B3BAAD /* mogend.sh in Resources */,
 				D92204721A2FAA4300B3BAAD /* mogen.sh in Resources */,
 				D9B0CC781A03B17500544323 /* Main_iPhone.storyboard in Resources */,
 				83CD969E1A3B5C5600115744 /* EHFacebookPopoverViewController.xib in Resources */,
 				D9B0CC6F1A03B17500544323 /* InfoPlist.strings in Resources */,
+				835D655A1A4ACC200032CACA /* EHSkillLevelPopupIphone.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -814,7 +833,6 @@
 				11DA2E021A3DF9A40051CBAC /* unzip.c in Sources */,
 				D9BE54021A10B16700AD5D3D /* EHExternalViewController.m in Sources */,
 				D967F2101A1E4DEE0009639C /* EHITAViewController.m in Sources */,
-				83CD969C1A3B5C5600115744 /* EHLinkCell.m in Sources */,
 				D9D7482A1A4866940074160F /* EHListOfRecruitersCell.m in Sources */,
 				D9BE33991A38AFA90063B6C6 /* EHRoundedTextView.m in Sources */,
 				D9D748241A4866210074160F /* EHRadarChart.m in Sources */,

@@ -11,7 +11,8 @@
 
 
 #define PADDING 75
-#define ATTRIBUTE_TEXT_SIZE 17
+#define ATTRIBUTE_TEXT_SIZE_IPAD 17
+#define ATTRIBUTE_TEXT_SIZE_IPHONE 15
 #define SCALE_TEXT_SIZE 12
 #define COLOR_HUE_STEP 5
 #define MAX_NUM_OF_COLOR 17
@@ -45,7 +46,7 @@
 
 - (void)setDefaultValues {
     self.backgroundColor = [UIColor whiteColor];
-   // _maxValue = 100.0;
+    // _maxValue = 100.0;
     _centerPoint = CGPointMake(self.frame.size.width / 2, self.frame.size.height / 2);
     _r = MIN(self.frame.size.width / 2 - PADDING, self.frame.size.height / 2 - PADDING);
     _steps = 1;
@@ -57,15 +58,20 @@
     _colorOpacity = 1.0;
     _backgroundLineColorRadial = [UIColor darkGrayColor];
     _backgroundFillColor = [UIColor whiteColor];
-
-  
+    
+    
     _colors = [[NSArray alloc]init];
     _attributes = @[@"you", @"should", @"set", @"these", @"data", @"titles,",
-                        @"this", @"is", @"just", @"a", @"placeholder"];
+                    @"this", @"is", @"just", @"a", @"placeholder"];
     _countLevels = 4;
     _koeficient = _maxValue / _countLevels;
     _minValue = _koeficient;
-    _scaleFont = [UIFont systemFontOfSize:ATTRIBUTE_TEXT_SIZE];
+    
+    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad)
+        _scaleFont = [UIFont systemFontOfSize:ATTRIBUTE_TEXT_SIZE_IPAD];
+    else
+        _scaleFont = [UIFont systemFontOfSize:ATTRIBUTE_TEXT_SIZE_IPHONE];
+    
     _scaleLevelsFont = [UIFont systemFontOfSize:SCALE_TEXT_SIZE];
     
 }
@@ -120,22 +126,22 @@
 		CGFloat xOffset = pointOnEdge.x >= _centerPoint.x ? width / 2.0 + padding : -width / 2.0 - padding;
 		CGFloat yOffset = pointOnEdge.y >= _centerPoint.y ? height / 2.0 + padding : -height / 2.0 - padding;
 		CGPoint legendCenter = CGPointMake(pointOnEdge.x + xOffset, pointOnEdge.y + yOffset);
-
-            NSMutableParagraphStyle *paragraphStyle = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
-            [paragraphStyle setLineBreakMode:NSLineBreakByClipping];
-            [paragraphStyle setAlignment:NSTextAlignmentCenter];
-
-            NSDictionary *attributes = @{ NSFontAttributeName: self.scaleFont,
-                                          NSParagraphStyleAttributeName: paragraphStyle };
-
-            [attributeName drawInRect:CGRectMake(legendCenter.x - width / 2.0,
-                                                 legendCenter.y - height / 2.0,
-                                                 width,
-                                                 height)
-                       withAttributes:attributes];
         
-            }
-
+        NSMutableParagraphStyle *paragraphStyle = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
+        [paragraphStyle setLineBreakMode:NSLineBreakByClipping];
+        [paragraphStyle setAlignment:NSTextAlignmentCenter];
+        
+        NSDictionary *attributes = @{ NSFontAttributeName: self.scaleFont,
+                                      NSParagraphStyleAttributeName: paragraphStyle };
+        
+        [attributeName drawInRect:CGRectMake(legendCenter.x - width / 2.0,
+                                             legendCenter.y - height / 2.0,
+                                             width,
+                                             height)
+                   withAttributes:attributes];
+        
+    }
+    
     
     //draw background fill color
     [_backgroundFillColor setFill];
@@ -145,7 +151,7 @@
                                 _centerPoint.y - _r * cos(i * radPerV));
     }
     CGContextFillPath(context);
-
+    
 	//draw steps line
 	static CGFloat dashedPattern[] = {4,4};
 	//TODO: make this color a variable
@@ -157,7 +163,7 @@
 				CGContextMoveToPoint(context, _centerPoint.x, _centerPoint.y - _r * step / _steps);
 			}
 			else {
-				               CGContextSetLineDash(context, 0, dashedPattern, 2);
+                CGContextSetLineDash(context, 0, dashedPattern, 2);
 				CGContextAddLineToPoint(context, _centerPoint.x - _r * sin(i * radPerV) * step / _steps,
 				                        _centerPoint.y - _r * cos(i * radPerV) * step / _steps);
 			}

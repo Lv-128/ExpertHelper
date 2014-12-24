@@ -7,7 +7,6 @@
 //
 
 #import "EHFacebookPopoverViewController.h"
-#import "EHLinkCell.h"
 #import <FacebookSDK/FacebookSDK.h>
 
 NSString *fbScheme = @"fb://";
@@ -93,11 +92,11 @@ NSError *error = nil;
     
 }
 
-- (EHLinkCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    EHLinkCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
     if (!cell)
-        cell = [[EHLinkCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"Cell"];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"Cell"];
     cell.textLabel.text = _links[indexPath.row][@"name"];
     cell.imageView.image = [self profilePictureFromID:_links[indexPath.row][@"id"]];
     return cell;

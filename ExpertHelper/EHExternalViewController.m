@@ -71,16 +71,23 @@
 {
     [super viewDidLoad];
     NSLog(@"%@", NSHomeDirectory());
-
-
-    [self.tableView registerNib:[UINib nibWithNibName:@"EHGeneralInfoCell" bundle:nil]
-         forCellReuseIdentifier:@"GeneralInfo"];
-
+    
+    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad)
+    {
+        [self.tableView registerNib:[UINib nibWithNibName:@"EHGeneralInfoCellIpad" bundle:nil]
+             forCellReuseIdentifier:@"GeneralInfoIpad"];
+    }
+    else
+    {
+        [self.tableView registerNib:[UINib nibWithNibName:@"EHGeneralInfoCellIphone" bundle:nil]
+             forCellReuseIdentifier:@"GeneralInfoIphone"];
+    }
+    
     self.navigationItem.title = [NSString stringWithFormat:@"%@ %@", _interview.idExternal.idCandidate.firstName,
-                                                                     _interview.idExternal.idCandidate.lastName];
-
-
-
+                                 _interview.idExternal.idCandidate.lastName];
+    
+    
+    
     
     self.cellDateFormatter = [[NSDateFormatter alloc] init];
     [self.cellDateFormatter setDateStyle:NSDateFormatterFullStyle];
@@ -219,6 +226,7 @@
         [_actionSheetMenu showInView:self.view];
     
 }
+
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     if(buttonIndex == 0)
@@ -250,17 +258,29 @@
         EHChart *chartForm = [self.storyboard instantiateViewControllerWithIdentifier:@"ChartView"];
         
         int size = self.view.frame.size.width > self.view.frame.size.height ? self.view.frame.size.height :
-                                            self.view.frame.size.width;
+        self.view.frame.size.width;
         chartForm.points = _array.lastObject;
         chartForm.titles = _sectionContent.lastObject;
-        chartForm.width = size*0.9;
-        chartForm.height = size*0.9;
-        self.popover = [[UIPopoverController alloc] initWithContentViewController:chartForm];
-        self.popover.popoverContentSize = CGSizeMake(size*0.9,size*0.9);
         
-        [self.popover presentPopoverFromBarButtonItem:_barButMenu
-                             permittedArrowDirections:UIPopoverArrowDirectionUp
-                                             animated:YES];
+        
+        if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad)
+        {
+            chartForm.width = size * 0.9;
+            chartForm.height = size * 0.9;
+            self.popover = [[UIPopoverController alloc] initWithContentViewController:chartForm];
+            self.popover.popoverContentSize = CGSizeMake(size * 0.9, size * 0.9);
+            
+            [self.popover presentPopoverFromBarButtonItem:_barButMenu
+                                 permittedArrowDirections:UIPopoverArrowDirectionUp
+                                                 animated:YES];
+        }
+        else
+        {
+            chartForm.width = size * 1.21;
+            chartForm.height = size * 1.21;
+            
+            [self.navigationController pushViewController:chartForm animated:YES];
+        }
     }
 }
 
@@ -307,16 +327,16 @@
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
     // Create custom view to display section header
-    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, tableView.frame.size.width, 18.0)];
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, CGRectGetWidth(tableView.frame), 18.0)];
     //create custom class!
-    UILabel *labelLeft = [[UILabel alloc] initWithFrame:CGRectMake(0.0, 0.0, 728, 18.0)];
+    UILabel *labelLeft = [[UILabel alloc] initWithFrame:CGRectMake(0.0, 0.0, CGRectGetWidth(tableView.frame), 18.0)];
     [labelLeft setFont:[UIFont boldSystemFontOfSize:15]];
     [labelLeft setTextAlignment:NSTextAlignmentCenter];
     
     labelLeft.text = [self.tableSections objectAtIndex:section];
     
     [view addSubview:labelLeft];
-    [view setBackgroundColor:[UIColor colorWithRed:166/255.0 green:177/255.0 blue:186/255.0 alpha:1.0]];
+    [view setBackgroundColor:[UIColor colorWithRed:166 / 255.0 green:177 / 255.0 blue:186 / 255.0 alpha:1.0]];
     
     return view;
 }
@@ -325,10 +345,17 @@
 {
     NSInteger row = [indexPath row];
     NSArray *listData = [self.sectionContent objectAtIndex:[indexPath section]];
+    NSString *cellIdentifier;
     
     if (indexPath.section == 0)
     {
-        EHGeneralInfoCell *cell = (EHGeneralInfoCell *)[tableView dequeueReusableCellWithIdentifier:@"GeneralInfo"];
+        if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad)
+            cellIdentifier = @"GeneralInfoIpad";
+        else
+            cellIdentifier = @"GeneralInfoIphone";
+        
+        EHGeneralInfoCell *cell = (EHGeneralInfoCell *)[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+        
         if(cell.genInfo == nil)
         {
             cell.genInfo = [[EHGenInfo alloc] init];
@@ -342,7 +369,8 @@
             cell.skillSummary.text = self.generInfo.skillsSummary;
             cell.englishLabel.text = self.generInfo.techEnglish;
             cell.recomendations.text = self.generInfo.recommendations;
-            //   self.levelEstimateTextField.text = _genInfo.levelEstimate;
+            cell.levelEstimateLabel.text = self.generInfo.levelEstimate;
+            cell.highPotentionalLabel.text = self.generInfo.potentialCandidate;
             cell.switchView.on = self.generInfo.hire;
             
         }
@@ -381,15 +409,22 @@
     self.recorderComment.level = _array;
     self.recorderComment.index = _index;
     self.recorderComment.comment = _comment;
-    
-    self.recorder = [[UIPopoverController alloc] initWithContentViewController:self.recorderComment];
-    self.recorder.popoverContentSize = CGSizeMake(700.0, 700.0);
-    
-    CGRect rect = CGRectMake(cell.frame.size.width - 50, cell.frame.origin.y, 70, 10);
-    
-    [self.recorder presentPopoverFromRect:rect inView:self.tableView
-                 permittedArrowDirections:UIPopoverArrowDirectionRight
-                                 animated:YES];
+    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad)
+    {
+        self.recorder = [[UIPopoverController alloc] initWithContentViewController:self.recorderComment];
+        self.recorder.popoverContentSize = CGSizeMake(700.0, 700.0);
+        
+        CGRect rect = CGRectMake(cell.frame.size.width - 50, cell.frame.origin.y, 70, 10);
+        
+        [self.recorder presentPopoverFromRect:rect
+                                       inView:self.tableView
+                     permittedArrowDirections:UIPopoverArrowDirectionRight
+                                     animated:YES];
+    }
+    else
+    {
+        [self.navigationController pushViewController:self.recorderComment animated:YES];
+    }
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -405,8 +440,14 @@
         lostData = [indexPath section];
         RowAtIndexPathOfSkills = row;
         
-        if (isPopup == NO) {
-            UINib *nib = [UINib nibWithNibName:@"EHSkillLevelPopup" bundle:nil];
+        if (isPopup == NO){
+            NSString *nibName;
+            if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad)
+                nibName = @"EHSkillLevelPopupIpad";
+            else
+                nibName = @"EHSkillLevelPopupIphone";
+            
+            UINib *nib = [UINib nibWithNibName:nibName bundle:nil];
             EHSkillLevelPopup *popup = [[nib instantiateWithOwner:nil options:nil] lastObject];
             CGRect selfFrame = self.view.frame;
             CGRect popupFrame = popup.frame;
@@ -708,8 +749,8 @@
     
     NSMutableString *stringForComparing = [@"</sst>" mutableCopy];
     int k = 0;
-
-     NSMutableString *stringForComparing1 = [@"uniqueCount=\"" mutableCopy];
+    
+    NSMutableString *stringForComparing1 = [@"uniqueCount=\"" mutableCopy];
     
     for (int i = 0; i < xml.length - 14; i++) {
         NSString *s = [xml substringWithRange:NSMakeRange(i, 13)];
@@ -720,7 +761,7 @@
     }
     
     for (int i = 0; i < xml.length - 5; i++) {
-       
+        
         NSString *ss = [xml substringWithRange:NSMakeRange(i, 6)];
         if ([ss isEqualToString:stringForComparing]) {
             k = i;
