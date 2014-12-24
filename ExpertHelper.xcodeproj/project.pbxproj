@@ -322,14 +322,6 @@
 			path = minizip;
 			sourceTree = "<group>";
 		};
-		2790F4DF1A1396EB001B0956 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				D9D836A01A1F3EA400148854 /* SkillLevelPopup */,
-			);
-			name = Views;
-			sourceTree = "<group>";
-		};
 		2790F4E01A139735001B0956 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -549,7 +541,6 @@
 				11DA2E041A3E03340051CBAC /* Workbook.xlsx */,
 				D93583FD1A1CB3AD00135A2D /* WorkWithEvents */,
 				2790F4E01A139735001B0956 /* ViewControllers */,
-				2790F4DF1A1396EB001B0956 /* Views */,
 				D9B0CC791A03B17500544323 /* Main_iPad.storyboard */,
 				D9B0CC761A03B17500544323 /* Main_iPhone.storyboard */,
 				D9B0CC6B1A03B17500544323 /* Supporting Files */,
@@ -614,6 +605,7 @@
 		D9D3658B1A375A90004D919E /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				D9D836A01A1F3EA400148854 /* SkillLevelPopup */,
 				835D65571A4AC5990032CACA /* EHGeneralInfoCell */,
 				D9BE33951A38AFA90063B6C6 /* EHRoundedTextView.h */,
 				D9BE33961A38AFA90063B6C6 /* EHRoundedTextView.m */,
