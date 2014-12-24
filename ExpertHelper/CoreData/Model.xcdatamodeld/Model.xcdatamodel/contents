@@ -48,6 +48,9 @@
         <relationship name="idExternal" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="ExternalInterview" inverseName="idInterview" inverseEntity="ExternalInterview" syncable="YES"/>
         <relationship name="idRecruiter" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Recruiter" inverseName="interviews" inverseEntity="Recruiter" syncable="YES"/>
     </entity>
+    <entity name="QuickComment" representedClassName="QuickComment" syncable="YES">
+        <attribute name="comment" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
     <entity name="Recruiter" representedClassName="Recruiter" syncable="YES">
         <attribute name="email" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="firstName" optional="YES" attributeType="String" syncable="YES"/>
@@ -74,6 +77,7 @@
         <relationship name="idGeneralInfo" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="GeneralInfo" inverseName="voiceRecords" inverseEntity="GeneralInfo" syncable="YES"/>
     </entity>
     <elements>
+        <element name="AudioRecord" positionX="-54" positionY="-178" width="128" height="88"/>
         <element name="Candidate" positionX="-522" positionY="-180" width="128" height="103"/>
         <element name="ExternalInterview" positionX="-837" positionY="-126" width="128" height="148"/>
         <element name="GeneralInfo" positionX="-524" positionY="47" width="128" height="223"/>
@@ -83,6 +87,6 @@
         <element name="Skills" positionX="-216" positionY="-54" width="128" height="118"/>
         <element name="SkillsLevels" positionX="7" positionY="44" width="128" height="88"/>
         <element name="VoiceRecorders" positionX="-360" positionY="281" width="128" height="88"/>
-        <element name="AudioRecord" positionX="-54" positionY="-178" width="128" height="88"/>
+        <element name="QuickComment" positionX="-254" positionY="128" width="128" height="58"/>
     </elements>
 </model>

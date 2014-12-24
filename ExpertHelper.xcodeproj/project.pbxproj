@@ -51,6 +51,8 @@
 		D92204741A2FAA4300B3BAAD /* mogend.sh in Resources */ = {isa = PBXBuildFile; fileRef = D922044F1A2FAA4300B3BAAD /* mogend.sh */; };
 		D92204751A2FAA4300B3BAAD /* mogend.sh in Resources */ = {isa = PBXBuildFile; fileRef = D922044F1A2FAA4300B3BAAD /* mogend.sh */; };
 		D92B76E51A1F847F00B76F5E /* EHSkillLevelPopupIpad.xib in Resources */ = {isa = PBXBuildFile; fileRef = D92B76E31A1F847F00B76F5E /* EHSkillLevelPopupIpad.xib */; };
+		D95C92B41A4B1444002D8CDD /* QuickComment.m in Sources */ = {isa = PBXBuildFile; fileRef = D95C92B31A4B1444002D8CDD /* QuickComment.m */; };
+		D95C92B71A4B1453002D8CDD /* _QuickComment.m in Sources */ = {isa = PBXBuildFile; fileRef = D95C92B61A4B1453002D8CDD /* _QuickComment.m */; };
 		D967F20B1A1E305D0009639C /* EHRecruiterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D967F20A1A1E305D0009639C /* EHRecruiterViewController.m */; };
 		D967F2101A1E4DEE0009639C /* EHITAViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D967F20D1A1E4DEE0009639C /* EHITAViewController.m */; };
 		D967F2111A1E4DEE0009639C /* EHITAViewControllerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D967F20F1A1E4DEE0009639C /* EHITAViewControllerCell.m */; };
@@ -165,6 +167,10 @@
 		D92204761A2FAF6900B3BAAD /* EHConstantsDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EHConstantsDefines.h; sourceTree = "<group>"; };
 		D92B76E31A1F847F00B76F5E /* EHSkillLevelPopupIpad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EHSkillLevelPopupIpad.xib; sourceTree = "<group>"; };
 		D94AB8471A4AF25B005D079D /* EHExternalViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EHExternalViewController.h; path = ../EHExternalViewController.h; sourceTree = "<group>"; };
+		D95C92B21A4B1444002D8CDD /* QuickComment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuickComment.h; sourceTree = "<group>"; };
+		D95C92B31A4B1444002D8CDD /* QuickComment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuickComment.m; sourceTree = "<group>"; };
+		D95C92B51A4B1453002D8CDD /* _QuickComment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _QuickComment.h; sourceTree = "<group>"; };
+		D95C92B61A4B1453002D8CDD /* _QuickComment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _QuickComment.m; sourceTree = "<group>"; };
 		D967F2091A1E305D0009639C /* EHRecruiterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EHRecruiterViewController.h; sourceTree = "<group>"; };
 		D967F20A1A1E305D0009639C /* EHRecruiterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EHRecruiterViewController.m; sourceTree = "<group>"; };
 		D967F20C1A1E4DEE0009639C /* EHITAViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EHITAViewController.h; path = ExpertHelper/EHITAViewController.h; sourceTree = "<group>"; };
@@ -383,6 +389,8 @@
 		D92204291A2FAA4300B3BAAD /* Human */ = {
 			isa = PBXGroup;
 			children = (
+				D95C92B21A4B1444002D8CDD /* QuickComment.h */,
+				D95C92B31A4B1444002D8CDD /* QuickComment.m */,
 				D921289F1A4AE5EF00E2DAFE /* AudioRecord.h */,
 				D92128A01A4AE5EF00E2DAFE /* AudioRecord.m */,
 				D9BE33AA1A3A0AFF0063B6C6 /* GeneralInfo.h */,
@@ -410,6 +418,8 @@
 		D922043A1A2FAA4300B3BAAD /* Machine */ = {
 			isa = PBXGroup;
 			children = (
+				D95C92B51A4B1453002D8CDD /* _QuickComment.h */,
+				D95C92B61A4B1453002D8CDD /* _QuickComment.m */,
 				D92128A21A4AE5FC00E2DAFE /* _AudioRecord.h */,
 				D92128A31A4AE5FC00E2DAFE /* _AudioRecord.m */,
 				D9BE33A21A3A0AEF0063B6C6 /* _GeneralInfo.h */,
@@ -811,7 +821,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "mogenerator -m ${SRCROOT}/ExpertHelper/CoreData/Model.xcdatamodeld -M ${SRCROOT}/ExpertHelper/CoreData/Machine -H ${SRCROOT}/ExpertHelper/CoreData/Human —template-var arc=true";
+			shellScript = "mogenerator --model ExpertHelper/CoreData/Model.xcdatamodeld -M ExpertHelper/CoreData/Machine -H ExpertHelper/CoreData/Human --template-var arc=true";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -820,6 +830,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D95C92B41A4B1444002D8CDD /* QuickComment.m in Sources */,
 				D9E7B79B1A31E079002DA710 /* Recruiter.m in Sources */,
 				D9D748301A4866B40074160F /* EHRecruitersViewController.m in Sources */,
 				D9BE33B01A3A0AFF0063B6C6 /* VoiceRecorders.m in Sources */,
@@ -858,6 +869,7 @@
 				D92128A11A4AE5EF00E2DAFE /* AudioRecord.m in Sources */,
 				D9E7B7B21A31E0A3002DA710 /* _SkillsLevels.m in Sources */,
 				11DA2E031A3DF9A40051CBAC /* zip.c in Sources */,
+				D95C92B71A4B1453002D8CDD /* _QuickComment.m in Sources */,
 				D9998EE11A221CE9002E019A /* EHCalendarFormViewController.m in Sources */,
 				D9B0CC751A03B17500544323 /* EHAppDelegate.m in Sources */,
 				D9998EE21A221CE9002E019A /* EHEventsGetInfoParser.m in Sources */,

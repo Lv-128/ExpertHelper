@@ -25,6 +25,7 @@
     AVAudioRecorder *recorder;
     BOOL isPopup;
     BOOL isTextView;
+    NSArray *quickComments;
 }
 
 - (IBAction)recordStopButton:(UIButton *)sender;
@@ -37,8 +38,7 @@
 @property (nonatomic, strong) UIImage *buttonPlay;
 @property (nonatomic, strong) UIImage *buttonPause;
 @property (nonatomic, strong) EHSkillLevelPopup *popup;
-@property (nonatomic, strong) NSMutableArray *pastUrls;
-@property (nonatomic, strong) NSMutableArray *autocompleteUrls;
+
 
 @end
 
@@ -60,7 +60,8 @@
 {
     [super viewDidLoad];
     isPopup = NO;
-    
+    quickComments = [self getCommentFromDB];
+    isTextView = YES;
     [_commentView setDelegate:self];
     [_commentView setReturnKeyType:UIReturnKeyDone];
     
@@ -105,9 +106,10 @@
 }
 - (void)viewDidDisappear:(BOOL)animated
 {
+    [self addCommentToDB:_commentView.text];
     (![[[_comment objectAtIndex:_index.section] objectAtIndex:_index.row] isEqualToString:@""]) ? (_skill.comment = [[_comment objectAtIndex:_index.section] objectAtIndex:_index.row]): (_skill.comment = @"");
     (![[[_level objectAtIndex:_index.section] objectAtIndex:_index.row] isEqual:@""]) ? (_skill.estimate = [[_level objectAtIndex:_index.section] objectAtIndex:_index.row]): (_skill.estimate = @"");
-
+    
     NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:_level, @"recorderLevel", _comment, @"recorderComment", _arrayOfRecordsUrl, @"recorderUrl", _arrayOfRecordsString, @"recorderName", nil];
     [[NSNotificationCenter defaultCenter]postNotificationName:@"RecorderComment" object:nil userInfo:dict];
 }
@@ -135,7 +137,10 @@
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSectionInfoTable:(NSInteger)section
 {
-    return _autocompleteUrls.count;
+    if (quickComments.count == 0)
+        return 3;
+    else
+        return quickComments.count;
 }
 
 
@@ -157,8 +162,9 @@
         cell = [[UITableViewCell alloc]
                 initWithStyle:UITableViewCellStyleDefault reuseIdentifier:AutoCompleteRowIdentifier] ;
     }
-    
-    cell.textLabel.text = [_autocompleteUrls objectAtIndex:indexPath.row];
+    (quickComments.count>0) ? (cell.textLabel.text = [[quickComments objectAtIndex:indexPath.row] comment]) :
+                              (cell.textLabel.text = @"");
+        
     
     return cell;
 }
@@ -201,9 +207,12 @@
     
     UITableViewCell *selectedCell = [tableView cellForRowAtIndexPath:indexPath];
     _infoTableView.hidden = YES;
-    _recordsTableView.hidden = NO;
+    _commentView.hidden = NO;
     isTextView= YES;
-    _commentView.text = [_commentView.text stringByAppendingString:selectedCell.textLabel.text];
+    if ([_commentView.text isEqualToString:@"Please post your comments"])
+        _commentView.text = selectedCell.textLabel.text;
+     else
+         _commentView.text = [_commentView.text stringByAppendingString:selectedCell.textLabel.text];
     
 }
 
@@ -257,16 +266,6 @@
     NSMutableArray *temp = [_comment mutableCopy];
     [[temp objectAtIndex:_index.section] setObject: _commentView.text atIndex:_index.row];
     _comment = temp;
-    
-    ///////////////////
-    _infoTableView.hidden = YES;
-    if (![_pastUrls containsObject:self.commentView.text]) {
-        [_pastUrls addObject:self.commentView.text];
-    }
-    //////////////////////////
-    
-    
-    
     return YES;
 }
 
@@ -585,7 +584,7 @@
     //        NSLog(@"Error updating audio session: %@", error.localizedFailureReason);
     //        return;
     //    }
-    //    
+    //
     //    self.title = @"Playing back recording...";
     
     [player prepareToPlay];
@@ -605,6 +604,59 @@
         _infoTableView.hidden = YES;
         _commentView.hidden = NO;
     }
+}
+
+
+- (void) addCommentToDB:(NSString *)comment
+{
+    EHAppDelegate *appDelegate = [[UIApplication sharedApplication]delegate];
+    NSManagedObjectContext *context = [appDelegate managedObjectContext];
+    
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:[QuickComment entityName]
+                                              inManagedObjectContext:context];
+    
+    [fetchRequest setEntity:entity];
+    NSArray *fetchedObjects = [context executeFetchRequest:fetchRequest error:nil];
+    BOOL isExist = false;
+    for (QuickComment *myCom in fetchedObjects)
+    {
+        
+        if ([myCom.comment isEqualToString:comment])
+        {
+            isExist = true;
+        }
+    }
+    if (!isExist)
+    {
+       QuickComment *com = [NSEntityDescription
+                          insertNewObjectForEntityForName:[QuickComment entityName]
+                          inManagedObjectContext:context];
+        com.comment = comment;
+    }
+    
+    
+    
+    NSError *error;
+    if (![context save:&error]) {
+        NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
+    }
+    
+}
+- (NSArray *) getCommentFromDB
+{
+    EHAppDelegate *appDelegate = [[UIApplication sharedApplication]delegate];
+    NSManagedObjectContext *context = [appDelegate managedObjectContext];
+    
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:[QuickComment entityName]
+                                              inManagedObjectContext:context];
+    
+    [fetchRequest setEntity:entity];
+    NSArray *fetchedObjects = [context executeFetchRequest:fetchRequest error:nil];
+    return fetchedObjects;
+    
+    
 }
 @end
 

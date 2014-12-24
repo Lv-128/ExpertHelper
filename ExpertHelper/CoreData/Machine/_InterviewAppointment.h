@@ -46,11 +46,11 @@ extern const struct InterviewAppointmentRelationships {
 //- (BOOL)validateStartDate:(id*)value_ error:(NSError**)error_;
 
 @property (nonatomic, strong) NSNumber* type;
-/*
+
 @property (atomic) int32_t typeValue;
 - (int32_t)typeValue;
 - (void)setTypeValue:(int32_t)value_;
-*/
+
 //- (BOOL)validateType:(id*)value_ error:(NSError**)error_;
 
 @property (nonatomic, strong) NSString* url;

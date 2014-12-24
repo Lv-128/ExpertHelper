@@ -62,6 +62,24 @@ const struct InterviewAppointmentRelationships InterviewAppointmentRelationships
 
 @dynamic type;
 
+- (int32_t)typeValue {
+	NSNumber *result = [self type];
+	return [result intValue];
+}
+
+- (void)setTypeValue:(int32_t)value_ {
+	[self setType:[NSNumber numberWithInt:value_]];
+}
+/*
+- (int32_t)primitiveTypeValue {
+	NSNumber *result = [self primitiveType];
+	return [result intValue];
+}
+
+- (void)setPrimitiveTypeValue:(int32_t)value_ {
+	[self setPrimitiveType:[NSNumber numberWithInt:value_]];
+}
+*/
 @dynamic url;
 
 @dynamic idExternal;
