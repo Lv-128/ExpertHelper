@@ -71,8 +71,7 @@
     [mailController setMessageBody:@"Print message here!" isHTML:NO];
     [mailController setToRecipients:addressArray];
     [mailController setSubject:@""];
-    [mailController setModalTransitionStyle:UIModalTransitionStyleFlipHorizontal];
-    //  [mailController addAttachmentData:<#(NSData *)#> mimeType:<#(NSString *)#> fileName:<#(NSString *)#>]
+    [mailController setModalTransitionStyle:UIModalTransitionStyleCoverVertical];
     [self presentViewController:mailController animated:YES completion: nil];
     
 }

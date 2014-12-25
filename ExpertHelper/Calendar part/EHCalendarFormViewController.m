@@ -171,7 +171,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath {
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
-    tableView.sectionHeaderHeight = 25;
+    tableView.sectionHeaderHeight = 30;
     
     return @"Months";
 }
