@@ -12,6 +12,7 @@
 
 @interface EHRecorderCommentController : UIViewController <UITableViewDataSource, UITableViewDelegate, AVAudioRecorderDelegate, AVAudioPlayerDelegate>
 
+@property (nonatomic, weak) IBOutlet UITableView *infoTableView;
 @property (nonatomic, weak) IBOutlet UITableView *recordsTableView;
 @property (nonatomic, strong) NSArray *comment;
 @property (nonatomic, strong) NSArray *level;
@@ -21,7 +22,6 @@
 @property (nonatomic, strong) EHGenInfo *genInfo;
 @property (nonatomic, strong) EHSkill *skill;
 @property (nonatomic) NSInteger indexOfCell;
-@property (weak, nonatomic) IBOutlet UITableView *infoTableView;
 
 - (IBAction)quickComment:(id)sender;
 

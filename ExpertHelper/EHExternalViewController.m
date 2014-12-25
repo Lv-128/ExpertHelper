@@ -19,7 +19,7 @@
 
 @interface EHExternalViewController () <UITableViewDataSource, UITableViewDelegate, EHSkillLevelPopupDelegate, UIActionSheetDelegate, MFMailComposeViewControllerDelegate>
 
-@property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (nonatomic, weak) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) NSArray *tableSections;
 @property (nonatomic, strong) NSArray *sectionContent;
 @property (nonatomic, strong) NSArray *arrayOfRecordsUrl;
@@ -30,7 +30,7 @@
 @property (nonatomic, strong) EHRecorderCommentController *recorderComment;
 @property (nonatomic, strong) EHGenInfo *generInfo;
 @property (nonatomic, strong) EHSkillLevelPopup *popup;
-@property (strong, nonatomic) UIActionSheet *actionSheetMenu;
+@property (nonatomic, strong) UIActionSheet *actionSheetMenu;
 
 @end
 
@@ -62,7 +62,7 @@
         temp = [[NSMutableArray alloc]init];
         [temp insertObject:popup.skillLevel atIndex:rowToReload.row];
         [_array insertObject:temp atIndex:rowToReload.section];
-    }else
+    } else
         [[_array objectAtIndex:rowToReload.section] insertObject:popup.skillLevel atIndex:rowToReload.row];
     
     [self.tableView reloadRowsAtIndexPaths:rowsToReload withRowAnimation:UITableViewRowAnimationNone];
@@ -71,24 +71,16 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    NSLog(@"%@", NSHomeDirectory());
     
     if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad)
-    {
         [self.tableView registerNib:[UINib nibWithNibName:@"EHGeneralInfoCellIpad" bundle:nil]
              forCellReuseIdentifier:@"GeneralInfoIpad"];
-    }
     else
-    {
         [self.tableView registerNib:[UINib nibWithNibName:@"EHGeneralInfoCellIphone" bundle:nil]
              forCellReuseIdentifier:@"GeneralInfoIphone"];
-    }
     
     self.navigationItem.title = [NSString stringWithFormat:@"%@ %@", _interview.idExternal.idCandidate.firstName,
                                  _interview.idExternal.idCandidate.lastName];
-    
-    
-    
     
     self.cellDateFormatter = [[NSDateFormatter alloc] init];
     [self.cellDateFormatter setDateStyle:NSDateFormatterFullStyle];
@@ -118,7 +110,6 @@
     {
         _pars.interview = _interview;
         _pars.externalInterview = _interview.idExternal;
-        // _pars.genInfo = _interview.idExternal.idGeneralInfo;
         
         [_pars getFromDB];
         
@@ -211,19 +202,16 @@
 
 - (IBAction)pressMenu:(id)sender
 {
-    
     _actionSheetMenu = [[UIActionSheet alloc] initWithTitle:@"Select type of interview:"
                                                    delegate:self
                                           cancelButtonTitle:@"Cancel"
                                      destructiveButtonTitle:nil
                                           otherButtonTitles:@"Export to XLS", @"Send via Email", @"Chart",nil];
+    
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
-    {
         [_actionSheetMenu showFromBarButtonItem:sender animated:YES];
-    }
     else
         [_actionSheetMenu showInView:self.view];
-    
 }
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
@@ -362,7 +350,6 @@
         else
         {
             cell.expertName.text = self.generInfo.expertName;
-            //  self.dateLabel.text = _genInfo.dateOfInterview;
             cell.competenceGroup.text = self.generInfo.competenceGroup;
             cell.typeOfProject.text = self.generInfo.typeOfProject;
             cell.skillSummary.text = self.generInfo.skillsSummary;
@@ -371,7 +358,6 @@
             cell.levelEstimateLabel.text = self.generInfo.levelEstimate;
             cell.highPotentionalLabel.text = self.generInfo.potentialCandidate;
             cell.switchView.on = self.generInfo.hire;
-            
         }
         return cell;
     }
@@ -401,7 +387,6 @@
 {
     _index = indexPath;
     UITableViewCell *cell = [_tableView cellForRowAtIndexPath:indexPath];
-    //    [self performSegueWithIdentifier:@"profa" sender:cell];
     
     self.recorderComment = [self.storyboard instantiateViewControllerWithIdentifier:@"RecorderComment"];
     
@@ -413,7 +398,7 @@
     if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad)
     {
         self.recorder = [[UIPopoverController alloc] initWithContentViewController:self.recorderComment];
-        self.recorder.popoverContentSize = CGSizeMake(700.0, 700.0);
+        self.recorder.popoverContentSize = CGSizeMake(700.0, 437.0);
         
         CGRect rect = CGRectMake(cell.frame.size.width - 50, cell.frame.origin.y, 70, 10);
         
@@ -552,7 +537,7 @@
     
     [self writeToSheet3Score];
     [self writeToSheet4Score];
- 
+    
     [self zip];
 }
 

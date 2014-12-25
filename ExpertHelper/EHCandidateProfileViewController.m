@@ -36,7 +36,6 @@
 @property (weak, nonatomic) IBOutlet EHRoundedAngleTextField *typeOfProject;
 @property (weak, nonatomic) IBOutlet EHRoundedAngleTextField *recomendations;
 
-
 @end
 
 @implementation EHCandidateProfileViewController
@@ -261,7 +260,6 @@
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 @end

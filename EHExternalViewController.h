@@ -14,14 +14,14 @@
     NSInteger RowAtIndexPathOfSkills;
     NSInteger lostData;
 }
+
 @property (nonatomic, strong) InterviewAppointment * currentInterviewDescription;
 @property (nonatomic, strong) ExternalInterview * currentExternalInterview;
 @property (nonatomic, strong) InterviewAppointment *interview;
 @property (nonatomic, strong) NSIndexPath *index;
-@property (strong, nonatomic) NSDateFormatter *cellDateFormatter;
+@property (nonatomic, strong) NSDateFormatter *cellDateFormatter;
 @property (nonatomic, strong) UIPopoverController *popover;
 @property (nonatomic, strong) UIPopoverController *recorder;
-@property (weak, nonatomic) IBOutlet UIBarButtonItem *barButMenu;
-
+@property (nonatomic, weak) IBOutlet UIBarButtonItem *barButMenu;
 
 @end

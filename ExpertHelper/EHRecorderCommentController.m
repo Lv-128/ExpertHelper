@@ -22,24 +22,22 @@
     NSURL *temporaryRecFile;
     BOOL buttonRecordPressed;
     BOOL buttonPlayPressed;
-    AVAudioPlayer *player;
-    AVAudioRecorder *recorder;
     BOOL isPopup;
     BOOL isTextView;
+    AVAudioPlayer *player;
+    AVAudioRecorder *recorder;
     NSArray *quickComments;
 }
 
 - (IBAction)recordStopButton:(UIButton *)sender;
 @property (nonatomic, weak) IBOutlet UIButton *recordStopButton;
 @property (nonatomic, weak) IBOutlet UILabel *levelLabel;
-@property (nonatomic, weak) IBOutlet UITableView *tableForRecords;
 @property (nonatomic, weak) IBOutlet UITextView *commentView;
 @property (nonatomic, strong) UIImage *buttonRecord;
 @property (nonatomic, strong) UIImage *buttonStop;
 @property (nonatomic, strong) UIImage *buttonPlay;
 @property (nonatomic, strong) UIImage *buttonPause;
 @property (nonatomic, strong) EHSkillLevelPopup *popup;
-
 
 @end
 
@@ -96,10 +94,10 @@
     _infoTableView.layer.cornerRadius = 20;
     _infoTableView.clipsToBounds = YES;
     
-    _tableForRecords.layer.borderWidth = 1.0f;
-    _tableForRecords.layer.borderColor = [UIColor grayColor].CGColor;
-    _tableForRecords.layer.cornerRadius = 20;
-    _tableForRecords.clipsToBounds = YES;
+    _recordsTableView.layer.borderWidth = 1.0f;
+    _recordsTableView.layer.borderColor = [UIColor grayColor].CGColor;
+    _recordsTableView.layer.cornerRadius = 20;
+    _recordsTableView.clipsToBounds = YES;
     
     if (_arrayOfRecordsUrl == nil) {
         _arrayOfRecordsUrl = [[NSMutableArray alloc] init];
@@ -150,13 +148,10 @@
         return quickComments.count;
 }
 
-
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
     return tableView == _infoTableView
     ? [self infoTableView:tableView cellForRowAtIndexPath:indexPath]
     : [self recordTableView:tableView cellForRowAtIndexPath:indexPath];
-    
 }
 
 - (UITableViewCell *)infoTableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -170,8 +165,8 @@
                 initWithStyle:UITableViewCellStyleDefault reuseIdentifier:AutoCompleteRowIdentifier] ;
     }
     (quickComments.count>0) ? (cell.textLabel.text = [[quickComments objectAtIndex:indexPath.row] comment]) :
-                              (cell.textLabel.text = @"");
-        
+    (cell.textLabel.text = @"");
+    
     
     return cell;
 }
@@ -198,9 +193,6 @@
     return cell;
 }
 
-
-
-
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
     tableView == _infoTableView
@@ -208,7 +200,6 @@
     : [self recordsTableView:tableView didSelectRowAtIndexPath:indexPath];
     
 }
-
 
 - (void)infoTableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
@@ -219,21 +210,21 @@
     
     if ([_commentView.text isEqualToString:@"Please post your comments"])
     {
-          _commentView.textColor = [UIColor blackColor];
+        _commentView.textColor = [UIColor blackColor];
         _commentView.text = selectedCell.textLabel.text;
     }
-     else
-     {
-         _commentView.textColor = [UIColor blackColor];
-         _commentView.text = [_commentView.text stringByAppendingString:selectedCell.textLabel.text];
-         
-     }
+    else
+    {
+        _commentView.textColor = [UIColor blackColor];
+        _commentView.text = [_commentView.text stringByAppendingString:[@" " stringByAppendingString:
+                                                                        [_commentView.text stringByAppendingString:
+                                                                         selectedCell.textLabel.text]]];
+    }
+    
     NSMutableArray *temp = [_comment mutableCopy];
     [[temp objectAtIndex:_index.section] setObject: _commentView.text atIndex:_index.row];
     _comment = temp;
-    
 }
-
 
 - (void)recordsTableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -280,14 +271,11 @@
         [_commentView resignFirstResponder];
     }
     
-    
     NSMutableArray *temp = [_comment mutableCopy];
     [[temp objectAtIndex:_index.section] setObject: _commentView.text atIndex:_index.row];
     _comment = temp;
     return YES;
 }
-
-
 
 - (void)pushAction
 {
@@ -354,7 +342,6 @@
     
     [recorder setDelegate:self];
     
-    ///
     // Set the audio file
     
     // File URL
@@ -418,9 +405,6 @@
         _arrayOfRecordsString = recordsStringTransmitting;
         
         [_recordsTableView reloadData];
-        
-        //[recordsTransmitting addObject:audioSession];
-        //_genInfo.records = recordsTransmitting;
     }
 }
 
@@ -476,139 +460,8 @@
     [_recordsTableView reloadData];
 }
 
-
-- (BOOL)record
-{
-    NSError *error;
-    
-    // Recording settings
-    NSMutableDictionary *settings = [NSMutableDictionary dictionary];
-    
-    [settings setValue: [NSNumber numberWithInt:kAudioFormatLinearPCM] forKey:AVFormatIDKey];
-    [settings setValue: [NSNumber numberWithFloat:8000.0] forKey:AVSampleRateKey];
-    [settings setValue: [NSNumber numberWithInt:1] forKey:AVNumberOfChannelsKey];
-    [settings setValue: [NSNumber numberWithInt:16] forKey:AVLinearPCMBitDepthKey];
-    [settings setValue: [NSNumber numberWithBool:NO] forKey:AVLinearPCMIsBigEndianKey];
-    [settings setValue: [NSNumber numberWithBool:NO] forKey:AVLinearPCMIsFloatKey];
-    [settings setValue: [NSNumber numberWithInt:AVAudioQualityMax] forKey:AVEncoderAudioQualityKey];
-    
-    NSArray *searchPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *documentPath_ = [searchPaths objectAtIndex: 0];
-    
-    NSString *pathToSave = [documentPath_ stringByAppendingPathComponent:[self dateString]];
-    
-    // File URL
-    NSURL *url = [NSURL fileURLWithPath:pathToSave];//FILEPATH];
-    
-    NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
-    
-    [prefs setURL:url forKey:@"Test1"];
-    [prefs synchronize];
-    
-    recorder = [[AVAudioRecorder alloc]initWithURL:url settings:settings error:&error];
-    recorder.meteringEnabled = YES;
-    
-    [recorder prepareToRecord];
-    [recorder record];
-    
-    // Create recorder
-    //    recorder = [[AVAudioRecorder alloc] initWithURL:url settings:settings error:&error];
-    //    if (!recorder)
-    //    {
-    //        NSLog(@"Error establishing recorder: %@", error.localizedFailureReason);
-    //        return NO;
-    //    }
-    //
-    //    // Initialize degate, metering, etc.
-    //    recorder.delegate = self;
-    //    recorder.meteringEnabled = YES;
-    //    //self.title = @"0:00";
-    //
-    //    if (![recorder prepareToRecord])
-    //    {
-    //        NSLog(@"Error: Prepare to record failed");
-    //        //[self say:@"Error while preparing recording"];
-    //        return NO;
-    //    }
-    //
-    //    if (![recorder record])
-    //    {
-    //        NSLog(@"Error: Record failed");
-    //        //  [self say:@"Error while attempting to record audio"];
-    //        return NO;
-    //    }
-    
-    // Set a timer to monitor levels, current time
-    
-    //timer = [NSTimer scheduledTimerWithTimeInterval:0.1f target:self selector:@selector(updateMeters) userInfo:nil repeats:YES];
-    return YES;
-}
-
-- (void)playBack
-{
-    AVAudioSession *audioSession = [AVAudioSession sharedInstance];
-    
-    [audioSession setCategory:AVAudioSessionCategoryPlayback error:nil];
-    
-    [audioSession setActive:YES error:nil];
-    
-    //Load recording path from preferences
-    NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
-    
-    temporaryRecFile = [prefs URLForKey:@"Test1"];
-    
-    player = [[AVAudioPlayer alloc] initWithContentsOfURL:temporaryRecFile error:nil];
-    
-    player.delegate = self;
-    
-    [player setNumberOfLoops:0];
-    player.volume = 1;
-    
-    //    //NSString *filePath = [[NSBundle mainBundle] pathForResource:@"example" ofType:@"aif"];
-    //    NSArray *searchPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    //    NSString *documentPath_ = [searchPaths objectAtIndex: 0];
-    //
-    //    NSFileManager *fileManager = [NSFileManager defaultManager];
-    //
-    //
-    //
-    //    if ([fileManager fileExistsAtPath:[self recordingFolder]])
-    //    {
-    //
-    //        _arrayListOfRecordSound = [[NSMutableArray alloc]initWithArray:[fileManager  contentsOfDirectoryAtPath:documentPath_ error:nil]];
-    //
-    //        NSLog(@"====%@", _arrayListOfRecordSound);
-    //
-    //    }
-    //
-    //    NSString *selectedSound = [documentPath_ stringByAppendingPathComponent:[_arrayListOfRecordSound objectAtIndex:0]];
-    //
-    //
-    //
-    //    //Start playback
-    //    player = [[AVAudioPlayer alloc] initWithContentsOfURL:url error:&error];
-    //
-    //    if (!player)
-    //    {
-    //        NSLog(@"Error establishing player for %@: %@", recorder.url, error.localizedFailureReason);
-    //        return;
-    //    }
-    //
-    //    player.delegate = self;
-    //
-    //    // Change audio session for playback
-    //    if (![[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback error:&error])
-    //    {
-    //        NSLog(@"Error updating audio session: %@", error.localizedFailureReason);
-    //        return;
-    //    }
-    //
-    //    self.title = @"Playing back recording...";
-    
-    [player prepareToPlay];
-    [player play];
-}
 #pragma mark quick comment
+
 - (IBAction)quickComment:(id)sender {
     
     if(isTextView)
@@ -617,15 +470,14 @@
         _infoTableView.hidden = NO;
         _commentView.hidden = YES;
     }
-    else{
+    else {
         isTextView = YES;
         _infoTableView.hidden = YES;
         _commentView.hidden = NO;
     }
 }
 
-
-- (void) addCommentToDB:(NSString *)comment
+- (void)addCommentToDB:(NSString *)comment
 {
     EHAppDelegate *appDelegate = [[UIApplication sharedApplication]delegate];
     NSManagedObjectContext *context = [appDelegate managedObjectContext];
@@ -637,31 +489,30 @@
     [fetchRequest setEntity:entity];
     NSArray *fetchedObjects = [context executeFetchRequest:fetchRequest error:nil];
     BOOL isExist = false;
+    
     for (QuickComment *myCom in fetchedObjects)
     {
-        
-        if ([myCom.comment isEqualToString:comment]|| [comment isEqualToString: @"Please post your comments"] || [comment isEqualToString: @""])
+        if ([myCom.comment isEqualToString:comment] || [comment isEqualToString: @"Please post your comments"] || [comment isEqualToString: @""])
         {
             isExist = true;
         }
     }
-    if (!isExist)
+    
+    if (!isExist && !([comment isEqualToString: @"Please post your comments"] || [comment isEqualToString: @""]))
     {
-       QuickComment *com = [NSEntityDescription
-                          insertNewObjectForEntityForName:[QuickComment entityName]
-                          inManagedObjectContext:context];
+        QuickComment *com = [NSEntityDescription
+                             insertNewObjectForEntityForName:[QuickComment entityName]
+                             inManagedObjectContext:context];
         com.comment = comment;
     }
-    
-    
     
     NSError *error;
     if (![context save:&error]) {
         NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
     }
-    
 }
-- (NSArray *) getCommentFromDB
+
+- (NSArray *)getCommentFromDB
 {
     EHAppDelegate *appDelegate = [[UIApplication sharedApplication]delegate];
     NSManagedObjectContext *context = [appDelegate managedObjectContext];
@@ -673,9 +524,8 @@
     [fetchRequest setEntity:entity];
     NSArray *fetchedObjects = [context executeFetchRequest:fetchRequest error:nil];
     return fetchedObjects;
-    
-    
 }
+
 @end
 
 
