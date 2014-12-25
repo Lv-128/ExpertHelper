@@ -243,7 +243,9 @@
         [excelName appendString:_interview.idExternal.idCandidate.lastName];
         [excelName appendString:[_cellDateFormatter stringFromDate:_interview.startDate]];
         [excelName appendString:@".xlsx"];
-        [self sendEmailToAddressWithUrl:excelName fileName:excelName];
+        excelName = [[excelName stringByReplacingOccurrencesOfString:@":" withString:@""] mutableCopy];
+        documentsDirectory = [documentsDirectory stringByAppendingPathComponent:excelName];
+        [self sendEmailToAddressWithUrl:excelName fileName:documentsDirectory];
     }
     if(buttonIndex == 2)
     {
