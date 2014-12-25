@@ -72,22 +72,8 @@ MFMailComposeViewControllerDelegate>
     _barButton.target = self.revealViewController;
     _barButton.action = @selector(revealToggle:);
     
-    
-    
     // button HR
-    UIImage* imageHR = [UIImage imageNamed:@"hr.png"];
-    
-    CGRect frameimg = CGRectMake(0, 0, 55, 55);
-    UIButton *someButton = [[UIButton alloc] initWithFrame:frameimg];
-    [someButton setBackgroundImage:imageHR
-                          forState:UIControlStateNormal];
-  
-    [someButton addTarget:self action:@selector(goToHR)
-         forControlEvents:UIControlEventTouchUpInside];
-    [someButton setShowsTouchWhenHighlighted:YES];
-    
-    
-    UIBarButtonItem *butHR =[[UIBarButtonItem alloc] initWithCustomView:someButton];
+    UIBarButtonItem *butHR =[[UIBarButtonItem alloc] initWithTitle:@"HR" style:UIBarButtonItemStylePlain target:self action:@selector(goToHR)];
     self.navigationItem.rightBarButtonItem = butHR;
     
 }
@@ -165,7 +151,21 @@ MFMailComposeViewControllerDelegate>
     
     
 }
-
+- (void)goToInfo:(id)sender
+{
+    UITapGestureRecognizer *tapGR = (UITapGestureRecognizer *)sender;
+    CGPoint touchLocation = [tapGR locationOfTouch:0 inView:self.collectionView];
+    NSIndexPath *tappedRow = [self.collectionView indexPathForItemAtPoint:touchLocation];
+    
+    NSArray *arr = [[[sortedWeeks objectAtIndex:tappedRow.section] interviews] allObjects];
+    InterviewAppointment * curInterview = [arr objectAtIndex:tappedRow.row];
+    EHRecruiterViewController *recruiterViewForm = [self.storyboard
+                                                    instantiateViewControllerWithIdentifier:@"RecruiterFormView"];
+    recruiterViewForm.recruiter = curInterview.idRecruiter;
+    
+    recruiterViewForm.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+    [self.navigationController pushViewController:recruiterViewForm animated:YES];
+}
 
 #pragma mark Collection View Methods
 
@@ -188,15 +188,11 @@ MFMailComposeViewControllerDelegate>
     return [_collectionView indexPathForCell:(UICollectionViewCell *)view];
 }
 
-
-
 - (void)onSkypeButton:(UIButton *)button {
     NSIndexPath *indexPath = [self indexPathOfButton:button];
     EHWeek *week = [self.sortedWeeks objectAtIndex:indexPath.section];
     NSArray *eventsOnThisDay = week.interviews;
     __unused  InterviewAppointment *event = [eventsOnThisDay objectAtIndex:indexPath.row];
-    
-    
     
     if(![event.idRecruiter.skypeAccount isEqualToString:@"echo123"])
     {
@@ -362,7 +358,6 @@ MFMailComposeViewControllerDelegate>
     
     if(buttonIndex != _actionSheetTypes.cancelButtonIndex)
     {
-        
         _label.text = [_actionSheetTypes buttonTitleAtIndex:buttonIndex];
         
         EHAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
@@ -418,22 +413,6 @@ MFMailComposeViewControllerDelegate>
     else
         [_actionSheetTypes showInView:self.view];
     
-}
-
-- (void)goToInfo:(id)sender
-{
-    UITapGestureRecognizer *tapGR = (UITapGestureRecognizer *)sender;
-    CGPoint touchLocation = [tapGR locationOfTouch:0 inView:self.collectionView];
-    NSIndexPath *tappedRow = [self.collectionView indexPathForItemAtPoint:touchLocation];
-    
-    NSArray *arr = [[[sortedWeeks objectAtIndex:tappedRow.section] interviews] allObjects];
-    InterviewAppointment * curInterview = [arr objectAtIndex:tappedRow.row];
-    EHRecruiterViewController *recruiterViewForm = [self.storyboard
-                                                    instantiateViewControllerWithIdentifier:@"RecruiterFormView"];
-    recruiterViewForm.recruiter = curInterview.idRecruiter;
-    
-    recruiterViewForm.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
-    [self.navigationController pushViewController:recruiterViewForm animated:YES];
 }
 
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView

@@ -220,10 +220,10 @@
 		//draw step label text, alone y axis
 		//TODO: make this color a variable
 		[[UIColor blackColor] setFill];
-		for (int step = 1; step <= _steps; step++) {
+		for (int step = 0; step <= _steps; step++) {
 			//CGFloat value = _minValue + (_maxValue - _minValue) * step / _steps;
 			//NSString *currentLabel = [NSString stringWithFormat:@"%.0f", value];
-            NSString *currentLabel = [NSString stringWithFormat:@"%@", ESTIMATES[step-1]];
+            NSString *currentLabel = [NSString stringWithFormat:@"%@", ESTIMATES[step]];
             
 			EH_DRAW_TEXT_IN_RECT(currentLabel,
 			                     CGRectMake(_centerPoint.x + 3,
