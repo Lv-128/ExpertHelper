@@ -80,6 +80,7 @@ MFMailComposeViewControllerDelegate>
     {
         [interviewFromEventsParser.calEventParser checkEventStoreAccessForCalendar];
         [interviewFromEventsParser sortAllInterviewsToDictionary];
+
         NSDate *today = [NSDate date];
         
         unsigned int compon = NSYearCalendarUnit| NSMonthCalendarUnit ;
