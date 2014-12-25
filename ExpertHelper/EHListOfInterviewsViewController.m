@@ -8,7 +8,6 @@
 
 
 #import <EventKit/EventKit.h>
-
 #import "EHAppDelegate.h"
 
 
@@ -58,7 +57,7 @@ MFMailComposeViewControllerDelegate>
     [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
     
     //parser
-    _interviewFromEventsParser = [[EHEventsGetInfoParser alloc]init];
+    interviewFromEventsParser = [[EHEventsGetInfoParser alloc]init];
     [self checkTheFirstLoad];
 }
 
@@ -70,7 +69,10 @@ MFMailComposeViewControllerDelegate>
     
     // button HR
 
-    UIBarButtonItem *butHR =[[UIBarButtonItem alloc] initWithTitle:@"HR" style:UIBarButtonItemStylePlain target:self action:@selector(goToHR)];
+    UIBarButtonItem *butHR =[[UIBarButtonItem alloc] initWithTitle:@"HR"
+                                                             style:UIBarButtonItemStylePlain
+                                                            target:self
+                                                            action:@selector(goToHR)];
 
     self.navigationItem.rightBarButtonItem = butHR;
 }
@@ -89,7 +91,7 @@ MFMailComposeViewControllerDelegate>
         NSString * keyForDictionary = [MONTHS objectAtIndex:monthday - 1];
         keyForDictionary = [keyForDictionary stringByAppendingString:[NSString stringWithFormat:@", %ld", (long)yearday]];
         
-        NSArray *dictionaryOfInterviews = _interviewFromEventsParser.sortAllInterviewsToDictionary;
+        NSArray *dictionaryOfInterviews = interviewFromEventsParser.sortAllInterviewsToDictionary;
         NSInteger tempCurMonth = -1;
         
         for (int i=0;i<dictionaryOfInterviews.count;i++)
@@ -99,7 +101,6 @@ MFMailComposeViewControllerDelegate>
                 tempCurMonth = i;
                 break;
             }
-            
         }
         if(tempCurMonth != -1)
         {

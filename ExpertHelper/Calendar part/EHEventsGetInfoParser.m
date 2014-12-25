@@ -675,7 +675,7 @@
 
 - (NSArray *)parseAllEventsToInterviews
 {
-    [_calEventParser checkEventStoreAccessForCalendar];  // Check whether we are authorized to access Calendar
+   // [_calEventParser checkEventStoreAccessForCalendar];  // Check whether we are authorized to access Calendar
     
     if(_calEventParser.eventsList.count > 0)
     {

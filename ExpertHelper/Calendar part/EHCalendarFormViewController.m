@@ -28,7 +28,7 @@
 // Array of all events happening within the next 24 hours
 @property (nonatomic, copy) NSArray *eventsList;
 
-@property (nonatomic,strong) EHEventsGetInfoParser * interviewFromEventsParser;
+
 @property (strong , nonatomic) UIRefreshControl * refreshControl;
 
 @end
@@ -61,10 +61,7 @@
 	self.eventStore = [[EKEventStore alloc] init];// Initialize the event store
     
 	self.eventsList = [NSArray array] ; // Initialize the events list
-    
-    _interviewFromEventsParser = [[EHEventsGetInfoParser alloc]init];
-    
-    
+
     self.sortedDays = [NSArray array];
     self.sectionDateFormatter = [[NSDateFormatter alloc] init];
     [self.sectionDateFormatter setDateStyle:NSDateFormatterLongStyle];
@@ -97,10 +94,10 @@
     // End the refreshing
     if (self.refreshControl) {
         
-        [_interviewFromEventsParser.calEventParser checkEventStoreAccessForCalendar];  // Check whether we are authorized to access Calendar
+        [interviewFromEventsParser.calEventParser checkEventStoreAccessForCalendar];  // Check whether we are authorized to access Calendar
         
         // Fetch all events happening in the next 24 hours and put them into eventsList
-        if (_interviewFromEventsParser.calEventParser.eventsList.count == 0)
+        if (interviewFromEventsParser.calEventParser.eventsList.count == 0)
         {
             UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Warning!"
                                                               message:@"You have no interview - events in your calendar"
@@ -110,8 +107,8 @@
             [message show];
         }
         else{
-            self.eventsList = [_interviewFromEventsParser sortAllInterviewsToDictionary];
-            self.sections = _interviewFromEventsParser.interviews;
+            self.eventsList = [interviewFromEventsParser sortAllInterviewsToDictionary];
+            self.sections = interviewFromEventsParser.interviews;
             self.sortedDays = _eventsList;
         }
         

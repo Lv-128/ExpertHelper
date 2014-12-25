@@ -18,7 +18,7 @@
 @property (copy, nonatomic) NSArray *sortedWeeks;
 @property (nonatomic,retain) UIPickerView *myPickerView;
 @property (nonatomic) bool notFirstLoad;
-@property (strong, nonatomic) EHEventsGetInfoParser *interviewFromEventsParser;
+
 @property (nonatomic,strong) NSManagedObjectContext* managedObjectContext;
 
 @end

@@ -37,6 +37,9 @@
 #import "EHCalendarEventsParser.h"
 #import "EHEventsGetInfoParser.h"
 
+
+EHEventsGetInfoParser *interviewFromEventsParser;
+
 #ifndef ExpertHelper_EHConstantsDefines_h
 #define ExpertHelper_EHConstantsDefines_h
 
