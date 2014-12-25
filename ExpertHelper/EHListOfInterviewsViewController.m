@@ -158,13 +158,15 @@ MFMailComposeViewControllerDelegate>
     if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad)
     {
         
-       /* [self.recruitersController.view setFrame:CGRectMake(self.recruitersController.view.frame.origin.x, self.recruitersController.view.frame.origin.y, (self.view.frame.size.width - touchLocation.x), 550)];*/
+        float width;
+        (self.view.frame.size.width > self.view.frame.size.height) ? (width = self.view.frame.size.height) : (width = self.view.frame.size.width);
+        [self.recruitersController.view setFrame:CGRectMake(self.recruitersController.view.frame.origin.x, self.recruitersController.view.frame.origin.y, width, 550)];
         
         self.recruteirPopover = [[UIPopoverController alloc] initWithContentViewController:self.recruitersController];
-        self.recruteirPopover.popoverContentSize = CGSizeMake(self.view.frame.size.width - touchLocation.x, 550.0);
+        self.recruteirPopover.popoverContentSize = CGSizeMake(width, 550.0);
         
         
-        CGRect rect = CGRectMake(touchLocation.x - 100, touchLocation.y, 10, 10);
+        CGRect rect = CGRectMake(touchLocation.x - 100, touchLocation.y + 50, 10, 10);
         
         
         [self.recruteirPopover presentPopoverFromRect:rect

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4510" systemVersion="13E28" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="696-TH-eQE">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13E28" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="696-TH-eQE">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3742"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
     <scenes>
         <!--Reveal View Controller-->
@@ -128,8 +128,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="768" height="550"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Stephanie-Hello-Kitty" translatesAutoresizingMaskIntoConstraints="NO" id="CeO-6Y-Uko">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Stephanie-Hello-Kitty" translatesAutoresizingMaskIntoConstraints="NO" id="CeO-6Y-Uko">
                                 <rect key="frame" x="208" y="8" width="335" height="258"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="258" id="1SJ-vc-ray"/>
+                                    <constraint firstAttribute="width" constant="335" id="rky-3Z-nLs"/>
+                                </constraints>
                             </imageView>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="email" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="blZ-A4-AnZ">
                                 <rect key="frame" x="208" y="330" width="502" height="30"/>
@@ -149,8 +153,12 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gW1-2H-UYC">
-                                <rect key="frame" x="203" y="439" width="60" height="60"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gW1-2H-UYC">
+                                <rect key="frame" x="56" y="438" width="60" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="3l8-OJ-jdD"/>
+                                    <constraint firstAttribute="width" constant="60" id="iBF-LG-cOr"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <state key="normal" backgroundImage="skype final">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -159,8 +167,11 @@
                                     <action selector="skypeMe:" destination="CCu-XO-Yni" eventType="touchUpInside" id="Qac-QO-JaH"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1sj-JU-UDl">
-                                <rect key="frame" x="506" y="439" width="60" height="60"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1sj-JU-UDl">
+                                <rect key="frame" x="663" y="438" width="60" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="60" id="2Cc-F7-0h0"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <state key="normal" backgroundImage="email-3">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -190,15 +201,30 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cMC-fl-G9Y">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="cMC-fl-G9Y">
                                 <rect key="frame" x="20" y="282" width="728" height="126"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="cMC-fl-G9Y" secondAttribute="trailing" constant="20" id="2Wl-xv-B3N"/>
+                            <constraint firstItem="CeO-6Y-Uko" firstAttribute="top" secondItem="hTl-ak-EaI" secondAttribute="top" constant="8" id="8wX-zc-6rN"/>
+                            <constraint firstItem="gW1-2H-UYC" firstAttribute="leading" secondItem="hTl-ak-EaI" secondAttribute="leading" constant="56" id="C5q-Bs-Xkh"/>
+                            <constraint firstItem="bfY-JA-3pG" firstAttribute="top" secondItem="gW1-2H-UYC" secondAttribute="bottom" constant="52" id="CPv-Ed-9mN"/>
+                            <constraint firstItem="CeO-6Y-Uko" firstAttribute="leading" secondItem="hTl-ak-EaI" secondAttribute="leading" constant="208" id="HF1-gW-w2L"/>
+                            <constraint firstItem="1sj-JU-UDl" firstAttribute="bottom" secondItem="gW1-2H-UYC" secondAttribute="bottom" id="Jgi-su-2C8"/>
+                            <constraint firstItem="gW1-2H-UYC" firstAttribute="top" secondItem="cMC-fl-G9Y" secondAttribute="bottom" constant="30" id="LNM-NU-oOm"/>
+                            <constraint firstItem="cMC-fl-G9Y" firstAttribute="top" secondItem="CeO-6Y-Uko" secondAttribute="bottom" constant="16" id="QVa-q2-MKe"/>
+                            <constraint firstAttribute="trailing" secondItem="1sj-JU-UDl" secondAttribute="trailing" constant="45" id="joh-Xk-4GY"/>
+                            <constraint firstItem="1sj-JU-UDl" firstAttribute="baseline" secondItem="gW1-2H-UYC" secondAttribute="baseline" id="kti-RG-Iur"/>
+                            <constraint firstItem="gW1-2H-UYC" firstAttribute="top" secondItem="1sj-JU-UDl" secondAttribute="top" id="mve-V0-jZf"/>
+                            <constraint firstItem="cMC-fl-G9Y" firstAttribute="leading" secondItem="hTl-ak-EaI" secondAttribute="leading" constant="20" id="svC-J3-c80"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Recruiter" id="Yvb-4h-xNp"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="768" height="550"/>
                     <connections>
                         <outlet property="emailRecruiter" destination="blZ-A4-AnZ" id="A01-HO-Zsk"/>
                         <outlet property="labelNameOfRecruiter" destination="adF-Sb-79p" id="GM0-3J-phc"/>
@@ -248,7 +274,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="QWz-uc-3pi" kind="custom" identifier="GoToGenInfoForm" id="ncE-vj-9wU"/>
+                                            <segue destination="QWz-uc-3pi" kind="push" identifier="GoToGenInfoForm" id="ncE-vj-9wU"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" accessoryType="detailButton" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ExternalCell" rowHeight="72" id="J67-Vg-vfH" customClass="EHExternalCell">
@@ -770,6 +796,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="XSO-MY-rsO"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="768" height="437"/>
                     <connections>
                         <outlet property="commentView" destination="U8N-Uv-T6Z" id="rTc-Es-PDu"/>
                         <outlet property="infoTableView" destination="1Io-Um-cbq" id="V5h-ca-Gcs"/>
