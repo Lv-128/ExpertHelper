@@ -60,11 +60,7 @@ MFMailComposeViewControllerDelegate>
     //parser
     _interviewFromEventsParser = [[EHEventsGetInfoParser alloc]init];
     [self checkTheFirstLoad];
-    
-    
-    
 }
-
 
 - (void)setBarButtons
 {
@@ -73,9 +69,10 @@ MFMailComposeViewControllerDelegate>
     _barButton.action = @selector(revealToggle:);
     
     // button HR
+
     UIBarButtonItem *butHR =[[UIBarButtonItem alloc] initWithTitle:@"HR" style:UIBarButtonItemStylePlain target:self action:@selector(goToHR)];
+
     self.navigationItem.rightBarButtonItem = butHR;
-    
 }
 
 - (void) checkTheFirstLoad
@@ -90,7 +87,7 @@ MFMailComposeViewControllerDelegate>
         NSInteger yearday =[[[NSCalendar currentCalendar] components: compon fromDate:today] year];
         
         NSString * keyForDictionary = [MONTHS objectAtIndex:monthday - 1];
-        keyForDictionary = [keyForDictionary stringByAppendingString:[NSString stringWithFormat: @", %ld", (long)yearday]];
+        keyForDictionary = [keyForDictionary stringByAppendingString:[NSString stringWithFormat:@", %ld", (long)yearday]];
         
         NSArray *dictionaryOfInterviews = _interviewFromEventsParser.sortAllInterviewsToDictionary;
         NSInteger tempCurMonth = -1;
@@ -134,23 +131,21 @@ MFMailComposeViewControllerDelegate>
     NSIndexPath *indexPath = [self indexPathOfButton:button];
     NSArray * arr = [[[sortedWeeks objectAtIndex:indexPath.section ] interviews] allObjects];
     _curInterview = [arr objectAtIndex:indexPath.row];
-    if(_curInterview.type == [NSNumber numberWithInt:ITA])
+    if (_curInterview.type == [NSNumber numberWithInt:ITA])
     {
         EHITAViewController *itaViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"ITAForm"];
         [self.navigationController pushViewController:itaViewController animated: YES];
-        
     }
     else
-        if(_curInterview.type == [NSNumber numberWithInt:External])
+        if (_curInterview.type == [NSNumber numberWithInt:External])
         {
             EHExternalViewController *externalViewController = [self.storyboard
                                                                 instantiateViewControllerWithIdentifier:@"ExternalForm"];
             externalViewController.interview = [arr objectAtIndex:indexPath.row];
             [self.navigationController pushViewController:externalViewController animated: YES];
         }
-    
-    
 }
+
 - (void)goToInfo:(id)sender
 {
     UITapGestureRecognizer *tapGR = (UITapGestureRecognizer *)sender;
@@ -166,6 +161,7 @@ MFMailComposeViewControllerDelegate>
     recruiterViewForm.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
     [self.navigationController pushViewController:recruiterViewForm animated:YES];
 }
+
 
 #pragma mark Collection View Methods
 
@@ -230,6 +226,7 @@ MFMailComposeViewControllerDelegate>
     
     
 }
+
 - (IBAction)facebookButton:(id)sender {
     NSIndexPath *indexPath = [self indexPathOfButton:sender];
     EHWeek *week = [self.sortedWeeks objectAtIndex:indexPath.section];
@@ -298,8 +295,6 @@ MFMailComposeViewControllerDelegate>
                                       [popover dismissPopoverAnimated:YES];
                                       [self showMessage:@"There aren't in facebook such people"];
                                   }
-                                  
-                                  
                               }
                           }];
 }
@@ -351,7 +346,6 @@ MFMailComposeViewControllerDelegate>
     return cell;
 }
 
-
 #pragma mark Work with Action sheets
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
@@ -380,9 +374,7 @@ MFMailComposeViewControllerDelegate>
             NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
         }
     }
-    
 }
-
 
 - (void)chooseTypeOfInterview:(id)sender
 {
@@ -407,8 +399,10 @@ MFMailComposeViewControllerDelegate>
         CGRect  rect = CGRectMake([_label frame].origin.x - [_label frame].size.width / 3 ,
                                   [_label frame].origin.y,
                                   [_label frame].size.width,
+
                                   [_label frame].size.height);
         [_actionSheetTypes showFromRect:rect inView:curInterviewCell animated:YES ];
+
     }
     else
         [_actionSheetTypes showInView:self.view];
