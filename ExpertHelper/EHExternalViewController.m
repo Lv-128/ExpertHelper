@@ -64,9 +64,10 @@
         [_array insertObject:temp atIndex:rowToReload.section];
     } else
     {
-           [[_array objectAtIndex:rowToReload.section] removeObjectAtIndex:rowToReload.row];
+        [[_array objectAtIndex:rowToReload.section] removeObjectAtIndex:rowToReload.row];
         [[_array objectAtIndex:rowToReload.section] insertObject:popup.skillLevel atIndex:rowToReload.row];
     }
+    
     [self.tableView reloadRowsAtIndexPaths:rowsToReload withRowAnimation:UITableViewRowAnimationNone];
 }
 
@@ -131,22 +132,21 @@
         
         for (int i = 0; i < myArr.count; i++)
         {
-            NSMutableArray *tt = [[NSMutableArray alloc]initWithCapacity:0];
-            NSMutableArray *tr = [[NSMutableArray alloc]initWithCapacity:0];
+            NSMutableArray *skillz = [[NSMutableArray alloc]initWithCapacity:0];
+            NSMutableArray *comments = [[NSMutableArray alloc]initWithCapacity:0];
             for (int b =0; b<[self.sectionContent[i]count];b++)
             {
                 for(int j = 0; j < [myArr[i]count];j++)
                 {
                     if ([[myArr[i][j] nameOfSkill] isEqualToString:self.sectionContent[i][b]])
                     {
-                        [tt addObject:[myArr[i][j] estimate]];
-                        EHSkill *kkk=myArr[i][j];
-                        [tr addObject:[kkk comment]];
+                        [skillz addObject:[myArr[i][j] estimate]];
+                         [comments addObject:[myArr[i][j] comment]];
                     }
                 }
             }
-            [_array insertObject:tt atIndex:i];
-            [_comment insertObject:tr atIndex:i];
+            [_array insertObject:skillz atIndex:i];
+            [_comment insertObject:comments atIndex:i];
         }
         _generInfo = _pars.genInfo;
         _arrayOfRecordsString = _pars.recordsNames;
@@ -156,13 +156,11 @@
         for (int i = 0; i < self.tableSections.count; i++)//6
         {
             NSMutableArray *temp = [[NSMutableArray alloc]initWithCapacity:0];// group]
-            NSMutableArray *temp2 = [[NSMutableArray alloc]initWithCapacity:0];
             for (int b = 0; b < [[self.sectionContent objectAtIndex:i] count]; b++){
-                [temp2 addObject:@""];
-                [temp addObject:@""];
+            [temp addObject:@""];
             }
             [_array insertObject:temp atIndex:i];
-            [_comment insertObject:temp2 atIndex:i];
+            [_comment insertObject:[temp copy] atIndex:i];
         }
     }
 }
