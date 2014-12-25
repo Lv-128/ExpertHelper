@@ -95,9 +95,11 @@
     if (self)
     {
         self.calEventParser = [[EHCalendarEventsParser alloc] init];
+        
         EHAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
         _managedObjectContext = [appDelegate managedObjectContext];
         _events = [NSArray array];
+        
     }
     return  self;
 }
