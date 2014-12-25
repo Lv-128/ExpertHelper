@@ -760,6 +760,9 @@
 				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = "Katolyk S.";
 				TargetAttributes = {
+					D9B0CC601A03B17500544323 = {
+						DevelopmentTeam = 98D64ECLWX;
+					};
 					D9B0CC841A03B17500544323 = {
 						TestTargetID = D9B0CC601A03B17500544323;
 					};
@@ -1054,6 +1057,8 @@
 				ALWAYS_SEARCH_USER_PATHS = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/**",
@@ -1063,6 +1068,7 @@
 				INFOPLIST_FILE = "ExpertHelper/ExpertHelper-Info.plist";
 				LIBRARY_SEARCH_PATHS = "$(PROJECT_DIR)/**";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
@@ -1074,6 +1080,8 @@
 				ALWAYS_SEARCH_USER_PATHS = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/**",
@@ -1083,6 +1091,7 @@
 				INFOPLIST_FILE = "ExpertHelper/ExpertHelper-Info.plist";
 				LIBRARY_SEARCH_PATHS = "$(PROJECT_DIR)/**";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
