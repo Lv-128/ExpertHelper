@@ -34,7 +34,7 @@
     _panel.layer.borderWidth = 2;
   
     
-    _labelNameOfRecruiter.text = [NSString stringWithFormat:@"Name: %@ %@", _recruiter.firstName, _recruiter.lastName];
+    _labelNameOfRecruiter.text = [NSString stringWithFormat:@"%@ %@", _recruiter.firstName, _recruiter.lastName];
     _emailRecruiter.text = _recruiter.email;
     _skypeRecruiter.text = _recruiter.skypeAccount;
     
