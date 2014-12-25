@@ -90,10 +90,10 @@
 
 - (void)configureArrays
 {
-    NSArray *level = @[@" high", @" low"];
-    self.englishArray = @[@[@"basic ", @"intermediate ",@"Advanced "], level];
-    self.levelEstimateArray = @[@[@"junior ", @"intermediate ", @"senior ", @"leader "], level];
-    self.highPotentionalArray = @[@"low", @"regular", @"high"];
+    NSArray *level = @[@" High", @" Low"];
+    self.englishArray = @[@[@"Basic ", @"Intermediate ",@"Advanced "], level];
+    self.levelEstimateArray = @[@[@"Junior ", @"Intermediate ", @"Senior ", @"Leader "], level];
+    self.highPotentionalArray = @[@"Low", @"Regular", @"High"];
 }
 
 - (void)configureTextFields
@@ -178,9 +178,7 @@
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
 {
     switch (pickerView.tag) {
-        case 1:
-            [self fillTextField:self.englishTexField withArray:self.englishArray inComponent:component andRow:row];
-            break;
+        
         case 2:
             [self fillTextField:self.levelEstimateTextField
                       withArray:self.levelEstimateArray
