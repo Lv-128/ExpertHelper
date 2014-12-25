@@ -153,10 +153,12 @@ MFMailComposeViewControllerDelegate>
 
 - (void)goToInfo:(id)sender
 {
+    [self.collectionView reloadData];
     UITapGestureRecognizer *tapGR = (UITapGestureRecognizer *)sender;
     CGPoint touchLocation = [tapGR locationOfTouch:0 inView:self.collectionView];
     NSIndexPath *tappedRow = [self.collectionView indexPathForItemAtPoint:touchLocation];
     
+    EHInterviewViewCell *cell = (EHInterviewViewCell *) [self.collectionView cellForItemAtIndexPath:tappedRow];
     NSArray *arr = [[[sortedWeeks objectAtIndex:tappedRow.section] interviews] allObjects];
     InterviewAppointment * curInterview = [arr objectAtIndex:tappedRow.row];
     
@@ -175,7 +177,7 @@ MFMailComposeViewControllerDelegate>
         self.recruteirPopover.popoverContentSize = CGSizeMake(width, 550.0);
         
         
-        CGRect rect = CGRectMake(touchLocation.x - 100, touchLocation.y + 50, 10, 10);
+        CGRect rect = CGRectMake(cell.frame.origin.x + 50, cell.frame.origin.y + 100, 10, 10);
         
         
         [self.recruteirPopover presentPopoverFromRect:rect
@@ -363,8 +365,10 @@ MFMailComposeViewControllerDelegate>
     [gestureAction setDelegate:self];
     [cell.recruiterLabel addGestureRecognizer:gestureAction];
     
-    gestureAction = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(chooseTypeOfInterview:)];
-    [cell.typeLabel addGestureRecognizer:gestureAction];
+    UITapGestureRecognizer *gestureAction2 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(goToInfo:)];
+    gestureAction2.numberOfTapsRequired = 1;
+    gestureAction2 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(chooseTypeOfInterview:)];
+    [cell.typeLabel addGestureRecognizer:gestureAction2];
     
     return cell;
 }

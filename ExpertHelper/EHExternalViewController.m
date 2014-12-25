@@ -178,6 +178,7 @@
 {
     [super willRotateToInterfaceOrientation:toInterfaceOrientation duration:duration];
     [self.recorder dismissPopoverAnimated:YES];
+    [self.tableView reloadData];
 }
 
 #pragma mark Send Email To Recruiter
@@ -391,6 +392,7 @@
 
 - (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath
 {
+    [self.popup close];
     _index = indexPath;
     UITableViewCell *cell = [_tableView cellForRowAtIndexPath:indexPath];
     

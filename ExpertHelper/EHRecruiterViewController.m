@@ -67,13 +67,25 @@
     MFMailComposeViewController *mailController = [[MFMailComposeViewController alloc]init];
     [mailController setMailComposeDelegate:self];
     
-    NSArray *addressArray = [[NSArray alloc]initWithObjects:address, nil];
-    [mailController setMessageBody:@"Print message here!" isHTML:NO];
-    [mailController setToRecipients:addressArray];
-    [mailController setSubject:@""];
-    [mailController setModalTransitionStyle:UIModalTransitionStyleCoverVertical];
-    [self presentViewController:mailController animated:YES completion: nil];
-    
+    NSArray *addressArray;
+    if(![address isEqualToString:@"unknown@unknown.com"])
+    {
+        (addressArray = [[NSArray alloc]initWithObjects:address, nil]);
+        [mailController setMessageBody:@"Print message here!" isHTML:NO];
+        [mailController setToRecipients:addressArray];
+        [mailController setSubject:@""];
+        [mailController setModalTransitionStyle:UIModalTransitionStyleCoverVertical];
+        [self presentViewController:mailController animated:YES completion: nil];
+    }
+    else
+    {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Warning"
+                                                        message:@"Sorry, can't find recruiter's email"
+                                                       delegate:nil
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil];
+        [alert show];
+    }
 }
 
 - (void)mailComposeController:(MFMailComposeViewController *) controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error{
@@ -105,15 +117,29 @@
 //----------------------------— Skype implementation —----------------------------
 
 - (IBAction)skypeMe:(id)sender {
-    
-    BOOL installed = [[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"skype:"]];
-    if(installed)
+  
+    if(![_recruiter.skypeAccount isEqualToString:@"echo123"])
     {
-        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"skype:%@?call",_recruiter.skypeAccount]]];
+        BOOL installed = [[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"skype:"]];
+        if(installed)
+        {
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:
+                                                        [NSString stringWithFormat:@"skype:%@?call",
+                                                         _recruiter.skypeAccount]]];
+        }
+        else
+        {
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://itunes.com/apps/skype/skype"]];
+        }
     }
     else
     {
-        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://itunes.com/apps/skype/skype"]];
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Warning"
+                                                        message:@"Sorry, can't find recruiter's skype"
+                                                       delegate:nil
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil];
+        [alert show];
     }
 }
 

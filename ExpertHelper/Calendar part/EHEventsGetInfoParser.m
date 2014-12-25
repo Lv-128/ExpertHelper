@@ -153,7 +153,7 @@
     [self canDefineAmountCandidates:event.title];
     [self canDefineTypeAsITA:event.title];
     [self canDefineTypeAsExternal:event.title];
-    NSInteger type;
+    int type;
     if (self.parseOptions.isIta)
         type = 1;
     else if (self.parseOptions.isExternal)
@@ -754,7 +754,7 @@
         
         NSString *key = [MONTHS objectAtIndex:monthday - 1];
         NSString *keyForDictionary = [MONTHS objectAtIndex:monthday - 1];
-        keyForDictionary = [keyForDictionary stringByAppendingString:[NSString stringWithFormat: @", %d", yearday]];
+        keyForDictionary = [keyForDictionary stringByAppendingString:[NSString stringWithFormat: @", %ld", (long)yearday]];
         
         EHMonth *curMonth;
         
@@ -780,7 +780,7 @@
             curMonth = [allMonthes objectAtIndex:index];
         }
         
-        key = [key stringByAppendingString:[NSString stringWithFormat:@", %d - %d ", starOfWeek, endOfWeek]];
+        key = [key stringByAppendingString:[NSString stringWithFormat:@", %ld - %ld ", (long)starOfWeek, (long)endOfWeek]];
         
         NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF.nameOfWeek LIKE[cd] %@", key];
         NSArray *filtered = [curMonth.weeks filteredArrayUsingPredicate:predicate];

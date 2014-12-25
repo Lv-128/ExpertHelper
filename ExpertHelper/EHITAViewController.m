@@ -229,8 +229,8 @@ UIButton *button;
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
     
     if ([pickerView tag] == 1) {
-        selectedScoreSrcIndex=row;
-        selectedScore=[self.scoreSrc objectAtIndex:selectedScoreSrcIndex];
+        selectedScoreSrcIndex = (int)row;
+        selectedScore = [self.scoreSrc objectAtIndex:selectedScoreSrcIndex];
         [scoreOption setTitle:selectedScore forState:UIControlStateNormal];
     }
 }
@@ -239,7 +239,7 @@ UIButton *button;
 
 -(void)checkButtonClicked:(UIButton *)sender {
     UIButton *btn = (UIButton *)sender;
-    int index = [btn tag];
+    int index = (int)[btn tag];
     
     if (![[_checked objectAtIndex:index] boolValue]) {
         [sender setImage:[UIImage imageNamed:@"checkBoxMarked.png"] forState:UIControlStateNormal];

@@ -100,7 +100,7 @@
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Cell" id="YGK-3Z-KlV" customClass="EHInterviewViewCell">
-                                        <rect key="frame" x="1" y="50" width="319" height="220"/>
+                                        <rect key="frame" x="1" y="114" width="319" height="220"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="319" height="220"/>
@@ -224,7 +224,7 @@
                                     </collectionViewCell>
                                 </cells>
                                 <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" tag="500" contentMode="center" reuseIdentifier="HeaderView" id="eYX-X8-978">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
+                                    <rect key="frame" x="0.0" y="64" width="320" height="50"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                     <subviews>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="2000" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o5D-pF-MII">
@@ -304,7 +304,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="ncq-BJ-VEx" kind="custom" identifier="GoToGenInfoForm" id="fb9-tf-9lX"/>
+                                            <segue destination="ncq-BJ-VEx" kind="push" identifier="GoToGenInfoForm" id="fb9-tf-9lX"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" accessoryType="detailButton" indentationWidth="10" reuseIdentifier="ExternalCell" rowHeight="66" id="jVW-QS-LIf" customClass="EHExternalCell">
@@ -900,12 +900,10 @@
     <resources>
         <image name="Stephanie-Hello-Kitty" width="849" height="757"/>
         <image name="email-3" width="225" height="225"/>
-        <image name="email-3" width="225" height="225"/>
         <image name="facebook-2" width="512" height="512"/>
         <image name="mail-1" width="300" height="300"/>
         <image name="play-1" width="201" height="200"/>
         <image name="record_button" width="1024" height="1024"/>
-        <image name="skype final" width="201" height="200"/>
         <image name="skype final" width="201" height="200"/>
         <image name="skype-1" width="512" height="512"/>
     </resources>
@@ -915,6 +913,6 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="4ME-w9-mht"/>
+        <segue reference="Thn-Kx-qbc"/>
     </inferredMetricsTieBreakers>
 </document>
