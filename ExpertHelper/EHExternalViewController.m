@@ -172,8 +172,14 @@
     [self.tableView reloadRowsAtIndexPaths:@[generalInfoIndex] withRowAnimation:UITableViewRowAnimationNone];
 }
 
+- (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
+{
+    [super willRotateToInterfaceOrientation:toInterfaceOrientation duration:duration];
+    [self.recorder dismissPopoverAnimated:YES];
+}
 
 #pragma mark Send Email To Recruiter
+
 - (void)sendEmailToAddressWithUrl:(NSString *)url fileName:(NSString *)fileName{
     MFMailComposeViewController *mailController = [[MFMailComposeViewController alloc]init];
     [mailController setMailComposeDelegate:self];
