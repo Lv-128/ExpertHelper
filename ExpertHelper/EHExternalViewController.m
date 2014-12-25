@@ -63,8 +63,10 @@
         [temp insertObject:popup.skillLevel atIndex:rowToReload.row];
         [_array insertObject:temp atIndex:rowToReload.section];
     } else
+    {
+           [[_array objectAtIndex:rowToReload.section] removeObjectAtIndex:rowToReload.row];
         [[_array objectAtIndex:rowToReload.section] insertObject:popup.skillLevel atIndex:rowToReload.row];
-    
+    }
     [self.tableView reloadRowsAtIndexPaths:rowsToReload withRowAnimation:UITableViewRowAnimationNone];
 }
 
