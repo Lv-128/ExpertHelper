@@ -13,11 +13,12 @@
 
 @interface EHListOfInterviewsViewController : UIViewController
 
-@property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
-@property (copy, nonatomic) NSArray *interviews;
-@property (copy, nonatomic) NSArray *sortedWeeks;
+@property (nonatomic, weak) IBOutlet UICollectionView *collectionView;
+@property (nonatomic, copy) NSArray *interviews;
+@property (nonatomic, copy) NSArray *sortedWeeks;
 @property (nonatomic,retain) UIPickerView *myPickerView;
 @property (nonatomic) bool notFirstLoad;
+@property (nonatomic, strong) UIPopoverController *recruteirPopover;
 
 @property (nonatomic,strong) NSManagedObjectContext* managedObjectContext;
 

@@ -6,13 +6,10 @@
 //  Copyright (c) 2014 Katolyk S. All rights reserved.
 //
 
-
 #import <EventKit/EventKit.h>
 #import "EHAppDelegate.h"
+#import "EHRecruiterViewController.h"
 
-
-
-//#define  INTERVIEWTYPE [NSMutableArray arrayWithObjects:@"None", @"IT Academy",@"Internal",@"External",nil]
 enum {
     None,
     ITA,
@@ -27,10 +24,11 @@ MFMailComposeViewControllerDelegate>
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *barButton;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *barButtonHR;
 
-@property (strong, nonatomic) NSDateFormatter *cellDateFormatter;
-@property (strong, nonatomic) InterviewAppointment *curInterview ;
-@property (strong, nonatomic) UIActionSheet *actionSheetTypes;
-@property (strong, nonatomic) UILabel *label;
+@property (nonatomic, strong) NSDateFormatter *cellDateFormatter;
+@property (nonatomic, strong) InterviewAppointment *curInterview;
+@property (nonatomic, strong) EHRecruiterViewController *recruitersController;
+@property (nonatomic, strong) UIActionSheet *actionSheetTypes;
+@property (nonatomic, strong) UILabel *label;
 @property (nonatomic, strong) EHFacebookPopoverViewController *popController;
 @property (nonatomic, strong) UIPopoverController *popover;
 
@@ -73,11 +71,10 @@ MFMailComposeViewControllerDelegate>
                                                              style:UIBarButtonItemStylePlain
                                                             target:self
                                                             action:@selector(goToHR)];
-
     self.navigationItem.rightBarButtonItem = butHR;
 }
 
-- (void) checkTheFirstLoad
+- (void)checkTheFirstLoad
 {
     if (!_notFirstLoad)
     {
@@ -95,17 +92,14 @@ MFMailComposeViewControllerDelegate>
         NSInteger tempCurMonth = -1;
         
         for (int i=0;i<dictionaryOfInterviews.count;i++)
-        {
             if ([[dictionaryOfInterviews[i] nameOfMonth] isEqualToString:keyForDictionary])
             {
                 tempCurMonth = i;
                 break;
             }
-        }
+        
         if(tempCurMonth != -1)
-        {
             self.sortedWeeks = [[dictionaryOfInterviews objectAtIndex:tempCurMonth] weeks] ;
-        }
         else
         {
             UIAlertView *message  = [[UIAlertView alloc] initWithTitle:@"Warning!"
@@ -119,6 +113,7 @@ MFMailComposeViewControllerDelegate>
 }
 
 #pragma mark SEGUES
+
 - (void) goToHR
 {
     EHRecruitersViewController *itaViewController = [self.storyboard instantiateViewControllerWithIdentifier:
@@ -155,12 +150,24 @@ MFMailComposeViewControllerDelegate>
     
     NSArray *arr = [[[sortedWeeks objectAtIndex:tappedRow.section] interviews] allObjects];
     InterviewAppointment * curInterview = [arr objectAtIndex:tappedRow.row];
-    EHRecruiterViewController *recruiterViewForm = [self.storyboard
-                                                    instantiateViewControllerWithIdentifier:@"RecruiterFormView"];
-    recruiterViewForm.recruiter = curInterview.idRecruiter;
     
-    recruiterViewForm.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
-    [self.navigationController pushViewController:recruiterViewForm animated:YES];
+    self.recruitersController = [self.storyboard instantiateViewControllerWithIdentifier:@"RecruiterFormView"];
+    self.recruteirPopover = [self.storyboard instantiateViewControllerWithIdentifier:@"RecruiterFormView"];
+    
+    self.recruitersController.recruiter = curInterview.idRecruiter;
+    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad)
+    {
+        self.recruteirPopover = [[UIPopoverController alloc] initWithContentViewController:self.recruitersController];
+        self.recruteirPopover.popoverContentSize = CGSizeMake(768.0, 550.0);
+        
+        CGRect rect = CGRectMake(self.view.frame.origin.x - 50, self.view.frame.origin.y, 70, 10);
+        
+        [self.recruteirPopover presentPopoverFromRect:rect
+                                               inView:self.view
+                             permittedArrowDirections:UIPopoverArrowDirectionRight
+                                             animated:YES];
+    } else
+        [self.navigationController pushViewController:self.recruitersController animated:YES];
 }
 
 
