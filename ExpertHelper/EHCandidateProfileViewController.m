@@ -17,7 +17,7 @@
 @property (strong, nonatomic) NSDateFormatter *formatter;
 
 @property (weak, nonatomic) IBOutlet UILabel *dateLabel;
-@property (weak, nonatomic) IBOutlet UITextField *englishTexField;
+@property (weak, nonatomic) IBOutlet EHRoundedTextView *englishTexField;
 @property (weak, nonatomic) IBOutlet UITextField *highPotentionalTextField;
 @property (weak, nonatomic) IBOutlet UITextField *levelEstimateTextField;
 @property (weak, nonatomic) IBOutlet UISwitch *switchView;
@@ -34,7 +34,7 @@
 @property (weak, nonatomic) IBOutlet EHRoundedTextView *competenceGroup;
 @property (weak, nonatomic) IBOutlet EHRoundedTextView *skillSummary;
 @property (weak, nonatomic) IBOutlet EHRoundedAngleTextField *typeOfProject;
-@property (weak, nonatomic) IBOutlet EHRoundedAngleTextField *recomendations;
+@property (weak, nonatomic) IBOutlet EHRoundedTextView *recomendations;
 
 @end
 

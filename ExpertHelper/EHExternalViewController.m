@@ -324,7 +324,7 @@
     UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, CGRectGetWidth(tableView.frame), 18.0)];
     //create custom class!
     UILabel *labelLeft = [[UILabel alloc] initWithFrame:CGRectMake(0.0, 0.0, CGRectGetWidth(tableView.frame), 18.0)];
-    [labelLeft setFont:[UIFont boldSystemFontOfSize:15]];
+    [labelLeft setFont:[UIFont boldSystemFontOfSize:14]];
     [labelLeft setTextAlignment:NSTextAlignmentCenter];
     
     labelLeft.text = [self.tableSections objectAtIndex:section];

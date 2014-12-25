@@ -104,14 +104,10 @@ NSError *error = nil;
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
     UIApplication *application = [UIApplication sharedApplication];
     
-    if ([application canOpenURL:[NSURL URLWithString:[NSString stringWithFormat:@"fb://profile/%@", _links[indexPath.row][@"id"]]]])
-        [application openURL:[NSURL URLWithString:[NSString stringWithFormat:@"fb://profile/%@", _links[indexPath.row][@"id"]]]];
-    else
+    if ([application canOpenURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://facebook.com/%@", _links[indexPath.row][@"id"]]]])
         [application openURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://facebook.com/%@", _links[indexPath.row][@"id"]]]];
-    
 }
 
 - (NSDictionary *)dictionaryFromUrl:(NSString *)urlString
@@ -141,7 +137,6 @@ NSError *error = nil;
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return 100;
-    
 }
 
 - (void)didReceiveMemoryWarning

@@ -10,7 +10,8 @@
 #import <AVFoundation/AVFoundation.h>
 #import "EHSkillsProfilesParser.h"
 
-@interface EHRecorderCommentController : UIViewController <UITableViewDataSource, UITableViewDelegate, AVAudioRecorderDelegate, AVAudioPlayerDelegate>
+@interface EHRecorderCommentController : UIViewController <UITableViewDataSource, UITableViewDelegate,
+AVAudioRecorderDelegate, AVAudioPlayerDelegate>
 
 @property (nonatomic, weak) IBOutlet UITableView *infoTableView;
 @property (nonatomic, weak) IBOutlet UITableView *recordsTableView;

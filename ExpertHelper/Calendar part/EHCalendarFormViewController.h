@@ -18,4 +18,5 @@
 @property (nonatomic,strong) NSManagedObjectContext* managedObjectContext;
 
 -(IBAction)segmentButton:(id)sender;
+
 @end

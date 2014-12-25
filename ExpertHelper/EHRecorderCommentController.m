@@ -17,7 +17,8 @@
 #define DOCUMENTS_FOLDER1 [DOCUMENTS_FOLDER stringByAppendingPathComponent:@"Recordering"]
 #define FILEPATH [DOCUMENTS_FOLDER stringByAppendingPathComponent:[self dateString]]
 
-@interface EHRecorderCommentController () <EHSkillLevelPopupDelegate, UITextViewDelegate, AVAudioSessionDelegate,AVAudioRecorderDelegate, AVAudioPlayerDelegate>
+@interface EHRecorderCommentController () <EHSkillLevelPopupDelegate, UITextViewDelegate, AVAudioSessionDelegate,
+ AVAudioRecorderDelegate, AVAudioPlayerDelegate>
 {
     NSURL *temporaryRecFile;
     BOOL buttonRecordPressed;
@@ -292,7 +293,16 @@
 
 - (void)pushAction
 {
-    UINib *nib = [UINib nibWithNibName:@"EHSkillLevelPopup" bundle:nil];
+    NSString *nibName;
+    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad)
+    {
+        nibName = @"EHSkillLevelPopupIpad";
+    }
+    else
+    {
+        nibName = @"EHSkillLevelPopupIphone";
+    }
+    UINib *nib = [UINib nibWithNibName:nibName bundle:nil];
     EHSkillLevelPopup *popup = [[nib instantiateWithOwner:nil options:nil] lastObject];
     
     if (isPopup == NO) {
