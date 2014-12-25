@@ -242,11 +242,8 @@
                                       initWithString: _interview.idExternal.idCandidate.firstName];
         [excelName appendString:_interview.idExternal.idCandidate.lastName];
         [excelName appendString:[_cellDateFormatter stringFromDate:_interview.startDate]];
-        excelName = [[excelName stringByReplacingOccurrencesOfString:@":" withString:@""] mutableCopy];
-        
-        NSString *zipFilePath = [documentsDirectory stringByAppendingPathComponent:
-                                 [NSString stringWithFormat: @"%@,.xlsx",excelName]];
-        [self sendEmailToAddressWithUrl:zipFilePath fileName:excelName];
+        [excelName appendString:@".xlsx"];
+        [self sendEmailToAddressWithUrl:excelName fileName:excelName];
     }
     if(buttonIndex == 2)
     {

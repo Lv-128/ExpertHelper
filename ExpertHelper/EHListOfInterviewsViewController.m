@@ -78,6 +78,7 @@ MFMailComposeViewControllerDelegate>
 {
     if (!_notFirstLoad)
     {
+        
         NSDate *today = [NSDate date];
         
         unsigned int compon = NSYearCalendarUnit| NSMonthCalendarUnit ;
