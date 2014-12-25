@@ -62,7 +62,9 @@
     NSString *cellIdentifier = @"recruiterCell";
     EHListOfRecruitersCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     cell.tag = indexPath.row;
-    cell.nameLabel.text = [NSString stringWithFormat: @" %@ %@ ", [_recruitersArray[indexPath.row] firstName],[_recruitersArray[indexPath.row] lastName]];
+    cell.nameLabel.text = [NSString stringWithFormat: @" %@ %@ ",
+                           [_recruitersArray[indexPath.row] firstName],
+                           [_recruitersArray[indexPath.row] lastName]];
     cell.skypeLabel.text = [_recruitersArray[indexPath.row] skypeAccount];
     cell.recruiterEmail.text = [_recruitersArray[indexPath.row] email];
     if ([_recruitersArray[indexPath.row] photoUrl] == nil)
@@ -104,7 +106,7 @@
     if (_recruitersArray.count == 0)
     {
         UIAlertView *message = [[UIAlertView alloc] initWithTitle:@""
-                                                          message:@"There is no recruiters in DB yet!"
+                                                          message:@"There are no recruiters in DB yet!"
                                                          delegate:nil
                                                 cancelButtonTitle:@"OK"
                                                 otherButtonTitles:nil];
@@ -125,7 +127,7 @@
         [mailController setMessageBody:@"Print message here!" isHTML:NO];
         [mailController setToRecipients:addressArray];
         [mailController setSubject:@""];
-        [mailController setModalTransitionStyle:UIModalTransitionStyleFlipHorizontal];
+        [mailController setModalTransitionStyle:UIModalTransitionStyleCoverVertical];
         [self presentViewController:mailController animated:YES completion: nil];
     }
     else

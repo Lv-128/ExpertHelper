@@ -16,9 +16,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *skypeLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *picture;
 
-@property (weak, nonatomic) IBOutlet UIImageView *skypePic;
-@property (weak, nonatomic) IBOutlet UIImageView *emailPic;
-@property (weak, nonatomic) IBOutlet UILabel *tempURL;
 
 @property (weak, nonatomic) IBOutlet UIButton *skypeBut;
 @property (weak, nonatomic) IBOutlet UIButton *mailBut;

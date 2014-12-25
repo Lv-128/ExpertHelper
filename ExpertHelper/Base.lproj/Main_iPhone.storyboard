@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4510" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="BQS-1I-QIi">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="BQS-1I-QIi">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3742"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
     <scenes>
         <!--Reveal View Controller-->
@@ -243,11 +243,17 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
+                    <toolbarItems/>
                     <navigationItem key="navigationItem" id="2ij-VU-5j0">
                         <barButtonItem key="leftBarButtonItem" title="Menu" id="Jn0-EQ-1hd"/>
+                        <barButtonItem key="rightBarButtonItem" title="HR" id="X3F-Aj-Wnb" userLabel="Bar Button Item - HR">
+                            <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        </barButtonItem>
                     </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="barButton" destination="Jn0-EQ-1hd" id="gaL-Qj-Znu"/>
+                        <outlet property="barButtonHR" destination="X3F-Aj-Wnb" id="Vwx-w1-45a"/>
                         <outlet property="collectionView" destination="U8L-fU-Ztu" id="dvm-jj-tCr"/>
                     </connections>
                 </viewController>
@@ -671,6 +677,7 @@
                         </constraints>
                     </view>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="320" height="1000"/>
                     <connections>
                         <outlet property="competenceGroup" destination="Mdq-OS-l0D" id="hcn-Bo-5Fc"/>
                         <outlet property="dateLabel" destination="YQh-IK-qd5" id="Lu6-ra-wE3"/>

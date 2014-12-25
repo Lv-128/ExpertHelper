@@ -6,27 +6,28 @@
 //  Copyright (c) 2014 Katolyk S. All rights reserved.
 //
 
-#import "EHListOfInterviewsViewController.h"
+
 #import <EventKit/EventKit.h>
 
-#import "EHEventsGetInfoParser.h"
-
-#import "EHRecruiterViewController.h"
-#import "EHITAViewController.h"
-#import "EHEventsGetInfoParser.h"
-
 #import "EHAppDelegate.h"
-#import "EHInterviewViewCell.h"
-#import "EHFacebookPopoverViewController.h"
 
 
 
 //#define  INTERVIEWTYPE [NSMutableArray arrayWithObjects:@"None", @"IT Academy",@"Internal",@"External",nil]
-enum {None,ITA, Internal,External};
-@interface EHListOfInterviewsViewController () <UICollectionViewDataSource, UICollectionViewDelegate, UIGestureRecognizerDelegate,
-UIActionSheetDelegate, MFMailComposeViewControllerDelegate>
+enum {
+    None,
+    ITA,
+    Internal,
+    External };
+
+@interface EHListOfInterviewsViewController () <UICollectionViewDataSource, UICollectionViewDelegate,
+UIGestureRecognizerDelegate,
+UIActionSheetDelegate,
+MFMailComposeViewControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *barButton;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *barButtonHR;
+
 @property (strong, nonatomic) NSDateFormatter *cellDateFormatter;
 @property (strong, nonatomic) InterviewAppointment *curInterview ;
 @property (strong, nonatomic) UIActionSheet *actionSheetTypes;
@@ -64,16 +65,14 @@ UIActionSheetDelegate, MFMailComposeViewControllerDelegate>
     
 }
 
-- (void)awakeFromNib
-{
-    
-}
 
 - (void)setBarButtons
 {
     // menu
     _barButton.target = self.revealViewController;
     _barButton.action = @selector(revealToggle:);
+    
+    
     
     // button HR
     UIImage* imageHR = [UIImage imageNamed:@"hr.png"];
@@ -82,9 +81,11 @@ UIActionSheetDelegate, MFMailComposeViewControllerDelegate>
     UIButton *someButton = [[UIButton alloc] initWithFrame:frameimg];
     [someButton setBackgroundImage:imageHR
                           forState:UIControlStateNormal];
+  
     [someButton addTarget:self action:@selector(goToHR)
          forControlEvents:UIControlEventTouchUpInside];
     [someButton setShowsTouchWhenHighlighted:YES];
+    
     
     UIBarButtonItem *butHR =[[UIBarButtonItem alloc] initWithCustomView:someButton];
     self.navigationItem.rightBarButtonItem = butHR;
@@ -99,18 +100,14 @@ UIActionSheetDelegate, MFMailComposeViewControllerDelegate>
         
         unsigned int compon = NSYearCalendarUnit| NSMonthCalendarUnit ;
         
-        
         NSInteger monthday = [[[NSCalendar currentCalendar] components: compon fromDate:today] month];
         NSInteger yearday =[[[NSCalendar currentCalendar] components: compon fromDate:today] year];
-        
         
         NSString * keyForDictionary = [MONTHS objectAtIndex:monthday - 1];
         keyForDictionary = [keyForDictionary stringByAppendingString:[NSString stringWithFormat: @", %ld", (long)yearday]];
         
-        
         NSArray *dictionaryOfInterviews = _interviewFromEventsParser.sortAllInterviewsToDictionary;
         NSInteger tempCurMonth = -1;
-        
         
         for (int i=0;i<dictionaryOfInterviews.count;i++)
         {
@@ -140,8 +137,10 @@ UIActionSheetDelegate, MFMailComposeViewControllerDelegate>
 #pragma mark SEGUES
 - (void) goToHR
 {
-    EHRecruitersViewController *itaViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"RecruitersForm"];
-    [self.navigationController pushViewController:itaViewController animated: YES];
+    EHRecruitersViewController *itaViewController = [self.storyboard instantiateViewControllerWithIdentifier:
+                                                     @"RecruitersForm"];
+    [self.navigationController pushViewController:itaViewController
+                                         animated: YES];
 }
 
 - (IBAction)startInterview:(UIButton *)button
@@ -158,7 +157,8 @@ UIActionSheetDelegate, MFMailComposeViewControllerDelegate>
     else
         if(_curInterview.type == [NSNumber numberWithInt:External])
         {
-            EHExternalViewController *externalViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"ExternalForm"];
+            EHExternalViewController *externalViewController = [self.storyboard
+                                                                instantiateViewControllerWithIdentifier:@"ExternalForm"];
             externalViewController.interview = [arr objectAtIndex:indexPath.row];
             [self.navigationController pushViewController:externalViewController animated: YES];
         }
@@ -203,13 +203,16 @@ UIActionSheetDelegate, MFMailComposeViewControllerDelegate>
         BOOL installed = [[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"skype:"]];
         if(installed)
         {
-            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"skype:%@?call",event.idRecruiter.skypeAccount]]];
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:
+                                                        [NSString stringWithFormat:@"skype:%@?call",
+                                                         event.idRecruiter.skypeAccount]]];
         }
         else
         {
             [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://itunes.com/apps/skype/skype"]];
         }
-    }else
+    }
+    else
     {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Warning"
                                                         message:@"Sorry, can't find recruiter's skype"
@@ -313,6 +316,7 @@ UIActionSheetDelegate, MFMailComposeViewControllerDelegate>
                                           cancelButtonTitle:@"Ok" otherButtonTitles:nil];
     [alert show];
 }
+
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     EHInterviewViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"Cell" forIndexPath:indexPath];
@@ -322,9 +326,8 @@ UIActionSheetDelegate, MFMailComposeViewControllerDelegate>
     [cell.mailButton addTarget:self action:@selector(onMailButton:) forControlEvents:UIControlEventTouchUpInside];
     
     EHWeek *week = [self.sortedWeeks objectAtIndex:indexPath.section];
-    NSArray *eventsOnThisDay = week.interviews;
     
-    InterviewAppointment *event = [eventsOnThisDay objectAtIndex:indexPath.row];
+    InterviewAppointment *event = [week.interviews objectAtIndex:indexPath.row];
     
     cell.typeLabel.text = [NSString stringWithString:[INTERVIEWTYPE objectAtIndex:event.type.intValue]];
     cell.dateLabel.text = [cellDateFormatter stringFromDate:event.startDate];
@@ -409,7 +412,7 @@ UIActionSheetDelegate, MFMailComposeViewControllerDelegate>
         CGRect  rect = CGRectMake([_label frame].origin.x - [_label frame].size.width / 3 ,
                                   [_label frame].origin.y,
                                   [_label frame].size.width,
-                                  [_label frame].size.height) ;
+                                  [_label frame].size.height);
         [_actionSheetTypes showFromRect:rect inView:curInterviewCell animated:YES ];
     }
     else
@@ -420,35 +423,31 @@ UIActionSheetDelegate, MFMailComposeViewControllerDelegate>
 - (void)goToInfo:(id)sender
 {
     UITapGestureRecognizer *tapGR = (UITapGestureRecognizer *)sender;
-    if (tapGR.view.tag == 104)
-    {
-        CGPoint touchLocation = [tapGR locationOfTouch:0 inView:self.collectionView];
-        
-        NSIndexPath *tappedRow = [self.collectionView indexPathForItemAtPoint:touchLocation];
-        NSArray *arr = [[[sortedWeeks objectAtIndex:tappedRow.section] interviews] allObjects];
-        InterviewAppointment * curInterview = [arr objectAtIndex:tappedRow.row];
-        EHRecruiterViewController *recruiterViewForm = [self.storyboard instantiateViewControllerWithIdentifier:@"RecruiterFormView"];
-        recruiterViewForm.recruiter = curInterview.idRecruiter;
-        
-        recruiterViewForm.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
-        [self.navigationController pushViewController:recruiterViewForm animated:YES];
-    }
+    CGPoint touchLocation = [tapGR locationOfTouch:0 inView:self.collectionView];
+    NSIndexPath *tappedRow = [self.collectionView indexPathForItemAtPoint:touchLocation];
+    
+    NSArray *arr = [[[sortedWeeks objectAtIndex:tappedRow.section] interviews] allObjects];
+    InterviewAppointment * curInterview = [arr objectAtIndex:tappedRow.row];
+    EHRecruiterViewController *recruiterViewForm = [self.storyboard
+                                                    instantiateViewControllerWithIdentifier:@"RecruiterFormView"];
+    recruiterViewForm.recruiter = curInterview.idRecruiter;
+    
+    recruiterViewForm.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+    [self.navigationController pushViewController:recruiterViewForm animated:YES];
 }
 
-
-
-
-- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
+- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView
+           viewForSupplementaryElementOfKind:(NSString *)kind
+                                 atIndexPath:(NSIndexPath *)indexPath
 {
     if (kind == UICollectionElementKindSectionHeader) {
         
-        UICollectionReusableView *reusableview = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"HeaderView" forIndexPath:indexPath];
+        UICollectionReusableView *reusableview =
+        [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader
+                                           withReuseIdentifier:@"HeaderView"
+                                                  forIndexPath:indexPath];
         
-        if (reusableview == nil) {
-            reusableview = [[UICollectionReusableView alloc] initWithFrame:CGRectMake(0, 0, 320, 50)];
-        }
-        
-        UILabel *label = (UILabel *) [reusableview viewWithTag: 2000];//label of header
+        UILabel *label = (UILabel *) [reusableview viewWithTag: 2000];//label in header
         
         NSString *dateRepresentingThisDay = [[self.sortedWeeks objectAtIndex:indexPath.section]nameOfWeek];
         label.text = dateRepresentingThisDay;
@@ -469,7 +468,7 @@ UIActionSheetDelegate, MFMailComposeViewControllerDelegate>
         [mailController setMessageBody:@"Print message here!" isHTML:NO];
         [mailController setToRecipients:addressArray];
         [mailController setSubject:@""];
-        [mailController setModalTransitionStyle:UIModalTransitionStyleFlipHorizontal];
+        [mailController setModalTransitionStyle:UIModalTransitionStyleCoverVertical];
         [self presentViewController:mailController animated:YES completion: nil];
     }
     else
@@ -482,12 +481,11 @@ UIActionSheetDelegate, MFMailComposeViewControllerDelegate>
         [alert show];
     }
     
-    
-    
-    
 }
 
-- (void)mailComposeController:(MFMailComposeViewController *) controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error{
+- (void)mailComposeController:(MFMailComposeViewController *) controller
+          didFinishWithResult:(MFMailComposeResult)result
+                        error:(NSError *)error{
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 

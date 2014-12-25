@@ -123,7 +123,9 @@
 }
 
 
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+- (void)tableView:(UITableView *)tableView
+commitEditingStyle:(UITableViewCellEditingStyle)editingStyle
+forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         
     }
@@ -141,14 +143,14 @@
         EHRevealViewControllerSegue * ehSegue = (EHRevealViewControllerSegue *)segue;
         ehSegue.performBlock = ^(EHRevealViewControllerSegue* rvc_segue, UIViewController* svc, UIViewController* dvc) {
             
-            EHListOfInterviewsViewController * eventsMainForm = [segue destinationViewController];
-            NSIndexPath * myIndexPath = [self.tableView indexPathForSelectedRow];
-            NSArray *weeksOnThisMonth = [[self.sortedDays objectAtIndex:myIndexPath.row] weeks];
-            eventsMainForm.sortedWeeks = weeksOnThisMonth;
-            eventsMainForm.notFirstLoad = true;
-            UINavigationController* navController = (UINavigationController*)self.revealViewController.frontViewController;
-            [navController setViewControllers: @[dvc] animated: NO ];
-            [self.revealViewController setFrontViewPosition: FrontViewPositionLeft animated: YES];
+        EHListOfInterviewsViewController * eventsMainForm = [segue destinationViewController];
+        NSIndexPath * myIndexPath = [self.tableView indexPathForSelectedRow];
+        NSArray *weeksOnThisMonth = [[self.sortedDays objectAtIndex:myIndexPath.row] weeks];
+        eventsMainForm.sortedWeeks = weeksOnThisMonth;
+        eventsMainForm.notFirstLoad = true;
+        UINavigationController* navController = (UINavigationController*)self.revealViewController.frontViewController;
+        [navController setViewControllers: @[dvc] animated: NO ];
+        [self.revealViewController setFrontViewPosition: FrontViewPositionLeft animated: YES];
             
         };
         

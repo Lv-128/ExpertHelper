@@ -9,14 +9,14 @@
 #import <UIKit/UIKit.h>
 #import "EHRevealViewController.h"
 #import "EHAppDelegate.h"
-#import "EHEventsGetInfoParser.h"
+
 
 @interface EHListOfInterviewsViewController : UIViewController
 
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (copy, nonatomic) NSArray *interviews;
 @property (copy, nonatomic) NSArray *sortedWeeks;
-@property(nonatomic,retain) UIPickerView *myPickerView;
+@property (nonatomic,retain) UIPickerView *myPickerView;
 @property (nonatomic) bool notFirstLoad;
 @property (strong, nonatomic) EHEventsGetInfoParser *interviewFromEventsParser;
 @property (nonatomic,strong) NSManagedObjectContext* managedObjectContext;

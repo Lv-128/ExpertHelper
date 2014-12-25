@@ -23,6 +23,20 @@
 #import <MessageUI/MessageUI.h>
 #import "EHRecruitersViewController.h"
 
+
+
+#import "EHEventsGetInfoParser.h"
+#import "EHInterviewViewCell.h"
+#import "EHFacebookPopoverViewController.h"
+#import "EHRecruiterViewController.h"
+#import "EHListOfInterviewsViewController.h"
+
+#import "EHRecruiterViewController.h"
+#import "EHITAViewController.h"
+#import "EHListOfInterviewsViewController.h"
+#import "EHCalendarEventsParser.h"
+#import "EHEventsGetInfoParser.h"
+
 #ifndef ExpertHelper_EHConstantsDefines_h
 #define ExpertHelper_EHConstantsDefines_h
 

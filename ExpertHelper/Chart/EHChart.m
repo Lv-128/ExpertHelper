@@ -26,8 +26,7 @@
     }
 
     p2.backgroundFillColor = [UIColor whiteColor];
-    
-	
+ 
 	p2.drawPoints = YES;
 	p2.attributes = @[@"Core", @"Desktop", @"Web", @"DB", @"BI", @"RIA",
 	                  @"Multimedia", @"Mobile", @"Embedded", @"Integration"];
@@ -35,9 +34,9 @@
     
 	NSArray *b1 = [self pointsToNumericArray];
 	p2.dataSeries = @[b1];
-	p2.steps = 4;
+	p2.steps = 3;
 	p2.backgroundColor = [UIColor whiteColor];
-    p2.countLevels = 4;
+    p2.countLevels = 3;
     p2.koeficient = p2.maxValue / p2.countLevels;
     p2.showStepText = YES;
 	[self.view addSubview:p2];
@@ -50,22 +49,22 @@
         NSString *str = _points[i];
         if ([str isEqualToString:@"None"])
         {
-            [tempAr addObject: [NSNumber numberWithFloat:1]];
+            [tempAr addObject: [NSNumber numberWithFloat:0]];
         }
         else if ([str isEqualToString:@"Low"])
         {
-            [tempAr addObject: [NSNumber numberWithFloat:2]];
+            [tempAr addObject: [NSNumber numberWithFloat:1]];
         }
         else if ([str isEqualToString:@"Middle"])
         {
-            [tempAr addObject: [NSNumber numberWithFloat:3]];
+            [tempAr addObject: [NSNumber numberWithFloat:2]];
         }
         else if ([str isEqualToString:@"Strong"])
         {
-            [tempAr addObject: [NSNumber numberWithFloat:4]];
+            [tempAr addObject: [NSNumber numberWithFloat:3]];
         }
         else 
-            [tempAr addObject: [NSNumber numberWithFloat:1]];
+            [tempAr addObject: [NSNumber numberWithFloat:0]];
     }
     return tempAr;
 }

@@ -487,6 +487,15 @@
 			name = WorkWithEvents;
 			sourceTree = "<group>";
 		};
+		D95C92B81A4C2D5F002D8CDD /* View */ = {
+			isa = PBXGroup;
+			children = (
+				D9BE33891A3882E00063B6C6 /* EHInterviewViewCell.h */,
+				D9BE338A1A3882E00063B6C6 /* EHInterviewViewCell.m */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
 		D967F2121A1E4E290009639C /* ITA */ = {
 			isa = PBXGroup;
 			children = (
@@ -680,8 +689,7 @@
 				D9F15AD01A1A575A00E4DC62 /* EHListOfInterviewsViewController.m */,
 				D9998ED61A221CE9002E019A /* EHCalendarFormViewController.h */,
 				D9998ED71A221CE9002E019A /* EHCalendarFormViewController.m */,
-				D9BE33891A3882E00063B6C6 /* EHInterviewViewCell.h */,
-				D9BE338A1A3882E00063B6C6 /* EHInterviewViewCell.m */,
+				D95C92B81A4C2D5F002D8CDD /* View */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";

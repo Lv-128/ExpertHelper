@@ -5,8 +5,8 @@
 //  Created by alena on 11/19/14.
 //  Copyright (c) 2014 Katolyk S. All rights reserved.
 //
-#import "EHEventsGetInfoParser.h"
-#import "EHConstantsDefines.h"
+
+
 #import "EHAppDelegate.h"
 
 @implementation EHMonth
@@ -112,16 +112,15 @@
     
     NSRange range = NSMakeRange(0, string.length);
     
-    
     NSRegularExpressionOptions regexOptions = NSRegularExpressionCaseInsensitive;
     NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:pattern
                                                                            options:regexOptions
                                                                              error:&error];
-    NSArray *matches = [regex matchesInString:string options:(NSMatchingOptions)regexOptions range:range];
-    if ([matches count] > 0)
-    {
-        self.parseOptions.isIta = YES;
-    }
+    NSArray *matches = [regex matchesInString:string
+                                      options:(NSMatchingOptions)regexOptions
+                                        range:range];
+    ([matches count] > 0) ?  (self.parseOptions.isIta = YES) : (self.parseOptions.isIta = NO);
+    
 }
 
 - (void)canDefineTypeAsExternal:(NSString *)string
@@ -137,7 +136,9 @@
     NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:pattern
                                                                            options:regexOptions
                                                                              error:&error];
-    NSArray *matches = [regex matchesInString:string options:(NSMatchingOptions)regexOptions range:range];
+    NSArray *matches = [regex matchesInString:string
+                                      options:(NSMatchingOptions)regexOptions
+                                        range:range];
     if (([matches count] > 0)||(self.parseOptions.isOneCandidate))
     {
         self.parseOptions.isExternal = YES;
@@ -173,7 +174,9 @@
     NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:pattern
                                                                            options:regexOptions
                                                                              error:&error];
-    NSArray *matches = [regex matchesInString:string options:(NSMatchingOptions)regexOptions range:range];
+    NSArray *matches = [regex matchesInString:string
+                                      options:(NSMatchingOptions)regexOptions
+                                        range:range];
     if ([matches count] > 0)
     {
         _parseOptions.isOneCandidate = NO;
@@ -181,15 +184,16 @@
     }
 }
 
+
 #pragma mark Get people from event
 - (Recruiter *)getRecruiterFromEvent:(EKEvent *)event andAddToDB:(NSManagedObjectContext *)context
 {
     ///////////////////////////recruiter///////////////////
-    EKParticipant *oranizer = event.organizer;
-    NSString * name = oranizer.name;
+    EKParticipant *organizer = event.organizer;
+    NSString * name = organizer.name;
     NSString * email = @"unknown@unknown.com";
-    if ([oranizer respondsToSelector:@selector(emailAddress)]) {
-        email = [oranizer performSelector:@selector(emailAddress)];
+    if ([organizer respondsToSelector:@selector(emailAddress)]) {
+        email = [organizer performSelector:@selector(emailAddress)];
     }
     
     EHCalendarParseResult * parseNameAndLastnameOfRecruiter = [self getNameOfRecruiter:name
@@ -233,15 +237,12 @@
         {
             recruiter.skypeAccount = skype;
         }
-        else
+        if(skype == nil && urlString != nil)
         {
-            if(skype == nil && urlString != nil)
-            {
-                skype = [self callToWebAndGetSkypeOfRecruiterfromName:(NSString *)recruiter.firstName
-                                                                       lastname:(NSString*)recruiter.lastName
-                                                                    andImage:urlString];
-                recruiter.skypeAccount = skype;
-            }
+            skype = [self callToWebAndGetSkypeOfRecruiterfromName:(NSString *)recruiter.firstName
+                                                         lastname:(NSString*)recruiter.lastName
+                                                         andImage:urlString];
+            recruiter.skypeAccount = skype;
         }
         
         return recruiter;
@@ -265,7 +266,6 @@
     
     NSURL *webUnFormatted = [NSURL URLWithString:getWebInfo];
     NSURL *webUnFormatted2 = [NSURL URLWithString:getWebInfo2];
-    // //  NSString *pattern = "<img src="https://softserve.ua/wp-content/uploads/2014/01/Tetyana-Klyuk11-150x150.png">" /// example of content with image link
     NSString * webFormatted;
     NSString * webFormatted2;
     
@@ -283,12 +283,16 @@
     if (webFormatted !=nil && webFormatted != nil)
     {
         NSString *webContent = [NSString stringWithFormat:@"%@",webFormatted]; // web page content
-        webContent = [webContent stringByAppendingString:[NSString stringWithFormat:@" %@",webFormatted2]]; // web page content
-        NSRange range = NSMakeRange(0, webContent.length);
+        webContent = [webContent stringByAppendingString:[NSString stringWithFormat:@" %@",webFormatted2]]; // web page2 content
         
+        NSRange range = NSMakeRange(0, webContent.length);
         NSRegularExpressionOptions regexOptions = NSRegularExpressionCaseInsensitive;
-        NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:pattern options:regexOptions error:&error];
-        NSArray *matches = [regex matchesInString:webContent options:(NSMatchingOptions)regexOptions range:range];
+        NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:pattern
+                                                                               options:regexOptions
+                                                                                 error:&error];
+        NSArray *matches = [regex matchesInString:webContent
+                                          options:(NSMatchingOptions)regexOptions
+                                            range:range];
         
         NSString * neededString;
         NSMutableArray *results = [[NSMutableArray alloc]init];
@@ -297,7 +301,6 @@
             for (NSTextCheckingResult *match in matches)
             {
                 NSRange matchRange = match.range;
-                matchRange.length -= 1;
                 [results addObject:[webContent substringWithRange:matchRange]];
             }
             
@@ -313,15 +316,11 @@
             
             return neededString;
         }
-        else
-        {
-            return  nil;
-        }
+        else   return  nil;
+        
     }
-    else
-    {
-        return  nil;
-    }
+    else    return  nil;
+    
 }
 
 - (NSString *) callToWebAndGetSkypeOfRecruiterfromName:(NSString *)name
@@ -335,7 +334,6 @@
     
     NSURL *webUnFormatted = [NSURL URLWithString:getWebInfo];
     NSURL *webUnFormatted2 = [NSURL URLWithString:getWebInfo2];
-    // //  NSString *pattern = "<img src="https://softserve.ua/wp-content/uploads/2014/01/Tetyana-Klyuk11-150x150.png">" /// example of content with image link
     NSString * webFormatted;
     NSString * webFormatted2;
     @try
@@ -376,7 +374,6 @@
             for (NSTextCheckingResult *match in matches)
             {
                 NSRange matchRange = match.range;
-                matchRange.length -= 1;
                 [results addObject:[webContent substringWithRange:matchRange]];
             }
             
@@ -408,7 +405,6 @@
     
     NSURL *webUnFormatted = [NSURL URLWithString:getWebInfo];
     NSURL *webUnFormatted2 = [NSURL URLWithString:getWebInfo2];
-    // //  NSString *pattern = "<img src="https://softserve.ua/wp-content/uploads/2014/01/Tetyana-Klyuk11-150x150.png">" /// example of content with image link
     NSString * webFormatted;
     NSString * webFormatted2;
     @try
@@ -431,7 +427,6 @@
         NSString* nospacestring = [parseWitNextLine componentsJoinedByString:@""];
         webContent = nospacestring;
         
-        // NSString *pattern = [NSString stringWithFormat:@"(a href=.https...softserve.ua.ru.vacancies.recruiters.(.)*%@((.)*)%@)|(a href=(.)*%@.((.)*)%@)",name,lastname,img,img];
         
         NSString *pattern = [NSString stringWithFormat:@"(%@)",img];
         NSRange range = NSMakeRange(0, webContent.length);
@@ -447,7 +442,6 @@
         {
             for (NSTextCheckingResult *match in matches)
             {
-                
                 NSRange r = NSMakeRange(match.range.location-match.range.length*5,match.range.length*2);
                 [results addObject:[webContent substringWithRange:r]];
             }
@@ -476,7 +470,7 @@
 
 
 
--(NSString *)getSkypeFromUrl:(NSString *) skypeUrl
+-(NSString *)getSkypeFromUrl:(NSString *)skypeUrl
 {
     
     
@@ -494,12 +488,11 @@
         NSLog(@"%@", exception);
     }
     
-    
     if (webFormatted !=nil && webFormatted != nil)
     {
         NSString *webContent = [NSString stringWithFormat:@"%@",webFormatted]; // web page content
         
-        NSString * pat = @"<((.)*)skype((.)*)[^>]*((.)*)((.)*)>";//(.)*^((.))*<[^>]*((.)*)>";
+        NSString * pat = @"<((.)*)skype((.)*)[^>]*((.)*)((.)*)>";
         
         NSRange range = NSMakeRange(0, webContent.length);
         
@@ -522,10 +515,6 @@
                 NSRange r = NSMakeRange(matchRange.length + matchRange.location,70  );
                 [results addObject:[webContent substringWithRange:r]];
             }
-            
-            
-            
-            
             NSArray* words = [results[0] componentsSeparatedByCharactersInSet:
                               [NSCharacterSet whitespaceAndNewlineCharacterSet]];
             NSString* nospacestring = [words componentsJoinedByString:@""];
@@ -701,7 +690,6 @@
     
     for (EKEvent *event in _events)
     {
-        
         NSManagedObjectContext *context = [self managedObjectContext];
         
         NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
@@ -757,14 +745,12 @@
                                                          forDate:interview.startDate];
         if (endOfWeek >= days.length) endOfWeek = days.length;
         
-        
         NSInteger monthday = [[[NSCalendar currentCalendar] components: compon
                                                               fromDate:interview.startDate] month];
         NSInteger yearday =[[[NSCalendar currentCalendar] components: compon
                                                             fromDate:interview.startDate] year];
         
         NSString *key = [MONTHS objectAtIndex:monthday - 1];
-        
         NSString *keyForDictionary = [MONTHS objectAtIndex:monthday - 1];
         keyForDictionary = [keyForDictionary stringByAppendingString:[NSString stringWithFormat: @", %d", yearday]];
         
@@ -793,7 +779,6 @@
         }
         
         key = [key stringByAppendingString:[NSString stringWithFormat:@", %d - %d ", starOfWeek, endOfWeek]];
-        
         
         NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF.nameOfWeek LIKE[cd] %@", key];
         NSArray *filtered = [curMonth.weeks filteredArrayUsingPredicate:predicate];
@@ -827,8 +812,6 @@
             curWeek.interviews = arr;
         }
     }
-    
-    
     
     NSArray *unsortedDays = allMonthes;
     
@@ -908,8 +891,8 @@
         }
     }
     else {
-        parseResult = [[EHCalendarParseResult alloc] initWithName:@"Unknown"
-                                                      andLastName:@"Unknown"];
+        parseResult = [[EHCalendarParseResult alloc] initWithName:@"1"
+                                                      andLastName:@"1"];
     }
     return parseResult;
 }

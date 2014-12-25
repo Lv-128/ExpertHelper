@@ -20,7 +20,6 @@
 @interface EHRadarChart ()
 
 @property (nonatomic, assign) NSUInteger numOfV;
-
 @property (nonatomic, strong) UIFont *scaleFont;
 @property (nonatomic, strong) UIFont *scaleLevelsFont;
 
@@ -36,17 +35,9 @@
 	return self;
 }
 
-- (id)initWithCoder:(NSCoder *)aDecoder {
-    self = [super initWithCoder:aDecoder];
-    if (self) {
-        [self setDefaultValues];
-    }
-    return self;
-}
 
 - (void)setDefaultValues {
     self.backgroundColor = [UIColor whiteColor];
-    // _maxValue = 100.0;
     _centerPoint = CGPointMake(self.frame.size.width / 2, self.frame.size.height / 2);
     _r = MIN(self.frame.size.width / 2 - PADDING, self.frame.size.height / 2 - PADDING);
     _steps = 1;
@@ -63,7 +54,7 @@
     _colors = [[NSArray alloc]init];
     _attributes = @[@"you", @"should", @"set", @"these", @"data", @"titles,",
                     @"this", @"is", @"just", @"a", @"placeholder"];
-    _countLevels = 4;
+    _countLevels = 3;
     _koeficient = _maxValue / _countLevels;
     _minValue = _koeficient;
     
@@ -76,9 +67,6 @@
     
 }
 
-
-
-
 - (void)setColors:(NSArray *)colors {
     NSMutableArray *array = [_colors mutableCopy];
     [array removeAllObjects];
@@ -87,7 +75,6 @@
     }
     _colors = array;
 }
-
 
 
 - (void)setDataSeries:(NSArray *)dataSeries {
@@ -105,7 +92,6 @@
 	}
     self.colors = array;
 }
-
 
 
 - (void)drawRect:(CGRect)rect {
