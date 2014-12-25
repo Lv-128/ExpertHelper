@@ -64,18 +64,27 @@
     [_commentView setDelegate:self];
     [_commentView setReturnKeyType:UIReturnKeyDone];
     
-    if ([[[_comment objectAtIndex:_index.section] objectAtIndex:_index.row] isEqualToString:@""] || [[[_comment objectAtIndex:_index.section] objectAtIndex:_index.row] isEqualToString:@"Please post your comments"]) {
+    if ([[[_comment objectAtIndex:_index.section]
+          objectAtIndex:_index.row] isEqualToString:@""] ||
+        [[[_comment objectAtIndex:_index.section]
+          objectAtIndex:_index.row] isEqualToString:@"Please post your comments"]) {
+        
         [_commentView setText:@"Please post your comments"];
         [_commentView setTextColor:[UIColor lightGrayColor]];
-    }else{
+    }
+    else
+    {
         _commentView.text = [[_comment objectAtIndex:_index.section] objectAtIndex:_index.row];
     }
     
     [_commentView setFont:[UIFont fontWithName:@"HelveticaNeue" size:20]];
     
-    if (![[[_level objectAtIndex:_index.section] objectAtIndex:_index.row] isEqual:@""]) {
+    if (![[[_level objectAtIndex:_index.section] objectAtIndex:_index.row] isEqual:@""])
+    {
         _levelLabel.text = [[_level objectAtIndex:_index.section] objectAtIndex:_index.row];
-    }else{
+    }
+    else
+    {
         _levelLabel.text = @"Choose level";
     }
     
@@ -115,10 +124,14 @@
 {
     [self addCommentToDB:_commentView.text];
     
-    (![[[_comment objectAtIndex:_index.section] objectAtIndex:_index.row] isEqualToString:@""]) ? (_skill.comment = [[_comment objectAtIndex:_index.section] objectAtIndex:_index.row]): (_skill.comment = @"");
-    (![[[_level objectAtIndex:_index.section] objectAtIndex:_index.row] isEqual:@""]) ? (_skill.estimate = [[_level objectAtIndex:_index.section] objectAtIndex:_index.row]): (_skill.estimate = @"");
+    (![[[_comment objectAtIndex:_index.section] objectAtIndex:_index.row] isEqualToString:@""]) ?
+        (_skill.comment = [[_comment objectAtIndex:_index.section] objectAtIndex:_index.row]): (_skill.comment = @"");
+    (![[[_level objectAtIndex:_index.section] objectAtIndex:_index.row] isEqual:@""]) ?
+        (_skill.estimate = [[_level objectAtIndex:_index.section] objectAtIndex:_index.row]): (_skill.estimate = @"");
     
-    NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:_level, @"recorderLevel", _comment, @"recorderComment", _arrayOfRecordsUrl, @"recorderUrl", _arrayOfRecordsString, @"recorderName", nil];
+    NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:_level, @"recorderLevel", _comment,
+                          @"recorderComment", _arrayOfRecordsUrl, @"recorderUrl",
+                          _arrayOfRecordsString, @"recorderName", nil];
     [[NSNotificationCenter defaultCenter]postNotificationName:@"RecorderComment" object:nil userInfo:dict];
 }
 
@@ -423,7 +436,8 @@
     if (!player.playing) {
         [sender setBackgroundImage:_buttonPause forState:UIControlStateNormal];
         if (!recorder.recording){
-            player = [[AVAudioPlayer alloc] initWithContentsOfURL:[_arrayOfRecordsUrl objectAtIndex:indexPath.row] error:nil];
+            player = [[AVAudioPlayer alloc] initWithContentsOfURL:[_arrayOfRecordsUrl objectAtIndex:indexPath.row]
+                                                            error:nil];
             [player setDelegate:self];
             [player play];
         }
@@ -492,7 +506,8 @@
     
     for (QuickComment *myCom in fetchedObjects)
     {
-        if ([myCom.comment isEqualToString:comment] || [comment isEqualToString: @"Please post your comments"] || [comment isEqualToString: @""])
+        if ([myCom.comment isEqualToString:comment] || [comment isEqualToString: @"Please post your comments"]
+            || [comment isEqualToString: @""])
         {
             isExist = true;
         }

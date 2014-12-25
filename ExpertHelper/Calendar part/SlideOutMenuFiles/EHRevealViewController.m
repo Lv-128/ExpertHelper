@@ -1130,7 +1130,6 @@ const int FrontViewPositionNone = 0xff;
     
     CGFloat xLocation = frontView.frame.origin.x;
     CGFloat velocity = [recognizer velocityInView:_contentView].x;
-    //NSLog( @"Velocity:%1.4f", velocity);
     
     // depending on position we compute a simetric replacement of widths and positions
     int symetry = xLocation<0 ? -1 : 1;

@@ -347,37 +347,9 @@
         self.groups = curGroups;
         
         [self getRecordArrWithContext:context];
-        NSLog(@"%@", _recordsNames);
-        NSLog(@"%@",_recordsUrls);
-   
+ 
         
     }
 }
 
-
-/*- (EHGenInfo *)getGeneralInfo:(GeneralInfo *)genInfo
- {
- NSManagedObjectContext *context = [self managedObjectContext];
- EHGenInfo *result = [[EHGenInfo alloc]init];
- 
- 
- NSLog(@"%@",_interview.idExternal.idGeneralInfo.expertName);
- 
- result.competenceGroup = genInfo.competenceGroup;
- result.dateOfInterview = genInfo.creatingDate;
- result.expertName = genInfo.expertName;
- 
- BOOL hireResult;
- (result.hire) ? (hireResult = YES) : (hireResult = NO);
- 
- result.hire = hireResult;
- result.levelEstimate = genInfo.levelEstimate;
- result.potentialCandidate = genInfo.potentialCandidate;
- result.typeOfProject = genInfo.projectType;
- result.recommendations = genInfo.recommendations;
- result.skillsSummary = genInfo.skillsSummary;
- result.techEnglish = genInfo.techEnglish;
- 
- return result;
- }*/
 @end

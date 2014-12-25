@@ -280,7 +280,6 @@
 - (void)didMoveToParentViewController:(UIViewController *)parent
 {
     if (![parent isEqual:self.parentViewController]) {
-        NSLog(@"Back pressed");
         [self parsFunc];
     }
 }

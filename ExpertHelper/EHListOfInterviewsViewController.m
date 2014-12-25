@@ -234,8 +234,7 @@ MFMailComposeViewControllerDelegate>
     NSArray *eventsOnThisDay = week.interviews;
     InterviewAppointment *event = [eventsOnThisDay objectAtIndex:indexPath.row];
     
-    // If the session state is any of the two "open" states when the button is clicked
-    NSLog(@"%d", FBSession.activeSession.state == FBSessionStateOpen);
+
     if (FBSession.activeSession.state == FBSessionStateOpen
         || FBSession.activeSession.state == FBSessionStateOpenTokenExtended) {
         
