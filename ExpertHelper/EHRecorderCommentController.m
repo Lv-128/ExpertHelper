@@ -229,9 +229,8 @@
     else
     {
         _commentView.textColor = [UIColor blackColor];
-        _commentView.text = [_commentView.text stringByAppendingString:[@" " stringByAppendingString:
-                                                                        [_commentView.text stringByAppendingString:
-                                                                         selectedCell.textLabel.text]]];
+        _commentView.text = [_commentView.text stringByAppendingString:[@" "
+                                               stringByAppendingString:selectedCell.textLabel.text]];
     }
     
     NSMutableArray *temp = [_comment mutableCopy];
@@ -538,7 +537,10 @@
     
     [fetchRequest setEntity:entity];
     NSArray *fetchedObjects = [context executeFetchRequest:fetchRequest error:nil];
-    return fetchedObjects;
+    
+    NSSortDescriptor *sort = [NSSortDescriptor sortDescriptorWithKey:@"self.comment" ascending:YES];
+    NSArray *sortedArray=[fetchedObjects sortedArrayUsingDescriptors:@[sort]];
+    return sortedArray;
 }
 
 @end
