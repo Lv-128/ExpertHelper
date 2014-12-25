@@ -908,7 +908,7 @@
         <image name="email-3" width="225" height="225"/>
         <image name="facebook-2" width="512" height="512"/>
         <image name="mail-1" width="300" height="300"/>
-        <image name="play-1" width="201" height="200"/>
+        <image name="play-1" width="128" height="128"/>
         <image name="record_button" width="1024" height="1024"/>
         <image name="skype final" width="201" height="200"/>
         <image name="skype-1" width="512" height="512"/>
