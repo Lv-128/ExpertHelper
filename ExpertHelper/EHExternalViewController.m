@@ -246,7 +246,7 @@
         [excelName appendString:@".xlsx"];
         excelName = [[excelName stringByReplacingOccurrencesOfString:@":" withString:@""] mutableCopy];
         documentsDirectory = [documentsDirectory stringByAppendingPathComponent:excelName];
-        [self sendEmailToAddressWithUrl:excelName fileName:documentsDirectory];
+        [self sendEmailToAddressWithUrl:documentsDirectory fileName:excelName];
     }
     if(buttonIndex == 2)
     {
