@@ -10,7 +10,6 @@
 
 @interface EHITAViewController : UIViewController <UIPickerViewDataSource, UIPickerViewDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate>
 {
-    int selectedScoreSrcIndex;
     NSString *selectedScore;
     IBOutlet UIButton *scoreOption;
 }

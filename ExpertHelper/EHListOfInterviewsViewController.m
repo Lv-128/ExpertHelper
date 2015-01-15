@@ -84,7 +84,7 @@ MFMailComposeViewControllerDelegate>
 {
     if (!_notFirstLoad)
     {
-        [interviewFromEventsParser.calEventParser checkEventStoreAccessForCalendar];
+        [((EHEventsGetInfoParser *)interviewFromEventsParser).calEventParser checkEventStoreAccessForCalendar];
         [interviewFromEventsParser sortAllInterviewsToDictionary];
 
         NSDate *today = [NSDate date];
@@ -97,7 +97,7 @@ MFMailComposeViewControllerDelegate>
         NSString * keyForDictionary = [MONTHS objectAtIndex:monthday - 1];
         keyForDictionary = [keyForDictionary stringByAppendingString:[NSString stringWithFormat:@", %ld", (long)yearday]];
         
-        NSArray *dictionaryOfInterviews = interviewFromEventsParser.sortAllInterviewsToDictionary;
+        NSArray *dictionaryOfInterviews = ((EHEventsGetInfoParser *)interviewFromEventsParser).sortAllInterviewsToDictionary;
         NSInteger tempCurMonth = -1;
         
         for (int i=0;i<dictionaryOfInterviews.count;i++)
@@ -393,7 +393,7 @@ MFMailComposeViewControllerDelegate>
         [fetchRequest setPredicate:predicate];
         NSArray *fetchedObjects = [context executeFetchRequest:fetchRequest error:&error];
         for (InterviewAppointment *info in fetchedObjects) {
-            info.type = [NSNumber numberWithInt:buttonIndex];
+            info.type = [NSNumber numberWithInt:(int)buttonIndex];
         }
         [_collectionView reloadData];
         

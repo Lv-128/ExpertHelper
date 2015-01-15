@@ -197,8 +197,9 @@
         [mailController setToRecipients:addressArray];
         [mailController setSubject:@""];
         [mailController setModalTransitionStyle:UIModalTransitionStyleFlipHorizontal];
-        [self presentViewController:mailController animated:YES completion: nil];
     }
+    [self presentViewController:mailController animated:YES completion: nil];
+
 }
 
 - (void)mailComposeController:(MFMailComposeViewController *) controller
@@ -414,11 +415,8 @@
                                        inView:self.tableView
                      permittedArrowDirections:UIPopoverArrowDirectionRight
                                      animated:YES];
-    }
-    else
-    {
+    } else
         [self.navigationController pushViewController:self.recorderComment animated:YES];
-    }
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -592,7 +590,7 @@
     [excelName appendString:[_cellDateFormatter stringFromDate:_interview.startDate]];
     excelName = [[excelName stringByReplacingOccurrencesOfString:@":" withString:@""] mutableCopy];
     
-    NSString *zipFilePath = [documentsDirectory stringByAppendingPathComponent:[NSString stringWithFormat: @"%@,.xlsx",excelName]];
+    NSString *zipFilePath = [documentsDirectory stringByAppendingPathComponent:[NSString stringWithFormat: @"%@.xlsx",excelName]];
     
     ZipArchive *za = [[ZipArchive alloc] init];
     [za CreateZipFile2:zipFilePath];

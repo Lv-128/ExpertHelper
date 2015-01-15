@@ -20,7 +20,7 @@ AVAudioRecorderDelegate, AVAudioPlayerDelegate>
 @property (nonatomic, copy) NSArray *arrayOfRecordsUrl;
 @property (nonatomic, copy) NSArray *arrayOfRecordsString;
 @property (nonatomic, strong) NSIndexPath *index;
-@property (nonatomic, strong) EHGenInfo *genInfo;
+@property (nonatomic, strong) EHSkillsProfilesParser *saveRecords;
 @property (nonatomic, strong) EHSkill *skill;
 @property (nonatomic) NSInteger indexOfCell;
 

@@ -17,19 +17,17 @@
 @property (strong, nonatomic) NSDateFormatter *formatter;
 
 @property (weak, nonatomic) IBOutlet UILabel *dateLabel;
-@property (weak, nonatomic) IBOutlet EHRoundedTextView *englishTexField;
 @property (weak, nonatomic) IBOutlet UITextField *highPotentionalTextField;
 @property (weak, nonatomic) IBOutlet UITextField *levelEstimateTextField;
 @property (weak, nonatomic) IBOutlet UISwitch *switchView;
 
-@property (strong, nonatomic) UIPickerView *englishPicker;
 @property (strong, nonatomic) UIPickerView *highPotentionalPicker;
 @property (strong, nonatomic) UIPickerView *levelEstimatePicker;
 
-@property (copy, nonatomic) NSArray *englishArray;
 @property (copy, nonatomic) NSArray *highPotentionalArray;
 @property (copy, nonatomic) NSArray *levelEstimateArray;
 
+@property (weak, nonatomic) IBOutlet EHRoundedTextView *englishTexField;
 @property (weak, nonatomic) IBOutlet EHRoundedAngleTextField *expertName;
 @property (weak, nonatomic) IBOutlet EHRoundedTextView *competenceGroup;
 @property (weak, nonatomic) IBOutlet EHRoundedTextView *skillSummary;
@@ -56,20 +54,8 @@
     self.dateLabel.text = [self.formatter stringFromDate:[NSDate date]];
     [self configureArrays];
     [self configureTextFields];
-    
-    if(_genInfo == nil)
-    {
-        _genInfo = [[EHGenInfo alloc]init];
-    } else {
-        self.expertName.text = _genInfo.expertName;
-        self.competenceGroup.text = _genInfo.competenceGroup;
-        self.typeOfProject.text = _genInfo.typeOfProject;
-        self.skillSummary.text = _genInfo.skillsSummary;
-        self.englishTexField.text = _genInfo.techEnglish;
-        self.recomendations.text = _genInfo.recommendations;
-        self.switchView.on = _genInfo.hire;
-    }
-	// Do any additional setup after loading the view.
+    [self initGenInfo];
+    // Do any additional setup after loading the view.
 }
 
 - (void)viewDidDisappear:(BOOL)animated
@@ -86,21 +72,36 @@
     _genInfo.hire = self.switchView.on;
     NSDictionary *dict = [NSDictionary dictionaryWithObject:_genInfo forKey:@"genInfo"];
     [[NSNotificationCenter defaultCenter]postNotificationName:@"GetInfo" object:nil userInfo:dict];
+    [super viewDidDisappear:animated];
+}
+
+- (void)initGenInfo
+{
+    if(_genInfo == nil)
+    {
+        _genInfo = [[EHGenInfo alloc]init];
+    } else {
+        self.expertName.text = _genInfo.expertName;
+        self.competenceGroup.text = _genInfo.competenceGroup;
+        self.typeOfProject.text = _genInfo.typeOfProject;
+        self.skillSummary.text = _genInfo.skillsSummary;
+        self.englishTexField.text = _genInfo.techEnglish;
+        self.recomendations.text = _genInfo.recommendations;
+        self.switchView.on = _genInfo.hire;
+    }
 }
 
 - (void)configureArrays
 {
-    NSArray *level = @[@" High", @" Low"];
-    self.englishArray = @[@[@"Basic ", @"Intermediate ",@"Advanced "], level];
+    NSArray *level = @[@"Low", @"High"];
     self.levelEstimateArray = @[@[@"Junior ", @"Intermediate ", @"Senior ", @"Leader "], level];
     self.highPotentionalArray = @[@"Low", @"Regular", @"High"];
 }
 
 - (void)configureTextFields
 {
-    //[self insertPickerView:self.englishPicker inTextField:self.englishTexField withTag:1];
-    [self insertPickerView:self.levelEstimatePicker inTextField:self.levelEstimateTextField withTag:2];
-    [self insertPickerView:self.highPotentionalPicker inTextField:self.highPotentionalTextField withTag:3];
+    [self insertPickerView:self.levelEstimatePicker inTextField:self.levelEstimateTextField withTag:1];
+    [self insertPickerView:self.highPotentionalPicker inTextField:self.highPotentionalTextField withTag:2];
     self.highPotentionalTextField.inputView.frame = CGRectMake(CGRectGetMinX(self.highPotentionalTextField.inputView.frame),
                                                                CGRectGetMinY(self.highPotentionalTextField.inputView.frame),
                                                                CGRectGetWidth(self.highPotentionalTextField.inputView.frame),
@@ -125,9 +126,6 @@
             return 2;
             break;
         case 2:
-            return 2;
-            break;
-        case 3:
             return 1;
             break;
         default:
@@ -140,18 +138,13 @@
     switch (pickerView.tag) {
         case 1:
             if (component == 0)
-                return 3;
-            else
-                return 2;
-            break;
-        case 2:
-            if (component == 0)
                 return 4;
             else
                 return 2;
             break;
-        case 3:
-            return 3;
+        case 2:
+                return 3;
+            break;
         default:
             return 3;
             break;
@@ -162,13 +155,11 @@
 {
     switch (pickerView.tag) {
         case 1:
-            return self.englishArray[component][row];
-            break;
-        case 2:
             return self.levelEstimateArray[component][row];
             break;
-        case 3:
+        case 2:
             return self.highPotentionalArray[row];
+            break;
         default:
             return @"?";
             break;
@@ -178,14 +169,14 @@
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
 {
     switch (pickerView.tag) {
-        
-        case 2:
+            
+        case 1:
             [self fillTextField:self.levelEstimateTextField
                       withArray:self.levelEstimateArray
                     inComponent:component
                          andRow:row];
             break;
-        case 3:
+        case 2:
             self.highPotentionalTextField.text = self.highPotentionalArray[row];
             
         default:
@@ -227,12 +218,11 @@
 {
     if (([textField.text isEqualToString:@""]))
     {
-        if (textField.tag == 2)
+        if (textField.tag == 1)
         {
             textField.text = self.levelEstimateArray[0][0];
-            textField.text = [textField.text stringByAppendingString:[self.levelEstimateArray[1][0] substringFromIndex:1]];
-        }
-        else
+            textField.text = [textField.text stringByAppendingString:self.levelEstimateArray[1][0]];
+        } else
             textField.text = self.highPotentionalArray[0];
     }
     return YES;

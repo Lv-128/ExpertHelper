@@ -36,13 +36,10 @@
 #import "EHListOfInterviewsViewController.h"
 #import "EHCalendarEventsParser.h"
 #import "EHEventsGetInfoParser.h"
-
-
-EHEventsGetInfoParser *interviewFromEventsParser;
+id interviewFromEventsParser;
 
 #ifndef ExpertHelper_EHConstantsDefines_h
 #define ExpertHelper_EHConstantsDefines_h
-
 #define  MONTHS [NSMutableArray arrayWithObjects:@"January",@"February", @"March",@"April",@"May",@"June",@"July",@"August",@"September",@"October",@"November",@"December", nil]
 #define  INTERVIEWTYPE [NSArray arrayWithObjects:@"None", @"IT Academy",@"Internal",@"External", nil]
 #define  ESTIMATES [NSMutableArray arrayWithObjects:@"None", @"Low", @"Middle", @"Strong", nil]

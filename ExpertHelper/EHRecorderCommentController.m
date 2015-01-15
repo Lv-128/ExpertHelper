@@ -11,7 +11,6 @@
 #import "EHSkillLevelPopup.h"
 #import "EHRecorderCommaentCell.h"
 #import "EHSkillsProfilesParser.h"
-//#import <QuartzCore/QuartzCore.h>
 
 #define DOCUMENTS_FOLDER [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"]
 #define DOCUMENTS_FOLDER1 [DOCUMENTS_FOLDER stringByAppendingPathComponent:@"Recordering"]
@@ -21,8 +20,6 @@
  AVAudioRecorderDelegate, AVAudioPlayerDelegate>
 {
     NSURL *temporaryRecFile;
-    BOOL buttonRecordPressed;
-    BOOL buttonPlayPressed;
     BOOL isPopup;
     BOOL isTextView;
     AVAudioPlayer *player;
@@ -64,7 +61,20 @@
     isTextView = YES;
     [_commentView setDelegate:self];
     [_commentView setReturnKeyType:UIReturnKeyDone];
+
+    if (_arrayOfRecordsUrl == nil) {
+        _arrayOfRecordsUrl = [[NSMutableArray alloc] init];
+        _arrayOfRecordsString = [[NSArray alloc]init];
+    } 
+    //Choose level label
     
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(pushAction)];
+    [_levelLabel addGestureRecognizer:tap];
+    _levelLabel.userInteractionEnabled = YES;
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
     if ([[[_comment objectAtIndex:_index.section]
           objectAtIndex:_index.row] isEqualToString:@""] ||
         [[[_comment objectAtIndex:_index.section]
@@ -74,51 +84,32 @@
         [_commentView setTextColor:[UIColor lightGrayColor]];
     }
     else
-    {
         _commentView.text = [[_comment objectAtIndex:_index.section] objectAtIndex:_index.row];
-    }
     
     [_commentView setFont:[UIFont fontWithName:@"HelveticaNeue" size:20]];
     
     if (![[[_level objectAtIndex:_index.section] objectAtIndex:_index.row] isEqual:@""])
-    {
         _levelLabel.text = [[_level objectAtIndex:_index.section] objectAtIndex:_index.row];
-    }
     else
-    {
         _levelLabel.text = @"Choose level";
-    }
     
     _buttonRecord = [UIImage imageNamed:@"record_button"];
     _buttonStop = [UIImage imageNamed:@"stop_button"];
     _buttonPlay = [UIImage imageNamed:@"play_button"];
     _buttonPause = [UIImage imageNamed:@"pause_button"];
     
-    _commentView.layer.borderWidth = 1.0f;
-    _commentView.layer.borderColor = [UIColor grayColor].CGColor;
-    _commentView.layer.cornerRadius = 20;
-    _commentView.clipsToBounds = YES;
-    
-    _infoTableView.layer.borderWidth = 1.0f;
-    _infoTableView.layer.borderColor = [UIColor grayColor].CGColor;
-    _infoTableView.layer.cornerRadius = 20;
-    _infoTableView.clipsToBounds = YES;
-    
-    _recordsTableView.layer.borderWidth = 1.0f;
-    _recordsTableView.layer.borderColor = [UIColor grayColor].CGColor;
-    _recordsTableView.layer.cornerRadius = 20;
-    _recordsTableView.clipsToBounds = YES;
-    
-    if (_arrayOfRecordsUrl == nil) {
-        _arrayOfRecordsUrl = [[NSMutableArray alloc] init];
-        _arrayOfRecordsString = [[NSArray alloc]init];
-    }
-    
-    //Choose level label
-    
-    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(pushAction)];
-    [_levelLabel addGestureRecognizer:tap];
-    _levelLabel.userInteractionEnabled = YES;
+    [self designOfViews:_commentView];
+    [self designOfViews:_infoTableView];
+    [self designOfViews:_recordsTableView];
+}
+
+- (UIView *)designOfViews:(UIView *)someView
+{
+    someView.layer.borderWidth = 1.0f;
+    someView.layer.borderColor = [UIColor grayColor].CGColor;
+    someView.layer.cornerRadius = 20;
+    someView.clipsToBounds = YES;
+    return someView;
 }
 
 - (void)viewDidDisappear:(BOOL)animated
@@ -181,7 +172,6 @@
     (quickComments.count>0) ? (cell.textLabel.text = [[quickComments objectAtIndex:indexPath.row] comment]) :
     (cell.textLabel.text = @"");
     
-    
     return cell;
 }
 
@@ -209,10 +199,8 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    tableView == _infoTableView
-    ? [self infoTableView:tableView didSelectRowAtIndexPath:indexPath]
-    : [self recordsTableView:tableView didSelectRowAtIndexPath:indexPath];
-    
+    if (tableView == _infoTableView)
+        [self infoTableView:tableView didSelectRowAtIndexPath:indexPath];
 }
 
 - (void)infoTableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -230,37 +218,12 @@
     else
     {
         _commentView.textColor = [UIColor blackColor];
-        _commentView.text = [_commentView.text stringByAppendingString:[@" " stringByAppendingString:
-                                                                        [_commentView.text stringByAppendingString:
-                                                                         selectedCell.textLabel.text]]];
+        _commentView.text = [_commentView.text stringByAppendingString:[@" "  stringByAppendingString: selectedCell.textLabel.text]];
     }
     
     NSMutableArray *temp = [_comment mutableCopy];
     [[temp objectAtIndex:_index.section] setObject: _commentView.text atIndex:_index.row];
     _comment = temp;
-}
-
-- (void)recordsTableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    EHRecorderCommaentCell *cell = (EHRecorderCommaentCell *)[tableView dequeueReusableCellWithIdentifier:@"RecordCell"];
-    [self playPauseButton:(EHPlayPause *)cell.button];
-    
-    cell.button.tag = indexPath.row;
-    if (cell.button.isPlaying) {
-        [cell.button setBackgroundImage:_buttonStop forState:UIControlStateNormal];
-    } else {
-        [cell.button setBackgroundImage:_buttonPlay forState:UIControlStateNormal];
-    }
-    
-    if (!player.playing) {
-        [cell.button setBackgroundImage:_buttonPlay forState:UIControlStateNormal];
-        cell.button.isPlaying = NO;
-    }
-    
-    [cell.button addTarget:self action:@selector(playPauseButton:) forControlEvents:UIControlEventTouchUpInside];
-    
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    [self.recordsTableView reloadData];
 }
 
 - (BOOL)textViewShouldBeginEditing:(UITextView *)textView

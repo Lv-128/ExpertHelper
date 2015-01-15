@@ -26,6 +26,7 @@
 }
 
 - (void)showInView:(UIView *)view {
+    [NSObject new];
     self.translatesAutoresizingMaskIntoConstraints = NO;
 
     NSLayoutConstraint *height = [NSLayoutConstraint constraintWithItem:self

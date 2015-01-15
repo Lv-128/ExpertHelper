@@ -27,8 +27,10 @@
 {
     [super viewDidLoad];
     
-    self.scoreSrc = [NSArray arrayWithObjects:@"1", @"2", @"3", @"4", @"5", nil]; //array which contains scores for candidate
-    selectedScoreSrcIndex = 0;
+    NSArray *scope = [NSArray arrayWithObjects:@"0", @"1", @"2", @"3", @"4", @"5",@"6", @"7", @"8", @"9", nil];
+    self.scoreSrc = [NSArray arrayWithObjects:@[@"1", @"2", @"3", @"4", @"5",], scope, scope, nil]; //array which contains scores for candidate
+//    self.scoreSrc = [NSArray arrayWithObjects:@"1", @"2", @"3", @"4", @"5", nil];
+//    selectedScoreSrcIndex = 0;
     
     _namesArray = [[NSArray alloc] initWithObjects: // array which contains names of candidate
                    @"Oleksandr Shymanskyi",
@@ -59,7 +61,8 @@
 
 //--------------- create custom cell of candidate in table ---------------
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
     
     static NSString *cellIdentifier = @"ItaCell";
     EHITAViewControllerCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
@@ -97,32 +100,34 @@
 
 UIButton *button;
 
-- (void)changeImage:(UIButton *)sender {
+- (void)changeImage:(UIButton *)sender
+{
     button = (UIButton *)sender;
-   
+    
     UIImagePickerController *pickerController = [[UIImagePickerController alloc] init];
     pickerController.delegate = self;
- 
+    
     [self presentViewController:pickerController animated:YES completion:nil];
 }
 
 - (void)imagePickerController:(UIImagePickerController *)picker
-         didFinishPickingImage:(UIImage *)image
-                   editingInfo:(NSDictionary *)editingInfo
+        didFinishPickingImage:(UIImage *)image
+                  editingInfo:(NSDictionary *)editingInfo
 {
     [self setImageForCell:image];
     
     [self dismissModalViewControllerAnimated:YES];
 }
 
-- (void)setImageForCell:(UIImage *)image {
+- (void)setImageForCell:(UIImage *)image
+{
     [button setImage:image forState:UIControlStateNormal];
 }
 
 //--------------- create PopUp with picker of scores ---------------
 
-- (void)openPopUpClick:(UIButton *)sender {
-    
+- (void)openPopUpClick:(UIButton *)sender
+{
     scoreOption = sender;
     
     UIView *masterView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 300, 260)];
@@ -143,7 +148,7 @@ UIButton *button;
     
     UIViewController *viewController = [[UIViewController alloc] initWithNibName:nil bundle:nil];
     viewController.view = masterView;
-
+    
     viewController.preferredContentSize = viewController.view.frame.size;
     self.popoverController = [[UIPopoverController alloc] initWithContentViewController:viewController];
     
@@ -176,22 +181,29 @@ UIButton *button;
     return pickerToolbar;
 }
 
-- (IBAction)actionPickerDone:(id)sender {
-    
+- (void)actionPickerDone:(id)sender
+{
     //[self notifyTarget:self.target didSucceedWithAction:self.successAction origin:[self storedOrigin]];
     
     if (self.popoverController && self.popoverController.popoverVisible)
         [self.popoverController dismissPopoverAnimated:YES];
 }
 
-- (IBAction)actionPickerCancel:(id)sender {
+- (void)actionPickerCancel:(id)sender
+{
     
     if (self.popoverController && self.popoverController.popoverVisible)
         [self.popoverController dismissPopoverAnimated:YES];
 }
 
-- (UIBarButtonItem *)createToolbarLabelWithTitle:(NSString *)aTitle {
-    
+- (UIBarButtonItem *)createToolbarLabelWithTitle:(NSString *)aTitle
+{
+    selectedScore = [[[self.scoreSrc objectAtIndex:0]objectAtIndex:0]
+                     stringByAppendingString:[@"."
+                                              stringByAppendingString:[[[self.scoreSrc objectAtIndex:1]objectAtIndex:0]
+                                                                       stringByAppendingString:[[self.scoreSrc objectAtIndex:2]objectAtIndex:0]]]];
+    [scoreOption setTitle:selectedScore forState:UIControlStateNormal];
+
     UILabel *toolBarItemlabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 180,30)];
     [toolBarItemlabel setTextAlignment:NSTextAlignmentCenter];
     [toolBarItemlabel setTextColor:[UIColor whiteColor]];
@@ -202,42 +214,58 @@ UIButton *button;
     return buttonLabel;
 }
 
-- (UIBarButtonItem *)createButtonWithType:(UIBarButtonSystemItem)type target:(id)target action:(SEL)buttonAction {
+- (UIBarButtonItem *)createButtonWithType:(UIBarButtonSystemItem)type target:(id)target action:(SEL)buttonAction
+{
     return [[UIBarButtonItem alloc] initWithBarButtonSystemItem:type target:target action:buttonAction];
 }
 
-- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView {
-    
-    return 1;
+- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
+{
+    return 3;
 }
 
-- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component {
-    
-    if ([pickerView tag] == 1) {
-        return [self.scoreSrc count];
+- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
+{
+    if ([pickerView tag] == 1 && component == 0) {
+        return [[self.scoreSrc objectAtIndex:0] count];
+    }
+    if ([pickerView tag] == 1 && component == 1) {
+        return [[self.scoreSrc objectAtIndex:1] count];
+    }
+    if ([pickerView tag] == 1 && component == 2) {
+        return [[self.scoreSrc objectAtIndex:2] count];
     }
     return 0;
 }
 
 - (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
-    if ([pickerView tag] == 1) {
-        return [self.scoreSrc objectAtIndex:row];
+    if ([pickerView tag] == 1 && component == 0) {
+        return [[self.scoreSrc objectAtIndex:0]objectAtIndex:row];
+    }
+    if ([pickerView tag] == 1 && component == 1) {
+        return [[self.scoreSrc objectAtIndex:1]objectAtIndex:row];
+    }
+    if ([pickerView tag] == 1 && component == 2) {
+        return [[self.scoreSrc objectAtIndex:2]objectAtIndex:row];
     }
     return @"";
 }
 
-- (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
-    
+- (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
+{
     if ([pickerView tag] == 1) {
-        selectedScoreSrcIndex = (int)row;
-        selectedScore = [self.scoreSrc objectAtIndex:selectedScoreSrcIndex];
-        [scoreOption setTitle:selectedScore forState:UIControlStateNormal];
+        selectedScore = [[[self.scoreSrc objectAtIndex:0]objectAtIndex:(int)[pickerView selectedRowInComponent:0]]
+                         stringByAppendingString:[@"."
+                                                  stringByAppendingString:[[[self.scoreSrc objectAtIndex:1]objectAtIndex:(int)[pickerView selectedRowInComponent:1]]
+                                                                           stringByAppendingString:[[self.scoreSrc objectAtIndex:2]objectAtIndex:(int)[pickerView selectedRowInComponent:2]]]]];
     }
+    [scoreOption setTitle:selectedScore forState:UIControlStateNormal];
 }
 
 //--------------- check if candidate has passed iterview ---------------
 
--(void)checkButtonClicked:(UIButton *)sender {
+-(void)checkButtonClicked:(UIButton *)sender
+{
     UIButton *btn = (UIButton *)sender;
     int index = (int)[btn tag];
     

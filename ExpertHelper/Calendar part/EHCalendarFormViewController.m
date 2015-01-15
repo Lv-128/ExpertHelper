@@ -94,10 +94,10 @@
     // End the refreshing
     if (self.refreshControl) {
         
-        [interviewFromEventsParser.calEventParser checkEventStoreAccessForCalendar];  // Check whether we are authorized to access Calendar
+        [((EHEventsGetInfoParser *)interviewFromEventsParser).calEventParser checkEventStoreAccessForCalendar];  // Check whether we are authorized to access Calendar
         
         // Fetch all events happening in the next 24 hours and put them into eventsList
-        if (interviewFromEventsParser.calEventParser.eventsList.count == 0)
+        if (((EHEventsGetInfoParser *)interviewFromEventsParser).calEventParser.eventsList.count == 0)
         {
             UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Warning!"
                                                               message:@"You have no interview - events in your calendar"
@@ -108,7 +108,7 @@
         }
         else{
             self.eventsList = [interviewFromEventsParser sortAllInterviewsToDictionary];
-            self.sections = interviewFromEventsParser.interviews;
+            self.sections = ((EHEventsGetInfoParser *)interviewFromEventsParser).interviews;
             self.sortedDays = _eventsList;
         }
         
