@@ -35,6 +35,8 @@
 		83CD96951A3B432C00115744 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83CD96941A3B432C00115744 /* FacebookSDK.framework */; };
 		83CD969D1A3B5C5600115744 /* EHFacebookPopoverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83CD969A1A3B5C5600115744 /* EHFacebookPopoverViewController.m */; };
 		83CD969E1A3B5C5600115744 /* EHFacebookPopoverViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83CD969B1A3B5C5600115744 /* EHFacebookPopoverViewController.xib */; };
+		C3DDC08A1A69A57D0034C05C /* ITAInterview.m in Sources */ = {isa = PBXBuildFile; fileRef = C3DDC0891A69A57D0034C05C /* ITAInterview.m */; };
+		C3DDC08D1A69A58B0034C05C /* _ITAInterview.m in Sources */ = {isa = PBXBuildFile; fileRef = C3DDC08C1A69A58B0034C05C /* _ITAInterview.m */; };
 		D90A1BC11A16366500B610C6 /* EHSkillLevelPopup.m in Sources */ = {isa = PBXBuildFile; fileRef = D90A1BC01A16366500B610C6 /* EHSkillLevelPopup.m */; };
 		D90A1BC31A16371800B610C6 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D90A1BC21A16371800B610C6 /* AVFoundation.framework */; };
 		D912ADF61A4088F700D95DFB /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D912ADF51A4088F700D95DFB /* Images.xcassets */; };
@@ -148,6 +150,10 @@
 		83CD96991A3B5C5600115744 /* EHFacebookPopoverViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EHFacebookPopoverViewController.h; sourceTree = "<group>"; };
 		83CD969A1A3B5C5600115744 /* EHFacebookPopoverViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EHFacebookPopoverViewController.m; sourceTree = "<group>"; };
 		83CD969B1A3B5C5600115744 /* EHFacebookPopoverViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EHFacebookPopoverViewController.xib; sourceTree = "<group>"; };
+		C3DDC0881A69A57D0034C05C /* ITAInterview.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ITAInterview.h; sourceTree = "<group>"; };
+		C3DDC0891A69A57D0034C05C /* ITAInterview.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ITAInterview.m; sourceTree = "<group>"; };
+		C3DDC08B1A69A58B0034C05C /* _ITAInterview.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _ITAInterview.h; sourceTree = "<group>"; };
+		C3DDC08C1A69A58B0034C05C /* _ITAInterview.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _ITAInterview.m; sourceTree = "<group>"; };
 		D90A1BBF1A16366500B610C6 /* EHSkillLevelPopup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EHSkillLevelPopup.h; path = ViewControllers/EHSkillLevelPopup.h; sourceTree = "<group>"; };
 		D90A1BC01A16366500B610C6 /* EHSkillLevelPopup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EHSkillLevelPopup.m; path = ViewControllers/EHSkillLevelPopup.m; sourceTree = "<group>"; };
 		D90A1BC21A16371800B610C6 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
@@ -389,6 +395,8 @@
 		D92204291A2FAA4300B3BAAD /* Human */ = {
 			isa = PBXGroup;
 			children = (
+				C3DDC0881A69A57D0034C05C /* ITAInterview.h */,
+				C3DDC0891A69A57D0034C05C /* ITAInterview.m */,
 				D95C92B21A4B1444002D8CDD /* QuickComment.h */,
 				D95C92B31A4B1444002D8CDD /* QuickComment.m */,
 				D921289F1A4AE5EF00E2DAFE /* AudioRecord.h */,
@@ -418,6 +426,8 @@
 		D922043A1A2FAA4300B3BAAD /* Machine */ = {
 			isa = PBXGroup;
 			children = (
+				C3DDC08B1A69A58B0034C05C /* _ITAInterview.h */,
+				C3DDC08C1A69A58B0034C05C /* _ITAInterview.m */,
 				D95C92B51A4B1453002D8CDD /* _QuickComment.h */,
 				D95C92B61A4B1453002D8CDD /* _QuickComment.m */,
 				D92128A21A4AE5FC00E2DAFE /* _AudioRecord.h */,
@@ -849,6 +859,7 @@
 				83CD969D1A3B5C5600115744 /* EHFacebookPopoverViewController.m in Sources */,
 				D9E7B7AE1A31E0A3002DA710 /* _Group.m in Sources */,
 				D920F3E91A361847002BC81A /* EHRecorderCommaentCell.m in Sources */,
+				C3DDC08A1A69A57D0034C05C /* ITAInterview.m in Sources */,
 				D9E7B79D1A31E079002DA710 /* SkillsLevels.m in Sources */,
 				D9B0CC711A03B17500544323 /* main.m in Sources */,
 				D9BE33A81A3A0AEF0063B6C6 /* _VoiceRecorders.m in Sources */,
@@ -856,6 +867,7 @@
 				D967F20B1A1E305D0009639C /* EHRecruiterViewController.m in Sources */,
 				11DA2E021A3DF9A40051CBAC /* unzip.c in Sources */,
 				D9BE54021A10B16700AD5D3D /* EHExternalViewController.m in Sources */,
+				C3DDC08D1A69A58B0034C05C /* _ITAInterview.m in Sources */,
 				D967F2101A1E4DEE0009639C /* EHITAViewController.m in Sources */,
 				D9D7482A1A4866940074160F /* EHListOfRecruitersCell.m in Sources */,
 				D9BE33991A38AFA90063B6C6 /* EHRoundedTextView.m in Sources */,

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="5064" systemVersion="13E28" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="6254" systemVersion="14B25" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="AudioRecord" representedClassName="AudioRecord" syncable="YES">
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="url" optional="YES" attributeType="String" syncable="YES"/>
@@ -10,6 +10,7 @@
         <attribute name="lastName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="photoURL" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="idExternalInterview" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="ExternalInterview" inverseName="idCandidate" inverseEntity="ExternalInterview" syncable="YES"/>
+        <relationship name="idITAInterview" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ITAInterview" inverseName="candidates" inverseEntity="ITAInterview" syncable="YES"/>
     </entity>
     <entity name="ExternalInterview" representedClassName="ExternalInterview" syncable="YES">
         <attribute name="expert" optional="YES" attributeType="String" syncable="YES"/>
@@ -46,7 +47,15 @@
         <attribute name="type" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="url" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="idExternal" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="ExternalInterview" inverseName="idInterview" inverseEntity="ExternalInterview" syncable="YES"/>
-        <relationship name="idRecruiter" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Recruiter" inverseName="interviews" inverseEntity="Recruiter" syncable="YES"/>
+        <relationship name="idITAInterview" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ITAInterview" inverseName="idInterview" inverseEntity="ITAInterview" syncable="YES"/>
+        <relationship name="idRecruiter" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Recruiter" inverseName="interviews" inverseEntity="Recruiter" syncable="YES"/>
+    </entity>
+    <entity name="ITAInterview" representedClassName="ITAInterview" syncable="YES">
+        <attribute name="itaGroupName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="pass" optional="YES" attributeType="Transformable" syncable="YES"/>
+        <attribute name="scores" optional="YES" attributeType="Transformable" syncable="YES"/>
+        <relationship name="candidates" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Candidate" inverseName="idITAInterview" inverseEntity="Candidate" syncable="YES"/>
+        <relationship name="idInterview" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="InterviewAppointment" inverseName="idITAInterview" inverseEntity="InterviewAppointment" syncable="YES"/>
     </entity>
     <entity name="QuickComment" representedClassName="QuickComment" syncable="YES">
         <attribute name="comment" optional="YES" attributeType="String" syncable="YES"/>
@@ -78,15 +87,16 @@
     </entity>
     <elements>
         <element name="AudioRecord" positionX="-54" positionY="-178" width="128" height="88"/>
-        <element name="Candidate" positionX="-522" positionY="-180" width="128" height="103"/>
+        <element name="Candidate" positionX="-522" positionY="-180" width="128" height="118"/>
         <element name="ExternalInterview" positionX="-837" positionY="-126" width="128" height="148"/>
         <element name="GeneralInfo" positionX="-524" positionY="47" width="128" height="223"/>
         <element name="Group" positionX="25" positionY="261" width="128" height="73"/>
-        <element name="InterviewAppointment" positionX="-882" positionY="117" width="128" height="163"/>
+        <element name="InterviewAppointment" positionX="-1098" positionY="116" width="128" height="178"/>
+        <element name="QuickComment" positionX="-254" positionY="128" width="128" height="58"/>
         <element name="Recruiter" positionX="-686" positionY="297" width="128" height="133"/>
         <element name="Skills" positionX="-216" positionY="-54" width="128" height="118"/>
         <element name="SkillsLevels" positionX="7" positionY="44" width="128" height="88"/>
         <element name="VoiceRecorders" positionX="-360" positionY="281" width="128" height="88"/>
-        <element name="QuickComment" positionX="-254" positionY="128" width="128" height="58"/>
+        <element name="ITAInterview" positionX="-828" positionY="83" width="128" height="118"/>
     </elements>
 </model>

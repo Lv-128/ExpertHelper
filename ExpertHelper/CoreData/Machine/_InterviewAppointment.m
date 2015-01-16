@@ -14,6 +14,7 @@ const struct InterviewAppointmentAttributes InterviewAppointmentAttributes = {
 
 const struct InterviewAppointmentRelationships InterviewAppointmentRelationships = {
 	.idExternal = @"idExternal",
+	.idITAInterview = @"idITAInterview",
 	.idRecruiter = @"idRecruiter",
 };
 
@@ -70,7 +71,7 @@ const struct InterviewAppointmentRelationships InterviewAppointmentRelationships
 - (void)setTypeValue:(int32_t)value_ {
 	[self setType:[NSNumber numberWithInt:value_]];
 }
-/*
+
 - (int32_t)primitiveTypeValue {
 	NSNumber *result = [self primitiveType];
 	return [result intValue];
@@ -79,10 +80,12 @@ const struct InterviewAppointmentRelationships InterviewAppointmentRelationships
 - (void)setPrimitiveTypeValue:(int32_t)value_ {
 	[self setPrimitiveType:[NSNumber numberWithInt:value_]];
 }
-*/
+
 @dynamic url;
 
 @dynamic idExternal;
+
+@dynamic idITAInterview;
 
 @dynamic idRecruiter;
 

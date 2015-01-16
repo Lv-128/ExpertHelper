@@ -11,6 +11,7 @@ const struct CandidateAttributes CandidateAttributes = {
 
 const struct CandidateRelationships CandidateRelationships = {
 	.idExternalInterview = @"idExternalInterview",
+	.idITAInterview = @"idITAInterview",
 };
 
 @implementation CandidateID
@@ -56,6 +57,17 @@ const struct CandidateRelationships CandidateRelationships = {
 	NSMutableSet *result = (NSMutableSet*)[self mutableSetValueForKey:@"idExternalInterview"];
 
 	[self didAccessValueForKey:@"idExternalInterview"];
+	return result;
+}
+
+@dynamic idITAInterview;
+
+- (NSMutableSet*)idITAInterviewSet {
+	[self willAccessValueForKey:@"idITAInterview"];
+
+	NSMutableSet *result = (NSMutableSet*)[self mutableSetValueForKey:@"idITAInterview"];
+
+	[self didAccessValueForKey:@"idITAInterview"];
 	return result;
 }
 

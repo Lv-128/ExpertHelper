@@ -11,9 +11,11 @@ extern const struct CandidateAttributes {
 
 extern const struct CandidateRelationships {
 	__unsafe_unretained NSString *idExternalInterview;
+	__unsafe_unretained NSString *idITAInterview;
 } CandidateRelationships;
 
 @class ExternalInterview;
+@class ITAInterview;
 
 @interface CandidateID : NSManagedObjectID {}
 @end
@@ -40,6 +42,10 @@ extern const struct CandidateRelationships {
 
 - (NSMutableSet*)idExternalInterviewSet;
 
+@property (nonatomic, strong) NSSet *idITAInterview;
+
+- (NSMutableSet*)idITAInterviewSet;
+
 @end
 
 @interface _Candidate (IdExternalInterviewCoreDataGeneratedAccessors)
@@ -47,6 +53,14 @@ extern const struct CandidateRelationships {
 - (void)removeIdExternalInterview:(NSSet*)value_;
 - (void)addIdExternalInterviewObject:(ExternalInterview*)value_;
 - (void)removeIdExternalInterviewObject:(ExternalInterview*)value_;
+
+@end
+
+@interface _Candidate (IdITAInterviewCoreDataGeneratedAccessors)
+- (void)addIdITAInterview:(NSSet*)value_;
+- (void)removeIdITAInterview:(NSSet*)value_;
+- (void)addIdITAInterviewObject:(ITAInterview*)value_;
+- (void)removeIdITAInterviewObject:(ITAInterview*)value_;
 
 @end
 
@@ -63,5 +77,8 @@ extern const struct CandidateRelationships {
 
 - (NSMutableSet*)primitiveIdExternalInterview;
 - (void)setPrimitiveIdExternalInterview:(NSMutableSet*)value;
+
+- (NSMutableSet*)primitiveIdITAInterview;
+- (void)setPrimitiveIdITAInterview:(NSMutableSet*)value;
 
 @end

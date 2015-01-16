@@ -14,10 +14,12 @@ extern const struct InterviewAppointmentAttributes {
 
 extern const struct InterviewAppointmentRelationships {
 	__unsafe_unretained NSString *idExternal;
+	__unsafe_unretained NSString *idITAInterview;
 	__unsafe_unretained NSString *idRecruiter;
 } InterviewAppointmentRelationships;
 
 @class ExternalInterview;
+@class ITAInterview;
 @class Recruiter;
 
 @interface InterviewAppointmentID : NSManagedObjectID {}
@@ -61,6 +63,10 @@ extern const struct InterviewAppointmentRelationships {
 
 //- (BOOL)validateIdExternal:(id*)value_ error:(NSError**)error_;
 
+@property (nonatomic, strong) ITAInterview *idITAInterview;
+
+//- (BOOL)validateIdITAInterview:(id*)value_ error:(NSError**)error_;
+
 @property (nonatomic, strong) Recruiter *idRecruiter;
 
 //- (BOOL)validateIdRecruiter:(id*)value_ error:(NSError**)error_;
@@ -86,6 +92,9 @@ extern const struct InterviewAppointmentRelationships {
 
 - (ExternalInterview*)primitiveIdExternal;
 - (void)setPrimitiveIdExternal:(ExternalInterview*)value;
+
+- (ITAInterview*)primitiveIdITAInterview;
+- (void)setPrimitiveIdITAInterview:(ITAInterview*)value;
 
 - (Recruiter*)primitiveIdRecruiter;
 - (void)setPrimitiveIdRecruiter:(Recruiter*)value;
