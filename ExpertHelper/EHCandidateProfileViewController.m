@@ -93,7 +93,7 @@
 
 - (void)configureArrays
 {
-    NSArray *level = @[@"Low", @"High"];
+    NSArray *level = @[@" Low", @" High"];
     self.levelEstimateArray = @[@[@"Junior ", @"Intermediate ", @"Senior ", @"Leader "], level];
     self.highPotentionalArray = @[@"Low", @"Regular", @"High"];
 }
@@ -221,7 +221,7 @@
         if (textField.tag == 1)
         {
             textField.text = self.levelEstimateArray[0][0];
-            textField.text = [textField.text stringByAppendingString:self.levelEstimateArray[1][0]];
+            textField.text = [textField.text stringByAppendingString:[self.levelEstimateArray[1][0] substringFromIndex:1]];
         } else
             textField.text = self.highPotentionalArray[0];
     }

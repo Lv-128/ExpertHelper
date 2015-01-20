@@ -601,78 +601,41 @@
                                             <rect key="frame" x="0.0" y="0.0" width="768" height="250"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pfc-0o-38D">
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pfc-0o-38D">
                                                     <rect key="frame" x="260" y="10" width="430" height="54"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="54" id="ep0-fC-CNP"/>
-                                                    </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TBK-61-QZR">
-                                                    <rect key="frame" x="572" y="148" width="61" height="32"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="32" id="jjh-pV-HsZ"/>
-                                                    </constraints>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Pass:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TBK-61-QZR">
+                                                    <rect key="frame" x="576" y="149" width="77" height="31"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ezB-lh-YBC">
-                                                    <rect key="frame" x="672" y="143" width="49" height="42"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="49" id="2rF-Tj-eTK"/>
-                                                        <constraint firstAttribute="height" constant="42" id="eg8-56-U5s"/>
-                                                    </constraints>
-                                                    <state key="normal" image="checkBox.png">
-                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                    </state>
-                                                    <state key="disabled" image="checkBox.png"/>
-                                                    <state key="selected" image="checkBoxMarked.png"/>
-                                                </button>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lH2-ca-ZT4">
-                                                    <rect key="frame" x="260" y="138" width="270" height="51"/>
-                                                    <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="270" id="Dqg-QW-Kkr"/>
-                                                        <constraint firstAttribute="height" constant="51" id="uED-93-nee"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="28"/>
-                                                    <state key="normal" title="Button">
-                                                        <color key="titleShadowColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                                                    </state>
-                                                </button>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ntC-Ow-zCm">
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ntC-Ow-zCm">
                                                     <rect key="frame" x="20" y="20" width="222" height="210"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="222" id="0K0-KI-1re"/>
-                                                        <constraint firstAttribute="height" constant="210" id="L5z-uy-Olm"/>
-                                                    </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <state key="normal">
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
                                                 </button>
+                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="sPg-On-NEJ">
+                                                    <rect key="frame" x="676" y="148" width="51" height="31"/>
+                                                </switch>
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lH2-ca-ZT4">
+                                                    <rect key="frame" x="260" y="138" width="270" height="51"/>
+                                                    <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="28"/>
+                                                    <state key="normal" title="Button">
+                                                        <color key="titleShadowColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                                    </state>
+                                                </button>
                                             </subviews>
-                                            <constraints>
-                                                <constraint firstAttribute="bottomMargin" secondItem="lH2-ca-ZT4" secondAttribute="bottom" constant="53" id="0J4-Nn-dVb"/>
-                                                <constraint firstItem="ntC-Ow-zCm" firstAttribute="top" secondItem="h9D-jk-uc4" secondAttribute="topMargin" constant="12" id="6sy-ND-a6G"/>
-                                                <constraint firstItem="TBK-61-QZR" firstAttribute="leading" secondItem="lH2-ca-ZT4" secondAttribute="trailing" constant="42" id="ArT-aW-V0N"/>
-                                                <constraint firstItem="ntC-Ow-zCm" firstAttribute="leading" secondItem="h9D-jk-uc4" secondAttribute="leadingMargin" constant="12" id="DUF-VZ-Bxl"/>
-                                                <constraint firstItem="pfc-0o-38D" firstAttribute="leading" secondItem="ntC-Ow-zCm" secondAttribute="trailing" constant="18" id="Iqe-i8-MIL"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="pfc-0o-38D" secondAttribute="trailing" constant="70" id="K1a-Dc-lVB"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="TBK-61-QZR" secondAttribute="bottom" constant="62" id="PiK-Vf-VcS"/>
-                                                <constraint firstItem="lH2-ca-ZT4" firstAttribute="leading" secondItem="ntC-Ow-zCm" secondAttribute="trailing" constant="18" id="aZn-kh-Bxs"/>
-                                                <constraint firstItem="pfc-0o-38D" firstAttribute="top" secondItem="h9D-jk-uc4" secondAttribute="topMargin" constant="2" id="c4z-Cv-pic"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="ezB-lh-YBC" secondAttribute="trailing" constant="39" id="j5k-a7-xK6"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="ezB-lh-YBC" secondAttribute="bottom" constant="57" id="w2v-dq-ggI"/>
-                                                <constraint firstItem="ezB-lh-YBC" firstAttribute="leading" secondItem="TBK-61-QZR" secondAttribute="trailing" constant="39" id="whe-hE-wZX"/>
-                                            </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="candidateImage" destination="ntC-Ow-zCm" id="8A7-bU-ERJ"/>
                                             <outlet property="candidateName" destination="pfc-0o-38D" id="Sm0-fU-8Cj"/>
-                                            <outlet property="checkButton" destination="ezB-lh-YBC" id="ZCC-dm-Ger"/>
                                             <outlet property="openPopUpButton" destination="lH2-ca-ZT4" id="BUz-8W-moM"/>
+                                            <outlet property="pass" destination="sPg-On-NEJ" id="twj-tw-agM"/>
                                             <outlet property="passLabel" destination="TBK-61-QZR" id="dn1-Cw-uJF"/>
                                         </connections>
                                     </tableViewCell>
@@ -698,7 +661,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Zsi-IH-qds" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="902" y="-2146"/>
+            <point key="canvasLocation" x="902" y="-2151"/>
         </scene>
         <!--Recorder Comment Controller-->
         <scene sceneID="i4t-C7-LOm">
@@ -780,6 +743,16 @@
                                     <outlet property="delegate" destination="1SL-6X-SWp" id="KuQ-0y-HMD"/>
                                 </connections>
                             </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fSJ-WC-Rc6">
+                                <rect key="frame" x="495" y="188" width="55" height="229"/>
+                                <color key="backgroundColor" red="1" green="0.9004304459144945" blue="0.33708498947290444" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="Button">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="_buttonEdit:" destination="1SL-6X-SWp" eventType="touchUpInside" id="LJ8-W9-lfM"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
@@ -808,6 +781,7 @@
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="768" height="437"/>
                     <connections>
+                        <outlet property="_buttonEdit" destination="fSJ-WC-Rc6" id="hWv-Nz-fZh"/>
                         <outlet property="commentView" destination="U8N-Uv-T6Z" id="rTc-Es-PDu"/>
                         <outlet property="infoTableView" destination="1Io-Um-cbq" id="V5h-ca-Gcs"/>
                         <outlet property="levelLabel" destination="VTj-8M-ttN" id="9YV-hd-bk6"/>
@@ -817,7 +791,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="odn-Y3-sys" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="904" y="212"/>
+            <point key="canvasLocation" x="916" y="-77.5"/>
         </scene>
         <!--Add Recruiter Controller-->
         <scene sceneID="jq2-1w-uLV">
@@ -1246,8 +1220,6 @@
     </scenes>
     <resources>
         <image name="Stephanie-Hello-Kitty" width="849" height="757"/>
-        <image name="checkBox.png" width="849" height="757"/>
-        <image name="checkBoxMarked.png" width="849" height="757"/>
         <image name="email-3" width="225" height="225"/>
         <image name="facebook-2" width="512" height="512"/>
         <image name="play-1" width="201" height="200"/>

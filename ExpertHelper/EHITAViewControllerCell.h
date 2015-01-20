@@ -12,8 +12,8 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *candidateName;
 @property (weak, nonatomic) IBOutlet UILabel *passLabel;
-@property (weak, nonatomic) IBOutlet UIButton *checkButton;
 @property (weak, nonatomic) IBOutlet UIButton *openPopUpButton;
 @property (weak, nonatomic) IBOutlet UIButton *candidateImage;
+@property (weak, nonatomic) IBOutlet UISwitch *pass;
 
 @end

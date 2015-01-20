@@ -308,6 +308,7 @@
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
     [self closePopup];
+    [self hideInfoTableView];
 }
 
 - (NSString *)dateString
@@ -360,8 +361,8 @@
     [recorder prepareToRecord];
 }
 
-- (IBAction)recordStopButton:(UIButton *)sender {
-    
+- (IBAction)recordStopButton:(UIButton *)sender
+{
     NSMutableArray *recordsTransmitting = [_arrayOfRecordsUrl mutableCopy];
     NSMutableArray *recordsStringTransmitting = [_arrayOfRecordsString mutableCopy];
     if (player.playing) {
@@ -394,7 +395,8 @@
     }
 }
 
-- (NSIndexPath *)indexPathOfButton:(UIButton *)button {
+- (NSIndexPath *)indexPathOfButton:(UIButton *)button
+{
     UIView *view = button.superview;
     while (![view isKindOfClass:[EHRecorderCommaentCell class]]) {
         view = view.superview;
@@ -402,7 +404,8 @@
     return [_recordsTableView indexPathForCell:(UITableViewCell *)view];
 }
 
-- (void)playPauseButton:(EHPlayPause *)sender {
+- (void)playPauseButton:(EHPlayPause *)sender
+{
     UIButton *button = sender;
     NSIndexPath *indexPath = [self indexPathOfButton:button];
     sender.isPlaying = !sender.isPlaying;
@@ -443,19 +446,37 @@
 
 #pragma mark quick comment
 
-- (IBAction)quickComment:(id)sender {
-    
+//int cnt;
+//- (IBAction)buttonEdit:(id)sender {
+//    UIButton *button = sender;
+//    if (cnt == 0){
+//        [self.recordsTableView setEditing:YES animated:YES];
+//         button.titleLabel.text = @"Done";
+//        cnt++;
+//    }
+//    else if (cnt == 1){
+//        [self.recordsTableView setEditing:NO animated:YES];
+//        button.titleLabel.text = @"Edit";
+//        cnt--;
+//    }
+//}
+
+- (IBAction)quickComment:(id)sender
+{
     if(isTextView)
     {
         isTextView = NO;
         _infoTableView.hidden = NO;
         _commentView.hidden = YES;
-    }
-    else {
-        isTextView = YES;
-        _infoTableView.hidden = YES;
-        _commentView.hidden = NO;
-    }
+    } else
+        [self hideInfoTableView];
+}
+
+- (void)hideInfoTableView
+{
+    isTextView = YES;
+    _infoTableView.hidden = YES;
+    _commentView.hidden = NO;
 }
 
 - (void)addCommentToDB:(NSString *)comment
