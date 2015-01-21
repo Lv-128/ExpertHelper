@@ -9,6 +9,7 @@
 #import <EventKit/EventKit.h>
 #import "EHAppDelegate.h"
 #import "EHRecruiterViewController.h"
+#import "EHMapViewController.h"
 
 enum {
     None,
@@ -26,6 +27,7 @@ MFMailComposeViewControllerDelegate>
 
 @property (nonatomic, strong) NSDateFormatter *cellDateFormatter;
 @property (nonatomic, strong) InterviewAppointment *curInterview;
+@property (nonatomic, strong) EHMapViewController *mapViewController;
 @property (nonatomic, strong) EHRecruiterViewController *recruitersController;
 @property (nonatomic, strong) UIActionSheet *actionSheetTypes;
 @property (nonatomic, strong) UILabel *label;
@@ -160,7 +162,7 @@ MFMailComposeViewControllerDelegate>
     
     EHInterviewViewCell *cell = (EHInterviewViewCell *) [self.collectionView cellForItemAtIndexPath:tappedRow];
     NSArray *arr = [[[sortedWeeks objectAtIndex:tappedRow.section] interviews] allObjects];
-    InterviewAppointment * curInterview = [arr objectAtIndex:tappedRow.row];
+    InterviewAppointment *curInterview = [arr objectAtIndex:tappedRow.row];
     
     self.recruitersController = [self.storyboard instantiateViewControllerWithIdentifier:@"RecruiterFormView"];
     self.recruteirPopover = [self.storyboard instantiateViewControllerWithIdentifier:@"RecruiterFormView"];
@@ -186,6 +188,12 @@ MFMailComposeViewControllerDelegate>
                                              animated:YES];
     } else
         [self.navigationController pushViewController:self.recruitersController animated:YES];
+}
+
+- (void)mapPosition:(id)sender
+{
+    self.mapViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"MapView"];
+    [self.navigationController pushViewController:self.mapViewController animated:YES];
 }
 
 
@@ -365,10 +373,14 @@ MFMailComposeViewControllerDelegate>
     [gestureAction setDelegate:self];
     [cell.recruiterLabel addGestureRecognizer:gestureAction];
     
-    UITapGestureRecognizer *gestureAction2 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(goToInfo:)];
+    UITapGestureRecognizer *gestureAction2 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(chooseTypeOfInterview:)];
     gestureAction2.numberOfTapsRequired = 1;
-    gestureAction2 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(chooseTypeOfInterview:)];
+    [gestureAction2 setDelegate:self];
     [cell.typeLabel addGestureRecognizer:gestureAction2];
+    
+    UITapGestureRecognizer *gestureAction3 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(mapPosition:)];
+    [cell.addressLabel addGestureRecognizer:gestureAction3];
+    cell.addressLabel.userInteractionEnabled = YES;
     
     return cell;
 }

@@ -169,10 +169,29 @@
         cell = [[UITableViewCell alloc]
                 initWithStyle:UITableViewCellStyleDefault reuseIdentifier:AutoCompleteRowIdentifier] ;
     }
-    (quickComments.count>0) ? (cell.textLabel.text = [[quickComments objectAtIndex:indexPath.row] comment]) :
+    (quickComments.count > 0) ? (cell.textLabel.text = [[quickComments objectAtIndex:indexPath.row] comment]) :
     (cell.textLabel.text = @"");
     
     return cell;
+}
+
+// Override to support editing the table view.
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    tableView == _infoTableView
+    ? [self infoTableView:tableView commitEditingStyle:editingStyle forRowAtIndexPath:indexPath]
+    : [self recordTableView:tableView commitEditingStyle:editingStyle forRowAtIndexPath:indexPath];
+}
+
+- (void)infoTableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        
+    }
+}
+
+- (void)recordTableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        //add code here for when you hit delete
+    }
 }
 
 - (EHRecorderCommaentCell *)recordTableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath

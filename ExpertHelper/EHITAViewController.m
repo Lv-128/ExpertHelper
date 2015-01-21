@@ -135,7 +135,7 @@ UIButton *button;
     scoreOption = sender;
     
     UIView *masterView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 300, 260)];
-
+    
     CGRect pickerFrame = CGRectMake(0, 40, 300, 216);
     UIPickerView *myPicker = [[UIPickerView alloc] initWithFrame:pickerFrame];
     
@@ -149,10 +149,13 @@ UIButton *button;
         [scoreOption setTitle:selectedScore forState:UIControlStateNormal];
     } else {
         scopeCount = [[sender.titleLabel.text substringToIndex:1] integerValue];
+        
         for (int i = 0; i < _scope.count; i++) {
             NSString *checkString = [[NSString alloc]initWithString:[sender.titleLabel.text substringFromIndex:2]];
+            
             if ([checkString isEqual:_scope[i]])
                 scopeCount2 = i;
+            
             [myPicker selectRow:scopeCount - 1 inComponent:0 animated:NO];
             [myPicker selectRow:scopeCount2 inComponent:1 animated:NO];
         }
@@ -191,7 +194,7 @@ UIButton *button;
         } else
             return [[self.scoreSrc objectAtIndex:1] count];
     }
-
+    
     return 0;
 }
 
@@ -199,12 +202,8 @@ UIButton *button;
     if (pickerView.tag && component == 0)
         return [[self.scoreSrc objectAtIndex:0]objectAtIndex:row];
     
-    if (pickerView.tag && component == 1){
-        if ([[selectedScore substringToIndex:1]integerValue] >= 5) {
-            return [[self.scoreSrc objectAtIndex:1]objectAtIndex:row];
-        } else
-            return [[self.scoreSrc objectAtIndex:1]objectAtIndex:row];
-    }
+    if (pickerView.tag && component == 1)
+        return [[self.scoreSrc objectAtIndex:1]objectAtIndex:row];
     
     return @"";
 }
@@ -213,25 +212,23 @@ UIButton *button;
 {
     EHITAViewControllerCell *cell = (EHITAViewControllerCell *)[_tableView cellForRowAtIndexPath:_indexPath];
     
-    if (pickerView.tag) {
+    if (pickerView.tag)
         selectedScore = [[[self.scoreSrc objectAtIndex:0]objectAtIndex:(int)[pickerView selectedRowInComponent:0]]
                          stringByAppendingString:[@"."
                                                   stringByAppendingString:[[self.scoreSrc objectAtIndex:1]objectAtIndex:(int)[pickerView selectedRowInComponent:1]]]];
-    }
     
-    if (!([[selectedScore substringToIndex:1]integerValue] < 3))
-        cell.pass.on = YES;
-    else
+    if ([[selectedScore substringToIndex:1]integerValue] < 3)
         cell.pass.on = NO;
+    else
+        cell.pass.on = YES;
     
     if ([[selectedScore substringToIndex:1]integerValue] >= 5)
         [pickerView selectRow:0 inComponent:1 animated:NO];
     
-    if (pickerView.tag) {
+    if (pickerView.tag)
         selectedScore = [[[self.scoreSrc objectAtIndex:0]objectAtIndex:(int)[pickerView selectedRowInComponent:0]]
                          stringByAppendingString:[@"."
                                                   stringByAppendingString:[[self.scoreSrc objectAtIndex:1]objectAtIndex:(int)[pickerView selectedRowInComponent:1]]]];
-    }
     
     [pickerView reloadAllComponents];
     
@@ -239,3 +236,12 @@ UIButton *button;
 }
 
 @end
+
+
+
+
+
+
+
+
+

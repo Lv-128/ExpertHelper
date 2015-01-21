@@ -28,6 +28,9 @@
 		11DA2E031A3DF9A40051CBAC /* zip.c in Sources */ = {isa = PBXBuildFile; fileRef = 11DA2DFE1A3DF9A40051CBAC /* zip.c */; };
 		11DA2E051A3E03340051CBAC /* Workbook.xlsx in Resources */ = {isa = PBXBuildFile; fileRef = 11DA2E041A3E03340051CBAC /* Workbook.xlsx */; };
 		11F4CA981A3DF855000CF71E /* libz.1.2.5.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 11F4CA971A3DF855000CF71E /* libz.1.2.5.dylib */; };
+		25FA4B171A7007C400B1E886 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 25FA4B161A7007C400B1E886 /* MapKit.framework */; };
+		25FA4B581A702FA300B1E886 /* EHMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 25FA4B571A702FA300B1E886 /* EHMapViewController.m */; };
+		25FA4B5B1A70325B00B1E886 /* EHMapAnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 25FA4B5A1A70325B00B1E886 /* EHMapAnotation.m */; };
 		835D65561A4AC3DD0032CACA /* EHGeneralInfoCellIphone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 835D65551A4AC3DD0032CACA /* EHGeneralInfoCellIphone.xib */; };
 		835D655A1A4ACC200032CACA /* EHSkillLevelPopupIphone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 835D65591A4ACC200032CACA /* EHSkillLevelPopupIphone.xib */; };
 		8390BB5E1A4856660032CC92 /* EHGeneralInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8390BB5C1A4856660032CC92 /* EHGeneralInfoCell.m */; };
@@ -141,6 +144,11 @@
 		11DA2E041A3E03340051CBAC /* Workbook.xlsx */ = {isa = PBXFileReference; lastKnownFileType = file; path = Workbook.xlsx; sourceTree = "<group>"; };
 		11F4CA971A3DF855000CF71E /* libz.1.2.5.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.2.5.dylib; path = usr/lib/libz.1.2.5.dylib; sourceTree = SDKROOT; };
 		258106981A669D7C0001904F /* EHConstantsDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EHConstantsDefines.h; path = ../EHConstantsDefines.h; sourceTree = "<group>"; };
+		25FA4B161A7007C400B1E886 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		25FA4B561A702FA300B1E886 /* EHMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EHMapViewController.h; sourceTree = "<group>"; };
+		25FA4B571A702FA300B1E886 /* EHMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EHMapViewController.m; sourceTree = "<group>"; };
+		25FA4B591A70325B00B1E886 /* EHMapAnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EHMapAnotation.h; sourceTree = "<group>"; };
+		25FA4B5A1A70325B00B1E886 /* EHMapAnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EHMapAnotation.m; sourceTree = "<group>"; };
 		835D65551A4AC3DD0032CACA /* EHGeneralInfoCellIphone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EHGeneralInfoCellIphone.xib; sourceTree = "<group>"; };
 		835D65591A4ACC200032CACA /* EHSkillLevelPopupIphone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EHSkillLevelPopupIphone.xib; sourceTree = "<group>"; };
 		8390BB5B1A4856660032CC92 /* EHGeneralInfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EHGeneralInfoCell.h; sourceTree = "<group>"; };
@@ -283,6 +291,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				25FA4B171A7007C400B1E886 /* MapKit.framework in Frameworks */,
 				D9B0CC671A03B17500544323 /* CoreGraphics.framework in Frameworks */,
 				11F4CA981A3DF855000CF71E /* libz.1.2.5.dylib in Frameworks */,
 				D9BE339C1A38B87B0063B6C6 /* QuartzCore.framework in Frameworks */,
@@ -337,6 +346,10 @@
 		2790F4E01A139735001B0956 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				25FA4B591A70325B00B1E886 /* EHMapAnotation.h */,
+				25FA4B5A1A70325B00B1E886 /* EHMapAnotation.m */,
+				25FA4B561A702FA300B1E886 /* EHMapViewController.h */,
+				25FA4B571A702FA300B1E886 /* EHMapViewController.m */,
 				D9DCA8ED1A43329D00A1D157 /* Chart */,
 				83CD96961A3B5C0D00115744 /* EHPopoverController */,
 				D931449A1A376D2000AB470E /* HR */,
@@ -550,6 +563,7 @@
 		D9B0CC631A03B17500544323 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				25FA4B161A7007C400B1E886 /* MapKit.framework */,
 				11F4CA971A3DF855000CF71E /* libz.1.2.5.dylib */,
 				83CD96941A3B432C00115744 /* FacebookSDK.framework */,
 				D9BE339B1A38B87B0063B6C6 /* QuartzCore.framework */,
@@ -876,6 +890,7 @@
 				D9D748271A4866470074160F /* EHChart.m in Sources */,
 				D920F3EC1A361BFF002BC81A /* EHPlayPause.m in Sources */,
 				11DA2E001A3DF9A40051CBAC /* ioapi.c in Sources */,
+				25FA4B5B1A70325B00B1E886 /* EHMapAnotation.m in Sources */,
 				D9BE339A1A38AFA90063B6C6 /* EHRoundedAngleTextField.m in Sources */,
 				D9E7B7981A31E079002DA710 /* ExternalInterview.m in Sources */,
 				D9E7B7AF1A31E0A3002DA710 /* _InterviewAppointment.m in Sources */,
@@ -891,6 +906,7 @@
 				D9E7B7991A31E079002DA710 /* Group.m in Sources */,
 				D92128A11A4AE5EF00E2DAFE /* AudioRecord.m in Sources */,
 				D9E7B7B21A31E0A3002DA710 /* _SkillsLevels.m in Sources */,
+				25FA4B581A702FA300B1E886 /* EHMapViewController.m in Sources */,
 				11DA2E031A3DF9A40051CBAC /* zip.c in Sources */,
 				D95C92B71A4B1453002D8CDD /* _QuickComment.m in Sources */,
 				D9998EE11A221CE9002E019A /* EHCalendarFormViewController.m in Sources */,
