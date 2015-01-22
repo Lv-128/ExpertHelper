@@ -28,6 +28,9 @@
 		11DA2E031A3DF9A40051CBAC /* zip.c in Sources */ = {isa = PBXBuildFile; fileRef = 11DA2DFE1A3DF9A40051CBAC /* zip.c */; };
 		11DA2E051A3E03340051CBAC /* Workbook.xlsx in Resources */ = {isa = PBXBuildFile; fileRef = 11DA2E041A3E03340051CBAC /* Workbook.xlsx */; };
 		11F4CA981A3DF855000CF71E /* libz.1.2.5.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 11F4CA971A3DF855000CF71E /* libz.1.2.5.dylib */; };
+		258AA5E11A71436F004619C0 /* ExpertHelperTests-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 258AA5E01A71436F004619C0 /* ExpertHelperTests-Info.plist */; };
+		258AA5E41A714377004619C0 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 258AA5E21A714377004619C0 /* InfoPlist.strings */; };
+		258AA5E71A715586004619C0 /* UIView+MKAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 258AA5E61A715586004619C0 /* UIView+MKAnnotationView.m */; };
 		25FA4B171A7007C400B1E886 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 25FA4B161A7007C400B1E886 /* MapKit.framework */; };
 		25FA4B581A702FA300B1E886 /* EHMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 25FA4B571A702FA300B1E886 /* EHMapViewController.m */; };
 		25FA4B5B1A70325B00B1E886 /* EHMapAnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 25FA4B5A1A70325B00B1E886 /* EHMapAnotation.m */; };
@@ -77,7 +80,6 @@
 		D9B0CC871A03B17500544323 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D9B0CC861A03B17500544323 /* XCTest.framework */; };
 		D9B0CC881A03B17500544323 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D9B0CC641A03B17500544323 /* Foundation.framework */; };
 		D9B0CC891A03B17500544323 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D9B0CC681A03B17500544323 /* UIKit.framework */; };
-		D9B0CC911A03B17500544323 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D9B0CC8F1A03B17500544323 /* InfoPlist.strings */; };
 		D9B0CC931A03B17500544323 /* ExpertHelperTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D9B0CC921A03B17500544323 /* ExpertHelperTests.m */; };
 		D9BE338B1A3882E00063B6C6 /* EHInterviewViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D9BE338A1A3882E00063B6C6 /* EHInterviewViewCell.m */; };
 		D9BE338E1A3894610063B6C6 /* EHSkillsProfilesParser.m in Sources */ = {isa = PBXBuildFile; fileRef = D9BE338D1A3894610063B6C6 /* EHSkillsProfilesParser.m */; };
@@ -144,6 +146,10 @@
 		11DA2E041A3E03340051CBAC /* Workbook.xlsx */ = {isa = PBXFileReference; lastKnownFileType = file; path = Workbook.xlsx; sourceTree = "<group>"; };
 		11F4CA971A3DF855000CF71E /* libz.1.2.5.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.2.5.dylib; path = usr/lib/libz.1.2.5.dylib; sourceTree = SDKROOT; };
 		258106981A669D7C0001904F /* EHConstantsDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EHConstantsDefines.h; path = ../EHConstantsDefines.h; sourceTree = "<group>"; };
+		258AA5E01A71436F004619C0 /* ExpertHelperTests-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "ExpertHelperTests-Info.plist"; path = "ExpertHelperTests/ExpertHelperTests-Info.plist"; sourceTree = SOURCE_ROOT; };
+		258AA5E31A714377004619C0 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = ExpertHelperTests/en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		258AA5E51A715586004619C0 /* UIView+MKAnnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+MKAnnotationView.h"; sourceTree = "<group>"; };
+		258AA5E61A715586004619C0 /* UIView+MKAnnotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+MKAnnotationView.m"; sourceTree = "<group>"; };
 		25FA4B161A7007C400B1E886 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		25FA4B561A702FA300B1E886 /* EHMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EHMapViewController.h; sourceTree = "<group>"; };
 		25FA4B571A702FA300B1E886 /* EHMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EHMapViewController.m; sourceTree = "<group>"; };
@@ -215,8 +221,6 @@
 		D9B0CC741A03B17500544323 /* EHAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EHAppDelegate.m; sourceTree = "<group>"; };
 		D9B0CC851A03B17500544323 /* ExpertHelperTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ExpertHelperTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D9B0CC861A03B17500544323 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
-		D9B0CC8E1A03B17500544323 /* ExpertHelperTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ExpertHelperTests-Info.plist"; sourceTree = "<group>"; };
-		D9B0CC901A03B17500544323 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		D9B0CC921A03B17500544323 /* ExpertHelperTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ExpertHelperTests.m; sourceTree = "<group>"; };
 		D9BE33891A3882E00063B6C6 /* EHInterviewViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EHInterviewViewCell.h; sourceTree = "<group>"; };
 		D9BE338A1A3882E00063B6C6 /* EHInterviewViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EHInterviewViewCell.m; sourceTree = "<group>"; };
@@ -346,6 +350,8 @@
 		2790F4E01A139735001B0956 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				258AA5E51A715586004619C0 /* UIView+MKAnnotationView.h */,
+				258AA5E61A715586004619C0 /* UIView+MKAnnotationView.m */,
 				25FA4B591A70325B00B1E886 /* EHMapAnotation.h */,
 				25FA4B5A1A70325B00B1E886 /* EHMapAnotation.m */,
 				25FA4B561A702FA300B1E886 /* EHMapViewController.h */,
@@ -586,7 +592,6 @@
 				11DA2E041A3E03340051CBAC /* Workbook.xlsx */,
 				D93583FD1A1CB3AD00135A2D /* WorkWithEvents */,
 				2790F4E01A139735001B0956 /* ViewControllers */,
-				D9B0CC6B1A03B17500544323 /* Supporting Files */,
 			);
 			path = ExpertHelper;
 			sourceTree = "<group>";
@@ -601,30 +606,24 @@
 				D9B0CC731A03B17500544323 /* EHAppDelegate.h */,
 				D9B0CC741A03B17500544323 /* EHAppDelegate.m */,
 				258106981A669D7C0001904F /* EHConstantsDefines.h */,
+				258AA5E21A714377004619C0 /* InfoPlist.strings */,
+				258AA5E01A71436F004619C0 /* ExpertHelperTests-Info.plist */,
 				D9B0CC6C1A03B17500544323 /* ExpertHelper-Info.plist */,
 				D9B0CC6D1A03B17500544323 /* InfoPlist.strings */,
 				D9B0CC701A03B17500544323 /* main.m */,
 				D9B0CC721A03B17500544323 /* ExpertHelper-Prefix.pch */,
 			);
 			name = "Supporting Files";
+			path = ../ExpertHelper;
 			sourceTree = "<group>";
 		};
 		D9B0CC8C1A03B17500544323 /* ExpertHelperTests */ = {
 			isa = PBXGroup;
 			children = (
+				D9B0CC6B1A03B17500544323 /* Supporting Files */,
 				D9B0CC921A03B17500544323 /* ExpertHelperTests.m */,
-				D9B0CC8D1A03B17500544323 /* Supporting Files */,
 			);
 			path = ExpertHelperTests;
-			sourceTree = "<group>";
-		};
-		D9B0CC8D1A03B17500544323 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				D9B0CC8E1A03B17500544323 /* ExpertHelperTests-Info.plist */,
-				D9B0CC8F1A03B17500544323 /* InfoPlist.strings */,
-			);
-			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
 		D9BE339D1A3A00180063B6C6 /* Model */ = {
@@ -818,11 +817,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				D912ADF61A4088F700D95DFB /* Images.xcassets in Resources */,
+				258AA5E41A714377004619C0 /* InfoPlist.strings in Resources */,
 				8390BB5F1A4856660032CC92 /* EHGeneralInfoCellIpad.xib in Resources */,
 				D92B76E51A1F847F00B76F5E /* EHSkillLevelPopupIpad.xib in Resources */,
 				835D65561A4AC3DD0032CACA /* EHGeneralInfoCellIphone.xib in Resources */,
 				11DA2E051A3E03340051CBAC /* Workbook.xlsx in Resources */,
 				D92204741A2FAA4300B3BAAD /* mogend.sh in Resources */,
+				258AA5E11A71436F004619C0 /* ExpertHelperTests-Info.plist in Resources */,
 				D92204721A2FAA4300B3BAAD /* mogen.sh in Resources */,
 				D9ABF0B51A4B2D510040F216 /* Main_iPhone.storyboard in Resources */,
 				83CD969E1A3B5C5600115744 /* EHFacebookPopoverViewController.xib in Resources */,
@@ -836,7 +837,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D9B0CC911A03B17500544323 /* InfoPlist.strings in Resources */,
 				D92204731A2FAA4300B3BAAD /* mogen.sh in Resources */,
 				D92204751A2FAA4300B3BAAD /* mogend.sh in Resources */,
 			);
@@ -921,6 +921,7 @@
 				D9D7482F1A4866B40074160F /* EHAddRecruiterController.m in Sources */,
 				D9BE33A61A3A0AEF0063B6C6 /* _GeneralInfo.m in Sources */,
 				D92128A41A4AE5FC00E2DAFE /* _AudioRecord.m in Sources */,
+				258AA5E71A715586004619C0 /* UIView+MKAnnotationView.m in Sources */,
 				D9AD2EB71A3384D2003D7E14 /* EHRecorderCommentController.m in Sources */,
 				D9E7B7B11A31E0A3002DA710 /* _Skills.m in Sources */,
 				D9D748331A4866F60074160F /* EHCheckNetworkConnection.m in Sources */,
@@ -954,6 +955,15 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		258AA5E21A714377004619C0 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				258AA5E31A714377004619C0 /* en */,
+			);
+			name = InfoPlist.strings;
+			path = ..;
+			sourceTree = "<group>";
+		};
 		D95863401A4C98CB004D01DE /* Main_iPad.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -976,14 +986,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				D9B0CC6E1A03B17500544323 /* en */,
-			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		D9B0CC8F1A03B17500544323 /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				D9B0CC901A03B17500544323 /* en */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";

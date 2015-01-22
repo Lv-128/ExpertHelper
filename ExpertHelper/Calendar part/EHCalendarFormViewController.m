@@ -127,6 +127,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath {
         
     }
 }
+
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     // Return YES for supported orientations

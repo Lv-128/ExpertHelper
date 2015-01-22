@@ -469,9 +469,6 @@
     return nil;
 }
 
-
-
-
 -(NSString *)getSkypeFromUrl:(NSString *)skypeUrl
 {
     
@@ -494,7 +491,7 @@
     {
         NSString *webContent = [NSString stringWithFormat:@"%@",webFormatted]; // web page content
         
-        NSString * pat = @"<((.)*)skype((.)*)[^>]*((.)*)((.)*)>";
+        NSString *pat = @"<((.)*)skype((.)*)[^>]*((.)*)((.)*)>";
         
         NSRange range = NSMakeRange(0, webContent.length);
         
@@ -532,17 +529,13 @@
                 }
             }
             return neededString;
-            
         }
         return nil;
     }
-    
-    
     return nil;
 }
 
-
--(Candidate *)getCandidateFromEvent:(EKEvent *)event andAddToDB:(NSManagedObjectContext *)context
+- (Candidate *)getCandidateFromEvent:(EKEvent *)event andAddToDB:(NSManagedObjectContext *)context
 {
     Candidate *candidateResult;
     EHCalendarParseResult *result = [self getNameOfCandidateFromTitle:event.title];

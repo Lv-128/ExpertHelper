@@ -31,7 +31,7 @@
 
 @property (nonatomic, copy) NSString *firstName;
 @property (nonatomic, copy) NSString *lastName;
-@property (nonatomic, copy) NSString * emailAddress;
+@property (nonatomic, copy) NSString *emailAddress;
 
 - (id)initWithName:firstName andLastName:lastName;
 

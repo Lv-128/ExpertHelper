@@ -178,9 +178,7 @@ MFMailComposeViewControllerDelegate>
         self.recruteirPopover = [[UIPopoverController alloc] initWithContentViewController:self.recruitersController];
         self.recruteirPopover.popoverContentSize = CGSizeMake(width, 550.0);
         
-        
         CGRect rect = CGRectMake(cell.frame.origin.x + 50, cell.frame.origin.y + 100, 10, 10);
-        
         
         [self.recruteirPopover presentPopoverFromRect:rect
                                                inView:self.view
@@ -194,6 +192,8 @@ MFMailComposeViewControllerDelegate>
 {
     self.mapViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"MapView"];
     [self.navigationController pushViewController:self.mapViewController animated:YES];
+    
+    //self.mapViewController.location =
 }
 
 
@@ -204,8 +204,8 @@ MFMailComposeViewControllerDelegate>
     return [self.sortedWeeks count];
 }
 
-- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
-    
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
+{    
     EHWeek *weekOfMonth = [self.sortedWeeks objectAtIndex:section];
     return [weekOfMonth.interviews count];
 }
@@ -356,6 +356,8 @@ MFMailComposeViewControllerDelegate>
     cell.typeLabel.text = [NSString stringWithString:[INTERVIEWTYPE objectAtIndex:event.type.intValue]];
     cell.dateLabel.text = [cellDateFormatter stringFromDate:event.startDate];
     cell.addressLabel.text = event.location == nil ? @"N/A" : event.location;
+    
+    NSLog(@"%@", event.location);
     
     Candidate *candidate = event.idExternal.idCandidate;
     cell.candidateLabel.text = [NSString stringWithFormat:@"%@ %@" ,candidate.firstName, candidate.lastName];
