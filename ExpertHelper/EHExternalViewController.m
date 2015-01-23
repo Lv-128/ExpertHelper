@@ -48,7 +48,8 @@
 }
 
 - (void)skillLevelPopup:(EHSkillLevelPopup *)popup
-         didSelectLevel:(EHSkillLevel)level {
+         didSelectLevel:(EHSkillLevel)level
+{
     [popup close];
     self.popup = nil;
     newCell = YES;
@@ -62,8 +63,7 @@
         temp = [[NSMutableArray alloc]init];
         [temp insertObject:popup.skillLevel atIndex:rowToReload.row];
         [_array insertObject:temp atIndex:rowToReload.section];
-    } else
-    {
+    } else {
            [[_array objectAtIndex:rowToReload.section] removeObjectAtIndex:rowToReload.row];
         [[_array objectAtIndex:rowToReload.section] insertObject:popup.skillLevel atIndex:rowToReload.row];
     }
@@ -117,42 +117,33 @@
         
         NSMutableArray *myArr = [[NSMutableArray alloc]initWithCapacity:_array.count];
         for (int i = 0; i < self.tableSections.count; i++)
-        {
             for(int j = 0; j<_pars.groups.count; j++)
-            {
                 if ([self.tableSections[i]  isEqualToString: [_pars.groups[j] nameOfSections]])
                 {
                     NSArray *arr = [[_pars.groups[j] skills] allObjects];
-                    
                     myArr[i] = arr;
                 }
-            }
-        }
         
         for (int i = 0; i < myArr.count; i++)
         {
             NSMutableArray *tt = [[NSMutableArray alloc]initWithCapacity:0];
             NSMutableArray *tr = [[NSMutableArray alloc]initWithCapacity:0];
+            
             for (int b =0; b<[self.sectionContent[i]count];b++)
-            {
                 for(int j = 0; j < [myArr[i]count];j++)
-                {
                     if ([[myArr[i][j] nameOfSkill] isEqualToString:self.sectionContent[i][b]])
                     {
                         [tt addObject:[myArr[i][j] estimate]];
                         EHSkill *kkk=myArr[i][j];
                         [tr addObject:[kkk comment]];
                     }
-                }
-            }
             [_array insertObject:tt atIndex:i];
             [_comment insertObject:tr atIndex:i];
         }
         _generInfo = _pars.genInfo;
         _arrayOfRecordsString = _pars.recordsNames;
         _arrayOfRecordsUrl = _pars.recordsUrls;
-    }
-    else{
+    } else {
         for (int i = 0; i < self.tableSections.count; i++)//6
         {
             NSMutableArray *temp = [[NSMutableArray alloc]initWithCapacity:0];// group]
@@ -183,7 +174,8 @@
 
 #pragma mark Send Email To Recruiter
 
-- (void)sendEmailToAddressWithUrl:(NSString *)url fileName:(NSString *)fileName{
+- (void)sendEmailToAddressWithUrl:(NSString *)url fileName:(NSString *)fileName
+{
     MFMailComposeViewController *mailController = [[MFMailComposeViewController alloc]init];
     [mailController setMailComposeDelegate:self];
     
@@ -199,12 +191,12 @@
         [mailController setModalTransitionStyle:UIModalTransitionStyleFlipHorizontal];
     }
     [self presentViewController:mailController animated:YES completion: nil];
-
 }
 
 - (void)mailComposeController:(MFMailComposeViewController *) controller
           didFinishWithResult:(MFMailComposeResult)result
-                        error:(NSError *)error{
+                        error:(NSError *)error
+{
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
@@ -290,6 +282,7 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     [_popup close];
+    self.popup = nil;
     
     if ([[segue identifier] isEqualToString:@"GoToGenInfoForm"])
     {
@@ -324,13 +317,13 @@
     // Create custom view to display section header
     UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, CGRectGetWidth(tableView.frame), 18.0)];
     //create custom class!
-    UILabel *labelLeft = [[UILabel alloc] initWithFrame:CGRectMake(0.0, 0.0, CGRectGetWidth(tableView.frame), 18.0)];
-    [labelLeft setFont:[UIFont boldSystemFontOfSize:14]];
-    [labelLeft setTextAlignment:NSTextAlignmentCenter];
+    UILabel *labelOfSection = [[UILabel alloc] initWithFrame:CGRectMake(0.0, 0.0, CGRectGetWidth(tableView.frame), 18.0)];
+    [labelOfSection setFont:[UIFont boldSystemFontOfSize:14]];
+    [labelOfSection setTextAlignment:NSTextAlignmentCenter];
     
-    labelLeft.text = [self.tableSections objectAtIndex:section];
+    labelOfSection.text = [self.tableSections objectAtIndex:section];
     
-    [view addSubview:labelLeft];
+    [view addSubview:labelOfSection];
     [view setBackgroundColor:[UIColor colorWithRed:166 / 255.0 green:177 / 255.0 blue:186 / 255.0 alpha:1.0]];
     
     return view;
@@ -354,9 +347,7 @@
         if(cell.genInfo == nil)
         {
             cell.genInfo = [[EHGenInfo alloc] init];
-        }
-        else
-        {
+        } else {
             cell.expertName.text = self.generInfo.expertName;
             cell.competenceGroup.text = self.generInfo.competenceGroup;
             cell.typeOfProject.text = self.generInfo.typeOfProject;
@@ -368,18 +359,17 @@
             cell.switchView.on = self.generInfo.hire;
         }
         return cell;
-    }
-    else
-    {
+    } else {
         EHExternalCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ExternalCell"];
         cell.textLabel.text = [listData objectAtIndex:row];
         
         NSObject *tt = [[_array objectAtIndex:indexPath.section] objectAtIndex:row];
+        
         if (tt != nil) {
             cell.rightLabel.text = [[_array objectAtIndex:indexPath.section] objectAtIndex:row];
-        } else {
+        } else
             cell.rightLabel.text = @"";
-        }
+
         return cell;
     }
 }
@@ -424,9 +414,7 @@
     if (indexPath.section == 0)
     {
         [self performSegueWithIdentifier:@"GoToGenInfoForm" sender:self];
-    }
-    else
-    {
+    } else {
         NSUInteger row = [indexPath row];
         
         lostData = [indexPath section];
@@ -449,7 +437,6 @@
             [_popup close];
             self.popup = nil;
         }
-        
         [tableView deselectRowAtIndexPath:indexPath animated:YES];
     }
 }
@@ -496,9 +483,8 @@
     }
     
     if (_generInfo == nil)
-    {
         _generInfo = [[EHGenInfo alloc]init];
-    }
+
     if (_generInfo.expertName == NULL)
         _generInfo.expertName = @"None";
     if (_generInfo.competenceGroup == NULL)
@@ -522,7 +508,6 @@
 - (void)getGeninfo:(NSNotification *)notification
 {
     self.generInfo = notification.userInfo[@"genInfo"];
-    
 }
 
 - (void)getrecorderComment:(NSNotification *)notification
@@ -535,7 +520,8 @@
     [self.tableView reloadData];
 }
 
-- (void)saveFormZip {
+- (void)saveFormZip
+{
     [self parsFunc];
     [self unzip];
     
@@ -548,7 +534,8 @@
 }
 
 // convert from xlsx to zip
-- (void)unzip {
+- (void)unzip
+{
     NSString *filePath = [[NSBundle mainBundle] pathForResource:@"Workbook" ofType:@"xlsx"];
     
     NSString *yourFileName = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
@@ -568,7 +555,8 @@
 }
 
 // convert from zip to xlsx
-- (void)zip {
+- (void)zip
+{
     BOOL isDir = NO;
     NSString *documentsDirectory = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
     NSArray *subpaths;
@@ -576,14 +564,11 @@
     NSString *pathToCompress = [documentsDirectory stringByAppendingPathComponent:toCompress];
     
     NSFileManager *fileManager = [NSFileManager defaultManager];
-    if ([fileManager fileExistsAtPath:pathToCompress isDirectory:&isDir] && isDir == true) {
+    if ([fileManager fileExistsAtPath:pathToCompress isDirectory:&isDir] && isDir == true)
         subpaths = [fileManager subpathsAtPath:pathToCompress];
-    }
-    else {
-        if ([fileManager fileExistsAtPath:pathToCompress]) {
+    else
+        if ([fileManager fileExistsAtPath:pathToCompress])
             subpaths = [NSArray arrayWithObject:pathToCompress];
-        }
-    }
     
     NSMutableString *excelName = [[NSMutableString alloc] initWithString: _interview.idExternal.idCandidate.firstName];
     [excelName appendString:_interview.idExternal.idCandidate.lastName];
@@ -601,13 +586,14 @@
                 [za addFileToZip:fullPath newname:path];
             }
         }
-    }
-    else {
+    } else
         [za addFileToZip:pathToCompress newname:toCompress];
-    }
+    
     [za CloseZipFile2];
 }
-- (void) insertIntoExclesSharedString {
+
+- (void) insertIntoExclesSharedString
+{
     NSError *error;
     
     NSString *filePath1 = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
@@ -617,13 +603,11 @@
     NSMutableString* xml = [[NSMutableString alloc] initWithString:[NSMutableString stringWithContentsOfFile:filePath1 encoding:NSUTF8StringEncoding error:&error]];
     int uniqueCountIndex = 295;
     
-    for (int i = 0; i < _comment.count; i++) {
-        for (int j = 0; j < [_comment[i] count]; j++) {
+    for (int i = 0; i < _comment.count; i++)
+        for (int j = 0; j < [_comment[i] count]; j++)
             if (![_comment[i][j] isEqualToString:@""]) {
                 uniqueCountIndex++;
             }
-        }
-    }
     
     NSMutableString *stringForComparing = [@"</sst>" mutableCopy];
     int k = 0;
@@ -648,8 +632,8 @@
             //     [xml insertString:@"<si><t>Good</t></si>" atIndex:k];
             //      [xml insertString:@"<si><t>Beginner</t></si>" atIndex:k];
             //       [xml insertString:@"<si><t>None</t></si>" atIndex:k];
-            for (int ii = 0; ii < _comment.count; ii++) {
-                for (int j = 0; j < [_comment[ii] count]; j++) {
+            for (int ii = 0; ii < _comment.count; ii++)
+                for (int j = 0; j < [_comment[ii] count]; j++)
                     if (![_comment[ii][j] isEqualToString:@""]) {
                         NSString *s =@"<si><t>";
                         s = [s stringByAppendingString:_comment[ii][j]];
@@ -657,18 +641,15 @@
                         
                         [xml insertString:s atIndex:k];
                     }
-                }
-            }
+
             break;
         }
-        
     }
-    
-    
     [xml writeToFile:filePath1 atomically:YES encoding:NSUTF8StringEncoding error:&error];
 }
 
-- (void) writeToSheet3Score {
+- (void) writeToSheet3Score
+{
     NSError *error;
     
     NSString *filePath1 = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
@@ -766,7 +747,8 @@
     [xml writeToFile:filePath1 atomically:YES encoding:NSUTF8StringEncoding error:&error];
 }
 
-- (void) writeToSheet4Score {
+- (void) writeToSheet4Score
+{
     NSError *error;
     
     NSString *filePath1 = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];

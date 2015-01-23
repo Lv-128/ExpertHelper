@@ -19,7 +19,6 @@
 @property (nonatomic,retain) UIPickerView *myPickerView;
 @property (nonatomic) bool notFirstLoad;
 @property (nonatomic, strong) UIPopoverController *recruteirPopover;
-
-@property (nonatomic,strong) NSManagedObjectContext* managedObjectContext;
+@property (nonatomic,strong) NSManagedObjectContext *managedObjectContext;
 
 @end

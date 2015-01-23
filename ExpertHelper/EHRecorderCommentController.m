@@ -13,14 +13,12 @@
 #import "EHSkillsProfilesParser.h"
 
 #define DOCUMENTS_FOLDER [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"]
-#define DOCUMENTS_FOLDER1 [DOCUMENTS_FOLDER stringByAppendingPathComponent:@"Recordering"]
 #define FILEPATH [DOCUMENTS_FOLDER stringByAppendingPathComponent:[self dateString]]
 
-@interface EHRecorderCommentController () <EHSkillLevelPopupDelegate, UITextViewDelegate, AVAudioSessionDelegate,
+@interface EHRecorderCommentController ()
+<EHSkillLevelPopupDelegate, UITableViewDataSource, UITableViewDelegate, UITextViewDelegate, AVAudioSessionDelegate,
  AVAudioRecorderDelegate, AVAudioPlayerDelegate>
 {
-    NSURL *temporaryRecFile;
-    BOOL isPopup;
     BOOL isTextView;
     AVAudioPlayer *player;
     AVAudioRecorder *recorder;
@@ -44,7 +42,7 @@
 - (void)skillLevelPopup:(EHSkillLevelPopup *)popup
          didSelectLevel:(EHSkillLevel)level
 {
-    [self closePopup];
+    [popup close];
     isTextView = YES;
     _levelLabel.text = popup.skillLevel;
     
@@ -56,7 +54,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    isPopup = NO;
     quickComments = [self getCommentFromDB];
     isTextView = YES;
     [_commentView setDelegate:self];
@@ -141,10 +138,12 @@
     ? [self tableView:tableView numberOfRowsInSectionInfoTable:section]
     : [self tableView:tableView numberOfRowsInSectionRecordsTable:section];
 }
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSectionRecordsTable:(NSInteger)section
 {
     return _arrayOfRecordsString.count;
 }
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSectionInfoTable:(NSInteger)section
 {
     if (quickComments.count == 0)
@@ -161,37 +160,16 @@
 
 - (UITableViewCell *)infoTableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    UITableViewCell *cell = nil;
-    static NSString *AutoCompleteRowIdentifier = @"AutoCompleteRowIdentifier";
-    cell = [tableView dequeueReusableCellWithIdentifier:AutoCompleteRowIdentifier];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"AutoCompleteRowIdentifier"];
     
     if (cell == nil) {
         cell = [[UITableViewCell alloc]
-                initWithStyle:UITableViewCellStyleDefault reuseIdentifier:AutoCompleteRowIdentifier] ;
+                initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"AutoCompleteRowIdentifier"] ;
     }
     (quickComments.count > 0) ? (cell.textLabel.text = [[quickComments objectAtIndex:indexPath.row] comment]) :
     (cell.textLabel.text = @"");
     
     return cell;
-}
-
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    tableView == _infoTableView
-    ? [self infoTableView:tableView commitEditingStyle:editingStyle forRowAtIndexPath:indexPath]
-    : [self recordTableView:tableView commitEditingStyle:editingStyle forRowAtIndexPath:indexPath];
-}
-
-- (void)infoTableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        
-    }
-}
-
-- (void)recordTableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        //add code here for when you hit delete
-    }
 }
 
 - (EHRecorderCommaentCell *)recordTableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -200,11 +178,10 @@
     
     cell.textLabel.text = [_arrayOfRecordsString objectAtIndex:[indexPath row]];
     
-    if (cell.button.isPlaying) {
+    if (cell.button.isPlaying)
         [cell.button setBackgroundImage:_buttonStop forState:UIControlStateNormal];
-    } else {
+    else
         [cell.button setBackgroundImage:_buttonPlay forState:UIControlStateNormal];
-    }
     
     if (!player.playing) {
         [cell.button setBackgroundImage:_buttonPlay forState:UIControlStateNormal];
@@ -216,30 +193,91 @@
     return cell;
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+
+# pragma mark - deletingCellMethods
+// Override to support editing the table view.
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    tableView == _infoTableView
+    ? [self infoTableView:tableView commitEditingStyle:editingStyle forRowAtIndexPath:indexPath]
+    : [self recordsTableView:tableView commitEditingStyle:editingStyle forRowAtIndexPath:indexPath];
+}
+
+- (void)infoTableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (editingStyle == UITableViewCellEditingStyleDelete)
+    {
+        EHAppDelegate *appDelegate = [[UIApplication sharedApplication]delegate];
+        NSManagedObjectContext *context = [appDelegate managedObjectContext];
+        
+        NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+        NSEntityDescription *entity = [NSEntityDescription entityForName:[QuickComment entityName]
+                                                  inManagedObjectContext:context];
+        [fetchRequest setEntity:entity];
+        fetchRequest.predicate = nil;
+        NSArray *fetchedObjects = [context executeFetchRequest:fetchRequest error:nil];
+
+        NSMutableArray *temp = [quickComments mutableCopy];
+
+        [temp removeObjectAtIndex:indexPath.row];
+        quickComments = temp;
     
+        for (QuickComment *myCom in fetchedObjects)
+            if ([myCom isEqual:fetchedObjects[indexPath.row]])
+                [context deleteObject:myCom];
+        
+        [_infoTableView reloadData];
+    }
+}
+
+- (void)recordsTableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (editingStyle == UITableViewCellEditingStyleDelete)
+    {
+        EHAppDelegate *appDelegate = [[UIApplication sharedApplication]delegate];
+        NSManagedObjectContext *context = [appDelegate managedObjectContext];
+        
+        NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+        NSEntityDescription *entity = [NSEntityDescription entityForName:[AudioRecord entityName]
+                                                  inManagedObjectContext:context];
+        
+        [fetchRequest setEntity:entity];
+        fetchRequest.predicate = nil;
+        NSArray *fetchedObjects = [context executeFetchRequest:fetchRequest error:nil];
+        
+        [[NSFileManager defaultManager] removeItemAtPath:_arrayOfRecordsString[indexPath.row] error:nil];
+        
+        NSMutableArray *tempOfString = [_arrayOfRecordsString mutableCopy];
+        [tempOfString removeObjectAtIndex:indexPath.row];
+        _arrayOfRecordsString = tempOfString;
+        
+        for (AudioRecord *myRec in fetchedObjects)
+            if ([myRec isEqual:fetchedObjects[indexPath.row]])
+                [context deleteObject:myRec];
+
+        [_recordsTableView reloadData];
+    }
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
     if (tableView == _infoTableView)
         [self infoTableView:tableView didSelectRowAtIndexPath:indexPath];
 }
 
-- (void)infoTableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    
+- (void)infoTableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
     UITableViewCell *selectedCell = [tableView cellForRowAtIndexPath:indexPath];
     _infoTableView.hidden = YES;
     _commentView.hidden = NO;
     isTextView= YES;
     
     if ([_commentView.text isEqualToString:@"Please post your comments"])
-    {
-        _commentView.textColor = [UIColor blackColor];
         _commentView.text = selectedCell.textLabel.text;
-    }
     else
-    {
-        _commentView.textColor = [UIColor blackColor];
         _commentView.text = [_commentView.text stringByAppendingString:[@" "  stringByAppendingString: selectedCell.textLabel.text]];
-    }
-    
+
+    _commentView.textColor = [UIColor blackColor];
     NSMutableArray *temp = [_comment mutableCopy];
     [[temp objectAtIndex:_index.section] setObject: _commentView.text atIndex:_index.row];
     _comment = temp;
@@ -247,7 +285,9 @@
 
 - (BOOL)textViewShouldBeginEditing:(UITextView *)textView
 {
-    [self closePopup];
+    [_popup close];
+    self.popup = nil;
+    
     if (_commentView.textColor == [UIColor lightGrayColor]) {
         _commentView.text = @"";
         _commentView.textColor = [UIColor blackColor];
@@ -276,18 +316,16 @@
 - (void)pushAction
 {
     NSString *nibName;
+    
     if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad)
-    {
         nibName = @"EHSkillLevelPopupIpad";
-    }
     else
-    {
         nibName = @"EHSkillLevelPopupIphone";
-    }
+
     UINib *nib = [UINib nibWithNibName:nibName bundle:nil];
     EHSkillLevelPopup *popup = [[nib instantiateWithOwner:nil options:nil] lastObject];
     
-    if (isPopup == NO) {
+    if (_popup == nil) {
         CGRect selfFrame = self.view.frame;
         CGRect popupFrame = popup.frame;
         popupFrame.size.width = selfFrame.size.width;
@@ -306,28 +344,18 @@
             popup.alpha = 1;
             popup.transform = CGAffineTransformMakeScale(1, 1);
         }];
-        isPopup = YES;
+    } else {
+        [_popup close];
+        self.popup = nil;
     }
-}
-
-- (void)closePopup
-{
-    [UIView animateWithDuration:0.85 animations:^{
-        _popup.transform = CGAffineTransformMakeScale(0, 0);
-        _popup.alpha = 0.0;
-        
-    } completion:^(BOOL finished) {
-        [super viewDidLoad];
-        
-    }];
-    if (_popup.alpha == 0.0)
-        isPopup = NO;
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    [self closePopup];
+    [_popup close];
+    self.popup = nil;
     [self hideInfoTableView];
+    [self.commentView resignFirstResponder];
 }
 
 - (NSString *)dateString

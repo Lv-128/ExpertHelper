@@ -74,7 +74,6 @@
 		D9B0CC651A03B17500544323 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D9B0CC641A03B17500544323 /* Foundation.framework */; };
 		D9B0CC671A03B17500544323 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D9B0CC661A03B17500544323 /* CoreGraphics.framework */; };
 		D9B0CC691A03B17500544323 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D9B0CC681A03B17500544323 /* UIKit.framework */; };
-		D9B0CC6F1A03B17500544323 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D9B0CC6D1A03B17500544323 /* InfoPlist.strings */; };
 		D9B0CC711A03B17500544323 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D9B0CC701A03B17500544323 /* main.m */; };
 		D9B0CC751A03B17500544323 /* EHAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D9B0CC741A03B17500544323 /* EHAppDelegate.m */; };
 		D9B0CC871A03B17500544323 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D9B0CC861A03B17500544323 /* XCTest.framework */; };
@@ -214,7 +213,6 @@
 		D9B0CC661A03B17500544323 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		D9B0CC681A03B17500544323 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		D9B0CC6C1A03B17500544323 /* ExpertHelper-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ExpertHelper-Info.plist"; sourceTree = "<group>"; };
-		D9B0CC6E1A03B17500544323 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		D9B0CC701A03B17500544323 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		D9B0CC721A03B17500544323 /* ExpertHelper-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ExpertHelper-Prefix.pch"; sourceTree = "<group>"; };
 		D9B0CC731A03B17500544323 /* EHAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EHAppDelegate.h; sourceTree = "<group>"; };
@@ -347,7 +345,7 @@
 			path = minizip;
 			sourceTree = "<group>";
 		};
-		2790F4E01A139735001B0956 /* ViewControllers */ = {
+		258AA5E81A7160B6004619C0 /* MapKit */ = {
 			isa = PBXGroup;
 			children = (
 				258AA5E51A715586004619C0 /* UIView+MKAnnotationView.h */,
@@ -356,8 +354,16 @@
 				25FA4B5A1A70325B00B1E886 /* EHMapAnotation.m */,
 				25FA4B561A702FA300B1E886 /* EHMapViewController.h */,
 				25FA4B571A702FA300B1E886 /* EHMapViewController.m */,
+			);
+			name = MapKit;
+			sourceTree = "<group>";
+		};
+		2790F4E01A139735001B0956 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				258AA5E81A7160B6004619C0 /* MapKit */,
 				D9DCA8ED1A43329D00A1D157 /* Chart */,
-				83CD96961A3B5C0D00115744 /* EHPopoverController */,
+				83CD96961A3B5C0D00115744 /* EHFBPopoverController */,
 				D931449A1A376D2000AB470E /* HR */,
 				D9D836A61A1F402D00148854 /* External */,
 				D9D836A41A1F3F1700148854 /* Recruiter */,
@@ -390,14 +396,14 @@
 			name = Controllers;
 			sourceTree = "<group>";
 		};
-		83CD96961A3B5C0D00115744 /* EHPopoverController */ = {
+		83CD96961A3B5C0D00115744 /* EHFBPopoverController */ = {
 			isa = PBXGroup;
 			children = (
 				83CD96991A3B5C5600115744 /* EHFacebookPopoverViewController.h */,
 				83CD969A1A3B5C5600115744 /* EHFacebookPopoverViewController.m */,
 				83CD969B1A3B5C5600115744 /* EHFacebookPopoverViewController.xib */,
 			);
-			name = EHPopoverController;
+			name = EHFBPopoverController;
 			sourceTree = "<group>";
 		};
 		D92204271A2FAA4200B3BAAD /* CoreData */ = {
@@ -609,7 +615,6 @@
 				258AA5E21A714377004619C0 /* InfoPlist.strings */,
 				258AA5E01A71436F004619C0 /* ExpertHelperTests-Info.plist */,
 				D9B0CC6C1A03B17500544323 /* ExpertHelper-Info.plist */,
-				D9B0CC6D1A03B17500544323 /* InfoPlist.strings */,
 				D9B0CC701A03B17500544323 /* main.m */,
 				D9B0CC721A03B17500544323 /* ExpertHelper-Prefix.pch */,
 			);
@@ -828,7 +833,6 @@
 				D9ABF0B51A4B2D510040F216 /* Main_iPhone.storyboard in Resources */,
 				83CD969E1A3B5C5600115744 /* EHFacebookPopoverViewController.xib in Resources */,
 				D95863421A4C98CB004D01DE /* Main_iPad.storyboard in Resources */,
-				D9B0CC6F1A03B17500544323 /* InfoPlist.strings in Resources */,
 				835D655A1A4ACC200032CACA /* EHSkillLevelPopupIphone.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -980,14 +984,6 @@
 			);
 			name = Main_iPhone.storyboard;
 			path = ..;
-			sourceTree = "<group>";
-		};
-		D9B0CC6D1A03B17500544323 /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				D9B0CC6E1A03B17500544323 /* en */,
-			);
-			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

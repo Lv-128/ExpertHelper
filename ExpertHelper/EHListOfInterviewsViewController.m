@@ -74,7 +74,7 @@ MFMailComposeViewControllerDelegate>
     _barButton.action = @selector(revealToggle:);
     
     // button HR
-
+    
     UIBarButtonItem *butHR =[[UIBarButtonItem alloc] initWithTitle:@"HR"
                                                              style:UIBarButtonItemStylePlain
                                                             target:self
@@ -88,7 +88,7 @@ MFMailComposeViewControllerDelegate>
     {
         [((EHEventsGetInfoParser *)interviewFromEventsParser).calEventParser checkEventStoreAccessForCalendar];
         [interviewFromEventsParser sortAllInterviewsToDictionary];
-
+        
         NSDate *today = [NSDate date];
         
         unsigned int compon = NSYearCalendarUnit| NSMonthCalendarUnit ;
@@ -190,12 +190,19 @@ MFMailComposeViewControllerDelegate>
 
 - (void)mapPosition:(id)sender
 {
-    self.mapViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"MapView"];
-    [self.navigationController pushViewController:self.mapViewController animated:YES];
+    UITapGestureRecognizer *tapGR = (UITapGestureRecognizer *)sender;
+    CGPoint touchLocation = [tapGR locationOfTouch:0 inView:self.collectionView];
+    NSIndexPath *tappedRow = [self.collectionView indexPathForItemAtPoint:touchLocation];
     
-    //self.mapViewController.location =
+    NSArray *arr = [[[sortedWeeks objectAtIndex:tappedRow.section] interviews] allObjects];
+    InterviewAppointment *curInterview = [arr objectAtIndex:tappedRow.row];
+    
+    self.mapViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"MapView"];
+    
+    _mapViewController.location = curInterview.location;
+    
+    [self.navigationController pushViewController:self.mapViewController animated:YES];
 }
-
 
 #pragma mark Collection View Methods
 
@@ -205,7 +212,7 @@ MFMailComposeViewControllerDelegate>
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
-{    
+{
     EHWeek *weekOfMonth = [self.sortedWeeks objectAtIndex:section];
     return [weekOfMonth.interviews count];
 }
@@ -247,7 +254,6 @@ MFMailComposeViewControllerDelegate>
                                               otherButtonTitles:nil];
         [alert show];
     }
-    
 }
 
 - (void)onMailButton:(UIButton *)button {
@@ -257,8 +263,6 @@ MFMailComposeViewControllerDelegate>
     InterviewAppointment *event = [eventsOnThisDay objectAtIndex:indexPath.row];
     
     [self sendEmailToAddress:event.idRecruiter.email];
-    
-    
 }
 
 - (IBAction)facebookButton:(id)sender {
@@ -267,7 +271,6 @@ MFMailComposeViewControllerDelegate>
     NSArray *eventsOnThisDay = week.interviews;
     InterviewAppointment *event = [eventsOnThisDay objectAtIndex:indexPath.row];
     
-
     if (FBSession.activeSession.state == FBSessionStateOpen
         || FBSession.activeSession.state == FBSessionStateOpenTokenExtended) {
         
@@ -357,10 +360,18 @@ MFMailComposeViewControllerDelegate>
     cell.dateLabel.text = [cellDateFormatter stringFromDate:event.startDate];
     cell.addressLabel.text = event.location == nil ? @"N/A" : event.location;
     
-    NSLog(@"%@", event.location);
-    
     Candidate *candidate = event.idExternal.idCandidate;
-    cell.candidateLabel.text = [NSString stringWithFormat:@"%@ %@" ,candidate.firstName, candidate.lastName];
+    cell.candidateLabel.text = [NSString stringWithFormat:@"%@ %@",candidate.firstName, candidate.lastName];
+    
+    if (event.type.intValue == 1){
+        cell.groupsOrCandidate.text = @"Group :";
+//        cell.groupName.hidden = NO;
+        cell.candidateLabel.hidden = YES;
+    } else {
+        cell.groupsOrCandidate.text = @"Candidate :";
+//        cell.groupName.hidden = YES;
+        cell.candidateLabel.hidden = NO;
+    }
     
     Recruiter *recruiter = event.idRecruiter;
     cell.recruiterLabel.text = [NSString stringWithFormat:@"%@ %@", recruiter.firstName, recruiter.lastName] ;
@@ -411,9 +422,8 @@ MFMailComposeViewControllerDelegate>
         }
         [_collectionView reloadData];
         
-        if (![context save:&error]) {
+        if (![context save:&error])
             NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
-        }
     }
 }
 
@@ -437,17 +447,15 @@ MFMailComposeViewControllerDelegate>
         UICollectionViewCell *curInterviewCell = [self.collectionView  cellForItemAtIndexPath:tappedRow];
         _label = (UILabel *)[curInterviewCell viewWithTag:100];
         _curInterview = event;
-        CGRect  rect = CGRectMake([_label frame].origin.x - [_label frame].size.width / 3 ,
-                                  [_label frame].origin.y,
-                                  [_label frame].size.width,
-
-                                  [_label frame].size.height);
+        CGRect rect = CGRectMake([_label frame].origin.x - [_label frame].size.width / 3 ,
+                                 [_label frame].origin.y,
+                                 [_label frame].size.width,
+                                 
+                                 [_label frame].size.height);
         [_actionSheetTypes showFromRect:rect inView:curInterviewCell animated:YES ];
-
     }
     else
         [_actionSheetTypes showInView:self.view];
-    
 }
 
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView
@@ -469,6 +477,7 @@ MFMailComposeViewControllerDelegate>
     }
     return nil;
 }
+
 #pragma mark Send Email To Recruiter
 - (void)sendEmailToAddress:(NSString*)address
 {
@@ -494,7 +503,6 @@ MFMailComposeViewControllerDelegate>
                                               otherButtonTitles:nil];
         [alert show];
     }
-    
 }
 
 - (void)mailComposeController:(MFMailComposeViewController *) controller
@@ -502,7 +510,6 @@ MFMailComposeViewControllerDelegate>
                         error:(NSError *)error{
     [self dismissViewControllerAnimated:YES completion:nil];
 }
-
 
 
 @end

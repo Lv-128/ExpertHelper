@@ -175,30 +175,27 @@
 
 - (void) addRecordArrWithContext:(NSManagedObjectContext *) context
 {
-    for (NSManagedObject * audio in _interview.idExternal.audioRecords) {
+    for (NSManagedObject *audio in _interview.idExternal.audioRecords)
         [context deleteObject:audio];
-    }
+    
     NSError *saveError = nil;
     [context save:&saveError];
     
     
-    for (int i = 0; i< _recordsNames.count; i++)
+    for (int i = 0; i < _recordsNames.count; i++)
     {
         
-        AudioRecord * audioRec =  [NSEntityDescription
+        AudioRecord *audioRec = [NSEntityDescription
                                              insertNewObjectForEntityForName:[AudioRecord entityName]
                                              inManagedObjectContext:context];
-        audioRec.name =  _recordsNames[i];
+        audioRec.name = _recordsNames[i];
         audioRec.url = [_recordsUrls[i] absoluteString];
         [_interview.idExternal.audioRecordsSet addObject: audioRec];
         audioRec.idExternal = _interview.idExternal;
-        
-        
     }
     
     saveError = nil;
     [context save:&saveError];
-    
 }
 
 - (void) getRecordArrWithContext:(NSManagedObjectContext *) context
@@ -207,14 +204,15 @@
     NSMutableArray * arrNames = [[NSMutableArray alloc]init];
     NSMutableArray * arrUrl = [[NSMutableArray alloc]init];
     
-        for (AudioRecord * audio in _interview.idExternal.audioRecords)
+        for (AudioRecord *audio in _interview.idExternal.audioRecords)
         {
-            [arrNames addObject: audio.name];
-            [arrUrl addObject:[NSURL URLWithString: audio.url]];
+            [arrNames addObject:audio.name];
+            [arrUrl addObject:[NSURL URLWithString:audio.url]];
         }
     _recordsNames = arrNames;
     _recordsUrls = arrUrl;
 }
+
 - (void)saveInfoToDB
 {
     NSManagedObjectContext *context = [self managedObjectContext];
@@ -258,12 +256,9 @@
             skillLevel.comment = skill.comment;
             
             for (int i = 0; i< ESTIMATES.count;i++)
-            {
                 if ([ESTIMATES[i] isEqualToString:skill.estimate])
-                {
                     skillLevel.level = [NSNumber numberWithInt:i];
-                }
-            }
+
             skillLevel.idSkill = curSkill;
             curSkill.level = skillLevel;
             
@@ -276,14 +271,11 @@
     
     [self addRecordArrWithContext:context];
     
-    if (![context save:&error]) {
+    if (![context save:&error])
         NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
-        
-    }
     
-    if (![context save:&error]) {
+    if (![context save:&error])
         NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
-    }
 }
 
 - (void)getFromDB
@@ -347,8 +339,6 @@
         self.groups = curGroups;
         
         [self getRecordArrWithContext:context];
- 
-        
     }
 }
 

@@ -213,7 +213,6 @@
     [self allViewsToResign];
 }
 
-
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField
 {
     if (([textField.text isEqualToString:@""]))

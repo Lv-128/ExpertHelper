@@ -10,8 +10,7 @@
 #import <AVFoundation/AVFoundation.h>
 #import "EHSkillsProfilesParser.h"
 
-@interface EHRecorderCommentController : UIViewController <UITableViewDataSource, UITableViewDelegate,
-AVAudioRecorderDelegate, AVAudioPlayerDelegate>
+@interface EHRecorderCommentController : UIViewController
 
 @property (nonatomic, weak) IBOutlet UITableView *infoTableView;
 @property (nonatomic, weak) IBOutlet UITableView *recordsTableView;
@@ -20,7 +19,6 @@ AVAudioRecorderDelegate, AVAudioPlayerDelegate>
 @property (nonatomic, copy) NSArray *arrayOfRecordsUrl;
 @property (nonatomic, copy) NSArray *arrayOfRecordsString;
 @property (nonatomic, strong) NSIndexPath *index;
-@property (nonatomic, strong) EHSkillsProfilesParser *saveRecords;
 @property (nonatomic, strong) EHSkill *skill;
 @property (nonatomic) NSInteger indexOfCell;
 
