@@ -80,15 +80,15 @@ NSError *error = nil;
     [FBRequestConnection startWithGraphPath:[NSString stringWithFormat:@"/search?q=%@+%@&type=user", _firstName, _lastName]
                           completionHandler:^(FBRequestConnection *connection, id result, NSError *error) {
                               [self hideLoadingIndicator];
-        if (error)
-            NSLog(@"%@", [error description]);
-        else
-        {
-            self.links = result[@"data"];
-            [self tableView:self.tablewView numberOfRowsInSection:1];
-            [[self tablewView] reloadData];
-        }
-    }];
+                              if (error)
+                                  NSLog(@"%@", [error description]);
+                              else
+                              {
+                                  self.links = result[@"data"];
+                                  [self tableView:self.tablewView numberOfRowsInSection:1];
+                                  [[self tablewView] reloadData];
+                              }
+                          }];
     
 }
 
@@ -120,18 +120,18 @@ NSError *error = nil;
 
 - (UIImage *)profilePictureFromID:(NSString *)ID
 {
-     UIImage *image;
+    UIImage *image;
     
     NSData *data = [NSData dataWithContentsOfURL:[NSURL URLWithString:
-                                           [NSString stringWithFormat:@"https://graph.facebook.com/%@/picture?redirect=false", ID]]];
+                                                  [NSString stringWithFormat:@"https://graph.facebook.com/%@/picture?redirect=false", ID]]];
     NSDictionary *dictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
     //    [FBRequestConnection startWithGraphPath:[NSString stringWithFormat:@"/%@/picture?redirect=false", ID] completionHandler:^(FBRequestConnection *connection, id result, NSError *error) {
-            NSURL *imageUrl = [NSURL URLWithString:dictionary[@"data"][@"url"]];
-            NSData *imageData = [NSData dataWithContentsOfURL:imageUrl];
-            image = [UIImage imageWithData:imageData];
-             return image;
-        //}];
-   // return image;
+    NSURL *imageUrl = [NSURL URLWithString:dictionary[@"data"][@"url"]];
+    NSData *imageData = [NSData dataWithContentsOfURL:imageUrl];
+    image = [UIImage imageWithData:imageData];
+    return image;
+    //}];
+    // return image;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath

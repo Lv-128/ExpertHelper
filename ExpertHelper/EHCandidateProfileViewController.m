@@ -143,7 +143,7 @@
                 return 2;
             break;
         case 2:
-                return 3;
+            return 3;
             break;
         default:
             return 3;
@@ -212,7 +212,6 @@
 {
     [self allViewsToResign];
 }
-
 
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField
 {

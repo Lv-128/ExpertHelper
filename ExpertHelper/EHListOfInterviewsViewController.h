@@ -10,16 +10,13 @@
 #import "EHRevealViewController.h"
 #import "EHAppDelegate.h"
 
-
 @interface EHListOfInterviewsViewController : UIViewController
 
 @property (nonatomic, weak) IBOutlet UICollectionView *collectionView;
 @property (nonatomic, copy) NSArray *interviews;
 @property (nonatomic, copy) NSArray *sortedWeeks;
-@property (nonatomic,retain) UIPickerView *myPickerView;
 @property (nonatomic) bool notFirstLoad;
 @property (nonatomic, strong) UIPopoverController *recruteirPopover;
-
-@property (nonatomic,strong) NSManagedObjectContext* managedObjectContext;
+@property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
 
 @end

@@ -12,7 +12,6 @@
 {
     NSString *selectedScore;
     IBOutlet UIButton *scoreOption;
-    BOOL isFive;
     int scopeCount;
     int scopeCount2;
 }

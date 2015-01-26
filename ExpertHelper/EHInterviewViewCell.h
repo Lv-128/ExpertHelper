@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface EHInterviewViewCell : UICollectionViewCell
+@interface EHInterviewViewCell : UICollectionViewCell <UITextFieldDelegate>
 
 @property (weak, nonatomic) IBOutlet UIButton *skypeButton;
 @property (weak, nonatomic) IBOutlet UIButton *mailButton;
@@ -19,5 +19,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *candidateLabel;
 @property (weak, nonatomic) IBOutlet UILabel *recruiterLabel;
 @property (weak, nonatomic) IBOutlet UILabel *typeLabel;
+@property (weak, nonatomic) IBOutlet UILabel *groupsOrCandidate;
+
+@property (weak, nonatomic) IBOutlet UITextField *groupName;
 
 @end

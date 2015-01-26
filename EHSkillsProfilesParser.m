@@ -160,9 +160,7 @@
     NSArray *fetchedObjects = [context executeFetchRequest:fetchRequest error:nil];
     
     if(fetchedObjects.count > 0)// we don't need this actually
-    {
         group = fetchedObjects[0];
-    }
     else
     {
         group = [NSEntityDescription
@@ -173,48 +171,44 @@
     return group;
 }
 
-- (void) addRecordArrWithContext:(NSManagedObjectContext *) context
+- (void)addRecordArrWithContext:(NSManagedObjectContext *)context
 {
-    for (NSManagedObject * audio in _interview.idExternal.audioRecords) {
+    for (NSManagedObject *audio in _interview.idExternal.audioRecords)
         [context deleteObject:audio];
-    }
+    
     NSError *saveError = nil;
     [context save:&saveError];
     
-    
-    for (int i = 0; i< _recordsNames.count; i++)
+    for (int i = 0; i < _recordsNames.count; i++)
     {
-        
-        AudioRecord * audioRec =  [NSEntityDescription
-                                             insertNewObjectForEntityForName:[AudioRecord entityName]
-                                             inManagedObjectContext:context];
-        audioRec.name =  _recordsNames[i];
+        AudioRecord *audioRec = [NSEntityDescription
+                                 insertNewObjectForEntityForName:[AudioRecord entityName]
+                                 inManagedObjectContext:context];
+        audioRec.name = _recordsNames[i];
         audioRec.url = [_recordsUrls[i] absoluteString];
         [_interview.idExternal.audioRecordsSet addObject: audioRec];
         audioRec.idExternal = _interview.idExternal;
-        
-        
     }
     
     saveError = nil;
     [context save:&saveError];
-    
 }
 
-- (void) getRecordArrWithContext:(NSManagedObjectContext *) context
+- (void)getRecordArrWithContext:(NSManagedObjectContext *)context
 {
     
-    NSMutableArray * arrNames = [[NSMutableArray alloc]init];
-    NSMutableArray * arrUrl = [[NSMutableArray alloc]init];
+    NSMutableArray *arrNames = [[NSMutableArray alloc]init];
+    NSMutableArray *arrUrl = [[NSMutableArray alloc]init];
     
-        for (AudioRecord * audio in _interview.idExternal.audioRecords)
-        {
-            [arrNames addObject: audio.name];
-            [arrUrl addObject:[NSURL URLWithString: audio.url]];
-        }
+    for (AudioRecord *audio in _interview.idExternal.audioRecords)
+    {
+        [arrNames addObject:audio.name];
+        [arrUrl addObject:[NSURL URLWithString:audio.url]];
+    }
     _recordsNames = arrNames;
     _recordsUrls = arrUrl;
 }
+
 - (void)saveInfoToDB
 {
     NSManagedObjectContext *context = [self managedObjectContext];
@@ -223,16 +217,13 @@
     genInfo.idExternalInterview = _interview.idExternal;
     _interview.idExternal = genInfo.idExternalInterview;
     
-    
     NSError *error;
-    if (![context save:&error]) {
+    if (![context save:&error])
         NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
-    }
     
-    
-    for (NSManagedObject * skill in _interview.idExternal.skills) {
+    for (NSManagedObject *skill in _interview.idExternal.skills)
         [context deleteObject:skill];
-    }
+    
     NSError *saveError = nil;
     [context save:&saveError];
     for (int i = 0; i < _groups.count; i++)
@@ -258,12 +249,9 @@
             skillLevel.comment = skill.comment;
             
             for (int i = 0; i< ESTIMATES.count;i++)
-            {
                 if ([ESTIMATES[i] isEqualToString:skill.estimate])
-                {
                     skillLevel.level = [NSNumber numberWithInt:i];
-                }
-            }
+            
             skillLevel.idSkill = curSkill;
             curSkill.level = skillLevel;
             
@@ -276,14 +264,11 @@
     
     [self addRecordArrWithContext:context];
     
-    if (![context save:&error]) {
+    if (![context save:&error])
         NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
-        
-    }
     
-    if (![context save:&error]) {
+    if (![context save:&error])
         NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
-    }
 }
 
 - (void)getFromDB
@@ -347,8 +332,6 @@
         self.groups = curGroups;
         
         [self getRecordArrWithContext:context];
- 
-        
     }
 }
 

@@ -11,14 +11,16 @@
 
 @class Reachability;
 
-@interface EHCheckNetworkConnection : NSObject{
-    
+@interface EHCheckNetworkConnection : NSObject
+{
 Reachability* internetReachable;
 Reachability* hostReachable;
-    
 }
+
 @property (nonatomic) BOOL  internetActive;
 @property (nonatomic) BOOL  hostActive;
+
 -(void) checkNetworkStatus;
 -(id)initWithHost:(NSString*)host;
+
 @end

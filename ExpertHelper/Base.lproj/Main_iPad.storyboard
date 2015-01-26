@@ -270,7 +270,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="g4T-cI-lzD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1777" y="-2146"/>
+            <point key="canvasLocation" x="1741" y="-2933"/>
         </scene>
         <!--External-->
         <scene sceneID="4M7-gB-h3Y">
@@ -421,15 +421,16 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="101" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I0f-Kc-Qu9">
-                                                    <rect key="frame" x="213" y="173" width="452" height="44"/>
+                                                    <rect key="frame" x="213" y="180" width="452" height="44"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="102" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mRu-yt-AcV">
-                                                    <rect key="frame" x="213" y="224" width="369" height="44"/>
+                                                    <rect key="frame" x="213" y="224" width="434" height="44"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                                    <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Date : " textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Sk-UI-UBV">
@@ -501,6 +502,17 @@
                                                     <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <textField hidden="YES" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="g7U-g9-wBT">
+                                                    <rect key="frame" x="213" y="25" width="345" height="44"/>
+                                                    <nil key="textColor"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <textInputTraits key="textInputTraits"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.CornerRadius">
+                                                            <integer key="value" value="5"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
+                                                </textField>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
@@ -510,6 +522,8 @@
                                             <outlet property="addressLabel" destination="mRu-yt-AcV" id="zAI-bE-8d8"/>
                                             <outlet property="candidateLabel" destination="MGc-gU-r0r" id="WE5-Gg-L8L"/>
                                             <outlet property="dateLabel" destination="I0f-Kc-Qu9" id="ELP-p5-4TR"/>
+                                            <outlet property="groupName" destination="g7U-g9-wBT" id="kMu-iL-KrD"/>
+                                            <outlet property="groupsOrCandidate" destination="umz-Ed-Ttg" id="9v5-Gt-Ha6"/>
                                             <outlet property="mailButton" destination="bZg-4S-mqi" id="ddA-Oe-TRu"/>
                                             <outlet property="recruiterLabel" destination="fcn-Bz-1Ie" id="1or-E2-eqK"/>
                                             <outlet property="skypeButton" destination="yL8-Jc-Xel" id="jWM-9z-v2Q"/>
@@ -661,7 +675,26 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Zsi-IH-qds" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="902" y="-2151"/>
+            <point key="canvasLocation" x="902" y="-2696"/>
+        </scene>
+        <!--Map View Controller-->
+        <scene sceneID="kL4-R1-n41">
+            <objects>
+                <viewController storyboardIdentifier="MapView" useStoryboardIdentifierAsRestorationIdentifier="YES" id="a8m-tY-VZX" customClass="EHMapViewController" sceneMemberID="viewController">
+                    <mapView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" id="S28-ZG-85P">
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <connections>
+                            <outlet property="delegate" destination="a8m-tY-VZX" id="m0Q-ES-DQ1"/>
+                        </connections>
+                    </mapView>
+                    <connections>
+                        <outlet property="mapView" destination="S28-ZG-85P" id="5iq-Yx-R3r"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Xnp-rr-w3a" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="902" y="-1564"/>
         </scene>
         <!--Recorder Comment Controller-->
         <scene sceneID="i4t-C7-LOm">
@@ -780,7 +813,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="odn-Y3-sys" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="916" y="-77.5"/>
+            <point key="canvasLocation" x="914" y="502.5"/>
         </scene>
         <!--Add Recruiter Controller-->
         <scene sceneID="jq2-1w-uLV">
@@ -1080,7 +1113,7 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Date" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UIc-fv-DX3">
-                                <rect key="frame" x="213" y="139" width="338" height="30"/>
+                                <rect key="frame" x="213" y="146" width="338" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -1186,7 +1219,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UIb-JM-ghH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="904" y="-951"/>
+            <point key="canvasLocation" x="902" y="-371"/>
         </scene>
         <!--Chart-->
         <scene sceneID="BRH-R3-kmK">
@@ -1221,6 +1254,6 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="bCA-os-ODD"/>
+        <segue reference="P7n-ca-jg9"/>
     </inferredMetricsTieBreakers>
 </document>

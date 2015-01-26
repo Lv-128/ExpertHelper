@@ -7,6 +7,7 @@
 //
 #import "InterviewAppointment.h"
 #import "ExternalInterview.h"
+#import "ITAInterview.h"
 #import "Skills.h"
 #import "SkillsLevels.h"
 #import "Recruiter.h"

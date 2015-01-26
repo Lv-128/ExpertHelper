@@ -10,7 +10,6 @@
 #import "EHListOfRecruitersCell.h"
 #import <MessageUI/MessageUI.h>
 
-
 @interface EHRecruitersViewController () <MFMailComposeViewControllerDelegate, UIGestureRecognizerDelegate>
 {
     Reachability *internetReachable;
@@ -20,7 +19,6 @@
 
 @implementation EHRecruitersViewController
 
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -29,7 +27,6 @@
     _managedObjectContext = [appDelegate managedObjectContext];
     
     [self getAllRecruitersFromDB];
-    
 }
 
 
@@ -141,12 +138,12 @@
     }
 }
 
-
 - (void)mailComposeController:(MFMailComposeViewController *) controller
           didFinishWithResult:(MFMailComposeResult)result
                         error:(NSError *)error{
     [self dismissViewControllerAnimated:YES completion:nil];
 }
+
 - (NSIndexPath *)indexPathOfButton:(UIButton *)button {
     UIView *view = button.superview;
     while (![view isKindOfClass:[EHListOfRecruitersCell class]]) {
@@ -160,7 +157,6 @@
     NSIndexPath *indexPath = [self indexPathOfButton:button];
     EHListOfRecruitersCell *cell = (EHListOfRecruitersCell *)[_tableView cellForRowAtIndexPath:indexPath];
     [self sendEmailMsg:cell.recruiterEmail.text];
-    
 }
 
 - (IBAction)skypeMe:(id)sender{
@@ -191,6 +187,6 @@
                                               otherButtonTitles:nil];
         [alert show];
     }
-    
 }
+
 @end
