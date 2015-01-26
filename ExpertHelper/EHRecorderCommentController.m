@@ -17,7 +17,7 @@
 
 @interface EHRecorderCommentController ()
 <EHSkillLevelPopupDelegate, UITableViewDataSource, UITableViewDelegate, UITextViewDelegate, AVAudioSessionDelegate,
- AVAudioRecorderDelegate, AVAudioPlayerDelegate>
+AVAudioRecorderDelegate, AVAudioPlayerDelegate>
 {
     BOOL isTextView;
     AVAudioPlayer *player;
@@ -58,11 +58,11 @@
     isTextView = YES;
     [_commentView setDelegate:self];
     [_commentView setReturnKeyType:UIReturnKeyDone];
-
+    
     if (_arrayOfRecordsUrl == nil) {
         _arrayOfRecordsUrl = [[NSMutableArray alloc] init];
         _arrayOfRecordsString = [[NSArray alloc]init];
-    } 
+    }
     //Choose level label
     
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(pushAction)];
@@ -114,9 +114,9 @@
     [self addCommentToDB:_commentView.text];
     
     (![[[_comment objectAtIndex:_index.section] objectAtIndex:_index.row] isEqualToString:@""]) ?
-        (_skill.comment = [[_comment objectAtIndex:_index.section] objectAtIndex:_index.row]): (_skill.comment = @"");
+    (_skill.comment = [[_comment objectAtIndex:_index.section] objectAtIndex:_index.row]): (_skill.comment = @"");
     (![[[_level objectAtIndex:_index.section] objectAtIndex:_index.row] isEqual:@""]) ?
-        (_skill.estimate = [[_level objectAtIndex:_index.section] objectAtIndex:_index.row]): (_skill.estimate = @"");
+    (_skill.estimate = [[_level objectAtIndex:_index.section] objectAtIndex:_index.row]): (_skill.estimate = @"");
     
     NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:_level, @"recorderLevel", _comment,
                           @"recorderComment", _arrayOfRecordsUrl, @"recorderUrl",
@@ -146,9 +146,6 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSectionInfoTable:(NSInteger)section
 {
-    if (quickComments.count == 0)
-        return 3;
-    else
         return quickComments.count;
 }
 
@@ -158,16 +155,15 @@
     : [self recordTableView:tableView cellForRowAtIndexPath:indexPath];
 }
 
-- (UITableViewCell *)infoTableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
+- (UITableViewCell *)infoTableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"AutoCompleteRowIdentifier"];
     
-    if (cell == nil) {
+    if (cell == nil)
         cell = [[UITableViewCell alloc]
-                initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"AutoCompleteRowIdentifier"] ;
-    }
-    (quickComments.count > 0) ? (cell.textLabel.text = [[quickComments objectAtIndex:indexPath.row] comment]) :
-    (cell.textLabel.text = @"");
+                initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"AutoCompleteRowIdentifier"];
+
+    cell.textLabel.text = [[quickComments objectAtIndex:indexPath.row] comment];
     
     return cell;
 }
@@ -193,7 +189,6 @@
     return cell;
 }
 
-
 # pragma mark - deletingCellMethods
 // Override to support editing the table view.
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
@@ -210,20 +205,12 @@
         EHAppDelegate *appDelegate = [[UIApplication sharedApplication]delegate];
         NSManagedObjectContext *context = [appDelegate managedObjectContext];
         
-        NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-        NSEntityDescription *entity = [NSEntityDescription entityForName:[QuickComment entityName]
-                                                  inManagedObjectContext:context];
-        [fetchRequest setEntity:entity];
-        fetchRequest.predicate = nil;
-        NSArray *fetchedObjects = [context executeFetchRequest:fetchRequest error:nil];
-
         NSMutableArray *temp = [quickComments mutableCopy];
-
         [temp removeObjectAtIndex:indexPath.row];
         quickComments = temp;
-    
-        for (QuickComment *myCom in fetchedObjects)
-            if ([myCom isEqual:fetchedObjects[indexPath.row]])
+        
+        for (QuickComment *myCom in [self getCommentFromDB])
+            if ([myCom isEqual:[self getCommentFromDB][indexPath.row]])
                 [context deleteObject:myCom];
         
         [_infoTableView reloadData];
@@ -237,24 +224,16 @@
         EHAppDelegate *appDelegate = [[UIApplication sharedApplication]delegate];
         NSManagedObjectContext *context = [appDelegate managedObjectContext];
         
-        NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-        NSEntityDescription *entity = [NSEntityDescription entityForName:[AudioRecord entityName]
-                                                  inManagedObjectContext:context];
-        
-        [fetchRequest setEntity:entity];
-        fetchRequest.predicate = nil;
-        NSArray *fetchedObjects = [context executeFetchRequest:fetchRequest error:nil];
-        
         [[NSFileManager defaultManager] removeItemAtPath:_arrayOfRecordsString[indexPath.row] error:nil];
         
         NSMutableArray *tempOfString = [_arrayOfRecordsString mutableCopy];
         [tempOfString removeObjectAtIndex:indexPath.row];
         _arrayOfRecordsString = tempOfString;
         
-        for (AudioRecord *myRec in fetchedObjects)
-            if ([myRec isEqual:fetchedObjects[indexPath.row]])
+        for (AudioRecord *myRec in [self getCommentFromDB])
+            if ([myRec isEqual:[self getCommentFromDB][indexPath.row]])
                 [context deleteObject:myRec];
-
+        
         [_recordsTableView reloadData];
     }
 }
@@ -276,7 +255,7 @@
         _commentView.text = selectedCell.textLabel.text;
     else
         _commentView.text = [_commentView.text stringByAppendingString:[@" "  stringByAppendingString: selectedCell.textLabel.text]];
-
+    
     _commentView.textColor = [UIColor blackColor];
     NSMutableArray *temp = [_comment mutableCopy];
     [[temp objectAtIndex:_index.section] setObject: _commentView.text atIndex:_index.row];
@@ -321,7 +300,7 @@
         nibName = @"EHSkillLevelPopupIpad";
     else
         nibName = @"EHSkillLevelPopupIphone";
-
+    
     UINib *nib = [UINib nibWithNibName:nibName bundle:nil];
     EHSkillLevelPopup *popup = [[nib instantiateWithOwner:nil options:nil] lastObject];
     
@@ -493,21 +472,6 @@
 
 #pragma mark quick comment
 
-//int cnt;
-//- (IBAction)buttonEdit:(id)sender {
-//    UIButton *button = sender;
-//    if (cnt == 0){
-//        [self.recordsTableView setEditing:YES animated:YES];
-//         button.titleLabel.text = @"Done";
-//        cnt++;
-//    }
-//    else if (cnt == 1){
-//        [self.recordsTableView setEditing:NO animated:YES];
-//        button.titleLabel.text = @"Edit";
-//        cnt--;
-//    }
-//}
-
 - (IBAction)quickComment:(id)sender
 {
     if(isTextView)
@@ -531,15 +495,9 @@
     EHAppDelegate *appDelegate = [[UIApplication sharedApplication]delegate];
     NSManagedObjectContext *context = [appDelegate managedObjectContext];
     
-    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-    NSEntityDescription *entity = [NSEntityDescription entityForName:[QuickComment entityName]
-                                              inManagedObjectContext:context];
-    
-    [fetchRequest setEntity:entity];
-    NSArray *fetchedObjects = [context executeFetchRequest:fetchRequest error:nil];
     BOOL isExist = false;
     
-    for (QuickComment *myCom in fetchedObjects)
+    for (QuickComment *myCom in [self getCommentFromDB])
     {
         if ([myCom.comment isEqualToString:comment] || [comment isEqualToString: @"Please post your comments"]
             || [comment isEqualToString: @""])
@@ -572,8 +530,7 @@
                                               inManagedObjectContext:context];
     
     [fetchRequest setEntity:entity];
-    NSArray *fetchedObjects = [context executeFetchRequest:fetchRequest error:nil];
-    return fetchedObjects;
+    return [context executeFetchRequest:fetchRequest error:nil];
 }
 
 @end

@@ -19,7 +19,6 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-       
         
     }
     return self;
@@ -32,32 +31,32 @@
     _panel.layer.cornerRadius = 10;
     _panel.layer.borderColor = [UIColor grayColor].CGColor;
     _panel.layer.borderWidth = 2;
-  
+    
     
     _labelNameOfRecruiter.text = [NSString stringWithFormat:@"%@ %@", _recruiter.firstName, _recruiter.lastName];
     _emailRecruiter.text = _recruiter.email;
     _skypeRecruiter.text = _recruiter.skypeAccount;
     
-    EHCheckNetworkConnection * checkConnection;
-    if (_recruiter.photoUrl!= nil)
+    EHCheckNetworkConnection *checkConnection;
+    if (_recruiter.photoUrl != nil)
+    {
+        checkConnection = [[EHCheckNetworkConnection alloc] initWithHost : _recruiter.photoUrl];
+        if (checkConnection.internetActive == YES)
         {
-            checkConnection = [[EHCheckNetworkConnection alloc] initWithHost : _recruiter.photoUrl];
-            if (checkConnection.internetActive == YES)
-                {
-                    NSURL *imgURL = [NSURL URLWithString:_recruiter.photoUrl];
-        
-                    NSData *imgdata=[[NSData alloc]initWithContentsOfURL:imgURL];
-        
-                    UIImage *image=[[UIImage alloc]initWithData:imgdata];
-
-                    [_photoRecruiter setImage:image];
-                }
+            NSURL *imgURL = [NSURL URLWithString:_recruiter.photoUrl];
+            
+            NSData *imgdata=[[NSData alloc]initWithContentsOfURL:imgURL];
+            
+            UIImage *image=[[UIImage alloc]initWithData:imgdata];
+            
+            [_photoRecruiter setImage:image];
         }
-        else
-            if (_recruiter.photoUrl == nil || checkConnection.internetActive == NO){
-                [_photoRecruiter setImage:[UIImage imageNamed:@"contact.png"]];
-            }
-
+    }
+    else
+        if (_recruiter.photoUrl == nil || checkConnection.internetActive == NO){
+            [_photoRecruiter setImage:[UIImage imageNamed:@"contact.png"]];
+        }
+    
     [super viewDidLoad];
 }
 
@@ -117,20 +116,17 @@
 //----------------------------— Skype implementation —----------------------------
 
 - (IBAction)skypeMe:(id)sender {
-  
+    
     if(![_recruiter.skypeAccount isEqualToString:@"echo123"])
     {
         BOOL installed = [[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"skype:"]];
+        
         if(installed)
-        {
             [[UIApplication sharedApplication] openURL:[NSURL URLWithString:
                                                         [NSString stringWithFormat:@"skype:%@?call",
                                                          _recruiter.skypeAccount]]];
-        }
         else
-        {
             [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://itunes.com/apps/skype/skype"]];
-        }
     }
     else
     {

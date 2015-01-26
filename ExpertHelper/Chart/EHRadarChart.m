@@ -36,7 +36,8 @@
 }
 
 
-- (void)setDefaultValues {
+- (void)setDefaultValues
+{
     self.backgroundColor = [UIColor whiteColor];
     _centerPoint = CGPointMake(self.frame.size.width / 2, self.frame.size.height / 2);
     _r = MIN(self.frame.size.width / 2 - PADDING, self.frame.size.height / 2 - PADDING);
@@ -67,21 +68,25 @@
     
 }
 
-- (void)setColors:(NSArray *)colors {
+- (void)setColors:(NSArray *)colors
+{
     NSMutableArray *array = [_colors mutableCopy];
     [array removeAllObjects];
-    for (UIColor *color in colors) {
+    
+    for (UIColor *color in colors)
         [array addObject:[color colorWithAlphaComponent:self.colorOpacity]];
-    }
+    
     _colors = array;
 }
 
 
-- (void)setDataSeries:(NSArray *)dataSeries {
+- (void)setDataSeries:(NSArray *)dataSeries
+{
 	_dataSeries = dataSeries;
 	_numOfV = [_dataSeries[0] count];
     NSMutableArray *array = [self.colors mutableCopy];
-	if (self.colors.count < _dataSeries.count) {
+    
+	if (self.colors.count < _dataSeries.count)
 		for (int i = 0; i < _dataSeries.count; i++) {
 			UIColor *color = [UIColor colorWithHue:1.0 * (i * COLOR_HUE_STEP % MAX_NUM_OF_COLOR) / MAX_NUM_OF_COLOR
 			                            saturation:1
@@ -89,12 +94,13 @@
 			                                 alpha:self.colorOpacity];
 			array[i] = color;
 		}
-	}
+	
     self.colors = array;
 }
 
 
-- (void)drawRect:(CGRect)rect {
+- (void)drawRect:(CGRect)rect
+{
 	NSArray *colors = [self.colors copy];
 	CGFloat radPerV = M_PI * 2 / _numOfV;
 	CGContextRef context = UIGraphicsGetCurrentContext();
@@ -117,25 +123,24 @@
         [paragraphStyle setLineBreakMode:NSLineBreakByClipping];
         [paragraphStyle setAlignment:NSTextAlignmentCenter];
         
-        NSDictionary *attributes = @{ NSFontAttributeName: self.scaleFont,
-                                      NSParagraphStyleAttributeName: paragraphStyle };
+        NSDictionary *attributes = @{ NSFontAttributeName:self.scaleFont,
+                                      NSParagraphStyleAttributeName:paragraphStyle };
         
         [attributeName drawInRect:CGRectMake(legendCenter.x - width / 2.0,
                                              legendCenter.y - height / 2.0,
                                              width,
                                              height)
                    withAttributes:attributes];
-        
     }
-    
     
     //draw background fill color
     [_backgroundFillColor setFill];
     CGContextMoveToPoint(context, _centerPoint.x, _centerPoint.y - _r);
-    for (int i = 1; i <= _numOfV; ++i) {
+    
+    for (int i = 1; i <= _numOfV; ++i)
         CGContextAddLineToPoint(context, _centerPoint.x - _r * sin(i * radPerV),
                                 _centerPoint.y - _r * cos(i * radPerV));
-    }
+    
     CGContextFillPath(context);
     
 	//draw steps line
@@ -144,16 +149,16 @@
 	[[UIColor lightGrayColor] setStroke];
 	CGContextSaveGState(context);
 	for (int step = 1; step <= _steps; step++) {
-		for (int i = 0; i <= _numOfV; ++i) {
-			if (i == 0) {
+        
+		for (int i = 0; i <= _numOfV; ++i)
+			if (i == 0)
 				CGContextMoveToPoint(context, _centerPoint.x, _centerPoint.y - _r * step / _steps);
-			}
 			else {
                 CGContextSetLineDash(context, 0, dashedPattern, 2);
 				CGContextAddLineToPoint(context, _centerPoint.x - _r * sin(i * radPerV) * step / _steps,
 				                        _centerPoint.y - _r * cos(i * radPerV) * step / _steps);
 			}
-		}
+		
 		CGContextStrokePath(context);
 	}
 	CGContextRestoreGState(context);
@@ -173,38 +178,34 @@
     
 	//draw lines
 	for (int serie = 0; serie < [_dataSeries count]; serie++) {
-		if (self.fillArea) {
+		if (self.fillArea)
 			[colors[serie] setFill];
-		}
-		else {
+		
+		else
 			[colors[serie] setStroke];
-		}
+		
 		for (int i = 0; i < _numOfV; ++i) {
-			CGFloat value = [_dataSeries[serie][i] floatValue]*_koeficient;
-			if (i == 0) {
+			CGFloat value = [_dataSeries[serie][i] floatValue] * _koeficient;
+            
+			if (i == 0)
 				CGContextMoveToPoint(context, _centerPoint.x, _centerPoint.y - (value - _minValue) / (_maxValue - _minValue) * _r);
-			}
-			else {
+			else
 				CGContextAddLineToPoint(context, _centerPoint.x - (value - _minValue) / (_maxValue  - _minValue) * _r * sin(i * radPerV),
 				                        _centerPoint.y - (value - _minValue ) / (_maxValue  - _minValue) * _r * cos(i * radPerV));
-			}
 		}
 		CGFloat value = [_dataSeries[serie][0] floatValue]*_koeficient;
         
 		CGContextAddLineToPoint(context, _centerPoint.x, _centerPoint.y - (value - _minValue) / (_maxValue - _minValue) * _r);
         
-		if (self.fillArea) {
+		if (self.fillArea)
 			CGContextFillPath(context);
-		}
-		else {
+		else
 			CGContextStrokePath(context);
-		}
-        
         
 		//draw data points
 		if (_drawPoints) {
 			for (int i = 0; i < _numOfV; i++) {
-				CGFloat value = [_dataSeries[serie][i] floatValue]*_koeficient;
+				CGFloat value = [_dataSeries[serie][i] floatValue] * _koeficient;
 				CGFloat xVal = _centerPoint.x - (value - _minValue) / (_maxValue - _minValue) * _r * sin(i * radPerV);
 				CGFloat yVal = _centerPoint.y - (value - _minValue) / (_maxValue - _minValue) * _r * cos(i * radPerV);
                 

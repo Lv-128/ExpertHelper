@@ -1,4 +1,3 @@
-
 //  EHCalendarEventsParser.m
 //  AppointmentList
 //
@@ -21,8 +20,7 @@
     return self;
 }
 
-#pragma mark -
-#pragma mark Access Calendar
+#pragma mark - Access Calendar
 
 // Check the authorization status of our application for Calendar
 - (void)checkEventStoreAccessForCalendar
@@ -54,7 +52,6 @@
     }
 }
 
-
 // Prompt the user for access to their Calendar
 - (void)requestCalendarAccess
 {
@@ -62,7 +59,7 @@
      {
          if (granted)
          {
-             EHCalendarEventsParser * __weak weakSelf = self;
+             EHCalendarEventsParser *__weak weakSelf = self;
              // Let's ensure that our code will be executed from the main queue
              dispatch_async(dispatch_get_main_queue(), ^{
                  // The user has granted access to their Calendar; let's populate our UI with all events occuring in the next 24 hours.
@@ -72,17 +69,13 @@
      }];
 }
 
-
 // when  granted permission to Calendar  INITIALIZATION OF EVENTS
 - (void)accessGrantedForCalendar
 {
-    
-    
     NSMutableArray *calendars = [[NSMutableArray alloc]init];
     
     NSArray *accountsArray = [self.eventStore calendarsForEntityType:EKEntityTypeEvent];
-    NSMutableArray *calendarIdentifiers = [[NSMutableArray alloc]init ];
-    
+    NSMutableArray *calendarIdentifiers = [[NSMutableArray alloc]init];
     
     for (int i = 0; i < [accountsArray count]; i++) {
         EKCalendar *tempCal = [accountsArray objectAtIndex:i];
@@ -97,33 +90,28 @@
 - (NSArray *)fetchEvents
 {
     NSTimeInterval secondsPerDay = 24 * 60 * 60 ;  //  one day interval = 86400 seconds
-    NSDate *startDate = [[NSDate alloc] initWithTimeIntervalSinceNow: -secondsPerDay * 365]; // 10 days ago
+    NSDate *startDate = [[NSDate alloc] initWithTimeIntervalSinceNow: - secondsPerDay * 365]; // 10 days ago
     NSDate *endDate = [self dateByAddingYears:3 toDate:startDate];
-	// We will only search the default calendar for our events
-	NSArray *calendarArray = self.defaultCalendars;
+    // We will only search the default calendar for our events
+    NSArray *calendarArray = self.defaultCalendars;
     
     // Create the predicate
-	NSPredicate *predicate = [self.eventStore predicateForEventsWithStartDate: startDate
-                                                                      endDate: endDate
-                                                                    calendars: calendarArray];
-	// Fetch all events that match the predicate
-	NSMutableArray *events = [NSMutableArray arrayWithArray:[self.eventStore eventsMatchingPredicate: predicate]];
+    NSPredicate *predicate = [self.eventStore predicateForEventsWithStartDate:startDate
+                                                                      endDate:endDate
+                                                                    calendars:calendarArray];
+    // Fetch all events that match the predicate
+    NSMutableArray *events = [NSMutableArray arrayWithArray:[self.eventStore eventsMatchingPredicate:predicate]];
     
-    
-    NSMutableArray *titles = [[NSMutableArray alloc ] init];
+    NSMutableArray *titles = [[NSMutableArray alloc]init];
     for (EKEvent *event in events)
-    {
         [titles  addObject:event.title];
-    }
     
     NSMutableArray *allEvents = [[NSMutableArray alloc]initWithCapacity:0];
     for (EKEvent *event in events)
     {
         NSString *upperCaseEventTitle = [event.title uppercaseString];
         if ([upperCaseEventTitle rangeOfString:@"INTERVIEW"].location != NSNotFound)
-        {
             [allEvents addObject:event];
-        }
     }
     return allEvents;
 }
@@ -165,7 +153,6 @@
                                                 toDate:inputDate options:0];
     return newDate;
 }
-
 
 @end
 

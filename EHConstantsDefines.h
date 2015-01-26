@@ -7,6 +7,7 @@
 //
 #import "InterviewAppointment.h"
 #import "ExternalInterview.h"
+#import "ITAInterview.h"
 #import "Skills.h"
 #import "SkillsLevels.h"
 #import "Recruiter.h"
@@ -36,6 +37,7 @@
 #import "EHListOfInterviewsViewController.h"
 #import "EHCalendarEventsParser.h"
 #import "EHEventsGetInfoParser.h"
+
 id interviewFromEventsParser;
 
 #ifndef ExpertHelper_EHConstantsDefines_h

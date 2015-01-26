@@ -104,13 +104,13 @@
     return  self;
 }
 
+#pragma mark - Define Type of interview
 
-#pragma mark Define Type of interview
 - (void)canDefineTypeAsITA:(NSString *)string
 {
     self.parseOptions.isIta = NO;
     NSError *error = NULL;
-    NSString *pattern = @"ita|it academy|itacademy";
+    NSString *pattern = @"ita|it academy|itacademy|ITA|IT academy";
     
     NSRange range = NSMakeRange(0, string.length);
     
@@ -121,13 +121,15 @@
     NSArray *matches = [regex matchesInString:string
                                       options:(NSMatchingOptions)regexOptions
                                         range:range];
-    ([matches count] > 0) ?  (self.parseOptions.isIta = YES) : (self.parseOptions.isIta = NO);
-    
+    if ([matches count] > 0) {
+        self.parseOptions.isIta = YES;
+        self.parseOptions.isOneCandidate = NO;
+    } else
+        self.parseOptions.isIta = NO;
 }
 
 - (void)canDefineTypeAsExternal:(NSString *)string
 {
-    
     NSError *error = NULL;
     NSString *pattern = @"technical";
     
@@ -146,22 +148,6 @@
         self.parseOptions.isExternal = YES;
         self.parseOptions.isIta = NO;
     }
-}
-
-- (NSNumber *)canDefineTypeOfEvent:(EKEvent *)event
-{
-    [self canDefineAmountCandidates:event.title];
-    [self canDefineTypeAsITA:event.title];
-    [self canDefineTypeAsExternal:event.title];
-    int type;
-    if (self.parseOptions.isIta)
-        type = 1;
-    else if (self.parseOptions.isExternal)
-        type = 3;
-    else
-        type = 0;
-    
-    return [NSNumber numberWithInt:type];
 }
 
 - (void)canDefineAmountCandidates:(NSString *)string
@@ -186,38 +172,51 @@
     }
 }
 
+- (NSNumber *)canDefineTypeOfEvent:(EKEvent *)event
+{
+    [self canDefineAmountCandidates:event.title];
+    [self canDefineTypeAsITA:event.title];
+    [self canDefineTypeAsExternal:event.title];
+    int type;
+    if (self.parseOptions.isIta)
+        type = 1;
+    else if (self.parseOptions.isExternal)
+        type = 3;
+    else
+        type = 0;
+    
+    return [NSNumber numberWithInt:type];
+}
 
-#pragma mark Get people from event
+#pragma mark - Get people from event
+
 - (Recruiter *)getRecruiterFromEvent:(EKEvent *)event andAddToDB:(NSManagedObjectContext *)context
 {
     ///////////////////////////recruiter///////////////////
     EKParticipant *organizer = event.organizer;
-    NSString * name = organizer.name;
-    NSString * email = @"unknown@unknown.com";
-    if ([organizer respondsToSelector:@selector(emailAddress)]) {
-        email = [organizer performSelector:@selector(emailAddress)];
-    }
+    NSString *name = organizer.name;
+    NSString *email = @"unknown@unknown.com";
     
-    EHCalendarParseResult * parseNameAndLastnameOfRecruiter = [self getNameOfRecruiter:name
-                                                                       andEmailAddress:email];
+    if ([organizer respondsToSelector:@selector(emailAddress)])
+        email = [organizer performSelector:@selector(emailAddress)];
+    
+    EHCalendarParseResult *parseNameAndLastnameOfRecruiter = [self getNameOfRecruiter:name
+                                                                      andEmailAddress:email];
     
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     NSEntityDescription *entity = [NSEntityDescription entityForName:[Recruiter entityName]
                                               inManagedObjectContext:context];
-    NSPredicate *predicate =
-    [NSPredicate predicateWithFormat:@"email == %@",email];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"email == %@",email];
+    
     [fetchRequest setPredicate:predicate];
     [fetchRequest setEntity:entity];
     
     NSArray *fetchedObjects = [context executeFetchRequest:fetchRequest error:nil];
     
-    if(fetchedObjects.count>0)// we don't need this actually
-    {
+    if(fetchedObjects.count > 0)// we don't need this actually
         for (Recruiter *info in fetchedObjects)
-        {
             return info;
-        }
-    }
+    
     else
     {
         Recruiter *recruiter = [NSEntityDescription
@@ -227,18 +226,17 @@
         recruiter.lastName = parseNameAndLastnameOfRecruiter.lastName;
         recruiter.email = email;
         recruiter.skypeAccount = @"echo123";
-        NSString * urlString = [self callToWebAndGetPictureOfRecruiterWithName:recruiter.firstName
-                                                                   andLastName:recruiter.lastName];
+        NSString *urlString = [self callToWebAndGetPictureOfRecruiterWithName:recruiter.firstName
+                                                                  andLastName:recruiter.lastName];
         if (urlString != nil)
-        {
             recruiter.photoUrl = urlString;
-        }
+        
         NSString *skype = [self callToWebAndGetSkypeOfRecruiterfromName:(NSString *)recruiter.firstName
                                                                lastname:(NSString*)recruiter.lastName];
+        
         if (skype != nil)
-        {
             recruiter.skypeAccount = skype;
-        }
+        
         if(skype == nil && urlString != nil)
         {
             skype = [self callToWebAndGetSkypeOfRecruiterfromName:(NSString *)recruiter.firstName
@@ -257,7 +255,6 @@
 {
     NSError *error;
     
-    
     NSString *patternLastnameFirst = [NSString stringWithFormat:@"(<img src(.)*softserve(.)*/%@-%@(.)*png.>)|",lastName,firstName];
     NSString *patternFirstnameFirst =[NSString stringWithFormat:@"(<img src(.)*softserve.ua(.)*/%@-%@(.)*png.>)",firstName,lastName];
     NSString *pattern = [patternLastnameFirst stringByAppendingString:patternFirstnameFirst];
@@ -268,8 +265,8 @@
     
     NSURL *webUnFormatted = [NSURL URLWithString:getWebInfo];
     NSURL *webUnFormatted2 = [NSURL URLWithString:getWebInfo2];
-    NSString * webFormatted;
-    NSString * webFormatted2;
+    NSString *webFormatted;
+    NSString *webFormatted2;
     
     @try
     {
@@ -281,11 +278,10 @@
         NSLog(@"%@", exception);
     }
     
-    
-    if (webFormatted !=nil && webFormatted != nil)
+    if (webFormatted != nil && webFormatted != nil)
     {
-        NSString *webContent = [NSString stringWithFormat:@"%@",webFormatted]; // web page content
-        webContent = [webContent stringByAppendingString:[NSString stringWithFormat:@" %@",webFormatted2]]; // web page2 content
+        NSString *webContent = [NSString stringWithFormat:@"%@", webFormatted]; // web page content
+        webContent = [webContent stringByAppendingString:[NSString stringWithFormat:@" %@", webFormatted2]]; // web page2 content
         
         NSRange range = NSMakeRange(0, webContent.length);
         NSRegularExpressionOptions regexOptions = NSRegularExpressionCaseInsensitive;
@@ -295,9 +291,9 @@
         NSArray *matches = [regex matchesInString:webContent
                                           options:(NSMatchingOptions)regexOptions
                                             range:range];
-        
-        NSString * neededString;
+        NSString *neededString;
         NSMutableArray *results = [[NSMutableArray alloc]init];
+        
         if ([matches count] > 0)
         {
             for (NSTextCheckingResult *match in matches)
@@ -306,27 +302,23 @@
                 [results addObject:[webContent substringWithRange:matchRange]];
             }
             
-            NSArray* parseWithSpaces = [results[0] componentsSeparatedByString: @"\""]; // separation  with  "
+            NSArray *parseWithSpaces = [results[0] componentsSeparatedByString:@"\""]; // separation  with  "
             neededString = parseWithSpaces[0];
             for (int i = 0; i < parseWithSpaces.count;i++)
-            {
                 if (neededString.length < [parseWithSpaces[i] length])
-                {
                     neededString = parseWithSpaces[i]; // the url of picture
-                }
-            }
             
             return neededString;
         }
-        else   return  nil;
-        
+        else
+            return nil;
     }
-    else    return  nil;
-    
+    else
+        return nil;
 }
 
-- (NSString *) callToWebAndGetSkypeOfRecruiterfromName:(NSString *)name
-                                              lastname:(NSString*)lastname
+- (NSString *)callToWebAndGetSkypeOfRecruiterfromName:(NSString *)name
+                                             lastname:(NSString *)lastname
 {
     NSError *error;
     
@@ -336,8 +328,8 @@
     
     NSURL *webUnFormatted = [NSURL URLWithString:getWebInfo];
     NSURL *webUnFormatted2 = [NSURL URLWithString:getWebInfo2];
-    NSString * webFormatted;
-    NSString * webFormatted2;
+    NSString *webFormatted;
+    NSString *webFormatted2;
     @try
     {
         webFormatted = [NSString stringWithContentsOfURL:webUnFormatted
@@ -353,12 +345,12 @@
     }
     
     
-    if (webFormatted !=nil && webFormatted != nil)
+    if (webFormatted != nil && webFormatted != nil)
     {
-        NSString *webContent = [NSString stringWithFormat:@"%@",webFormatted]; // web page content
-        webContent = [webContent stringByAppendingString:[NSString stringWithFormat:@" %@",webFormatted2]];
+        NSString *webContent = [NSString stringWithFormat:@"%@", webFormatted]; // web page content
+        webContent = [webContent stringByAppendingString:[NSString stringWithFormat:@" %@", webFormatted2]];
         
-        NSString *pattern = [NSString stringWithFormat:@"(a href=(.)*%@.)|(a href=(.)*%@.)",name,lastname];
+        NSString *pattern = [NSString stringWithFormat:@"(a href=(.)*%@.)|(a href=(.)*%@.)", name, lastname];
         NSRange range = NSMakeRange(0, webContent.length);
         
         NSRegularExpressionOptions regexOptions = NSRegularExpressionCaseInsensitive;
@@ -369,8 +361,9 @@
                                           options:(NSMatchingOptions)regexOptions
                                             range:range];
         
-        NSString * neededString;
+        NSString *neededString;
         NSMutableArray *results = [[NSMutableArray alloc]init];
+        
         if ([matches count] > 0)
         {
             for (NSTextCheckingResult *match in matches)
@@ -378,37 +371,32 @@
                 NSRange matchRange = match.range;
                 [results addObject:[webContent substringWithRange:matchRange]];
             }
-            
-            NSArray* parseWithSpaces = [results[0] componentsSeparatedByString: @"\""]; // separation  with  "
+            NSArray *parseWithSpaces = [results[0] componentsSeparatedByString: @"\""]; // separation  with  "
             neededString = parseWithSpaces[0];
-            for (int i = 0; i < parseWithSpaces.count;i++)
-            {
-                if (neededString.length < [parseWithSpaces[i] length])
-                {
-                    neededString = parseWithSpaces[i]; // the url
-                }
-            }
             
-            return   [self getSkypeFromUrl:neededString];
+            for (int i = 0; i < parseWithSpaces.count; i++)
+                if (neededString.length < [parseWithSpaces[i] length])
+                    neededString = parseWithSpaces[i]; // the url
+            
+            return [self getSkypeFromUrl:neededString];
         }
     }
     return nil;
 }
 
-- (NSString *) callToWebAndGetSkypeOfRecruiterfromName:(NSString *)name
-                                              lastname:(NSString*)lastname
-                                              andImage:(NSString *)img
+- (NSString *)callToWebAndGetSkypeOfRecruiterfromName:(NSString *)name
+                                             lastname:(NSString*)lastname
+                                             andImage:(NSString *)img
 {
     NSError *error;
-    
     
     NSString *getWebInfo = @"https://softserve.ua/ru/vacancies/recruiters/?tax-directions=0&tax-country=117"; /// softserve.ua all recruiters from ukraine
     NSString *getWebInfo2 = @"https://softserve.ua/ru/vacancies/recruiters/page/2/?tax-directions=0&tax-country=117";
     
     NSURL *webUnFormatted = [NSURL URLWithString:getWebInfo];
     NSURL *webUnFormatted2 = [NSURL URLWithString:getWebInfo2];
-    NSString * webFormatted;
-    NSString * webFormatted2;
+    NSString *webFormatted;
+    NSString *webFormatted2;
     @try
     {
         webFormatted = [NSString stringWithContentsOfURL:webUnFormatted encoding:NSASCIIStringEncoding error:&error];
@@ -420,24 +408,24 @@
     }
     
     
-    if (webFormatted !=nil && webFormatted != nil)
+    if (webFormatted != nil && webFormatted != nil)
     {
-        NSString *webContent = [NSString stringWithFormat:@"%@",webFormatted]; // web page content
-        webContent = [webContent stringByAppendingString:[NSString stringWithFormat:@" %@",webFormatted2]]; // web page content
+        NSString *webContent = [NSString stringWithFormat:@"%@", webFormatted]; // web page content
+        webContent = [webContent stringByAppendingString:[NSString stringWithFormat:@" %@", webFormatted2]]; // web page content
         
-        NSArray* parseWitNextLine = [webContent componentsSeparatedByString: @"\n"]; // separation  with  "
-        NSString* nospacestring = [parseWitNextLine componentsJoinedByString:@""];
+        NSArray *parseWitNextLine = [webContent componentsSeparatedByString: @"\n"]; // separation  with  "
+        NSString *nospacestring = [parseWitNextLine componentsJoinedByString:@""];
         webContent = nospacestring;
         
         
-        NSString *pattern = [NSString stringWithFormat:@"(%@)",img];
+        NSString *pattern = [NSString stringWithFormat:@"(%@)", img];
         NSRange range = NSMakeRange(0, webContent.length);
         
         NSRegularExpressionOptions regexOptions = NSRegularExpressionCaseInsensitive;
         NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:pattern options:regexOptions error:&error];
         NSArray *matches = [regex matchesInString:webContent options:(NSMatchingOptions)regexOptions range:range];
         
-        NSString * neededString;
+        NSString *neededString;
         
         NSMutableArray *results = [[NSMutableArray alloc]init];
         if ([matches count] > 0)
@@ -448,22 +436,16 @@
                 [results addObject:[webContent substringWithRange:r]];
             }
             
-            
-            NSArray* parseWitNextLine = [results[0] componentsSeparatedByString: @" "]; // separation  with  "
-            NSString* nospacestring = [parseWitNextLine componentsJoinedByString:@""];
+            NSArray *parseWitNextLine = [results[0] componentsSeparatedByString:@" "]; // separation  with  "
+            NSString *nospacestring = [parseWitNextLine componentsJoinedByString:@""];
             results[0] = nospacestring;
-            NSArray* parseWithSpaces = [results[0] componentsSeparatedByString: @"\""]; // separation  with  "
+            NSArray *parseWithSpaces = [results[0] componentsSeparatedByString:@"\""]; // separation  with  "
             neededString = parseWithSpaces[0];
-            for (int i = 0; i < parseWithSpaces.count;i++)
-            {
+            for (int i = 0; i < parseWithSpaces.count; i++)
                 if (neededString.length < [parseWithSpaces[i] length])
-                {
                     neededString = parseWithSpaces[i]; // the url
-                }
-            }
             
             return   [self getSkypeFromUrl:neededString];
-            
         }
     }
     return nil;
@@ -471,11 +453,9 @@
 
 -(NSString *)getSkypeFromUrl:(NSString *)skypeUrl
 {
-    
-    
     NSURL *webUnFormatted = [NSURL URLWithString:skypeUrl];
     
-    NSString * webFormatted;
+    NSString *webFormatted;
     
     NSError *error;
     @try
@@ -487,9 +467,9 @@
         NSLog(@"%@", exception);
     }
     
-    if (webFormatted !=nil && webFormatted != nil)
+    if (webFormatted != nil && webFormatted != nil)
     {
-        NSString *webContent = [NSString stringWithFormat:@"%@",webFormatted]; // web page content
+        NSString *webContent = [NSString stringWithFormat:@"%@", webFormatted]; // web page content
         
         NSString *pat = @"<((.)*)skype((.)*)[^>]*((.)*)((.)*)>";
         
@@ -503,7 +483,7 @@
                                            options:(NSMatchingOptions)regexOptions2
                                              range:range];
         
-        NSString * neededString;
+        NSString *neededString;
         NSMutableArray *results = [[NSMutableArray alloc]init];
         if ([matches2 count] > 0)
         {
@@ -514,20 +494,18 @@
                 NSRange r = NSMakeRange(matchRange.length + matchRange.location,70  );
                 [results addObject:[webContent substringWithRange:r]];
             }
-            NSArray* words = [results[0] componentsSeparatedByCharactersInSet:
+            NSArray *words = [results[0] componentsSeparatedByCharactersInSet:
                               [NSCharacterSet whitespaceAndNewlineCharacterSet]];
             NSString* nospacestring = [words componentsJoinedByString:@""];
             [nospacestring stringByReplacingOccurrencesOfString:@" " withString:@""];
             NSArray* parseWithSpaces = [nospacestring componentsSeparatedByCharactersInSet:
                                         [NSCharacterSet characterSetWithCharactersInString:@"<>"]]; // separation  with  "
             neededString = parseWithSpaces[0];
-            for (int i = 0; i < parseWithSpaces.count;i++)
-            {
+            
+            for (int i = 0; i < parseWithSpaces.count; i++)
                 if (neededString.length < [parseWithSpaces[i] length])
-                {
                     neededString = parseWithSpaces[i]; // the url
-                }
-            }
+            
             return neededString;
         }
         return nil;
@@ -547,13 +525,10 @@
     [fetchRequest setEntity:entity];
     
     NSArray *fetchedObjects = [context executeFetchRequest:fetchRequest error:nil];
+    
     if (fetchedObjects.count > 0)// we don't need this actually
-    {
         for (Candidate *candidate in fetchedObjects)
-        {
             candidateResult = candidate;
-        }
-    }
     else
     {
         candidateResult = [NSEntityDescription insertNewObjectForEntityForName:[Candidate entityName]
@@ -585,7 +560,7 @@
             [results addObject:[string substringWithRange:matchRange]];
         }
         
-        EHCalendarParseResult *parseResult ;
+        EHCalendarParseResult *parseResult;
         
         for (NSString *str in results)
         {
@@ -610,10 +585,9 @@
     return stringResults;
 }
 
--(InterviewAppointment *)addEventToDB:(EKEvent *)event
+- (InterviewAppointment *)addEventToDB:(EKEvent *)event
 {
     NSManagedObjectContext *context = [self managedObjectContext];
-    
     
     InterviewAppointment *interview = [NSEntityDescription
                                        insertNewObjectForEntityForName:[InterviewAppointment entityName]
@@ -628,28 +602,45 @@
     interview.url = [NSString stringWithContentsOfURL:event.URL
                                              encoding:NSASCIIStringEncoding
                                                 error:nil];
-    
     /// add recruiter
     Recruiter *recruiter = [self getRecruiterFromEvent:event andAddToDB:context];
     [recruiter.interviewsSet addObject:interview];
     interview.idRecruiter = recruiter;
     
     // add candidate
-    Candidate *candidate = [self getCandidateFromEvent:event andAddToDB:context];
-    ExternalInterview *externalInterview = [NSEntityDescription
-                                            insertNewObjectForEntityForName:[ExternalInterview entityName]
-                                            inManagedObjectContext:context];
-    externalInterview.idCandidate = candidate;
+    if ([interview.type intValue] == 3)
+    {
+        Candidate *candidate = [self getCandidateFromEvent:event andAddToDB:context];
+        ExternalInterview *externalInterview = [NSEntityDescription
+                                                insertNewObjectForEntityForName:[ExternalInterview entityName]
+                                                inManagedObjectContext:context];
+        externalInterview.idCandidate = candidate;
+        
+        [candidate.idExternalInterviewSet addObject:externalInterview];
+        interview.idExternal = externalInterview;
+        
+        externalInterview.idInterview = interview;
+    }
     
-    [candidate.idExternalInterviewSet addObject:externalInterview];
-    interview.idExternal = externalInterview;
-    
-    externalInterview.idInterview = interview;
+    if ([interview.type intValue] == 1)
+    {
+        ITAInterview *ITA = [NSEntityDescription
+                             insertNewObjectForEntityForName:[ITAInterview entityName]
+                             inManagedObjectContext:context];
+        
+        //ITA.itaGroupName = @"BD";
+        
+        
+        interview.idITAInterview = ITA;
+        
+        ITA.idInterview = interview;
+    }
     
     NSString *eventID = event.eventIdentifier;
     NSString *eventURL = [@"myApp/" stringByAppendingString:eventID];
     
     EKEvent *eventChange = [_calEventParser.eventStore eventWithIdentifier:eventID];
+    
     if (eventChange)
     {
         eventChange.URL = [NSURL URLWithString: eventURL];
@@ -660,22 +651,22 @@
     interview.url = eventURL;
     
     NSError *error;
-    if (![context save:&error]) {
+    
+    if (![context save:&error])
         NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
-        
-    }
+    
+    
     return interview;
 }
 
 
 - (NSArray *)parseAllEventsToInterviews
 {
-   // [_calEventParser checkEventStoreAccessForCalendar];  // Check whether we are authorized to access Calendar
+    // [_calEventParser checkEventStoreAccessForCalendar];  // Check whether we are authorized to access Calendar
     
     if(_calEventParser.eventsList.count > 0)
-    {
         _events = _calEventParser.eventsList;
-    }
+    
     
     EHCalendarParseOptions *options = [[EHCalendarParseOptions alloc] init];
     options.firstNameFirst = NO;
@@ -698,12 +689,9 @@
                                                          error:nil];
         
         if(fetchedObjects.count > 0)// we don't need this actually
-        {
             for (InterviewAppointment *interview in fetchedObjects)
-            {
                 [allInterviews addObject:interview];
-            }
-        }
+        
         else // there is no interview? let's add it
         {
             InterviewAppointment *interview =  [self addEventToDB:event];
@@ -712,8 +700,6 @@
     }
     return allInterviews;
 }
-
-
 
 - (NSArray *)sortAllInterviewsToDictionary
 {
@@ -777,16 +763,17 @@
         
         NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF.nameOfWeek LIKE[cd] %@", key];
         NSArray *filtered = [curMonth.weeks filteredArrayUsingPredicate:predicate];
-        EHWeek *curWeek ;
+        EHWeek *curWeek;
+        
         if (filtered.count == 0)
         {
             curWeek = [[EHWeek alloc]init];
             curWeek.nameOfWeek = key;
-            NSMutableArray * arrInterviws = [curWeek.interviews mutableCopy];
+            NSMutableArray *arrInterviws = [curWeek.interviews mutableCopy];
             [arrInterviws addObject: interview];
             curWeek.interviews = arrInterviws;
             
-            NSMutableArray * arr = [curMonth.weeks mutableCopy];
+            NSMutableArray *arr = [curMonth.weeks mutableCopy];
             [arr addObject: curWeek];
             curMonth.weeks = arr;
         }
@@ -811,8 +798,8 @@
     NSArray *unsortedDays = allMonthes;
     
     NSSortDescriptor *sortDescriptor;
-    sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"dateStartOfMonth"
-                                                 ascending:YES];
+    sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"dateStartOfMonth" ascending:YES];
+    
     NSArray *sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
     NSArray *sortedDays;
     sortedDays = [unsortedDays sortedArrayUsingDescriptors:sortDescriptors];
@@ -824,10 +811,13 @@
 {
     EHCalendarParseResult *parseResult = [[EHCalendarParseResult alloc]init];;
     NSArray *parseWithSpaces = [string componentsSeparatedByString:@" "];
-    if (parseWithSpaces.count == 0) parseResult = [[EHCalendarParseResult alloc] initWithName:@"1"
-                                                                                  andLastName:@"1"];
-    if (parseWithSpaces.count == 1) parseResult = [[EHCalendarParseResult alloc] initWithName:parseWithSpaces[0]
-                                                                                  andLastName:@"1"];
+    
+    if (parseWithSpaces.count == 0)
+        parseResult = [[EHCalendarParseResult alloc] initWithName:@"1" andLastName:@"1"];
+    
+    if (parseWithSpaces.count == 1)
+        parseResult = [[EHCalendarParseResult alloc] initWithName:parseWithSpaces[0] andLastName:@"1"];
+    
     if (parseWithSpaces.count > 1)
     {
         if (_parseOptions.firstNameFirst == YES)
@@ -867,7 +857,7 @@
         [results addObject:[string substringWithRange:matchRange]];
     }
     
-    EHCalendarParseResult *parseResult ;
+    EHCalendarParseResult *parseResult;
     if (results.count == 1)
     {
         NSArray *parseWithSpaces = [results[0] componentsSeparatedByString:@" "];
@@ -885,15 +875,14 @@
                                                           andLastName:lastName];
         }
     }
-    else {
-        parseResult = [[EHCalendarParseResult alloc] initWithName:@"1"
-                                                      andLastName:@"1"];
-    }
+    else
+        parseResult = [[EHCalendarParseResult alloc] initWithName:@"1" andLastName:@"1"];
+    
     return parseResult;
 }
 
-- (id)initWithObjection:(EHCalendarParseOptions *)options {
-    
+- (id)initWithObjection:(EHCalendarParseOptions *)options
+{
     self = [super init];
     if (self)
     {

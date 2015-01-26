@@ -50,7 +50,9 @@
 
 @interface EHEventsGetInfoParser : NSObject
 
+@property (nonatomic, strong) EHCalendarEventsParser *calEventParser;
 @property (nonatomic, strong) EHCalendarParseOptions *parseOptions;
+@property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
 @property (nonatomic, copy) NSArray *interviews;
 @property (nonatomic, copy) NSArray *events;
 
@@ -58,12 +60,9 @@
 - (EHCalendarParseResult *)getNameOfCandidateFromTitle:(NSString *)string;
 - (EHCalendarParseResult *)getNameOfRecruiter:(NSString *)string andEmailAddress:(NSString *) email;
 - (id)initWithObjection:(EHCalendarParseOptions *)options;
-- (NSArray *) parseAllEventsToInterviews;
+- (NSArray *)parseAllEventsToInterviews;
 - (NSArray *)sortAllInterviewsToDictionary;
 - (NSArray *)getNamesOfCandidatesFromNote:(NSString *)string;
-
-@property (nonatomic, strong) EHCalendarEventsParser *calEventParser;
-@property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 
 @end
 

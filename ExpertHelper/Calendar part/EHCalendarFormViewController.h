@@ -10,13 +10,7 @@
 #import "EHRevealViewController.h"
 
 @interface EHCalendarFormViewController : UITableViewController
-{
-    IBOutlet UILabel *label;
-   
-}
 
-@property (nonatomic,strong) NSManagedObjectContext* managedObjectContext;
-
--(IBAction)segmentButton:(id)sender;
+@property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
 
 @end

@@ -19,6 +19,7 @@ enum {
 
 @interface EHListOfInterviewsViewController () <UICollectionViewDataSource, UICollectionViewDelegate,
 UIGestureRecognizerDelegate,
+UITextFieldDelegate,
 UIActionSheetDelegate,
 MFMailComposeViewControllerDelegate>
 
@@ -45,6 +46,7 @@ MFMailComposeViewControllerDelegate>
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
     
     self.cellDateFormatter = [[NSDateFormatter alloc] init];
     [self.cellDateFormatter setDateStyle:NSDateFormatterMediumStyle];
@@ -93,16 +95,16 @@ MFMailComposeViewControllerDelegate>
         
         unsigned int compon = NSYearCalendarUnit| NSMonthCalendarUnit ;
         
-        NSInteger monthday = [[[NSCalendar currentCalendar] components: compon fromDate:today] month];
-        NSInteger yearday =[[[NSCalendar currentCalendar] components: compon fromDate:today] year];
+        NSInteger monthday = [[[NSCalendar currentCalendar] components:compon fromDate:today] month];
+        NSInteger yearday = [[[NSCalendar currentCalendar] components:compon fromDate:today] year];
         
-        NSString * keyForDictionary = [MONTHS objectAtIndex:monthday - 1];
+        NSString *keyForDictionary = [MONTHS objectAtIndex:monthday - 1];
         keyForDictionary = [keyForDictionary stringByAppendingString:[NSString stringWithFormat:@", %ld", (long)yearday]];
         
         NSArray *dictionaryOfInterviews = ((EHEventsGetInfoParser *)interviewFromEventsParser).sortAllInterviewsToDictionary;
         NSInteger tempCurMonth = -1;
         
-        for (int i=0;i<dictionaryOfInterviews.count;i++)
+        for (int i = 0; i < dictionaryOfInterviews.count; i++)
             if ([[dictionaryOfInterviews[i] nameOfMonth] isEqualToString:keyForDictionary])
             {
                 tempCurMonth = i;
@@ -110,38 +112,38 @@ MFMailComposeViewControllerDelegate>
             }
         
         if(tempCurMonth != -1)
-            self.sortedWeeks = [[dictionaryOfInterviews objectAtIndex:tempCurMonth] weeks] ;
+            self.sortedWeeks = [[dictionaryOfInterviews objectAtIndex:tempCurMonth] weeks];
         else
         {
-            UIAlertView *message  = [[UIAlertView alloc] initWithTitle:@"Warning!"
-                                                               message:@"You have no interview - events this month"
-                                                              delegate:nil
-                                                     cancelButtonTitle:@"OK"
-                                                     otherButtonTitles:nil];
+            UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Warning!"
+                                                              message:@"You have no interview - events this month"
+                                                             delegate:nil
+                                                    cancelButtonTitle:@"OK"
+                                                    otherButtonTitles:nil];
             [message show];
         }
     }
 }
 
-#pragma mark SEGUES
+#pragma mark - SEGUES
 
-- (void) goToHR
+- (void)goToHR
 {
     EHRecruitersViewController *itaViewController = [self.storyboard instantiateViewControllerWithIdentifier:
                                                      @"RecruitersForm"];
     [self.navigationController pushViewController:itaViewController
-                                         animated: YES];
+                                         animated:YES];
 }
 
-- (IBAction)startInterview:(UIButton *)button
+- (void)startInterview:(UIButton *)button
 {
     NSIndexPath *indexPath = [self indexPathOfButton:button];
-    NSArray * arr = [[[sortedWeeks objectAtIndex:indexPath.section ] interviews] allObjects];
+    NSArray *arr = [[[sortedWeeks objectAtIndex:indexPath.section ] interviews] allObjects];
     _curInterview = [arr objectAtIndex:indexPath.row];
     if (_curInterview.type == [NSNumber numberWithInt:ITA])
     {
         EHITAViewController *itaViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"ITAForm"];
-        [self.navigationController pushViewController:itaViewController animated: YES];
+        [self.navigationController pushViewController:itaViewController animated:YES];
     }
     else
         if (_curInterview.type == [NSNumber numberWithInt:External])
@@ -149,7 +151,7 @@ MFMailComposeViewControllerDelegate>
             EHExternalViewController *externalViewController = [self.storyboard
                                                                 instantiateViewControllerWithIdentifier:@"ExternalForm"];
             externalViewController.interview = [arr objectAtIndex:indexPath.row];
-            [self.navigationController pushViewController:externalViewController animated: YES];
+            [self.navigationController pushViewController:externalViewController animated:YES];
         }
 }
 
@@ -160,7 +162,7 @@ MFMailComposeViewControllerDelegate>
     CGPoint touchLocation = [tapGR locationOfTouch:0 inView:self.collectionView];
     NSIndexPath *tappedRow = [self.collectionView indexPathForItemAtPoint:touchLocation];
     
-    EHInterviewViewCell *cell = (EHInterviewViewCell *) [self.collectionView cellForItemAtIndexPath:tappedRow];
+    EHInterviewViewCell *cell = (EHInterviewViewCell *)[self.collectionView cellForItemAtIndexPath:tappedRow];
     NSArray *arr = [[[sortedWeeks objectAtIndex:tappedRow.section] interviews] allObjects];
     InterviewAppointment *curInterview = [arr objectAtIndex:tappedRow.row];
     
@@ -168,9 +170,9 @@ MFMailComposeViewControllerDelegate>
     self.recruteirPopover = [self.storyboard instantiateViewControllerWithIdentifier:@"RecruiterFormView"];
     
     self.recruitersController.recruiter = curInterview.idRecruiter;
+    
     if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad)
     {
-        
         float width;
         (self.view.frame.size.width > self.view.frame.size.height) ? (width = self.view.frame.size.height) : (width = self.view.frame.size.width);
         [self.recruitersController.view setFrame:CGRectMake(self.recruitersController.view.frame.origin.x, self.recruitersController.view.frame.origin.y, width, 550)];
@@ -204,7 +206,7 @@ MFMailComposeViewControllerDelegate>
     [self.navigationController pushViewController:self.mapViewController animated:YES];
 }
 
-#pragma mark Collection View Methods
+#pragma mark - Collection View Methods
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
 {
@@ -217,19 +219,30 @@ MFMailComposeViewControllerDelegate>
     return [weekOfMonth.interviews count];
 }
 
-- (NSIndexPath *)indexPathOfButton:(UIButton *)button {
+- (NSIndexPath *)indexPathOfButton:(UIButton *)button
+{
     UIView *view = button.superview;
-    while (![view isKindOfClass:[EHInterviewViewCell class]]) {
+    while (![view isKindOfClass:[EHInterviewViewCell class]])
         view = view.superview;
-    }
+    
     return [_collectionView indexPathForCell:(UICollectionViewCell *)view];
 }
 
-- (void)onSkypeButton:(UIButton *)button {
+- (NSIndexPath *)indexPathOfTextField:(UITextField *)textField
+{
+    UIView *view = textField.superview;
+    while (![view isKindOfClass:[EHInterviewViewCell class]])
+        view = view.superview;
+    
+    return [_collectionView indexPathForCell:(UICollectionViewCell *)view];
+}
+
+- (void)onSkypeButton:(UIButton *)button
+{
     NSIndexPath *indexPath = [self indexPathOfButton:button];
     EHWeek *week = [self.sortedWeeks objectAtIndex:indexPath.section];
     NSArray *eventsOnThisDay = week.interviews;
-    __unused  InterviewAppointment *event = [eventsOnThisDay objectAtIndex:indexPath.row];
+    __unused InterviewAppointment *event = [eventsOnThisDay objectAtIndex:indexPath.row];
     
     if(![event.idRecruiter.skypeAccount isEqualToString:@"echo123"])
     {
@@ -241,9 +254,7 @@ MFMailComposeViewControllerDelegate>
                                                          event.idRecruiter.skypeAccount]]];
         }
         else
-        {
             [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://itunes.com/apps/skype/skype"]];
-        }
     }
     else
     {
@@ -256,7 +267,8 @@ MFMailComposeViewControllerDelegate>
     }
 }
 
-- (void)onMailButton:(UIButton *)button {
+- (void)onMailButton:(UIButton *)button
+{
     NSIndexPath *indexPath = [self indexPathOfButton:button];
     EHWeek *week = [self.sortedWeeks objectAtIndex:indexPath.section];
     NSArray *eventsOnThisDay = week.interviews;
@@ -265,7 +277,8 @@ MFMailComposeViewControllerDelegate>
     [self sendEmailToAddress:event.idRecruiter.email];
 }
 
-- (IBAction)facebookButton:(id)sender {
+- (IBAction)facebookButton:(id)sender
+{
     NSIndexPath *indexPath = [self indexPathOfButton:sender];
     EHWeek *week = [self.sortedWeeks objectAtIndex:indexPath.section];
     NSArray *eventsOnThisDay = week.interviews;
@@ -287,15 +300,13 @@ MFMailComposeViewControllerDelegate>
             self.popover = [[UIPopoverController alloc] initWithContentViewController:_popController];
             self.popover.popoverContentSize = CGSizeMake(400.0, 400.0);
             [self searchUserWithFirstName:_popController.firstName lastName:_popController.lastName popover:self.popover];
-            [self.popover presentPopoverFromRect: [(UIButton *)sender bounds]
+            [self.popover presentPopoverFromRect:[(UIButton *)sender bounds]
                                           inView:sender
                         permittedArrowDirections:UIPopoverArrowDirectionAny
                                         animated:YES];
         }
         else
-        {
             [self.navigationController pushViewController:_popController animated:YES];
-        }
         
         // If the session state is not any of the two "open" states when the button is clicked
     } else {
@@ -320,9 +331,7 @@ MFMailComposeViewControllerDelegate>
     [FBRequestConnection startWithGraphPath:[NSString stringWithFormat:@"/search?q=%@+%@&type=user", firstName, lastName]
                           completionHandler:^(FBRequestConnection *connection, id result, NSError *error) {
                               if (error)
-                              {
                                   NSLog(@"%@", [error description]);
-                              }
                               else
                               {
                                   links = result[@"data"];
@@ -353,28 +362,30 @@ MFMailComposeViewControllerDelegate>
     [cell.mailButton addTarget:self action:@selector(onMailButton:) forControlEvents:UIControlEventTouchUpInside];
     
     EHWeek *week = [self.sortedWeeks objectAtIndex:indexPath.section];
-    
     InterviewAppointment *event = [week.interviews objectAtIndex:indexPath.row];
+    
+    cell.groupName.delegate = self;
     
     cell.typeLabel.text = [NSString stringWithString:[INTERVIEWTYPE objectAtIndex:event.type.intValue]];
     cell.dateLabel.text = [cellDateFormatter stringFromDate:event.startDate];
     cell.addressLabel.text = event.location == nil ? @"N/A" : event.location;
     
-    Candidate *candidate = event.idExternal.idCandidate;
-    cell.candidateLabel.text = [NSString stringWithFormat:@"%@ %@",candidate.firstName, candidate.lastName];
-    
-    if (event.type.intValue == 1){
+    if (event.type.intValue == 1) {
         cell.groupsOrCandidate.text = @"Group :";
-//        cell.groupName.hidden = NO;
+        cell.groupName.hidden = NO;
         cell.candidateLabel.hidden = YES;
+        ITAInterview *ITAinterview = event.idITAInterview;
+        cell.groupName.text = ITAinterview.itaGroupName == nil ? @"no BD" : [NSString stringWithFormat:@"%@", ITAinterview.itaGroupName];
     } else {
         cell.groupsOrCandidate.text = @"Candidate :";
-//        cell.groupName.hidden = YES;
+        cell.groupName.hidden = YES;
         cell.candidateLabel.hidden = NO;
+        Candidate *candidate = event.idExternal.idCandidate;
+        cell.candidateLabel.text = [NSString stringWithFormat:@"%@ %@", candidate.firstName, candidate.lastName];
     }
     
     Recruiter *recruiter = event.idRecruiter;
-    cell.recruiterLabel.text = [NSString stringWithFormat:@"%@ %@", recruiter.firstName, recruiter.lastName] ;
+    cell.recruiterLabel.text = [NSString stringWithFormat:@"%@ %@", recruiter.firstName, recruiter.lastName];
     
     [cell.layer setBorderWidth:0.7f];
     [cell.layer setBorderColor:[UIColor grayColor].CGColor];
@@ -398,17 +409,32 @@ MFMailComposeViewControllerDelegate>
     return cell;
 }
 
-#pragma mark Work with Action sheets
+- (BOOL)textFieldShouldEndEditing:(UITextField *)textField
+{
+    NSIndexPath *index = [self indexPathOfTextField:textField];
+    
+    EHWeek *week = [self.sortedWeeks objectAtIndex:index.section];
+    InterviewAppointment *event = [week.interviews objectAtIndex:index.row];
+    
+    ITAInterview *ITAi = event.idITAInterview;
+    
+    ITAi.itaGroupName = @"BD";
+    NSLog(@"%@", ITAi);
+    
+    return YES;
+}
+
+#pragma mark - Work with Action sheets
+
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    
     if(buttonIndex != _actionSheetTypes.cancelButtonIndex)
     {
         _label.text = [_actionSheetTypes buttonTitleAtIndex:buttonIndex];
         
         EHAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
         NSManagedObjectContext *context = [appDelegate managedObjectContext];
-        NSError * error = nil;
+        NSError *error = nil;
         NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
         NSPredicate *predicate =
         [NSPredicate predicateWithFormat:@"eventId == %@",_curInterview.eventId];
@@ -417,9 +443,10 @@ MFMailComposeViewControllerDelegate>
         [fetchRequest setEntity:entity];
         [fetchRequest setPredicate:predicate];
         NSArray *fetchedObjects = [context executeFetchRequest:fetchRequest error:&error];
-        for (InterviewAppointment *info in fetchedObjects) {
+        
+        for (InterviewAppointment *info in fetchedObjects)
             info.type = [NSNumber numberWithInt:(int)buttonIndex];
-        }
+        
         [_collectionView reloadData];
         
         if (![context save:&error])
@@ -429,7 +456,7 @@ MFMailComposeViewControllerDelegate>
 
 - (void)chooseTypeOfInterview:(id)sender
 {
-    UITapGestureRecognizer *tapGR = (UITapGestureRecognizer*)sender;
+    UITapGestureRecognizer *tapGR = (UITapGestureRecognizer *)sender;
     CGPoint touchLocation = [tapGR locationOfTouch:0 inView:self.collectionView];
     NSIndexPath *tappedRow = [self.collectionView indexPathForItemAtPoint:touchLocation];
     
@@ -441,18 +468,17 @@ MFMailComposeViewControllerDelegate>
                                                     delegate:self
                                            cancelButtonTitle:@"Cancel"
                                       destructiveButtonTitle:nil
-                                           otherButtonTitles:@"None", @"IT Academy", @"Internal", @"External",nil];
+                                           otherButtonTitles:@"None", @"IT Academy", @"Internal", @"External", nil];
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
     {
-        UICollectionViewCell *curInterviewCell = [self.collectionView  cellForItemAtIndexPath:tappedRow];
+        UICollectionViewCell *curInterviewCell = [self.collectionView cellForItemAtIndexPath:tappedRow];
         _label = (UILabel *)[curInterviewCell viewWithTag:100];
         _curInterview = event;
-        CGRect rect = CGRectMake([_label frame].origin.x - [_label frame].size.width / 3 ,
+        CGRect rect = CGRectMake([_label frame].origin.x - [_label frame].size.width / 3,
                                  [_label frame].origin.y,
                                  [_label frame].size.width,
-                                 
                                  [_label frame].size.height);
-        [_actionSheetTypes showFromRect:rect inView:curInterviewCell animated:YES ];
+        [_actionSheetTypes showFromRect:rect inView:curInterviewCell animated:YES];
     }
     else
         [_actionSheetTypes showInView:self.view];
@@ -462,14 +488,14 @@ MFMailComposeViewControllerDelegate>
            viewForSupplementaryElementOfKind:(NSString *)kind
                                  atIndexPath:(NSIndexPath *)indexPath
 {
-    if (kind == UICollectionElementKindSectionHeader) {
-        
+    if (kind == UICollectionElementKindSectionHeader)
+    {
         UICollectionReusableView *reusableview =
         [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader
                                            withReuseIdentifier:@"HeaderView"
                                                   forIndexPath:indexPath];
         
-        UILabel *label = (UILabel *) [reusableview viewWithTag: 2000];//label in header
+        UILabel *label = (UILabel *)[reusableview viewWithTag:2000];//label in header
         
         NSString *dateRepresentingThisDay = [[self.sortedWeeks objectAtIndex:indexPath.section]nameOfWeek];
         label.text = dateRepresentingThisDay;
@@ -478,8 +504,9 @@ MFMailComposeViewControllerDelegate>
     return nil;
 }
 
-#pragma mark Send Email To Recruiter
-- (void)sendEmailToAddress:(NSString*)address
+#pragma mark - Send Email To Recruiter
+
+- (void)sendEmailToAddress:(NSString *)address
 {
     MFMailComposeViewController *mailController = [[MFMailComposeViewController alloc]init];
     [mailController setMailComposeDelegate:self];
@@ -510,6 +537,5 @@ MFMailComposeViewControllerDelegate>
                         error:(NSError *)error{
     [self dismissViewControllerAnimated:YES completion:nil];
 }
-
 
 @end

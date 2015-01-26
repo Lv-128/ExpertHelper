@@ -64,7 +64,7 @@
         [temp insertObject:popup.skillLevel atIndex:rowToReload.row];
         [_array insertObject:temp atIndex:rowToReload.section];
     } else {
-           [[_array objectAtIndex:rowToReload.section] removeObjectAtIndex:rowToReload.row];
+        [[_array objectAtIndex:rowToReload.section] removeObjectAtIndex:rowToReload.row];
         [[_array objectAtIndex:rowToReload.section] insertObject:popup.skillLevel atIndex:rowToReload.row];
     }
     [self.tableView reloadRowsAtIndexPaths:rowsToReload withRowAnimation:UITableViewRowAnimationNone];
@@ -221,7 +221,7 @@
     if(buttonIndex == 0)
     {
         [self saveFormZip];
-        UIAlertView *message  = [[UIAlertView alloc] initWithTitle:@""
+        UIAlertView *message = [[UIAlertView alloc] initWithTitle:@""
                                                            message:@"Export to .xlsx successed!"
                                                           delegate:nil
                                                  cancelButtonTitle:@"OK"
@@ -250,7 +250,6 @@
         chartForm.points = _array.lastObject;
         chartForm.titles = _sectionContent.lastObject;
         
-        
         if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad)
         {
             chartForm.width = size * 0.9;
@@ -261,12 +260,13 @@
             [self.popover presentPopoverFromBarButtonItem:_barButMenu
                                  permittedArrowDirections:UIPopoverArrowDirectionUp
                                                  animated:YES];
+            
+//            [self.navigationController pushViewController:chartForm animated:YES];
         }
         else
         {
             chartForm.width = size * 1.21;
             chartForm.height = size * 1.21;
-            
             [self.navigationController pushViewController:chartForm animated:YES];
         }
     }
@@ -369,7 +369,7 @@
             cell.rightLabel.text = [[_array objectAtIndex:indexPath.section] objectAtIndex:row];
         } else
             cell.rightLabel.text = @"";
-
+        
         return cell;
     }
 }
@@ -484,7 +484,7 @@
     
     if (_generInfo == nil)
         _generInfo = [[EHGenInfo alloc]init];
-
+    
     if (_generInfo.expertName == NULL)
         _generInfo.expertName = @"None";
     if (_generInfo.competenceGroup == NULL)
@@ -641,7 +641,7 @@
                         
                         [xml insertString:s atIndex:k];
                     }
-
+            
             break;
         }
     }

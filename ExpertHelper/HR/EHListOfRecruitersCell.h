@@ -10,12 +10,10 @@
 
 @interface EHListOfRecruitersCell : UITableViewCell
 
-
 @property (weak, nonatomic) IBOutlet UILabel *recruiterEmail;
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *skypeLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *picture;
-
 
 @property (weak, nonatomic) IBOutlet UIButton *skypeBut;
 @property (weak, nonatomic) IBOutlet UIButton *mailBut;

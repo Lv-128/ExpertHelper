@@ -15,4 +15,5 @@
 @property (nonatomic, copy) NSArray *titles;
 @property (nonatomic) NSInteger width;
 @property (nonatomic) NSInteger height;
+
 @end

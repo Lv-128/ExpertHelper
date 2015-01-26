@@ -82,7 +82,6 @@
                 [self actionShowAll:nil];
             }
     }];
-    
 }
 
 - (void)selectBarButtonItem
@@ -213,6 +212,5 @@
                      cancelButtonTitle:@"OK"
                      otherButtonTitles:nil] show];
 }
-
 
 @end
