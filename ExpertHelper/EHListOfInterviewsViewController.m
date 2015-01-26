@@ -413,6 +413,11 @@ MFMailComposeViewControllerDelegate>
 {
     NSIndexPath *index = [self indexPathOfTextField:textField];
     
+    EHAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+    NSManagedObjectContext *context = [appDelegate managedObjectContext];
+    NSError *error = nil;
+   
+    
     EHWeek *week = [self.sortedWeeks objectAtIndex:index.section];
     InterviewAppointment *event = [week.interviews objectAtIndex:index.row];
     
@@ -420,6 +425,24 @@ MFMailComposeViewControllerDelegate>
     
     ITAi.itaGroupName = @"BD";
     NSLog(@"%@", ITAi);
+    
+    [_collectionView reloadData];
+    
+    if (![context save:&error])
+        NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
+    
+    
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+
+    NSEntityDescription *entity = [NSEntityDescription entityForName:[ITAInterview entityName]
+                                              inManagedObjectContext:context];
+    [fetchRequest setEntity:entity];
+   
+    NSArray *fetchedObjects = [context executeFetchRequest:fetchRequest error:&error];
+    
+    for (ITAInterview *info in fetchedObjects)
+        NSLog(info.itaGroupName);
+
     
     return YES;
 }

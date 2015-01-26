@@ -168,11 +168,12 @@
     if ([matches count] > 0)
     {
         _parseOptions.isOneCandidate = NO;
-        _parseOptions.isExternal = YES;
+        _parseOptions.isIta = YES;
+        _parseOptions.isExternal = NO;
     }
 }
 
-- (NSNumber *)canDefineTypeOfEvent:(EKEvent *)event
+- (int)canDefineTypeOfEvent:(EKEvent *)event
 {
     [self canDefineAmountCandidates:event.title];
     [self canDefineTypeAsITA:event.title];
@@ -185,7 +186,7 @@
     else
         type = 0;
     
-    return [NSNumber numberWithInt:type];
+    return type;
 }
 
 #pragma mark - Get people from event
@@ -595,7 +596,7 @@
     
     interview.startDate = event.startDate;
     interview.location = event.location;
-    interview.type = [self canDefineTypeOfEvent:event];
+    interview.type = [NSNumber numberWithInt:[self canDefineTypeOfEvent:event]];
     interview.eventId = event.eventIdentifier;
     
     
@@ -607,33 +608,19 @@
     [recruiter.interviewsSet addObject:interview];
     interview.idRecruiter = recruiter;
 
-    // add candidate
-    if ([interview.type intValue] == 3)
-    {
-        Candidate *candidate = [self getCandidateFromEvent:event andAddToDB:context];
-        ExternalInterview *externalInterview = [NSEntityDescription
-                                                insertNewObjectForEntityForName:[ExternalInterview entityName]
-                                                inManagedObjectContext:context];
-        externalInterview.idCandidate = candidate;
-        
-        [candidate.idExternalInterviewSet addObject:externalInterview];
-        interview.idExternal = externalInterview;
-        
-        externalInterview.idInterview = interview;
-    }
     
  
-    if (interview.type == 1)
+    if ([interview.type integerValue] == 1)
     {
         ITAInterview *itaInterview =  [NSEntityDescription
                                        insertNewObjectForEntityForName:[ITAInterview entityName]
                                        inManagedObjectContext:context];
-        itaInterview.idInterview = interview;
+        itaInterview.idInterview = interview;e
         interview.idITAInterview = itaInterview;
         interview.idExternal = nil;
         
     }
-    else if(interview.type == 3)
+    else if([interview.type integerValue] == 3)
     {
         // add candidate
         Candidate *candidate = [self getCandidateFromEvent:event andAddToDB:context];
