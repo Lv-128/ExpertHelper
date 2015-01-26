@@ -641,18 +641,32 @@
     [recruiter.interviewsSet addObject:interview];
     interview.idRecruiter = recruiter;
     
-    // add candidate
-    Candidate *candidate = [self getCandidateFromEvent:event andAddToDB:context];
-    ExternalInterview *externalInterview = [NSEntityDescription
-                                            insertNewObjectForEntityForName:[ExternalInterview entityName]
-                                            inManagedObjectContext:context];
-    externalInterview.idCandidate = candidate;
     
-    [candidate.idExternalInterviewSet addObject:externalInterview];
-    interview.idExternal = externalInterview;
-    
-    externalInterview.idInterview = interview;
-    
+    if (interview.type == 1)
+    {
+        ITAInterview *itaInterview =  [NSEntityDescription
+                                       insertNewObjectForEntityForName:[ITAInterview entityName]
+                                       inManagedObjectContext:context];
+        itaInterview.idInterview = interview;
+        interview.idITAInterview = itaInterview;
+        interview.idExternal = nil;
+        
+    }
+    else if(interview.type == 3)
+    {
+        // add candidate
+        Candidate *candidate = [self getCandidateFromEvent:event andAddToDB:context];
+        
+        ExternalInterview *externalInterview = [NSEntityDescription
+                                                insertNewObjectForEntityForName:[ExternalInterview entityName]
+                                                inManagedObjectContext:context];
+        externalInterview.idCandidate = candidate;
+        
+        [candidate.idExternalInterviewSet addObject:externalInterview];
+        interview.idExternal = externalInterview;
+        
+        externalInterview.idInterview = interview;
+    }
     NSString *eventID = event.eventIdentifier;
     NSString *eventURL = [@"myApp/" stringByAppendingString:eventID];
     
@@ -677,7 +691,7 @@
 
 - (NSArray *)parseAllEventsToInterviews
 {
-   // [_calEventParser checkEventStoreAccessForCalendar];  // Check whether we are authorized to access Calendar
+    // [_calEventParser checkEventStoreAccessForCalendar];  // Check whether we are authorized to access Calendar
     
     if(_calEventParser.eventsList.count > 0)
     {

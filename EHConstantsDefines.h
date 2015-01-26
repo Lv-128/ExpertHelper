@@ -18,6 +18,7 @@
 #import "EHCheckNetworkConnection.h"
 #import "AudioRecord.h"
 #import "QuickComment.h"
+#import "ITAInterview.h"
 
 #import "EHExternalViewController.h"
 #import <MessageUI/MessageUI.h>
@@ -36,6 +37,7 @@
 #import "EHListOfInterviewsViewController.h"
 #import "EHCalendarEventsParser.h"
 #import "EHEventsGetInfoParser.h"
+
 id interviewFromEventsParser;
 
 #ifndef ExpertHelper_EHConstantsDefines_h
