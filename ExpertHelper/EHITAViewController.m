@@ -41,6 +41,11 @@
     
     for (NSInteger i = 0; i < _namesArray.count; i++)
         [_checked addObject:[NSNumber numberWithBool:false]];
+    
+    UIBarButtonItem *zoomButton =
+    [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
+                                                  target:self action:@selector(addITACandidate)];
+    self.navigationItem.rightBarButtonItem = zoomButton;
 }
 
 - (void)didReceiveMemoryWarning
@@ -233,6 +238,11 @@ UIButton *button;
     [pickerView reloadAllComponents];
     
     [scoreOption setTitle:selectedScore forState:UIControlStateNormal];
+}
+-(void)addITACandidate
+{
+    NSMutableArray *temp = [_namesArray mutableCopy];
+    
 }
 
 @end

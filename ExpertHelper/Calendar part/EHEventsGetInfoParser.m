@@ -106,11 +106,9 @@
 
 #pragma mark - Define Type of interview
 
-- (void)canDefineTypeAsITA:(NSString *)string
+-(bool)canDefine:(NSString *)string withPattern:(NSString *)pattern
 {
-    self.parseOptions.isIta = NO;
     NSError *error = NULL;
-    NSString *pattern = @"ita|it academy|itacademy|ITA|IT academy";
     
     NSRange range = NSMakeRange(0, string.length);
     
@@ -122,70 +120,19 @@
                                       options:(NSMatchingOptions)regexOptions
                                         range:range];
     if ([matches count] > 0) {
-        self.parseOptions.isIta = YES;
-        self.parseOptions.isOneCandidate = NO;
+        return YES;
     } else
-        self.parseOptions.isIta = NO;
-}
-
-- (void)canDefineTypeAsExternal:(NSString *)string
-{
-    NSError *error = NULL;
-    NSString *pattern = @"technical";
-    
-    NSRange range = NSMakeRange(0, string.length);
-    
-    
-    NSRegularExpressionOptions regexOptions = NSRegularExpressionCaseInsensitive;
-    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:pattern
-                                                                           options:regexOptions
-                                                                             error:&error];
-    NSArray *matches = [regex matchesInString:string
-                                      options:(NSMatchingOptions)regexOptions
-                                        range:range];
-    if (([matches count] > 0)||(self.parseOptions.isOneCandidate))
-    {
-        self.parseOptions.isExternal = YES;
-        self.parseOptions.isIta = NO;
-    }
-}
-
-- (void)canDefineAmountCandidates:(NSString *)string
-{
-    _parseOptions.isOneCandidate = YES;
-    NSError *error = NULL;
-    NSString *pattern = @"candidates";
-    
-    NSRange range = NSMakeRange(0, string.length);
-    
-    NSRegularExpressionOptions regexOptions = NSRegularExpressionCaseInsensitive;
-    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:pattern
-                                                                           options:regexOptions
-                                                                             error:&error];
-    NSArray *matches = [regex matchesInString:string
-                                      options:(NSMatchingOptions)regexOptions
-                                        range:range];
-    if ([matches count] > 0)
-    {
-        _parseOptions.isOneCandidate = NO;
-        _parseOptions.isIta = YES;
-        _parseOptions.isExternal = NO;
-    }
+        return NO;
 }
 
 - (int)canDefineTypeOfEvent:(EKEvent *)event
 {
-    [self canDefineAmountCandidates:event.title];
-    [self canDefineTypeAsITA:event.title];
-    [self canDefineTypeAsExternal:event.title];
     int type;
-    if (self.parseOptions.isIta)
-        type = 1;
-    else if (self.parseOptions.isExternal)
-        type = 3;
-    else
-        type = 0;
     
+    type = [self canDefine:event.title withPattern:@"candidates"]? 1 : 3;
+    type = [self canDefine:event.title withPattern:@"ita|it academy|itacademy|ITA|IT academy"] ? 1 : 3;
+    //type = [self canDefine:event.title withPattern:@"technical"] ? 3 : 0;
+
     return type;
 }
 
@@ -607,9 +554,9 @@
     Recruiter *recruiter = [self getRecruiterFromEvent:event andAddToDB:context];
     [recruiter.interviewsSet addObject:interview];
     interview.idRecruiter = recruiter;
-
     
- 
+    
+    
     if ([interview.type integerValue] == 1)
     {
         ITAInterview *itaInterview =  [NSEntityDescription

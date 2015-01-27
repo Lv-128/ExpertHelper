@@ -31,7 +31,7 @@
 @property (nonatomic, strong) EHSkillLevelPopup *popup;
 @property (nonatomic, strong) UIActionSheet *actionSheetMenu;
 
-@end 
+@end
 
 @implementation EHExternalViewController
 
@@ -221,10 +221,10 @@
     {
         [self saveFormZip];
         UIAlertView *message = [[UIAlertView alloc] initWithTitle:@""
-                                                           message:@"Export to .xlsx successed!"
-                                                          delegate:nil
-                                                 cancelButtonTitle:@"OK"
-                                                 otherButtonTitles:nil];
+                                                          message:@"Export to .xlsx successed!"
+                                                         delegate:nil
+                                                cancelButtonTitle:@"OK"
+                                                otherButtonTitles:nil];
         [message show];
     }
     if(buttonIndex == 1)
@@ -242,7 +242,7 @@
     }
     if(buttonIndex == 2)
     {
-        EHChart *chartForm = [self.storyboard instantiateViewControllerWithIdentifier:@"ChartView"];
+        EHChart *chartForm = [[EHChart alloc]init];
         
         int size = self.view.frame.size.width > self.view.frame.size.height ? self.view.frame.size.height :
         self.view.frame.size.width;
@@ -251,23 +251,11 @@
         
         if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad)
         {
-            
             chartForm.width = size * 0.9;
             chartForm.height = size * 0.9;
             
-            
-//            chartForm.view.bounds = CGRectMake(0, 0, 100, 100);
-            
-            CGRect x = chartForm.view.bounds;
-            x.size.height = size / 2;
-            x.size.width = size / 2;
-            chartForm.view.frame = x;
-
-            
             self.popover = [[UIPopoverController alloc] initWithContentViewController:chartForm];
-            
-                        NSLog(@"%f    %f", chartForm.view.frame.size.height, chartForm.view.frame.size.width);
-            self.popover.popoverContentSize = CGSizeMake(size * 0.1, size * 0.1);
+            self.popover.popoverContentSize = CGSizeMake(size * 0.9, size * 0.9);
             
             [self.popover presentPopoverFromBarButtonItem:_barButMenu
                                  permittedArrowDirections:UIPopoverArrowDirectionUp
