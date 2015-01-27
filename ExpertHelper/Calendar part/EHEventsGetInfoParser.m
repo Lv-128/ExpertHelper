@@ -615,7 +615,7 @@
         ITAInterview *itaInterview =  [NSEntityDescription
                                        insertNewObjectForEntityForName:[ITAInterview entityName]
                                        inManagedObjectContext:context];
-        itaInterview.idInterview = interview;e
+        itaInterview.idInterview = interview;
         interview.idITAInterview = itaInterview;
         interview.idExternal = nil;
         

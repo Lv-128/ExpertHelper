@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "EHAppDelegate.h"
+
 @interface EHExternalViewController : UIViewController
 {
     BOOL newCell;
@@ -15,8 +16,7 @@
     NSInteger lostData;
 }
 
-@property (nonatomic, strong) InterviewAppointment * currentInterviewDescription;
-@property (nonatomic, strong) ExternalInterview * currentExternalInterview;
+@property (nonatomic, strong) ExternalInterview *currentExternalInterview;
 @property (nonatomic, strong) InterviewAppointment *interview;
 @property (nonatomic, strong) NSIndexPath *index;
 @property (nonatomic, strong) NSDateFormatter *cellDateFormatter;

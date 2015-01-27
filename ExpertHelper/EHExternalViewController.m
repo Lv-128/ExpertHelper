@@ -1,4 +1,4 @@
-
+//
 //  CLExternalViewController.m
 //  firstCalendarFrom
 //
@@ -16,7 +16,6 @@
 #import "EHChart.h"
 #import "EHGeneralInfoCell.h"
 
-
 @interface EHExternalViewController () <UITableViewDataSource, UITableViewDelegate, EHSkillLevelPopupDelegate, UIActionSheetDelegate, MFMailComposeViewControllerDelegate>
 
 @property (nonatomic, weak) IBOutlet UITableView *tableView;
@@ -32,7 +31,7 @@
 @property (nonatomic, strong) EHSkillLevelPopup *popup;
 @property (nonatomic, strong) UIActionSheet *actionSheetMenu;
 
-@end
+@end 
 
 @implementation EHExternalViewController
 
@@ -216,7 +215,7 @@
         [_actionSheetMenu showInView:self.view];
 }
 
-- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+- (void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex
 {
     if(buttonIndex == 0)
     {
@@ -252,16 +251,27 @@
         
         if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad)
         {
+            
             chartForm.width = size * 0.9;
             chartForm.height = size * 0.9;
+            
+            
+//            chartForm.view.bounds = CGRectMake(0, 0, 100, 100);
+            
+            CGRect x = chartForm.view.bounds;
+            x.size.height = size / 2;
+            x.size.width = size / 2;
+            chartForm.view.frame = x;
+
+            
             self.popover = [[UIPopoverController alloc] initWithContentViewController:chartForm];
-            self.popover.popoverContentSize = CGSizeMake(size * 0.9, size * 0.9);
+            
+                        NSLog(@"%f    %f", chartForm.view.frame.size.height, chartForm.view.frame.size.width);
+            self.popover.popoverContentSize = CGSizeMake(size * 0.1, size * 0.1);
             
             [self.popover presentPopoverFromBarButtonItem:_barButMenu
                                  permittedArrowDirections:UIPopoverArrowDirectionUp
                                                  animated:YES];
-            
-//            [self.navigationController pushViewController:chartForm animated:YES];
         }
         else
         {
@@ -274,9 +284,8 @@
 
 - (void)didMoveToParentViewController:(UIViewController *)parent
 {
-    if (![parent isEqual:self.parentViewController]) {
+    if (![parent isEqual:self.parentViewController])
         [self parsFunc];
-    }
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -365,9 +374,9 @@
         
         NSObject *tt = [[_array objectAtIndex:indexPath.section] objectAtIndex:row];
         
-        if (tt != nil) {
+        if (tt != nil)
             cell.rightLabel.text = [[_array objectAtIndex:indexPath.section] objectAtIndex:row];
-        } else
+        else
             cell.rightLabel.text = @"";
         
         return cell;

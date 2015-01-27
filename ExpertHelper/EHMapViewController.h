@@ -7,12 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "EHAppDelegate.h"
 
 @class MKMapView;
 
 @interface EHMapViewController : UIViewController
 
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
-@property (strong, nonatomic) NSString *location;
+@property (nonatomic, strong) NSString *location;
+@property (nonatomic, strong) InterviewAppointment *interview;
 
 @end

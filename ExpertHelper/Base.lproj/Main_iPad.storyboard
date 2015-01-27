@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="696-TH-eQE">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="13F34" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="696-TH-eQE">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -320,9 +320,9 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UAE-LT-LWT">
-                                                    <rect key="frame" x="515" y="0.0" width="126" height="71"/>
+                                                    <rect key="frame" x="547" y="0.0" width="126" height="71"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="126" id="aWo-cw-XJw"/>
+                                                        <constraint firstAttribute="width" constant="126" id="V8p-HG-Bq8"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -330,11 +330,9 @@
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="bottom" secondItem="UAE-LT-LWT" secondAttribute="bottom" id="Zaf-KB-c2h"/>
-                                                <constraint firstItem="UAE-LT-LWT" firstAttribute="top" secondItem="mYO-av-6mp" secondAttribute="top" id="idj-sd-b8l"/>
-                                                <constraint firstItem="UAE-LT-LWT" firstAttribute="top" secondItem="mYO-av-6mp" secondAttribute="top" id="oR7-e7-k8C"/>
-                                                <constraint firstAttribute="trailing" secondItem="UAE-LT-LWT" secondAttribute="trailing" constant="40" id="vG0-dr-4M4"/>
-                                                <constraint firstAttribute="bottom" secondItem="UAE-LT-LWT" secondAttribute="bottom" id="ykA-5k-cD7"/>
+                                                <constraint firstItem="UAE-LT-LWT" firstAttribute="top" secondItem="mYO-av-6mp" secondAttribute="topMargin" constant="-8" id="IRO-ew-lh3"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="UAE-LT-LWT" secondAttribute="bottom" constant="-8" id="UOO-b1-mre"/>
+                                                <constraint firstItem="UAE-LT-LWT" firstAttribute="trailing" secondItem="mYO-av-6mp" secondAttribute="trailingMargin" id="psn-7m-Hwu"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
@@ -502,7 +500,7 @@
                                                     <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <textField hidden="YES" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="g7U-g9-wBT">
+                                                <textField hidden="YES" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" placeholder="No name of group" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="g7U-g9-wBT">
                                                     <rect key="frame" x="213" y="25" width="345" height="44"/>
                                                     <nil key="textColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
@@ -1122,12 +1120,6 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" showsHorizontalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="onm-Zf-qzg" customClass="EHRoundedTextView">
-                                <rect key="frame" x="100" y="215" width="580" height="128"/>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Types of projects" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eEj-J1-rPJ">
                                 <rect key="frame" x="215" y="519" width="338" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="22"/>
@@ -1139,7 +1131,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" showsHorizontalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZUB-mH-c8E" customClass="EHRoundedTextView">
-                                <rect key="frame" x="100" y="383" width="580" height="128"/>
+                                <rect key="frame" x="100" y="389" width="580" height="122"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -1188,13 +1180,17 @@
                                 <rect key="frame" x="381" y="888" width="51" height="31"/>
                             </switch>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" showsHorizontalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SbD-i4-dmx" customClass="EHRoundedTextView">
-                                <rect key="frame" x="100" y="625" width="580" height="66"/>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <rect key="frame" x="100" y="626" width="580" height="65"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" showsHorizontalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kDo-Lh-FdM" customClass="EHRoundedTextView">
-                                <rect key="frame" x="100" y="731" width="580" height="66"/>
+                                <rect key="frame" x="100" y="737" width="580" height="65"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" showsHorizontalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="onm-Zf-qzg" customClass="EHRoundedTextView">
+                                <rect key="frame" x="100" y="215" width="580" height="128"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>

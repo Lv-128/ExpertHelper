@@ -24,6 +24,18 @@
 {
     [super viewDidLoad];
     
+    if ([_interview.type integerValue] == 1)
+        if (_interview.idITAInterview.itaGroupName == nil)
+            self.navigationItem.title = [NSString stringWithFormat:@"Interview with ITA-Group"];
+        else
+            self.navigationItem.title = [NSString stringWithFormat:@"Interview with %@", _interview.idITAInterview.itaGroupName];
+    else
+        if (_interview.idExternal.idCandidate.firstName == nil)
+            self.navigationItem.title = [NSString stringWithFormat:@"Interview with Candidate"];
+        else
+            self.navigationItem.title = [NSString stringWithFormat:@"%@ %@", _interview.idExternal.idCandidate.firstName,
+                                 _interview.idExternal.idCandidate.lastName];
+    
     [self selectBarButtonItem];
     [self searchDestination];
     
@@ -143,7 +155,7 @@
         
         MKMapPoint center = MKMapPointForCoordinate(location);
         
-        double delta = 20000;
+        double delta = 10000;
         
         MKMapRect rect = MKMapRectMake(center.x - delta, center.y - delta, delta * 2, delta * 2);
         

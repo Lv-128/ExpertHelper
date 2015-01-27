@@ -15,30 +15,30 @@
 }
 
 - (void)viewDidLoad {
-	[super viewDidLoad];
+    [super viewDidLoad];
     borderSize = 25;
     
-	p2 = [[EHRadarChart alloc] initWithFrame:CGRectMake(borderSize, borderSize, _width  - borderSize * 2 , _height - borderSize * 2)];
-	p2.centerPoint = CGPointMake((_width - 2 * borderSize) / 2, (_height - 2 * borderSize) / 2);
+    p2 = [[EHRadarChart alloc] initWithFrame:CGRectMake(borderSize, borderSize, _width  - borderSize * 2 , _height - borderSize * 2)];
+    p2.centerPoint = CGPointMake((_width - 2 * borderSize) / 2, (_height - 2 * borderSize) / 2);
     
     if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPhone)
         p2.centerPoint = CGPointMake(p2.centerPoint.x - 45, p2.centerPoint.y);
     
     p2.backgroundFillColor = [UIColor whiteColor];
- 
-	p2.drawPoints = YES;
-	p2.attributes = @[@"Core", @"Desktop", @"Web", @"DB", @"BI", @"RIA",
-	                  @"Multimedia", @"Mobile", @"Embedded", @"Integration"];
+    
+    p2.drawPoints = YES;
+    p2.attributes = @[@"Core", @"Desktop", @"Web", @"DB", @"BI", @"RIA",
+                      @"Multimedia", @"Mobile", @"Embedded", @"Integration"];
     p2.maxValue = (_width>_height) ? (_height - 2 * borderSize) / 2 - 70 : (_width - 2 * borderSize) / 2 - 70;
     
-	NSArray *b1 = [self pointsToNumericArray];
-	p2.dataSeries = @[b1];
-	p2.steps = 3;
-	p2.backgroundColor = [UIColor whiteColor];
+    NSArray *b1 = [self pointsToNumericArray];
+    p2.dataSeries = @[b1];
+    p2.steps = 3;
+    p2.backgroundColor = [UIColor whiteColor];
     p2.countLevels = 3;
     p2.koeficient = p2.maxValue / p2.countLevels;
     p2.showStepText = YES;
-	[self.view addSubview:p2];
+    [self.view addSubview:p2];
 }
 
 - (NSArray *)pointsToNumericArray
@@ -59,15 +59,15 @@
         else if ([str isEqualToString:@"Strong"])
             [tempAr addObject: [NSNumber numberWithFloat:3]];
         
-        else 
+        else
             [tempAr addObject: [NSNumber numberWithFloat:0]];
     }
     return tempAr;
 }
 
 - (void)didReceiveMemoryWarning {
-	[super didReceiveMemoryWarning];
-	// Dispose of any resources that can be recreated.
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
 }
 
 @end

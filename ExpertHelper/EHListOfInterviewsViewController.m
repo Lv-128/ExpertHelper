@@ -201,6 +201,7 @@ MFMailComposeViewControllerDelegate>
     
     self.mapViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"MapView"];
     
+    _mapViewController.interview = [arr objectAtIndex:tappedRow.row];
     _mapViewController.location = curInterview.location;
     
     [self.navigationController pushViewController:self.mapViewController animated:YES];
@@ -375,7 +376,7 @@ MFMailComposeViewControllerDelegate>
         cell.groupName.hidden = NO;
         cell.candidateLabel.hidden = YES;
         ITAInterview *ITAinterview = event.idITAInterview;
-        cell.groupName.text = ITAinterview.itaGroupName == nil ? @"no BD" : [NSString stringWithFormat:@"%@", ITAinterview.itaGroupName];
+        cell.groupName.text = ITAinterview.itaGroupName == nil ? @"" : [NSString stringWithFormat:@"%@", ITAinterview.itaGroupName];
     } else {
         cell.groupsOrCandidate.text = @"Candidate :";
         cell.groupName.hidden = YES;
@@ -402,8 +403,8 @@ MFMailComposeViewControllerDelegate>
     [gestureAction2 setDelegate:self];
     [cell.typeLabel addGestureRecognizer:gestureAction2];
     
-    UITapGestureRecognizer *gestureAction3 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(mapPosition:)];
-    [cell.addressLabel addGestureRecognizer:gestureAction3];
+    UITapGestureRecognizer *gesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(mapPosition:)];
+    [cell.addressLabel addGestureRecognizer:gesture];
     cell.addressLabel.userInteractionEnabled = YES;
     
     return cell;
@@ -417,13 +418,12 @@ MFMailComposeViewControllerDelegate>
     NSManagedObjectContext *context = [appDelegate managedObjectContext];
     NSError *error = nil;
    
-    
     EHWeek *week = [self.sortedWeeks objectAtIndex:index.section];
     InterviewAppointment *event = [week.interviews objectAtIndex:index.row];
     
     ITAInterview *ITAi = event.idITAInterview;
     
-    ITAi.itaGroupName = @"BD";
+    ITAi.itaGroupName = textField.text;
     NSLog(@"%@", ITAi);
     
     [_collectionView reloadData];
@@ -431,19 +431,17 @@ MFMailComposeViewControllerDelegate>
     if (![context save:&error])
         NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
     
-    
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
 
     NSEntityDescription *entity = [NSEntityDescription entityForName:[ITAInterview entityName]
                                               inManagedObjectContext:context];
     [fetchRequest setEntity:entity];
    
-    NSArray *fetchedObjects = [context executeFetchRequest:fetchRequest error:&error];
+//    NSArray *fetchedObjects = [context executeFetchRequest:fetchRequest error:&error];
     
-    for (ITAInterview *info in fetchedObjects)
-        NSLog(info.itaGroupName);
+//    for (ITAInterview *info in fetchedObjects)
+//        NSLog(info.itaGroupName);
 
-    
     return YES;
 }
 
@@ -459,8 +457,7 @@ MFMailComposeViewControllerDelegate>
         NSManagedObjectContext *context = [appDelegate managedObjectContext];
         NSError *error = nil;
         NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-        NSPredicate *predicate =
-        [NSPredicate predicateWithFormat:@"eventId == %@",_curInterview.eventId];
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"eventId == %@", _curInterview.eventId];
         NSEntityDescription *entity = [NSEntityDescription entityForName:[InterviewAppointment entityName]
                                                   inManagedObjectContext:context];
         [fetchRequest setEntity:entity];
