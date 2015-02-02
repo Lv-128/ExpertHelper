@@ -56,7 +56,6 @@
 @property (nonatomic, copy) NSArray *interviews;
 @property (nonatomic, copy) NSArray *events;
 
-- (void)canDefineTypeAsITA:(NSString *)string;
 - (EHCalendarParseResult *)getNameOfCandidateFromTitle:(NSString *)string;
 - (EHCalendarParseResult *)getNameOfRecruiter:(NSString *)string andEmailAddress:(NSString *) email;
 - (id)initWithObjection:(EHCalendarParseOptions *)options;

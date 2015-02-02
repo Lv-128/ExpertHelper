@@ -51,6 +51,15 @@ const struct ITAInterviewRelationships ITAInterviewRelationships = {
 
 @dynamic candidates;
 
+- (NSMutableSet*)candidatesSet {
+	[self willAccessValueForKey:@"candidates"];
+
+	NSMutableSet *result = (NSMutableSet*)[self mutableSetValueForKey:@"candidates"];
+
+	[self didAccessValueForKey:@"candidates"];
+	return result;
+}
+
 @dynamic idInterview;
 
 @end

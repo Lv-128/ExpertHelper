@@ -20,7 +20,8 @@
     return self;
 }
 
-- (void)dealloc {
+- (void)dealloc
+{
     self.weeks = nil;
     self.nameOfMonth = nil;
     self.dateStartOfMonth = nil;
@@ -29,6 +30,7 @@
 @end
 
 @implementation EHWeek
+
 - (id)init
 {
     self = [super init];
@@ -39,7 +41,8 @@
     return self;
 }
 
-- (void)dealloc {
+- (void)dealloc
+{
     self.interviews = nil;
     self.nameOfWeek = nil;
 }
@@ -67,7 +70,8 @@
 
 @implementation EHCalendarParseResult
 
-- (void)dealloc {
+- (void)dealloc
+{
     self.firstName = nil;
     self.lastName = nil;
     self.emailAddress = nil;
@@ -99,7 +103,6 @@
         EHAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
         _managedObjectContext = [appDelegate managedObjectContext];
         _events = [NSArray array];
-        
     }
     return  self;
 }
@@ -119,9 +122,9 @@
     NSArray *matches = [regex matchesInString:string
                                       options:(NSMatchingOptions)regexOptions
                                         range:range];
-    if ([matches count] > 0) {
+    if ([matches count] > 0)
         return YES;
-    } else
+    else
         return NO;
 }
 
@@ -555,8 +558,6 @@
     [recruiter.interviewsSet addObject:interview];
     interview.idRecruiter = recruiter;
     
-    
-    
     if ([interview.type integerValue] == 1)
     {
         ITAInterview *itaInterview =  [NSEntityDescription
@@ -565,7 +566,6 @@
         itaInterview.idInterview = interview;
         interview.idITAInterview = itaInterview;
         interview.idExternal = nil;
-        
     }
     else if([interview.type integerValue] == 3)
     {

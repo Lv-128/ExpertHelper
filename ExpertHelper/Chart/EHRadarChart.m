@@ -49,7 +49,6 @@
     _backgroundLineColorRadial = [UIColor darkGrayColor];
     _backgroundFillColor = [UIColor whiteColor];
     
-    
     _colors = [[NSArray alloc]init];
     _attributes = @[@"you", @"should", @"set", @"these", @"data", @"titles,",
                     @"this", @"is", @"just", @"a", @"placeholder"];
@@ -144,8 +143,8 @@
     //TODO: make this color a variable
     [[UIColor lightGrayColor] setStroke];
     CGContextSaveGState(context);
-    for (int step = 1; step <= _steps; step++) {
-        
+    for (int step = 1; step <= _steps; step++)
+    {
         for (int i = 0; i <= _numOfV; ++i)
             if (i == 0)
                 CGContextMoveToPoint(context, _centerPoint.x, _centerPoint.y - _r * step / _steps);
@@ -173,10 +172,10 @@
     CGContextSetLineWidth(context, 2.0);
     
     //draw lines
-    for (int serie = 0; serie < [_dataSeries count]; serie++) {
+    for (int serie = 0; serie < [_dataSeries count]; serie++)
+    {
         if (self.fillArea)
             [colors[serie] setFill];
-        
         else
             [colors[serie] setStroke];
         
@@ -216,9 +215,8 @@
         //draw step label text, alone y axis
         //TODO: make this color a variable
         [[UIColor blackColor] setFill];
-        for (int step = 0; step <= _steps; step++) {
-            //CGFloat value = _minValue + (_maxValue - _minValue) * step / _steps;
-            //NSString *currentLabel = [NSString stringWithFormat:@"%.0f", value];
+        for (int step = 0; step <= _steps; step++)
+        {
             NSString *currentLabel = [NSString stringWithFormat:@"%@", ESTIMATES[step]];
             
             EH_DRAW_TEXT_IN_RECT(currentLabel,

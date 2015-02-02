@@ -42,9 +42,9 @@ extern const struct CandidateRelationships {
 
 - (NSMutableSet*)idExternalInterviewSet;
 
-@property (nonatomic, strong) NSSet *idITAInterview;
+@property (nonatomic, strong) ITAInterview *idITAInterview;
 
-- (NSMutableSet*)idITAInterviewSet;
+//- (BOOL)validateIdITAInterview:(id*)value_ error:(NSError**)error_;
 
 @end
 
@@ -53,14 +53,6 @@ extern const struct CandidateRelationships {
 - (void)removeIdExternalInterview:(NSSet*)value_;
 - (void)addIdExternalInterviewObject:(ExternalInterview*)value_;
 - (void)removeIdExternalInterviewObject:(ExternalInterview*)value_;
-
-@end
-
-@interface _Candidate (IdITAInterviewCoreDataGeneratedAccessors)
-- (void)addIdITAInterview:(NSSet*)value_;
-- (void)removeIdITAInterview:(NSSet*)value_;
-- (void)addIdITAInterviewObject:(ITAInterview*)value_;
-- (void)removeIdITAInterviewObject:(ITAInterview*)value_;
 
 @end
 
@@ -78,7 +70,7 @@ extern const struct CandidateRelationships {
 - (NSMutableSet*)primitiveIdExternalInterview;
 - (void)setPrimitiveIdExternalInterview:(NSMutableSet*)value;
 
-- (NSMutableSet*)primitiveIdITAInterview;
-- (void)setPrimitiveIdITAInterview:(NSMutableSet*)value;
+- (ITAInterview*)primitiveIdITAInterview;
+- (void)setPrimitiveIdITAInterview:(ITAInterview*)value;
 
 @end

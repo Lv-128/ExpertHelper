@@ -498,13 +498,12 @@ AVAudioRecorderDelegate, AVAudioPlayerDelegate>
     BOOL isExist = false;
     
     for (QuickComment *myCom in [self getCommentFromDB])
-    {
         if ([myCom.comment isEqualToString:comment] || [comment isEqualToString: @"Please post your comments"]
             || [comment isEqualToString: @""])
         {
             isExist = true;
         }
-    }
+    
     
     if (!isExist && !([comment isEqualToString: @"Please post your comments"] || [comment isEqualToString: @""]))
     {
@@ -515,9 +514,9 @@ AVAudioRecorderDelegate, AVAudioPlayerDelegate>
     }
     
     NSError *error;
-    if (![context save:&error]) {
+    
+    if (![context save:&error])
         NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
-    }
 }
 
 - (NSArray *)getCommentFromDB

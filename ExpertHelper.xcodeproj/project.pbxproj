@@ -28,6 +28,7 @@
 		11DA2E031A3DF9A40051CBAC /* zip.c in Sources */ = {isa = PBXBuildFile; fileRef = 11DA2DFE1A3DF9A40051CBAC /* zip.c */; };
 		11DA2E051A3E03340051CBAC /* Workbook.xlsx in Resources */ = {isa = PBXBuildFile; fileRef = 11DA2E041A3E03340051CBAC /* Workbook.xlsx */; };
 		11F4CA981A3DF855000CF71E /* libz.1.2.5.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 11F4CA971A3DF855000CF71E /* libz.1.2.5.dylib */; };
+		256673B11A793F6600D2EDF9 /* EHAddITACandidatesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 256673B01A793F6600D2EDF9 /* EHAddITACandidatesViewController.m */; };
 		258AA5E11A71436F004619C0 /* ExpertHelperTests-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 258AA5E01A71436F004619C0 /* ExpertHelperTests-Info.plist */; };
 		258AA5E41A714377004619C0 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 258AA5E21A714377004619C0 /* InfoPlist.strings */; };
 		258AA5E71A715586004619C0 /* UIView+MKAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 258AA5E61A715586004619C0 /* UIView+MKAnnotationView.m */; };
@@ -144,6 +145,8 @@
 		11DA2DFF1A3DF9A40051CBAC /* zip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = zip.h; sourceTree = "<group>"; };
 		11DA2E041A3E03340051CBAC /* Workbook.xlsx */ = {isa = PBXFileReference; lastKnownFileType = file; path = Workbook.xlsx; sourceTree = "<group>"; };
 		11F4CA971A3DF855000CF71E /* libz.1.2.5.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.2.5.dylib; path = usr/lib/libz.1.2.5.dylib; sourceTree = SDKROOT; };
+		256673AF1A793F6600D2EDF9 /* EHAddITACandidatesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EHAddITACandidatesViewController.h; sourceTree = "<group>"; };
+		256673B01A793F6600D2EDF9 /* EHAddITACandidatesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EHAddITACandidatesViewController.m; sourceTree = "<group>"; };
 		258106981A669D7C0001904F /* EHConstantsDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EHConstantsDefines.h; path = ../EHConstantsDefines.h; sourceTree = "<group>"; };
 		258AA5E01A71436F004619C0 /* ExpertHelperTests-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "ExpertHelperTests-Info.plist"; path = "ExpertHelperTests/ExpertHelperTests-Info.plist"; sourceTree = SOURCE_ROOT; };
 		258AA5E31A714377004619C0 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = ExpertHelperTests/en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -345,15 +348,51 @@
 			path = minizip;
 			sourceTree = "<group>";
 		};
-		258AA5E81A7160B6004619C0 /* MapKit */ = {
+		256673AB1A79315300D2EDF9 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				D967F20E1A1E4DEE0009639C /* EHITAViewControllerCell.h */,
+				D967F20F1A1E4DEE0009639C /* EHITAViewControllerCell.m */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		256673AC1A79316C00D2EDF9 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				D967F20C1A1E4DEE0009639C /* EHITAViewController.h */,
+				D967F20D1A1E4DEE0009639C /* EHITAViewController.m */,
+				256673AF1A793F6600D2EDF9 /* EHAddITACandidatesViewController.h */,
+				256673B01A793F6600D2EDF9 /* EHAddITACandidatesViewController.m */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		256673AD1A79318E00D2EDF9 /* Model */ = {
 			isa = PBXGroup;
 			children = (
 				258AA5E51A715586004619C0 /* UIView+MKAnnotationView.h */,
 				258AA5E61A715586004619C0 /* UIView+MKAnnotationView.m */,
 				25FA4B591A70325B00B1E886 /* EHMapAnotation.h */,
 				25FA4B5A1A70325B00B1E886 /* EHMapAnotation.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		256673AE1A79319900D2EDF9 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
 				25FA4B561A702FA300B1E886 /* EHMapViewController.h */,
 				25FA4B571A702FA300B1E886 /* EHMapViewController.m */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		258AA5E81A7160B6004619C0 /* MapKit */ = {
+			isa = PBXGroup;
+			children = (
+				256673AE1A79319900D2EDF9 /* Controllers */,
+				256673AD1A79318E00D2EDF9 /* Model */,
 			);
 			name = MapKit;
 			sourceTree = "<group>";
@@ -534,10 +573,8 @@
 		D967F2121A1E4E290009639C /* ITA */ = {
 			isa = PBXGroup;
 			children = (
-				D967F20C1A1E4DEE0009639C /* EHITAViewController.h */,
-				D967F20D1A1E4DEE0009639C /* EHITAViewController.m */,
-				D967F20E1A1E4DEE0009639C /* EHITAViewControllerCell.h */,
-				D967F20F1A1E4DEE0009639C /* EHITAViewControllerCell.m */,
+				256673AC1A79316C00D2EDF9 /* Controllers */,
+				256673AB1A79315300D2EDF9 /* View */,
 			);
 			name = ITA;
 			path = ..;
@@ -901,6 +938,7 @@
 				D9998EE41A221CE9002E019A /* EHRevealViewController.m in Sources */,
 				D9BE338E1A3894610063B6C6 /* EHSkillsProfilesParser.m in Sources */,
 				D9BE338B1A3882E00063B6C6 /* EHInterviewViewCell.m in Sources */,
+				256673B11A793F6600D2EDF9 /* EHAddITACandidatesViewController.m in Sources */,
 				D9BE33AE1A3A0AFF0063B6C6 /* GeneralInfo.m in Sources */,
 				D9998EE01A221CE9002E019A /* EHCalendarEventsParser.m in Sources */,
 				D9BE33941A38AEDC0063B6C6 /* EHCandidateProfileViewController.m in Sources */,

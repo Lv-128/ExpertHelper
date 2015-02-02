@@ -42,13 +42,21 @@ extern const struct ITAInterviewRelationships {
 
 //- (BOOL)validateScores:(id*)value_ error:(NSError**)error_;
 
-@property (nonatomic, strong) Candidate *candidates;
+@property (nonatomic, strong) NSSet *candidates;
 
-//- (BOOL)validateCandidates:(id*)value_ error:(NSError**)error_;
+- (NSMutableSet*)candidatesSet;
 
 @property (nonatomic, strong) InterviewAppointment *idInterview;
 
 //- (BOOL)validateIdInterview:(id*)value_ error:(NSError**)error_;
+
+@end
+
+@interface _ITAInterview (CandidatesCoreDataGeneratedAccessors)
+- (void)addCandidates:(NSSet*)value_;
+- (void)removeCandidates:(NSSet*)value_;
+- (void)addCandidatesObject:(Candidate*)value_;
+- (void)removeCandidatesObject:(Candidate*)value_;
 
 @end
 
@@ -63,8 +71,8 @@ extern const struct ITAInterviewRelationships {
 - (id)primitiveScores;
 - (void)setPrimitiveScores:(id)value;
 
-- (Candidate*)primitiveCandidates;
-- (void)setPrimitiveCandidates:(Candidate*)value;
+- (NSMutableSet*)primitiveCandidates;
+- (void)setPrimitiveCandidates:(NSMutableSet*)value;
 
 - (InterviewAppointment*)primitiveIdInterview;
 - (void)setPrimitiveIdInterview:(InterviewAppointment*)value;

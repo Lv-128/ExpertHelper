@@ -62,14 +62,5 @@ const struct CandidateRelationships CandidateRelationships = {
 
 @dynamic idITAInterview;
 
-- (NSMutableSet*)idITAInterviewSet {
-	[self willAccessValueForKey:@"idITAInterview"];
-
-	NSMutableSet *result = (NSMutableSet*)[self mutableSetValueForKey:@"idITAInterview"];
-
-	[self didAccessValueForKey:@"idITAInterview"];
-	return result;
-}
-
 @end
 

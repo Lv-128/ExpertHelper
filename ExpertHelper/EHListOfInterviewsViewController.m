@@ -143,6 +143,7 @@ MFMailComposeViewControllerDelegate>
     if (_curInterview.type == [NSNumber numberWithInt:ITA])
     {
         EHITAViewController *itaViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"ITAForm"];
+        itaViewController.interview = [arr objectAtIndex:indexPath.row];
         [self.navigationController pushViewController:itaViewController animated:YES];
     }
     else
@@ -421,26 +422,12 @@ MFMailComposeViewControllerDelegate>
     EHWeek *week = [self.sortedWeeks objectAtIndex:index.section];
     InterviewAppointment *event = [week.interviews objectAtIndex:index.row];
     
-    ITAInterview *ITAi = event.idITAInterview;
-    
-    ITAi.itaGroupName = textField.text;
-    NSLog(@"%@", ITAi);
+    event.idITAInterview.itaGroupName = textField.text;
     
     [_collectionView reloadData];
     
     if (![context save:&error])
         NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
-    
-    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-
-    NSEntityDescription *entity = [NSEntityDescription entityForName:[ITAInterview entityName]
-                                              inManagedObjectContext:context];
-    [fetchRequest setEntity:entity];
-   
-//    NSArray *fetchedObjects = [context executeFetchRequest:fetchRequest error:&error];
-    
-//    for (ITAInterview *info in fetchedObjects)
-//        NSLog(info.itaGroupName);
 
     return YES;
 }

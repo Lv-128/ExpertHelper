@@ -29,7 +29,7 @@
     p2.drawPoints = YES;
     p2.attributes = @[@"Core", @"Desktop", @"Web", @"DB", @"BI", @"RIA",
                       @"Multimedia", @"Mobile", @"Embedded", @"Integration"];
-    p2.maxValue = (_width>_height) ? (_height - 2 * borderSize) / 2 - 70 : (_width - 2 * borderSize) / 2 - 70;
+    p2.maxValue = (_width > _height) ? (_height - 2 * borderSize) / 2 - 70 : (_width - 2 * borderSize) / 2 - 70;
     
     NSArray *b1 = [self pointsToNumericArray];
     p2.dataSeries = @[b1];

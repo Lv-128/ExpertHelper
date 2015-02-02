@@ -8,9 +8,11 @@
 
 #import "EHITAViewController.h"
 #import "EHITAViewControllerCell.h"
+#import "EHAddITACandidatesViewController.h"
 
 @interface EHITAViewController ()
 
+@property (nonatomic, strong) EHAddITACandidatesViewController *addCandidates;
 @property (nonatomic, weak) IBOutlet UITableView *tableView;
 @property (nonatomic, copy) NSArray *namesArray;
 @property (nonatomic, copy) NSArray *scope;
@@ -22,12 +24,20 @@
 
 @implementation EHITAViewController
 
-@synthesize myPickerView,popoverController;
+@synthesize myPickerView, popoverController;
 @synthesize scoreSrc;
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    if ([_interview.type integerValue] == 1)
+    {
+        if (_interview.idITAInterview.itaGroupName == nil)
+            self.navigationItem.title = [NSString stringWithFormat:@"Interview with ITA-Group"];
+        else
+            self.navigationItem.title = [NSString stringWithFormat:@"Interview with %@", _interview.idITAInterview.itaGroupName];
+    }
     
     _scope = [NSArray arrayWithObjects:@"00", @"05", @"10", @"15", @"20", @"25",@"30", @"35", @"40", @"45", @"50", @"55", @"60", @"65", @"70", @"75", @"80", @"85", @"90", @"95", nil];
     self.scoreSrc = [NSArray arrayWithObjects:@[@"1", @"2", @"3", @"4", @"5",], _scope, nil]; //array which contains scores for candidate
@@ -41,11 +51,6 @@
     
     for (NSInteger i = 0; i < _namesArray.count; i++)
         [_checked addObject:[NSNumber numberWithBool:false]];
-    
-    UIBarButtonItem *zoomButton =
-    [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
-                                                  target:self action:@selector(addITACandidate)];
-    self.navigationItem.rightBarButtonItem = zoomButton;
 }
 
 - (void)didReceiveMemoryWarning
@@ -53,6 +58,7 @@
     [super didReceiveMemoryWarning];
 }
 
+# pragma mark - tableView methods
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -61,10 +67,8 @@
 
 - (NSInteger)tableView:(UITableView *)table numberOfRowsInSection:(NSInteger)section
 {
-    return [_namesArray count];
+    return [_interview.idITAInterview.candidatesSet count];
 }
-
-//--------------- create custom cell of candidate in table ---------------
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -78,9 +82,17 @@
     
     NSUInteger row = [indexPath row];
     
-    cell.candidateName.text = [_namesArray objectAtIndex:row];
+    NSArray *arr = [_interview.idITAInterview.candidatesSet allObjects];
+    cell.candidateName.text = [NSString stringWithFormat:@"%@ %@", [[arr objectAtIndex:row]firstName], [[arr objectAtIndex:row]lastName]];
     
+    NSArray *array = self.interview.idITAInterview.scores;
+    
+    if (array.count > 0)
+        [cell.openPopUpButton setTitle:[array objectAtIndex:indexPath.row] forState:UIControlStateNormal];
+    else
     [cell.openPopUpButton setTitle:@"Select Score" forState:UIControlStateNormal];
+
+    
     cell.openPopUpButton.layer.cornerRadius = 20;//half of the width
     cell.openPopUpButton.layer.borderColor = [UIColor grayColor].CGColor;
     cell.openPopUpButton.layer.borderWidth = 2.0f;
@@ -94,7 +106,7 @@
 }
 
 
-//--------------- choose picture for candidate ---------------
+# pragma mark - choose picture for candidate
 
 UIButton *button;
 
@@ -122,7 +134,7 @@ UIButton *button;
     [button setImage:image forState:UIControlStateNormal];
 }
 
-//--------------- create PopUp with picker of scores ---------------
+# pragma mark - create PopUp with picker of scores
 
 - (NSIndexPath *)indexPathOfButton:(UIButton *)button {
     UIView *view = button.superview;
@@ -239,10 +251,44 @@ UIButton *button;
     
     [scoreOption setTitle:selectedScore forState:UIControlStateNormal];
 }
--(void)addITACandidate
+
+# pragma mark - add candidates
+
+- (IBAction)addITACandidate:(id)sender
 {
-    NSMutableArray *temp = [_namesArray mutableCopy];
+    self.addCandidates = [self.storyboard instantiateViewControllerWithIdentifier:@"AddCandidates"];
     
+    if (self.popover.isPopoverVisible)
+        [self.popover dismissPopoverAnimated:YES];
+    else
+        if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad)
+        {
+            self.addCandidates.interview = self.interview;
+            self.popover = [[UIPopoverController alloc] initWithContentViewController:self.addCandidates];
+            self.popover.popoverContentSize = CGSizeMake(300.0, 300.0);
+            self.popover.delegate = self;
+            [self.popover presentPopoverFromBarButtonItem:_zoomButton permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
+        }
+        else
+            [self.navigationController pushViewController:self.addCandidates animated:YES];
+}
+
+- (void)popoverControllerDidDismissPopover:(UIPopoverController *)popoverController{
+    [self.tableView reloadData];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    NSMutableArray *scores = [[NSMutableArray alloc]init];
+    for (int i = 0; i < [_interview.idITAInterview.candidatesSet count]; i++)
+    {
+        NSIndexPath *index = [NSIndexPath indexPathForRow:i inSection:0];
+        EHITAViewControllerCell *cell = (EHITAViewControllerCell *)[_tableView cellForRowAtIndexPath:index];
+        NSLog(@"%@",cell.openPopUpButton.titleLabel.text);
+        NSLog(@"%@",cell.candidateName.text);
+        [scores addObject:cell.openPopUpButton.titleLabel.text];
+    }
+    self.interview.idITAInterview.scores = scores;
 }
 
 @end
