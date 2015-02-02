@@ -85,9 +85,8 @@
         else
             for (MKMapItem *item in response.mapItems)
             {
-                EHMapAnotation* annotation = [[EHMapAnotation alloc] init];
+                EHMapAnotation *annotation = [[EHMapAnotation alloc] init];
                 
-                annotation.subtitle = @"Maybe Group??";
                 annotation.coordinate = item.placemark.coordinate;
                 annotation.title = item.name;
                 [self.mapView addAnnotation:annotation];

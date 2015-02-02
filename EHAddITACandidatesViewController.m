@@ -51,7 +51,7 @@
     NSEntityDescription *entity = [NSEntityDescription entityForName:[Candidate entityName]
                                               inManagedObjectContext:context];
     
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"firstName == %@ AND lastName == %@ ",_firstName.text,_lastName.text];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"firstName == %@ AND lastName == %@ ", _firstName.text, _lastName.text];
     [fetchRequest setPredicate:predicate];
     [fetchRequest setEntity:entity];
     
