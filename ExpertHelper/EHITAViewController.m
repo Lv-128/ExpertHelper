@@ -165,7 +165,7 @@ UIButton *button;
         selectedScore = [[[self.scoreSrc objectAtIndex:0]objectAtIndex:0] stringByAppendingString:[@"." stringByAppendingString:[[self.scoreSrc objectAtIndex:1]objectAtIndex:0]]];
         [scoreOption setTitle:selectedScore forState:UIControlStateNormal];
     } else {
-        scopeCount = [[sender.titleLabel.text substringToIndex:1] integerValue];
+        scopeCount = (int)[[sender.titleLabel.text substringToIndex:1] integerValue];
         
         for (int i = 0; i < _scope.count; i++) {
             NSString *checkString = [[NSString alloc]initWithString:[sender.titleLabel.text substringFromIndex:2]];

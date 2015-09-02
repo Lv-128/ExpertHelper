@@ -28,7 +28,7 @@
 // Array of all events happening within the next 24 hours
 @property (nonatomic, copy) NSArray *eventsList;
 
-@property (strong , nonatomic) UIRefreshControl * refreshControl;
+@property (strong, nonatomic) UIRefreshControl *refreshControl;
 
 @end
 
